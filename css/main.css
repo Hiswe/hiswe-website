@@ -26,11 +26,6 @@ h1 {
     width: 295px;
     height: 6em;
 }
-
-article header {
-    height: 6em;
-}
-
 /* Headings */
 h2 {
     font-size: 1.571em
@@ -132,13 +127,38 @@ dt {
 dd {
     margin-left: 1.5em;
 }
-
+/********** 
+    Home 
+**********/
+article{
+    position: relative;
+}
+article::after{
+    content: '';
+    display: block;
+    clear:both;
+}
+article header {
+    margin-left: 4em;
+}
+.entry-title{    
+    font-family: 'Josefin Sans Std Light', arial, serif;
+}
+article footer{
+    position: absolute;
+    top:0;
+    left: 0;
+}
+article div{
+    margin-left: 4em;
+}
 /* Dates */
 /* 1px overlap to hide the bad antialias due to transform + gradient*/
 .published {
+    top: 0.75em;
     width: 3em;
     height: 3em;
-    margin: 0 0 0.75em;
+    margin: 0 0 1.5em;
     display: block;
     position: relative;
 }
