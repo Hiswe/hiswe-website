@@ -134,6 +134,7 @@ dd {
 }
 
 /* Dates */
+/* 1px overlap to hide the bad antialias due to transform + gradient*/
 .published {
     width: 3em;
     height: 3em;
@@ -141,24 +142,36 @@ dd {
     display: block;
     position: relative;
 }
-
-.published::before {
+.published::before,
+.published::after {
     content: '';
     position: absolute;
     z-index:0;
-    background-color: #EEE;
-    background-image: -moz-linear-gradient(0% 100% 105deg, #ffffff, #d9d9d9); 
-    background-image: -webkit-gradient(linear, 0% 0%, 50% 100%, from(#D9D9D9), to(#FFFFFF));    
-    -webkit-transform-origin: left top;
+    -o-transform-origin: left top;
     -moz-transform-origin: left top;
+    -webkit-transform-origin: left top;        
+    -o-transform: matrix(1, -0.5, 1, 0.5, 0, 0);    
     -moz-transform: matrix(1, -0.5, 1, 0.5, 0, 0);
     -webkit-transform: matrix(1, -0.5, 1, 0.5, 0, 0);    
 }
-
-.published span, .published::before {
+.published span, 
+.published::before,
+.published::after {
     display: block;
     width: 1.5em;
     height: 1.5em;
+}
+.published::before{
+    top:1px;
+    background-color: #EEE;
+    background-image: -moz-linear-gradient(0% 100% 105deg, #FFFFFF, #d9d9d9); 
+    background-image: -webkit-gradient(linear, 0% 0%, 50% 100%, from(#D9D9D9), to(#FFFFFF));
+}
+.published::after{
+    bottom: -0.75em;
+    left :-1.5em;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #D9D9D9, #FFFFFF); 
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#D9D9D9));
 }
 .published span {
     float: left;
@@ -167,119 +180,44 @@ dd {
 	line-height:1.5em;
 	text-align:center;    
 }
-.day {    
-    background: #D4D4D4;
+.day {
+    top:1px; /*needed to hide the bad antialias due to transform + gradient*/ 
+    background: #B9B9B9;
     background: -moz-linear-gradient(top, #D4D4D4, #BBB);
   	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #D4D4D4),color-stop(1, #BBB));
 }
 .thousand{
-    margin-top:-1px;    
-	background: #D4D4D4;
+	background: #B9B9B9;
 	background: -moz-linear-gradient(top, #BBB, #A1A1A1);
   	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #BBB),color-stop(1, #A1A1A1));
 }
 .month{
+    top:1px;
 	background: #D9D9D9;
 	background: -moz-linear-gradient(top, #D9D9D9 #CECECE);
   	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #D9D9D9),color-stop(1, #CECECE));
 }
 .ten{
-    margin-top:-1px;    
+    /*margin-top:-1px;*/
 	background: #D9D9D9;
 	background: -moz-linear-gradient(top, #CECECE, #C4C4C4);
   	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #CECECE),color-stop(1, #C4C4C4));
 }
 .day,
 .thousand{
+    -o-transform-origin: left top;
+    -moz-transform-origin: left top;
     -webkit-transform-origin: left top;
-    -moz-transform-origin: left top;    
+    -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+    -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);  
-    -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);    
 }
 .month,
 .ten{
-    -webkit-transform-origin: right top;
+    -o-transform-origin: right top;
     -moz-transform-origin: right top;    
-     -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    
-}
-/* Dates */
-.old_published {
-                    position: relative;
-                    width: 8em;
-                    height: 10em;
-                    display: block;
-}
-
-.old_published::after {
-                    content: '';
-                    display: block;
-                    clear: both;
-}
-
-.old_published span {
-                    width: 4em;
-                    height: 4em;
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    -webkit-transform-origin: left top;
-                    -moz-transform-origin: left top;
-                    background-color: #d9d9d9;
-                    background-image: -moz-linear-gradient(0% 100% 105deg, #ffffff, #d9d9d9); /* FF3.6 */
-  background-image: -webkit-gradient(linear, 0% 0%, 10% 100%, from(#D9D9D9), to(#FFFFFF)); /* Saf4+, Chrome */
-            filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#d9d9d9', EndColorStr='#ffffff'); /* IE6,IE7 */
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#d9d9d9', EndColorStr='#ffffff')"; /* IE8 */
-                    
-}
-
-.old_published span + span {
-                    height: 8em;
-                    background-color: #d4d4d4;
-                    background-image: -moz-linear-gradient(top, #d4d4d4, #a1a1a1); /* FF3.6 */
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #d4d4d4),color-stop(1, #a1a1a1)); /* Saf4+, Chrome */
-            filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#d4d4d4', EndColorStr='#a1a1a1'); /* IE6,IE7 */
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#d4d4d4', EndColorStr='#a1a1a1')"; /* IE8 */
-}
-
-.old_published span + span + span {
-  background-color: #d9d9d9;
-  background-image: -moz-linear-gradient(top, #d9d9d9, #c4c4c4); /* FF3.6 */
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #d9d9d9),color-stop(1, #c4c4c4)); /* Saf4+, Chrome */
-            filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#d9d9d9', EndColorStr='#c4c4c4'); /* IE6,IE7 */
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#d9d9d9', EndColorStr='#c4c4c4')"; /* IE8 */
-}
-
-.old_published span i {
-                    position: absolute;
-                    top: -4px;
-                    left: -4px;
-                    font-size: 0;
-                    border: solid 4px blue;
-                    border-radius: 4px;
-                    -moz-border-radius: 4px;
-                    -webkit-border-radius: 4px;
-}
-
-.old_published span:nth-child(1){
-                    -webkit-transform-origin: left top;    
-                    -moz-transform-origin: left top;    
-                    /* -webkit-transform: matrix(1, -1, 1,1, 0, 0); /*rotation 45° + taille == diagonale carré (racine de 2)*/   
-                    -moz-transform: matrix(1, -0.5, 1,0.5, 0, 0);
-                    -webkit-transform: matrix(1, -0.5, 1,0.5, 0, 0);
-                      
-}
-.old_published span:nth-child(2){
-    -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);  
-    -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);  
-                        
-}
-.old_published span:nth-child(3){
-    top:2em;
-    left:4em;
-    -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
-                        
+    -webkit-transform-origin: right top; 
+    -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+    -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);    
+    -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);    
 }
