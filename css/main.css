@@ -10,7 +10,7 @@
 /***** Global *****/
 /* Body */
 body {
-    background: #FFF url(../media/img/cross.gif) top left;
+    background: #FFF;
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
