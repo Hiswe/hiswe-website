@@ -55,7 +55,9 @@ h2, h3, h4, h5, h6 {
     line-height: 1.1;
     margin-bottom: .8em;
 }
-
+abbr{
+    border:none;
+}
 /* Anchors */
 a {
     outline: 0;
@@ -148,6 +150,9 @@ article footer{
 }
 article div{
     margin-left: 4em;
+}
+article p{
+    text-align: justify;
 }
 /* Dates */
 /* 1px overlap to hide the bad antialias due to transform + gradient*/
