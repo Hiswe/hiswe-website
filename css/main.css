@@ -112,7 +112,7 @@ ul {
 
 ol {
     list-style: none;
-    margin: 1em;
+    margin: 0em;
 }
 
 dl {
@@ -125,6 +125,9 @@ dt {
 
 dd {
     margin-left: 1.5em;
+}
+.container{
+    margin:1em;
 }
 /**********
     Home
@@ -141,7 +144,7 @@ article header {
     margin-left: 4em;
 }
 .entry-title{
-    font-family: 'Josefin Sans Std Light', arial, serif;
+    font-family: 'Nobile', arial, serif;
 }
 article footer{
     position: absolute;
