@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Hiswe's HTML5 website</title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css" />
         <link rel="stylesheet" href="css/main.css" type="text/css" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
         <!--<link href='http://fonts.googleapis.com/css?family=Josefin+Sans+Std+Light&subset=latin' rel='stylesheet' type='text/css'-->
@@ -29,8 +30,34 @@
         <!-- /#content -->
         <section id="content" class="body">
             <ol id="posts-list" class="hfeed columns">
-                <li  class="unit column" >
-                        <article class="hentry container">
+                <li   >
+                        <article class="hentry">
+                            <header>
+                                <h5 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Suppression du framework elastic CSS</a></h5>
+                            </header>
+                            <footer class="post-info">
+                                <abbr class="published" title="2010-27-12T14:07:00-07:00" id="testCube">
+                                    <span class="day">27</span>
+                                    <span class="month">12</span>
+                                    <b class="year"><span  class="thousand">20</span ><span  class="ten">10</span ></b>
+                                </abbr>
+                            </footer>
+                            <!-- /.post-info -->
+                            <div class="entry-content">
+                            <p>
+                                Le framework <a href="http://elasticss.com/">elasticss</a> permet grâce à l'ajout d'un fichier javascript de pouvoir facilement faire du multi colonnage. Le fait d'avoir un JS qui gère la présentation permet un rendu uniforme sur les différents navigateurs (ou presque).Je n'ai constaté que de léger soucis sous ie6 mais rien de bien grave. <br /> Le désavantage du framework est justement de ne pas reposer uniquement sur du css. Un problème dans un des codes JS et la présentation peut être complètement changée... Du coup j'ai décidé de me reposer sur :  
+                                <ol>
+                                    <li>le CSS3</li>
+                                    <li>les propriétés <em>grid-rows, columns &amp; grid-columns</em> </li>
+                                    <li>un mode dégradé pour Internet Explorer.</li>
+                                </ol>
+                            </p>
+                            </div>
+                            <!-- /.entry-content -->
+                        </article>
+                </li>
+                <li   >
+                        <article class="hentry">
                             <header>
                                 <h5 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Test Multi Column</a></h5>
                             </header>
@@ -50,8 +77,8 @@
                             <!-- /.entry-content -->
                         </article>
                     </li>
-                    <li class="unit column">
-                        <article class="hentry container">
+                    <li >
+                        <article class="hentry">
                             <header>
                                 <h5 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Test Multi Column</a></h5>
                             </header>
@@ -79,8 +106,8 @@
                     </li>
                 </ol>
             <ol id="posts-list" class="hfeed columns">
-                <li class="unit column">
-                    <article class="hentry content container">
+                <li >
+                    <article class="hentry">
                         <header>
                             <h5 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Add Elasticss Framework</a></h5>
                         </header>
@@ -98,8 +125,8 @@
                         </div>
                     </article>
                 </li>
-                <li  class="unit column" >
-                    <article class="hentry content container">
+                <li>
+                    <article class="hentry">
                         <header>
                             <h5 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Second message</a></h5>
                         </header>
@@ -115,8 +142,8 @@
                         </div>
                     </article>
                 </li>
-                <li class="unit column">
-                    <article class="hentry content container">
+                <li>
+                    <article class="hentry">
                         <header>
                             <h5 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">Preum's !!</a></h5>
                         </header>
