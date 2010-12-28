@@ -14,11 +14,11 @@ body {
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     line-height: 1.429;
     margin: 0;
-    padding: 2em;
+    padding: 3em 7%;
     text-align: left;
 }
 h1 {
-    text-indent: -25em;
+    text-indent: -999em;
     background: transparent url(../media/img/logo.png) top left no-repeat;
     width: 295px;
     height: 6em;
@@ -40,6 +40,7 @@ h4 {
 
 /* 18px */
 h5 {
+    color: #A8005D;
     font-size: 1.143em
 }
 
@@ -68,7 +69,7 @@ a img {
 }
 
 a:link, a:visited {
-    color: #A8005D ;
+    color: #A8005D;
     padding: 0 1px;
     text-decoration: none;
 }
@@ -108,31 +109,6 @@ ul {
     list-style: outside disc;
     margin: 1em 0 1.5em 1.5em;
 }
-.entry-content{
-    /*
-    -moz-column-count: 3;
-    -moz-column-gap: 1em;
-    -webkit-column-count: 3;
-    -webkit-column-gap: 1em;
-    column-count: 3;
-    column-gap: 1em;
-    */
-}
-ol {
-    list-style: none;
-    margin: 0em;
-}
-ol p{
-    /*float: left;*/
-    /*width: 2gr;*/
-}
-ol ol{
-    list-style: decimal;
-/*    width : 3gr;*/
-}
-ol ol li::marker{
-    color: #A8005D;
-}
 
 dl {
     margin: 0 0 1.5em 0;
@@ -151,6 +127,7 @@ dd {
 article{
     position: relative;
     margin:1em;
+    padding: 0 0 2em;
 }
 article::after{
     content: '';
@@ -158,12 +135,22 @@ article::after{
     clear:both;
 }
 article header {
-    margin-left: 4em;
+    margin-left: 5em;
     display: block;
 }
 
 .entry-title{
     font-family: 'Nobile', arial, serif;
+}
+article ol{
+    padding-left: 1em;
+}
+article ol li{
+    counter-increment : index;
+}
+article ol li::before{
+    content : counter(index)'. ';
+    color: #A8005D;
 }
 article footer{
     position: absolute;
@@ -171,10 +158,21 @@ article footer{
     left: 0;
 }
 article div{
-    margin-left: 4em;
+    margin-left: 5em;
 }
-article p{
+.entry-content p{
     text-align: justify;
+}
+@media screen and (min-width: 960px)
+{
+    .entry-content p {
+        -moz-column-count: 2;
+        -moz-column-gap: 2em;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 2em;
+        column-count: 2;
+        column-gap: 2em;
+    }
 }
 /* Dates */
 /* 1px overlap to hide the bad antialias due to transform + gradient*/
