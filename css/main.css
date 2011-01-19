@@ -27,28 +27,19 @@ h1 {
 h2 {
     font-size: 1.571em
 }
-
-/* 22px */
-h3 {
+h3 { /* 22px */
     font-size: 1.429em
 }
-
-/* 20px */
-h4 {
+h4 { /* 20px */
     font-size: 1.286em
 }
-
-/* 18px */
-h5 {
+h5 { /* 18px */
     color: #A8005D;
     font-size: 1.143em
 }
-
-/* 16px */
-h6 {
+h6 { /* 16px */
     font-size: 1em
 }
-
 /* 14px */
 h2, h3, h4, h5, h6 {
     font-weight: 400;
@@ -62,24 +53,20 @@ abbr{
 a {
     outline: 0;
 }
-
 a img {
     border: 0px;
     text-decoration: none;
 }
-
 a:link, a:visited {
     color: #A8005D;
     padding: 0 1px;
     text-decoration: none;
 }
-
 a:hover, a:active {
     background-color:#A8005D ;
     color: #fff;
     text-decoration:underline ;
 }
-
 /* Paragraphs */
 p {
     margin-bottom: 1.143em;
@@ -87,7 +74,6 @@ p {
 * p:last-child {
     margin-bottom: 0;
 }
-
 strong, b {
 }
     font-weight: bold;
@@ -106,10 +92,9 @@ em, i {
 
 /* Lists */
 ul {
-    list-style: outside disc;
-    margin: 1em 0 1.5em 1.5em;
+	list-style: outside disc;
+	margin: 1em 0 1.5em 1.5em;
 }
-
 dl {
     margin: 0 0 1.5em 0;
 }
