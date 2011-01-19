@@ -23,25 +23,26 @@
     <body>
         <header>
             <h1>Hiswe' gauge</h1>
+            <article>Un petit projet comme ça pour s'amuser. Il s'agissait de réaliser une jauge verticale sans l'aide de CANVAS.<br />Les différentes sections montrent le cheminement parcouru depuis le début le plus basique (<a href="#bottom">en bas</a>)  jusqu'à la fin la plus raffinée (avec du javascript pour faire le boulot)</article>
         </header>
         <section>
             <header>
                 <h5>Essaie Javascript</h5>
             </header>
              <div class="gaugeContainer patternBox" id="jsGauge">
-                    <dl>
+                    <dl style="width:5.357em; margin: 0">
                         <dt>Pouic</dt>
                         <dd class="gaugePercent">100%</dd>
                     </dl>
-                    <dl>
+                    <dl style="width:5.357em; margin: 0">
                         <dt>Clapou</dt>
                         <dd class="gaugePercent">60%</dd>
                     </dl>
-                    <dl>
+                    <dl style="width:5.357em; margin: 0">
                         <dt>Ratatouille</dt>
                         <dd class="gaugePercent">30%</dd>
                     </dl>
-                    <dl>
+                    <dl style="width:5.357em; margin: 0">
                         <dt>Patacrêpe</dt>
                         <dd class="gaugePercent">0%</dd>
                     </dl>                
@@ -49,10 +50,10 @@
             <div>
                 <div>
                     <ul>
-                        <li>Utilise le système de widget<a href="http://jqueryui.com/">jQuery ui</a></li>
+                        <li>Utilise le système de widget proposé par <a href="http://jqueryui.com/">jQuery ui</a></li>
                         <li>Se repose sur les markups</li>
-                        <li>Se dégrade bien (les valeurs sont déjà présente dans le code HTML)</li>
-                        <li>Permet de spécifier son système d'easing</li>                        
+                        <li>Accessible</li>
+                        <li>Paramétrable</li>
                     </ul>
                 </div>
             </div>
@@ -86,11 +87,16 @@
                 </p>
                 <pre class="brush: js">
                     $(function(){
-                    	$('#jsGauge dl').gauge({
-                    		'height': "7em", // Hauteur des bars paramétrable
-                    		'background-color' : "#FC0C8A", // Couleur de fond paramétrable
-                    		'easing' : "easeOutBounce"  // easing d'animation
+                        // initialisation de la jauge
+                    	$("#jsGauge dl").gauge({
+                    		height: "7em", // Hauteur des barres
+                    		background : "#FC0C8A", // Couleur de fond
+                    		easing : "easeOutBounce"  // easing d'animation
                     	});
+                    	// Méthode pour mettre à jour une jauge
+                    	$("#jsGauge dl").gauge("setPercent",5);
+                    	// Méthode pour retrouver la valeur d'une jauge
+                    	$("#jsGauge dl").gauge("getPercent",5);
                     });
                 </pre>
                 <p>
@@ -177,34 +183,34 @@
                   <h5>Essaie CSS avec valeur toujours visible</h5>
               </header>
               <div class="valueGaugeContainer patternBox">
-                  <dl>                                 
+                  <dl>
                       <dd class="valueGauge"><span class="valueGaugeBar" style="top:0"><span></dd>
                       <dd class="valueGaugePercent">100%</dd>
                   </dl>
-                  <dl>                                 
+                  <dl>
                       <dd class="valueGauge"><span class="valueGaugeBar" style="top:40%"><span></dd>
                       <dd class="valueGaugePercent">60%</dd>
                   </dl>
-                  <dl>                                 
+                  <dl>
                       <dd class="valueGauge"><span class="valueGaugeBar" style="top:60%"><span></dd>
                       <dd class="valueGaugePercent">30%</dd>
                   </dl>
-                  <dl>                                 
+                  <dl>
                       <dd class="valueGauge"><span class="valueGaugeBar" style="top:100%"><span></dd>
                       <dd class="valueGaugePercent">0%</dd>
-                  </dl>                
-              </div>            
+                  </dl>
+              </div>
               <div>
                   <ul>
                       <li>Pure CSS</li>
                       <li>Utilise la propriété 'top'</li>
-                      <li>Se redimentionne bien</li>                        
+                      <li>Se redimentionne bien</li>
                       <li>Libellé toujours visible</li>
                       <li>Obligé de mettre (100 - valeur) dans le css</li>
                   </ul>
-              </div>            
-          </section>          
-         <section>
+              </div>
+          </section>  
+         <section id="bottom">
                 <header>
                     <h5>Essaie CSS Simple</h5>
                 </header>

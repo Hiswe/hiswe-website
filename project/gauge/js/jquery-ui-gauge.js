@@ -15,7 +15,7 @@
 $.widget("ui.gauge", {
 	options: {
 		'height': "7.146em",
-		'background-color' : "#FC0C8A",
+		'background' : "",
 		'easing' : "easeOutBounce" 
 	},
 	_create: function() {
@@ -24,16 +24,19 @@ $.widget("ui.gauge", {
 			'class' : 'gaugeValue',
 			'style' : 'height:'+this.options.height
 		});
+		var cssBar = {'top' : '100%'}
+		if (this.options.backgroundColor){
+			cssBar.background = this.options.backgroundColor
+		}
 		this.$bar = $('<span />',{
 			'class' : 'gaugeBar'
-		}).css({
-			'background' : this.options['background-color'],
-			'top' : '100%'			
-		});
+		}).css(cssBar);
 		this.$barContainer
 			.append(this.$bar)
 			.insertBefore(this.$value);
-		this.setPercent(parseInt(this.$value.text().replace(/^([0-9]*)[%\.,]?[0-9]*[%\.,]?/g, '$1')));
+		// retrieve the percent from the markup
+		var domPercent = parseInt(this.$value.text().replace(/^([0-9]*)[%\.,]?[0-9]*[%\.,]?/g, '$1'));
+		this.setPercent(domPercent);
 	},
 
 	enable: function() {
@@ -52,6 +55,7 @@ $.widget("ui.gauge", {
 		this.percent = Math.min(Math.abs(value), 100);
 		this.invertPercent = 100 - this.percent;
 		
+		this.$value.text(this.percent+'%' ); 
 		this.$bar.animate({
 			'top' : this.invertPercent+'%'
 		}, 1000, this.options.easing);
