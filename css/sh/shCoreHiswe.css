@@ -275,7 +275,7 @@
 }
 .syntaxhighlighter .toolbar {
   color: white !important;
-  background: #6ce26c !important;
+  background: #FF6FD7 !important;
   border: none !important;
 }
 .syntaxhighlighter .toolbar a {
@@ -303,7 +303,7 @@
   color: #aa7700 !important;
 }
 .syntaxhighlighter .value {
-  color: #009AEF!important;
+  color: #007BDF!important;
 }
 .syntaxhighlighter .functions {
   color: #ff1493 !important;
