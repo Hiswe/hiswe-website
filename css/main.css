@@ -17,11 +17,16 @@ body {
     padding: 3em 7%;
     text-align: left;
 }
-h1 {
-    text-indent: -999em;
-    background: transparent url(../media/img/logo.png) top left no-repeat;
-    width: 295px;
-    height: 6em;
+h1 a{
+	display:block;
+	text-indent: -999em;
+	background: transparent url(../media/img/logo.png) top left no-repeat;
+	display: 100%;
+	width: 21.071em;
+	height: 6em;
+}
+h1 a:hover{
+	background-color: transparent;
 }
 /* Headings */
 h2 {
@@ -92,8 +97,17 @@ em, i {
 
 /* Lists */
 ul {
-	list-style: outside disc;
+	list-style: none;
 	margin: 1em 0 1.5em 1.5em;
+}
+ul li::before{
+	content :'●';
+	display: inline-block;
+	width: 1.5em;
+	text-align: center;
+	margin-left: -1.5em;
+	position:relative;
+	color : #A8005D;
 }
 dl {
     margin: 0 0 1.5em 0;
@@ -182,6 +196,7 @@ article div{
 /* Dates */
 /* 1px overlap to hide the bad antialias due to transform + gradient*/
 .published {
+	font-size:1.5em;
     top: 0.75em;
     width: 3em;
     height: 3em;
