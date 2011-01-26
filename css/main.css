@@ -80,13 +80,11 @@ p {
     margin-bottom: 0;
 }
 strong, b {
+   font-weight: bold;
 }
-    font-weight: bold;
-
 em, i {
     font-style: italic;
 }
-
 /* test selection */::-moz-selection {
     background: #F6CF74;
     color: #fff;
@@ -94,7 +92,6 @@ em, i {
     background: #F6CF74;
     color: #fff;
 }
-
 /* Lists */
 ul {
 	list-style: none;
@@ -112,11 +109,9 @@ ul li::before{
 dl {
     margin: 0 0 1.5em 0;
 }
-
 dt {
     font-weight: bold;
 }
-
 dd {
     margin-left: 1.5em;
 }
@@ -132,13 +127,28 @@ h5{
     Utils
 **********/
 .patternBox{
+	text-align: center;
+	padding: 1em 0;
+	margin : 0;
 	background: transparent url(../media/layout/texture.jpg);
-    border-radius: 10px;
+	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-   -moz-box-shadow:inset 0 2px 10px #000000;
-   -webkit-box-shadow:inset 0 2px 10px #000000;
-   box-shadow:inset 0 2px 10px #000000;
+	-moz-box-shadow:inset 0 2px 10px #000000;
+	-webkit-box-shadow:inset 0 2px 10px #000000;
+	box-shadow:inset 0 2px 10px #000000;
+}
+.demoBlock{
+	float: right;
+	width: 50%;
+	text-align: center;
+}
+.demoBlock + div{
+	float:left;
+	width: 49%;
+}
+.demoBlock + div +div{
+	clear:both;
 }
 /**********
     Home
@@ -179,19 +189,19 @@ article footer{
 article div{
     margin-left: 5em;
 }
-.entry-content p{
+article{
     text-align: justify;
 }
 @media screen and (min-width: 960px)
 {
-    .entry-content p {
-        -moz-column-count: 2;
-        -moz-column-gap: 2em;
-        -webkit-column-count: 2;
-        -webkit-column-gap: 2em;
-        column-count: 2;
-        column-gap: 2em;
-    }
+    .longText{
+		column-count: 2;
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-gap: 2em;
+		-moz-column-gap: 2em;
+		-webkit-column-gap: 2em;
+	}
 }
 /* Dates */
 /* 1px overlap to hide the bad antialias due to transform + gradient*/
@@ -282,4 +292,49 @@ article div{
     -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+}
+/**********
+    gauge with legend
+**********/
+.gaugeContainer dl{
+	display:inline-block;
+	position: relative;
+	margin: 0 0.5em;
+}
+.gaugeContainer dt{
+	font-weight: bold;
+}
+.gaugePercent{
+	background: rgba(255,255,255,0.8);
+	border-radius: 0 0 10px 10px ;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+	font-weight:bold;
+	color: #000;
+}
+.gaugeBar,
+.gaugePercent,
+.gaugeValue{
+	display:block;
+	width:3em;
+	margin: 0 auto;	
+	position:relative;	
+}
+.gaugeValue{
+	overflow:hidden;
+	height: 7.146em;
+	background: rgba(0,0,0,0.2);
+	border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-box-shadow:inset 0px 0px 4px #000000; 
+	-webkit-box-shadow:inset 0px 0px 4px #000000; 
+	box-shadow:inset 0px 0px 4px #000000; 
+}
+.gaugeBar{
+	height:100%;
+	background: #FC0C8A;
+    border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
 }
