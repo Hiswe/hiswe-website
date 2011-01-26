@@ -1,4 +1,6 @@
 $(function(){
+	/*SyntaxHighlighter.config.tagName = 'pre';
+	SyntaxHighlighter.all();*/
 	var $gauge = $('#jsGauge dl');
 	$gauge.gauge();
 	setTimeout(moveTo50,2000);
