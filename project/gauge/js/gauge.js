@@ -17,7 +17,8 @@ var pageGauge = function(){
 		},
 		_initSyntaxicColoration : function () {
 			//SyntaxHighlighter.config.tagName = 'pre';
-			SyntaxHighlighter.all();
+			//SyntaxHighlighter.all();
+			prettyPrint();
 		},
 		_makeCache : function () {
 			d.$gauge = $('#jsGauge dl');
