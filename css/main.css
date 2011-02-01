@@ -1,9 +1,5 @@
 /*
- Name: Smashing HTML5
- Date: July 2009
- Description: Sample layout for HTML5 and CSS3 goodness.
- Version: 1.0
- Author: Enrique Ram�rez
+ based on : Enrique Ramirez work for smashing magazine
  */
 /***** Global *****/
 /* Body */
@@ -257,26 +253,27 @@ article{
 .published span,
 .published::before,
 .published::after {
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
+	display: block;
+	width: 50%; /* canno't put em here -> Opera has issue with it */ 
+	height: 1.5em;
 }
 .published::before{
-    top:1px;
-    background-color: #EEE;
-    background-image: -moz-linear-gradient(0% 100% 105deg, #FFFFFF, #d9d9d9);
-    background-image: -webkit-gradient(linear, 0% 0%, 50% 100%, from(#D9D9D9), to(#FFFFFF));
+	top:1px;
+	background-color: #EEE;
+	background-image: -moz-linear-gradient(0% 100% 105deg, #FFFFFF, #d9d9d9);
+	background-image: -webkit-gradient(linear, 0% 0%, 50% 100%, from(#D9D9D9), to(#FFFFFF));
 }
 .published::after{
     bottom: -0.75em;
     left :-1.5em;
+	background-color: #EEE;
     background-image: -moz-linear-gradient(0% 100% 90deg, #D9D9D9, #FFFFFF);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#D9D9D9));
 }
 .published span {
-    float: left;
-    z-index:1;
-    position:relative;
+	float: left;
+	z-index:1;
+	position:relative;
 	line-height:1.5em;
 	text-align:center;
 }
@@ -289,37 +286,37 @@ article{
 .thousand{
 	background: #B9B9B9;
 	background: -moz-linear-gradient(top, #BBB, #A1A1A1);
-  	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #BBB),color-stop(1, #A1A1A1));
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #BBB),color-stop(1, #A1A1A1));
 }
 .month{
-    top:1px;
+	top:1px;
 	background: #D9D9D9;
 	background: -moz-linear-gradient(top, #D9D9D9 #CECECE);
-  	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #D9D9D9),color-stop(1, #CECECE));
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #D9D9D9),color-stop(1, #CECECE));
 }
 .ten{
-    /*margin-top:-1px;*/
+	/*margin-top:-1px;*/
 	background: #D9D9D9;
 	background: -moz-linear-gradient(top, #CECECE, #C4C4C4);
-  	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #CECECE),color-stop(1, #C4C4C4));
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #CECECE),color-stop(1, #C4C4C4));
 }
 .day,
 .thousand{
-    -o-transform-origin: left top;
-    -moz-transform-origin: left top;
-    -webkit-transform-origin: left top;
-    -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+	-o-transform-origin: left top;
+	-moz-transform-origin: left top;
+	-webkit-transform-origin: left top;
+	-o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+	-moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+	-webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
 }
 .month,
 .ten{
-    -o-transform-origin: right top;
-    -moz-transform-origin: right top;
-    -webkit-transform-origin: right top;
-    -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+	-o-transform-origin: right top;
+	-moz-transform-origin: right top;
+	-webkit-transform-origin: right top;
+	-o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+	-moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
+	-webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
 }
 /**********
     gauge with legend
