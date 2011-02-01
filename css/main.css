@@ -250,13 +250,18 @@ article{
     -moz-transform: matrix(1, -0.5, 1, 0.5, 0, 0);
     -webkit-transform: matrix(1, -0.5, 1, 0.5, 0, 0);
 }
-.published span,
-.published::before,
-.published::after {
+.published span {
 	display: block;
 	width: 50%; /* canno't put em here -> Opera has issue with it */ 
 	height: 1.5em;
 }
+.published::before, /* separate the rules for ie8 compatibility */
+.published::after { /* IE8 admit only :before */
+	display: block; /* MS filters don't work on generated content */
+	width: 50%; 
+	height: 1.5em;
+}
+
 .published::before{
 	top:1px;
 	background-color: #EEE;
@@ -264,11 +269,11 @@ article{
 	background-image: -webkit-gradient(linear, 0% 0%, 50% 100%, from(#D9D9D9), to(#FFFFFF));
 }
 .published::after{
-    bottom: -0.75em;
-    left :-1.5em;
+	bottom: -0.75em;
+	left :-1.5em;
 	background-color: #EEE;
-    background-image: -moz-linear-gradient(0% 100% 90deg, #D9D9D9, #FFFFFF);
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#D9D9D9));
+	background-image: -moz-linear-gradient(0% 100% 90deg, #D9D9D9, #FFFFFF);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#D9D9D9));
 }
 .published span {
 	float: left;
@@ -308,6 +313,10 @@ article{
 	-o-transform: matrix(1, 0.5, 0, 1, 0, 0);
 	-moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
 	-webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand')";
+	/* I could provide IE7- compatibility with this :
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
+	*/
 }
 .month,
 .ten{
@@ -317,6 +326,11 @@ article{
 	-o-transform: matrix(1, -0.5, 0, 1, 0, 0);
 	-moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
 	-webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand')";
+}
+.lt-ie9 .month,
+.lt-ie9 .ten{
+	margin-left:-1px;
 }
 /**********
     gauge with legend
@@ -331,6 +345,7 @@ article{
 	text-shadow: 0 0 3px #FFF;
 }
 .gaugePercent{
+	background: #FFF;
 	background: rgba(255,255,255,0.8);
 	border-radius: 0 0 10px 10px ;
 	-moz-border-radius: 0 0 10px 10px;
@@ -349,6 +364,7 @@ article{
 .gaugeValue{
 	overflow:hidden;
 	height: 7.146em;
+	background: #666;
 	background: rgba(0,0,0,0.2);
 	border-radius: 10px 10px 0 0;
 	-moz-border-radius: 10px 10px 0 0;
