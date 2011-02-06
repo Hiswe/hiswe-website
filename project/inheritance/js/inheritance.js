@@ -21,8 +21,9 @@ var spore = function (spec) {
 	};
 	
 	that.noise = function () {
-		hiswe.out(spec.noise);	
-		return spec.noise || '';
+		var noise = spec.noise || '';
+		hiswe.out(noise);	
+		return noise;
 	};
 	
 	return that;
@@ -41,6 +42,25 @@ pouic.noise();
 clapou.getName();
 clapou.noise();
 
+var metaSpore = function (spec) {
+
+	var that = spore(spec);
+	
+	that.loudNoise = function () {
+		var loudNoise = spec.noise.toUpperCase() || '';
+		hiswe.out(loudNoise);	
+		return loudNoise;
+	}
+	
+	return that;
+};
+var metaPouic = metaSpore({
+	name : 'met-pouic',
+	noise : 'pouiiIIIIiic'
+});
+metaPouic.getName();
+metaPouic.noise();
+metaPouic.loudNoise();
 /*
 var constructor = function (spec, my) {
 	// spec === all argumemts to constructs a new instance
