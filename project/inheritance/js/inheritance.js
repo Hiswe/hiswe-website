@@ -61,14 +61,73 @@ var metaPouic = metaSpore({
 metaPouic.getName();
 metaPouic.noise();
 metaPouic.loudNoise();
+
+
 /*
-var constructor = function (spec, my) {
+var larve = function (spec, my) {
 	// spec === all argumemts to constructs a new instance
 	var that, privateInstanceVariable;
-	my = my || {};	
+	my = my || {};
+
 	// add shared variables and functions to my
 	that = {}; // create a new object
-	// add privilegd methods to that
+	// add privileged methods to that
 	return that;
 }
-//*/
+*/
+
+
+var pitou = function(){
+	var d = {
+		
+	};
+
+	var f = {
+		_makePublicMethod: function () {
+			var newObject = {};
+			for (var method in f) {
+				if(!/^_/.test(method)){
+					newObject[method] = f[method];
+				}
+			} 
+			return newObject;
+		},
+		init: function (spec) {
+			console.info("[pitou] init ::" ,spec.name);
+			f._makeCache(spec)
+		},
+		_makeCache: function (spec) {
+			d.energy = spec.energy;
+		},
+		hit: function () {
+			console.log('[pitou] hit');
+			d.energy -= 1;
+			console.log('[pitou] energy left ::', d.energy);
+		},
+		get_energy: function () {
+			return d.energy;
+		}
+	};
+
+	return f._makePublicMethod();
+	
+};
+
+var groPitou = pitou();
+var mediumPitou = pitou();
+groPitou.init({
+	name: 'Grö',
+	energy: 54
+});
+mediumPitou.init({
+	name: 'Guss',
+	energy: 27
+});
+
+
+mediumPitou.hit();
+mediumPitou.hit();
+mediumPitou.hit();
+groPitou.hit();
+
+console.log(groPitou);
