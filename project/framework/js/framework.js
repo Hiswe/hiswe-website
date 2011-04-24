@@ -1,17 +1,21 @@
 h.debug( 'info',h);
 h.module('living.spore' ,{
 	d: {
-
+		name: 'spore',
+		position: 0
 	},
 	f: {
 		move: function () {
-			h.debug('log', 'move');
+			// h.debug(this);
+			// h.debug('[Spore] move ::',d.position,'->',d.position + 1);
+			// d.position += 1;
 		}
 	}
 });
-h.debug( 'log','spore');
-h.debug('dir', h.living.spore);
 
+var pouic = h.living.spore({
+	name: 'pouic',
+	position: 5,
+});
 
-h.debug('log', h.living.spore.getName());
-h.debug('log', h.living.spore.getVersion());
+pouic('move');

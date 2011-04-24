@@ -15,11 +15,11 @@
 	$.extend(h,{
 		debug: function (type) {
 			if (h.debugMode === true) {
-				var params = $.makeArray(arguments).slice(1);
+				var params = $.makeArray(arguments);
 				try {
-					window.console[type].apply(window, params);
+					window.console[type].apply(window, params.slice(1));
 				} catch (e) {
-					console.warn(e);
+					window.console['log'].apply(window, params);
 				}
 			}
 		},
@@ -28,7 +28,4 @@
 			return firstChar + string.substr(1);
 		}
 	});
-
-
-
 })(typeof window === 'undefined' ? this : window, jQuery);
