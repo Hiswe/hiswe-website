@@ -10,25 +10,27 @@
 				base = h.module;
 			}
 			// create a new object with all methods public
-			var baseModule = {
-				options: {
-					_module: name,
-					_namespace: namespace,
-					version: 1
-				}
+			var baseOptions = {
+				module: name,
+				namespace: namespace,
+				fullName: fullName
 			};
-			var	augmentedModule = $.extend(true, {}, prototype, baseModule);
-			h.debug('[Module] augmented Module :: ');
-			h.debug('dir', augmentedModule );
+			var baseModule = {
+				_create: $.noop
+			};
+			var	augmentedModule = $.extend(true, {}, baseModule, prototype);
+			h.debug('[Module] augmented Module :: ', augmentedModule);
 			var createInstance = function (options) {
-				// creat a new instance
+				// create a new instance object
 				var instance = $.extend(true, {}, augmentedModule);
 				// merge options
-				instance.options = $.extend(true, {}, augmentedModule.options, options);
+				instance.options = $.extend(true, {}, augmentedModule.options, options, baseOptions);
+				// call the create function
+				instance._create.apply(instance, []);
 				// bridge each function call to the module methods
 				var bridgeInstance = function (method) {
 					if (!/^_/.test(method) && $.isFunction(instance[method])) {
-						instance[method].apply(instance, $.makeArray(arguments).slice(1));
+						return instance[method].apply(instance, $.makeArray(arguments).slice(1));
 					}
 				};
 				var my = {};

@@ -1,0 +1,5 @@
+/* Simple Gauge */
+.cell{
+	background: url('../media/ground.png') no-repeat center center;
+	position: absolute;
+}
