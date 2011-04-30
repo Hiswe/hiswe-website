@@ -29,13 +29,14 @@ h.module('game.world',{
 		h.debug('table', world);
 	},
 	_positionCell: function(xCell, yCell) {
-		var top, left;
-		top = xCell/2 * this.options.cellHeight;
-		left = (xCell % 2 == 0)  ? yCell * this.options.cellWidth - this.options.cellWidth/2: yCell * this.options.cellWidth;
+		var top, left, worldWidth;
+		worldWidth = this.options.width * this.options.cellWidth;
+		top = (xCell * (this.options.cellHeight/2)) + (yCell * (this.options.cellHeight/2));
+		left = worldWidth/2 - ((this.options.cellWidth/2)*(xCell+1)) + (yCell * (this.options.cellWidth/2));
 
 
 
-		h.debug('[',this.options.fullName,'] Position ::', left,'||',top);
+		//h.debug('[',this.options.fullName,'] Position ::', left,'||',top);
 		return {
 			top: top+'px',
 			left: left+'px'
@@ -47,7 +48,7 @@ h.module('game.world',{
 h.module('map.cell',{
 	options: {
 		width: 64,
-		height: 33,
+		height: 32,
 		template: '<div class="cell" />'
 	},
 	_create: function () {
@@ -57,13 +58,16 @@ h.module('map.cell',{
 		this.$cell = $(this.options.template)
 					.width(this.options.width)
 					.height(this.options.height);
-		h.debug('[',this.options.fullName,'] build ::' ,this.$cell);
+		if (Math.random() > 0.9) {
+			this.$cell.addClass('flower');
+		}					
+		//h.debug('[',this.options.fullName,'] build ::' ,this.$cell);
 		return this.$cell;
 	}
 });
 
 
 var world = h.game.world({
-	width: 3,
-	height: 3
+	width: 10,
+	height: 10
 });
