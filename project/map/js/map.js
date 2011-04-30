@@ -3,7 +3,7 @@ h.module('game.world',{
 		width: 10,
 		height: 10,
 		cellWidth: 64,
-		cellHeight: 33,
+		cellHeight: 32,
 		id: 'world'
 	},
 	_create: function () {
