@@ -1,9 +1,11 @@
 /* Simple Gauge */
 .cell{
-	background: url('../media/tiles.png') no-repeat left top;
+	background: transparent url('../media/tiles.png') no-repeat left top ;
+	background-color: transparent !important;
 	position: absolute;
+	display: block;
 }
-.cell:hover{
+.cell.hover{
 	background-position: left bottom;
 }
 .flower{
