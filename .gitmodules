@@ -1,0 +1,3 @@
+[submodule "js/library/plugin/pubsub"]
+	path = js/library/plugin/pubsub
+	url = https://github.com/phiggins42/bloody-jquery-plugins.git
