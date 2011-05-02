@@ -1,3 +1,18 @@
+.console{
+	position: absolute;
+	min-width: 10em;
+	min-height: 3em;
+	right: 2em;
+	top: 2em;
+	background: rgba(0,0,0,0.5);
+	color: #FFF;
+	padding: 1em;
+	border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+
+}
+
 /* Simple Gauge */
 .cell{
 	background: transparent url('../media/tiles.png') no-repeat left top ;
