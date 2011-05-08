@@ -1,6 +1,6 @@
 h.module('map.cell',{
 	options: {
-		template: '<div href="" class="cell" />'
+		template: '<div class="cell" />'
 	},
 	_create: function () {
 	},
@@ -14,11 +14,16 @@ h.module('map.cell',{
 				}else if (siblingX > -2 && siblingX < h.settings.game.world.mapX +1 &&
 					siblingY > -2 && siblingY < h.settings.game.world.mapY +1) {
 					$.subscribe('/cursor/'+siblingX+'/'+siblingY, $.proxy(this._cursorOut, this));
-				}else{
-					$.subscribe('/cursor/null/null', $.proxy(this._cursorOut, this));
 				}
 			}
 
+		}
+		// Exceptionnal bind for cell near border
+		if (x == 0 && y == 0 ||
+			x == 0 && y == h.settings.game.world.mapY -1 ||
+			x == h.settings.game.world.mapX -1 && y == 0 ||
+			x == h.settings.game.world.mapX -1 && y == h.settings.game.world.mapY -1) {
+			$.subscribe('/cursor/out', $.proxy(this._cursorOut, this));
 		}
 	},
 	build: function (x, y) {
@@ -50,8 +55,8 @@ h.module('map.cell',{
 			left,
 			worldWidth = (h.settings.game.world.mapX + 1) * h.settings.map.cell.width;
 
-		screenX = worldWidth/2 + h.settings.map.cell.width * ((mapY - mapX) / 2);
-		screenY =  h.settings.map.cell.height * (((mapX + mapY) / 2) + 1);
+		screenX = worldWidth/2 + h.settings.map.cell.width * ((mapY - mapX - 2) / 2);
+		screenY = h.settings.map.cell.height * (((mapX + mapY) / 2));
 
 
 		this.$cell.css({

@@ -4,18 +4,14 @@ h.module('game.world',{
 	},
 	_create: function () {
 		h.debug('info','[',this.options.fullName,'] Create');
-
 		this._makeCache();
-
 		this._setMapSize();
-
 		this._bindActions();
-
 		this._buildMap();
-
 	},
 	_bindActions: function () {
 		this.$element.bind('mousemove.'+this.options.fullName, $.proxy(this._cursorMove, this));
+		this.$element.bind('mouseleave.'+this.options.fullName, $.proxy(this._cursorOut, this));
 	},
 	_buildMap: function () {
 		var mapWidth = h.settings.game.world.mapX,
@@ -34,8 +30,8 @@ h.module('game.world',{
                width = h.settings.map.cell.width/2,
                height = h.settings.map.cell.height/2;;
 
-       screenX = event.pageX - this.position.left - h.settings.map.cell.width;
-       screenY = event.pageY - this.position.top -h.settings.map.cell.height;
+       screenX = event.pageX - this.position.left;
+       screenY = event.pageY - this.position.top;
 
        // TODO: Virer le padding. Faire une mouseleave pour les 4 cellules de coins
 
@@ -45,6 +41,10 @@ h.module('game.world',{
        roundMapY = Math.round(mapY);
 
 		this._publishMove(roundMapX, roundMapY);
+	},
+	_cursorOut: function () {
+		log.gameConsole('append','Out');
+		$.publish('/cursor/out');
 	},
 	_makeCache: function () {
 		this.$element = $('#'+this.options.id);
@@ -62,9 +62,8 @@ h.module('game.world',{
 		if (x === this.oldPos.x && y === this.oldPos.y) {
 			return;
 		}
-
 		// TODO: faire une fonction globale pour savoir si une coordonnée est bien dans la map.
-		if (x > -2 && x < h.settings.game.world.mapX +1 && y > -2 && y < h.settings.game.world.mapY + 1) {
+		if (x > -2 && x < h.settings.game.world.mapX +1 && y > -2 && y < h.settings.game.world.mapY +1) {
 			this.oldPos = {
 				x: x,
 				y: y
@@ -89,8 +88,7 @@ h.module('game.world',{
 			.width(this.worldWidth)
 			.height(this.worldHeight)
 			.css({
-				position: 'relative',
-				padding: h.settings.map.cell.height+'px '+h.settings.map.cell.width+'px'
+				position: 'relative'
 			});
 	}
 });
