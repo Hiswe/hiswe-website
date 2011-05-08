@@ -27,10 +27,10 @@
 		},
 		build: function (x, y) {
 			var z = 0;
-			if (Math.random() > 0.8) {
+			if (Math.random() > 0.95) {
 				z = 0.5;
 			}
-			if (Math.random() > 0.95) {
+			if (Math.random() > 0.97) {
 				z = 1;
 			}
 
@@ -40,7 +40,9 @@
 						.attr('id', 'Cell-'+x+'-'+y);
 			this.name = '[Cell-'+x+'-'+y+'-'+z+']';
 			this._positionCell(x, y, z);
-			this._bindActions(x, y);
+			if (z === 0) {
+				this._bindActions(x, y);
+			}
 
 			if (z === 1) {
 				this.$cell.addClass('cell100');

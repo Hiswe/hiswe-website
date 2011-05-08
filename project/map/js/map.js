@@ -1,7 +1,7 @@
 
 h.moduleSettings('game.world', {
 	mapX: 10,
-	mapY: 4
+	mapY: 8
 });
 
 h.moduleSettings('map.cell', {
