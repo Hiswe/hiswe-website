@@ -1,6 +1,6 @@
 h.moduleSettings('game.world', {
 	mapX: 10,
-	mapY: 10
+	mapY: 4
 });
 h.moduleSettings('map.cell', {
 	width: 64,
@@ -30,12 +30,8 @@ h.module('game.world',{
 
 		this._makeCache();
 
-		this.$element
-			.width(h.settings.game.world.mapX * h.settings.map.cell.width)
-			.height(h.settings.game.world.mapX * h.settings.map.cell.height)
-			.css({
-				position: 'relative'
-			});
+		this._setMapSize();
+
 
 		this._bindActions();
 		this._buildMap();
@@ -54,24 +50,6 @@ h.module('game.world',{
 				this.$element.append(currentCell.mapCell('build', x, y));
 			}
 		}
-	},
-	_makeCache: function () {
-		this.$element = $('#'+this.options.id);
-		var offset = this.$element.offset();
-		this.position = {
-			left: Math.round(offset.left),
-			top: Math.round(offset.top)
-		};
-		this.cursor = {
-			x: 0,
-			y: 0
-		}
-	},
-	_mapToScreen: function () {
-
-	},
-	_sceenToMap: function () {
-
 	},
 	_cursorMove: function (event) {
 		var cursorX, cursorY, top, left, mapX, mapY, roundMapX, roundMapY,
@@ -94,7 +72,29 @@ h.module('game.world',{
 			//log.gameConsole('log','Out of bound !!!', mapX ,",",mapY,'||', roundMapX, roundMapY);
 			log.gameConsole('log','Out of bound !!!');
 		}
+	},
+	_makeCache: function () {
+		this.$element = $('#'+this.options.id);
+		var offset = this.$element.offset();
+		this.position = {
+			left: Math.round(offset.left),
+			top: Math.round(offset.top)
+		};
+		this.cursor = {
+			x: 0,
+			y: 0
+		}
+	},
+	_setMapSize: function () {
+		var mapWidth = ( h.settings.game.world.mapX + h.settings.game.world.mapY ) * h.settings.map.cell.width / 2,
+			mapHeight = ( h.settings.game.world.mapX + h.settings.game.world.mapY ) * h.settings.map.cell.height / 2;
 
+		this.$element
+			.width(mapWidth)
+			.height(mapHeight)
+			.css({
+				position: 'relative'
+			});
 	}
 });
 

@@ -12,7 +12,9 @@
 	-webkit-border-radius: 1em;
 
 }
-
+#world{
+	border: 1px dashed #CCC;
+}
 /* Simple Gauge */
 .cell{
 	background: transparent url('../media/tiles.png') no-repeat left top ;
