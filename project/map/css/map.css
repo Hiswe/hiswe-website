@@ -17,14 +17,25 @@
 }
 /* Simple Gauge */
 .cell{
-	background: transparent url('../media/tiles.png') no-repeat left top ;
+	background: transparent url('../media/tiles.png') no-repeat 0 0;
 	background-color: transparent !important;
 	position: absolute;
 	display: block;
 }
 .cell.hover{
-	background-position: left bottom;
+	background-position: 0 -32px;
 }
 .flower{
-	background-position: right top;
+	background-position: -64px 0;
+}
+.flower.hover{
+	background-position: -64px -32px;
+}
+.cell50,
+.cell50.hover{
+	background-position: -192px -16px;
+}
+.cell100,
+.cell100.hover{
+	background-position: -128px 0;
 }
