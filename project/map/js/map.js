@@ -18,6 +18,10 @@ h.module('game.console', {
 	log: function () {
 		var text = $.makeArray(arguments).join(' ');
 		this.$console.text(text);
+	},
+	append: function () {
+		var text = this.$console.html() +'<br />' +$.makeArray(arguments).join(' ');
+		this.$console.html(text);
 	}
 });
 
@@ -65,13 +69,8 @@ h.module('game.world',{
 		roundMapX = Math.round(mapX);
 		roundMapY = Math.round(mapY);
 
-		if (roundMapX > -1 && roundMapX < h.settings.game.world.mapX && roundMapY > -1 && roundMapY < h.settings.game.world.mapX) {
-			$.publish('/cursor/'+roundMapX+'/'+roundMapY, [roundMapX,roundMapY]);
-			log.gameConsole('log', roundMapX,'|',roundMapY);
-		} else {
-			//log.gameConsole('log','Out of bound !!!', mapX ,",",mapY,'||', roundMapX, roundMapY);
-			log.gameConsole('log','Out of bound !!!');
-		}
+		this._publishMove(roundMapX, roundMapY);
+
 	},
 	_makeCache: function () {
 		this.$element = $('#'+this.options.id);
@@ -80,10 +79,32 @@ h.module('game.world',{
 			left: Math.round(offset.left),
 			top: Math.round(offset.top)
 		};
-		this.cursor = {
-			x: 0,
-			y: 0
+		this.oldPos = {
+			x: null,
+			y: null
 		}
+	},
+	_publishMove: function (x, y) {
+		if (x === this.oldPos.x && y === this.oldPos.y) {
+			return;
+		}
+
+		// TODO: faire une fonction globale pour savoir si une coordonnée est bien dans la map.
+		if (x > -2 && x < h.settings.game.world.mapX +1 && y > -2 && y < h.settings.game.world.mapY + 1) {
+			this.oldPos = {
+				x: x,
+				y: y
+			};
+			log.gameConsole('log', x,'|',y);
+		} else {
+			this.oldPos = {
+				x: null,
+				y: null
+			};
+			log.gameConsole('log','Out of bound !!!');
+		}
+		$.publish('/cursor/'+this.oldPos.x+'/'+this.oldPos.y, [this.oldPos.x,this.oldPos.y]);
+
 	},
 	_setMapSize: function () {
 		var mapWidth = ( h.settings.game.world.mapX + h.settings.game.world.mapY ) * h.settings.map.cell.width / 2,
@@ -103,15 +124,29 @@ h.module('map.cell',{
 		template: '<div href="" class="cell" />'
 	},
 	_create: function () {
-		this.options.worldWidth = this.options.worldWidth * this.options.width;
 	},
 	_bindActions: function (x, y) {
-		$.subscribe('/cursor/'+x+'/'+y, $.proxy(this._hover, this));
+		// h.debug('[Cell-',x,'-',y,']');
+
+		for (var siblingX = x-1; siblingX < x+2; siblingX += 1 ) {
+			for (var siblingY = y-1; siblingY < y+2; siblingY += 1 ) {
+				if (siblingX === x && siblingY === y) {
+					$.subscribe('/cursor/'+x+'/'+y, $.proxy(this._cursorHover, this));
+				}else if (siblingX > -2 && siblingX < h.settings.game.world.mapX +1 &&
+					siblingY > -2 && siblingY < h.settings.game.world.mapY +1) {
+					$.subscribe('/cursor/'+siblingX+'/'+siblingY, $.proxy(this._cursorOut, this));
+				}else{
+					$.subscribe('/cursor/null/null', $.proxy(this._cursorOut, this));
+				}
+			}
+
+		}
 	},
 	build: function (x, y) {
 		this.$cell = $(this.options.template)
 					.width(h.settings.map.cell.width)
 					.height(h.settings.map.cell.height);
+		this.name = '[Cell-'+x+'-'+y+']';
 		this._positionCell(x, y);
 		this._bindActions(x, y);
 		if (Math.random() > 0.9) {
@@ -120,13 +155,15 @@ h.module('map.cell',{
 		//h.debug('[',this.options.fullName,'] build ::' ,this.$cell);
 		return this.$cell;
 	},
-	_hover: function (x, y) {
-		var that = this;
+	_cursorHover: function (x, y) {
+		//h.debug(this.name,' hover', x,'/',y);
+		log.gameConsole('append', 'Hover ', x , y);
 		this.$cell.addClass('hover');
-		setTimeout(function(){
-			that.$cell.removeClass('hover');
-		}, 500);
-
+	},
+	_cursorOut : function (x, y) {
+		//h.debug(this.name,' out', x,'/',y);
+		log.gameConsole('append', 'out ', x , y);
+		this.$cell.removeClass('hover');
 	},
 	_positionCell: function (xCell, yCell) {
 		var top,
@@ -135,9 +172,7 @@ h.module('map.cell',{
 			width = h.settings.map.cell.width/2,
 			height = h.settings.map.cell.height/2;
 
-		// top = (xCell * (height/2)) + (yCell * (height/2));
 		top = (xCell + yCell) * height;
-		// left = worldWidth/2 - (width*(xCell+1)) + (yCell * width);
 		left = worldWidth/2 + width * (yCell - xCell -1);
 
 		this.$cell.css({
