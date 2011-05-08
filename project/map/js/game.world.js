@@ -37,6 +37,8 @@ h.module('game.world',{
        screenX = event.pageX - this.position.left - h.settings.map.cell.width;
        screenY = event.pageY - this.position.top -h.settings.map.cell.height;
 
+       // TODO: Virer le padding. Faire une mouseleave pour les 4 cellules de coins
+
        mapX = ((worldWidth - screenX)/width + screenY/height - 1)/2;
        mapY = screenY/height - mapX -1;
        roundMapX = Math.round(mapX);
@@ -82,6 +84,7 @@ h.module('game.world',{
 		this.worldWidth = (h.settings.game.world.mapX + h.settings.game.world.mapY) * h.settings.map.cell.width / 2,
 		this.worldHeight = (h.settings.game.world.mapX + h.settings.game.world.mapY) * h.settings.map.cell.height / 2;
 
+		// TODO: Virer le padding. Faire une mouseleave pour les 4 cellules de coins
 		this.$element
 			.width(this.worldWidth)
 			.height(this.worldHeight)
