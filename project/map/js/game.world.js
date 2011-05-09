@@ -45,7 +45,11 @@
 		},
 		_cursorOut: function () {
 			log.gameConsole('append','Out');
-			$.publish('/cursor/out');
+			$.publish('/cursor/out/'+this.oldPos.x+'/'+this.oldPos.y, [this.oldPos.x,this.oldPos.y]);
+			this.oldPos = {
+				x: null,
+				y: null
+			};
 		},
 		_makeCache: function () {
 			this.$element = $('#'+this.options.id);
@@ -63,8 +67,10 @@
 			if (x === this.oldPos.x && y === this.oldPos.y) {
 				return;
 			}
+			$.publish('/cursor/out/'+this.oldPos.x+'/'+this.oldPos.y, [this.oldPos.x,this.oldPos.y]);
 			// TODO: faire une fonction globale pour savoir si une coordonnée est bien dans la map.
-			if (x > -2 && x < h.settings.game.world.mapX +1 && y > -2 && y < h.settings.game.world.mapY +1) {
+			if (x > -1 && x < h.settings.game.world.mapX  && y > -1 && y < h.settings.game.world.mapY) {
+
 				this.oldPos = {
 					x: x,
 					y: y
@@ -77,7 +83,7 @@
 				};
 				log.gameConsole('log','Out of bound !!!');
 			}
-			$.publish('/cursor/'+this.oldPos.x+'/'+this.oldPos.y, [this.oldPos.x,this.oldPos.y]);
+			$.publish('/cursor/in/'+this.oldPos.x+'/'+this.oldPos.y, [this.oldPos.x,this.oldPos.y]);
 
 		},
 		_setMapSize: function () {

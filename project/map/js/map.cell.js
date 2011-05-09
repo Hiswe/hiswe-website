@@ -6,24 +6,9 @@
 		_create: function () {
 		},
 		_bindActions: function (x, y) {
-			for (var siblingX = x-1; siblingX < x+2; siblingX += 1 ) {
-				for (var siblingY = y-1; siblingY < y+2; siblingY += 1 ) {
-					if (siblingX === x && siblingY === y) {
-						$.subscribe('/cursor/'+x+'/'+y, $.proxy(this._cursorHover, this));
-					}else if (siblingX > -2 && siblingX < h.settings.game.world.mapX +1 &&
-						siblingY > -2 && siblingY < h.settings.game.world.mapY +1) {
-						$.subscribe('/cursor/'+siblingX+'/'+siblingY, $.proxy(this._cursorOut, this));
-					}
-				}
+			$.subscribe('/cursor/in/'+x+'/'+y, $.proxy(this._cursorHover, this));
+			$.subscribe('/cursor/out/'+x+'/'+y, $.proxy(this._cursorOut, this));
 
-			}
-			// Exceptionnal bind for cell near border
-			if (x == 0 && y == 0 ||
-				x == 0 && y == h.settings.game.world.mapY -1 ||
-				x == h.settings.game.world.mapX -1 && y == 0 ||
-				x == h.settings.game.world.mapX -1 && y == h.settings.game.world.mapY -1) {
-				$.subscribe('/cursor/out', $.proxy(this._cursorOut, this));
-			}
 		},
 		build: function (x, y) {
 			var z = 0;
