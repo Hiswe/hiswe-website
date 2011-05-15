@@ -19,7 +19,7 @@
 				_create: $.noop
 			};
 			var	augmentedModule = $.extend(true, {}, baseModule, prototype);
-			h.debug('[Module] augmented Module :: ', augmentedModule);
+			h.debug('[Module] ',fullName,' :: ', augmentedModule);
 			var createInstance = function (options) {
 				// create a new instance object
 				var instance = $.extend(true, {}, augmentedModule);
@@ -33,15 +33,13 @@
 						return instance[method].apply(instance, $.makeArray(arguments).slice(1));
 					}
 				};
-				var my = {};
-				my[fullName] = bridgeInstance;
-				return my;
+				return bridgeInstance;
 			};
 
 			// expose him to framework name space
 			h[ namespace ] = h[ namespace ] || {}; // create the namespace if none
 			// at module call create a new object
-			h[ namespace ][ name ] = createInstance;
+			h[ namespace ][ name ] = createInstance();
 		}
 	});
 })(hiswe, jQuery);

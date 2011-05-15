@@ -10,6 +10,26 @@ h.moduleSettings('map.cell', {
 });
 
 
+
+
+h.object('map.sprite', 'map.coordinate', {
+	_create: function () {
+		h.debug('[Sprite] create');
+	}
+});
+
+h.object('map.layer', {
+	_create: function () {
+
+	}
+});
+
+
+
+var cursor = h.mapCoordinate();
+
+
+
 h.module('game.console', {
 	_create: function () {
 		this.$console = $('<div />', {
@@ -27,5 +47,4 @@ h.module('game.console', {
 	}
 });
 
-var log = h.game.console();
-var world = h.game.world();
+h.game.world('init');
