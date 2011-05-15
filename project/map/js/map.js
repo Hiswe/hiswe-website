@@ -29,22 +29,4 @@ h.object('map.layer', {
 var cursor = h.mapCoordinate();
 
 
-
-h.module('game.console', {
-	_create: function () {
-		this.$console = $('<div />', {
-			class: 'console'
-		});
-		this.$console.appendTo($('body'));
-	},
-	log: function () {
-		var text = $.makeArray(arguments).join(' ');
-		this.$console.text(text);
-	},
-	append: function () {
-		var text = this.$console.html() +'<br />' +$.makeArray(arguments).join(' ');
-		this.$console.html(text);
-	}
-});
-
 h.game.world('init');
