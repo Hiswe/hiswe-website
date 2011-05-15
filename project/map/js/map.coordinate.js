@@ -9,7 +9,7 @@
 			return {
 				screenX: screenX,
 				screenY: screenY
-			},
+			};
 		},
 		_screenToMap: function (screenX, screenY) {
 			var mapX,
