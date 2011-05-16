@@ -6,7 +6,6 @@
 		_create: function () {
 			h.debug('info','[',this.options.fullName,'] Create');
 			this._makeCache();
-
 		},
 		init: function () {
 			this._setMapSize();
@@ -21,8 +20,10 @@
 
 			for (var x = 0; x < mapWidth; x++) {
 				for (var y = 0; y < mapHeight; y++) {
-					var currentCell = h.map.cell();
-					this.$element.append(currentCell.mapCell('build', x, y));
+					var currentCell = h.mapStatic({
+						mapX : x,
+						mapY: y
+					});
 				}
 			}
 		},
