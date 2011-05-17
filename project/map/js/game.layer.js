@@ -1,33 +1,39 @@
 (function(h, $) {
-	h.module('game.world',{
+	h.object('game.layer',{
 		options: {
-			id: 'world'
+			$parent: $('body')
 		},
 		_create: function () {
-			h.debug('info','[',this.options.fullName,'] Create');
+			h.debug('info','[',this.options.fullName,'] Create', this.options);
 			this._makeCache();
+			this._buildLayer();
 		},
 		init: function () {
+			/*
 			this._setMapSize();
 			this._buildMap();
+			//*/
 		},
-		_buildLayers: function (layerIndex) {
-			this.layers = this.layers || [] ;
-			this.layers.push(h.gameLayer({
-				index: layerIndex,
-				$parent: this.$element
-			}));
-		},
-		_buildMap: function () {
+		_buildLayer: function () {
 			var mapWidth = h.settings.game.world.mapX,
 				mapHeight = h.settings.game.world.mapY;
-
-			this._buildLayers(1);
-			this._buildLayers(2);
-
+			//*
+			for (var x = 0; x < mapWidth; x++) {
+				for (var y = 0; y < mapHeight; y++) {
+					h.mapStatic({
+						mapX : x,
+						mapY: y,
+						$parent: this.$element
+					});
+				}
+			}
+			this.$element.appendTo(this.options.$parent);
+			//*/
 		},
 		_makeCache: function () {
-			this.$element = $('#'+this.options.id);
+			this.$element = $('<div />', {
+				id: this.options.fullName +'-'+ this.options.index
+			});
 		},
 		_setMapSize: function () {
 			this.worldWidth = (h.settings.game.world.mapX + h.settings.game.world.mapY) * h.settings.map.cell.width / 2,

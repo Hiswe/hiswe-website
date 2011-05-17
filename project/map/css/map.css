@@ -12,8 +12,14 @@
 	-webkit-border-radius: 1em;
 
 }
+#frame{
+	width: 760px;
+	margin: 0 auto;
+	border: 1em solid #EEE;
+}
 #world{
-	border: 1px dashed #CCC;
+	border: 1px dashed #A8005D;
+	margin: 0 auto;
 }
 /* Simple Gauge */
 .cell{
