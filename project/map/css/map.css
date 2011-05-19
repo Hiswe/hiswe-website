@@ -31,10 +31,10 @@
 .cell.hover{
 	background-position: 0 -32px;
 }
-.flower{
+.whiteFlower{
 	background-position: -64px 0;
 }
-.flower.hover{
+.blueFlower{
 	background-position: -64px -32px;
 }
 .cell50,
