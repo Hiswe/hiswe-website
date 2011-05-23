@@ -13,8 +13,8 @@
 					_create: $.noop
 				};
 			}else{
-				baseNamespace = base.split( "." )[ 0 ],
-				baseName = base.split( "." )[ 1 ];
+				var baseNamespace = base.split( "." )[ 0 ],
+					baseName = base.split( "." )[ 1 ];
 				baseObject = h[ baseNamespace ][ baseName ];
 			}
 			// create a new object with all methods public

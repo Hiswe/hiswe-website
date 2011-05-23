@@ -61,4 +61,4 @@
 			})
 		}
 	});
-})(hiswe, jQuery);
+}(hiswe, jQuery));

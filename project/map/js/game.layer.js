@@ -8,6 +8,7 @@
 			this._makeCache();
 			this.build(this.options.index);
 			this.showLayer();
+			// this._bindActions();
 		},
 		init: function () {
 			/*
@@ -15,17 +16,32 @@
 			this._buildMap();
 			//*/
 		},
+		_bindActions: function () {
+
+		},
 		build: function (layerIndex) {
 			for (var x = 0; x < this.mapWidth; x++) {
 				for (var y = 0; y < this.mapHeight; y++) {
-					h.mapStatic({
-						mapX : x,
-						mapY: y,
+					this.buildCell({
+						x: x,
+						y: y,
+						z: 0,
 						layerIndex: layerIndex,
 						$parent: this.$element
-					});
+					})
 				}
 			}
+		},
+		buildCell: function (data) {
+			h.mapStatic({
+				mapX : data.x,
+				mapY: data.y,
+				layerIndex: data.layerIndex,
+				$parent: this.$element
+			});
+		},
+		getCell: function (x, y) {
+			return 'caca';
 		},
 		_makeCache: function () {
 			this.$element = $('<div />', {
