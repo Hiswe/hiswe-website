@@ -4,6 +4,7 @@
 			mapX: 0,
 			mapY: 0,
 			mapZ: 0,
+			height: 0,
 			template: '<div class="cell" />',
 			layerIndex: 0,
 			$parent: $('body')
@@ -19,11 +20,12 @@
 		_build: function () {
 			var x = this.options.mapX,
 				y = this.options.mapY,
-				z = this.options.mapZ;
+				z = this.options.mapZ,
+				height = this.options.height;
 			this.name = '[L'+this.options.layerIndex+'-Cell-'+x+'-'+y+'-'+z+']';
 			this.$cell = $(this.options.template)
 						.width(h.settings.map.cell.width)
-						.height(h.settings.map.cell.height + h.settings.map.cell.height*z)
+						.height(h.settings.map.cell.height + h.settings.map.cell.height*height)
 						.attr('id', this.name);
 
 			this._positionCell(x, y, z);
@@ -34,11 +36,13 @@
 		},
 		_positionCell: function (mapX, mapY, mapZ) {
 			var coord = this._mapToScreen(mapX, mapY, mapZ),
+				height = h.settings.map.cell.height*this.options.height,
+				top = coord.screenY - height,
 				zindex = mapX+mapY + this.options.layerIndex;
 
 			this.$cell.css({
 				'left': coord.screenX+'px',
-				'top': coord.screenY+'px',
+				'top': top+'px',
 				'z-index': zindex
 			});
 		}

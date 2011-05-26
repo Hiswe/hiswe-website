@@ -42,18 +42,18 @@
 			});
 			h.object('game.groundLayer','game.layer',{
 				buildCell: function (data) {
-					var z = (Math.random() > 0.95) ? 0.5 :
+					var height = (Math.random() > 0.95) ? 0.5 :
 							(Math.random() > 0.97) ? 1 :
 							0,
-						zClass = (z === 1) ? ' cell100' :
-								(z == 0.5) ? ' cell50' :
+						zClass = (height === 1) ? ' cell100' :
+								(height == 0.5) ? ' cell50' :
 								'';
 
 					h.mapStatic({
 						template: '<div class="cell'+zClass+'" />',
 						mapX : data.x,
 						mapY: data.y,
-						mapZ: z,
+						height: height,
 						layerIndex: data.layerIndex,
 						$parent: this.$element
 					});
