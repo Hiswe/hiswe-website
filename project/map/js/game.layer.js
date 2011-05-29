@@ -5,16 +5,10 @@
 		},
 		_create: function () {
 			h.debug('info','[',this.options.fullName,'] Create', this.options);
+			h.debug(this);
 			this._makeCache();
 			this.build(this.options.index);
 			this.showLayer();
-			// this._bindActions();
-		},
-		init: function () {
-			/*
-			this._setMapSize();
-			this._buildMap();
-			//*/
 		},
 		_bindActions: function () {
 
@@ -22,7 +16,8 @@
 		build: function (layerIndex) {
 			for (var x = 0; x < this.mapWidth; x++) {
 				for (var y = 0; y < this.mapHeight; y++) {
-					this.buildCell({
+					this.cells[x] = this.cells[x] || [];
+					this.cells[x][y] = this.buildCell({
 						x: x,
 						y: y,
 						z: 0,
@@ -33,7 +28,7 @@
 			}
 		},
 		buildCell: function (data) {
-			h.mapStatic({
+			return h.mapStatic({
 				mapX : data.x,
 				mapY: data.y,
 				layerIndex: data.layerIndex,
@@ -41,7 +36,7 @@
 			});
 		},
 		getCell: function (x, y) {
-			return 'caca';
+			return this.cells[x][y];
 		},
 		_makeCache: function () {
 			this.$element = $('<div />', {
@@ -49,6 +44,7 @@
 			});
 			this.mapWidth = h.settings.game.world.mapX;
 			this.mapHeight = h.settings.game.world.mapY;
+			this.cells = [];
 		},
 		_setMapSize: function () {
 			this.worldWidth = (h.settings.game.world.mapX + h.settings.game.world.mapY) * h.settings.map.cell.width / 2,

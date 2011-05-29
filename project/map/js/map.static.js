@@ -10,19 +10,25 @@
 			$parent: $('body')
 		},
 		_create: function () {
-			this.name =
+			var o = this.options;
+			this.name = '['+o.layerIndex+']['+o.mapX+'-'+o.mapY+']';
 			this._build();
 			this._bindActions();
 		},
 		_bindActions: function () {
-
+			$.subscribe(this.name, $.proxy(this._bridge, this));
+			/*
+			$.subscribe(this.name, function (data) {
+				h.debug(data);
+			});
+			//*/
 		},
 		_build: function () {
 			var x = this.options.mapX,
 				y = this.options.mapY,
 				z = this.options.mapZ,
 				height = this.options.height;
-			this.name = '[L'+this.options.layerIndex+'-Cell-'+x+'-'+y+'-'+z+']';
+
 			this.$cell = $(this.options.template)
 						.width(h.settings.map.cell.width)
 						.height(h.settings.map.cell.height + h.settings.map.cell.height*height)
@@ -31,8 +37,31 @@
 			this._positionCell(x, y, z);
 			this.$cell.appendTo(this.options.$parent);
 		},
-		_get: function () {
-
+		/*
+		_bridge: function (methodName, params) {
+			// utilitary function working with pub sub
+			// default access to public method via a callback
+			h.debug(this);
+			h.debug(methodName);
+			if (!/^_/.test(methodName) && $.isFunction(this[methodName])) {
+				if ($.isArray(params)){
+					return this[methodName].apply(this, params);
+				} else {
+					return this[methodName].apply(this, [params]);
+				}
+			}
+		},
+		//*/
+		getPosition: function () {
+			var o = this.options;
+			var position = {
+				layer: o.layerIndex,
+				mapX: o.mapX,
+				mapY: o.mapY,
+				mapZ: o.mapZ,
+				height: o.height,
+			}
+			return position
 		},
 		_positionCell: function (mapX, mapY, mapZ) {
 			var coord = this._mapToScreen(mapX, mapY, mapZ),

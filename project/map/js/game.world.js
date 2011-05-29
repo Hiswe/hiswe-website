@@ -19,27 +19,14 @@
 				index: layerIndex,
 				$parent: this.$element
 			}));
+			console.log(this.layers);
 		},
 		_buildMap: function () {
 			this._buildLayers(0, 'gameGroundLayer');
 			this._buildLayers(1, 'gameFlowerLayer');
 		},
 		_createCustomLayers: function () {
-			h.object('game.flowerLayer','game.layer',{
-				buildCell: function (data) {
-					if (Math.random() > 0.5) {
-						//h.debug(h.game.world('getLayer', 0).gameGroundLayer('getCell'));
-						var flowerType = (Math.random() > 0.25) ? 'whiteFlower' : 'blueFlower';
-						h.mapStatic({
-							template: '<div class="cell '+flowerType+'" />',
-							mapX : data.x,
-							mapY: data.y,
-							layerIndex: data.layerIndex,
-							$parent: this.$element
-						});
-					}
-				}
-			});
+			// Layer 0
 			h.object('game.groundLayer','game.layer',{
 				buildCell: function (data) {
 					var height = (Math.random() > 0.95) ? 0.5 :
@@ -49,7 +36,7 @@
 								(height == 0.5) ? ' cell50' :
 								'';
 
-					h.mapStatic({
+					return h.mapStatic({
 						template: '<div class="cell'+zClass+'" />',
 						mapX : data.x,
 						mapY: data.y,
@@ -59,6 +46,28 @@
 					});
 				}
 			});
+			// Layer 1
+			h.object('game.flowerLayer','game.layer',{
+				buildCell: function (data) {
+					if (Math.random() > 0.5) {
+						;
+						var flowerType = (Math.random() > 0.25) ? 'whiteFlower' : 'blueFlower';
+						return h.mapStatic({
+							template: '<div class="cell '+flowerType+'" />',
+							mapX : data.x,
+							mapY: data.y,
+							mapZ : this._getUnderCellHeight(data.x, data.y),
+							layerIndex: data.layerIndex,
+							$parent: this.$element
+						});
+					}
+				},
+				_getUnderCellHeight: function (x, y) {
+					return h.game.world('getLayer', 0).gameGroundLayer('getCell', x, y).mapStatic('getPosition').height;
+				}
+
+			});
+
 
 		},
 		getLayer: function (index) {

@@ -10,7 +10,19 @@
 				prototype = base;
 				base = h.Object,
 				baseObject = {
-					_create: $.noop
+					_create: $.noop,
+					//*
+					_bridge: function (methodName, params) {
+						// utilitary function working with pub sub
+						// default access to public method via a callback
+						if (!/^_/.test(methodName) && $.isFunction(this[methodName])) {
+							if ($.isArray(params)){
+								return this[methodName].apply(this, params);
+							} else {
+								return this[methodName].apply(this, [params]);
+							}
+						}
+					}//*/
 				};
 			}else{
 				var baseNamespace = base.split( "." )[ 0 ],
@@ -23,6 +35,7 @@
 				namespace: namespace,
 				fullName: fullName
 			};
+			// var	augmentedObject = $.extend(true, {}, baseObject, prototype);
 			var	augmentedObject = $.extend(true, {}, baseObject, prototype);
 			h.debug('[object] ',fullName,' :: ', augmentedObject);
 
