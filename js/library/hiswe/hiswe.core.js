@@ -10,16 +10,28 @@
 		global.hiswe = global.h = hiswe;
 	}
 
-	h.debugMode = (h.debugMode === true && typeof window.console !== "undefined");
-
 	$.extend(h,{
 		debug: function (type) {
 			if (h.debugMode === true) {
 				var params = $.makeArray(arguments);
-				try {
-					window.console[type].apply(window, params.slice(1));
-				} catch (e) {
-					window.console['log'].apply(window, params);
+				if ($.isFunction(global.console[type])) {
+					global.console[type].apply(global.console, params.slice(1));
+				}else{
+					try {
+						global.console.log.apply(global.console, params);
+					}catch (e){}
+				}
+			}
+		},
+		setDebugMode: function (isInDebugMode) {
+			h.debugMode = (isInDebugMode === true && typeof global.console !== "undefined");
+			// IE9 console bug fix
+			if (h.debugMode) {
+				if (Function.prototype.bind && console && typeof console.log == "object") {
+					["log","info","warn","error","assert","dir","clear","profile","profileEnd"]
+					  .forEach(function (method) {
+						console[method] = this.call(console[method], console);
+					  }, Function.prototype.bind);
 				}
 			}
 		},
@@ -28,4 +40,7 @@
 			return firstChar + string.substr(1);
 		}
 	});
+
+	h.setDebugMode(h.debugMode);
+
 })(typeof window === 'undefined' ? this : window, jQuery);
