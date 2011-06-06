@@ -63,11 +63,14 @@
 			}
 			return position
 		},
+		getUpperZ: function () {
+			return this.options.mapZ + this.options.height;
+		},
 		_positionCell: function (mapX, mapY, mapZ) {
 			var coord = this._mapToScreen(mapX, mapY, mapZ),
 				height = h.settings.map.cell.height*this.options.height,
 				top = coord.screenY - height,
-				zindex = mapX+mapY + this.options.layerIndex;
+				zindex = (mapX + mapY ) * h.settings.game.world.layers + this.options.layerIndex;
 
 			this.$cell.css({
 				'left': coord.screenX+'px',
