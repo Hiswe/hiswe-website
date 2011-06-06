@@ -1,8 +1,8 @@
 (function(h, $){
 
 	h.moduleSettings('game.world', {
-		mapX: 21,
-		mapY: 21,
+		mapX: 20,
+		mapY: 20,
 		layers: 3
 	});
 
