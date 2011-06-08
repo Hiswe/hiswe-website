@@ -10,6 +10,15 @@
 		global.hiswe = global.h = hiswe;
 	}
 
+	// add Objet.create if not supported
+	if (typeof Object.create !== 'function') {
+		Object.create = function (o) {
+			function F() {}
+			F.prototype = o;
+			return new F();
+		};
+	}
+
 	$.extend(h,{
 		debug: function (type) {
 			if (h.debugMode === true) {

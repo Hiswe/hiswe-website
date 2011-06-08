@@ -11,23 +11,11 @@
 				base = h.Object,
 				baseObject = {
 					_create: $.noop,
-					//*
-					_bridge: function (methodName, params) {
-						// utilitary function working with pub sub
-						// default access to public method via a callback
-						if (!/^_/.test(methodName) && $.isFunction(this[methodName])) {
-							if ($.isArray(params)){
-								return this[methodName].apply(this, params);
-							} else {
-								return this[methodName].apply(this, [params]);
-							}
-						}
-					}//*/
 				};
 			}else{
 				var baseNamespace = base.split( "." )[ 0 ],
 					baseName = base.split( "." )[ 1 ];
-				baseObject = h[ baseNamespace ][ baseName ];
+				baseObject = h[ baseNamespace ].prototype[ baseName ];
 			}
 			// create a new object with all methods public
 			var baseOptions = {
@@ -35,33 +23,36 @@
 				namespace: namespace,
 				fullName: fullName
 			};
-			// var	augmentedObject = $.extend(true, {}, baseObject, prototype);
 			var	augmentedObject = $.extend(true, {}, baseObject, prototype);
 			h.debug('[object] ',fullName,' :: ', augmentedObject);
 
 
 			var createInstance = function (options) {
+				var instance,
+					super;
+					publicFunctions = {};
 				// create a new instance object
-				var instance = $.extend(true, {}, augmentedObject);
+				instance = Object.create(augmentedObject);
 				// merge options
 				instance.options = $.extend(true, {}, augmentedObject.options, options, baseOptions);
+				// test super
+				instance.super = Object.create(baseObject);
 				// call the create function
 				instance._create.apply(instance, []);
-				// bridge each function call to the Object methods
-				var bridgeInstance = function (method) {
-					if (!/^_/.test(method) && $.isFunction(instance[method])) {
-						return instance[method].apply(instance, $.makeArray(arguments).slice(1));
+				// Reveal each functions not prefixed with an underscore
+				for (var key in instance) {
+					if (!/^_/.test(key) && $.isFunction(instance[key])){
+						publicFunctions[key] = instance[key];
 					}
-				};
-				var my = {};
-				my[fullName] = bridgeInstance;
-				return my;
+				}
+				return publicFunctions;
 			};
 
 			// expose him to framework name space
 			h[ namespace ] = h[ namespace ] || {}; // create the namespace if none
 			// expose the prototype
-			h[ namespace ][ name ] = augmentedObject;
+			h[ namespace ].prototype = h[ namespace ].prototype || {};
+			h[ namespace ].prototype[ name ] = augmentedObject;
 			// Create the object factory
 			h[ fullName ] = createInstance;
 		}
