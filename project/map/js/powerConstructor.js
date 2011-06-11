@@ -21,7 +21,7 @@
 			this.$element.css({
 				'background': color.join('')
 			});
-			h.debug('[STATIC] color :', color.join(''));
+			h.debug('['+this.options.object+'] color :', color.join(''));
 		},
 		_makeCache: function () {
 			this.$parent = $('#frame');
@@ -32,7 +32,7 @@
 		_positionElement: function () {
 			var left = Math.round(this.$parent.width() * Math.random()),
 				top = Math.round(this.$parent.height() * Math.random());
-			h.debug('[STATIC]','My position is :: x', left, '| y', top);
+			h.debug('['+this.options.object+']','My position is :: x', left, '| y', top);
 			this.$element
 				.css({
 					left: left+'px',
@@ -43,9 +43,9 @@
 }(hiswe, jQuery));
 
 (function(h, $){
-	h.object('test.moveable', 'test.static',{
+	h.object('test.transparent', 'test.static',{
 		_create: function () {
-			this.super._create.apply(this, arguments);
+			this._super('test.static','_create',arguments);
 			this._opacity();
 			this._setWidth();
 		},
@@ -63,12 +63,45 @@
 	});
 }(hiswe, jQuery));
 
+(function(h, $){
+	h.object('test.blinking', 'test.transparent',{
+		options: {
+			duration: 500
+		},
+		_create: function () {
+			this._super('test.transparent','_create',arguments);
+			this._blink();
+		},
+		_setWidth: function () {
+			this.$element.css({
+				width: '50px',
+				height: '50px'
+			});
+		},
+		_blink: function () {
+			//h.debug('['+this.options.object+']','Blink');
+			this.$element.animate({
+				opacity: Math.random()
+			},{
+				duration: this.options.duration,
+				complete: $.proxy(this._blink, this)
+			});
+		}
+	});
+}(hiswe, jQuery));
 
 (function(h, $){
 
 	var pata = h.testStatic(),
 		pon = h.testStatic(),
-		bar = h.testMoveable();
+		foo = h.testTransparent(),
+		bar = h.testTransparent(),
+		wi = h.testBlinking({
+			duration: 300
+		});
+		dget = h.testBlinking({
+			duration: 1100
+		});
 
 
 }(hiswe, jQuery));

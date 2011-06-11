@@ -1,5 +1,5 @@
 (function(h, $) {
-	$.extend(hiswe, {
+	$.extend(h, {
 		object: function (name, base, prototype) { // inspired by jQuery widget factory
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ],
@@ -11,7 +11,19 @@
 				base = h.Object,
 				baseObject = {
 					_create: $.noop,
-				};
+					_super: function (module ,methodName, datas) {
+						var namespace = module.split( "." )[ 0 ],
+							name = module.split( "." )[ 1 ];
+						datas = datas || [];
+
+						if (h[namespace] && h[namespace].prototype[name]
+							&& h[namespace].prototype[name][methodName] && $.isFunction(h[namespace].prototype[name][methodName])){
+								h[namespace].prototype[name][methodName].apply(this, datas)
+						}else{
+							cp.debug('warn', '['+this.options.module +'] No super method ::', methodName, 'in', module);
+						}
+					}
+				}
 			}else{
 				var baseNamespace = base.split( "." )[ 0 ],
 					baseName = base.split( "." )[ 1 ];
@@ -19,7 +31,7 @@
 			}
 			// create a new object with all methods public
 			var baseOptions = {
-				Object: name,
+				object: name,
 				namespace: namespace,
 				fullName: fullName
 			};
@@ -29,14 +41,11 @@
 
 			var createInstance = function (options) {
 				var instance,
-					super;
 					publicFunctions = {};
 				// create a new instance object
 				instance = Object.create(augmentedObject);
 				// merge options
 				instance.options = $.extend(true, {}, augmentedObject.options, options, baseOptions);
-				// test super
-				instance.super = Object.create(baseObject);
 				// call the create function
 				instance._create.apply(instance, []);
 				// Reveal each functions not prefixed with an underscore
