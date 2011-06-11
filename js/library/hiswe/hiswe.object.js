@@ -4,7 +4,14 @@
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ],
 				fullName = namespace+h.capitalize(name),
-				baseObject;
+				generalSettings = (h.settings && h.settings[nameSpace] && h.settings[nameSpace][base]) ? h.settings[nameSpace][base] : {},
+				baseObject,
+				baseOptions = $.extend(true, {}, generalSettings, {
+					object: name,
+					namespace: namespace,
+					fullName: fullName
+				}),
+				augmentedObject = {};
 
 			if ( !prototype ) {
 				prototype = base;
@@ -30,12 +37,7 @@
 				baseObject = h[ baseNamespace ].prototype[ baseName ];
 			}
 			// create a new object with all methods public
-			var baseOptions = {
-				object: name,
-				namespace: namespace,
-				fullName: fullName
-			};
-			var	augmentedObject = $.extend(true, {}, baseObject, prototype);
+			augmentedObject = $.extend(true, augmentedObject, baseObject, prototype);
 			h.debug('[object] ',fullName,' :: ', augmentedObject);
 
 

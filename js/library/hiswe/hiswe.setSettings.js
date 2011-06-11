@@ -1,6 +1,6 @@
 (function(h, $) {
 	$.extend(hiswe, {
-		moduleSettings: function (name, settings) { // inspired by jQuery widget factory
+		setSettings: function (name, settings) { // inspired by jQuery widget factory
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ];
 
