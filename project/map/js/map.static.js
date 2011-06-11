@@ -15,14 +15,7 @@
 			this._build();
 			this._bindActions();
 		},
-		_bindActions: function () {
-			$.subscribe(this.name, $.proxy(this._bridge, this));
-			/*
-			$.subscribe(this.name, function (data) {
-				h.debug(data);
-			});
-			//*/
-		},
+		_bindActions: $.noop,
 		_build: function () {
 			var x = this.options.mapX,
 				y = this.options.mapY,
@@ -30,28 +23,13 @@
 				height = this.options.height;
 
 			this.$cell = $(this.options.template)
-						.width(h.settings.map.cell.width)
-						.height(h.settings.map.cell.height + h.settings.map.cell.height*height)
+						.width(this.options.general.width)
+						.height(this.options.general.height + this.options.general.height * height)
 						.attr('id', this.name);
 
 			this._positionCell(x, y, z);
 			this.$cell.appendTo(this.options.$parent);
 		},
-		/*
-		_bridge: function (methodName, params) {
-			// utilitary function working with pub sub
-			// default access to public method via a callback
-			h.debug(this);
-			h.debug(methodName);
-			if (!/^_/.test(methodName) && $.isFunction(this[methodName])) {
-				if ($.isArray(params)){
-					return this[methodName].apply(this, params);
-				} else {
-					return this[methodName].apply(this, [params]);
-				}
-			}
-		},
-		//*/
 		getPosition: function () {
 			var o = this.options;
 			var position = {
@@ -68,12 +46,13 @@
 		},
 		_positionCell: function (mapX, mapY, mapZ) {
 			var coord = this._mapToScreen(mapX, mapY, mapZ),
-				height = h.settings.map.cell.height*this.options.height,
+				height = this.options.general.height * this.options.height,
 				top = coord.screenY - height,
-				zindex = (mapX + mapY ) * h.settings.game.world.layers + this.options.layerIndex;
+				zindex = (mapX + mapY ) * this.options.general.layers + this.options.layerIndex;
 
 			this.$cell.css({
 				'left': coord.screenX+'px',
+				//'top': coord.screenY+'px',
 				'top': top+'px',
 				'z-index': zindex
 			});

@@ -4,13 +4,12 @@
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ],
 				fullName = namespace+h.capitalize(name),
-				generalSettings = (h.settings && h.settings[nameSpace] && h.settings[nameSpace][base]) ? h.settings[nameSpace][base] : {},
 				baseObject,
-				baseOptions = $.extend(true, {}, generalSettings, {
+				baseOptions = {
 					object: name,
 					namespace: namespace,
 					fullName: fullName
-				}),
+				},
 				augmentedObject = {};
 
 			if ( !prototype ) {
@@ -43,17 +42,18 @@
 
 			var createInstance = function (options) {
 				var instance,
-					publicFunctions = {};
+					publicFunctions = {},
+					generalSettings = (h.settings && h.settings[namespace] && h.settings[namespace][name]) ? h.settings[namespace][name] : {};
 				// create a new instance object
 				instance = Object.create(augmentedObject);
 				// merge options
-				instance.options = $.extend(true, {}, augmentedObject.options, options, baseOptions);
+				instance.options = $.extend(true, {}, augmentedObject.options, options, generalSettings, baseOptions);
 				// call the create function
 				instance._create.apply(instance, []);
 				// Reveal each functions not prefixed with an underscore
 				for (var key in instance) {
 					if (!/^_/.test(key) && $.isFunction(instance[key])){
-						publicFunctions[key] = instance[key];
+						publicFunctions[key] = $.proxy(instance[key], instance);
 					}
 				}
 				return publicFunctions;

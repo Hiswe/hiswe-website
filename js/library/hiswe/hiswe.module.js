@@ -1,24 +1,27 @@
 (function(h, $) {
-	$.extend(hiswe, {
+	$.extend(hiswe, { // TODO: ref
 		module: function (name, base, prototype) { // inspired by jQuery widget factory
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ],
-				fullName = namespace+h.capitalize(name);
+				fullName = namespace+h.capitalize(name),
+				generalSettings = (h.settings && h.settings[nameSpace] && h.settings[nameSpace][base]) ? h.settings[nameSpace][base] : {},
+				baseModule,
+				baseOptions = $.extend(true, {}, generalSettings, {
+					object: name,
+					namespace: namespace,
+					fullName: fullName
+				}),
+				augmentedModule = {};
 
 			if ( !prototype ) {
 				prototype = base;
 				base = h.module;
 			}
 			// create a new object with all methods public
-			var baseOptions = {
-				module: name,
-				namespace: namespace,
-				fullName: fullName
-			};
-			var baseModule = {
+			baseModule = {
 				_create: $.noop
 			};
-			var	augmentedModule = $.extend(true, {}, baseModule, prototype);
+			augmentedModule = $.extend(true, {}, baseModule, prototype);
 			h.debug('[Module] ',fullName,' :: ', augmentedModule);
 			var createInstance = function (options) {
 				// create a new instance object

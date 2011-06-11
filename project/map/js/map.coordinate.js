@@ -1,10 +1,10 @@
 (function (h, $) {
 	h.object('map.coordinate', {
 		_mapToScreen: function (mapX, mapY, mapZ) {
-			var worldWidth = (h.settings.game.world.mapX + 1) * h.settings.map.cell.width;
+			var worldWidth = (this.options.general.mapX + 1) * this.options.general.width;
 
-			screenX = worldWidth/2 + h.settings.map.cell.width * ((mapY - mapX - 2) / 2);
-			screenY = h.settings.map.cell.height * (((mapX + mapY) / 2)) - h.settings.map.cell.height* mapZ;
+			screenX = worldWidth/2 + this.options.general.width * ((mapY - mapX - 2) / 2);
+			screenY = this.options.general.height * (((mapX + mapY) / 2)) - this.options.general.height* mapZ;
 
 			return {
 				screenX: screenX,
@@ -16,9 +16,9 @@
 				mapY,
 				roundMapX,
 				roundMapY,
-				worldWidth = h.settings.game.world.mapX * h.settings.map.cell.width / 2,
-				width = h.settings.map.cell.width/2,
-				height = h.settings.map.cell.height/2;;
+				worldWidth = this.options.general.mapX * this.options.general.width / 2,
+				width = this.options.general.width/2,
+				height = this.options.general.height/2;;
 
 			mapX = ((worldWidth - screenX)/width + screenY/height - 1)/2;
 			mapY = screenY/height - mapX -1;

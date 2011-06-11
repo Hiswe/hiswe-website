@@ -1,16 +1,15 @@
 (function(h, $) {
 	$.extend(hiswe, {
-		setSettings: function (name, settings) { // inspired by jQuery widget factory
+		setSettings: function (name, settings) {
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ];
 
-			h.debug('[Module] settings :: ',name , settings);
+			h.debug('[Settings] for '+namespace+'.'+name,'::', settings);
 
 			// create a settings section
 			h['settings'] = h['settings'] || {};
-			// expose him to framework name space
+			// expose settings
 			h['settings'][ namespace ] = h['settings'][ namespace ] || {}; // create the namespace if none
-			// at module call create a new object
 			h['settings'][ namespace ][ name ] = settings;
 		}
 	});

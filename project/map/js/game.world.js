@@ -1,10 +1,11 @@
 (function(h, $) {
-	h.module('game.world',{
+	h.object('game.world',{
 		options: {
 			id: 'world'
 		},
 		_create: function () {
-			h.debug('info','[',this.options.fullName,'] Create');
+			h.debug('info','['+this.options.fullName+'] Create');
+			h.debug('['+this.options.fullName+'] Options ::', this.options);
 			this._makeCache();
 			this._createCustomLayers();
 		},
@@ -13,13 +14,13 @@
 			this._buildMap();
 		},
 		_buildLayers: function (layerIndex, layerType) {
+			h.debug('['+this.options.fullName+'] Build layer ::', layerType);
 			this.layers = this.layers || [] ;
 			layerType = layerType || 'gameLayer';
 			this.layers.push(h[layerType]({
 				index: layerIndex,
 				$parent: this.$element
 			}));
-			console.log(this.layers);
 		},
 		_buildMap: function () {
 			this._buildLayers(0, 'gameGroundLayer');
@@ -68,7 +69,8 @@
 					});
 				},
 				_getUnderCellHeight: function (x, y) {
-					return h.game.world('getLayer', 0).gameGroundLayer('getCell', x, y).mapStatic('getPosition').height;
+					// return h.game.world('getLayer', 0).gameGroundLayer('getCell', x, y).mapStatic('getPosition').height;
+					return 0
 				}
 			});
 			// Layer 2
@@ -80,19 +82,17 @@
 							template: '<div class="cell '+flowerType+'" />',
 							mapX : data.x,
 							mapY: data.y,
-							mapZ : this._getUnderCellHeight(data.x, data.y),
+							mapZ : 0,
 							layerIndex: data.layerIndex,
 							$parent: this.$element
 						});
 					}
 				},
 				_getUnderCellHeight: function (x, y) {
-					return h.game.world('getLayer', 1).gameSecondGroundLayer('getCell', x, y).mapStatic('getUpperZ');
+					// return h.game.world('getLayer', 1).gameSecondGroundLayer('getCell', x, y).mapStatic('getUpperZ');
 				}
 
 			});
-
-
 		},
 		getLayer: function (index) {
 			return this.layers[index];
@@ -101,8 +101,8 @@
 			this.$element = $('#'+this.options.id);
 		},
 		_setMapSize: function () {
-			this.worldWidth = (h.settings.game.world.mapX + h.settings.game.world.mapY) * h.settings.map.cell.width / 2,
-			this.worldHeight = (h.settings.game.world.mapX + h.settings.game.world.mapY) * h.settings.map.cell.height / 2;
+			this.worldWidth = (this.options.general.mapX + this.options.general.mapY) * this.options.general.width / 2,
+			this.worldHeight = (this.options.general.mapX + this.options.general.mapY) * this.options.general.height / 2;
 
 			this.$element
 				.width(this.worldWidth)
