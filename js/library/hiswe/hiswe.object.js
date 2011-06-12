@@ -4,7 +4,8 @@
 			var arguments = $.makeArray(arguments),
 				prototype = arguments.pop(), // prototype is always the last argument
 				newObjectName = arguments.shift(), // object name is always the first argument
-				base = arguments,
+				decorators = arguments,
+				decoratorPrototype,
 				pathToObject = h.getPath(newObjectName),
 				namespace = pathToObject.namespace,
 				name = pathToObject.name,
@@ -16,7 +17,8 @@
 					fullName: fullName
 				},
 				augmentedObject = {},
-				i = base.length,
+				i = decorators.length,
+				j,
 				pathToParent;
 				dna = [];
 
@@ -25,11 +27,22 @@
 					_create: $.noop
 				}
 			} else {
-				// merge all parents
+				// merge & keep a list of all decorators
 				while ( i-- ){
-					dna.push(base[i]);
-					pathToParent = h.getPath(base[i]);
-					baseObject = $.extend(baseObject, h[ pathToParent.namespace ].prototype[ pathToParent.name ]);
+					dna.push(decorators[i]);
+					pathToParent = h.getPath(decorators[i]);
+					decoratorPrototype = h[ pathToParent.namespace ].prototype[ pathToParent.name ];
+					h.debug(decoratorPrototype);
+					if (typeof decoratorPrototype.dna !== undefined) {
+						j = decoratorPrototype.dna.length;
+						while ( j-- ){
+							// don't add 2 times the same decorator
+							if ( $.inArray(decoratorPrototype.dna[j], dna) === -1 ) {
+								dna.push(decoratorPrototype.dna[j]);
+							}
+						}
+					}
+					baseObject = $.extend(baseObject, decoratorPrototype);
 				}
 			}
 			// create a new object with all methods public
@@ -39,27 +52,35 @@
 
 			var createInstance = function (options) {
 				var instance,
-					tempDna = Object.create(dna);
+					tempDna = {};
 					publicFunctions = {},
 					generalSettings = (h.settings && h.settings[namespace] && h.settings[namespace][name]) ? h.settings[namespace][name] : {};
 				// create a new instance object
+				// h.debug('['+name+']', tempDna);
 				instance = Object.create(augmentedObject);
 				// merge options
 				instance.options = $.extend(true, {}, augmentedObject.options, options, generalSettings, baseOptions);
 				// add the super method
 				if (dna.length) {
 					instance._super = function (methodName, datas) {
+						// define a custom queu decorator list per method
+						tempDna[methodName] = tempDna[methodName] || Object.create(dna);
+						h.debug('['+this.options.object+']', methodName, ' :: ', tempDna);
 						var path;
-						if (tempDna.length !== 0) {
+						if (tempDna[methodName].length !== 0) {
 							datas = datas || [];
-							path = h.getPath(tempDna.pop())
-							if (h[path.namespace]
-								&& h[path.namespace].prototype[path.name]
-								&& h[path.namespace].prototype[path.name][methodName]
-								&& $.isFunction(h[path.namespace].prototype[path.name][methodName])) {
+							// Call each decorator in order of apparition
+							path = h.getPath(tempDna[methodName].pop());
+							if (h[path.namespace] &&
+								h[path.namespace].prototype[path.name] &&
+								h[path.namespace].prototype[path.name][methodName] &&
+								$.isFunction(h[path.namespace].prototype[path.name][methodName])) {
 									h[path.namespace].prototype[path.name][methodName].apply(instance, datas);
+									if (tempDna[methodName].length === 0) {
+										tempDna[methodName] = Object.create(dna);
+									}
 							} else {
-								tempDna = Object.create(dna);
+								tempDna[methodName] = Object.create(dna);
 								return;
 							}
 						} else {
@@ -85,6 +106,7 @@
 			// expose the prototype
 			h[ namespace ].prototype = h[ namespace ].prototype || {};
 			h[ namespace ].prototype[ name ] = augmentedObject;
+			h[ namespace ].prototype[ name ].dna = dna;
 			// Create the object factory
 			h[ fullName ] = createInstance;
 		}
