@@ -45,7 +45,7 @@
 (function(h, $){
 	h.object('test.transparent', 'test.static',{
 		_create: function () {
-			this._super('test.static','_create',arguments);
+			this._super('_create',arguments);
 			this._opacity();
 			this._setWidth();
 		},
@@ -64,12 +64,12 @@
 }(hiswe, jQuery));
 
 (function(h, $){
-	h.object('test.blinking', 'test.transparent',{
+	h.object('test.blinking', 'test.transparent', 'test.static' ,{
 		options: {
 			duration: 500
 		},
 		_create: function () {
-			this._super('test.transparent','_create',arguments);
+			this._super('_create',arguments);
 			this._blink();
 		},
 		_setWidth: function () {

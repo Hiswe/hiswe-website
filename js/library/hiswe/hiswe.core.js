@@ -47,6 +47,14 @@
 		capitalize: function (string) {
 			var firstChar = string.substr(0,1).toUpperCase();
 			return firstChar + string.substr(1);
+		},
+		getPath: function (string) {
+			var path = {
+				namespace: string.split( "." )[ 0 ],
+				name: string.split( "." )[ 1 ]
+			};
+			path.fullName = path.namespace+h.capitalize(path.name)
+			return path;
 		}
 	});
 
