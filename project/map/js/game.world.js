@@ -15,12 +15,11 @@
 		},
 		_buildLayers: function (layerIndex, layerType) {
 			h.debug('['+this.options.fullName+'] Build layer ::', layerType);
-			this.layers = this.layers || [] ;
 			layerType = layerType || 'gameLayer';
-			this.layers.push(h[layerType]({
+			h[layerType]({
 				index: layerIndex,
 				$parent: this.$element
-			}));
+			});
 		},
 		_buildMap: function () {
 			this._buildLayers(0, 'gameGroundLayer');
@@ -69,8 +68,7 @@
 					});
 				},
 				_getUnderCellHeight: function (x, y) {
-					// return h.game.world('getLayer', 0).gameGroundLayer('getCell', x, y).mapStatic('getPosition').height;
-					return 0
+					return h.game.cache('get', 0, x, y).getUpperZ();
 				}
 			});
 			// Layer 2
@@ -82,14 +80,14 @@
 							template: '<div class="cell '+flowerType+'" />',
 							mapX : data.x,
 							mapY: data.y,
-							mapZ : 0,
+							mapZ : this._getUnderCellHeight(data.x, data.y),
 							layerIndex: data.layerIndex,
 							$parent: this.$element
 						});
 					}
 				},
 				_getUnderCellHeight: function (x, y) {
-					// return h.game.world('getLayer', 1).gameSecondGroundLayer('getCell', x, y).mapStatic('getUpperZ');
+					return h.game.cache('get', 1, x, y).getUpperZ();
 				}
 
 			});

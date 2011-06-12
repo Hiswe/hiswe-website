@@ -13,14 +13,13 @@
 		build: function (layerIndex) {
 			for (var x = 0; x < this.mapWidth; x++) {
 				for (var y = 0; y < this.mapHeight; y++) {
-					this.cells[x] = this.cells[x] || [];
-					this.cells[x][y] = this.buildCell({
+					h.game.cache('set',layerIndex,x,y,this.buildCell({
 						x: x,
 						y: y,
 						z: 0,
 						layerIndex: layerIndex,
 						$parent: this.$element
-					})
+					}));
 				}
 			}
 		},

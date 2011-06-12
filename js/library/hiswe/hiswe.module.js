@@ -4,13 +4,12 @@
 			var namespace = name.split( "." )[ 0 ],
 				name = name.split( "." )[ 1 ],
 				fullName = namespace+h.capitalize(name),
-				generalSettings = (h.settings && h.settings[nameSpace] && h.settings[nameSpace][base]) ? h.settings[nameSpace][base] : {},
 				baseModule,
-				baseOptions = $.extend(true, {}, generalSettings, {
+				baseOptions = {
 					object: name,
 					namespace: namespace,
 					fullName: fullName
-				}),
+				},
 				augmentedModule = {};
 
 			if ( !prototype ) {
