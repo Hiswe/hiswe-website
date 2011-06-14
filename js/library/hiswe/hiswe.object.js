@@ -29,8 +29,8 @@
 			} else {
 				// merge & keep a list of all decorators
 				while ( i-- ){
-					dna.push(decorators[i]);
-					pathToParent = h.getPath(decorators[i]);
+					dna.push( decorators[i] );
+					pathToParent = h.getPath( decorators[i] );
 					decoratorPrototype = h[ pathToParent.namespace ].prototype[ pathToParent.name ];
 					h.debug(decoratorPrototype);
 					if (typeof decoratorPrototype.dna !== undefined) {
