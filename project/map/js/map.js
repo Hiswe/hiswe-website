@@ -2,8 +2,8 @@
 
 	var worldSettings = {
 		general: {
-			mapX: 20,
-			mapY: 20,
+			mapX: 14,
+			mapY: 10,
 			layers: 3,
 			width: 64, // cellWidth
 			height: 32 // cellHeight
@@ -14,13 +14,12 @@
 	h.setSettings('game.world', worldSettings);
 	h.setSettings('game.layer', worldSettings);
 	h.setSettings('game.groundLayer', worldSettings);
-	h.setSettings('game.secondGroundLayer', worldSettings);
+	h.setSettings('game.borderLayer', worldSettings);
 	h.setSettings('game.flowerLayer', worldSettings);
 	h.setSettings('map.static', worldSettings);
 	h.setSettings('map.coordinate', worldSettings);
 
 	world = h.gameWorld();
 	world.init();
-
 
 }(hiswe, jQuery));
