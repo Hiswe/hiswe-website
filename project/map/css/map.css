@@ -28,7 +28,7 @@
 	position: absolute;
 	display: block;
 }
-.cell.hover{
+.cellDark{
 	background-position: 0 -32px;
 }
 .whiteFlower{
@@ -44,4 +44,10 @@
 .cell100,
 .cell100.hover{
 	background-position: -128px 0;
+}
+.celesta{
+	background-position: -256px 0;
+}
+.flora{
+	background-position: -320px 0;
 }

@@ -30,8 +30,12 @@
 			// Layer 0
 			h.object('game.groundLayer','game.layer',{
 				buildCell: function (data) {
+					var cellClass = '';
+					if ( data.x % 2  === 0 && data.y % 2 === 0 || data.x % 2 === 1 && data.y % 2  === 1 ) {
+						cellClass = ' cellDark';
+					}
 					return h.mapStatic({
-						template: '<div class="cell" />',
+						template: '<div class="cell'+cellClass+'" />',
 						mapX : data.x,
 						mapY: data.y,
 						height: 0,
@@ -59,7 +63,7 @@
 					return h.game.cache('getUpperZ', 0, x, y);
 				}
 			});
-			// player layer
+			// flower layer
 			h.object('game.flowerLayer','game.layer',{
 				buildCell: function (data) {
 					var underCellHeight = this._getUnderCellHeight( data.x, data.y );
@@ -70,6 +74,27 @@
 							mapX : data.x,
 							mapY: data.y,
 							mapZ : underCellHeight,
+							layerIndex: data.layerIndex,
+							$parent: this.$element
+						});
+					}
+				},
+				_getUnderCellHeight: function ( x, y ) {
+					return h.game.cache('getUpperZ', 1, x, y);
+				}
+			});
+			// player layer
+			h.object('game.flowerLayer','game.layer',{
+				buildCell: function (data) {
+					var underCellHeight = this._getUnderCellHeight( data.x, data.y );
+					if ( underCellHeight === 0 &&  Math.random() > 0.9 ) {
+						var flowerType = (Math.random() > 0.5) ? 'flora' : 'celesta';
+						return h.mapStatic({
+							template: '<div class="cell '+flowerType+'" />',
+							mapX: data.x,
+							mapY: data.y,
+							mapZ: underCellHeight,
+							height: 1,
 							layerIndex: data.layerIndex,
 							$parent: this.$element
 						});
