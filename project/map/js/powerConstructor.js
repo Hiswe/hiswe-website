@@ -45,7 +45,7 @@
 (function(h, $){
 	h.object('test.transparent', 'test.static',{
 		_create: function () {
-			this._super('_create',arguments);
+			this._super( '_create', arguments );
 			this._opacity();
 			this._setWidth();
 		},

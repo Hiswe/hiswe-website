@@ -25,6 +25,7 @@
 			this._buildLayers(0, 'gameGroundLayer');
 			this._buildLayers(1, 'gameBorderLayer');
 			this._buildLayers(2, 'gameFlowerLayer');
+			this._buildLayers(3, 'gamePlayerLayer');
 		},
 		_createCustomLayers: function () {
 			// Layer 0
@@ -84,12 +85,12 @@
 				}
 			});
 			// player layer
-			h.object('game.flowerLayer','game.layer',{
+			h.object('game.playerLayer','game.layer',{
 				buildCell: function (data) {
 					var underCellHeight = this._getUnderCellHeight( data.x, data.y );
 					if ( underCellHeight === 0 &&  Math.random() > 0.9 ) {
 						var flowerType = (Math.random() > 0.5) ? 'flora' : 'celesta';
-						return h.mapStatic({
+						return h.mapMoveable({
 							template: '<div class="cell '+flowerType+'" />',
 							mapX: data.x,
 							mapY: data.y,
