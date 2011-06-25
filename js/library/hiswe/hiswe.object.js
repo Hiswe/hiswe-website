@@ -33,7 +33,7 @@
 
 
 			var createInstance = function ( options ) {
-				var lastPrototypeCalled,
+				var lastPrototypeCalled = {},
 					instance,
 					publicFunctions = {},
 					generalSettings = ( h.settings && h.settings[ namespace ] && h.settings[ namespace ][ name ]) ?
@@ -43,16 +43,22 @@
 				// merge options
 				instance.options = $.extend( true, {}, augmentedObject.options, options, generalSettings, baseOptions );
 				// add super method
-				lastPrototypeCalled = instance.__proto__;
-				instance._super = function ( method, arguments ) {
-					var currentProto = lastPrototypeCalled.__proto__;
+				instance._super = function ( method, arguments , debug) {
+					lastPrototypeCalled[ method ] = lastPrototypeCalled[ method ] || instance.__proto__;
+					if ( debug ) h.debug ( '[', name, '] _super list :: ', lastPrototypeCalled );
+					var currentProto = lastPrototypeCalled[ method ].__proto__;
+					if ( debug ) h.debug( '[', name, '] _super', method , 'on proto', currentProto );
 					if ( currentProto.__proto__ ) {
-						lastPrototypeCalled = currentProto;
+						lastPrototypeCalled[ method ] = currentProto;
 					} else {
-						lastPrototypeCalled = instance.__proto__;
+						lastPrototypeCalled[ method ] = instance.__proto__;
 					}
 					if ( currentProto[ method ] ) {
 						currentProto[ method ].apply( instance, arguments );
+					} else { // could not have have a _super method
+							 // reinit for futur _super call
+						if ( debug ) h.debug('[',name,'] _super :: No', method , 'on proto', currentProto );
+						lastPrototypeCalled[ method ] = instance.__proto__;
 					}
 				};
 				// call the create function
