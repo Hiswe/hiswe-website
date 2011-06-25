@@ -1,101 +1,67 @@
 (function(h, $) {
 	$.extend(h, {
-		object: function () { // inspired by jQuery widget factory
-			var arguments = $.makeArray(arguments),
-				prototype = arguments.pop(), // prototype is always the last argument
-				newObjectName = arguments.shift(), // object name is always the first argument
-				decorators = arguments,
-				decoratorPrototype,
-				pathToObject = h.getPath(newObjectName),
-				namespace = pathToObject.namespace,
-				name = pathToObject.name,
-				fullName = pathToObject.fullName,
-				baseObject = {},
+		object: function ( name, base, prototype ) { // inspired by jQuery widget factory
+			var namespace = name.split( "." )[ 0 ],
+				name = name.split( "." )[ 1 ],
+				fullName = namespace + h.capitalize( name ),
+				baseObject,
 				baseOptions = {
 					object: name,
 					namespace: namespace,
 					fullName: fullName
 				},
-				augmentedObject = {},
-				i = decorators.length,
-				j,
-				pathToParent;
-				dna = [];
+				augmentedObject = {};
 
-			if ( i === 0 ) {
+
+			if ( !prototype ) {
+				prototype = base;
+				base = h.Object,
 				baseObject = {
 					_create: $.noop
 				}
-			} else {
-				// merge & keep a list of all decorators
-				while ( i-- ){
-					dna.push( decorators[i] );
-					pathToParent = h.getPath( decorators[i] );
-					decoratorPrototype = h[ pathToParent.namespace ].prototype[ pathToParent.name ];
-					h.debug(decoratorPrototype);
-					if (typeof decoratorPrototype.dna !== undefined) {
-						j = decoratorPrototype.dna.length;
-						while ( j-- ){
-							// don't add 2 times the same decorator
-							if ( $.inArray(decoratorPrototype.dna[j], dna) === -1 ) {
-								dna.push(decoratorPrototype.dna[j]);
-							}
-						}
-					}
-					baseObject = $.extend(baseObject, decoratorPrototype);
-				}
+			}else{
+				var baseNamespace = base.split( "." )[ 0 ],
+					baseName = base.split( "." )[ 1 ];
+				baseObject = h[ baseNamespace ].prototype[ baseName ];
 			}
-			// create a new object with all methods public
-			augmentedObject = $.extend(true, augmentedObject, baseObject, prototype);
-			h.debug('[object] ',fullName,' :: ', augmentedObject);
+			// create a new object with all methods
+			augmentedObject = Object.create( baseObject );
+			for ( var method in prototype ) {
+				augmentedObject[ method ] = prototype[ method ];
+			}
+			h.debug( '[object] ', fullName,' :: ', augmentedObject );
 
 
-			var createInstance = function (options) {
-				var instance,
-					tempDna = {};
+			var createInstance = function ( options ) {
+				var lastPrototypeCalled,
+					instance,
 					publicFunctions = {},
-					generalSettings = (h.settings && h.settings[namespace] && h.settings[namespace][name]) ? h.settings[namespace][name] : {};
+					generalSettings = ( h.settings && h.settings[ namespace ] && h.settings[ namespace ][ name ]) ?
+						h.settings[ namespace ][ name ] : {};
 				// create a new instance object
-				// h.debug('['+name+']', tempDna);
-				instance = Object.create(augmentedObject);
+				instance = Object.create( augmentedObject );
 				// merge options
-				instance.options = $.extend(true, {}, augmentedObject.options, options, generalSettings, baseOptions);
-				// add the super method
-				if (dna.length) {
-					instance._super = function (methodName, datas) {
-						// define a custom queu decorator list per method
-						tempDna[methodName] = tempDna[methodName] || Object.create(dna);
-						h.debug('['+this.options.object+']', methodName, ' :: ', tempDna);
-						var path;
-						if (tempDna[methodName].length !== 0) {
-							datas = datas || [];
-							// Call each decorator in order of apparition
-							path = h.getPath(tempDna[methodName].pop());
-							if (h[path.namespace] &&
-								h[path.namespace].prototype[path.name] &&
-								h[path.namespace].prototype[path.name][methodName] &&
-								$.isFunction(h[path.namespace].prototype[path.name][methodName])) {
-									h[path.namespace].prototype[path.name][methodName].apply(instance, datas);
-									if (tempDna[methodName].length === 0) {
-										tempDna[methodName] = Object.create(dna);
-									}
-							} else {
-								tempDna[methodName] = Object.create(dna);
-								return;
-							}
-						} else {
-							tempDna = Object.create(dna);
-							return;
-						}
+				instance.options = $.extend( true, {}, augmentedObject.options, options, generalSettings, baseOptions );
+				// add super method
+				lastPrototypeCalled = instance.__proto__;
+				instance._super = function ( method, arguments ) {
+					var currentProto = lastPrototypeCalled.__proto__;
+					if ( currentProto.__proto__ ) {
+						lastPrototypeCalled = currentProto;
+					} else {
+						lastPrototypeCalled = instance.__proto__;
 					}
-				}
+					if ( currentProto[ method ] ) {
+						currentProto[ method ].apply( instance, arguments );
+					}
+				};
 				// call the create function
-				instance._create.apply(instance, []);
+				instance._create.apply( instance, [] );
 
 				// Reveal each functions not prefixed with an underscore
-				for (var key in instance) {
-					if (!/^_/.test(key) && $.isFunction(instance[key])){
-						publicFunctions[key] = $.proxy(instance[key], instance);
+				for ( var key in instance ) {
+					if (!/^_/.test( key ) && $.isFunction( instance[ key ] ) ) {
+						publicFunctions[ key ] = $.proxy( instance[ key ], instance );
 					}
 				}
 				return publicFunctions;
@@ -106,9 +72,8 @@
 			// expose the prototype
 			h[ namespace ].prototype = h[ namespace ].prototype || {};
 			h[ namespace ].prototype[ name ] = augmentedObject;
-			h[ namespace ].prototype[ name ].dna = dna;
 			// Create the object factory
 			h[ fullName ] = createInstance;
 		}
 	});
-}(hiswe, jQuery));
+}( hiswe, jQuery ) );
