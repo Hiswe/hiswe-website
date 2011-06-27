@@ -4,14 +4,10 @@
 		options: {
 			speed: 1000
 		},
-		_create: function () {
-			this._super( '_create', arguments );
-			this.directions = [ 'top', 'right', 'bottom', 'left' ];
-		},
 		_action: function () {
 			var that = this;
 			setTimeout( function () {
-				that._move( that._randomDirection(), that._action )
+				that._chooseDirection( that._action );
 			}, that._moveDelay() );
 
 		},
@@ -21,64 +17,58 @@
 			this.$cell.addClass( character );
 			this._action();
 		},
-		_move: function ( direction, callback ) {
-			var that = this,
-				otherMove = $.map( this.directions, function ( value , index) {
-					return ( value != direction ) ? value : null;
-				});
+		_chooseDirection: function ( callback ) {
+			var o = this.options,
+				newMapX,
+				newMapY,
+				xMove = 0,
+				yMove = 0;
 
-			//  h.debug( otherMove );
-			switch ( direction ) {
-				case 'top':
-					this.$cell.animate({
-						top: '+='  + this.options.general.height / 2,
-						left: '+=' + this.options.general.width / 2
-					},
-					this.options.speed,
-					function () {
-						callback.call( that );
-					});
+
+			switch ( Math.random() > 0.5 ) {
+				case true: // vertical move
+					yMove = ( Math.random() > 0.5 ) ? 1 : -1;
 				break;
-				case 'right':
-					this.$cell.animate({
-						top: '-='  + this.options.general.height / 2,
-						left: '+=' + this.options.general.width / 2
-					},
-					this.options.speed,
-					function () {
-						callback.call( that );
-					});
+				case false: // horizontal move
+					xMove = ( Math.random() > 0.5 ) ? 1 : -1;
 				break;
-				case 'bottom':
-					this.$cell.animate({
-						top: '-='  + this.options.general.height / 2,
-						left: '-=' + this.options.general.width / 2
-					},
-					this.options.speed,
-					function () {
-						callback.call( that );
-					});
-				break;
-				case 'left':
-					this.$cell.animate({
-						top: '-='  + this.options.general.height / 2,
-						left: '-=' + this.options.general.width / 2
-					},
-					this.options.speed,
-					function () {
-						callback.call( that );
-					});
-				break;
-				default:
-					h.debug( direction );
 			}
+			// TODO : check if it is a non occupied cell
+			// ...
+			newMapX = o.mapX + xMove;
+			newMapY = o.mapY + yMove;
+			// MaJ moveable cache
+			o.mapX = newMapX;
+			o.mapY = newMapY;
+			// TODO : MAJ map.cache
+			// ...
+			this._moveToPosition( newMapX, newMapY, o.mapZ, callback );
+
+		},
+		_moveToPosition: function ( mapX, mapY, mapZ, callback ) {
+			h.debug('[MOVEABLE] move to :', mapX, mapY);
+			var that = this,
+				coord = this._mapToScreen( mapX, mapY, mapZ ),
+				height = this.options.general.height * this.options.height,
+				top = coord.screenY - height,
+				zindex = ( mapX + mapY ) * this.options.general.layers + this.options.layerIndex,
+				callback = callback || $.noop;
+
+			// TODO : change z-index only if futureX < actualX
+			// ...
+			this.$cell
+			.css('z-index', zindex)
+			.animate({
+				'left': coord.screenX+'px',
+				'top': top+'px'
+			},
+			this.options.speed,
+			function () {
+				callback.call( that );
+			});
 		},
 		_moveDelay: function () {
 			return Math.round( Math.random() * 10000 );
-		},
-		_randomDirection: function () {
-			return this.directions[ Math.floor( Math.random() * this.directions.length ) ];
-
 		}
 	});
 }( hiswe, jQuery ) );
