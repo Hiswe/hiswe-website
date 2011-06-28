@@ -19,45 +19,32 @@
 		},
 		_chooseDirection: function ( callback ) {
 			var o = this.options,
-				newMapX,
-				newMapY,
-				xMove = 0,
-				yMove = 0;
+				possibleMovement = h.game.cache( 'getClosestFreeCells', this.options.layerIndex - 2, o.mapX, o.mapY ),
+				selectedMovement = possibleMovement[ Math.floor( Math.random() * possibleMovement.length ) ];
 
 
-			switch ( Math.random() > 0.5 ) {
-				case true: // vertical move
-					yMove = ( Math.random() > 0.5 ) ? 1 : -1;
-				break;
-				case false: // horizontal move
-					xMove = ( Math.random() > 0.5 ) ? 1 : -1;
-				break;
-			}
 			// TODO : check if it is a non occupied cell
 			// ...
-			newMapX = o.mapX + xMove;
-			newMapY = o.mapY + yMove;
+			o.mapX = o.mapX + selectedMovement[ 0 ];
+			o.mapY = o.mapY + selectedMovement[ 1 ];
 			// MaJ moveable cache
-			o.mapX = newMapX;
-			o.mapY = newMapY;
 			// TODO : MAJ map.cache
 			// ...
-			this._moveToPosition( newMapX, newMapY, o.mapZ, callback );
+			this._moveToPosition( callback );
 
 		},
-		_moveToPosition: function ( mapX, mapY, mapZ, callback ) {
-			h.debug('[MOVEABLE] move to :', mapX, mapY);
+		_moveToPosition: function ( callback ) {
+			// h.debug('[MOVEABLE] move to :', mapX, mapY);
 			var that = this,
-				coord = this._mapToScreen( mapX, mapY, mapZ ),
+				o = this.options,
+				coord = this._mapToScreen( o.mapX, o.mapY, o.mapZ ),
 				height = this.options.general.height * this.options.height,
 				top = coord.screenY - height,
-				zindex = ( mapX + mapY ) * this.options.general.layers + this.options.layerIndex,
+				zindex = ( o.mapX + o.mapY ) * this.options.general.layers + this.options.layerIndex,
 				callback = callback || $.noop;
 
-			// TODO : change z-index only if futureX < actualX
-			// ...
 			this.$cell
-			.css( 'z-index', zindex + 2 )
+			.css( 'z-index', zindex + 6 )
 			.animate({
 				'left': coord.screenX+'px',
 				'top': top+'px'
