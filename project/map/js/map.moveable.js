@@ -57,13 +57,14 @@
 			// TODO : change z-index only if futureX < actualX
 			// ...
 			this.$cell
-			.css('z-index', zindex)
+			.css( 'z-index', zindex + 2 )
 			.animate({
 				'left': coord.screenX+'px',
 				'top': top+'px'
 			},
 			this.options.speed,
 			function () {
+				$( this ).css( 'z-index', zindex );
 				callback.call( that );
 			});
 		},
