@@ -19,7 +19,7 @@
 		},
 		_chooseDirection: function ( callback ) {
 			var o = this.options,
-				possibleMovement = h.game.cache( 'getClosestFreeCells', [ o.layerIndex,  o.layerIndex - 2 ], o.mapX, o.mapY ),
+				possibleMovement = h.game.cache( 'getClosestFreeCells', [ o.layerIndex,  o.layerIndex + 1 ], o.mapX, o.mapY ),
 				selectedMovement = possibleMovement[ Math.floor( Math.random() * possibleMovement.length ) ];
 
 			// MaJ moveable cache
@@ -32,32 +32,54 @@
 				x: o.mapX + selectedMovement[ 0 ],
 				y: o.mapY + selectedMovement[ 1 ]
 			} );
+			// check z-index
+
 			// set futur coord
 			o.mapX = o.mapX + selectedMovement[ 0 ];
 			o.mapY = o.mapY + selectedMovement[ 1 ];
 			
-			this._moveToPosition( callback );
+			this._moveToPosition( selectedMovement, callback );
 
 		},
-		_moveToPosition: function ( callback ) {
-			// h.debug('[MOVEABLE] move to :', mapX, mapY);
+		_moveToPosition: function ( selectedMovement, callback ) {
 			var that = this,
 				o = this.options,
 				coord = this._mapToScreen( o.mapX, o.mapY, o.mapZ ),
-				height = this.options.general.height * this.options.height,
+				height = this.options.general.height * o.height,
 				top = coord.screenY - height,
-				zindex = ( o.mapX + o.mapY ) * this.options.general.layers + this.options.layerIndex,
-				callback = callback || $.noop;
+				zindex = ( o.mapX + o.mapY ) * this.options.general.layers + o.layerIndex,
+				callback = callback || $.noop,
+				// deplacement matrix is the 8 possible displacement and when the z-index should be updated
+				// the +layer data is if in a diagonal movment the sprite is overlaping a higher sprite
+				deplacementMatrice = [ 
+					[ 'after', 'after', 'before+layer'],
+					[ 'after', 'none', 'before'],
+					[ 'before+layer', 'before', 'before']
+				],
+				zIndexChangement = function () {
+					return deplacementMatrice[ selectedMovement[ 0 ] + 1 ][ selectedMovement[ 1 ] + 1 ];
+				}();
 
+			// h.debug( '[MOVEABLE] move to z-index :', zIndexChangement);
+
+			switch ( zIndexChangement ) {
+				case 'before' :
+					this.$cell.css( 'z-index', zindex );
+				break;
+				case 'before+layer' :
+					this.$cell.css( 'z-index', zindex + this.options.general.layers );
+				break; 
+			}
 			this.$cell
-			.css( 'z-index', zindex + 6 )
 			.animate({
 				'left': coord.screenX+'px',
 				'top': top+'px'
 			},
-			this.options.speed,
+			o.speed,
 			function () {
-				$( this ).css( 'z-index', zindex );
+				if ( zIndexChangement === 'after'  || zIndexChangement === 'before+layer' ) {
+					$( this ).css( 'z-index', zindex );
+				}
 				callback.call( that );
 			});
 		},

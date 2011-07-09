@@ -23,26 +23,29 @@
 		},
 		_buildMap: function () {
 			this._buildLayers(0, 'gameGroundLayer');
-			this._buildLayers(1, 'gameBorderLayer');
-			this._buildLayers(2, 'gameFlowerLayer');
-			this._buildLayers(3, 'gamePlayerLayer');
+			this._buildLayers(1, 'gameFlowerLayer');
+			this._buildLayers(3, 'gameBorderLayer'); 
+			// Player position needs border to be build first in order to not collide
+			this._buildLayers(2, 'gamePlayerLayer');
 		},
 		_createCustomLayers: function () {
 			// Layer 0
 			h.object('game.groundLayer','game.layer',{
 				buildCell: function (data) {
 					var cellClass = '';
-					if ( data.x % 2  === 0 && data.y % 2 === 0 || data.x % 2 === 1 && data.y % 2  === 1 ) {
-						cellClass = ' cellDark';
+					if ( data.x !== 0 || data.x !== this.options.general.mapX -1 || data.y !== 0 || data.y !== this.options.general.mapY -1 ) {
+						if ( data.x % 2  === 0 && data.y % 2 === 0 || data.x % 2 === 1 && data.y % 2  === 1 ) {
+							cellClass = ' cellDark';
+						}
+						return h.mapStatic({
+							template: '<div class="cell'+cellClass+'" />',
+							mapX : data.x,
+							mapY: data.y,
+							height: 0,
+							layerIndex: data.layerIndex,
+							$parent: this.$element
+						});
 					}
-					return h.mapStatic({
-						template: '<div class="cell'+cellClass+'" />',
-						mapX : data.x,
-						mapY: data.y,
-						height: 0,
-						layerIndex: data.layerIndex,
-						$parent: this.$element
-					});
 				}
 			});
 			// BorderLayer
@@ -86,15 +89,14 @@
 			});
 			// player layer
 			h.object('game.playerLayer','game.layer',{
-				buildCell: function (data) {
-					var underCellHeight = this._getUnderCellHeight( data.x, data.y );
-					if ( underCellHeight === 0 &&  Math.random() > 0.9 ) {
-						var flowerType = (Math.random() > 0.5) ? 'flora' : 'celesta';
+				buildCell: function ( data ) {
+					if ( !h.game.cache( 'get',  data.layerIndex + 1, data.x, data.y ) &&  Math.random() > 0.9 ) {
+						var flowerType = ( Math.random() > 0.5) ? 'flora' : 'celesta';
 						return h.mapMoveable({
 							template: '<div class="cell '+flowerType+'" />',
 							mapX: data.x,
 							mapY: data.y,
-							mapZ: underCellHeight,
+							mapZ: 0,
 							height: 1,
 							layerIndex: data.layerIndex,
 							$parent: this.$element
