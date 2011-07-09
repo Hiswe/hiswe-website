@@ -2,8 +2,8 @@
 
 	var worldSettings = {
 		general: {
-			mapX: 14,
-			mapY: 10,
+			mapX: 28,
+			mapY: 20,
 			layers: 4,
 			width: 64, // cellWidth
 			height: 32 // cellHeight
@@ -23,5 +23,7 @@
 
 	world = h.gameWorld();
 	world.init();
+	scroll = h.gameScroll();
+	scroll.init(); 
 
 }(hiswe, jQuery));

@@ -14,8 +14,10 @@
 }
 #frame{
 	width: 760px;
+	height: 384px;
 	margin: 0 auto;
 	border: 1em solid #EEE;
+	overflow: auto;
 }
 #world{
 	border: 1px dashed #A8005D;

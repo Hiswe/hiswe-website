@@ -90,7 +90,7 @@
 			// player layer
 			h.object('game.playerLayer','game.layer',{
 				buildCell: function ( data ) {
-					if ( !h.game.cache( 'get',  data.layerIndex + 1, data.x, data.y ) &&  Math.random() > 0.9 ) {
+					if ( !h.game.cache( 'get',  data.layerIndex + 1, data.x, data.y ) &&  Math.random() > 0.95 ) {
 						var flowerType = ( Math.random() > 0.5) ? 'flora' : 'celesta';
 						return h.mapMoveable({
 							template: '<div class="cell '+flowerType+'" />',
