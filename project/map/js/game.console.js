@@ -2,7 +2,7 @@
 	h.module('game.console', {
 		_create: function () {
 			this.$console = $('<div />', {
-				class: 'console'
+				'class': 'console'
 			});
 			this.$console.appendTo($('body'));
 			h.debug('info', '[Console] Create');
