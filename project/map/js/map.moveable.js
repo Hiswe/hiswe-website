@@ -19,17 +19,23 @@
 		},
 		_chooseDirection: function ( callback ) {
 			var o = this.options,
-				possibleMovement = h.game.cache( 'getClosestFreeCells', this.options.layerIndex - 2, o.mapX, o.mapY ),
+				possibleMovement = h.game.cache( 'getClosestFreeCells', [ o.layerIndex,  o.layerIndex - 2 ], o.mapX, o.mapY ),
 				selectedMovement = possibleMovement[ Math.floor( Math.random() * possibleMovement.length ) ];
 
-
-			// TODO : check if it is a non occupied cell
-			// ...
+			// MaJ moveable cache
+			h.game.cache( 'move',
+			o.layerIndex, 
+			{ 
+				x: o.mapX, 
+				y: o.mapY 
+			}, {
+				x: o.mapX + selectedMovement[ 0 ],
+				y: o.mapY + selectedMovement[ 1 ]
+			} );
+			// set futur coord
 			o.mapX = o.mapX + selectedMovement[ 0 ];
 			o.mapY = o.mapY + selectedMovement[ 1 ];
-			// MaJ moveable cache
-			// TODO : MAJ map.cache
-			// ...
+			
 			this._moveToPosition( callback );
 
 		},
