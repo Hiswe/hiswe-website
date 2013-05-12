@@ -1,6 +1,11 @@
 .DS_Store
 .project
+.dev_env
+.env
 .settings/
+node_modules
+/components
 *.ai
 sources
 archives
+npm-debug.log
