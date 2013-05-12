@@ -8,13 +8,8 @@ module.exports = (grunt) ->
       dist: {
         src: [
           'components/jquery/jquery.js'
-          # 'components/jquery-waypoints/waypoints.js'
-          # 'components/jquery-waypoints/shortcuts/sticky-elements/waypoints-sticky.js'
           # 'components/jquery.transit/jquery.transit.js'
           # 'components/imagesloaded/jquery.imagesloaded.js'
-          # 'components/bootstrap/js/bootstrap-affix.js'
-          # 'components/bootstrap/js/bootstrap-scrollspy.js'
-          # 'assets/js/scrollspy.js'
         ],
         dest: 'public/lib.js'
       }
@@ -29,13 +24,8 @@ module.exports = (grunt) ->
         files: {
           'public/lib.min.js': [
             'components/jquery/jquery.js'
-            # 'components/jquery-waypoints/waypoints.js'
-            # 'components/jquery-waypoints/shortcuts/sticky-elements/waypoints-sticky.js'
             # 'components/jquery.transit/jquery.transit.js'
             # 'components/imagesloaded/jquery.imagesloaded.js'
-            # 'components/bootstrap/js/bootstrap-affix.js'
-            # 'components/bootstrap/js/bootstrap-scrollspy.js'
-            # 'assets/js/scrollspy.js'
           ]
         }
       }

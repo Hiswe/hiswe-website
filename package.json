@@ -19,7 +19,8 @@
     "alphamail": "~1.0.4",
     "connect-assets": "~2.4.2",
     "stylus": "~0.32.1",
-    "nib": "~0.9.1"
+    "nib": "~0.9.1",
+    "hstrap": "~0.3.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
