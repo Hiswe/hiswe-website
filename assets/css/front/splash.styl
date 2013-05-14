@@ -1,0 +1,65 @@
+header.hw-splash
+  padding-top 4em
+  padding-left third()
+  position relative
+
+  h2
+    font-weight normal
+    font-size 2em
+    text-align center
+
+  p, .hw-hire
+    box-sizing border-box
+    display inline-block
+
+
+  p
+    width 50%
+    line-height 1.5em
+    iso-right()
+    background $dark-pink
+    padding 1em 2em 3em
+
+  p + p,
+  .hw-hire
+    iso-left()
+    background $pink
+
+  .hw-hire
+    $hw-hire-depth = .5em
+
+    width 45%; padding 1em; margin-top -2.75em
+    background $dark-blue
+    float right
+    position relative
+    text-align center; font-weight bold
+    transition background .5s
+
+    &:hover
+      background $light-blue
+
+    &:before, &:after
+      content ' '; display block
+      position absolute
+
+    // left
+    &:before
+      left -($hw-hire-depth); top 0; bottom 0
+      width $hw-hire-depth
+      background $blue
+      transform-origin top right
+      transform matrix(1, 1, 0, 1, 0, 0)
+
+    // top
+    &:after
+      top -($hw-hire-depth); left 0; right 0
+      height $hw-hire-depth
+      background $light-blue
+      transform-origin bottom left
+      transform matrix(1, 0, 1, 1, 0, 0)
+
+.hw-portrait
+  // background grey
+  height 12em
+  width third()
+  absolute bottom left

@@ -1,0 +1,37 @@
+@import 'nib'
+@import './css-config'
+@import './css-mixins'
+@import '../../../node_modules/hstrap/lib/hstrap/mixins'
+
+
+h1.hw-main-title
+  absolute top left
+  iso-left()
+  font-family "hiso_dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
+  span
+    display inline-block
+    iso-right()
+
+nav.hw-main-navigation
+  absolute top px2em(-($main-border)) right
+  overflow hidden
+  width 33.3333333%
+  padding-bottom 3em
+
+  ul, li
+    reset-box-model()
+
+  ul
+    margin-top -2em
+
+  li
+    transition background .5s
+
+  li:hover
+    background $blue
+
+  a
+    display block
+    text-align center
+    padding 4em 1em 1em

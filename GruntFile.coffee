@@ -14,6 +14,15 @@ module.exports = (grunt) ->
         dest: 'public/lib.js'
       }
     }
+    copy: {
+      font: {
+        files: [{
+          expand: true
+          cwd: 'components/hiso-font/'
+          src: ['font/**']
+          dest: 'public/media/'}]
+      }
+    }
     uglify: {
       options: {
         mangle: {
@@ -34,6 +43,7 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
 
   grunt.registerTask 'help', ->
     grunt.log.writeln 'grunt lib :', 'Concact and uglify js libs'
