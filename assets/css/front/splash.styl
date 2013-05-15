@@ -9,20 +9,22 @@ header.hw-splash
 
   h2
     font-weight normal
-    font-size 2em
+    font-size 2.5em
     text-align center
     color black
+    margin-bottom 1.5em
 
   p, .hw-hire
     box-sizing border-box
     display inline-block
+    font-size px2em(18)
 
   p
-    width 50%
-    line-height 1.5em; letter-spacing .1em
+    width 50%; height px2em(200, 18)
+    line-height 2em; letter-spacing .1em
     iso-right()
     background $dark-pink
-    padding 1em 2em 3em
+    padding 1em 1em 3em
 
   p + p,
   .hw-hire
@@ -63,7 +65,8 @@ header.hw-splash
       transform matrix(1, 0, 1, 1, 0, 0)
 
 .hw-portrait
-  // background grey
-  height 12em
   width third()
-  absolute bottom left
+  absolute top px2em(34) left
+
+  object
+    width 100%; height px2em(516px)
