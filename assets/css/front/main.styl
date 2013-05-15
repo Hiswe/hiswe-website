@@ -1,0 +1,49 @@
+@import 'nib'
+@import './css-config'
+@import './css-mixins'
+@import '../../../node_modules/hstrap/lib/hstrap/mixins/general'
+
+html, body, ul, dt, dl, dd
+  reset-box-model()
+
+html, body
+  font-family "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  // font-family "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
+html
+  background white
+  padding px2em($main-border)
+
+body
+  background: #1e5799;
+  background-image -moz-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
+  background-image -webkit-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
+  background-image -o-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
+  background-image -ms-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
+  background-image radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
+  color white
+
+a
+  text-decoration none
+  color white
+
+.main-content
+  width px2em(930)
+  margin 0 auto
+  padding 1px
+  position relative
+
+.hw-title
+  font-size 3em; font-weight normal
+  font-family "hiso-bright", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  crisp-font-smoothing()
+  position relative
+  top -2.5em
+  iso-left()
+
+  span
+    display inline-block
+    iso-right()
+
+.hicon
+  font-weight normal; font-style: normal;

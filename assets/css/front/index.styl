@@ -1,42 +1,5 @@
-@import 'nib'
-@import './css-config'
-@import '../../../node_modules/hstrap/lib/hstrap/mixins'
+@import './main'
 @import './pages'
 @import './navigation'
 @import './splash'
-
-html, body
-  reset-box-model()
-  font-family "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  // font-family "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-
-html
-  background white
-  padding px2em($main-border)
-
-body
-  background: #1e5799;
-  background-image -moz-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
-  background-image -webkit-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
-  background-image -o-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
-  background-image -ms-radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
-  background-image radial-gradient(circle at 25% 25%,  $pink 0%, $dark-pink 75%)
-  color white
-
-a
-  text-decoration none
-  color white
-
-.main-content
-  width px2em(930)
-  margin 0 auto
-  padding 1px
-  position relative
-
-.hw-title
-  iso-left()
-  font-family "hiso_dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-
-  span
-    display inline-block
-    iso-right()
+@import './services'

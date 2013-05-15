@@ -19,6 +19,9 @@ module.exports = (app) ->
     app.use express.methodOverride()
     app.use express.favicon()
 
+    # Connect before static…
+    app.use require('connect-assets')()
+
     if app.get('env') is 'production'
       maxAge = 2629800000 # 1 month
     else
@@ -26,7 +29,7 @@ module.exports = (app) ->
     assets  = path.join(__dirname, '/../public')
     app.use express.static(assets, {maxAge: maxAge})
 
-    app.use require('connect-assets')()
+
 
     # expose some datas to the front app under bg namespace
     # options = {

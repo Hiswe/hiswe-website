@@ -1,17 +1,31 @@
 @import 'nib'
 @import './css-config'
 @import './css-mixins'
-@import '../../../node_modules/hstrap/lib/hstrap/mixins'
+@import '../../../node_modules/hstrap/lib/hstrap/mixins/general'
 
 
 h1.hw-main-title
   absolute top left
   iso-left()
-  font-family "hiso_dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  font-family "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  color black
+  font-size 4em; font-weight normal
+  z-index 2
+
 
   span
     display inline-block
     iso-right()
+    position relative
+    z-index 2
+
+    &::after
+      absolute bottom left
+      z-index -1
+      content attr(data-text)
+      color white
+      font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+      crisp-font-smoothing()
 
 nav.hw-main-navigation
   absolute top px2em(-($main-border)) right

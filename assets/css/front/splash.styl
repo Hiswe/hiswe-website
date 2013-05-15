@@ -1,3 +1,7 @@
+@import 'nib'
+@import './css-config'
+@import '../../../node_modules/hstrap/lib/hstrap/mixins/general'
+
 header.hw-splash
   padding-top 4em
   padding-left third()
@@ -7,15 +11,15 @@ header.hw-splash
     font-weight normal
     font-size 2em
     text-align center
+    color black
 
   p, .hw-hire
     box-sizing border-box
     display inline-block
 
-
   p
     width 50%
-    line-height 1.5em
+    line-height 1.5em; letter-spacing .1em
     iso-right()
     background $dark-pink
     padding 1em 2em 3em

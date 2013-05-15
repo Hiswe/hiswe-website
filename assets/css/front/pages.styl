@@ -10,11 +10,22 @@
     box-sizing border-box
     width 33.33333%
 
+    .hicon
+      display inline-block
+
   > :nth-child(3n + 1),
   > :nth-child(3n + 3)
     background $pink
     iso-left()
 
+    .hicon
+      iso-right()
+      color $dark-pink
+
   > :nth-child(3n + 2)
     background $dark-pink
     iso-right()
+
+    .hicon
+      iso-left()
+      color $pink

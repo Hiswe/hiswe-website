@@ -1,10 +1,19 @@
 @import 'nib'
 
+t-matrix(a, c, b, d)
+  transform matrix(a, c, b, d, 0, 0)
+  // IE8 - The -ms-filter rule should be on one line
+  // http://www.useragentman.com/IETransformsTranslator/
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=%s, M12=%s, M21=%s, M22=%s, SizingMethod='auto expand')" % (a b c d)
+
 iso-left()
-  transform matrix(1, -0.5, 0, 1, 0, 0)
+  t-matrix(1, -0.5, 0, 1)
 
 iso-right()
-  transform matrix(1, 0.5, 0, 1, 0, 0)
+  t-matrix(1, 0.5, 0, 1)
+
+mirror-vertical()
+  t-matrix(-1, 0, 0, 1)
 
 third(q = 1)
   (100%/3) * q

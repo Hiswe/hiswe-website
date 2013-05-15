@@ -1,9 +1,9 @@
 h1.hw-main-title
-  span H
-  span i
-  span s
-  span w
-  span e
+  span(data-text="H") H
+  span(data-text="i") i
+  span(data-text="s") s
+  span(data-text="w") w
+  span(data-text="e") e
 nav.hw-main-navigation: ul.pages
   li: a(href="#") Portfolio
   li: a(href="#") Blog
@@ -16,7 +16,7 @@ header.hw-splash
   a.hw-hire(href="#") Hire me now !
   .hw-portrait
 
-section
+section.hw-services
   h1.hw-title
     span S
     span e
@@ -26,10 +26,17 @@ section
     span c
     span e
     span s
+
   ul.pages
-    li Design
-    li Code
-    li Also
+    li
+      h6 Design
+      p: i.hicon.penBottom
+    li
+      h6 Code
+      p: i.hicon.website
+    li
+      h6 Also
+      p: i.hicon.info
 
 section
   h1.hw-title
@@ -42,12 +49,13 @@ section
     span o
     span r
     span k
-  dl
-    dt Banjai Garden
-    dd Description
-  dl
-    dt Nori Home
-    dd Description
-  dl
-    dt Dolidhi
-    dd Description
+  .pages
+    dl
+      dt Banjai Garden
+      dd Description
+    dl
+      dt Nori Home
+      dd Description
+    dl
+      dt Dolidhi
+      dd Description
