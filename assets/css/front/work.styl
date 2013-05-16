@@ -1,0 +1,20 @@
+@import 'nib'
+@import './css-config'
+@import './css-mixins'
+
+
+.hw-work
+  css-filter 'grayscale()'
+
+.hw-work-title,
+.hw-work-description
+  display none
+
+.hw-work-cover
+  height px2em($panel-height)
+  overflow hidden
+  v-align()
+
+  img
+    vertical-align middle
+    max-width 100%

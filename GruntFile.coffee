@@ -20,7 +20,8 @@ module.exports = (grunt) ->
           expand: true
           cwd: 'components/hiso-font/'
           src: ['font/**']
-          dest: 'public/media/'}]
+          dest: 'public/media/'
+        }]
       }
     }
     uglify: {
@@ -39,14 +40,31 @@ module.exports = (grunt) ->
         }
       }
     }
+    img_resize: {
+      work: {
+        options: {
+          width: 310
+        }
+        files: [{
+          expand: true
+          cwd: 'public/media/source'
+          src: ['**']
+          dest: 'public/media/images'
+          filter: 'isFile'
+        }]
+      }
+    }
   }
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadTasks 'grunt-tasks'
 
   grunt.registerTask 'help', ->
     grunt.log.writeln 'grunt lib :', 'Concact and uglify js libs'
+    grunt.log.writeln 'grunt img :', 'Resize images'
 
   grunt.registerTask 'lib', ['uglify:lib', 'concat']
+  grunt.registerTask 'img', ['img_resize:work']
   grunt.registerTask 'default', ['help']
