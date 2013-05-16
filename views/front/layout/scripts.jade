@@ -1,8 +1,10 @@
+//- expose
+script!= javascript
+
 if env == 'production'
   script(src="lib.min.js")
-  //- script(src="app.min.js")
 else
   script(src="lib.js")
-  //- script(src="app.js")
 
+//- connect assets
 != js('front/app')

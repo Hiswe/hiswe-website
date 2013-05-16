@@ -10,7 +10,7 @@
     box-sizing border-box
     width third()
     vertical-align top
-    transition transform .5s, -webkit-transform .5s
+    // transition transform .5s, -webkit-transform .5s
     position relative
 
     .hicon
@@ -33,15 +33,15 @@
       iso-left()
       color $pink
 
-  > .hw-panel-active,
-  > .hw-panel-active .hicon
+  > {activeClass},
+  > {activeClass} .hicon
     iso-reset()
     z-index 2
 
-  > .hw-panel-active
+  > {activeClass}
     height 468px
     top -78px
     margin-bottom -158px
 
-  > .hw-panel-active .hicon.website
+  > {activeClass} .hicon.website
     mirror-vertical()

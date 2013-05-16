@@ -1,8 +1,7 @@
 express = require 'express'
+expose  = require 'express-expose'
 path    = require 'path'
 nconf   = require 'nconf'
-expose  = require 'express-expose'
-
 
 module.exports = (app) ->
   # Configure expressjs
@@ -22,14 +21,6 @@ module.exports = (app) ->
 
     # Stylus & CoffeeScript
     require('./asset')(app)
-
-    # expose some datas to the front app under bg namespace
-    # options = {
-    #   currencies: nconf.get('currencies')
-    #   mapkey: nconf.get('MAP_API_KEY')
-    #   analyticskey: nconf.get('ANALYTICS_API_KEY')
-    # }
-    # app.expose({ options: options}, 'bg')
 
     # routing after static…
     app.use app.router
