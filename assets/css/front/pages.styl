@@ -1,4 +1,4 @@
-@import 'nib'
+@import 'nib/vendor'
 @import './css-config'
 @import './css-mixins'
 
@@ -10,6 +10,8 @@
     box-sizing border-box
     width third()
     vertical-align top
+    transition all .5s
+    position relative
 
     .hicon
       display inline-block
@@ -34,6 +36,7 @@
   > .hw-panel-active,
   > .hw-panel-active .hicon
     iso-reset()
+    z-index 2
 
   > .hw-panel-active .hicon.website
     mirror-vertical()

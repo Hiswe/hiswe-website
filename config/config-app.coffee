@@ -2,9 +2,7 @@ express = require 'express'
 path    = require 'path'
 nconf   = require 'nconf'
 expose  = require 'express-expose'
-stylus  = require 'stylus'
-nib     = require 'nib'
-hstrap  = require 'hstrap'
+
 
 module.exports = (app) ->
   # Configure expressjs
@@ -22,32 +20,8 @@ module.exports = (app) ->
     app.use express.methodOverride()
     app.use express.favicon()
 
-    # Connect before static…
-    app.use require('connect-assets')()
-
-    compileCss = (str, path) ->
-      return stylus(str)
-       .set('filename', path)
-       .set('compress', false)
-       .use(nib())
-       .import('nib')
-       .use(hstrap())
-       .import('hstrap')
-
-    app.use require('stylus').middleware({
-      src: path.join( __dirname + '/../assets/css'),
-      dest: path.join( __dirname + '/../public')
-      compile: compileCss
-    });
-
-    if app.get('env') is 'production'
-      maxAge = 2629800000 # 1 month
-    else
-      maxAge = 1
-    assets  = path.join(__dirname, '/../public')
-    app.use express.static(assets, {maxAge: maxAge})
-
-
+    # Stylus & CoffeeScript
+    require('./asset')(app)
 
     # expose some datas to the front app under bg namespace
     # options = {
