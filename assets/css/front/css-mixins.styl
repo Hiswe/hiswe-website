@@ -2,13 +2,14 @@
 @import '../../../node_modules/hstrap/lib/hstrap/mixins/general'
 @import '../../../node_modules/hstrap/lib/hstrap/mixins/ie'
 
-
-
 iso-left()
   t-matrix(1, -0.5, 0, 1)
 
 iso-right()
   t-matrix(1, 0.5, 0, 1)
+
+iso-reset()
+  t-matrix(1, 0, 0, 1)
 
 mirror-vertical()
   t-matrix(-1, 0, 0, 1)
