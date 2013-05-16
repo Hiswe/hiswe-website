@@ -4,6 +4,7 @@
 
 .pages
   white-space nowrap
+
   > *
     white-space normal
     display inline-block
@@ -33,10 +34,27 @@
       iso-left()
       color $pink
 
+  // services and work
+  > {activeClass} dt,
+  > {activeClass} dd
+    width third()
+    height 100%
+    float left
+    display block
+
+  > {activeClass} > :nth-child(3n + 1)
+  > {activeClass} > :nth-child(3n + 3)
+      background $dark-gray
+
+  > {activeClass} > :nth-child(3n + 2)
+    background $gray
+
+  // active
   > {activeClass},
   > {activeClass} .hicon
     iso-reset()
     z-index 2
+    width 100%
 
   > {activeClass}
     height 468px
@@ -45,3 +63,15 @@
 
   > {activeClass} .hicon.website
     mirror-vertical()
+
+  // fix position
+  > {activeClass}:nth-child(3n + 1)
+    margin-right -(third(2))
+
+  > {activeClass}:nth-child(3n + 2)
+    left -(third())
+    margin-right -(third(2))
+
+  > {activeClass}:nth-child(3n + 3)
+    left -(third(2))
+
