@@ -2,7 +2,7 @@
 @import './css-config'
 @import './css-mixins'
 
-.hw-panels
+.hw-panels-open
   // services and work
   .{activeClass}
     a
@@ -67,27 +67,27 @@
 
 // Panels styles
 
-.hw-panel-image:not(.hw-panel-default),
-.hw-panel-description:not(.hw-panel-default),
-.hw-panel-links:not(.hw-panel-default)
+.hw-sub-image:not(.hw-sub-default),
+.hw-sub-description:not(.hw-sub-default),
+.hw-sub-links:not(.hw-sub-default)
   visibility hidden
   position absolute
   width 0
   height 0
 
 
-.hw-panel-description,
-.hw-panel-links
+.hw-sub-description,
+.hw-sub-links
   font-size px2em($panel-fs)
   padding px2em(66, $panel-fs) px2em(20, $panel-fs) 0
 
-.hw-panel-description
+.hw-sub-description
   line-height 1.5em
   ul, li
     list-style none
     reset-box-model()
 
-.hw-panel-links
+.hw-sub-links
   text-align center
   a
     font-size 1.25em
@@ -95,7 +95,7 @@
     display block
     text-transform uppercase
 
-.hw-panel-image
+.hw-sub-image
   height px2em($panel-height)
   overflow hidden
   v-align()
@@ -106,13 +106,12 @@
 
 // debug
 if debug()
-  .hw-work, .hw-services
-    .hw-panels
-      > :nth-child(3n + 1)
-        outline 2px dotted yellow
+  .hw-panels-open
+    > :nth-child(3n + 1)
+      outline 2px dotted yellow
 
-      > :nth-child(3n + 2)
-        outline 2px dotted blue
+    > :nth-child(3n + 2)
+      outline 2px dotted blue
 
-      > :nth-child(3n + 3)
-        outline 2px dotted white
+    > :nth-child(3n + 3)
+      outline 2px dotted white
