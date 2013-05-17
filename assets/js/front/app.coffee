@@ -2,7 +2,7 @@ jQuery ->
   # console.log hw
 
   $body       = $('body')
-  $panels     = $('.hw-services .hw-panels > *, .hw-work .hw-panels > *')
+  $panels     = $('.hw-panels-open > dl')
   # remove the dot
   activeClass = hw.options.activeClass
 
