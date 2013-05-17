@@ -36,6 +36,9 @@ $panel-fs = 24
       iso-left()
       color $pink
 
+
+
+
   // services and work
   .{activeClass}
     a
@@ -132,3 +135,15 @@ $panel-fs = 24
   img
     max-width 100%
 
+// debug
+if debug()
+  .hw-work, .hw-services
+    .panels
+      > :nth-child(3n + 1)
+        outline 2px dotted yellow
+
+      > :nth-child(3n + 2)
+        outline 2px dotted blue
+
+      > :nth-child(3n + 3)
+        outline 2px dotted white

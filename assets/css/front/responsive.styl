@@ -3,7 +3,7 @@
 
 // Smaller than standard 960 (devices and browsers)
 @media only screen and (max-width: 959px)
-  if isDev && $debug
+  if debug()
     .hw-main-title span::after
       color $pink
 
@@ -29,7 +29,7 @@
 
 // Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
 @media only screen and (max-width: 479px)
-  if isDev && $debug
+  if debug()
     .hw-main-title span::after
       color $blue
 

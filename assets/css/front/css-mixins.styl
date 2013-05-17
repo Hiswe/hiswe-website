@@ -1,3 +1,4 @@
+@import './css-config'
 @import 'hstrap/mixins/ie'
 
 iso-left()
@@ -14,3 +15,6 @@ mirror-vertical()
 
 third(q = 1)
   (100%/3) * q
+
+debug()
+  return isDev && $debug
