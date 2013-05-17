@@ -34,7 +34,7 @@ module.exports = (grunt) ->
         dstPath = f.dest
 
       # overwrite check
-      if options.overwrite is on and grunt.file.isFile(dstPath)
+      if options.overwrite is off and grunt.file.isFile(dstPath)
         msg = "Skipping #{srcPath} because destination already exists.\n
 Set options 'overwrite' to true to enable overwriting of files."
         return grunt.log.writeln msg

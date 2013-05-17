@@ -2,16 +2,14 @@ jQuery ->
   # console.log hw
 
   $body       = $('body')
-  $panels     = $('.hw-services .pages > *, .hw-work .pages > *')
+  $panels     = $('.hw-services .panels > *, .hw-work .panels > *')
   # remove the dot
   activeClass = hw.options.activeClass
 
   cleanAll = (e) ->
-    console.log('cleanAll') if e?
     $panels.removeClass activeClass
 
   $panels.on 'click', (e) ->
-    console.log 'panel click'
     e.preventDefault()
     e.stopPropagation()
     $target = $(e.currentTarget)

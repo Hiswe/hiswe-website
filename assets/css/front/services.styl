@@ -2,8 +2,6 @@
 @import './css-config'
 @import './css-mixins'
 
-$panel-fs = 24
-
 .hw-services
   .hw-services-title
     height px2em($panel-height)
@@ -28,21 +26,3 @@ $panel-fs = 24
 
   dd
     display none
-
-.hw-services-description,
-.hw-services-links
-  font-size px2em($panel-fs)
-  padding px2em(66, $panel-fs) px2em(20, $panel-fs) 0
-
-.hw-services-description
-  ul, li
-    list-style none
-    reset-box-model()
-
-.hw-services-links
-  text-align center
-  a
-    font-size 1.25em
-    padding 1em 0 1.25em
-    display block
-    text-transform uppercase

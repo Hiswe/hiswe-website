@@ -1,32 +1,25 @@
-@import 'nib/vendor'
 @import './css-config'
 @import './css-mixins'
 
 
 .hw-work
-  dl
+  dl:not(.{activeClass}) img
     css-filter 'grayscale()'
     // transition all .5s
 
     &:hover
       css-filter 'grayscale(0)'
 
-  .pages > :nth-child(3n + 1),
-  .pages > :nth-child(3n + 3)
+  .panels > :nth-child(3n + 1),
+  .panels > :nth-child(3n + 3)
     background #b2b2b2
 
-  .pages > :nth-child(3n + 2)
+  .panels > :nth-child(3n + 2)
     background #282828
 
-.hw-work-title,
-.hw-work-description
-  display none
+  .hw-panel-description
+    padding px2em(22)
+
 
 .hw-work-cover
-  height px2em($panel-height)
-  overflow hidden
-  v-align()
-
-  img
-    vertical-align middle
-    max-width 100%
+  display block
