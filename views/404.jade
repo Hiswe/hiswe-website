@@ -1,6 +1,41 @@
 doctype 5
 html
-  body
+  head
+    style
+      html, body {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      }
+      html {
+        height: 100%;
+        background: #fff;
+        padding: 1.875em;
+      }
+      body {
+        min-height: 100%;
+        text-align: center;
+      }
+      body {
+        background-image: -moz-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
+        background-image: -webkit-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
+        background-image: -o-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
+        background-image: -ms-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
+        background-image: radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
+        color: #fff;
+      }
+      .hw-404-container {
+        width: 960px;
+        margin: 0 auto;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 6em;
+      }
+
+
+
+
+  body: .hw-404-container
     h1 404
     h2 Couldn't find that
+    a(href="/") Back to site
 
