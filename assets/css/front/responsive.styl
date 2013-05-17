@@ -3,6 +3,10 @@
 
 // Smaller than standard 960 (devices and browsers)
 @media only screen and (max-width: 959px)
+  if isDev
+    .hw-main-title span::after
+      color $pink
+
   html
     padding 0
 
@@ -12,6 +16,9 @@
   .main-content
     width auto
 
+  // .hw-main-navigation
+  //   width third(2)
+
   .hw-title
     font-size 2.25em;
     top -4em
@@ -20,7 +27,80 @@
     p, .hw-hire
       font-size .75em
 
-
-
 // Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
-// @media only screen and (max-width: 479px)
+@media only screen and (max-width: 479px)
+  if isDev
+    .hw-main-title span::after
+      color $blue
+
+  .hw-main-title
+    position relative; z-index 2
+
+  .hw-main-title,
+  .hw-title
+    margin 0; top auto
+    text-align center
+    position relative
+
+  .hw-main-navigation
+    width auto
+    position fixed
+    left 0; top auto; bottom 0
+    padding-bottom 0
+
+    ul
+      clearfix()
+      margin-top 0
+
+    li
+      width third()
+      float left
+      // TODO remove the important
+      background noir(.75) !important
+
+      a
+        padding .5em 0
+
+  .hw-main-title,
+  .hw-main-title span,
+  .hw-title,
+  .hw-title span,
+  .hw-splah-description p,
+  .hw-splah-description p + p,
+  .hw-splah-description .hw-hire,
+  .panels > :nth-child(3n + 1),
+  .panels > :nth-child(3n + 2),
+  .panels > :nth-child(3n + 3),
+  .panels > :nth-child(3n + 1) .hicon,
+  .panels > :nth-child(3n + 2) .hicon,
+  .panels > :nth-child(3n + 3) .hicon
+    iso-reset()
+
+  .hw-splash
+    padding-top 2em
+
+    h2
+      position relative; z-index 2
+
+    h2,
+    .hw-splah-description
+      padding 0; margin 0
+
+
+    .hw-splah-description
+      z-index 1
+
+    p,
+    p + p
+      background none
+
+    .hw-portrait
+      width auto
+      right 0
+      z-index -1
+      // TODO recolor the SVG using css
+      opacity .35
+
+  .panels > *
+    display block
+    width auto

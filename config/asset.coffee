@@ -9,13 +9,20 @@ hstrap  = require 'hstrap'
 activeClass = 'hw-panel-active'
 
 
-compileCss = (str, path) ->
-  return stylus(str)
-   .set('filename', path)
-   .set('compress', false)
-   .define('activeClass', new stylus.nodes.String(activeClass))
-   .use(nib())
-   .use(hstrap())
+compileCss = (app) ->
+  if app.get('env') is 'development'
+    isDev = stylus.nodes.true
+  else
+    isDev = stylus.nodes.false
+
+  return (str, path) ->
+    return stylus(str)
+     .set('filename', path)
+     .set('compress', false)
+     .define('activeClass', new stylus.nodes.String(activeClass))
+     .define('isDev', isDev)
+     .use(nib())
+     .use(hstrap())
 
 module.exports = (app) ->
   # Coffeescript + sprocket
@@ -25,7 +32,7 @@ module.exports = (app) ->
   app.use stylus.middleware({
     src: path.join( __dirname + '/../assets/css'),
     dest: path.join( __dirname + '/../public')
-    compile: compileCss
+    compile: compileCss(app)
   });
 
   # Statics
