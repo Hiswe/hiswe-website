@@ -36,9 +36,6 @@ $panel-fs = 24
       iso-left()
       color $pink
 
-
-
-
   // services and work
   .{activeClass}
     a
@@ -56,7 +53,8 @@ $panel-fs = 24
     width third()
     height 100%
     float left
-    display block
+    visibility visible
+    position relative
     box-sizing border-box
 
   .{activeClass} > :nth-child(3n + 1)
@@ -102,10 +100,14 @@ $panel-fs = 24
 
 // Panels styles
 
-.hw-panel-image,
-.hw-panel-description,
-.hw-panel-links
-  display none
+.hw-panel-image:not(.hw-panel-default),
+.hw-panel-description:not(.hw-panel-default),
+.hw-panel-links:not(.hw-panel-default)
+  visibility hidden
+  position absolute
+  width 0
+  height 0
+
 
 .hw-panel-description,
 .hw-panel-links
