@@ -2,40 +2,7 @@
 @import './css-config'
 @import './css-mixins'
 
-$panel-fs = 24
-
-.panels
-  white-space nowrap
-
-  > *
-    white-space normal
-    display inline-block
-    box-sizing border-box
-    width third()
-    vertical-align top
-    // transition transform .5s, -webkit-transform .5s
-    position relative
-
-    .hicon
-      display inline-block
-
-  > :nth-child(3n + 1),
-  > :nth-child(3n + 3)
-    background $pink
-    iso-left()
-
-    .hicon
-      iso-right()
-      color $dark-pink
-
-  > :nth-child(3n + 2)
-    background $dark-pink
-    iso-right()
-
-    .hicon
-      iso-left()
-      color $pink
-
+.hw-panels
   // services and work
   .{activeClass}
     a
@@ -140,7 +107,7 @@ $panel-fs = 24
 // debug
 if debug()
   .hw-work, .hw-services
-    .panels
+    .hw-panels
       > :nth-child(3n + 1)
         outline 2px dotted yellow
 
