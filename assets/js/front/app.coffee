@@ -4,7 +4,7 @@ jQuery ->
   $body       = $('body')
   $panels     = $('.hw-services .pages > *, .hw-work .pages > *')
   # remove the dot
-  activeClass = hw.options.activeClass.slice(1)
+  activeClass = hw.options.activeClass
 
   cleanAll = (e) ->
     console.log('cleanAll') if e?

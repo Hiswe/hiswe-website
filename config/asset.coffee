@@ -6,7 +6,7 @@ nib     = require 'nib'
 hstrap  = require 'hstrap'
 
 
-activeClass = '.hw-panel-active'
+activeClass = 'hw-panel-active'
 
 
 compileCss = (str, path) ->
