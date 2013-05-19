@@ -14,17 +14,17 @@ panel-out()
 sub-in()
   transition-property left, background, visibility, transform
   transition-duration move-time, move-time, move-time, move-time
-  transition-timing-function ease, ease, step-end, ease
+  transition-timing-function ease, step-start, step-end, ease
   transition-delay 0, 0, 0, delay-in
 
 sub-out()
   transition-property left, background, visibility, transform
   transition-duration move-time, move-time, move-time, move-time
-  transition-timing-function ease-in-out, ease, step-end
+  transition-timing-function ease-in-out, step-end, step-end, ease
   transition-delay 0, delay-out, 0, delay-out
 
 icon-in()
-  transition all move-time ease
+  transition transform move-time ease, color move-time step-start
 
 icon-out()
-  transition transform delay-out step-end, color trans-time ease delay-out
+  transition transform delay-out step-end, color trans-time step-end delay-out
