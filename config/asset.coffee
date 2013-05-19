@@ -5,9 +5,7 @@ stylus  = require 'stylus'
 nib     = require 'nib'
 hstrap  = require 'hstrap'
 
-
 activeClass = 'hw-panel-active'
-
 
 compileCss = (app) ->
   if app.get('env') is 'development'
@@ -19,6 +17,8 @@ compileCss = (app) ->
     return stylus(str)
      .set('filename', path)
      .set('compress', false)
+     .set('linenos', false)
+     .set('firebug', false)
      .define('activeClass', new stylus.nodes.String(activeClass))
      .define('isDev', isDev)
      .use(nib())
@@ -30,7 +30,7 @@ module.exports = (app) ->
 
   # Stylus
   app.use stylus.middleware({
-    src: path.join( __dirname + '/../assets/css'),
+    src: path.join( __dirname + '/../assets/css')
     dest: path.join( __dirname + '/../public')
     compile: compileCss(app)
   });

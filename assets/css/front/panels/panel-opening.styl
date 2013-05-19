@@ -2,28 +2,43 @@
 @import './css-config'
 @import './css-mixins'
 
+.hw-sub-container
+  position relative
+  height px2em($panel-height)
+
+  a
+    color $dark-blue
+
+    &:hover
+      color $light-blue
+
+  .hicon
+    font-size 6em
+
+  .hw-sub
+    visibility hidden
+    height 100%; width @height
+    box-sizing border-box
+    absolute top left
+
+  &.{activeClass} .hw-sub,
+  .hw-sub-default
+    visibility visible
+
+// active positioning
+for num in 1 2 3
+  .{activeClass}:nth-child(3n+{num})
+    .hw-sub:not(.hw-sub-default)
+      left unit((1 - num) * 100, '%')
+
+    .hw-sub-default
+      left unit((2 - num) * 100, '%')
+
+    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+      left unit((3 - num) * 100, '%')
+
 .hw-panels-open
   // services and work
-  .{activeClass}
-    a
-      color $dark-blue
-
-      &:hover
-        color $light-blue
-
-    .hicon
-      font-size 12em
-
-
-  .{activeClass} dt,
-  .{activeClass} dd
-    width third()
-    height 100%
-    float left
-    visibility visible
-    position relative
-    box-sizing border-box
-
   .{activeClass} > :nth-child(3n + 1)
   .{activeClass} > :nth-child(3n + 3)
     background $dark-gray
@@ -42,75 +57,11 @@
   .{activeClass} .hicon
     iso-reset()
     z-index 2
-    width 100%
 
   .{activeClass}
     height 468px
     top -78px
     margin-bottom -158px
 
-  .{activeClass} .hicon.website
-    mirror-vertical()
-
-  // fix position
-  .{activeClass}:nth-child(3n + 1)
-    margin-right -(third(2))
-
-  .{activeClass}:nth-child(3n + 2)
-    left -(third())
-    margin-right -(third(2))
-
-  .{activeClass}:nth-child(3n + 3)
-    left -(third(2))
-    margin-right -(third(3))
-
-
-// Panels styles
-
-.hw-sub-image:not(.hw-sub-default),
-.hw-sub-description:not(.hw-sub-default),
-.hw-sub-links:not(.hw-sub-default)
-  visibility hidden
-  position absolute
-  width 0
-  height 0
-
-
-.hw-sub-description,
-.hw-sub-links
-  font-size px2em($panel-fs)
-  padding px2em(66, $panel-fs) px2em(20, $panel-fs) 0
-
-.hw-sub-description
-  line-height 1.5em
-  ul, li
-    list-style none
-    reset-box-model()
-
-.hw-sub-links
-  text-align center
-  a
-    font-size 1.25em
-    padding 1em 0 1.25em
-    display block
-    text-transform uppercase
-
-.hw-sub-image
-  height px2em($panel-height)
-  overflow hidden
-  v-align()
-  text-align center
-
-  img
-    max-width 100%
-
-// debug
-if debug()
-  .hw-sub-container:nth-child(3n + 1)
-    outline 2px dotted yellow
-
-  .hw-sub-container:nth-child(3n + 2)
-    outline 2px dotted blue
-
-  .hw-sub-container:nth-child(3n + 3)
-    outline 2px dotted white
+    .hicon.website
+      mirror-vertical()

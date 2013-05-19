@@ -1,0 +1,42 @@
+@import 'nib/reset'
+@import './css-config'
+@import './css-mixins'
+
+.hw-sub-description,
+.hw-sub-links
+  font-size px2em($panel-fs)
+  padding px2em(66, $panel-fs) px2em(20, $panel-fs) 0
+
+.hw-sub-description
+  line-height 1.5em
+
+  ul, li
+    list-style none
+    reset-box-model()
+
+.hw-sub-links
+  text-align center
+  a
+    font-size 1.25em
+    padding 1em 0 1.25em
+    display block
+    text-transform uppercase
+
+.hw-sub-image
+  overflow hidden
+  v-align()
+  text-align center
+
+  img
+    max-width 100%
+
+// debug
+if debug()
+  .hw-sub-container:nth-child(3n + 1)
+    outline 2px dotted yellow
+
+  .hw-sub-container:nth-child(3n + 2)
+    outline 2px dotted blue
+
+  .hw-sub-container:nth-child(3n + 3)
+    outline 2px dotted white
