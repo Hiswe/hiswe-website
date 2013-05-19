@@ -1,0 +1,24 @@
+@import 'nib/vendor'
+
+trans-time  = .5s
+move-time   = .75s
+delay-in    = trans-time + .25s
+delay-out   = move-time + .25s
+
+panel-in()
+  transition all trans-time ease
+
+panel-out()
+  transition all trans-time ease delay-out
+
+sub-in()
+  transition left move-time ease-out delay-in, background move-time ease
+
+sub-out()
+  transition left move-time ease-in-out, background move-time ease delay-out
+
+icon-in()
+  transition all move-time ease
+
+icon-out()
+  transition transform delay-out step-end, color trans-time ease delay-out

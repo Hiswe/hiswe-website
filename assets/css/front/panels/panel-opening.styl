@@ -1,10 +1,12 @@
 @import 'nib/vendor'
-@import './css-config'
-@import './css-mixins'
+@import '../css-config'
+@import '../css-mixins'
+@import './panel-mixins'
 
 .hw-sub-container
   position relative
   height px2em($panel-height)
+  panel-out()
 
   a
     color $dark-blue
@@ -16,15 +18,25 @@
     font-size 6em
 
   .hw-sub
-    visibility hidden
     overflow hidden
     height 100%; width @height
     box-sizing border-box
     absolute top left
+    z-index 1
+    sub-out()
 
-  &.{activeClass} .hw-sub,
+    .hicon
+      icon-out()
+
   .hw-sub-default
-    visibility visible
+    z-index 2
+
+  &:nth-child(3n+1) .hw-sub,
+  &:nth-child(3n+3) .hw-sub
+    background $pink
+
+  &:nth-child(3n+2) .hw-sub
+    background $dark-pink
 
 // active positioning
 for num in 1 2 3
@@ -38,28 +50,7 @@ for num in 1 2 3
     .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
       left unit((3 - num) * 100, '%')
 
-
-
-
-
 .hw-panels-open
-  // services and work
-
-  .{activeClass}
-
-    .hw-sub:not(.hw-sub-default)
-    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
-      background $dark-gray
-
-      .hicon
-        color $gray
-
-    .hw-sub-default
-      background $gray
-
-      .hicon
-        color $dark-gray
-
   // active
   .{activeClass},
   .{activeClass} .hicon
@@ -70,6 +61,13 @@ for num in 1 2 3
     height 468px
     top -78px
     margin-bottom -158px
+    panel-in()
+
+    .hw-sub
+      sub-in()
+
+      .hicon
+        icon-in()
 
     .hicon.website
       mirror-vertical()

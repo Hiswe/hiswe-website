@@ -1,6 +1,21 @@
 @import 'nib/reset'
-@import './css-config'
-@import './css-mixins'
+@import '../css-config'
+@import '../css-mixins'
+
+
+.hw-panels-open .{activeClass}
+  .hw-sub:not(.hw-sub-default)
+  .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+    background $dark-gray
+
+    .hicon
+      color $gray
+
+  .hw-sub-default
+    background $gray
+
+    .hicon
+      color $dark-gray
 
 .hw-sub-description,
 .hw-sub-links
