@@ -17,6 +17,7 @@
 
   .hw-sub
     visibility hidden
+    overflow hidden
     height 100%; width @height
     box-sizing border-box
     absolute top left
@@ -37,20 +38,27 @@ for num in 1 2 3
     .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
       left unit((3 - num) * 100, '%')
 
+
+
+
+
 .hw-panels-open
   // services and work
-  .{activeClass} > :nth-child(3n + 1)
-  .{activeClass} > :nth-child(3n + 3)
-    background $dark-gray
 
-    .hicon
-      color $gray
+  .{activeClass}
 
-  .{activeClass} > :nth-child(3n + 2)
-    background $gray
+    .hw-sub:not(.hw-sub-default)
+    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+      background $dark-gray
 
-    .hicon
-      color $dark-gray
+      .hicon
+        color $gray
+
+    .hw-sub-default
+      background $gray
+
+      .hicon
+        color $dark-gray
 
   // active
   .{activeClass},
