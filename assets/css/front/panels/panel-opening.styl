@@ -3,9 +3,15 @@
 @import '../css-mixins'
 @import './panel-mixins'
 
+.hw-panels-open
+  perspective 1000px
+  perspective-origin center center
+
 .hw-sub-container
   position relative
   height px2em($panel-height)
+  transform-style preserve-3d
+  background $dark-gray
   panel-out()
 
   a
@@ -19,6 +25,7 @@
 
   .hw-sub
     overflow hidden
+    visibility hidden
     height 100%; width @height
     box-sizing border-box
     absolute top left
@@ -30,6 +37,8 @@
 
   .hw-sub-default
     z-index 2
+    cursor pointer
+    visibility visible
 
   &:nth-child(3n+1) .hw-sub,
   &:nth-child(3n+3) .hw-sub
@@ -38,8 +47,29 @@
   &:nth-child(3n+2) .hw-sub
     background $dark-pink
 
-// active positioning
+
+  &:nth-child(3n+1),
+  &:nth-child(3n+2)
+    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+      transform-origin center left
+      transform rotateY(-90deg)
+
+  &:nth-child(3n+2),
+  &:nth-child(3n+3)
+    .hw-sub:not(.hw-sub-default)
+      transform rotateY(90deg)
+      transform-origin center right
+
+  &:nth-child(3n+3)
+    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+      transform none
+
 for num in 1 2 3
+  // perspecive for elements
+  // .hw-sub-container:nth-child(3n+{num})
+  //   perspective-origin unit((2.5 - num) * 100, '%') 50%
+
+  // active positioning
   .{activeClass}:nth-child(3n+{num})
     .hw-sub:not(.hw-sub-default)
       left unit((1 - num) * 100, '%')
@@ -55,15 +85,17 @@ for num in 1 2 3
   .{activeClass},
   .{activeClass} .hicon
     iso-reset()
-    z-index 2
 
   .{activeClass}
     height 468px
     top -78px
     margin-bottom -158px
+    z-index 10
     panel-in()
 
     .hw-sub
+      visibility visible
+      transform rotateY(0) !important
       sub-in()
 
       .hicon

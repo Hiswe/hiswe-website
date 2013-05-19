@@ -2,6 +2,12 @@
 @import '../css-config'
 @import '../css-mixins'
 
+
+.hw-services,
+.hw-work
+  position relative
+  z-index 1
+
 .hw-panels
   white-space nowrap
 
@@ -11,7 +17,6 @@
     box-sizing border-box
     width third()
     vertical-align top
-    // transition transform .5s, -webkit-transform .5s
     position relative
 
     .hicon
@@ -19,17 +24,23 @@
 
   > :nth-child(3n + 1),
   > :nth-child(3n + 3)
-    background $pink
     iso-left()
 
     .hicon
       iso-right()
-      color $dark-pink
+
+  > :nth-child(3n + 2)
+     iso-right()
+
+    .hicon
+      iso-right()
+
+
+.hw-panels-pink
+  > :nth-child(3n + 1),
+  > :nth-child(3n + 3)
+    background $pink
 
   > :nth-child(3n + 2)
     background $dark-pink
-    iso-right()
 
-    .hicon
-      iso-left()
-      color $pink

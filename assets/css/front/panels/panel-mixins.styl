@@ -6,16 +6,22 @@ delay-in    = trans-time + .25s
 delay-out   = move-time + .25s
 
 panel-in()
-  transition all trans-time ease
+  transition all trans-time ease-in-out
 
 panel-out()
-  transition all trans-time ease delay-out
+  transition all trans-time ease-in-out delay-out
 
 sub-in()
-  transition left move-time ease-out delay-in, background move-time ease
+  transition-property left, background, visibility, transform
+  transition-duration move-time, move-time, move-time, move-time
+  transition-timing-function ease, ease, step-end, ease
+  transition-delay 0, 0, 0, delay-in
 
 sub-out()
-  transition left move-time ease-in-out, background move-time ease delay-out
+  transition-property left, background, visibility, transform
+  transition-duration move-time, move-time, move-time, move-time
+  transition-timing-function ease-in-out, ease, step-end
+  transition-delay 0, delay-out, 0, delay-out
 
 icon-in()
   transition all move-time ease

@@ -1,22 +1,21 @@
 jQuery ->
-  # console.log hw
-
   $body       = $('body')
   $panels     = $('.hw-sub-container')
-  # remove the dot
+  $containers = $('section.hw-services, section.hw-work')
   activeClass = hw.options.activeClass
 
   cleanAll = (e) ->
     $panels.removeClass activeClass
+    # setTimeout ->
+    $containers.css('z-index', 1)
+    # , 2000
 
   $panels.on 'click', (e) ->
     e.preventDefault()
     e.stopPropagation()
     $target = $(e.currentTarget)
-    console.log $target
-    if $target.hasClass activeClass
-      return $target.removeClass activeClass
     cleanAll()
+    $target.closest('section').css('z-index', 2)
     $target.addClass activeClass
 
   $body.on 'click', cleanAll
