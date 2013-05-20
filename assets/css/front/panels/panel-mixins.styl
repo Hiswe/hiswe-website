@@ -14,13 +14,13 @@ panel-out()
 
 sub-in()
   transition-property         left,       background, visibility, transform,  box-shadow
-  transition-duration         move-time,  move-time,  move-time,  move-time,  .5s
+  transition-duration         move-time,  move-time,  move-time,  move-time,  $hover-transition
   transition-timing-function  ease,       step-start, step-end,   ease,       ease
   transition-delay            0,          0,          0,          delay-in,   0
 
 sub-out()
   transition-property         left,         background, visibility, transform,  box-shadow
-  transition-duration         move-time,    delay-full, move-time,  move-time,  .5s
+  transition-duration         move-time,    delay-full, move-time,  move-time,  $hover-transition
   transition-timing-function  ease-in-out,  step-end,   step-end,   ease,       ease
   transition-delay            0,            0s,         0,          delay-out,  0
 

@@ -40,10 +40,10 @@
     margin-top -2em
 
   li
-    transition box-shadow .25s
+    transition box-shadow $hover-transition
 
-  li:hover
-    box-shadow inset 0 0 0 .5em black
+    &:hover
+      box-shadow inset 0 0 0 $hover-width black
 
   a
     display block
