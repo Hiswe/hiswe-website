@@ -4,6 +4,7 @@ trans-time  = .5s
 move-time   = .75s
 delay-in    = trans-time + .25s
 delay-out   = move-time + .25s
+delay-full  = move-time + trans-time + .25s
 
 panel-in()
   transition all trans-time ease-in-out
@@ -12,16 +13,16 @@ panel-out()
   transition all trans-time ease-in-out delay-out
 
 sub-in()
-  transition-property left, background, visibility, transform
-  transition-duration move-time, move-time, move-time, move-time
-  transition-timing-function ease, step-start, step-end, ease
-  transition-delay 0, 0, 0, delay-in
+  transition-property         left,       background, visibility, transform,  box-shadow
+  transition-duration         move-time,  move-time,  move-time,  move-time,  .5s
+  transition-timing-function  ease,       step-start, step-end,   ease,       ease
+  transition-delay            0,          0,          0,          delay-in,   0
 
 sub-out()
-  transition-property left, background, visibility, transform
-  transition-duration move-time, move-time, move-time, move-time
-  transition-timing-function ease-in-out, step-end, step-end, ease
-  transition-delay 0, delay-out, 0, delay-out
+  transition-property         left,         background, visibility, transform,  box-shadow
+  transition-duration         move-time,    delay-full, move-time,  move-time,  .5s
+  transition-timing-function  ease-in-out,  step-end,   step-end,   ease,       ease
+  transition-delay            0,            0s,         0,          delay-out,  0
 
 icon-in()
   transition transform move-time ease, color move-time step-start
