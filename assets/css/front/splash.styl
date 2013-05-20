@@ -46,14 +46,29 @@
     float right
     position relative
     text-align center; font-weight bold
-    transition background .5s
 
-    &:hover
-      background $light-blue
+
+    &, &:before, &:after
+      transition box-shadow $hover-transition, background $hover-transition
 
     &:before, &:after
       content ' '; display block
       position absolute
+
+    &:hover
+      box-shadow inset 0 0 0 .5em black
+      &:before
+        background lighten(black, 10%)
+      &:after
+        background lighten(black, 20%)
+
+    &:active
+      left -9px
+      top -5px
+      box-shadow none
+
+      &:before, &:after
+        display none
 
     // left
     &:before
