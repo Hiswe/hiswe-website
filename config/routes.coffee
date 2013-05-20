@@ -15,7 +15,7 @@ module.exports = (app) ->
 
 
 buildRoutes = (app) ->
-  files = walk nodePath.join(__dirname, '/../../controllers')
+  files = walk nodePath.join(__dirname, '../controllers')
   console.log log.prompt, 'build routes'
   files.forEach (file) ->
     # name = nodePath.basename(name, '.coffee')
@@ -23,7 +23,7 @@ buildRoutes = (app) ->
     name = if module.name? then module.name else nodePath.basename(file, '.coffee')
     prefix = if module.prefix? then module.prefix else ''
 
-    console.log "#{log} building route for ".debug, name, 'with prefix'.debug, prefix
+    console.log "#{log} building route for".debug, name, 'with prefix'.debug, prefix
 
     for key, value of module
       continue if (~['name', 'prefix', 'engine', 'before'].indexOf(key))
