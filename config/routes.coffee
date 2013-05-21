@@ -18,7 +18,6 @@ buildRoutes = (app) ->
   files = walk nodePath.join(__dirname, '../controllers')
   console.log log.prompt, 'build routes'
   files.forEach (file) ->
-    # name = nodePath.basename(name, '.coffee')
     module = require file
     name = if module.name? then module.name else nodePath.basename(file, '.coffee')
     prefix = if module.prefix? then module.prefix else ''
@@ -30,24 +29,24 @@ buildRoutes = (app) ->
       switch key
         when 'show'
           method = 'get'
-          path = '/' + name + '/:' + name + '_id'
+          path = "/#{name}/:#{name}_id"
         when 'list'
           method = 'get'
-          path = '/' + name + 's'
+          path = "/#{name}s"
         when 'edit'
           method = 'get'
-          path = '/' + name + '/:' + name + '_id/edit'
+          path = "/#{name}/:#{name}_id/edit"
         when 'update'
           method = 'put'
-          path = '/' + name + '/:' + name + '_id'
+          path = "/#{name}/:#{name}_id"
         when 'create'
           method = 'post'
-          path = '/' + name
+          path = "/#{name}"
         when 'index'
           method = 'get'
-          path = '/' + name
+          path = "/#{name}"
         else
-          throw new Error('unrecognized route: ' + name + '.' + key)
+          throw new Error("unrecognized route: #{name}.#{key}")
 
       path = prefix + path
       console.log "#{log} create method".prompt, method.toUpperCase(), 'of route'.prompt, path
@@ -64,13 +63,3 @@ walk = (path) ->
       result.push actualPath
 
   result
-
-
-
-
-# moi = 840 = 356
-# kevin = 522 = 38
-# michka = 90 = -394
-
-# 1452
-# 484
