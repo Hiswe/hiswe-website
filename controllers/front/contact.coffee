@@ -1,7 +1,7 @@
 nconf = require 'nconf'
 
 index = (req, res, next) ->
-  res.render('front/layout')
+  res.render('front/contact')
 
 create = (req, res, next) ->
   res.redirect('/')
