@@ -4,13 +4,8 @@ html
 
   body.preload
     .main-content
-      //- noscript: style
-      //-   .bg-currency-selector,
-      //-   .bg-home-carrousel-control a,
-      //-   .bg-lazy-load {
-      //-     display: none;
-      //-   }
+      block content
 
-      include includes/home
 
-    include layout/scripts
+    block script
+      include layout/scripts

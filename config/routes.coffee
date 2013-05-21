@@ -4,25 +4,23 @@ nodePath  = require 'path'
 log = '[ROUTES]'
 
 module.exports = (app) ->
-  # Front
   console.log log.prompt, 'setup front'
 
   buildRoutes(app)
-
   # 404 Page
   app.use (req, res, next) ->
     res.status(404).render('404', { url: req.originalUrl })
-
 
 buildRoutes = (app) ->
   files = walk nodePath.join(__dirname, '../controllers')
   console.log log.prompt, 'build routes'
   files.forEach (file) ->
     module = require file
-    name = if module.name? then module.name else nodePath.basename(file, '.coffee')
+    fileName = nodePath.basename(file, '.coffee')
+    name = if module.name? then module.name else fileName
     prefix = if module.prefix? then module.prefix else ''
 
-    console.log "#{log} building route for".debug, name, 'with prefix'.debug, prefix
+    console.log "#{log} building route for".debug, fileName, 'with prefix'.debug, prefix
 
     for key, value of module
       continue if (~['name', 'prefix', 'engine', 'before'].indexOf(key))
