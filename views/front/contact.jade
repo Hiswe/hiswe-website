@@ -1,11 +1,10 @@
 extends layout
 
 block content
-  | Contact me
-
-  label Name
-  input(type="text")
-  label Email
-  input(type="email")
-  label Message
-  textarea(row=3)
+  form(action="/contact")
+    label(for="name") Name
+    input#name(type="text")
+    label(for="email") Email
+    input#email(type="email")
+    label(for="message") Message
+    textarea#message(row=3)
