@@ -13,10 +13,12 @@
   z-index 2
 
   span
+    color black
     display inline-block
     iso-right()
     position relative
     z-index 2
+    transition color .5s
 
     &::after
       absolute bottom left
@@ -25,6 +27,9 @@
       color white
       font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
       crisp-font-smoothing()
+
+  a:hover span
+    color darken($dark-blue, 50%)
 
 .hw-main-navigation
   absolute top px2em(-($main-border)) right
