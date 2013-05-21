@@ -17,10 +17,10 @@
     "async": "~0.2.7",
     "express-expose": "~0.3.3",
     "alphamail": "~1.0.4",
-    "connect-assets": "~2.4.2",
+    "connect-assets": "~2.4.3",
     "stylus": "~0.32.1",
     "nib": "~0.9.1",
-    "hstrap": "~0.3.0"
+    "hstrap": "~0.3.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
