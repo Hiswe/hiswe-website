@@ -9,6 +9,12 @@ class Controller
     console?.log?(args...)
     this
 
+  warn: (args...) ->
+    return unless @trace
+    if @logPrefix then args.unshift(@logPrefix)
+    console?.warn?(args...)
+    this
+
   delay: (func, timeout) ->
     setTimeout(@proxy(func), timeout || 0)
 
@@ -21,7 +27,7 @@ class Controller
     for key, value of @options
       @[key] = value
 
-    @el = $('html') unless @el
+    return @warn('initialization aborted') unless @el? and @el.length
     # Use jQuery for events
     @e = $({})
 

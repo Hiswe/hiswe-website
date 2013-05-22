@@ -4,7 +4,7 @@ block content
   section.hw-contact
     aside
 
-    form(action="/contact", method="post")
+    form.hw-contact-form(action="/contact", method="post")
       if success.length
         each message in success
           p.hw-message= message
@@ -19,3 +19,7 @@ block content
       textarea#message(row=3, name="message", required)
 
       button(type="submit") Submit
+
+block append script
+  //- connect assets
+  != js('front/boot')

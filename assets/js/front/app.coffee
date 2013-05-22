@@ -4,6 +4,7 @@ class App extends hw.Controller
 
   constructor: ->
     @log 'init'
-    @Home = new hw.Home()
+    @home = new hw.Home({el: $('div.hw-detail-panels')})
+    @contact = new hw.Contact({el: $('form.hw-contact-form')})
 
 hw.App = App

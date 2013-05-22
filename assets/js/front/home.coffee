@@ -10,15 +10,15 @@ class Home extends hw.Controller
 
   events: {
     'click .hw-sub-container': 'zoom'
-    'click': 'cleanAll'
   }
 
   constructor: ->
     super
-    return @log 'INIT ABORT' unless @el.length
+    return unless @el.length
+    $('body').on 'click', @cleanAll
     @log 'init'
 
-  cleanAll: (e) ->
+  cleanAll: (e) =>
     @log 'clean' if e?
     @panels.removeClass @activeClass
 
