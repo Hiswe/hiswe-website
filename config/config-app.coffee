@@ -2,6 +2,7 @@ express = require 'express'
 expose  = require 'express-expose'
 path    = require 'path'
 nconf   = require 'nconf'
+flash   = require 'connect-flash'
 
 module.exports = (app) ->
   # Configure expressjs
@@ -18,6 +19,11 @@ module.exports = (app) ->
     app.use express.bodyParser()
     app.use express.methodOverride()
     app.use express.favicon()
+
+    # flash messages
+    app.use express.cookieParser('hiswe rocks')
+    app.use express.session({ cookie: { maxAge: 60000 }})
+    app.use flash()
 
     # Stylus & CoffeeScript
     require('./asset')(app)

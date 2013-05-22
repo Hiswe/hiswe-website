@@ -1,0 +1,5 @@
+APP_NAME=Hiswe
+NODE_ENV=development
+ADMIN_MAIL=mail@mail.com
+MAIL_API_KEY=amail.io longstring
+MAIL_PROJECT_ID=amail.io smallnumber

@@ -1,8 +1,9 @@
+@import 'nib/clearfix'
+@import 'nib/vendor'
 @import 'hstrap/mixins/form-elements'
-
-
-form
-  margin-top 7em
+@import 'hstrap/mixins/buttons'
+@import 'hstrap/mixins/box'
+@import './css-mixins'
 
 label
   h-label()
@@ -12,3 +13,37 @@ input, textarea
 
 textarea
   h-textarea()
+
+.hw-contact
+  margin-top 7em
+  clearfix()
+
+  aside, form
+    float left
+    min-height 3em
+    width third()
+
+  form
+    width third(2)
+
+  button
+    h-btn()
+    h-btn-color($h-buttons-primary-light, $h-buttons-primary-medium, $h-buttons-primary-dark)
+    margin-top 1em
+
+  p
+    animation fadeIn .5s
+    animation-delay .5s
+    animation-fill-mode both
+
+  .hw-message
+    h-box-inset(darken($dark-blue, 25%), $dark-blue)
+
+  .hw-message-error
+    h-box-inset(darken($dark-pink, 25%), $dark-pink)
+
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to {   opacity: 1 }
+}
