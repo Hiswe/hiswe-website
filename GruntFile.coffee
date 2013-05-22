@@ -8,6 +8,7 @@ module.exports = (grunt) ->
       dist: {
         src: [
           'components/jquery/jquery.js'
+          'components/modernizr/modernizr.js'
           # 'components/jquery.transit/jquery.transit.js'
           # 'components/imagesloaded/jquery.imagesloaded.js'
         ],
@@ -27,13 +28,14 @@ module.exports = (grunt) ->
     uglify: {
       options: {
         mangle: {
-          except: ['jQuery']
+          except: ['jQuery', 'Modernizr']
         }
       }
       lib: {
         files: {
           'public/lib.min.js': [
             'components/jquery/jquery.js'
+            'components/modernizr/modernizr.js'
             # 'components/jquery.transit/jquery.transit.js'
             # 'components/imagesloaded/jquery.imagesloaded.js'
           ]

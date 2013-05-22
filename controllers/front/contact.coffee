@@ -17,7 +17,7 @@ index = (req, res, next) ->
 create = (req, res, next) ->
   console.log req.body
   form = req.body
-  return creatXhr(req, res, next) if req.xhr
+  return createXhr(req, res, next) if req.xhr
   console.log log.debug, 'POST'
   form = req.body
   unless isValid(form)
@@ -35,7 +35,7 @@ create = (req, res, next) ->
 
     res.redirect('/contact')
 
-creatXhr = (req, res, next) ->
+createXhr = (req, res, next) ->
   form = req.body
   console.log log.debug, 'POST XHR'
   unless isValid(form)

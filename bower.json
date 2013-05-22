@@ -5,6 +5,7 @@
     "jquery": "~1.9.1",
     "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",
     "imagesloaded": "git://github.com/desandro/imagesloaded.git#~2.1.1",
-    "hiso-font": "latest"
+    "hiso-font": "latest",
+    "modernizr": "~2.6.2"
   }
 }

@@ -31,10 +31,16 @@ textarea
     h-btn-color($h-buttons-primary-light, $h-buttons-primary-medium, $h-buttons-primary-dark)
     margin-top 1em
 
-  p
+  .hw-message-success,
+  .hw-message-error
+    cursor pointer
     animation fadeIn .5s
     animation-delay .5s
     animation-fill-mode both
+
+    &.remove
+      animation fadeOut .5s
+      animation-delay 0
 
   .hw-message
     h-box-inset(darken($dark-blue, 25%), $dark-blue)
@@ -45,4 +51,9 @@ textarea
 @keyframes fadeIn {
   from { opacity: 0 }
   to {   opacity: 1 }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1 }
+  to {   opacity: 0 }
 }
