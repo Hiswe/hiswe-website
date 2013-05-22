@@ -1,9 +1,6 @@
-class Boot extends hw.Controller
-  trace: true
-  logPrefix: '[BOOT]'
+#= require front-controller
+#= require home
+#= require app
 
-  constructor: ->
-    @log 'init'
-    @Home = new hw.Home()
-
-hw.Boot = Boot
+jQuery ->
+  new hw.App()

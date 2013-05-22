@@ -1,7 +1,9 @@
-#= require front-controller
-#= require home
-#= require boot
+class App extends hw.Controller
+  trace: true
+  logPrefix: '[APP]'
 
-jQuery ->
-  new hw.Boot()
-  # alert 'pouic'
+  constructor: ->
+    @log 'init'
+    @Home = new hw.Home()
+
+hw.App = App
