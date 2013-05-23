@@ -11,23 +11,30 @@
   .hw-sub-default:hover
     box-shadow inset 0 0 0 $hover-width $hover-color
 
-.hw-panels-open .{activeClass}
+.hw-panels-open
+  h3
+    margin-top 0
+
   .hw-sub:not(.hw-sub-default)
-  .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
     background $dark-gray
 
     .hicon
       color $gray
 
-  .hw-sub-default
+  .{activeClass} .hw-sub-default
     background $gray
 
     .hicon
       color $dark-gray
 
-.hw-sub-description,
-.hw-sub-links
+.hw-sub-links,
+.hw-sub-description
   font-size px2em($panel-fs)
+
+.hw-sub-panel
+  height 100%, width @height
+  box-sizing border-box
+  transform translate3d(0,0,0)
   padding px2em(20, $panel-fs) px2em(20, $panel-fs) 0
 
 .hw-sub-description
@@ -45,9 +52,6 @@
     content '\25A0'
     color noir()
     absolute left
-
-  h3
-    margin-top 0
 
 .hw-sub-links
   text-align center
