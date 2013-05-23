@@ -24,6 +24,10 @@
   .hicon
     font-size 6em
 
+  .hw-sub-close
+    opacity 0
+    close-out()
+
   .hw-sub
     overflow hidden
     visibility hidden
@@ -70,6 +74,9 @@
       transform none
 
 for num in 1 2 3
+  .hw-sub-container:nth-child(3n+{num}) .hw-sub-close
+    left unit((4 - num) * 100, '%')
+
   // active positioning
   .{activeClass}:nth-child(3n+{num})
     .hw-sub:not(.hw-sub-default)
@@ -93,6 +100,10 @@ for num in 1 2 3
     margin-bottom -158px
     z-index 10
     panel-in()
+
+    .hw-sub-close
+      close-in()
+      opacity 1
 
     .hw-sub
       visibility visible

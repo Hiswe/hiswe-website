@@ -1,4 +1,5 @@
 @import 'nib/reset'
+@import 'nib/vendor'
 @import 'nib/positions'
 @import '../css-config'
 @import '../css-mixins'
@@ -66,6 +67,26 @@
 
   img
     max-width 100%
+
+.hw-sub-close
+  width 2em; height @width
+  absolute top .5em; z-index 2
+  text-align center; line-height 1.5em
+  background $gray; box-shadow 2px 2px 0 noir(.75)
+  cursor pointer
+  margin-left -2.5em
+
+  &::after
+    font-size 2em
+    content '×'
+    font-weight bold
+
+  &:hover::after
+    color $pink
+
+  &:active
+    transform translate(2px, 2px)
+    box-shadow none
 
 // debug
 if debug()
