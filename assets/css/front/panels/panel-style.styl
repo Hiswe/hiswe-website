@@ -1,8 +1,7 @@
 @import 'nib/reset'
+@import 'nib/positions'
 @import '../css-config'
 @import '../css-mixins'
-
-
 
 .hw-sub-container:not(.{activeClass}) .hw-sub-default
   cursor pointer
@@ -27,7 +26,7 @@
 .hw-sub-description,
 .hw-sub-links
   font-size px2em($panel-fs)
-  padding px2em(66, $panel-fs) px2em(20, $panel-fs) 0
+  padding 0 px2em(20, $panel-fs)
 
 .hw-sub-description
   line-height 1.5em
@@ -35,6 +34,18 @@
   ul, li
     list-style none
     reset-box-model()
+
+  li
+    padding-left 1em
+    position relative
+
+  li::before
+    content '\25A0'
+    color noir()
+    absolute left
+
+  h3
+    margin-top 0
 
 .hw-sub-links
   text-align center
@@ -44,9 +55,13 @@
     display block
     text-transform uppercase
 
+.hw-sub-links,
+.hw-sub-image,
+.hw-sub-description
+  v-align()
+
 .hw-sub-image
   overflow hidden
-  v-align()
   text-align center
 
   img

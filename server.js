@@ -7,7 +7,7 @@ var nconf   = require('nconf');
 var http    = require('http');
 
 var pack    = require('./package.json');
-var comp    = require('./component.json');
+var comp    = require('./bower.json');
 var log     = '[APP]';
 
 colors.setTheme({
@@ -29,7 +29,7 @@ colors.setTheme({
   comp.name     = pack.name
   comp.version  = pack.version
   comp          = JSON.stringify(comp, null, 2);
-  fs.writeFileSync('./component.json', comp);
+  fs.writeFileSync('./bower.json', comp);
   // nconf
   nconf.merge('app:version', pack.version)
 })();

@@ -8,7 +8,7 @@ emailService  = new alphamail.EmailService(mailApiKey)
 log           = '[CONTACT]'
 
 index = (req, res, next) ->
-  console.log log.debug, 'GET'
+  # console.log log.debug, 'GET'
   res.render 'front/contact', {
     errors: req.flash('errors')
     success: req.flash('success')

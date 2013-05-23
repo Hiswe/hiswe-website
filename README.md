@@ -21,6 +21,8 @@ Design a portfolio for me…
 
 ## Todo
 
-1. Node JS site
-- Integration of the artwork
-- Include Micro-CMS
+1. ~~Node JS site~~
+- Integration of artworks & content
+- Responsive
+- Google analytics
+- Blog section with Micro-CMS

@@ -7,6 +7,9 @@
 
 label
   h-label()
+  font-weight bold
+  height 0
+  visibility hidden
 
 input, textarea
   h-input()
@@ -28,8 +31,15 @@ textarea
 
   button
     h-btn()
-    h-btn-color($h-buttons-primary-light, $h-buttons-primary-medium, $h-buttons-primary-dark)
+    min-width 10em
+    h-btn-color($h-buttons-light, $h-buttons-medium, $h-buttons-dark)
     margin-top 1em
+
+    + button
+      margin-left 1em
+
+  .hw-submit
+    h-btn-color($h-buttons-primary-light, $h-buttons-primary-medium, $h-buttons-primary-dark)
 
   .hw-message-success,
   .hw-message-error
