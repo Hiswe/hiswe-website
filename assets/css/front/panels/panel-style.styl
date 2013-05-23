@@ -12,7 +12,7 @@
     box-shadow inset 0 0 0 $hover-width $hover-color
 
 .hw-panels-open
-  h3
+  h3:first-child
     margin-top 0
 
   .hw-sub:not(.hw-sub-default)
@@ -54,11 +54,12 @@
     absolute left
 
 .hw-sub-links
+  padding-top px2em(60, $panel-fs)
   text-align center
   a
     font-size 1.25em
-    padding 1em 0 1.25em
-    display block
+    margin 1em 0 1.25em
+    display inline-block
     text-transform uppercase
 
 .hw-sub-image
