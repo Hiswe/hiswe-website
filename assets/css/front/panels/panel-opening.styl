@@ -9,10 +9,10 @@
   perspective-origin center center
 
 .hw-sub-container
+  display inline-block
+  width third(); height px2em($panel-height)
   position relative
-  height px2em($panel-height)
   transform-style preserve-3d
-  background $dark-gray
   panel-out()
 
   a
@@ -37,41 +37,46 @@
     z-index 1
     sub-out()
 
-    .hicon
-      icon-out()
-
   .hw-sub-default
     z-index 3
     visibility visible
+    default-out()
 
-  &:nth-child(3n+1) .hw-sub,
-  &:nth-child(3n+3) .hw-sub
-    background $pink
+  &:nth-child(3n+1),
+  &:nth-child(3n+3)
+    .hw-sub-default
+      background $pink
+      iso-left()
 
-    .hicon
-      color $dark-pink
+  &:nth-child(3n+2)
+    .hw-sub-default
+      iso-right()
+      background $dark-pink
 
-  &:nth-child(3n+2) .hw-sub
-    background $dark-pink
 
-    .hicon
-      color $pink
+  // .hw-sub-left
+  //   transform rotateY(90deg)
+  //   transform-origin center right
+
+  // .hw-sub-right
+  //   transform-origin center left
+  //   transform rotateY(-90deg)
 
   &:nth-child(3n+1),
   &:nth-child(3n+2)
-    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+    .hw-sub-right
       transform-origin center left
       transform rotateY(-90deg)
 
   &:nth-child(3n+2),
   &:nth-child(3n+3)
-    .hw-sub:not(.hw-sub-default)
+    .hw-sub-left
       transform rotateY(90deg)
       transform-origin center right
 
-  &:nth-child(3n+3)
-    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
-      transform none
+  // &:nth-child(3n+3)
+  //   .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+  //     transform none
 
 for num in 1 2 3
   .{activeClass}:nth-child(3n+{num}) .hw-sub-close
@@ -79,13 +84,13 @@ for num in 1 2 3
 
   // active positioning
   .{activeClass}:nth-child(3n+{num})
-    .hw-sub:not(.hw-sub-default)
+    .hw-sub-left
       left unit((1 - num) * 100, '%')
 
     .hw-sub-default
       left unit((2 - num) * 100, '%')
 
-    .hw-sub:not(.hw-sub-default) ~ .hw-sub:not(.hw-sub-default)
+    .hw-sub-right
       left unit((3 - num) * 100, '%')
 
 .hw-panels-open
@@ -110,9 +115,5 @@ for num in 1 2 3
       transform rotateY(0) !important
       sub-in()
 
-      .hicon
-        font-size 10em
-        icon-in()
-
-    .hicon.website
-      mirror-vertical()
+    .hw-sub-default
+      default-in()
