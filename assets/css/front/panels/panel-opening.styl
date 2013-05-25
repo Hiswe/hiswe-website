@@ -57,8 +57,8 @@
       iso-right()
       background $dark-pink
 
-      // .hicon
-      //   t-matrix(1.5, 0.5, 0, 1)
+    .hicon
+      t-matrix(-1, 0.5, 0, 1)
 
   &:nth-child(3n+2),
   &:nth-child(3n+3)
@@ -108,6 +108,9 @@ for num in 1 2 3
     icon-in()
     iso-reset()
 
+  &:nth-child(3n+2) .hicon
+    mirror-vertical()
+
   .hw-sub-close
     close-in()
     opacity 1
@@ -119,9 +122,6 @@ for num in 1 2 3
 
   .hw-sub-default
     default-in()
-
-  &:nth-child(3n+2) .hicon
-    mirror-vertical()
 
   &:nth-child(3n+2) .hw-sub-left,
   &:nth-child(3n+3) .hw-sub-left,
