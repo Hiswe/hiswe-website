@@ -56,22 +56,20 @@
   &:nth-child(3n+2),
   &:nth-child(3n+3)
     .hw-sub-left
-      transform rotateY(90deg)
-      transform-origin center right
+      transform rotateY(98.75deg)
+      transform-origin 101% 50%
 
   &:nth-child(3n+1),
   &:nth-child(3n+2)
     .hw-sub-right
-      transform-origin center left
-      transform rotateY(-90deg)
+      transform-origin -1% 50%
+      transform rotateY(-98.75deg)
 
   &:nth-child(3n+2) .hw-sub-left,
   &:nth-child(3n+3) .hw-sub-left,
   &:nth-child(3n+1) .hw-sub-right,
   &:nth-child(3n+2) .hw-sub-right
-    display none
     rotate-out()
-
 
 for num in 1 2 3
   .{activeClass}:nth-child(3n+{num}) .hw-sub-close

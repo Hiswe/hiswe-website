@@ -6,14 +6,15 @@ delay-in    = trans-time + .25s
 delay-out   = move-time + .25s
 delay-full  = move-time + trans-time + .25s
 
-t-iso   = .5s
-t-slide = .5s
-t-book  = .5s
+t-iso     = .5s
+t-slide   = .5s
+t-book    = .5s
+t-between = .1s
 
-d-in-1  = t-iso
-d-in-2  = t-iso + t-slide
-d-out-1 = t-book
-d-out-2 = t-book + t-slide
+d-in-1  = t-iso + t-between
+d-in-2  = t-iso + t-slide + t-between * 2
+d-out-1 = t-book + t-between
+d-out-2 = t-book + t-slide + t-between * 2
 
 d-ful   = t-iso + t-slide + t-book
 
@@ -52,15 +53,15 @@ slide-out()
 // Transform padding-left
 rotate-in()
   transition-property         left,         visibility, transform
-  transition-duration         move-time,    move-time,  move-time
-  transition-timing-function  ease,         step-end,   ease
-  transition-delay            0,            0,          delay-in
+  transition-duration         0,            0,          t-book
+  transition-timing-function  step-end,     step-end,   ease
+  transition-delay            d-in-2,       d-in-2,     d-in-2
 
 rotate-out()
   transition-property         left,         visibility, transform
-  transition-duration         move-time,    move-time,  move-time
-  transition-timing-function  ease-in-out,  step-end,   ease
-  transition-delay            delay-out,    0,          0
+  transition-duration         0,            0,          t-book
+  transition-timing-function  step-end,     step-end,   ease
+  transition-delay            d-out-1,      d-out-1,    0
 
 icon-in()
   transition transform trans-time ease-in-out, color move-time step-start
