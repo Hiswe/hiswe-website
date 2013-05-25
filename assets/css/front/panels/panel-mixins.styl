@@ -31,7 +31,13 @@ icon-out()
   transition transform trans-time ease delay-out, color trans-time step-end delay-out
 
 close-in()
-  transition opacity trans-time ease delay-full, color trans-time
+  transition-property         left,         opacity,    color
+  transition-duration         trans-time,   trans-time, trans-time
+  transition-timing-function  step-end,     ease,       ease
+  transition-delay            0,            delay-full, 0
 
 close-out()
-  transition opacity move-time ease, color trans-time
+  transition-property         left,         opacity,    color
+  transition-duration         move-time,    move-time,   move-time
+  transition-timing-function  ease-in-out,  ease,       ease
+  transition-delay            0,            delay-out,  0

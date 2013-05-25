@@ -41,7 +41,7 @@
       icon-out()
 
   .hw-sub-default
-    z-index 2
+    z-index 3
     visibility visible
 
   &:nth-child(3n+1) .hw-sub,
@@ -74,7 +74,7 @@
       transform none
 
 for num in 1 2 3
-  .hw-sub-container:nth-child(3n+{num}) .hw-sub-close
+  .{activeClass}:nth-child(3n+{num}) .hw-sub-close
     left unit((4 - num) * 100, '%')
 
   // active positioning
