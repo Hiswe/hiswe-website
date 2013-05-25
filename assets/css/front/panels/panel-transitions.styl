@@ -16,7 +16,7 @@ d-in-2  = t-iso + t-slide + t-between * 2
 d-out-1 = t-book + t-between
 d-out-2 = t-book + t-slide + t-between * 2
 
-d-ful   = t-iso + t-slide + t-book
+d-full   = t-iso + t-slide + t-book + t-between * 3
 
 panel-in()
   transition all t-iso ease-in-out
@@ -72,12 +72,12 @@ icon-out()
 // close button
 close-in()
   transition-property         left,         opacity,    color
-  transition-duration         trans-time,   trans-time, trans-time
+  transition-duration         0,            t-iso,      t-iso
   transition-timing-function  step-end,     ease,       ease
-  transition-delay            0,            delay-full, 0
+  transition-delay            d-full,       d-full,     0
 
 close-out()
   transition-property         left,         opacity,    color
-  transition-duration         move-time,    move-time,   move-time
-  transition-timing-function  ease-in-out,  ease,       ease
-  transition-delay            0,            delay-out,  0
+  transition-duration         .1s,          .1s,        t-book
+  transition-timing-function  step-end,     ease,       ease
+  transition-delay            0,            0,          0
