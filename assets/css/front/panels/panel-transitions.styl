@@ -25,10 +25,10 @@ sub-out()
   transition-delay            0,            0s,         0,          delay-out,  0
 
 icon-in()
-  transition transform move-time ease, color move-time step-start
+  transition transform trans-time ease-in-out, color move-time step-start
 
 icon-out()
-  transition transform trans-time ease delay-out, color trans-time step-end delay-out
+  transition transform trans-time ease-in-out delay-out, color trans-time step-end delay-out
 
 close-in()
   transition-property         left,         opacity,    color
