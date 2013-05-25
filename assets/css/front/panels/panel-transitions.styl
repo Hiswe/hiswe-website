@@ -64,10 +64,10 @@ rotate-out()
   transition-delay            d-out-1,      d-out-1,    0
 
 icon-in()
-  transition transform trans-time ease-in-out, color move-time step-start
+  transition transform t-iso ease, color move-time step-start
 
 icon-out()
-  transition transform trans-time ease-in-out delay-out, color trans-time step-end delay-out
+  transition transform t-iso ease d-out-2, color trans-time step-end delay-out
 
 // close button
 close-in()

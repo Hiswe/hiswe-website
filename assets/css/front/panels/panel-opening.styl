@@ -23,6 +23,10 @@
 
   .hicon
     font-size 6em
+    // Transform has to be made on at leat inline-block display
+    display inline-block
+    iso-right()
+    icon-out()
 
   .hw-sub-close
     opacity 0
@@ -53,10 +57,14 @@
       iso-right()
       background $dark-pink
 
+      // .hicon
+      //   t-matrix(1.5, 0.5, 0, 1)
+
   &:nth-child(3n+2),
   &:nth-child(3n+3)
     .hw-sub-left
       transform rotateY(98.75deg)
+      // 1% difference is for nice edge aliasis
       transform-origin 101% 50%
 
   &:nth-child(3n+1),
@@ -96,6 +104,10 @@ for num in 1 2 3
   z-index 10
   panel-in()
 
+  .hicon
+    icon-in()
+    iso-reset()
+
   .hw-sub-close
     close-in()
     opacity 1
@@ -107,6 +119,9 @@ for num in 1 2 3
 
   .hw-sub-default
     default-in()
+
+  &:nth-child(3n+2) .hicon
+    mirror-vertical()
 
   &:nth-child(3n+2) .hw-sub-left,
   &:nth-child(3n+3) .hw-sub-left,
