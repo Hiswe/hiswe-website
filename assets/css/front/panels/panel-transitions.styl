@@ -6,35 +6,61 @@ delay-in    = trans-time + .25s
 delay-out   = move-time + .25s
 delay-full  = move-time + trans-time + .25s
 
+t-iso   = .5s
+t-slide = .5s
+t-book  = .5s
+
+d-in-1  = t-iso
+d-in-2  = t-iso + t-slide
+d-out-1 = t-book
+d-out-2 = t-book + t-slide
+
+d-ful   = t-iso + t-slide + t-book
+
 panel-in()
-  transition all trans-time ease-in-out
+  transition all t-iso ease-in-out
 
 panel-out()
-  transition all trans-time ease-in-out delay-out
+  transition all trans-time ease-in-out d-out-2
 
+// Cover panel
 default-in()
   transition-property         transform,  background, left,       box-shadow
-  transition-duration         trans-time, move-time,  move-time,  $hover-transition
+  transition-duration         t-iso,      t-iso,      t-slide,  $hover-transition
   transition-timing-function  ease,       ease,       ease,       ease
-  transition-delay            0,          0,          0,          0
+  transition-delay            0,          0,          d-in-1,   0
 
 default-out()
   transition-property         transform,  background, left,       box-shadow
-  transition-duration         trans-time, move-time,  move-time,  $hover-transition
+  transition-duration         t-iso,      t-iso,      t-slide,  $hover-transition
   transition-timing-function  ease,       ease,       ease,       ease
-  transition-delay            delay-out,  delay-out,  0,          0
+  transition-delay            d-out-2,    d-out-2,    d-out-1,  0
 
-sub-in()
-  transition-property         left,       background, visibility, transform,  box-shadow
-  transition-duration         move-time,  move-time,  move-time,  move-time,  $hover-transition
-  transition-timing-function  ease,       step-start, step-end,   ease,       ease
-  transition-delay            0,          0,          0,          delay-in,   0
+// slide panel
+slide-in()
+  transition-property         left,         visibility
+  transition-duration         d-slide,      0
+  transition-timing-function  ease,         step-start
+  transition-delay            d-in-1,       d-in-1
 
-sub-out()
-  transition-property         left,         background, visibility, transform,  box-shadow
-  transition-duration         move-time,    delay-full, move-time,  move-time,  $hover-transition
-  transition-timing-function  ease-in-out,  step-end,   step-end,   ease,       ease
-  transition-delay            0,            0s,         0,          delay-out,  0
+slide-out()
+  transition-property         left,         visibility
+  transition-duration         d-slide,      0
+  transition-timing-function  ease,         step-end
+  transition-delay            d-out-1,      d-out-2
+
+// Transform padding-left
+rotate-in()
+  transition-property         left,         visibility, transform
+  transition-duration         move-time,    move-time,  move-time
+  transition-timing-function  ease,         step-end,   ease
+  transition-delay            0,            0,          delay-in
+
+rotate-out()
+  transition-property         left,         visibility, transform
+  transition-duration         move-time,    move-time,  move-time
+  transition-timing-function  ease-in-out,  step-end,   ease
+  transition-delay            delay-out,    0,          0
 
 icon-in()
   transition transform trans-time ease-in-out, color move-time step-start
@@ -42,6 +68,7 @@ icon-in()
 icon-out()
   transition transform trans-time ease-in-out delay-out, color trans-time step-end delay-out
 
+// close button
 close-in()
   transition-property         left,         opacity,    color
   transition-duration         trans-time,   trans-time, trans-time
