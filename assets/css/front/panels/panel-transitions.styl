@@ -73,10 +73,16 @@ rotate-out()
   transition-delay            d-out-1,      d-out-1,    0
 
 icon-in()
-  transition transform t-iso h-ease(e-iso-in), color t-iso h-ease(e-iso-in)
+  transition-property         transform,          color,              font-size
+  transition-duration         t-iso,              t-iso,              t-iso
+  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   ease
+  transition-delay            0,                  0,                  d-in-1
 
 icon-out()
-  transition transform t-iso h-ease(e-iso-out) d-out-2, color t-iso h-ease(e-iso-out) d-out-2
+  transition-property         transform,          color,              font-size
+  transition-duration         t-iso,              t-iso,              t-iso
+  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),   ease
+  transition-delay            d-out-2,            d-out-2,            d-out-1
 
 // close button
 close-in()
