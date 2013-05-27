@@ -5,6 +5,7 @@
 .settings/
 node_modules
 /components
+/public/media/source
 *.ai
 sources
 archives
