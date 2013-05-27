@@ -66,7 +66,9 @@ module.exports = (grunt) ->
   grunt.registerTask 'help', ->
     grunt.log.writeln 'grunt lib :', 'Concact and uglify js libs'
     grunt.log.writeln 'grunt img :', 'Resize images'
+    grunt.log.writeln 'grunt font :', 'Copy font to public dir'
 
   grunt.registerTask 'lib', ['uglify:lib', 'concat']
   grunt.registerTask 'img', ['img_resize:work']
+  grunt.registerTask 'font', ['copy:font']
   grunt.registerTask 'default', ['help']

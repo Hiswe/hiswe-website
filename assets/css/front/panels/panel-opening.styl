@@ -27,6 +27,7 @@
     display inline-block
     iso-right()
     icon-out()
+    color $dark-pink
 
   .hw-sub-close
     opacity 0
@@ -58,7 +59,8 @@
       background $dark-pink
 
     .hicon
-      t-matrix(-1, 0.5, 0, 1)
+      iso-left()
+      color $pink
 
   &:nth-child(3n+2),
   &:nth-child(3n+3)
@@ -79,6 +81,39 @@
   &:nth-child(3n+2) .hw-sub-right
     rotate-out()
 
+
+  &.{activeClass}
+    iso-reset()
+    height 468px
+    top -78px
+    margin-bottom -158px
+    z-index 10
+    panel-in()
+
+    .hicon
+      icon-in()
+      iso-reset()
+      color $dark-gray
+
+    .hw-sub-close
+      close-in()
+      opacity 1
+
+    .hw-sub
+      visibility visible
+      transform rotateY(0) !important
+      slide-in()
+
+    .hw-sub-default
+      default-in()
+
+    &:nth-child(3n+2) .hw-sub-left,
+    &:nth-child(3n+3) .hw-sub-left,
+    &:nth-child(3n+1) .hw-sub-right,
+    &:nth-child(3n+2) .hw-sub-right
+      rotate-in()
+
+
 for num in 1 2 3
   .{activeClass}:nth-child(3n+{num}) .hw-sub-close
     left unit((4 - num) * 100, '%')
@@ -94,37 +129,3 @@ for num in 1 2 3
     .hw-sub-right
       left unit((3 - num) * 100, '%')
 
-// .hw-panels-open
-//   // active
-.{activeClass}
-  iso-reset()
-  height 468px
-  top -78px
-  margin-bottom -158px
-  z-index 10
-  panel-in()
-
-  .hicon
-    icon-in()
-    iso-reset()
-
-  &:nth-child(3n+2) .hicon
-    mirror-vertical()
-
-  .hw-sub-close
-    close-in()
-    opacity 1
-
-  .hw-sub
-    visibility visible
-    transform rotateY(0) !important
-    slide-in()
-
-  .hw-sub-default
-    default-in()
-
-  &:nth-child(3n+2) .hw-sub-left,
-  &:nth-child(3n+3) .hw-sub-left,
-  &:nth-child(3n+1) .hw-sub-right,
-  &:nth-child(3n+2) .hw-sub-right
-    rotate-in()
