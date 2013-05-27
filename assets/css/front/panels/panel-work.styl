@@ -20,3 +20,34 @@
 
 .hw-work-cover
   display block
+  position relative
+  padding 0
+
+  .hw-cover-cover-in
+    position absolute
+    top px2em($hover-width, $panel-fs)
+    left @top; right @top; bottom @left
+    v-align()
+    overflow hidden
+    text-align center
+
+  img
+    max-width 100%
+
+.hw-work-carrousel
+  position relative
+
+  ul
+    absolute top left
+    overflow auto
+    width 100%; height @width
+    white-space nowrap
+
+    li
+      width 100%; height @width
+      display inline-block
+      text-align center
+      v-align()
+
+  img
+    max-width 100%

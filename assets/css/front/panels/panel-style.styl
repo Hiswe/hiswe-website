@@ -9,7 +9,7 @@
     cursor pointer
 
   .hw-sub-default:hover
-    box-shadow inset 0 0 0 $hover-width $hover-color
+    box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
 .hw-panels-open
   h3:first-child
@@ -30,7 +30,7 @@
   height 100%, width @height
   box-sizing border-box
   transform translate3d(0,0,0)
-  padding px2em(20, $panel-fs) px2em(20, $panel-fs) 0
+  padding $panel-padding $panel-padding 0
 
 .hw-sub-description
   line-height 1.5em
@@ -59,16 +59,6 @@
     margin 1em 0 1.25em
     display inline-block
     text-transform uppercase
-
-.hw-sub-image
-  v-align()
-
-.hw-sub-image
-  overflow hidden
-  text-align center
-
-  img
-    max-width 100%
 
 .hw-sub-close
   width 2em; height @width
