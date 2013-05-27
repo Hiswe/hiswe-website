@@ -1,6 +1,7 @@
 module.exports = (grunt) ->
   im    = require 'imagemagick'
   path  = require 'path'
+  uslug = require 'uslug'
 
   grunt.registerMultiTask 'img_resize', ->
     done      = this.async()
@@ -22,16 +23,17 @@ module.exports = (grunt) ->
       return grunt.fail.warn("Neither height nor width defined.");
 
     this.files.forEach (f) ->
-      extname = path.extname(f.dest)
-      dirname = path.dirname(f.dest)
-      srcPath = f.src[0]
+      extname   = path.extname(f.dest)
+      dirname   = path.dirname(f.dest)
+      srcPath   = f.src[0]
+      basename  = uslug(path.basename(f.dest, extname))
+      basename  = "#{dirname}/#{basename}"
 
       # Add size in fileName
       if options.sizeInPath is true
-        basename = "#{dirname}/#{path.basename(f.dest, extname)}"
-        dstPath = "#{basename}-#{options.width}x#{options.height}#{extname}"
-      else
-        dstPath = f.dest
+        dstPath = "#{basename}-#{options.width}x#{options.height}"
+
+      dstPath = "#{basename}#{extname}"
 
       # overwrite check
       if options.overwrite is off and grunt.file.isFile(dstPath)
