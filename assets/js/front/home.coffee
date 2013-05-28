@@ -23,7 +23,7 @@ class Home extends hw.Controller
     @log 'init'
     @carrousel.hCarrousel {
       className: @carrouselClass
-      activeClassName: 'active'
+      activeClassName: 'hw-carrousel-active'
     }
 
   cleanAll: (e) =>
@@ -31,10 +31,10 @@ class Home extends hw.Controller
     @panels.removeClass @activeClass
 
   zoom: (e) ->
-    @log 'zoom'
     $target = $(e.currentTarget)
     e.stopPropagation()
     return if $target.hasClass(@activeClass)
+    @log 'zoom'
     e.preventDefault()
     e.stopPropagation()
     $papa = $target.closest('section')
@@ -57,6 +57,5 @@ class Home extends hw.Controller
       , 2000
     $panel.removeClass @activeClass
     @cleanAll()
-
 
 hw.Home = Home

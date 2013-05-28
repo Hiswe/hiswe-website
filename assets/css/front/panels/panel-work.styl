@@ -35,7 +35,10 @@
     max-width 100%
 
 .hw-work-carrousel
-  position relative
+  .hw-sub-panel
+    padding 0
+    position relative
+    z-index 1
 
   ul
     absolute top left
@@ -61,7 +64,8 @@
       background noir()
       absolute top 0
       opacity 0
+      // transition all .5s
 
-      &.active
+      &.hw-carrousel-active
         z-index 2
         opacity 1

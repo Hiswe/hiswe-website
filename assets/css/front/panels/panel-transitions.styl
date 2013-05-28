@@ -46,7 +46,7 @@ default-out()
   transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
   transition-delay            d-out-2,            d-out-2,            d-out-1,            0
 
-// slide panel
+// Slide panel
 slide-in()
   transition-property         left,                 visibility
   transition-duration         d-slide,              0
@@ -59,7 +59,7 @@ slide-out()
   transition-timing-function  h-ease(e-slide-out),  step-end
   transition-delay            d-out-1,              d-out-2
 
-// Transform padding-left
+// Transform panel
 rotate-in()
   transition-property         left,         visibility, transform
   transition-duration         0,            0,          t-book
@@ -72,6 +72,7 @@ rotate-out()
   transition-timing-function  step-end,     step-end,   h-ease(e-book-out)
   transition-delay            d-out-1,      d-out-1,    0
 
+// Icon in Services
 icon-in()
   transition-property         transform,          color,              font-size
   transition-duration         t-iso,              t-iso,              t-iso
