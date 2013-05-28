@@ -2,11 +2,13 @@ class Home extends hw.Controller
   trace: true
   logPrefix: '[HOME]'
   activeClass: hw.options.activeClass
+  carrouselClass: hw.options.carrouselClass
 
   elements: {
     '.hw-sub-container'                   : 'panels'
     'section.hw-services, section.hw-work': 'containers'
     '.hw-sub-close'                       : 'close'
+    '.hw-work-carrousel ul'               : 'carrousel'
   }
 
   events: {
@@ -19,6 +21,10 @@ class Home extends hw.Controller
     return unless @el.length
     $('body').on 'click', @cleanAll
     @log 'init'
+    @carrousel.hCarrousel {
+      className: @carrouselClass
+      activeClassName: 'active'
+    }
 
   cleanAll: (e) =>
     @log 'clean' if e?

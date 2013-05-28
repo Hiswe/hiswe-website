@@ -12,7 +12,6 @@ module.exports = ->
   app = express()
 
   # Load Expressjs config
-
   console.log log.debug, 'Setup application'
   configApp(app)
 

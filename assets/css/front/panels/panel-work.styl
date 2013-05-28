@@ -50,6 +50,18 @@
       vertical-align top
       text-align center
       v-align()
-
   img
     max-width 100%
+
+  ul.{carrouselClass}
+    overflow hidden
+    cursor pointer
+
+    li
+      background noir()
+      absolute top 0
+      opacity 0
+
+      &.active
+        z-index 2
+        opacity 1

@@ -5,7 +5,8 @@ stylus  = require 'stylus'
 nib     = require 'nib'
 hstrap  = require 'hstrap'
 
-activeClass = 'hw-panel-active'
+activeClass     = 'hw-panel-active'
+carrouselClass  = 'hw-carrousel'
 
 compileCss = (app) ->
   if app.get('env') is 'development'
@@ -20,6 +21,7 @@ compileCss = (app) ->
      .set('linenos', false)
      .set('firebug', false)
      .define('activeClass', new stylus.nodes.String(activeClass))
+     .define('carrouselClass', new stylus.nodes.String(carrouselClass))
      .define('isDev', isDev)
      .use(nib())
      .use(hstrap())
@@ -43,9 +45,10 @@ module.exports = (app) ->
   assets  = path.join(__dirname, '/../public')
   app.use express.static(assets, {maxAge: maxAge})
 
-  # expose some datas to the front app under bg namespace
+  # expose some datas to the front app under hw namespace
   options = {
-    activeClass: activeClass
+    activeClass:    activeClass
+    carrouselClass: carrouselClass
   }
   app.expose({ options: options}, 'hw')
 

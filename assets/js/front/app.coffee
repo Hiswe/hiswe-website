@@ -1,5 +1,5 @@
 class App extends hw.Controller
-  trace: true
+  trace: false
   logPrefix: '[APP]'
 
   constructor: ->
