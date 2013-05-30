@@ -67,6 +67,7 @@
   &:nth-child(3n+2),
   &:nth-child(3n+3)
     .hw-sub-left
+      left -100% // Reposition panel for scroll issues on firefox
       transform rotateY(98.75deg)
       // 1% difference is for nice edge aliasis
       transform-origin 101% 50%
@@ -74,6 +75,7 @@
   &:nth-child(3n+1),
   &:nth-child(3n+2)
     .hw-sub-right
+      left 100% // Reposition panel for scroll issues on firefox
       transform-origin -1% 50%
       transform rotateY(-98.75deg)
 
@@ -129,4 +131,3 @@ for num in 1 2 3
 
     .hw-sub-right
       left unit((3 - num) * 100, '%')
-
