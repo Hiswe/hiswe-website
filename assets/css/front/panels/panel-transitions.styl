@@ -4,16 +4,19 @@
 // Firefox don't handle time 0.
 // it MUST be 0s
 
-trans-time  = .5s
-move-time   = .75s
-delay-in    = trans-time + .25s
-delay-out   = move-time + .25s
-delay-full  = move-time + trans-time + .25s
-
+// Timing configuration
 t-iso     = .5s
 t-slide   = .5s
 t-book    = .5s
 t-between = 0s
+
+// Delay computing
+d-in-1  = t-iso + t-between
+d-in-2  = t-iso + t-slide + t-between * 2
+d-out-1 = t-book + t-between
+d-out-2 = t-book + t-slide + t-between * 2
+
+d-full   = t-iso + t-slide + t-book + t-between * 3
 
 // Easing
 e-iso-in    = "easeInCubic"
@@ -23,18 +26,17 @@ e-slide-out = "easeInCubic"
 e-book-in   = "ease"
 e-book-out  = "ease"
 
-d-in-1  = t-iso + t-between
-d-in-2  = t-iso + t-slide + t-between * 2
-d-out-1 = t-book + t-between
-d-out-2 = t-book + t-slide + t-between * 2
-
-d-full   = t-iso + t-slide + t-book + t-between * 3
-
 panel-in()
-  transition all t-iso ease-in-out
+  transition-property         height,           top,              margin-bottom,    z-index
+  transition-duration         t-iso,            t-iso,            t-iso,            0s
+  transition-timing-function  h-ease(e-iso-in), h-ease(e-iso-in), h-ease(e-iso-in), ease
+  transition-delay            0s,               0s,               0s,               0s
 
 panel-out()
-  transition all t-iso ease-in-out d-out-2
+  transition-property         height,             top,                margin-bottom,      z-index
+  transition-duration         t-iso,              t-iso,              t-iso,              0s
+  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
+  transition-delay            d-out-2,            d-out-2,            d-out-2,            d-full
 
 // Cover panel
 default-in()

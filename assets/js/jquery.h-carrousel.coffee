@@ -61,8 +61,6 @@
     }
   )()
 
-
-
   # Transition class generation
   buildAnimationClass = (settings) ->
     base = settings.className

@@ -12,6 +12,8 @@
   display inline-block
   width third(); height px2em($panel-height)
   position relative
+  top 0; z-index 1
+  margin-bottom 0
   transform-style preserve-3d
   panel-out()
 
@@ -23,7 +25,7 @@
 
   .hicon
     font-size 6em
-    // Transform has to be made on at leat inline-block display
+    // Transform doesn't work on inline display
     display inline-block
     iso-right()
     icon-out()
@@ -81,12 +83,10 @@
   &:nth-child(3n+2) .hw-sub-right
     rotate-out()
 
-
   &.{activeClass}
-    iso-reset()
-    height 468px
-    top -78px
-    margin-bottom -158px
+    height px2em($panel-height*1.5)
+    top (px2em($panel-height) - @height) * 1.5
+    margin-bottom (px2em($panel-height) - @height) * 2
     z-index 10
     panel-in()
 
