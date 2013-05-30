@@ -1,6 +1,9 @@
 @import 'nib/vendor'
 @import 'hstrap/mixins/h-ease'
 
+// Firefox don't handle time 0.
+// it MUST be 0s
+
 trans-time  = .5s
 move-time   = .75s
 delay-in    = trans-time + .25s
@@ -31,69 +34,69 @@ panel-in()
   transition all t-iso ease-in-out
 
 panel-out()
-  transition all trans-time ease-in-out d-out-2
+  transition all t-iso ease-in-out d-out-2
 
 // Cover panel
 default-in()
   transition-property         transform,        background,         left,             box-shadow
   transition-duration         t-iso,            t-iso,              t-slide,          $hover-transition
   transition-timing-function  h-ease(e-iso-in), h-ease(e-iso-in),   h-ease(e-iso-in), ease
-  transition-delay            0,                0,                  d-in-1,           0
+  transition-delay            0s,               0s,                 d-in-1,           0s
 
 default-out()
   transition-property         transform,          background,         left,               box-shadow
   transition-duration         t-iso,              t-iso,              t-slide,            $hover-transition
   transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
-  transition-delay            d-out-2,            d-out-2,            d-out-1,            0
+  transition-delay            d-out-2,            d-out-2,            d-out-1,            0s
 
 // Slide panel
 slide-in()
   transition-property         left,                 visibility
-  transition-duration         d-slide,              0
-  transition-timing-function  h-ease(e-slide-in),   step-start
+  transition-duration         d-slide,              0s
+  transition-timing-function  h-ease(e-slide-in),   ease
   transition-delay            d-in-1,               d-in-1
 
 slide-out()
   transition-property         left,                 visibility
-  transition-duration         d-slide,              0
-  transition-timing-function  h-ease(e-slide-out),  step-end
+  transition-duration         d-slide,              0s
+  transition-timing-function  h-ease(e-slide-out),  ease
   transition-delay            d-out-1,              d-out-2
 
 // Transform panel
 rotate-in()
   transition-property         left,         visibility, transform
-  transition-duration         0,            0,          t-book
-  transition-timing-function  step-end,     step-end,   h-ease(e-book-in)
+  transition-duration         0s,           0s,         t-book
+  transition-timing-function  ease,         ease,       h-ease(e-book-in)
   transition-delay            d-in-2,       d-in-2,     d-in-2
 
 rotate-out()
   transition-property         left,         visibility, transform
-  transition-duration         0,            0,          t-book
-  transition-timing-function  step-end,     step-end,   h-ease(e-book-out)
-  transition-delay            d-out-1,      d-out-1,    0
+  transition-duration         0s,           0s,         t-book
+  transition-timing-function  ease,         ease,       h-ease(e-book-out)
+  transition-delay            d-out-1,      d-out-1,    0s
 
 // Icon in Services
 icon-in()
   transition-property         transform,          color,              font-size
   transition-duration         t-iso,              t-iso,              t-iso
   transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   ease
-  transition-delay            0,                  0,                  d-in-1
+  transition-delay            0s,                 0s,                 d-in-1
 
 icon-out()
   transition-property         transform,          color,              font-size
   transition-duration         t-iso,              t-iso,              t-iso
-  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),   ease
+  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
   transition-delay            d-out-2,            d-out-2,            d-out-1
 
 // close button
 close-in()
   transition-property         left,         opacity,    color
-  transition-duration         0,            t-iso,      t-iso
-  transition-timing-function  step-end,     ease,       ease
-  transition-delay            d-full,       d-full,     0
+  transition-duration         0s,           t-iso,      t-iso
+  transition-timing-function  ease,         ease,       ease
+  transition-delay            d-full,       d-full,     0s
 
 close-out()
   transition-property         left,         opacity,    color
-  transition-duration         .1s,          .1s,        t-book
-  transition-timing-function  step-end,     ease,       ease
-  transition-delay            0,            0,          0
+  transition-duration         0s,           .1s,        t-book
+  transition-timing-function  ease,         ease,       ease
+  transition-delay            .1s,          0s,         0s
