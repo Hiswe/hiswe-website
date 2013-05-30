@@ -73,33 +73,36 @@
     settings.setup = "#{base}-setup"
     settings
 
-  console.log   sniffer
-
   # Carrousel class
   class HCarrousel
     defaults: {
       className:        'hCarrousel'
       activeClassName:  'hCarrousel-active'
       childSelector:    'li'
-      debug:            true
+      debug:            false
+      create:           $.noop
     }
 
     constructor: (elements, options = {}) ->
       @opts     = buildAnimationClass( $.extend( {}, @defaults, options))
-      @el       = $(elements).addClass(@opts.className)
-      @_init()
+      @el       = $(elements)
+      init      = @_init()
+      return @log('Not enough slides for ', @el) unless init
       @_bind()
-      @el.trigger 'hCarrouselCreate'
-      @log @opts
+      @el.trigger 'hcarrouselcreate'
+      @opts.create.apply @el[0], [{el: @el}]
       this
 
     _init: ->
       @slides         = @el.find @opts.childSelector
-      @slides.eq(0).addClass(@opts.activeClassName)
       @size           = @slides.length
+      return false unless @size > 1
+      @el.addClass(@opts.className)
+      @slides.eq(0).addClass(@opts.activeClassName)
       @selectionIndex = 0
       @animation      = @_isAnimated()
       @log 'init with', @size, 'items'
+      true
 
     _isAnimated: ->
       return false unless (sniffer.transitions and sniffer.animations)
@@ -133,6 +136,14 @@
         @selectionIndex = @selectionIndex + 1
       @_circle $current, 'backward'
 
+    # Call an instance method from outside
+    _bridge: (method, args...) ->
+      @log 'bridge', method, args
+      return unless method?
+      return if typeof method isnt 'string'
+      return if method.charAt( 0 ) is '_'
+      @[method]?(args...)
+
     _circle: ($current, direction) ->
       $next = @slides.eq @selectionIndex
       @log 'circle', direction
@@ -161,8 +172,14 @@
         $next.removeClass("#{@opts.setup} #{inClass}")
           .addClass(@opts.activeClassName)
       , 10
-
       this
+
+    destroy: ->
+      @log 'destroy'
+      @el.off('.hCarrousel').removeClass(@opts.className)
+      @slides.eq(@selectionIndex).removeClass(@opts.activeClassName)
+      @el.removeData('hCarrousel')
+      @el
 
     log: (args...) ->
       return unless @opts.debug
@@ -176,15 +193,17 @@
   $.HCarrousel = HCarrousel
 
   # Plugin definition
-  $.fn.hCarrousel = ( options ) ->
+  $.fn.hCarrousel = (args...) ->
     this.each ->
       $el = $(this)
       hCarrousel = $el.data('hCarrousel')
-      if  hCarrousel is undefined
-        plugin = new $.HCarrousel( this, options )
+      if hCarrousel is undefined
+        # Create instance
+        plugin = new $.HCarrousel( this, args[0] )
         $el.data( 'hCarrousel', plugin )
-      # else
+      else
         # Call hCarrousel method
-        # hCarrousel.callMethod
+        $.HCarrousel::_bridge.apply hCarrousel, args
+        $el
 
 )(jQuery, document, window)

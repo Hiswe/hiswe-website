@@ -29,4 +29,4 @@ whichAnimationEvent = ->
 jQuery ->
   hw.transition   = whichTransitionEvent()
   hw.animationEnd = whichAnimationEvent()
-  new hw.App({el: $('html')})
+  hw.app = new hw.App({el: $('html')})

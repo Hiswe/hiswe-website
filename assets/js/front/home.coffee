@@ -21,14 +21,34 @@ class Home extends hw.Controller
     return unless @el.length
     $('body').on 'click', @cleanAll
     @log 'init'
-    @carrousel.hCarrousel {
+
+    @carrousel.hCarrousel({
       className: @carrouselClass
       activeClassName: 'hw-carrousel-active'
-    }
+      debug: true
+      create: @carrouselNavigation
+    })
+    this
+
+  carrouselNavigation: (data) =>
+    @log 'init carrousel navigation'
+    el = data.el
+    el.closest('.hw-sub-panel').append @template
+    this
+
+  # Don't need a template engine for this
+  template: (->
+    tmpl = ['<menu class="hw-carrousel-navigation">']
+    tmpl = tmpl.concat ['<button class="hw-carrousel-prev">', '</button>']
+    tmpl = tmpl.concat ['<button class="hw-carrousel-next">', '</button>']
+    tmpl = tmpl.concat ['</menu>']
+    tmpl.join('')
+  )()
 
   cleanAll: (e) =>
     @log 'clean' if e?
     @panels.removeClass @activeClass
+    this
 
   zoom: (e) ->
     $target = $(e.currentTarget)
@@ -42,6 +62,7 @@ class Home extends hw.Controller
     @containers.not($papa).css('z-index', 1)
     $papa.css('z-index', 2)
     $target.addClass @activeClass
+    this
 
   zoomOut: (e) ->
     @log 'zoom out'
@@ -57,5 +78,6 @@ class Home extends hw.Controller
       , 2000
     $panel.removeClass @activeClass
     @cleanAll()
+    this
 
 hw.Home = Home
