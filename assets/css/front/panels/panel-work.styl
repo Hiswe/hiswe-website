@@ -59,13 +59,27 @@
   ul.{carrouselClass}
     overflow hidden
     cursor pointer
+    perspective 300px
+    perspective-origin center center
 
     li
       background noir()
       absolute top 0
       opacity 0
-      // transition all .5s
+      transition opacity 1s, transform 1s
+
+      &.hw-carrousel-setup
+        transition none
 
       &.hw-carrousel-active
         z-index 2
         opacity 1
+        transform translateX(0) rotateY(0)
+
+      &.hw-carrousel-forward-in
+        transform translateX(-100px) rotateY(-45deg)
+
+      &.hw-carrousel-forward-out
+        transform translateX(100px) rotateY(45deg)
+
+
