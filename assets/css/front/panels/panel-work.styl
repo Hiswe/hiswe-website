@@ -6,7 +6,6 @@
 .hw-work
   dl:not(.{activeClass}) img
     css-filter 'grayscale()'
-    // transition all .5s
 
     &:hover
       css-filter 'grayscale(0)'
@@ -35,99 +34,4 @@
 
   img
     max-width 100%
-
-.hw-work-carrousel
-  .hw-sub-panel
-    padding 0
-    position relative
-    z-index 1
-
-  .hw-carrousel-navigation
-    reset-box-model()
-    absolute left bottom 1em
-    right 0
-    font-size px2em($panel-fs)
-
-  .hw-carrousel-prev,
-  .hw-carrousel-next
-    reset-box-model()
-    display inline-block
-    width 2em; height @width
-    absolute bottom .5em left 100%; z-index 2
-    text-align center; line-height 1.5em
-    background $gray; box-shadow 2px 2px 0 noir(.75)
-    cursor pointer
-    border none
-    color white
-
-    &::after
-      font-weight bold
-      font-size 2em
-
-    &:hover::after
-      color $pink
-
-    &:active
-      transform translate(2px, 2px)
-      box-shadow none
-
-  .hw-carrousel-prev
-    margin-left 0
-    left 2.5em
-
-    &::after
-      content "\232A"
-      content "<"
-
-  .hw-carrousel-next
-    left auto
-    right 2.5em
-
-
-    &::after
-      content "\2329"
-      content ">"
-
-  ul
-    absolute top left
-    overflow auto
-    width 100%; height @width
-    white-space nowrap
-
-    li
-      width 100%; height @width
-      overflow hidden
-      display inline-block
-      vertical-align top
-      text-align center
-      v-align()
-  img
-    max-width 100%
-
-  ul.{carrouselClass}
-    overflow hidden
-    cursor pointer
-    perspective 300px
-    perspective-origin center center
-
-    li
-      background noir()
-      absolute top 0
-      opacity 0
-      transition opacity 1s, transform 1s
-
-      &.hw-carrousel-setup
-        transition none
-
-      &.hw-carrousel-active
-        z-index 2
-        opacity 1
-        transform translateX(0) rotateY(0)
-
-      &.hw-carrousel-forward-in
-        transform translateX(-100px) rotateY(-45deg)
-
-      &.hw-carrousel-forward-out
-        transform translateX(100px) rotateY(45deg)
-
 
