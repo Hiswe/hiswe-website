@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="icon_responsive" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="270px" height="387px" viewBox="0 0 270 387" style="enable-background:new 0 0 270 387;"
+	 xml:space="preserve">
+   <defs>
+    <style type="text/css">
+      .dark {   fill: rgba(0,0,0,0.2) }
+      .bright { fill: #33323b; }
+    </style>
+  </defs>
+	<path class="dark" d="M189.334,243.333l-108,54v9l72,35.86v0.14l108-54v-9L189.334,243.333z"/>
+  <path class="dark" d="M45.334,315.333l-36,18v8.86l72,35.85v0.29l36-18v-9L45.334,315.333z"/>
+	<path class="dark" d="M216.334,4.833l-180,90.14v143.86l9,4.5l63-31.55v18.12l27,13.43v0.29l36-18.15v-9l-18-9v-18.08
+		l72-36.06v-144L216.334,4.833z"/>
+  <polygon class="bright" points="243.334,288.333 171.334,324.333 102.684,290.013 172.674,255.013 174.684,254.013 "/>
+	<polygon class="bright" points="135.334,310.833 126.334,315.333 117.334,310.833 126.334,306.333 	"/>
+	<polygon class="bright" points="216.334,263.583 211.834,265.833 216.334,268.083 220.834,265.833 	"/>
+	<polygon class="bright" points="95.984,344.013 63.444,360.283 18.454,337.873 51.064,321.553 	"/>
+	<polygon class="bright" points="99.334,355.833 90.334,360.333 81.334,355.833 90.334,351.333 	"/>
+  <polygon class="bright" points="150.334,190.753 150.334,207.163 117.334,223.793 117.334,207.273 "/>
+  <polygon class="bright" points="222.334,10.693 222.334,136.693 45.334,225.333 45.334,99.333 "/>
+  <polygon class="bright" points="135.334,234.623 135.334,234.473 119.004,226.313 151.524,209.923 151.994,210.163
+  167.994,218.163 "/>
+</svg>
