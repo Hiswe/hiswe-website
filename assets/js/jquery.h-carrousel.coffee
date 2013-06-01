@@ -127,14 +127,12 @@
       if @opts.prevButton instanceof jQuery
         @log 'Define custom prev control'
         @opts.prevButton.on 'click.hCarrousel', (e) =>
-          @log 'click prev'
           e.preventDefault()
           @backward()
 
       if @opts.nextButton instanceof jQuery
         @log 'Define custom next control'
         @opts.nextButton.on 'click.hCarrousel', (e) =>
-          @log 'click next'
           e.preventDefault()
           @forward()
 
