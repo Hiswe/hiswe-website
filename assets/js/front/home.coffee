@@ -19,21 +19,26 @@ class Home extends hw.Controller
   constructor: ->
     super
     return unless @el.length
+    @log 'Init'
     $('body').on 'click', @cleanAll
-    @log 'init'
-
-    @carrousel.hCarrousel({
-      className: @carrouselClass
-      activeClassName: 'hw-carrousel-active'
-      debug: true
-      create: @carrouselNavigation
-    })
+    @initCarrousel()
     this
 
-  carrouselNavigation: (data) =>
-    @log 'init carrousel navigation'
-    el = data.el
-    el.closest('.hw-sub-panel').append @template
+  initCarrousel: (data) =>
+    @log 'Init carrousel'
+    @carrousel.each (index, el) =>
+      $el = $(el)
+      $template = $ @template
+      $template.appendTo($el.closest('.hw-sub-panel'))
+      $prev = $template.find('button').eq(0)
+      $next = $template.find('button').eq(1)
+      $el.hCarrousel({
+        className: @carrouselClass
+        activeClassName: 'hw-carrousel-active'
+        debug: @trace
+        prevButton: $prev
+        nextButton: $next
+      })
     this
 
   # Don't need a template engine for this
@@ -54,7 +59,7 @@ class Home extends hw.Controller
     $target = $(e.currentTarget)
     e.stopPropagation()
     return if $target.hasClass(@activeClass)
-    @log 'zoom'
+    @log 'Zoom'
     e.preventDefault()
     e.stopPropagation()
     $papa = $target.closest('section')
@@ -65,7 +70,7 @@ class Home extends hw.Controller
     this
 
   zoomOut: (e) ->
-    @log 'zoom out'
+    @log 'Zoom out'
     e.preventDefault()
     e.stopPropagation()
     $target = $(e.currentTarget)

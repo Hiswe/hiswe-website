@@ -8,7 +8,7 @@
 
 (($, document, window) ->
 
-  # Utility method: Lower Case the first letter
+  # Utility method
   lcFirst = (text) ->
     text.substr(0, 1).toLowerCase() + text.substr(1)
 
@@ -81,6 +81,8 @@
       childSelector:    'li'
       debug:            false
       create:           $.noop
+      prevButton:       false
+      nextButton:       false
     }
 
     constructor: (elements, options = {}) ->
@@ -118,7 +120,25 @@
       isAnimated
 
     _bind: ->
-      @el.on 'click.hCarrousel', @forward
+      if @opts.prevButton is off and @opts.nextButton is off
+        @el.on 'click.hCarrousel', @forward
+        return this
+
+      if @opts.prevButton instanceof jQuery
+        @log 'Define custom prev control'
+        @opts.prevButton.on 'click.hCarrousel', (e) =>
+          @log 'click prev'
+          e.preventDefault()
+          @backward()
+
+      if @opts.nextButton instanceof jQuery
+        @log 'Define custom next control'
+        @opts.nextButton.on 'click.hCarrousel', (e) =>
+          @log 'click next'
+          e.preventDefault()
+          @forward()
+
+      this
 
     forward: =>
       $current = @slides.eq(@selectionIndex)
@@ -179,6 +199,11 @@
       @el.off('.hCarrousel').removeClass(@opts.className)
       @slides.eq(@selectionIndex).removeClass(@opts.activeClassName)
       @el.removeData('hCarrousel')
+      # TODO generate an event uid for each instance
+      if @opts.prevButton instanceof jQuery
+        @opts.prevButton.off '.hCarrousel'
+      if @opts.nextButton instanceof jQuery
+        @opts.nextButton.off '.hCarrousel'
       @el
 
     log: (args...) ->
