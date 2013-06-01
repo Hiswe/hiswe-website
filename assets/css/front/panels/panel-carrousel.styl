@@ -91,14 +91,10 @@
         opacity 1
         transform translateX(0) rotateY(0)
 
-      &.hw-carrousel-forward-in
+      &.hw-carrousel-forward-in,
+      &.hw-carrousel-backward-out
         transform translateX(-100px) rotateY(-45deg)
 
-      &.hw-carrousel-forward-out
-        transform translateX(100px) rotateY(45deg)
-
-      &.hw-carrousel-backward-out
-        transform translateX(-100px) rotateY(45deg)
-
+      &.hw-carrousel-forward-out,
       &.hw-carrousel-backward-in
-        transform translateX(100px) rotateY(-45deg)
+        transform translateX(100px) rotateY(45deg)

@@ -80,6 +80,23 @@
     transform translate(2px, 2px)
     box-shadow none
 
+
+.hw-panel-cover
+  display block
+  position relative
+  padding 0
+
+  .hw-panel-cover-in
+    position absolute
+    top px2em($hover-width, $panel-fs)
+    left @top; right @top; bottom @left
+    v-align()
+    overflow hidden
+    text-align center
+
+  img
+    max-width 100%
+
 // debug
 if debug()
   .hw-sub-container:nth-child(3n + 1)
