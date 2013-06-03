@@ -102,6 +102,8 @@
       @el.addClass(@opts.className)
       @slides.eq(0).addClass(@opts.activeClassName)
       @selectionIndex = 0
+      # Don't run the carrousel until animation is completed
+      @hold           = false
       @animation      = @_isAnimated()
       @log 'init with', @size, 'items'
       true
@@ -135,10 +137,11 @@
         @opts.nextButton.on 'click.hCarrousel', (e) =>
           e.preventDefault()
           @forward()
-
       this
 
     forward: =>
+      return this if @hold
+      @hold = true
       $current = @slides.eq(@selectionIndex)
       if @selectionIndex - 1 < 0
         @selectionIndex = @size - 1
@@ -147,6 +150,8 @@
       @_circle $current, 'forward'
 
     backward: =>
+      return this if @hold
+      @hold = true
       $current = @slides.eq(@selectionIndex)
       if @selectionIndex + 1 >= @size
         @selectionIndex = 0
@@ -169,6 +174,7 @@
       if @animation is off
         $current.removeClass @opts.activeClassName
         $next.addClass @opts.activeClassName
+        @hold = false
         return this
 
       inClass   = @opts["#{direction}In"]
@@ -177,6 +183,7 @@
       # Css transitions
       $current.one(sniffer.events, (e) =>
         $current.removeClass(outClass)
+        @hold = false
       )
 
       $current.removeClass(@opts.activeClassName)
