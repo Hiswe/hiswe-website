@@ -4,14 +4,21 @@
 // Smaller than standard 960 (devices and browsers)
 @media only screen and (max-width: 959px)
   if debug()
-    .hw-main-title span::after
-      color $pink
+    html::before
+      fixed top left
+      content '960'
+      height 1em
+      background noir()
+      padding .5em 2em
+      color white
+      z-index 10
 
   html
     padding 0
 
   body
     padding-top px2em($main-border)
+    border 0
 
   .main-content
     width auto
@@ -30,8 +37,11 @@
 // Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
 @media only screen and (max-width: 479px)
   if debug()
-    .hw-main-title span::after
-      color $blue
+    html::before
+      content "479"
+
+  body
+    background $dark-gray
 
   .hw-main-title
     position relative; z-index 2
@@ -41,6 +51,13 @@
     margin 0; top auto
     text-align center
     position relative
+    width auto
+
+  .hw-title
+    text-align center
+    font-size 2.75em
+    display block
+    padding  1em 0 .25em
 
   .hw-main-navigation
     width auto
@@ -65,15 +82,12 @@
   .hw-main-title span,
   .hw-title,
   .hw-title span,
+  .hw-panels > :nth-child(n),
   .hw-splah-description p,
   .hw-splah-description p + p,
   .hw-splah-description .hw-hire,
-  .hw-panels > :nth-child(3n + 1),
-  .hw-panels > :nth-child(3n + 2),
-  .hw-panels > :nth-child(3n + 3),
-  .hw-panels > :nth-child(3n + 1) .hicon,
-  .hw-panels > :nth-child(3n + 2) .hicon,
-  .hw-panels > :nth-child(3n + 3) .hicon
+  .hw-sub-container .hw-sub.hw-sub-default,
+  .hw-sub-container .hw-sub.hw-sub-default .hicon
     iso-reset()
 
   .hw-splash
@@ -89,18 +103,42 @@
 
     .hw-splah-description
       z-index 1
+      text-align center
 
-    p,
-    p + p
-      background none
+      p,
+      p + p
+        background none
+        text-align left
+
+      .hw-hire
+        float none
+
+        &:before,
+        &:after
+          display none
 
     .hw-portrait
       width auto
       right 0
       z-index -1
+      iso-reset()
       // TODO recolor the SVG using css
       opacity .35
+      border 0
 
-  .hw-panels > *
+      object
+        iso-reset()
+
+  .hw-panels > *,
+  .hw-sub-container
     display block
     width auto
+
+  .hw-sub-container
+    height 12.5em
+
+  .hw-services-title p
+      margin 0
+
+  .hw-services .hw-services-title
+    padding 0
