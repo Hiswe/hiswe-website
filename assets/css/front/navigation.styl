@@ -16,12 +16,17 @@
     color black
     display inline-block
     iso-right()
+    height 1em
     position relative
     z-index 2
+    margin-right 3px
     transition color .5s
+    line-height 100%
 
     &::after
-      absolute bottom left
+      line-height 100%
+      absolute left bottom
+      height 1em
       z-index -1
       content attr(data-text)
       color white
