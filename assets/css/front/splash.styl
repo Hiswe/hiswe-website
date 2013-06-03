@@ -89,7 +89,13 @@
 
 .hw-portrait
   width third()
-  absolute bottom px2em(-62) left
+  iso-left()
+  absolute bottom 20px left
+  border-bottom 20px solid black
+  overflow hidden
+  height px2em(450px)
 
   object
-    width 100%; height px2em(516px)
+    margin-top 50px
+    iso-right()
+
