@@ -1,0 +1,141 @@
+@import './../css-config'
+@import './../css-mixins'
+
+// Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
+@media only screen and (max-width: 479px)
+  if debug()
+    html::before
+      content "479"
+
+  body
+    background $dark-gray
+    padding-top 0
+
+  .hw-main-title
+    position relative; z-index 2
+    padding-bottom .5em
+
+  .hw-main-title,
+  .hw-title
+    margin 0; top auto
+    text-align center
+    position relative
+    width auto
+
+  .hw-title
+    text-align center
+    font-size 2.75em
+    display block
+    padding  1em 0 .25em
+
+  .hw-main-navigation
+    width auto
+    position fixed
+    left 0; top auto; bottom 0
+    padding-bottom 0
+
+    ul
+      clearfix()
+      margin-top 0
+
+    li
+      width third()
+      float left
+      // TODO find a way to remove the important
+      background noir(.75) !important
+
+      a
+        padding .5em 0
+
+  .hw-main-title,
+  .hw-main-title span,
+  .hw-title,
+  .hw-title span,
+  .hw-panels > :nth-child(n),
+  .hw-sub-container .hw-sub.hw-sub-default,
+  .hw-sub-container .hw-sub.hw-sub-default .hicon
+    iso-reset()
+
+  .hw-panels > *,
+  .hw-sub-container
+    display block
+    width auto
+
+  .hw-services-title p
+      margin 0
+
+  .hw-services .hw-services-title
+    padding 0
+
+  // Splash
+  .hw-splash
+    padding 0 0 1em
+    background $pink
+
+    h2
+      font-size 2em
+      padding .75em 0 5em
+
+  .hw-splah-description p,
+  .hw-splah-description p + p
+    display block
+    width auto; height auto; min-height auto
+    padding-bottom 1em
+    line-height 140%
+
+  .hw-splah-description p + p
+    display none
+
+  // panels animation
+  .hw-sub,
+  .hw-sub-close
+    display none
+
+  .hw-sub-default
+    display block
+
+  $$height = px2em(265, $panel-fs)
+  .hw-sub-container
+    height $$height
+
+    .hw-sub-default,
+    .hw-sub-left,
+    .hw-sub-right
+      position absolute
+      top 0; left 0
+      height $$height
+
+    &.{activeClass}
+      height ($$height * 5)
+
+      .hw-sub-default
+        background $blue
+
+        &::before
+
+      .hw-sub-left,
+      .hw-sub-right
+        height ($$height * 2)
+        // z-index 10
+        display block
+        // right 0
+
+      .hw-sub-left
+        top $$height
+
+      .hw-sub-right
+        top $$height * 3
+        // left 0
+
+      // .hw-sub-left
+      //   top 0; bottom 50%
+
+      // .hw-sub-right
+      //   top 50%; bottom 0
+
+      // .hw-sub-close,
+
+
+
+
+

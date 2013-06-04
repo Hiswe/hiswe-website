@@ -16,7 +16,7 @@ class Controller
     this
 
   delay: (func, timeout) ->
-    setTimeout(@proxy(func), timeout || 0)
+    setTimeout(@proxy(func), timeout || 1)
 
   proxy: (func) ->
     => func.apply(this, arguments)

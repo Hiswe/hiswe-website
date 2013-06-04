@@ -3,6 +3,7 @@ class Home extends hw.Controller
   logPrefix: '[HOME]'
   activeClass: hw.options.activeClass
   carrouselClass: hw.options.carrouselClass
+  timer: undefined
 
   elements: {
     '.hw-sub-container'                   : 'panels'
@@ -59,10 +60,12 @@ class Home extends hw.Controller
     $target = $(e.currentTarget)
     e.stopPropagation()
     return if $target.hasClass(@activeClass)
+    window.clearTimeout @timer
     @log 'Zoom'
     e.preventDefault()
     e.stopPropagation()
     $papa = $target.closest('section')
+    @log $papa
     @cleanAll()
     @containers.not($papa).css('z-index', 1)
     $papa.css('z-index', 2)
@@ -75,10 +78,9 @@ class Home extends hw.Controller
     e.stopPropagation()
     $target = $(e.currentTarget)
     $panel = @panels.eq( @close.index($target) )
-    @log $panel
-    $papa = $panel.closest('section')
     return unless $panel.hasClass @activeClass
-    @delay ->
+    $papa = $panel.closest('section')
+    @timer = @delay ->
         $papa.css('z-index', 1)
       , 2000
     $panel.removeClass @activeClass
