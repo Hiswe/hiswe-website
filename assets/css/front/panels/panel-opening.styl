@@ -4,130 +4,121 @@
 @import '../css-mixins'
 @import './panel-transitions'
 
-.hw-panels-open
-  perspective 1000px
-  perspective-origin center center
+@media only screen and (min-width: 480px)
 
-.hw-sub-container
-  display inline-block
-  width third(); height px2em($panel-height)
-  position relative
-  top 0; z-index 1
-  margin-bottom 0
-  transform-style preserve-3d
-  panel-out()
+  // Transform break position static
+  // Problematic in mobile responsive design
+  .hw-services,
+  .hw-work
+    transform translateZ(0)
 
-  a
-    color $dark-blue
+  .hw-sub-panel
+    transform translate3d(0,0,0)
 
-    &:hover
-      color $light-blue
+  .hw-panels-open
+    perspective 1000px
+    perspective-origin center center
 
-  .hicon
-    font-size 6em
-    // Transform doesn't work on inline display
+  .hw-sub-container
     display inline-block
-    iso-right()
-    icon-out()
-    color $dark-pink
+    width third(); height px2em($panel-height)
+    top 0; z-index 1
+    margin-bottom 0
+    transform-style preserve-3d
+    panel-out()
 
-  .hw-sub-close
-    opacity 0
-    close-out()
-
-  .hw-sub
-    overflow hidden
-    visibility hidden
-    height 100%; width @height
-    box-sizing border-box
-    absolute top left
-    z-index 1
-    slide-out()
-
-  .hw-sub-default
-    z-index 3
-    visibility visible
-    default-out()
-
-  &:nth-child(3n+1),
-  &:nth-child(3n+3)
-    .hw-sub-default
-      background $pink
-      iso-left()
-
-  &:nth-child(3n+2)
-    .hw-sub-default
+    .hicon
       iso-right()
-      background $dark-pink
-
-    .hicon
-      iso-left()
-      color $pink
-
-  &:nth-child(3n+2),
-  &:nth-child(3n+3)
-    .hw-sub-left
-      left -100% // Reposition panel for scroll issues on firefox
-      transform rotateY(98.75deg)
-      // 1% difference is for nice edge aliasis
-      transform-origin 101% 50%
-
-  &:nth-child(3n+1),
-  &:nth-child(3n+2)
-    .hw-sub-right
-      left 100% // Reposition panel for scroll issues on firefox
-      transform-origin -1% 50%
-      transform rotateY(-98.75deg)
-
-  &:nth-child(3n+2) .hw-sub-left,
-  &:nth-child(3n+3) .hw-sub-left,
-  &:nth-child(3n+1) .hw-sub-right,
-  &:nth-child(3n+2) .hw-sub-right
-    rotate-out()
-
-  &.{activeClass}
-    height px2em($panel-height*1.5)
-    top (px2em($panel-height) - @height) * 1.5
-    margin-bottom (px2em($panel-height) - @height) * 2
-    z-index 10
-    panel-in()
-
-    .hicon
-      icon-in()
-      iso-reset()
-      font-size 12em
-      color $dark-gray
+      icon-out()
 
     .hw-sub-close
-      close-in()
-      opacity 1
+      opacity 0
+      close-out()
 
     .hw-sub
-      visibility visible
-      transform rotateY(0) !important
-      slide-in()
+      visibility hidden
+      slide-out()
 
     .hw-sub-default
-      default-in()
+      visibility visible
+      default-out()
+
+    &:nth-child(3n+1),
+    &:nth-child(3n+3)
+      .hw-sub-default
+        iso-left()
+
+    &:nth-child(3n+2)
+      .hw-sub-default
+        iso-right()
+
+      .hicon
+        iso-left()
+
+    &:nth-child(3n+2),
+    &:nth-child(3n+3)
+      .hw-sub-left
+        left -100% // Reposition panel for scroll issues on firefox
+        transform rotateY(98.75deg)
+        // 1% difference is for nice edge aliasis
+        transform-origin 101% 50%
+
+    &:nth-child(3n+1),
+    &:nth-child(3n+2)
+      .hw-sub-right
+        left 100% // Reposition panel for scroll issues on firefox
+        // 1% difference is for nice edge aliasis
+        transform-origin -1% 50%
+        transform rotateY(-98.75deg)
 
     &:nth-child(3n+2) .hw-sub-left,
     &:nth-child(3n+3) .hw-sub-left,
     &:nth-child(3n+1) .hw-sub-right,
     &:nth-child(3n+2) .hw-sub-right
-      rotate-in()
+      rotate-out()
 
+    &.{activeClass}
+      height px2em($panel-height*1.5)
+      top (px2em($panel-height) - @height) * 1.5
+      margin-bottom (px2em($panel-height) - @height) * 2
+      z-index 10
+      panel-in()
 
-for num in 1 2 3
-  .{activeClass}:nth-child(3n+{num}) .hw-sub-close
-    left unit((4 - num) * 100, '%')
+      .hicon
+        icon-in()
+        iso-reset()
+        font-size 12em
+        color $dark-gray
 
-  // active positioning
-  .{activeClass}:nth-child(3n+{num})
-    .hw-sub-left
-      left unit((1 - num) * 100, '%')
+      .hw-sub-close
+        close-in()
+        opacity 1
 
-    .hw-sub-default
-      left unit((2 - num) * 100, '%')
+      .hw-sub
+        visibility visible
+        transform rotateY(0) !important
+        slide-in()
 
-    .hw-sub-right
-      left unit((3 - num) * 100, '%')
+      .hw-sub-default
+        default-in()
+
+      &:nth-child(3n+2) .hw-sub-left,
+      &:nth-child(3n+3) .hw-sub-left,
+      &:nth-child(3n+1) .hw-sub-right,
+      &:nth-child(3n+2) .hw-sub-right
+        rotate-in()
+
+  for num in 1 2 3
+    .{activeClass}:nth-child(3n+{num}) .hw-sub-close
+      left unit((4 - num) * 100, '%')
+
+    // active positioning
+    .{activeClass}:nth-child(3n+{num})
+      .hw-sub-left
+        left unit((1 - num) * 100, '%')
+
+      .hw-sub-default
+        left unit((2 - num) * 100, '%')
+
+      .hw-sub-right
+        left unit((3 - num) * 100, '%')

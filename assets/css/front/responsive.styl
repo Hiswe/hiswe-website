@@ -23,16 +23,74 @@
   .main-content
     width auto
 
-  // .hw-main-navigation
-  //   width third(2)
-
   .hw-title
     font-size 2.25em;
     top -4em
 
-  header.hw-splash
-    p, .hw-hire
-      font-size .75em
+  .hw-main-title,
+  .hw-main-title span,
+  .hw-main-navigation .hw-panels-pink li,
+  .hw-splah-description .hw-hire,
+  .hw-splah-description p,
+  .hw-splah-description p + p
+    margin 0
+    iso-reset()
+
+  .hw-main-navigation
+    width third(2)
+
+  // Splash
+  .hw-splash
+    padding-top 4em
+
+    h2
+      position relative; z-index 2
+      margin 0; padding 0 0 4em
+
+    .hw-splah-description
+      padding 0; margin 0
+
+  .hw-splah-description
+    z-index 1
+
+    p,
+    p + p
+      background none
+      height auto
+
+    p
+      line-height 130%
+      padding-bottom 1em
+
+    p + p
+      text-align right
+
+    .hw-hire
+      float none
+      display block
+      margin 0 auto
+      width 65%
+
+      &:before,
+      &:after
+        display none
+
+  .hw-portrait
+    width auto
+    right 0
+    z-index -1
+    iso-reset()
+    border 0
+
+    object
+      iso-reset()
+
+  .hw-services h6
+    letter-spacing 0.05em
+
+  .hw-sub-description .hw-sub-panel
+    font-size .85em
+
 
 // Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
 @media only screen and (max-width: 479px)
@@ -42,9 +100,11 @@
 
   body
     background $dark-gray
+    padding-top 0
 
   .hw-main-title
     position relative; z-index 2
+    padding-bottom .5em
 
   .hw-main-title,
   .hw-title
@@ -72,7 +132,7 @@
     li
       width third()
       float left
-      // TODO remove the important
+      // TODO find a way to remove the important
       background noir(.75) !important
 
       a
@@ -83,51 +143,9 @@
   .hw-title,
   .hw-title span,
   .hw-panels > :nth-child(n),
-  .hw-splah-description p,
-  .hw-splah-description p + p,
-  .hw-splah-description .hw-hire,
   .hw-sub-container .hw-sub.hw-sub-default,
   .hw-sub-container .hw-sub.hw-sub-default .hicon
     iso-reset()
-
-  .hw-splash
-    padding-top 2em
-
-    h2
-      position relative; z-index 2
-
-    h2,
-    .hw-splah-description
-      padding 0; margin 0
-
-
-    .hw-splah-description
-      z-index 1
-      text-align center
-
-      p,
-      p + p
-        background none
-        text-align left
-
-      .hw-hire
-        float none
-
-        &:before,
-        &:after
-          display none
-
-    .hw-portrait
-      width auto
-      right 0
-      z-index -1
-      iso-reset()
-      // TODO recolor the SVG using css
-      opacity .35
-      border 0
-
-      object
-        iso-reset()
 
   .hw-panels > *,
   .hw-sub-container
@@ -142,3 +160,55 @@
 
   .hw-services .hw-services-title
     padding 0
+
+  // Splash
+  .hw-splash
+    padding 0 0 1em
+    background $pink
+
+    h2
+      font-size 2em
+      padding .75em 0 5em
+
+  .hw-splah-description p,
+  .hw-splah-description p + p
+    display block
+    width auto; height auto; min-height auto
+    padding-bottom 1em
+    line-height 140%
+
+  .hw-splah-description p + p
+    display none
+
+  // panels animation
+  .hw-sub,
+  .hw-sub-close
+    display none
+
+  .hw-sub-default
+    display block
+
+  .{activeClass}
+    .hw-sub-close,
+    .hw-sub-left,
+    .hw-sub-right
+      z-index 10
+      position fixed
+      display block
+      right 0
+
+    .hw-sub-left,
+    .hw-sub-right
+      height auto; width auto
+      left 0
+
+    .hw-sub-left
+      top 0; bottom 50%
+
+    .hw-sub-right
+      top 50%; bottom 0
+
+
+
+
+

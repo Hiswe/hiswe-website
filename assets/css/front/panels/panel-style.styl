@@ -4,6 +4,42 @@
 @import '../css-config'
 @import '../css-mixins'
 
+
+.hw-sub-container
+  position relative
+  a
+    color $dark-blue
+
+    &:hover
+      color $light-blue
+
+  .hicon
+    font-size 6em
+    // Transform doesn't work on inline display
+    display inline-block
+    color $dark-pink
+
+  .hw-sub
+    overflow hidden
+    height 100%; width @height
+    box-sizing border-box
+    absolute top left
+    z-index 1
+
+  .hw-sub-default
+    z-index 3
+
+  &:nth-child(3n+1),
+  &:nth-child(3n+3)
+    .hw-sub-default
+      background $pink
+
+  &:nth-child(3n+2)
+    .hw-sub-default
+      background $dark-pink
+    .hicon
+      color $pink
+
 .hw-sub-container:not(.{activeClass})
   .hw-sub-default
     cursor pointer
@@ -11,6 +47,7 @@
   .hw-sub-default:hover
     box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
+// Panel open
 .hw-panels-open
   h3:first-child
     margin-top 0
@@ -22,6 +59,9 @@
   .{activeClass} .hw-sub-default
     background $gray
 
+    .hicon
+      color $dark-gray
+
 .hw-sub-links,
 .hw-sub-description
   font-size px2em($panel-fs)
@@ -29,7 +69,6 @@
 .hw-sub-panel
   height 100%; width @height
   box-sizing border-box
-  transform translate3d(0,0,0)
   padding $panel-padding $panel-padding 0
 
 .hw-sub-description
@@ -60,6 +99,7 @@
     display inline-block
     text-transform uppercase
 
+// Close button
 .hw-sub-close
   width 2em; height @width
   absolute top .5em left 100%; z-index 2
