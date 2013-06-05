@@ -62,17 +62,19 @@
     .hicon
       color $dark-gray
 
-.hw-sub-links,
-.hw-sub-description
-  font-size px2em($panel-fs)
+
 
 .hw-sub-panel
   height 100%; width @height
   box-sizing border-box
   padding $panel-padding $panel-padding 0
 
-.hw-sub-description
-  line-height 1.5em
+  .hw-sub-links &,
+  .hw-sub-description &
+    font-size px2em($panel-fs)
+
+  .hw-sub-description &
+    line-height 1.5em
 
   p
     margin-bottom 0

@@ -12,17 +12,16 @@
     "express": "~3.1.1",
     "jade": "~0.28.2",
     "colors": "~0.6.0-1",
-    "coffee-script": "~1.6.2",
+    "coffee-script": "~1.6.3",
     "nconf": "~0.6.7",
-    "async": "~0.2.7",
+    "async": "~0.2.9",
     "express-expose": "~0.3.3",
     "alphamail": "~1.0.4",
     "connect-assets": "~2.4.3",
     "stylus": "~0.32.1",
     "nib": "~0.9.1",
-    "hstrap": "~0.3.7",
-    "connect-flash": "~0.1.1",
-    "roots": "~1.3.2"
+    "hstrap": "~0.3.8",
+    "connect-flash": "~0.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

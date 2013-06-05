@@ -53,16 +53,16 @@ default-out()
 
 // Slide panel
 slide-in()
-  transition-property         left,                 visibility
-  transition-duration         d-slide,              0s
-  transition-timing-function  h-ease(e-slide-in),   ease
-  transition-delay            d-in-1,               d-in-1
+  transition-property         left,                visibility
+  transition-duration         t-slide,             0s
+  transition-timing-function  h-ease(e-slide-in),  ease
+  transition-delay            d-in-1,              d-in-1
 
 slide-out()
-  transition-property         left,                 visibility
-  transition-duration         d-slide,              0s
-  transition-timing-function  h-ease(e-slide-out),  ease
-  transition-delay            d-out-1,              d-out-2
+  transition-property         left,                visibility
+  transition-duration         t-slide,             0s
+  transition-timing-function  h-ease(e-slide-out), ease
+  transition-delay            d-out-1,             d-out-2
 
 // Transform panel
 rotate-in()
@@ -102,3 +102,35 @@ close-out()
   transition-duration         0s,           .1s,        t-book
   transition-timing-function  ease,         ease,       ease
   transition-delay            .1s,          0s,         0s
+
+// mobile first panel
+
+mobile-slide-in()
+  transition-property         top,                  visibility
+  transition-duration         t-slide,              0s
+  transition-timing-function  h-ease(e-slide-in),   ease
+  transition-delay            0s,                   0s
+
+mobile-slide-out()
+  transition-property         top,                  visibility
+  transition-duration         t-slide,              0s
+  transition-timing-function  h-ease(e-slide-out),  ease
+  transition-delay            d-out-1,              d-out-2
+
+// mobile-slide-in()
+//   transition-property         left,                 visibility
+//   transition-duration         d-slide,              0s
+//   transition-timing-function  h-ease(e-slide-in),   ease
+//   transition-delay            d-in-1,               d-in-1
+
+// mobile-slide-out()
+//   transition-property         left,                 visibility
+//   transition-duration         d-slide,              0s
+//   transition-timing-function  h-ease(e-slide-out),  ease
+//   transition-delay            d-out-1,              d-out-2
+
+// mobile Second in
+// mobile Second out
+
+
+
