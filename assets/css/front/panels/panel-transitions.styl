@@ -8,7 +8,7 @@
 t-iso     = .5s
 t-slide   = .5s
 t-book    = .5s
-t-between = 0s
+t-between = .25s
 
 // Delay computing
 d-in-1  = t-iso + t-between
@@ -27,10 +27,10 @@ e-book-in   = "ease"
 e-book-out  = "ease"
 
 panel-in()
-  transition-property         height,           top,              margin-bottom,    z-index
-  transition-duration         t-iso,            t-iso,            t-iso,            0s
-  transition-timing-function  h-ease(e-iso-in), h-ease(e-iso-in), h-ease(e-iso-in), ease
-  transition-delay            0s,               0s,               0s,               0s
+  transition-property         height,             top,                margin-bottom,      z-index
+  transition-duration         t-iso,              t-iso,              t-iso,              0s
+  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   ease
+  transition-delay            0s,                 0s,                 0s,                 0s
 
 panel-out()
   transition-property         height,             top,                margin-bottom,      z-index
@@ -40,82 +40,93 @@ panel-out()
 
 // Cover panel
 default-in()
-  transition-property         transform,        background,         left,             box-shadow
-  transition-duration         t-iso,            t-iso,              t-slide,          $hover-transition
-  transition-timing-function  h-ease(e-iso-in), h-ease(e-iso-in),   h-ease(e-iso-in), ease
-  transition-delay            0s,               0s,                 d-in-1,           0s
+  transition-property         transform,          height,             background,         left,               box-shadow
+  transition-duration         t-iso,              t-iso,              t-iso,              t-slide,            $hover-transition
+  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   ease
+  transition-delay            0s,                 0s,                 0s,                 d-in-1,             0s
 
 default-out()
-  transition-property         transform,          background,         left,               box-shadow
-  transition-duration         t-iso,              t-iso,              t-slide,            $hover-transition
-  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
-  transition-delay            d-out-2,            d-out-2,            d-out-1,            0s
+  transition-property         transform,          height,             background,         left,               box-shadow
+  transition-duration         t-iso,              t-iso,              t-iso,              t-slide,            $hover-transition
+  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
+  transition-delay            d-out-2,            d-out-2,            d-out-2,            d-out-1,            0s
 
 // Slide panel
 slide-in()
-  transition-property         left,                visibility
-  transition-duration         t-slide,             0s
-  transition-timing-function  h-ease(e-slide-in),  ease
-  transition-delay            d-in-1,              d-in-1
+  transition-property         left,               visibility
+  transition-duration         t-slide,            0s
+  transition-timing-function  h-ease(e-slide-in), ease
+  transition-delay            d-in-1,             d-in-1
 
 slide-out()
-  transition-property         left,                visibility
-  transition-duration         t-slide,             0s
-  transition-timing-function  h-ease(e-slide-out), ease
-  transition-delay            d-out-1,             d-out-2
+  transition-property         left,               visibility
+  transition-duration         t-slide,            0s
+  transition-timing-function  h-ease(e-slide-out),ease
+  transition-delay            d-out-1,            d-out-2
 
 // Transform panel
 rotate-in()
-  transition-property         left,         visibility, transform
-  transition-duration         0s,           0s,         t-book
-  transition-timing-function  ease,         ease,       h-ease(e-book-in)
-  transition-delay            d-in-2,       d-in-2,     d-in-2
+  transition-property         left,               visibility,         transform
+  transition-duration         0s,                 0s,                 t-book
+  transition-timing-function  ease,               ease,               h-ease(e-book-in)
+  transition-delay            d-in-2,             d-in-2,             d-in-2
 
 rotate-out()
-  transition-property         left,         visibility, transform
-  transition-duration         0s,           0s,         t-book
-  transition-timing-function  ease,         ease,       h-ease(e-book-out)
-  transition-delay            d-out-1,      d-out-1,    0s
+  transition-property         left,               visibility,         transform
+  transition-duration         0s,                 0s,                 t-book
+  transition-timing-function  ease,               ease,               h-ease(e-book-out)
+  transition-delay            d-out-1,            d-out-1,            0s
 
 // Icon in Services
 icon-in()
-  transition-property         transform,          color,              font-size
-  transition-duration         t-iso,              t-iso,              t-iso
-  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   ease
-  transition-delay            0s,                 0s,                 d-in-1
+  transition-property         transform,          opacity,            color,              font-size
+  transition-duration         t-iso,              t-iso,              t-iso,              t-iso
+  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   ease
+  transition-delay            0s,                 0s,                 0s,                 0s
 
 icon-out()
-  transition-property         transform,          color,              font-size
-  transition-duration         t-iso,              t-iso,              t-iso
-  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
-  transition-delay            d-out-2,            d-out-2,            d-out-1
+  transition-property         transform,          opacity,            color,              font-size
+  transition-duration         t-iso,              t-iso,              t-iso,              t-iso
+  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
+  transition-delay            d-out-2,            d-out-2,            d-out-2,            d-out-2
 
 // close button
 close-in()
-  transition-property         left,         opacity,    color
-  transition-duration         0s,           t-iso,      t-iso
-  transition-timing-function  ease,         ease,       ease
-  transition-delay            d-full,       d-full,     0s
+  transition-property         left,               opacity,            color
+  transition-duration         0s,                 t-iso,              t-iso
+  transition-timing-function  ease,               ease,               ease
+  transition-delay            d-full,             d-full,             0s
 
 close-out()
-  transition-property         left,         opacity,    color
-  transition-duration         0s,           .1s,        t-book
-  transition-timing-function  ease,         ease,       ease
-  transition-delay            .1s,          0s,         0s
+  transition-property         left,               opacity,            color
+  transition-duration         0s,                 .1s,                t-book
+  transition-timing-function  ease,               ease,               ease
+  transition-delay            .1s,                0s,                 0s
 
 // mobile first panel
+mobile-left-in()
+  transition-property         transform,          visibility,         height,             z-index,            top
+  transition-duration         t-slide,            0s,                 0s,                 0s,                 0s
+  transition-timing-function  h-ease(e-slide-in), ease,               ease,               ease,               ease
+  transition-delay            d-in-1,             d-in-1,             d-in-1,             d-in-1,             d-in-1
 
-mobile-slide-in()
-  transition-property         top,                  visibility
-  transition-duration         t-slide,              0s
-  transition-timing-function  h-ease(e-slide-in),   ease
-  transition-delay            0s,                   0s
+mobile-left-out()
+  transition-property         transform,          visibility,         height,             z-index,            top
+  transition-duration         t-slide,            0s                  0s                  0s                  0s
+  transition-timing-function  h-ease(e-slide-out),ease,               ease,               ease,               ease
+  transition-delay            d-out-1,            d-out-2,            d-out-2,            d-out-2,            d-out-2
 
-mobile-slide-out()
-  transition-property         top,                  visibility
-  transition-duration         t-slide,              0s
-  transition-timing-function  h-ease(e-slide-out),  ease
-  transition-delay            d-out-1,              d-out-2
+mobile-right-in()
+  transition-property         transform,          visibility,         height,             z-index,            top
+  transition-duration         t-book,             0s,                 0s,                 0s,                 0s
+  transition-timing-function  ease,               ease,               ease,               ease,               ease
+  transition-delay            d-in-2,             d-in-2,             d-in-2,             d-in-2,             d-in-2
+
+mobile-right-out()
+  transition-property         transform,          visibility,         height,             z-index,            top
+  transition-duration         t-book,             0s,                 0s,                 0s,                 0s
+  transition-timing-function  ease,               ease,               ease,               ease,               ease
+  transition-delay            0s,                 d-out-1,            d-out-1,            d-out-1,            d-out-1
 
 // mobile-slide-in()
 //   transition-property         left,                 visibility

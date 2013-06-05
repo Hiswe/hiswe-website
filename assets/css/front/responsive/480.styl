@@ -90,20 +90,6 @@
     display none
 
   // panels animation
-  .hw-sub,
-  .hw-sub-close
-    visibility hidden
-
-  .hw-sub-default
-    visibility visible
-
-    &::after
-      $$stem-size = 1em
-      stem("top", $dark-grey, $$stem-size)
-      absolute bottom 0 left 50%
-      margin-left -($$stem-size/2)
-      display none
-
   .hw-sub-close
     top .5em
     right .5em
@@ -115,48 +101,73 @@
     height $$height
     background $dark-grey
 
+    .hw-sub,
+    .hw-sub-close
+      visibility hidden
+
     .hw-sub-default,
     .hw-sub-left,
     .hw-sub-right
       absolute top left
       height $$height
 
-    .hw-sub-left
-      mobile-slide-out()
 
+    .hw-sub-default
+      visibility visible
+      default-out()
+
+      .hicon
+        icon-out()
+        opacity 1
+
+      &::after
+        $$stem-size = 1em
+        stem("top", $dark-grey, $$stem-size)
+        absolute bottom 0 left 50%
+        margin-left -($$stem-size/2)
+        display none
+
+    .hw-sub-left,
     .hw-sub-right
-      rotate-out()
-      background $grey
-      transform rotateX(90deg)
+      transform rotateX(-90deg)
       transform-origin top center
 
-    &.{activeClass}
-      height ($$height * 4)
+    .hw-sub-left
+      mobile-left-out()
 
+    .hw-sub-right
+      mobile-right-out()
+      background $grey
+
+    &.{activeClass}
       .hw-sub-default
+        default-in()
+        height ($$height / 2)
         background $blue
+
+        .hicon
+          icon-in()
+          font-size 0.1em
+          opacity 0
 
         &::after
           display block
 
+      .hw-sub-close,
       .hw-sub-left,
       .hw-sub-right
+        z-index 10
         visibility visible
+        transform rotateX(0)
 
       .hw-sub-left
-        top $$height
-        mobile-slide-in()
+        top ($$height / 2)
+        mobile-left-in()
 
       .hw-sub-right
-        top ($$height * 2)
+        top ($$height * 1.5)
         height ($$height * 2)
-        transform rotateX(0)
-        rotate-in()
-        // left 0
-
-      .hw-sub-close
-        visibility visible
-
+        mobile-right-in()
 
       // .hw-sub-left
       //   top 0; bottom 50%
