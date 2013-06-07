@@ -2,6 +2,7 @@ class Home extends hw.Controller
   trace: true
   logPrefix: '[HOME]'
   activeClass: hw.options.activeClass
+  activeBody:  hw.options.activeBody
   carrouselClass: hw.options.carrouselClass
   timer: undefined
 
@@ -21,7 +22,8 @@ class Home extends hw.Controller
     super
     return unless @el.length
     @log 'Init'
-    $('body').on 'click', @cleanAll
+    @body = $('body')
+    @body.on 'click', @cleanAll
     @initCarrousel()
     this
 
@@ -65,11 +67,11 @@ class Home extends hw.Controller
     e.preventDefault()
     e.stopPropagation()
     $papa = $target.closest('section')
-    @log $papa
     @cleanAll()
     @containers.not($papa).css('z-index', 1)
     $papa.css('z-index', 2)
     $target.addClass @activeClass
+    @body.addClass @activeBody
     this
 
   zoomOut: (e) ->
@@ -84,6 +86,7 @@ class Home extends hw.Controller
         $papa.css('z-index', 1)
       , 2000
     $panel.removeClass @activeClass
+    @body.removeClass @activeBody
     @cleanAll()
     this
 

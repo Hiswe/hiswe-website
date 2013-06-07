@@ -6,6 +6,7 @@ nib     = require 'nib'
 hstrap  = require 'hstrap'
 
 activeClass     = 'hw-panel-active'
+activeBody      = 'hw-body-active'
 carrouselClass  = 'hw-carrousel'
 
 compileCss = (app) ->
@@ -22,6 +23,7 @@ compileCss = (app) ->
      .set('firebug', false)
      .define('activeClass', new stylus.nodes.String(activeClass))
      .define('carrouselClass', new stylus.nodes.String(carrouselClass))
+     .define('activeBody', new stylus.nodes.String(activeBody))
      .define('isDev', isDev)
      .use(nib())
      .use(hstrap())
@@ -49,6 +51,7 @@ module.exports = (app) ->
   options = {
     activeClass:    activeClass
     carrouselClass: carrouselClass
+    activeBody:     activeBody
   }
   app.expose({ options: options}, 'hw')
 
