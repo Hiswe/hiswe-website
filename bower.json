@@ -6,6 +6,7 @@
     "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",
     "imagesloaded": "git://github.com/desandro/imagesloaded.git#~2.1.1",
     "hiso-font": "latest",
-    "modernizr": "~2.6.2"
+    "modernizr": "~2.6.2",
+    "jquery-pointer-events": "git://github.com/jquery/jquery-pointer-events.git"
   }
 }

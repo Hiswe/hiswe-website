@@ -7,8 +7,11 @@ module.exports = (grunt) ->
       },
       dist: {
         src: [
-          'components/jquery/jquery.js'
           'components/modernizr/modernizr.js'
+          'components/jquery/jquery.js'
+          'components/jquery-pointer-events/src/pointer.js'
+          # 'components/jQuery-Mobile-Events/src/jquery.mobile-events.js'
+          # 'components/hammerjs/dist/jquery.hammer.js'
           # 'components/jquery.transit/jquery.transit.js'
           # 'components/imagesloaded/jquery.imagesloaded.js'
         ],
@@ -34,8 +37,11 @@ module.exports = (grunt) ->
       lib: {
         files: {
           'public/lib.min.js': [
-            'components/jquery/jquery.js'
             'components/modernizr/modernizr.js'
+            'components/jquery/jquery.js'
+            'components/jquery-pointer-events/src/pointer.js'
+            # 'components/jQuery-Mobile-Events/src/jquery.mobile-events.js'
+            # 'components/hammerjs/dist/jquery.hammer.js'
             # 'components/jquery.transit/jquery.transit.js'
             # 'components/imagesloaded/jquery.imagesloaded.js'
           ]

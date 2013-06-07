@@ -1,9 +1,11 @@
 #
-# Name    : hCarrousel
-# Author  : Hiswe halya, https://github.com/hiswe
-# Version : 0.0.1
-# Repo    :
-# Website :
+# Name          : hCarrousel
+# Author        : Hiswe halya, https://github.com/hiswe
+# Version       : 0.0.3
+# Repo          :
+# Website       :
+# Dependencies  : https://github.com/jquery/jquery-pointer-events
+#                 h-swipe
 #
 
 (($, document, window) ->
@@ -123,18 +125,25 @@
 
     _bind: ->
       if @opts.prevButton is off and @opts.nextButton is off
-        @el.on 'click.hCarrousel', @forward
+        @el.on 'pointerdown', @forward
         return this
+
+      # Prevent image drag
+      # While dragging, stopEvent used by the swipe plugin doesn't fire
+      @el.find('img').on 'dragstart', -> false
+
+      @el.on 'swiperight', @forward
+      @el.on 'swipeleft', @backward
 
       if @opts.prevButton instanceof jQuery
         @log 'Define custom prev control'
-        @opts.prevButton.on 'click.hCarrousel', (e) =>
+        @opts.prevButton.on 'pointerdown', (e) =>
           e.preventDefault()
           @backward()
 
       if @opts.nextButton instanceof jQuery
         @log 'Define custom next control'
-        @opts.nextButton.on 'click.hCarrousel', (e) =>
+        @opts.nextButton.on 'pointerdown', (e) =>
           e.preventDefault()
           @forward()
       this
