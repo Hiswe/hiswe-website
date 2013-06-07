@@ -145,6 +145,23 @@
       mobile-right-out()
       background $grey
 
+    // description in services
+    .hw-sub-links
+      padding-top .75em
+
+      .hw-sub-panel
+        padding-top 0
+      a
+        margin .25em 0 .5em
+
+    // description in work
+    .hw-sub-description-points
+      flex-row()
+      width 100%
+
+    .hw-sub-description-group
+      flex 1
+
     &.{activeClass}
       .hw-sub-default
         default-in()
@@ -171,13 +188,14 @@
         top ($$height / 2)
         mobile-left-in()
 
+        .hw-services &
+          height ($$height * 1.25)
+
       .hw-sub-right
         top ($$height * 1.5)
         height ($$height * 2)
         mobile-right-in()
 
-      // .hw-sub-left
-      //   top 0; bottom 50%
-
-      // .hw-sub-right
-      //   top 50%; bottom 0
+        .hw-services &
+          top ($$height * 1.75)
+          height $$height
