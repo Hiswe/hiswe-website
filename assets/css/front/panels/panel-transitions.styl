@@ -104,6 +104,12 @@ close-out()
   transition-delay            .1s,                0s,                 0s
 
 // mobile first panel
+mobile-stem-in()
+  transition visibility 0s ease 0s
+
+mobile-stem-out()
+  transition visibility 0s ease d-out-2
+
 mobile-left-in()
   transition-property         transform,          visibility,         height,             z-index,            top
   transition-duration         t-slide,            0s,                 0s,                 0s,                 0s
@@ -112,7 +118,7 @@ mobile-left-in()
 
 mobile-left-out()
   transition-property         transform,          visibility,         height,             z-index,            top
-  transition-duration         t-slide,            0s                  0s                  0s                  0s
+  transition-duration         t-slide,            0s,                 0s,                 0s,                 0s
   transition-timing-function  h-ease(e-slide-out),ease,               ease,               ease,               ease
   transition-delay            d-out-1,            d-out-2,            d-out-2,            d-out-2,            d-out-2
 

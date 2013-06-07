@@ -111,7 +111,6 @@
       absolute top left
       height $$height
 
-
     .hw-sub-default
       visibility visible
       default-out()
@@ -121,11 +120,12 @@
         opacity 1
 
       &::after
+        mobile-stem-out()
         $$stem-size = 1em
         stem("top", $dark-grey, $$stem-size)
         absolute bottom 0 left 50%
         margin-left -($$stem-size/2)
-        display none
+        visibility hidden
 
     .hw-sub-left,
     .hw-sub-right
@@ -151,7 +151,8 @@
           opacity 0
 
         &::after
-          display block
+          mobile-stem-in()
+          visibility visible
 
       .hw-sub-close,
       .hw-sub-left,
