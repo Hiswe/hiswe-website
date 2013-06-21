@@ -17,52 +17,6 @@
   ucFirst = (text) ->
     text.substr(0, 1).toUpperCase() + text.substr(1)
 
-  # Determine Css Animation/Transition Support
-  # see https://github.com/angular/angular.js/blob/master/src/ng/sniffer.js
-  sniffer = (->
-    vendorPrefix  = ''
-    cssPrefix     = ''
-    vendorRegex   = /^(Moz|webkit|O|ms)(?=[A-Z])/
-    bodyStyle     = document.body and document.body.style
-    transitions   = false
-    animations    = false
-
-    if bodyStyle
-      for prop of bodyStyle
-        match = vendorRegex.exec(prop)
-        if match
-          vendorPrefix  = ucFirst(match[0])
-          # This is the prefix used in getComputedStyle
-          cssPrefix     = match[0]
-          break
-
-      transitions = !!(bodyStyle["transition"]? or bodyStyle["#{vendorPrefix}Transition"]?)
-      animations  = !!(bodyStyle["animation"]? or bodyStyle["#{vendorPrefix}Animation"]?)
-
-    eventList = {
-      'default':'transitionend animationend'
-      'Ms':'MSTransitionEnd MSAnimationEnd'
-      'O':'oTransitionEnd oAnimationEnd'
-      'Moz':'transitionend animationend'
-      'Webkit':'webkitTransitionEnd webkitAnimationEnd'
-    }
-
-    if transitions is off and animations is off
-      events = ''
-    else if vendorPrefix is ''
-      events = eventList.default
-    else
-      events = eventList[vendorPrefix]
-
-    return {
-      vendorPrefix: vendorPrefix
-      cssPrefix:    cssPrefix
-      transitions:  transitions
-      animations:   animations
-      events:       events
-    }
-  )()
-
   # Transition class generation
   buildAnimationClass = (settings) ->
     base = settings.className
@@ -85,6 +39,7 @@
       create:           $.noop
       prevButton:       false
       nextButton:       false
+      autoplay:         5000
     }
 
     constructor: (elements, options = {}) ->
@@ -95,6 +50,7 @@
       @_bind()
       @el.trigger 'hcarrouselcreate'
       @opts.create.apply @el[0], [{el: @el}]
+      @autoplay() unless @opts.autoplay is 0
       this
 
     _init: ->
@@ -106,22 +62,8 @@
       @selectionIndex = 0
       # Don't run the carrousel until animation is completed
       @hold           = false
-      @animation      = @_isAnimated()
       @log 'init with', @size, 'items'
       true
-
-    _isAnimated: ->
-      return false unless (sniffer.transitions and sniffer.animations)
-      # Test if slide elements has animations or transitions
-      style       = window.getComputedStyle(@slides[0]) or {}
-      prefix      = sniffer.cssPrefix
-      isAnimated  = false
-      for key in ["TransitionDuration", "AnimationDuration"]
-        hasDuration = style[lcFirst(key)] or style["#{prefix}#{key}"]
-        if hasDuration? and hasDuration isnt ''
-          isAnimated = true
-          break
-      isAnimated
 
     _bind: ->
       if @opts.prevButton is off and @opts.nextButton is off
@@ -132,8 +74,8 @@
       # While dragging, stopEvent used by the swipe plugin doesn't fire
       @el.find('img').on 'dragstart', -> false
 
-      @el.on 'swiperight', @forward
-      @el.on 'swipeleft', @backward
+      @el.on 'pointerswiperight', @forward
+      @el.on 'pointerswipeleft', @backward
 
       if @opts.prevButton instanceof jQuery
         @log 'Define custom prev control'
@@ -168,6 +110,9 @@
         @selectionIndex = @selectionIndex + 1
       @_circle $current, 'backward'
 
+    autoplay: ->
+      @timer = window.setTimeout @forward, @opts.autoplay
+
     # Call an instance method from outside
     _bridge: (method, args...) ->
       @log 'bridge', method, args
@@ -180,6 +125,10 @@
       $next = @slides.eq @selectionIndex
       @log 'circle', direction
 
+      # In case of autoplay
+      window.clearTimeout @timer
+
+      # TODO refactor this with Hevent
       if @animation is off
         $current.removeClass @opts.activeClassName
         $next.addClass @opts.activeClassName
@@ -190,9 +139,10 @@
       outClass  = @opts["#{direction}Out"]
 
       # Css transitions
-      $current.one(sniffer.events, (e) =>
+      $current.one('transitionend', (e) =>
         $current.removeClass(outClass)
         @hold = false
+        @autoplay()
       )
 
       $current.removeClass(@opts.activeClassName)
@@ -226,8 +176,6 @@
       console?.log?(args...)
       this
 
-  # Export sniffer if someone want to use it elsewhere
-  HCarrousel::sniffer = sniffer
   # Export plugin
   $.HCarrousel = HCarrousel
 

@@ -9,9 +9,7 @@ module.exports = (grunt) ->
         src: [
           'components/modernizr/modernizr.js'
           'components/jquery/jquery.js'
-          'components/jquery-pointer-events/src/pointer.js'
-          # 'components/jQuery-Mobile-Events/src/jquery.mobile-events.js'
-          # 'components/hammerjs/dist/jquery.hammer.js'
+          'components/hevent/build/jquery.hevent.js'
           # 'components/jquery.transit/jquery.transit.js'
           # 'components/imagesloaded/jquery.imagesloaded.js'
         ],
@@ -39,9 +37,7 @@ module.exports = (grunt) ->
           'public/lib.min.js': [
             'components/modernizr/modernizr.js'
             'components/jquery/jquery.js'
-            'components/jquery-pointer-events/src/pointer.js'
-            # 'components/jQuery-Mobile-Events/src/jquery.mobile-events.js'
-            # 'components/hammerjs/dist/jquery.hammer.js'
+            'components/hevent/build/jquery.hevent.js'
             # 'components/jquery.transit/jquery.transit.js'
             # 'components/imagesloaded/jquery.imagesloaded.js'
           ]
