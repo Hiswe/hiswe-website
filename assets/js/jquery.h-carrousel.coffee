@@ -1,7 +1,7 @@
 #
 # Name          : hCarrousel
 # Author        : Hiswe halya, https://github.com/hiswe
-# Version       : 0.0.3
+# Version       : 0.0.4\
 # Repo          :
 # Website       :
 # Dependencies  : https://github.com/jquery/jquery-pointer-events
@@ -39,7 +39,8 @@
       create:           $.noop
       prevButton:       false
       nextButton:       false
-      autoplay:         5000
+      autoplay:         false
+      autoplayDelay:    5000
     }
 
     constructor: (elements, options = {}) ->
@@ -50,7 +51,7 @@
       @_bind()
       @el.trigger 'hcarrouselcreate'
       @opts.create.apply @el[0], [{el: @el}]
-      @autoplay() unless @opts.autoplay is 0
+      @autoplay() if @opts.autoplay is on
       this
 
     _init: ->
@@ -76,6 +77,8 @@
 
       @el.on 'pointerswiperight', @forward
       @el.on 'pointerswipeleft', @backward
+      @el.on 'hcarrouselplay', => @autoplay(true)
+      @el.on 'hcarrouselpause', => @autoplay(false)
 
       if @opts.prevButton instanceof jQuery
         @log 'Define custom prev control'
@@ -110,33 +113,28 @@
         @selectionIndex = @selectionIndex + 1
       @_circle $current, 'backward'
 
-    autoplay: ->
-      @timer = window.setTimeout @forward, @opts.autoplay
+    autoplay: (play = on) ->
+      @log 'autoplay', play
+      return window.clearTimeout(@timer) if play is off
+      @timer = window.setTimeout @forward, @opts.autoplayDelay
 
     # Call an instance method from outside
     _bridge: (method, args...) ->
       @log 'bridge', method, args
       return unless method?
       return if typeof method isnt 'string'
-      return if method.charAt( 0 ) is '_'
+      return if method.charAt(0) is '_'
       @[method]?(args...)
 
     _circle: ($current, direction) ->
-      $next = @slides.eq @selectionIndex
       @log 'circle', direction
+
+      $next     = @slides.eq @selectionIndex
+      inClass   = @opts["#{direction}In"]
+      outClass  = @opts["#{direction}Out"]
 
       # In case of autoplay
       window.clearTimeout @timer
-
-      # TODO refactor this with Hevent
-      if @animation is off
-        $current.removeClass @opts.activeClassName
-        $next.addClass @opts.activeClassName
-        @hold = false
-        return this
-
-      inClass   = @opts["#{direction}In"]
-      outClass  = @opts["#{direction}Out"]
 
       # Css transitions
       $current.one('transitionend', (e) =>

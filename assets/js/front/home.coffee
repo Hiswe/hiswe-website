@@ -1,5 +1,5 @@
 class Home extends hw.Controller
-  trace: true
+  trace: false
   logPrefix: '[HOME]'
   activeClass: hw.options.activeClass
   activeBody:  hw.options.activeBody
@@ -70,8 +70,9 @@ class Home extends hw.Controller
     @cleanAll()
     @containers.not($papa).css('z-index', 1)
     $papa.css('z-index', 2)
-    $target.addClass @activeClass
-    @body.addClass @activeBody
+    $target.addClass(@activeClass)
+      .find('.hw-work-carrousel ul').trigger('hcarrouselplay')
+    @body.addClass(@activeBody)
     this
 
   zoomOut: (e) ->
@@ -85,7 +86,8 @@ class Home extends hw.Controller
     @timer = @delay ->
         $papa.css('z-index', 1)
       , 2000
-    $panel.removeClass @activeClass
+    $panel.removeClass(@activeClass)
+      .find('.hw-work-carrousel ul').trigger('hcarrouselpause')
     @body.removeClass @activeBody
     @cleanAll()
     this
