@@ -18,7 +18,7 @@ textarea
   h-textarea()
 
 .hw-contact
-  margin-top 7em
+  margin-top 2em
   clearfix()
 
   aside, form
@@ -26,8 +26,23 @@ textarea
     min-height 3em
     width third()
 
+  aside
+    iso-left()
+    background $pink
+    min-height px2em(235)
+    margin-top px2em(95)
+
+    p
+      font-size px2em(18)
+      line-height 2em
+      padding 1em
+
   .hw-contact-form
+    box-sizing border-box
     width third(2)
+    padding-left 1em
+
+
 
   button
     h-btn()
