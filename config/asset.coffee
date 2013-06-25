@@ -35,7 +35,7 @@ module.exports = (app) ->
   # Stylus
   app.use stylus.middleware({
     src: path.join( __dirname + '/../assets/css')
-    dest: path.join( __dirname + '/../public')
+    dest: path.join( __dirname + '/../tmp/css')
     compile: compileCss(app)
   });
 
@@ -44,8 +44,10 @@ module.exports = (app) ->
     maxAge = 2629800000 # 1 month
   else
     maxAge = 1
-  assets  = path.join(__dirname, '/../public')
+  assets    = path.join(__dirname, '/../public')
+  tmpAssets = path.join(__dirname, '/../tmp/css')
   app.use express.static(assets, {maxAge: maxAge})
+  app.use express.static(tmpAssets, {maxAge: maxAge})
 
   # expose some datas to the front app under hw namespace
   options = {

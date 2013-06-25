@@ -6,6 +6,7 @@
 node_modules
 /components
 /public/media/source
+/tmp
 *.ai
 sources
 archives
