@@ -11,29 +11,31 @@
   font-size 4em; font-weight normal
   z-index 3
 
-  span
-    color black
-    display inline-block
-    iso-right()
-    height 1em
-    position relative
-    z-index 2
-    margin-right 3px
-    transition color .5s
-    line-height 100%
-
-    &::after
-      line-height 100%
-      absolute left bottom 1px
+  a
+    span
+      color black
+      display inline-block
+      iso-right()
       height 1em
-      z-index -1
-      content attr(data-text)
-      color white
-      font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-      crisp-font-smoothing()
+      position relative
+      z-index 2
+      margin-right 3px
+      line-height 100%
 
-  a:hover span
-    color darken($dark-blue, 50%)
+      &::after
+        line-height 100%
+        absolute left bottom 1px
+        height 1em
+        z-index -1
+        content attr(data-text)
+        color white
+        font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+        crisp-font-smoothing()
+        transition color .5s
+
+    &:hover span::after
+      color lighten($light-blue, 15%)
+      color $light-blue
 
 .hw-main-navigation
   absolute top px2em(-($main-border)) right
