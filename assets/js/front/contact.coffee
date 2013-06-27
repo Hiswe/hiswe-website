@@ -1,6 +1,7 @@
 class Contact extends hw.Controller
-  trace: false
+  trace: true
   logPrefix: '[CONTACT]'
+  removeDelay: 10000
 
   elements: {
     'input, textarea, button': 'all'
@@ -17,12 +18,10 @@ class Contact extends hw.Controller
     @log 'init'
 
   discardMessage: (e) ->
-    @log 'discard with animation?', Modernizr.cssanimations
+    @log 'discard'
     $target = $(e.currentTarget)
-    return $target.remove() unless Modernizr.cssanimations
-    $target.addClass('remove').on hw.animationEnd, ->
-      $(this).remove()
-
+    window.clearTimeout @timer
+    $target.on('animationend', ->$(this).remove()).addClass('remove')
 
   submit: (e) ->
     @log 'submit'
@@ -38,9 +37,12 @@ class Contact extends hw.Controller
     .always(@always)
 
   success: (res) =>
-    @log 'success', res.responseText
-    msg = ['<p class="hw-message-success">', res.responseText, '</p>']
-    @el.prepend $(msg.join(''))
+    @log 'success', res
+    msg = ['<p class="hw-message-success">', res.message, '</p>']
+    $msg = $(msg.join('')).prependTo(@el)
+    @timer = window.setTimeout(
+      => @discardMessage({currentTarget: $msg})
+    , @removeDelay)
 
   error: (res) =>
     @log 'error', res.responseText

@@ -38,17 +38,18 @@ create = (req, res, next) ->
 createXhr = (req, res, next) ->
   form = req.body
   console.log log.debug, 'POST XHR'
-  unless isValid(form)
+  validation = isValid(form)
+  unless validation.status
     console.log log.debug, form
     console.log log.warn, 'validation fail' , req.body
-    return res.send 400, 'validation fail'
+    return res.send 400, "validation fail <br>#{validation.message}"
   sendMail form, (err, result) ->
     if err
       console.log log.error, 'Mail has not been send'
       console.log err
       return res.send(500, 'Message not send')
     console.log log.debug, 'Mail has been send'
-    res.json {ok:true}
+    res.json {ok:true, message: 'Mail has been send'}
 
 sendMail = (data, callback) ->
   alog = "#{log}[SEND MAIL]"
@@ -63,11 +64,10 @@ sendMail = (data, callback) ->
   emailService.queue payload, callback
 
 isValid = (form) ->
-  return false
   alog = "#{log}[VALIDATE]"
   unless form.name? and form.email? and form.message?
     console.log log.warn, 'one of the fields is missing', form
-    return false
+    return {status: true, message: 'A field is missing'}
   # http://blog.gerv.net/2011/05/html5_email_address_regexp/
   emailTest = /// ^
     [a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+
@@ -76,8 +76,8 @@ isValid = (form) ->
   ///
   unless emailTest.test(form.email)
     console.log log.warn, 'email not valid', form.email
-    return false
-  true
+    return {status: true, message: 'The email adress is not valid'}
+  {status: true}
 
 exports.index   = index
 exports.create  = create
