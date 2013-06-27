@@ -1,7 +1,7 @@
 class Contact extends hw.Controller
   trace: true
   logPrefix: '[CONTACT]'
-  removeDelay: 10000
+  removeDelay: 5000
 
   elements: {
     'input, textarea, button': 'all'
@@ -23,6 +23,14 @@ class Contact extends hw.Controller
     window.clearTimeout @timer
     $target.on('animationend', ->$(this).remove()).addClass('remove')
 
+  addMessage: (type = 'success', text = 'send') ->
+    msg = ['<p class="hw-message-', type, '">', text, '</p>']
+    $msg = $(msg.join('')).prependTo(@el)
+    @timer = window.setTimeout(
+      => @discardMessage({currentTarget: $msg})
+    , @removeDelay)
+    this
+
   submit: (e) ->
     @log 'submit'
     e.preventDefault()
@@ -38,16 +46,11 @@ class Contact extends hw.Controller
 
   success: (res) =>
     @log 'success', res
-    msg = ['<p class="hw-message-success">', res.message, '</p>']
-    $msg = $(msg.join('')).prependTo(@el)
-    @timer = window.setTimeout(
-      => @discardMessage({currentTarget: $msg})
-    , @removeDelay)
+    @addMessage('success', res.message)
 
   error: (res) =>
     @log 'error', res.responseText
-    msg = ['<p class="hw-message-error">', res.responseText, '</p>']
-    @el.prepend $(msg.join(''))
+    @addMessage('error', res.responseText)
 
   always: (res) =>
     @log 'always'

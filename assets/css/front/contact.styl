@@ -56,13 +56,16 @@ textarea
 
   .hw-message-success,
   .hw-message-error
+    overflow hidden
+    margin 0
+    box-sizing border-box
     cursor pointer
-    animation fadeIn .5s
-    animation-delay .5s
+    animation fadeIn 1s
+    animation-delay .25s
     animation-fill-mode both
 
     &.remove
-      animation fadeOut .5s
+      animation fadeOut 1s
       animation-delay 0
 
   .hw-message-success
@@ -72,11 +75,35 @@ textarea
     h-box-inset(darken($dark-pink, 25%), $dark-pink)
 
 @keyframes fadeIn {
-  from { opacity: 0 }
-  to {   opacity: 1 }
+  from {
+    opacity: 0
+    padding-top: 0
+    padding-bottom: 0
+    margin-bottom: 0
+    max-height: 0
+  }
+  to {
+    opacity: 1
+    padding-top: $h-gutter
+    padding-bottom: $h-gutter
+    margin-bottom: .5em
+    max-height: 68px
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1 }
-  to {   opacity: 0 }
+  from {
+    opacity: 1
+    padding-top: $h-gutter
+    padding-bottom: $h-gutter
+    margin-bottom: .5em
+    max-height: 68px
+  }
+  to {
+    opacity: 0
+    max-height: 0
+    padding-top: 0
+    padding-bottom: 0
+    margin-bottom: 0
+  }
 }
