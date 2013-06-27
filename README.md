@@ -25,6 +25,7 @@ Design a portfolio for myself
 - ~~Integration of artworks & content~~
 - ~~Responsive~~
 - Google analytics
+- Nom de domaine
 - CV
 - Detailed articles
 - Blog section with Micro-CMS
