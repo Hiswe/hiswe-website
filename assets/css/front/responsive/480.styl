@@ -22,7 +22,22 @@
 
   .hw-main-title
     position relative; z-index 2
-    padding-bottom .5em
+    padding-top .15em
+    padding-bottom .35em
+    padding-left 0
+
+    a span
+      color $light-grey
+      font-bright()
+
+      &:after
+        color black
+
+    a:hover span
+      color lighten($light-grey, 50%)
+
+      &:after
+        color black
 
   .hw-main-title,
   .hw-title
@@ -199,3 +214,12 @@
         .hw-services &
           top ($$height * 1.75)
           height $$height
+
+
+  .hw-contact
+    margin-top 0
+    background $pink
+    padding-bottom 2em
+
+    aside p
+      padding-top 0

@@ -28,13 +28,18 @@
     top -4em
 
   .hw-main-title,
-  .hw-main-title span,
+  .hw-main-title a span,
   .hw-main-navigation .hw-panels-pink li,
   .hw-splah-description .hw-hire,
   .hw-splah-description p,
-  .hw-splah-description p + p
+  .hw-splah-description p + p,
+  .hw-contact aside
     margin 0
     iso-reset()
+
+  // Header
+  .hw-main-title
+    padding-left .25em
 
   .hw-main-navigation
     width third(2)
@@ -75,6 +80,9 @@
       &:after
         display none
 
+      &:active
+        top 0; left 0
+
   .hw-portrait
     width auto
     right 0
@@ -90,3 +98,25 @@
 
   .hw-sub-description .hw-sub-panel
     font-size .85em
+
+  // Contact
+  .hw-contact
+    aside, .hw-contact-form
+      float none
+      min-height auto
+      margin 0 auto
+      width auto
+      padding 0 1em
+
+    aside
+      background none
+      margin-top .5em
+
+      p
+       line-height auto
+       padding 1em 0 0; margin 0
+
+      span
+        display inline
+
+
