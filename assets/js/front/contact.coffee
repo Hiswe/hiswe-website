@@ -1,5 +1,5 @@
 class Contact extends hw.Controller
-  trace: true
+  trace: false
   logPrefix: '[CONTACT]'
   removeDelay: 5000
 
