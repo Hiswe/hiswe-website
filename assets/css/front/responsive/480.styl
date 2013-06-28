@@ -4,6 +4,9 @@
 @import './../css-mixins'
 @import './../panels/panel-transitions'
 
+.hw-responsive-linebreak
+  display block
+
 // Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
 @media only screen and (max-width: 479px)
   if debug()
@@ -13,6 +16,9 @@
   body
     background $dark-gray
     padding-top 0
+
+  .hw-responsive-linebreak
+    display inline
 
   .main-content
     transition padding .5s
@@ -122,6 +128,9 @@
     height $$height
     background $dark-grey
 
+    h3, h3 + h3, p
+      margin 0
+
     .hw-sub,
     .hw-sub-close
       visibility hidden
@@ -161,6 +170,10 @@
       background $grey
 
     // description in services
+    .hw-services & h6
+      font-size 2em
+      letter-spacing 0.15em
+
     .hw-sub-links
       padding-top .75em
 
@@ -204,7 +217,7 @@
         mobile-left-in()
 
         .hw-services &
-          height ($$height * 1.25)
+          height $$height
 
       .hw-sub-right
         top ($$height * 1.5)
@@ -212,9 +225,7 @@
         mobile-right-in()
 
         .hw-services &
-          top ($$height * 1.75)
           height $$height
-
 
   .hw-contact
     margin-top 0

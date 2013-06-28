@@ -1,12 +1,12 @@
 {
   "name": "hiswe-website",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "dependencies": {
     "jquery": "~2.0.2",
     "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",
     "imagesloaded": "git://github.com/desandro/imagesloaded.git#~2.1.1",
     "modernizr": "~2.6.2",
-    "hiso-font": "~0.2.1",
+    "hiso-font": "~0.2.2",
     "hevent": "~0.1.0"
   }
 }

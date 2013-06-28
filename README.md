@@ -19,13 +19,8 @@ Design a portfolio for myself
 - heroku config:set NODE_ENV=production
 - …
 
-## Todo
+### Release History
 
-1. ~~Node JS site~~
-- ~~Integration of artworks & content~~
-- ~~Responsive~~
-- Google analytics
-- Nom de domaine
-- CV
-- Detailed articles
-- Blog section with Micro-CMS
+- **2.0.1** — Update content
+- **2.0.0** — Complete retake
+
