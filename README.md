@@ -23,4 +23,3 @@ Design a portfolio for myself
 
 - **2.0.1** — Update content
 - **2.0.0** — Complete retake
-

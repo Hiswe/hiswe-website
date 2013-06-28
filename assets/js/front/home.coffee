@@ -1,5 +1,5 @@
 class Home extends hw.Controller
-  trace: false
+  trace: true
   logPrefix: '[HOME]'
   activeClass: hw.options.activeClass
   activeBody:  hw.options.activeBody
