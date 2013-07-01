@@ -89,17 +89,8 @@
 
     li::before
       content '\25A0'
-      color noir()
+      color $light-grey
       absolute left
-
-.hw-sub-links
-  padding-top px2em(60, $panel-fs)
-  text-align center
-  a
-    font-size 1.25em
-    margin 1em 0 1.25em
-    display inline-block
-    text-transform uppercase
 
 // Close button
 .hw-sub-close
@@ -121,7 +112,6 @@
   &:active
     transform translate(2px, 2px)
     box-shadow none
-
 
 .hw-panel-cover
   display block
