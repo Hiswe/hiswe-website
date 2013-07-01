@@ -7,6 +7,6 @@
     "imagesloaded": "git://github.com/desandro/imagesloaded.git#~2.1.1",
     "modernizr": "~2.6.2",
     "hiso-font": "~0.2.2",
-    "hevent": "~0.2.0"
+    "hevent": "~0.2.1"
   }
 }
