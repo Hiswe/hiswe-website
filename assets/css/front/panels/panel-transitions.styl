@@ -104,6 +104,12 @@ close-out()
   transition-delay            .1s,                0s,                 0s
 
 // mobile first panel
+mobile-title-in()
+  transition transform t-iso h-ease(e-iso-in) 0s
+
+mobile-title-out()
+  transition transform t-iso h-ease(e-iso-out) d-out-2
+
 mobile-stem-in()
   transition visibility 0s ease 0s
 
