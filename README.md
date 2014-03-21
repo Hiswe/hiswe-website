@@ -21,5 +21,6 @@ Design a portfolio for myself
 
 ### Release History
 
+- **2.0.2** — add exec command to grunt for launching server
 - **2.0.1** — Update content
 - **2.0.0** — Complete retake

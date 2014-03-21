@@ -1,6 +1,10 @@
 module.exports = (grunt) ->
+  require('load-grunt-tasks')(grunt)
   grunt.initConfig {
     pkg: grunt.file.readJSON('package.json')
+    exec: {
+      start: 'nf start -j Procfile_dev -e .dev_env'
+    }
     concat: {
       options: {
         separator: ';\n'
@@ -60,17 +64,16 @@ module.exports = (grunt) ->
     }
   }
 
-  grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-contrib-concat'
-  grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadTasks 'grunt-tasks'
 
   grunt.registerTask 'help', ->
-    grunt.log.writeln 'grunt lib :', 'Concact and uglify js libs'
-    grunt.log.writeln 'grunt img :', 'Resize images'
-    grunt.log.writeln 'grunt font :', 'Copy font to public dir'
+    grunt.log.writeln 'grunt lib   :', 'Concact and uglify js libs'
+    grunt.log.writeln 'grunt img   :', 'Resize images'
+    grunt.log.writeln 'grunt font  :', 'Copy font to public dir'
+    grunt.log.writeln 'grunt start :', 'Start server'
 
   grunt.registerTask 'lib', ['uglify:lib', 'concat']
   grunt.registerTask 'img', ['img_resize:work']
   grunt.registerTask 'font', ['copy:font']
+  grunt.registerTask 'start', ['exec:start']
   grunt.registerTask 'default', ['help']

@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "scripts": {
     "start": "node server.js"
   },
@@ -31,6 +31,8 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-concat": "~0.2.0",
     "grunt-contrib-copy": "~0.4.1",
-    "uslug": "~1.0.3"
+    "uslug": "~1.0.3",
+    "grunt-exec": "~0.4.5",
+    "load-grunt-tasks": "~0.4.0"
   }
 }
