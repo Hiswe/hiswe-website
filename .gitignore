@@ -5,6 +5,7 @@
 .settings/
 node_modules
 /components
+/bower_components
 /public/media/source
 /tmp
 *.ai

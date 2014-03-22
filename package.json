@@ -31,6 +31,13 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-concat": "~0.2.0",
     "grunt-contrib-copy": "~0.4.1",
-    "uslug": "~1.0.3"
+    "uslug": "~1.0.3",
+    "gulp": "~3.5.6",
+    "gulp-uglify": "~0.2.1",
+    "gulp-concat": "~2.2.0",
+    "gulp-rename": "~1.2.0",
+    "gulp-notify": "~1.2.1",
+    "gulp-image-resize": "~0.5.0",
+    "gulp-rimraf": "0.0.9"
   }
 }
