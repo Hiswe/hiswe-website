@@ -1,6 +1,6 @@
 # Hiswe web site
 
-## Purpose
+### Purpose
 
 Design a portfolio for myself
 
@@ -9,10 +9,10 @@ Design a portfolio for myself
 ##### On development environment
 - npm install .
 - bower install
-- nf start -j Procfile_dev -e .dev_env
+- gulp server
 
 ##### On Heroku environment
-- grunt build
+- gulp build
 - git commit + git push
 - git push heroku master
 - heroku plugins:install git://github.com/ddollar/heroku-config.git
@@ -21,6 +21,7 @@ Design a portfolio for myself
 
 ### Release History
 
-- **2.0.2** — add exec command to grunt for launching server
+- **2.0.3** — rc conf manager
+- **2.0.2** — Gulp build system
 - **2.0.1** — Update content
 - **2.0.0** — Complete retake

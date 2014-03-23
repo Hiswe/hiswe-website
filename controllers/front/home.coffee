@@ -1,5 +1,3 @@
-nconf = require 'nconf'
-
 index = (req, res, next) ->
   res.render('front/home')
 

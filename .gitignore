@@ -2,6 +2,7 @@
 .project
 .dev_env
 .env
+.hiswerc
 .settings/
 node_modules
 /components

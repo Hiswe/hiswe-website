@@ -1,9 +1,9 @@
-nconf     = require 'nconf'
 alphamail = require 'alphamail'
 
-adminMail     = nconf.get('ADMIN_MAIL')
-mailApiKey    = nconf.get('MAIL_API_KEY')
-mailProjectId = ~~nconf.get('MAIL_PROJECT_ID') # Cast into number
+conf          = require('rc')('HISWE')
+adminMail     = conf.MAIL_ADMIN
+mailApiKey    = conf.MAIL_API_KEY
+mailProjectId = ~~conf.MAIL_PROJECT_ID # Cast into number
 emailService  = new alphamail.EmailService(mailApiKey)
 log           = '[CONTACT]'
 

@@ -1,5 +1,8 @@
-APP_NAME=Hiswe
+; env
 NODE_ENV=development
-ADMIN_MAIL=mail@mail.com
+PORT=5000
+
+; contact form
+MAIL_ADMIN=mail@mail.com
 MAIL_API_KEY=amail.io longstring
 MAIL_PROJECT_ID=amail.io smallnumber

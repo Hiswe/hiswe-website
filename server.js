@@ -3,11 +3,9 @@ require('coffee-script');
 
 var colors  = require('colors');
 var fs      = require('fs');
-var nconf   = require('nconf');
 var http    = require('http');
 
 var pack    = require('./package.json');
-var comp    = require('./bower.json');
 var log     = '[APP]';
 
 colors.setTheme({
@@ -23,23 +21,14 @@ colors.setTheme({
   err:    'red'
 });
 
-// automatically update component name and version
-(function () {
-  // component
-  comp.name     = pack.name
-  comp.version  = pack.version
-  comp          = JSON.stringify(comp, null, 2);
-  fs.writeFileSync('./bower.json', comp);
-  // nconf
-  nconf.merge('app:version', pack.version)
-})();
-
-// Load nconf
-var config  = require('./config/settings');
+var conf    = require('rc')('HISWE', {
+  VERSION: pack.version,
+  PATH: __dirname
+});
 
 //  Load boot file and fire away!
 var app     = require('./config/app')();
-var port    = nconf.get('PORT') || nconf.get('app:port');
+var port    = conf.PORT;
 
 var server  = http.createServer(app)
 
