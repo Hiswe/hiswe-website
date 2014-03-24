@@ -9,8 +9,17 @@ module.exports = (app) ->
   # Configure expressjs
   app.configure ->
     app.set 'appName', conf.APP_NAME
-    app.locals.appName  = conf.APP_NAME
-    app.locals.env      = app.get('env')
+    app.locals.appName      = conf.APP_NAME
+
+    if conf.LIVERELOAD? and typeof conf.LIVERELOAD is 'string'
+      livereload = conf.LIVERELOAD is 'true'
+    else if conf.LIVERELOAD? and typeof conf.LIVERELOAD is 'boolean'
+      livereload = conf.LIVERELOAD
+    else
+      livereload = false
+
+    app.locals.LIVERELOAD   = livereload
+    app.locals.env          = app.get('env')
 
     app.set 'appDirname', conf.PATH
     app.set 'views', path.join( __dirname, '/../views')

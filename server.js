@@ -26,6 +26,8 @@ var conf    = require('rc')('HISWE', {
   PATH: __dirname
 });
 
+// console.log(conf);
+
 //  Load boot file and fire away!
 var app     = require('./config/app')();
 var port    = conf.PORT;

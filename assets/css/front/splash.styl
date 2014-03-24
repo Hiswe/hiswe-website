@@ -31,13 +31,13 @@
     width 50%; height px2em(200, 18)
     line-height 2em; letter-spacing .1em
     iso-right()
-    background $dark-pink
+    background $gray
     padding 1em 1em 3em
 
   p + p,
   .hw-hire
     iso-left()
-    background $pink
+    background white
 
   .hw-hire
     $hw-hire-depth = .5em
@@ -88,10 +88,12 @@
       t-matrix(1, 0, 1, 1)
 
 .hw-portrait
+  background $pink
+  box-shadow 0 -10em 0 0 $pink
   width third()
   iso-left()
   absolute bottom 18px left
-  border-bottom 20px solid black
+  border-bottom 2px solid rgba(255,255,255,0)
   overflow hidden
   height px2em(450px)
 
