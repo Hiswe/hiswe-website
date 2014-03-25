@@ -13,9 +13,9 @@ var notify      = require('gulp-notify');
 var resize      = require('gulp-image-resize');
 var nodemon     = require('gulp-nodemon');
 var livereload  = require('gulp-livereload')
-
-
 // https://www.npmjs.org/package/gulp-rev/
+
+var server = lr();
 
 var path = {
   libs: ['bower_components/modernizr/modernizr.js',
@@ -51,6 +51,7 @@ gulp.task('stylus', function () {
   gulp.src('./assets/css/front/index.styl')
     .pipe(stylus({use: ['nib', 'hstrap'], define: stylus_var}))
     .pipe(gulp.dest('./public'))
+    .pipe(livereload(server))
     .pipe(notify({title: 'Stylus', message: 'CSS build'}));
 });
 
@@ -92,11 +93,10 @@ gulp.task('resize', ['clean-image'], function() {
 
 // Watch
 gulp.task('watch', function() {
-  var server = livereload();
+  server.listen(35729, function (err) {
+  if (err) { return console.log(err) }
+  });
   gulp.watch(['./assets/css/front/*.styl','./assets/css/front/**/*.styl'], ['stylus'])
-    .on('change', function(file){
-      server.changed(file.path);
-    });
 });
 
 // Light doc
@@ -105,7 +105,7 @@ gulp.task('default', function() {
   console.log(gutil.colors.red('font'), '  ', 'Copy fonts to the right folder');
   console.log(gutil.colors.red('lib'), '   ', 'Concat & uglify libs');
   console.log(gutil.colors.red('resize'), '', 'Resize images');
-  console.log(gutil.colors.red('server'), '', 'Start server');
   console.log(gutil.colors.red('stylus'), '', 'Compile stylus');
+  console.log(gutil.colors.red('server'), '', 'Start server');
   console.log(gutil.colors.red('watch'), ' ', 'Watch stylus');
 });
