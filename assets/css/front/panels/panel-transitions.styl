@@ -71,11 +71,23 @@ rotate-in()
   transition-timing-function  ease,               ease,               h-ease(e-book-in)
   transition-delay            d-in-2,             d-in-2,             d-in-2
 
+rotate-in-no-delay()
+  transition-property         left,               visibility,         transform
+  transition-duration         0s,                 0s,                 t-book
+  transition-timing-function  ease,               ease,               h-ease(e-book-in)
+  transition-delay            d-in-1,             d-in-1,             d-in-1
+
 rotate-out()
   transition-property         left,               visibility,         transform
   transition-duration         0s,                 0s,                 t-book
   transition-timing-function  ease,               ease,               h-ease(e-book-out)
   transition-delay            d-out-1,            d-out-1,            0s
+
+rotate-out-big-delay()
+  transition-property         left,               visibility,         transform
+  transition-duration         0s,                 0s,                 t-book
+  transition-timing-function  ease,               ease,               h-ease(e-book-out)
+  transition-delay            d-out-2,            d-out-2,            d-out-1
 
 // Icon in Services
 icon-in()

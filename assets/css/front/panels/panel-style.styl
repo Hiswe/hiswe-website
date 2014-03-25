@@ -6,6 +6,7 @@
 
 .hw-sub-container
   position relative
+
   a
     color $dark-blue
 
@@ -16,7 +17,7 @@
     font-size 6em
     // Transform doesn't work on inline display
     display inline-block
-    color $dark-pink
+    color $pink
 
   .hw-sub
     overflow hidden
@@ -27,17 +28,10 @@
 
   .hw-sub-default
     z-index 3
+    background white
 
-  &:nth-child(3n+1),
-  &:nth-child(3n+3)
-    .hw-sub-default
-      background white
-
-  &:nth-child(3n+2)
-    .hw-sub-default
-      background $grey
-    .hicon
-      color $pink
+  &:nth-child(3n+2) .hw-sub-default
+    background $grey
 
 .hw-sub-container:not(.{activeClass})
   .hw-sub-default
@@ -107,7 +101,7 @@
     font-weight bold
 
   &:hover::after
-    color $pink
+    color $blue
 
   &:active
     transform translate(2px, 2px)

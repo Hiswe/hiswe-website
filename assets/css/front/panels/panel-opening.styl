@@ -67,11 +67,13 @@
         transform-origin -1% 50%
         transform rotateY(-98.75deg)
 
-    &:nth-child(3n+2) .hw-sub-left,
+    &:nth-child(3n+2) .hw-sub-right,
     &:nth-child(3n+3) .hw-sub-left,
-    &:nth-child(3n+1) .hw-sub-right,
-    &:nth-child(3n+2) .hw-sub-right
+    &:nth-child(3n+1) .hw-sub-right
       rotate-out()
+
+    &:nth-child(3n+2) .hw-sub-left
+      rotate-out-big-delay()
 
     &.{activeClass}
       height px2em($panel-height*1.5)
@@ -98,11 +100,13 @@
       .hw-sub-default
         default-in()
 
-      &:nth-child(3n+2) .hw-sub-left,
       &:nth-child(3n+3) .hw-sub-left,
       &:nth-child(3n+1) .hw-sub-right,
       &:nth-child(3n+2) .hw-sub-right
         rotate-in()
+
+      &:nth-child(3n+2) .hw-sub-left
+        rotate-in-no-delay()
 
   for num in 1 2 3
     .{activeClass}:nth-child(3n+{num}) .hw-sub-close
