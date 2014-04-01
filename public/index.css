@@ -14,7 +14,7 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 html {
-  background-color: #e0ecf4;
+  background-color: #ecf4f8;
   background-repeat: no-repeat;
   height: 100%;
 }
@@ -1824,14 +1824,14 @@ textarea:disabled {
     padding-left: 0;
   }
   .hw-main-title a span {
-    color: #e0ecf4;
+    color: #ecf4f8;
     font-family: "hiso-bright", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   }
   .hw-main-title a span:after {
     color: #000;
   }
   .hw-main-title a:hover span {
-    color: #eff5fa;
+    color: #f5f9fb;
   }
   .hw-main-title a:hover span:after {
     color: #000;
