@@ -17,7 +17,6 @@ var replace     = require('gulp-replace'); // use to fix  rev manifest https://g
 var nodemon     = require('gulp-nodemon');
 var minifyCSS   = require('gulp-minify-css');
 var livereload  = require('gulp-livereload');
-var runSequence = require('run-sequence'); // Wait for orchestrator to be fixed https://www.npmjs.org/package/run-sequence
 
 var server = lr();
 
@@ -41,6 +40,18 @@ gulp.task('bump', function () {
     .pipe(gulp.dest('./'));
 });
 
+gulp.task('bump-minor', function() {
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe(bump({type:'minor'}))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump-major', function() {
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe(bump({type:'major'}))
+    .pipe(gulp.dest('./'));
+});
+
 /////////
 // ASSETS
 /////////
@@ -56,18 +67,6 @@ gulp.task('font', ['clean-font'], function() {
     .pipe(gulp.dest('public/media/'));
 });
 
-// Revision
-gulp.task('rev', function() {
-  gulp.src(['public/*.css', '!public/*-*.css', 'public/*.js', '!public/*-*.js'])
-  .pipe(rev())
-  .pipe(gulp.dest('public'))
-  .pipe(rev.manifest())     // generate a revision manifest file
-  .pipe(gulp.dest('config'))
-  .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3'))
-  .pipe(gulp.dest('config'))
-  .pipe(livereload(server));
-});
-
 // Stylus
 gulp.task('stylus', function () {
   return gulp.src('./assets/css/front/index.styl')
@@ -79,8 +78,15 @@ gulp.task('stylus', function () {
     .pipe(notify({title: 'Stylus', message: 'CSS build done'}));
 });
 
-gulp.task('css', function(callback) {
-  runSequence('stylus', 'rev', callback);
+gulp.task('css', ['stylus'], function() {
+  gulp.src(['public/*.css', '!public/*-*.css'])
+    .pipe(rev())
+    .pipe(gulp.dest('public'))
+    .pipe(rev.manifest())     // generate a revision manifest file
+    .pipe(gulp.dest('config'))
+    .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3'))
+    .pipe(gulp.dest('config'))
+    .pipe(livereload(server));
 });
 
 // Concat & compress lib
@@ -94,8 +100,15 @@ gulp.task('lib', function() {
     .pipe(notify({title: 'Lib', message: 'build done'}));
 });
 
-gulp.task('js', function(callback) {
-  runSequence('lib', 'rev', callback);
+gulp.task('js', ['lib'], function() {
+  gulp.src(['public/*.js', '!public/*-*.js'])
+    .pipe(rev())
+    .pipe(gulp.dest('public'))
+    .pipe(rev.manifest())     // generate a revision manifest file
+    .pipe(gulp.dest('config'))
+    .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3'))
+    .pipe(gulp.dest('config'))
+    .pipe(livereload(server));
 });
 
 // Resize images
@@ -112,8 +125,16 @@ gulp.task('resize', ['clean-image'], function() {
 });
 
 // build for production
-gulp.task('build', function(callback) {
-  runSequence(['lib', 'css'], 'rev', callback);
+
+gulp.task('build', ['lib', 'stylus'], function() {
+  gulp.src(['public/*.js', '!public/*-*.js', 'public/*.css', '!public/*-*.css'])
+  .pipe(rev())
+  .pipe(gulp.dest('public'))
+  .pipe(rev.manifest())     // generate a revision manifest file
+  .pipe(gulp.dest('config'))
+  .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3'))
+  .pipe(gulp.dest('config'))
+  .pipe(livereload(server));
 });
 
 /////////
