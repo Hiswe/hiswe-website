@@ -1,11 +1,8 @@
-h1.hw-main-title: a(href="/")
-  span(data-text="H") H
-  span(data-text="i") i
-  span(data-text="s") s
-  span(data-text="w") w
-  span(data-text="e") e
-
-//- nav.hw-main-navigation: ul.hw-panels.hw-panels-pink
+nav.hw-main-navigation: ul
+  li: a(href="/contact") Contact
 //-   li: a(href="#") Portfolio
 //-   li: a(href="#") Blog
-//-   li: a(href="/contact") Contact
+
+h1.hw-main-title: a(href="/")
+  each letter in 'Hiswe'.split('')
+    span(data-text="#{letter}")= letter

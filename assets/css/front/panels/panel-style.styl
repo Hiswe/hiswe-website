@@ -8,7 +8,7 @@
   position relative
 
   a
-    color $dark-blue
+    color $blue
 
     &:hover
       color $light-blue
@@ -28,6 +28,7 @@
 
   .hw-sub-default
     z-index 3
+    color $black
     background white
 
   &:nth-child(3n+2) .hw-sub-default
@@ -44,19 +45,22 @@
 .hw-panels-open
   perspective 1000px
   perspective-origin center center
+  color blanc(.9)
+  crisp-font-smoothing()
 
   h3:first-child
     margin-top 0
 
   .hw-sub-left,
   .hw-sub-right
-    background white
+    background $darkest-grey
 
   .{activeClass} .hw-sub-default
-    background white
+    color white
+    background $dark-grey
 
     .hicon
-      color $dark-gray
+      color $darkest-gray
 
 .hw-sub-panel
   height 100%; width @height
@@ -83,7 +87,7 @@
 
     li::before
       content '\25A0'
-      color $grey
+      color $dark-grey
       absolute left
 
 // Close button
@@ -91,11 +95,12 @@
   width 2em; height @width
   absolute top .5em left 100%; z-index 2
   text-align center; line-height 1.5em
-  background $gray; box-shadow 2px 2px 0 noir(.75)
+  background $dark-gray; box-shadow 2px 2px 0 noir(.75)
   cursor pointer
   margin-left -2.5em
 
   &::after
+    color $blue
     font-size 2em
     content '×'
     font-weight bold

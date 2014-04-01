@@ -1,13 +1,7 @@
 section.hw-services
   h1.hw-title
-    span S
-    span e
-    span r
-    span v
-    span i
-    span c
-    span e
-    span s
+    each letter in 'Services'.split('')
+      span(data-text="#{letter}")= letter
 
   .hw-panels-open
     dl.hw-sub-container
@@ -62,6 +56,7 @@ section.hw-services
           li <a href="http://jade-lang.com/">Jade templates</a>
           li <a href="http://learnboost.github.io/stylus/">Stylus</a> &amp; <a href="https://github.com/visionmedia/nib">Nib</a>
           li <a href="http://coffeescript.org/">CoffeeScript</a>
+          li <a href="http://gulpjs.com/">Gulp</a>
 
       dd.hw-sub-close
 

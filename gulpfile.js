@@ -82,9 +82,19 @@ gulp.task('resize', ['clean-image'], function() {
 // Watch
 gulp.task('watch', function() {
   server.listen(35729, function (err) {
-  if (err) { return console.log(err) }
+    if (err) { return console.log(err) }
   });
-  gulp.watch(['./assets/css/front/*.styl','./assets/css/front/**/*.styl'], ['stylus'])
+  gulp.watch(['./assets/css/front/**/*.styl'], ['stylus']);
+  gulp.watch('./views/**/*.jade').on('change', function(file) {
+    // console.log(file.path);
+    // server.changed(file.path);
+    gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload html'}));
+    server.changed({
+      body: {
+        files: ['index.html']
+      }
+    });
+  });
 });
 
 // Nodemon server

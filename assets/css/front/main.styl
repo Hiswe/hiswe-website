@@ -1,4 +1,5 @@
 @import 'nib/reset'
+@import 'nib/positions'
 @import './css-config'
 @import './css-mixins'
 
@@ -10,6 +11,8 @@ html, body
 
 html
   background-color $light-grey
+  // background-image linear-gradient(white 90px, $light-grey 455px)
+  background-repeat no-repeat
   height 100%
 
 body
@@ -26,14 +29,17 @@ a
   outline none
 
 .main-content
-  width px2em(930)
+  padding 0 0 7em
+
+.hw-main-navigation,
+.hw-splash,
+.hw-detail-panels
+  width px2em(960)
   margin 0 auto
-  padding 1px 0 7em
-  position relative
 
 .hw-title
   font-size 3em; font-weight normal
-  font-family "hiso-bright", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  font-family "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
   crisp-font-smoothing()
   display inline-block
   width 50%; padding-bottom .15em
@@ -42,6 +48,19 @@ a
   span
     display inline-block
     iso-right()
+    position relative
+    z-index 2
+    line-height 100%
+
+    &::after
+      line-height 100%
+      absolute left bottom 1px
+      height 1em
+      z-index -1
+      content attr(data-text)
+      color white
+      font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+      crisp-font-smoothing()
 
 .hicon
   font-weight normal; font-style: normal;

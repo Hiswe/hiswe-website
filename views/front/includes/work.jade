@@ -1,18 +1,7 @@
 section.hw-work
   h1.hw-title
-    .hw-word-break
-      span L
-      span a
-      span t
-      span e
-      span s
-      span t
-    span &#8194;
-    .hw-word-break
-      span w
-      span o
-      span r
-      span k
+    each letter in 'Projects'.split('')
+      span(data-text="#{letter}")= letter
 
   .hw-panels-open
     dl.hw-sub-container
