@@ -36,8 +36,8 @@ create = (req, res, next) ->
     res.redirect('/contact')
 
 createXhr = (req, res, next) ->
-  form = req.body
   console.log log.debug, 'POST XHR'
+  form = req.body
   validation = isValid(form)
   unless validation.status
     console.log log.debug, form

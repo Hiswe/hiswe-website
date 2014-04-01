@@ -12,7 +12,7 @@ var rename      = require('gulp-rename');
 var notify      = require('gulp-notify');
 var resize      = require('gulp-image-resize');
 var nodemon     = require('gulp-nodemon');
-var livereload  = require('gulp-livereload')
+var livereload  = require('gulp-livereload');
 // https://www.npmjs.org/package/gulp-rev/
 
 var server = lr();
@@ -66,18 +66,6 @@ gulp.task('lib', function() {
     .pipe(notify({title: 'LIB', message: 'build done'}));
 });
 
-// Nodemon server
-gulp.task('notify-restart', function () {
-  gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
-});
-
-gulp.task('server', function () {
-  nodemon({
-    script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*', 'public/*'],
-    env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
-  }).on('restart', ['notify-restart'])
-});
-
 // Resize images
 gulp.task('clean-image', function() {
   gulp.src('public/media/images/*', {read: false})
@@ -99,13 +87,28 @@ gulp.task('watch', function() {
   gulp.watch(['./assets/css/front/*.styl','./assets/css/front/**/*.styl'], ['stylus'])
 });
 
+// Nodemon server
+gulp.task('notify-restart', function () {
+  gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
+});
+
+gulp.task('express', function () {
+  nodemon({
+    script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*', 'public/*'],
+    env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
+  }).on('restart', ['notify-restart'])
+});
+
+gulp.task('server', ['watch','express']);
+
 // Light doc
 gulp.task('default', function() {
-  console.log(gutil.colors.red('bump'), '  ', 'bump version of json');
-  console.log(gutil.colors.red('font'), '  ', 'Copy fonts to the right folder');
-  console.log(gutil.colors.red('lib'), '   ', 'Concat & uglify libs');
-  console.log(gutil.colors.red('resize'), '', 'Resize images');
-  console.log(gutil.colors.red('stylus'), '', 'Compile stylus');
-  console.log(gutil.colors.red('server'), '', 'Start server');
-  console.log(gutil.colors.red('watch'), ' ', 'Watch stylus');
+  console.log(gutil.colors.red('bump'), '   ', 'bump version of json');
+  console.log(gutil.colors.red('font'), '   ', 'Copy fonts to the right folder');
+  console.log(gutil.colors.red('lib'), '    ', 'Concat & uglify libs');
+  console.log(gutil.colors.red('resize'), ' ', 'Resize images');
+  console.log(gutil.colors.red('stylus'), ' ', 'Compile stylus');
+  console.log(gutil.colors.red('express'), '', 'Start server');
+  console.log(gutil.colors.red('watch'), '  ', 'Watch stylus');
+  console.log(gutil.colors.red('server'), ' ', 'Watch + server');
 });
