@@ -178,19 +178,15 @@ gulp.task('notify-restart', function () {
   gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
 });
 
-gulp.task('express', function (callback) {
+gulp.task('express', function () {
   nodemon({
     script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*', 'public/*'],
     env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
   })
-  .on('restart', ['notify-restart'])
-  .on('start', function() {
-    console.log('start');
-    callback();
-  });
+  .on('restart', ['notify-restart']);
 });
 
-gulp.task('server', ['watch', 'express']);
+gulp.task('server', ['build', 'watch', 'express']);
 
 gulp.task("start", ['server'], function(){
   gulp.src('./README.md').pipe(wait(1000)).pipe(open('', {url: "http://localhost:5000"}));
