@@ -2,6 +2,7 @@ express = require 'express'
 expose  = require 'express-expose'
 path    = require 'path'
 flash   = require 'connect-flash'
+rev     = require './rev-manifest.json'
 
 conf    = require('rc')('HISWE')
 
@@ -9,7 +10,6 @@ module.exports = (app) ->
   # Configure expressjs
   app.configure ->
     app.set 'appName', conf.APP_NAME
-    app.locals.appName      = conf.APP_NAME
 
     if conf.LIVERELOAD? and typeof conf.LIVERELOAD is 'string'
       livereload = conf.LIVERELOAD is 'true'
@@ -18,8 +18,11 @@ module.exports = (app) ->
     else
       livereload = false
 
+    # Set some locals
     app.locals.LIVERELOAD   = livereload
     app.locals.env          = app.get('env')
+    app.locals.appName      = conf.APP_NAME
+    app.locals.assets       = rev
 
     app.set 'appDirname', conf.PATH
     app.set 'views', path.join( __dirname, '/../views')
@@ -35,7 +38,7 @@ module.exports = (app) ->
     app.use express.session({ cookie: { maxAge: 60000 }})
     app.use flash()
 
-    # Stylus & CoffeeScript
+    # static & coffeeScript
     require('./asset')(app)
 
     # routing after static…

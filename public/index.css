@@ -1,3 +1,63 @@
+@font-face {
+  font-family: 'hiso-bright';
+  src: url("./media/font/hisobright-regular-webfont.eot");
+  src: url("./media/font/hisobright-regular-webfont.eot?#iefix") format('embedded-opentype'), url("./media/font/hisobright-regular-webfont.woff") format('woff'), url("./media/font/hisobright-regular-webfont.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hiso-dark';
+  src: url("./media/font/hisodark-regular-webfont.eot");
+  src: url("./media/font/hisodark-regular-webfont.eot?#iefix") format('embedded-opentype'), url("./media/font/hisodark-regular-webfont.woff") format('woff'), url("./media/font/hisodark-regular-webfont.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hiso-plain';
+  src: url("./media/font/hisoplain-regular-webfont.eot");
+  src: url("./media/font/hisoplain-regular-webfont.eot?#iefix") format('embedded-opentype'), url("./media/font/hisoplain-regular-webfont.woff") format('woff'), url("./media/font/hisoplain-regular-webfont.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.hicon {
+  font-family: "hiso-dark";
+}
+.hicon.mail:before {
+  content: "\2709";
+}
+.hicon.phone:before {
+  content: "\260E";
+}
+.hicon.info:before {
+  content: "\2139";
+}
+.hicon.website:before {
+  content: "\25A8";
+}
+.hicon.website-reversed:before {
+  content: "\25A7";
+}
+.hicon.factory:before {
+  content: "\26ED";
+}
+.hicon.arrowLeft:before {
+  content: "\27F5";
+}
+.hicon.arrowRight:before {
+  content: "\27F6";
+}
+.hicon.penLeft:before {
+  content: "\270E";
+}
+.hicon.penBottom:before {
+  content: "\2710";
+}
+.hicon.penRight:before {
+  content: "\270F";
+}
+.hicon.hammer:before {
+  content: "\2692";
+}
 html,
 body,
 ul,
