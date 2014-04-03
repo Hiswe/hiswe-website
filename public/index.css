@@ -107,6 +107,7 @@ a {
   font-weight: normal;
   font-family: "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: inline-block;
   width: 50%;
   padding-bottom: 0.15em;
@@ -140,6 +141,7 @@ a {
   color: #fff;
   font-family: "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .hicon {
   font-weight: normal;
@@ -726,6 +728,7 @@ a {
   perspective-origin: center center;
   color: rgba(255,255,255,0.9);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .hw-panels-open h3:first-child {
   margin-top: 0;
@@ -1064,6 +1067,7 @@ a {
   color: rgba(255,255,255,0);
   font-family: "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .hw-main-title a:hover span::after {
   color: #fff;
@@ -1168,12 +1172,11 @@ textarea {
   background-color: #fff;
   display: block;
   font-size: 1em;
-  padding: 0 0.35em 0 0.5em;
+  padding: 0.5em;
   margin: 0;
   border: 1px solid #c2c2c2;
   -webkit-box-shadow: inset 2px 2px 0 rgba(0,0,0,0.07);
   box-shadow: inset 2px 2px 0 rgba(0,0,0,0.07);
-  height: $input-height;
   -webkit-transition: border-color 0.5s, box-shadow 0.5s;
   -moz-transition: border-color 0.5s, box-shadow 0.5s;
   -o-transition: border-color 0.5s, box-shadow 0.5s;
@@ -1184,7 +1187,6 @@ textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  height: 2em;
   outline: 0;
 }
 input:-ms-input-placeholder,
@@ -1216,8 +1218,8 @@ input.ng-invalid,
 textarea.ng-invalid,
 input.invalid,
 textarea.invalid,
-input:invalid,
-textarea:invalid {
+input:focus:invalid,
+textarea:focus:invalid {
   color: #96002b;
   border-color: #df006f;
   -webkit-box-shadow: inset 2px 2px 0 rgba(223,0,111,0.3);
@@ -1227,32 +1229,32 @@ input.ng-invalid:-ms-input-placeholder,
 textarea.ng-invalid:-ms-input-placeholder,
 input.invalid:-ms-input-placeholder,
 textarea.invalid:-ms-input-placeholder,
-input:invalid:-ms-input-placeholder,
-textarea:invalid:-ms-input-placeholder {
+input:focus:invalid:-ms-input-placeholder,
+textarea:focus:invalid:-ms-input-placeholder {
   color: #ff4b7f;
 }
 input.ng-invalid::-webkit-input-placeholder,
 textarea.ng-invalid::-webkit-input-placeholder,
 input.invalid::-webkit-input-placeholder,
 textarea.invalid::-webkit-input-placeholder,
-input:invalid::-webkit-input-placeholder,
-textarea:invalid::-webkit-input-placeholder {
+input:focus:invalid::-webkit-input-placeholder,
+textarea:focus:invalid::-webkit-input-placeholder {
   color: #ff4b7f;
 }
 input.ng-invalid:-moz-placeholder,
 textarea.ng-invalid:-moz-placeholder,
 input.invalid:-moz-placeholder,
 textarea.invalid:-moz-placeholder,
-input:invalid:-moz-placeholder,
-textarea:invalid:-moz-placeholder {
+input:focus:invalid:-moz-placeholder,
+textarea:focus:invalid:-moz-placeholder {
   color: #ff4b7f;
 }
 input.ng-invalid::-moz-placeholder,
 textarea.ng-invalid::-moz-placeholder,
 input.invalid::-moz-placeholder,
 textarea.invalid::-moz-placeholder,
-input:invalid::-moz-placeholder,
-textarea:invalid::-moz-placeholder {
+input:focus:invalid::-moz-placeholder,
+textarea:focus:invalid::-moz-placeholder {
   color: #ff4b7f;
 }
 input.disabled,
@@ -1264,7 +1266,7 @@ textarea:disabled,
 input:disabled:hover,
 textarea:disabled:hover {
   cursor: not-allowed;
-  background: #eee;
+  background-color: #eee;
   color: #999;
   -webkit-box-shadow: inset 2px 2px 0 rgba(0,0,0,0.07);
   box-shadow: inset 2px 2px 0 rgba(0,0,0,0.07);
@@ -1310,16 +1312,11 @@ input:disabled:hover::-moz-placeholder,
 textarea:disabled:hover::-moz-placeholder {
   color: #ccc;
 }
-input:not(input):not(select),
-textarea:not(input):not(select) {
-  padding-top: 0.5em;
-}
 textarea {
-  padding-top: 0.35em;
-  padding-bottom: 0.35em;
-  height: auto;
   min-height: 5em;
   resize: vertical;
+  line-height: 1.25em;
+  font-family: inherit;
 }
 textarea.disabled,
 textarea:disabled {
@@ -1342,23 +1339,13 @@ textarea:disabled {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  border: none;
   padding: 0.75em 1.5em;
   margin: 2px -2px 2px 2px;
   vertical-align: middle;
   cursor: pointer;
   -webkit-box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
   box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
-  border: 1px solid;
-  border-color: rgba(255,255,255,0.75) rgba(0,0,0,0.25) rgba(0,0,0,0.5) rgba(255,255,255,0.5);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -webkit-background-clip: border;
-  -moz-background-clip: border;
-  background-clip: border-box;
-  -webkit-background-origin: border;
-  -moz-background-origin: border;
-  background-origin: border-box;
   -webkit-transform: translate3d(-2px, -2px, 0);
   -moz-transform: translate3d(-2px, -2px, 0);
   -o-transform: translate3d(-2px, -2px, 0);
@@ -1374,6 +1361,7 @@ textarea:disabled {
   -o-transition: background-color 0.25s, -o-transform 0.15s, box-shadow 0.15s;
   -ms-transition: background-color 0.25s, -ms-transform 0.15s, box-shadow 0.15s;
   transition: background-color 0.25s, transform 0.15s, box-shadow 0.15s;
+  position: relative;
   min-width: 10em;
   color: #000;
   text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
@@ -1386,6 +1374,25 @@ textarea:disabled {
   margin-top: 1em;
   border: 0;
 }
+.hw-contact button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -2px;
+  bottom: -2px;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  -ms-transition: all 0.15s;
+  transition: all 0.15s;
+}
+.hw-contact button:focus {
+  outline: none;
+}
+.hw-contact button::-moz-focus-inner {
+  outline: none;
+}
 .hw-contact button:active:not(.h-disabled):not([disabled]) {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -1395,6 +1402,13 @@ textarea:disabled {
   -webkit-box-shadow: 0 0 0 rgba(0,0,0,0.75);
   box-shadow: 0 0 0 rgba(0,0,0,0.75);
   outline: 0;
+}
+.hw-contact button:active:not(.h-disabled):not([disabled])::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -2px;
+  left: -2px;
 }
 .hw-contact button .iconic {
   font-size: 1.5em;

@@ -1,15 +1,8 @@
 express   = require 'express'
 expose    = require 'express-expose'
 path      = require 'path'
-stylus    = require 'stylus'
-nib       = require 'nib'
-hstrap    = require 'hstrap'
 
 stylusVar = require './stylus_var.json'
-
-activeClass     = 'hw-panel-active'
-activeBody      = 'hw-body-active'
-carrouselClass  = 'hw-carrousel'
 
 module.exports = (app) ->
   # Coffeescript + sprocket

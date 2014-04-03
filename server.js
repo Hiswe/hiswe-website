@@ -1,5 +1,5 @@
 'use strict';
-require('coffee-script');
+require('coffee-script/register');
 
 var colors  = require('colors');
 var fs      = require('fs');
@@ -29,7 +29,7 @@ var conf    = require('rc')('HISWE', {
 // console.log(conf);
 
 //  Load boot file and fire away!
-var app     = require('./config/app')();
+var app     = require('./config/app.coffee')();
 var port    = conf.PORT;
 
 var server  = http.createServer(app)
