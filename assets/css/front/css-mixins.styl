@@ -27,3 +27,9 @@ font-bright()
 
 font-plain()
   font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
+tablet-start()
+  unquote("@media screen and (max-width: " + $tablet-width + ") {")
+
+tablet-end()
+  unquote("}")

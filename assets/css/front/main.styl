@@ -19,6 +19,7 @@ body
   min-height 100%
   box-sizing border-box
   border px2em($main-border) solid white
+  border-top 0
 
   background-repeat no-repeat
   color $black
@@ -37,6 +38,21 @@ a
 .hw-contact
   width px2em(960)
   margin 0 auto
+
+tablet-start()
+
+body
+  border 0
+
+.hw-main-navigation,
+.hw-splash,
+.hw-detail-panels,
+.hw-contact
+  width auto
+  padding 0 1em
+
+tablet-end()
+
 
 .hw-title
   font-size 3em; font-weight normal
