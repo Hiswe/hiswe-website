@@ -2013,7 +2013,7 @@ textarea:disabled {
     content: "";
     border: 1em solid transparent;
     border-top-width: 0;
-    border-bottom-color: #576176;
+    border-bottom-color: #454a5d;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -2076,7 +2076,6 @@ textarea:disabled {
     -o-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
     -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
     transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-    background: #cddce4;
   }
   .hw-services .hw-sub-container h6 {
     font-size: 2em;
@@ -2157,7 +2156,6 @@ textarea:disabled {
     -o-transform: scaleY(0.5);
     -ms-transform: scaleY(0.5);
     transform: scaleY(0.5);
-    background: #009ae1;
   }
   .hw-sub-container.hw-panel-active .hw-sub-default h6,
   .hw-sub-container.hw-panel-active .hw-sub-default img {

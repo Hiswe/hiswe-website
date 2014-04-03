@@ -139,7 +139,7 @@
       &::after
         mobile-stem-out()
         $$stem-size = 1em
-        stem("top", $dark-grey, $$stem-size)
+        stem("top", $darkest-grey, $$stem-size)
         absolute bottom 0 left 50%
         margin-left -($$stem-size/2)
         visibility hidden
@@ -154,7 +154,6 @@
 
     .hw-sub-right
       mobile-right-out()
-      background $grey
 
     // description in services
     .hw-services & h6
@@ -186,7 +185,6 @@
       .hw-sub-default
         default-in()
         transform scaleY(.5)
-        background $blue
 
         h6, img
           mobile-title-in()
