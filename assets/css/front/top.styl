@@ -13,27 +13,19 @@
   padding .5em 0
 
   a
-    span
-      color black
-      display inline-block
-      height 1em
-      position relative
-      z-index 2
-      line-height 100%
-      color $pink
+    display inline-block
+    color $pink
+    crisp-font-smoothing()
+    line-height 1em
+    padding 0 0 .15em .15em
+    border 2px solid transparent
 
-      &::after
-        line-height 100%
-        absolute left bottom 1px
-        height 1em
-        z-index -1
-        content attr(data-text)
-        color blanc(0)
-        font-plain()
-        crisp-font-smoothing()
+    &:hover
+      border-color $pink
 
-    &:hover span::after
-      color blanc(1)
+    &:active
+      color $blue
+      border-color $blue
 
 .hw-main-navigation
   position relative
@@ -84,7 +76,7 @@
 
   p
     vertical-align top
-    width 50%; height 4em
+    width 50%; height 3em
     line-height 1.25em
 
   .hw-hire

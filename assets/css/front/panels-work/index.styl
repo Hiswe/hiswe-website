@@ -1,0 +1,94 @@
+@import 'nib/positions'
+@import 'nib/reset'
+@import './css-config'
+@import './css-mixins'
+
+// Firefox don't handle time 0.
+// it MUST be 0s
+
+// Timing configuration
+t-iso     = .5s
+t-slide   = .5s
+t-book    = .5s
+t-between = 0s
+
+// Delay computing
+d-in-1  = t-iso + t-between
+d-in-2  = t-iso + t-slide + t-between * 2
+d-out-1 = t-book + t-between
+d-out-2 = t-book + t-slide + t-between * 2
+
+d-full   = t-iso + t-slide + t-book + t-between * 3
+
+// Easing
+e-iso-in    = "easeInCubic"
+e-iso-out   = "easeOutCubic"
+e-slide-in  = "easeOutCubic"
+e-slide-out = "easeInCubic"
+e-book-in   = "ease"
+e-book-out  = "ease"
+
+
+work-cover-in()
+  transition-property         transform,          height,             background,         left,               box-shadow
+  transition-duration         t-iso,              t-iso,              t-iso,              t-slide,            $hover-transition
+  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   ease
+  transition-delay            0s,                 0s,                 0s,                 d-in-1,             0s
+
+work-cover-out()
+  transition-property         transform,          height,             background,         left,               box-shadow
+  transition-duration         t-iso,              t-iso,              t-iso,              t-slide,            $hover-transition
+  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
+  transition-delay            d-out-2,            d-out-2,            d-out-2,            d-out-1,            0s
+
+
+
+.hw-work-container
+  clearfix()
+
+.hw-work
+  width third()
+  height px2em($panel-height)
+  float left
+
+.hw-work-cover
+  height 100%
+  iso-left()
+  background white
+  work-cover-out()
+  box-shadow inset 0 0 0 0 $hover-color
+
+  .hw-work:nth-child(3n + 2) &
+    iso-right()
+    background $grey
+
+  &:hover
+    box-shadow inset 0 0 0 px2em($hover-width) $hover-color
+
+.hw-work-content
+  display none
+
+
+
+
+
+
+// .hw-panels
+//   white-space nowrap
+
+//   > *
+//     white-space normal
+//     display inline-block
+//     box-sizing border-box
+//     width third()
+//     vertical-align top
+//     position relative
+
+//   > :nth-child(3n + 1),
+//   > :nth-child(3n + 3)
+//     iso-left()
+//     background white
+
+//   > :nth-child(3n + 2)
+//      iso-right()
+//      background $grey

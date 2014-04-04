@@ -2,7 +2,7 @@ express = require 'express'
 expose  = require 'express-expose'
 path    = require 'path'
 flash   = require 'connect-flash'
-rev     = require './rev-manifest.json'
+rev     = require './datas/rev-manifest.json'
 
 conf    = require('rc')('HISWE')
 
@@ -29,7 +29,8 @@ module.exports = (app) ->
     app.set 'view engine', 'jade'
 
     app.use express.compress() # gzip
-    app.use express.bodyParser()
+    app.use express.urlencoded()
+    app.use express.json()
     app.use express.methodOverride()
     app.use express.favicon()
 

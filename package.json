@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "2.0.3",
+  "version": "3.1.0",
   "scripts": {
     "start": "node server.js"
   },
@@ -22,10 +22,10 @@
     "alphamail": "~1.1.5",
     "connect-assets": "~2.5.x",
     "connect-flash": "~0.1.x",
-    "rc": "~0.3.x"
+    "rc": "~0.3.x",
+    "marked": "^0.3.2"
   },
   "devDependencies": {
-    "marked": "~0.x.x",
     "uslug": "~1.x.x",
     "gulp": "~3.x.x",
     "gulp-uglify": "~0.x.x",
@@ -48,6 +48,8 @@
     "gulp-wait": "0.x.x",
     "stylus": "~0.x.x",
     "nib": "~1.x.x",
-    "hstrap": "~1.x.x"
+    "hstrap": "~1.x.x",
+    "marked": "^0.3.2",
+    "q": "^1.0.1"
   }
 }

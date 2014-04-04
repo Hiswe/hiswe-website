@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "2.0.3",
+  "version": "3.1.0",
   "dependencies": {
     "jquery": "~2.0.2",
     "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",

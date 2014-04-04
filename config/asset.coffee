@@ -2,7 +2,7 @@ express   = require 'express'
 expose    = require 'express-expose'
 path      = require 'path'
 
-stylusVar = require './stylus_var.json'
+stylusVar = require './datas/stylus-var.json'
 
 module.exports = (app) ->
   # Coffeescript + sprocket

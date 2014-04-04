@@ -1,8 +1,10 @@
 'use strict';
 
-var gulp        = require('gulp');
+var Q           = require('q');
+var fs          = require('fs');
 var lr          = require('tiny-lr'); // livereload depend on tiny-lr
 var rev         = require('gulp-rev');
+var gulp        = require('gulp');
 var bump        = require('gulp-bump');
 var wait        = require('gulp-wait');
 var open        = require('gulp-open');
@@ -10,6 +12,7 @@ var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
 var uslug       = require('uslug');
 var open        = require('gulp-open');
+var marked      = require('marked');
 var stylus      = require('gulp-stylus');
 var uglify      = require('gulp-uglify');
 var concat      = require('gulp-concat');
@@ -21,9 +24,26 @@ var nodemon     = require('gulp-nodemon');
 var minifyCSS   = require('gulp-minify-css');
 var livereload  = require('gulp-livereload');
 
+/////////
+// CONF
+/////////
+
 var server = lr();
+var renderer = new marked.Renderer();
+
+renderer.heading = function (text, level) {
+  var escapedText = text.replace(/-/gi, ' ');
+  return '<h' + level + '>' + escapedText + '</h' + level + '>';
+};
+
+marked.setOptions({
+  renderer: renderer,
+  smartypants: true
+});
 
 var path = {
+  datas: 'config/datas',
+  jsonDb: __dirname + '/config/datas/db-work.json',
   libs: [
     'bower_components/modernizr/modernizr.js', // used by js
     'bower_components/jquery/dist/jquery.js',
@@ -38,8 +58,8 @@ var path = {
     '../../../bower_components/hiso-font/font/hicon.css']
 };
 
-var stylus_var = require('./config/stylus_var.json');
-stylus_var.isDev = true;
+var stylusVar = require('./config/datas/stylus-var.json');
+stylusVar.isDev = true;
 
 
 // Bump json version
@@ -80,7 +100,7 @@ gulp.task('stylus', ['clean-css'], function () {
   return gulp.src('./assets/css/front/index.styl')
     .pipe(stylus({
       use: ['nib', 'hstrap'],
-      define: stylus_var,
+      define: stylusVar,
       import: path.cssImport,
       set:['resolve url', 'include css']
     }))
@@ -97,9 +117,9 @@ gulp.task('css', ['stylus'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest('config'))
+    .pipe(gulp.dest(path.datas))
     .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3')) // use to fix  rev manifest https://github.com/sindresorhus/gulp-rev/pull/18
-    .pipe(gulp.dest('config'))
+    .pipe(gulp.dest(path.datas))
     .pipe(livereload(server));
 });
 
@@ -123,9 +143,9 @@ gulp.task('js', ['lib'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest('config'))
+    .pipe(gulp.dest(path.datas))
     .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3')) // use to fix  rev manifest https://github.com/sindresorhus/gulp-rev/pull/18
-    .pipe(gulp.dest('config'))
+    .pipe(gulp.dest(path.datas))
     .pipe(livereload(server));
 });
 
@@ -145,15 +165,50 @@ gulp.task('resize', ['clean-image'], function() {
     .pipe(gulp.dest(path.imgDst))
 });
 
+// Build data json
+gulp.task('json', function() {
+  var deferred  = Q.defer();
+  var jsonDb    = [];
+  var walkFiles = function walkFiles(files) {
+
+    return files.filter(function(fileName){
+      return /.md$/.test(fileName);
+    }).map(function (fileName) {
+      return Q.npost(fs, 'readFile', [path.datas + '/' + fileName, {encoding: 'utf8'}])
+        .then(function(data){ parseFile(fileName, data)});
+    });
+  };
+  var parseFile = function readFile(fileName, data) {
+    fileName = fileName.match(/^(\d*)-(.*).md$/)
+    jsonDb.push({
+      order: ~~fileName[1],
+      id: fileName[2],
+      name: fileName[2].replace(/-/gi, ' '),
+      markup: marked(data, {sanitize: true})
+    });
+  };
+
+  Q.ninvoke(fs, 'readdir', path.datas)
+    .then(walkFiles)
+    .all()
+    .done(function(){
+      jsonDb.sort(function(a, b){ return  a.order < b.order});
+      fs.writeFileSync(path.jsonDb, JSON.stringify(jsonDb, null, 2));
+      deferred.resolve();
+    });
+
+  return deferred.promise
+});
+
 // build for production
-gulp.task('build', ['lib', 'stylus'], function() {
+gulp.task('build', ['lib', 'stylus', 'json'], function() {
   gulp.src(['public/*min.js', 'public/*.min.css'])
   .pipe(rev())
   .pipe(gulp.dest('public'))
   .pipe(rev.manifest())
-  .pipe(gulp.dest('config'))
+  .pipe(gulp.dest(path.datas))
   .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3')) // use to fix rev manifest https://github.com/sindresorhus/gulp-rev/pull/18
-  .pipe(gulp.dest('config'))
+  .pipe(gulp.dest(path.datas))
   .pipe(livereload(server));
 });
 
@@ -163,10 +218,15 @@ gulp.task('build', ['lib', 'stylus'], function() {
 
 // Watch
 gulp.task('watch', function() {
-  server.listen(35729, function (err) {
-    if (err) { return console.log(err) }
-  });
+  server.listen(35729, function (err) { if (err) { return console.log(err) }});
+
   gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
+
+  gulp.watch(['./config/datas/*.md'], ['json']).on('change', function() {
+    gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload datas'}));
+    server.changed({body: {files: ['index.html']}});
+  });;
+
   gulp.watch('./views/**/*.jade').on('change', function() {
     gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload html'}));
     server.changed({body: {files: ['index.html']}});
@@ -189,6 +249,7 @@ gulp.task('express', function () {
 gulp.task('server', ['build', 'watch', 'express']);
 
 gulp.task("start", ['server'], function(){
+  // Has to be a file in order to proceed
   gulp.src('./README.md').pipe(wait(1000)).pipe(open('', {url: "http://localhost:5000"}));
 });
 
@@ -197,13 +258,15 @@ gulp.task("start", ['server'], function(){
 /////////
 
 gulp.task('default', function() {
-  console.log(gutil.colors.red('bump'), '   ', 'bump version of json');
-  console.log(gutil.colors.red('font'), '   ', 'Copy fonts to the right folder');
-  console.log(gutil.colors.red('js'), '     ', 'Concat & uglify + rev');
-  console.log(gutil.colors.red('css'), '    ', 'Compile stylus + uglify + rev');
-  console.log(gutil.colors.red('build'), '  ', 'js + css + rev');
-  console.log(gutil.colors.red('resize'), ' ', 'Resize images');
-  console.log(gutil.colors.red('express'), '', 'Start server');
-  console.log(gutil.colors.red('watch'), '  ', 'Watch stylus');
-  console.log(gutil.colors.red('start'), '  ', 'Watch + server');
+  console.log(gutil.colors.red('bump'), '      ', 'patch version of json');
+  console.log(gutil.colors.red('bump-minor'), '', 'minor version of json');
+  console.log(gutil.colors.red('bump-major'), '', 'major version of json');
+  console.log(gutil.colors.red('font'), '      ', 'Copy fonts to the right folder');
+  console.log(gutil.colors.red('js'), '        ', 'Concat & uglify + rev');
+  console.log(gutil.colors.red('css'), '       ', 'Compile stylus + uglify + rev');
+  console.log(gutil.colors.red('build'), '     ', 'js + css + rev');
+  console.log(gutil.colors.red('resize'), '    ', 'Resize images');
+  console.log(gutil.colors.red('express'), '   ', 'Start server');
+  console.log(gutil.colors.red('watch'), '     ', 'Watch stylus');
+  console.log(gutil.colors.red('start'), '     ', 'Watch + server');
 });
