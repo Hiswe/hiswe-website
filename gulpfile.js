@@ -12,6 +12,7 @@ var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
 var uslug       = require('uslug');
 var open        = require('gulp-open');
+var source      = require('vinyl-source-stream');
 var marked      = require('marked');
 var stylus      = require('gulp-stylus');
 var uglify      = require('gulp-uglify');
@@ -21,8 +22,11 @@ var notify      = require('gulp-notify');
 var resize      = require('gulp-image-resize');
 var replace     = require('gulp-replace');
 var nodemon     = require('gulp-nodemon');
+var coffeeify   = require('coffeeify');
+var streamify   = require('gulp-streamify')
 var minifyCSS   = require('gulp-minify-css');
 var livereload  = require('gulp-livereload');
+var browserify  = require('browserify');
 
 /////////
 // CONF
@@ -48,6 +52,7 @@ var path = {
     'bower_components/modernizr/modernizr.js', // used by js
     'bower_components/jquery/dist/jquery.js',
     'bower_components/hevent/build/jquery.hevent.js'],
+  frontAppBasedir: __dirname + '/assets/js/front',
   font: [
     'bower_components/hiso-font/font/**',
     '!bower_components/hiso-font/font/*.css'
@@ -138,7 +143,28 @@ gulp.task('lib', ['clean-js'], function() {
     .pipe(notify({title: 'Lib', message: 'build done'}));
 });
 
-gulp.task('js', ['lib'], function() {
+// front-end app
+gulp.task('frontend-app', function() {
+  // see https://github.com/hughsk/vinyl-source-stream example
+
+  var bundleStream = browserify({
+      entries: path.frontAppBasedir + '/boot.coffee',
+      basedir: path.frontAppBasedir
+    })
+    .transform(coffeeify)
+    .bundle();
+
+  return bundleStream
+    .pipe(source(path.frontAppBasedir + '/boot.coffee'))
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest('./public'))
+    .pipe(rename('app.min.js'))
+    .pipe(streamify(uglify({mangle: false})))
+    .pipe(gulp.dest('./public'))
+    .pipe(notify({title: 'App', message: 'build done'}));
+});
+
+gulp.task('js', ['lib', 'frontend-app'], function() {
   gulp.src(['public/*.min.js'])
     .pipe(rev())
     .pipe(gulp.dest('public'))
@@ -201,13 +227,11 @@ gulp.task('json', function() {
 });
 
 // build for production
-gulp.task('build', ['lib', 'stylus', 'json'], function() {
-  gulp.src(['public/*min.js', 'public/*.min.css'])
+gulp.task('build', ['frontend-app', 'lib', 'stylus', 'json'], function() {
+  return gulp.src(['public/*min.js', 'public/*.min.css'])
   .pipe(rev())
   .pipe(gulp.dest('public'))
   .pipe(rev.manifest())
-  .pipe(gulp.dest(path.datas))
-  .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3')) // use to fix rev manifest https://github.com/sindresorhus/gulp-rev/pull/18
   .pipe(gulp.dest(path.datas))
   .pipe(livereload(server));
 });
@@ -221,6 +245,8 @@ gulp.task('watch', function() {
   server.listen(35729, function (err) { if (err) { return console.log(err) }});
 
   gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
+
+  gulp.watch(['./assets/css/front/**/*.coffee'], ['frontend-app']);
 
   gulp.watch(['./config/datas/*.md'], ['json']).on('change', function() {
     gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload datas'}));
@@ -238,7 +264,7 @@ gulp.task('notify-restart', function () {
   gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
 });
 
-gulp.task('express', function () {
+gulp.task('express', ['build'], function () {
   nodemon({
     script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*', 'public/*'],
     env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
@@ -246,7 +272,7 @@ gulp.task('express', function () {
   .on('restart', ['notify-restart']);
 });
 
-gulp.task('server', ['build', 'watch', 'express']);
+gulp.task('server', ['watch', 'express']);
 
 gulp.task("start", ['server'], function(){
   // Has to be a file in order to proceed

@@ -64,4 +64,4 @@ class Controller
       else
         @el.on(eventName, selector, method)
 
-hw.Controller = Controller
+module.exports = Controller

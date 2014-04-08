@@ -1,4 +1,7 @@
-class Contact extends hw.Controller
+Controller  = require './front-controller.coffee'
+events      = require './events.coffee'
+
+class Contact extends Controller
   trace: false
   logPrefix: '[CONTACT]'
   removeDelay: 5000
@@ -21,7 +24,7 @@ class Contact extends hw.Controller
     @log 'discard'
     $target = $(e.currentTarget)
     window.clearTimeout @timer
-    $target.on('animationend', ->$(this).remove()).addClass('remove')
+    $target.on(events.animation, ->$(this).remove()).addClass('remove')
 
   addMessage: (type = 'success', text = 'send') ->
     msg = ['<p class="hw-message-', type, '">', text, '</p>']
@@ -57,4 +60,4 @@ class Contact extends hw.Controller
     @refreshElements()
     @all.attr('disabled', false)
 
-hw.Contact = Contact
+module.exports = Contact

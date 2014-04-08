@@ -10,6 +10,8 @@ node_modules
 public/media/source
 public/index.css
 public/index.min.css
+public/app.js
+public/app.min.js
 public/lib.js
 public/lib.min.js
 tmp

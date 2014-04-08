@@ -1,9 +1,12 @@
-class Home extends hw.Controller
+Controller  = require './front-controller.coffee'
+options     = require '../../../config/datas/stylus-var.json'
+
+class Home extends Controller
   trace: true
   logPrefix: '[HOME]'
-  activeClass: hw.options.activeClass
-  activeBody:  hw.options.activeBody
-  carrouselClass: hw.options.carrouselClass
+  activeClass: options.activeClass
+  activeBody:  options.activeBody
+  carrouselClass: options.carrouselClass
   timer: undefined
 
   elements: {
@@ -63,4 +66,4 @@ class Home extends hw.Controller
     @cleanAll()
     this
 
-hw.Home = Home
+module.exports = Home

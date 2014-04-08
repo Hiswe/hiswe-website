@@ -7,13 +7,13 @@ html
       include includes/navigation
       block content
 
-    //- expose
-    script!= javascript
     //- jQuery + plugins
     if env == 'production'
       script(src="lib.min.js")
+      script(src="app.min.js")
     else
       script(src="lib.js")
+      script(src="app.js")
 
     block script
 

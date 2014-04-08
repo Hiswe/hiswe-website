@@ -1,5 +1,4 @@
 express = require 'express'
-expose  = require 'express-expose'
 path    = require 'path'
 flash   = require 'connect-flash'
 rev     = require './datas/rev-manifest.json'
@@ -39,7 +38,7 @@ module.exports = (app) ->
     app.use express.session({ cookie: { maxAge: 60000 }})
     app.use flash()
 
-    # static & coffeeScript
+    # static
     require('./asset')(app)
 
     # routing after static…
