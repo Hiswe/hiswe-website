@@ -88,6 +88,9 @@ body {
   background-repeat: no-repeat;
   color: #222;
 }
+body.hw-body-active {
+  overflow: hidden;
+}
 a {
   text-decoration: none;
   color: #fff;
@@ -972,6 +975,8 @@ body {
 }
 .hw-projects-cover {
   height: 100%;
+  position: relative;
+  top: 0;
   -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
   -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
   -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
@@ -979,11 +984,11 @@ body {
   transform: matrix(1, -0.5, 0, 1, 0, 0);
   -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
   background: #fff;
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-property: -webkit-transform, height, top, opacity, box-shadow;
+  -moz-transition-property: -moz-transform, height, top, opacity, box-shadow;
+  -o-transition-property: -o-transform, height, top, opacity, box-shadow;
+  -ms-transition-property: -ms-transform, height, top, opacity, box-shadow;
+  transition-property: transform, height, top, opacity, box-shadow;
   -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
   -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
   -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
@@ -994,15 +999,18 @@ body {
   -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
   -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
   transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -webkit-transition-delay: 1s, 1s, 1s, 1s, 0s;
+  -moz-transition-delay: 1s, 1s, 1s, 1s, 0s;
+  -o-transition-delay: 1s, 1s, 1s, 1s, 0s;
+  -ms-transition-delay: 1s, 1s, 1s, 1s, 0s;
+  transition-delay: 1s, 1s, 1s, 1s, 0s;
   -webkit-box-shadow: inset 0 0 0 0 rgba(0,0,0,0.75);
   box-shadow: inset 0 0 0 0 rgba(0,0,0,0.75);
   text-align: center;
   cursor: pointer;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 .hw-projects-cover span {
   display: inline-block;
@@ -1029,8 +1037,150 @@ body {
   -webkit-box-shadow: inset 0 0 0 0.5em rgba(0,0,0,0.75);
   box-shadow: inset 0 0 0 0.5em rgba(0,0,0,0.75);
 }
+.hw-projects-item:nth-child(3n + 2).hw-panel-active .hw-projects-cover,
+.hw-panel-active .hw-projects-cover {
+  -webkit-transition-property: -webkit-transform, height, top, opacity, box-shadow;
+  -moz-transition-property: -moz-transform, height, top, opacity, box-shadow;
+  -o-transition-property: -o-transform, height, top, opacity, box-shadow;
+  -ms-transition-property: -ms-transform, height, top, opacity, box-shadow;
+  transition-property: transform, height, top, opacity, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
+  height: 150%;
+  top: -25%;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.hw-projects-content-container {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 100%;
+  bottom: 100%;
+  right: 0;
+  bottom: 0;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -ms-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-perspective-origin: center center;
+  -moz-perspective-origin: center center;
+  -ms-perspective-origin: center center;
+  perspective-origin: center center;
+  -webkit-transition: all 0s ease 1s;
+  -moz-transition: all 0s ease 1s;
+  -o-transition: all 0s ease 1s;
+  -ms-transition: all 0s ease 1s;
+  transition: all 0s ease 1s;
+}
+.hw-panel-active .hw-projects-content-container {
+  -webkit-transition: all 0s ease 1s;
+  -moz-transition: all 0s ease 1s;
+  -o-transition: all 0s ease 1s;
+  -ms-transition: all 0s ease 1s;
+  transition: all 0s ease 1s;
+  visibility: visible;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+}
 .hw-projects-content {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: #fff;
+  border: 1.3125em solid #ecf4f8;
+  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -webkit-backface-visibility: visible;
+  -moz-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
+  -ms-transition-property: -ms-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transition-duration: 1s, 0.5s;
+  -moz-transition-duration: 1s, 0.5s;
+  -o-transition-duration: 1s, 0.5s;
+  -ms-transition-duration: 1s, 0.5s;
+  transition-duration: 1s, 0.5s;
+  -webkit-transition-timing-function: ease, ease;
+  -moz-transition-timing-function: ease, ease;
+  -o-transition-timing-function: ease, ease;
+  -ms-transition-timing-function: ease, ease;
+  transition-timing-function: ease, ease;
+  -webkit-transition-delay: 0s, 0.5s;
+  -moz-transition-delay: 0s, 0.5s;
+  -o-transition-delay: 0s, 0.5s;
+  -ms-transition-delay: 0s, 0.5s;
+  transition-delay: 0s, 0.5s;
+}
+.hw-panel-active .hw-projects-content {
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
+  -ms-transition-property: -ms-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transition-duration: 1s, 0.5s;
+  -moz-transition-duration: 1s, 0.5s;
+  -o-transition-duration: 1s, 0.5s;
+  -ms-transition-duration: 1s, 0.5s;
+  transition-duration: 1s, 0.5s;
+  -webkit-transition-timing-function: ease, ease;
+  -moz-transition-timing-function: ease, ease;
+  -o-transition-timing-function: ease, ease;
+  -ms-transition-timing-function: ease, ease;
+  transition-timing-function: ease, ease;
+  -webkit-transition-delay: 1s, 1s;
+  -moz-transition-delay: 1s, 1s;
+  -o-transition-delay: 1s, 1s;
+  -ms-transition-delay: 1s, 1s;
+  transition-delay: 1s, 1s;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-transform: scale3d(1, 1, 1) rotateY(0deg);
+  -moz-transform: scale3d(1, 1, 1) rotateY(0deg);
+  -o-transform: scale3d(1, 1, 1) rotateY(0deg);
+  -ms-transform: scale3d(1, 1, 1) rotateY(0deg);
+  transform: scale3d(1, 1, 1) rotateY(0deg);
 }
 label {
   display: block;

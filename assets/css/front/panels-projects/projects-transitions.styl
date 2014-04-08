@@ -1,0 +1,53 @@
+@import 'nib/vendor'
+@import 'hstrap/mixins/h-ease'
+
+// Firefox don't handle time 0.
+// it MUST be 0s
+
+// Timing configuration
+t-cover   = .5s
+t-content = .5s
+t-between = 0s
+
+// Delay computing
+d-cover-in    = (t-cover + t-between) * 2
+d-content-out = (t-content + t-between) * 2
+
+// d-full   = t-cover + t-content + t-between * 2
+
+// Easing
+e-cover-in    = "easeInCubic"
+e-cover-out   = "easeOutCubic"
+
+// Cover panel
+projects-cover-in()
+  transition-property         transform,          height,             top,                opacity,            box-shadow
+  transition-duration         t-cover,            t-cover,            t-cover,            t-cover,            $hover-transition
+  transition-timing-function  h-ease(e-cover-in), h-ease(e-cover-in), h-ease(e-cover-in), h-ease(e-cover-in), ease
+  transition-delay            0s,                 0s,                 0s,                 t-cover,            0s
+
+projects-cover-out()
+  transition-property         transform,          height,             top,                opacity,            box-shadow
+  transition-duration         t-cover,            t-cover,            t-cover,            t-cover,            $hover-transition
+  transition-timing-function  h-ease(e-cover-out),h-ease(e-cover-out),h-ease(e-cover-out),h-ease(e-cover-out),ease
+  transition-delay            d-content-out,      d-content-out,      d-content-out,      d-content-out,      0s
+
+// Container panel
+projects-container-in()
+  transition all 0s ease d-cover-in
+
+projects-container-out()
+  transition all 0s ease d-content-out
+
+// Content panel
+projects-content-in()
+  transition-property         transform,          opacity
+  transition-duration         t-content*2,        t-content
+  transition-timing-function  ease,               ease
+  transition-delay            d-cover-in,         d-cover-in
+
+projects-content-out()
+  transition-property         transform,          opacity
+  transition-duration         t-content*2,        t-content
+  transition-timing-function  ease,               ease
+  transition-delay            0s,                 t-content

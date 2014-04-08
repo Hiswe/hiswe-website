@@ -2,44 +2,7 @@
 @import 'nib/reset'
 @import './css-config'
 @import './css-mixins'
-
-// Firefox don't handle time 0.
-// it MUST be 0s
-
-// Timing configuration
-t-iso     = .5s
-t-slide   = .5s
-t-book    = .5s
-t-between = 0s
-
-// Delay computing
-d-in-1  = t-iso + t-between
-d-in-2  = t-iso + t-slide + t-between * 2
-d-out-1 = t-book + t-between
-d-out-2 = t-book + t-slide + t-between * 2
-
-d-full   = t-iso + t-slide + t-book + t-between * 3
-
-// Easing
-e-iso-in    = "easeInCubic"
-e-iso-out   = "easeOutCubic"
-e-slide-in  = "easeOutCubic"
-e-slide-out = "easeInCubic"
-e-book-in   = "ease"
-e-book-out  = "ease"
-
-
-projects-cover-in()
-  transition-property         transform,          height,             background,         left,               box-shadow
-  transition-duration         t-iso,              t-iso,              t-iso,              t-slide,            $hover-transition
-  transition-timing-function  h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   h-ease(e-iso-in),   ease
-  transition-delay            0s,                 0s,                 0s,                 d-in-1,             0s
-
-projects-cover-out()
-  transition-property         transform,          height,             background,         left,               box-shadow
-  transition-duration         t-iso,              t-iso,              t-iso,              t-slide,            $hover-transition
-  transition-timing-function  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  h-ease(e-iso-out),  ease
-  transition-delay            d-out-2,            d-out-2,            d-out-2,            d-out-1,            0s
+@import './projects-transitions'
 
 .hw-projects
   clearfix()
@@ -51,12 +14,15 @@ projects-cover-out()
 
 .hw-projects-cover
   height 100%
+  position relative
+  top 0
   iso-left()
   background white
   projects-cover-out()
   box-shadow inset 0 0 0 0 $hover-color
   text-align center
   cursor pointer
+  opacity 1
 
   span
     display inline-block
@@ -70,26 +36,43 @@ projects-cover-out()
   &:hover
     box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
+  .hw-projects-item:nth-child(3n + 2).{activeClass} &,
+  .{activeClass} &
+    projects-cover-in()
+    iso-reset()
+    height 150%
+    top -25%
+    opacity 0
+
+.hw-projects-content-container
+  visibility hidden
+  fixed top left
+  right 100%; bottom 100%
+  right 0; bottom 0
+  // overflow hidden
+  perspective 1000px
+  perspective-origin center center
+  projects-container-out()
+
+  .{activeClass} &
+    projects-container-in()
+    visibility visible
+    right 0; bottom 0
+    z-index 9
+
 .hw-projects-content
-  display none
+  absolute top left
+  bottom 0; right 0
+  overflow auto
+  background white
+  border px2em($main-border) solid $light-grey
+  transform scale3d(.1, .1, .1) rotateY(180deg)
+  backface-visibility visible
+  transform-style preserve-3d
+  opacity .5
+  projects-content-out()
 
-
-// .hw-panels
-//   white-space nowrap
-
-//   > *
-//     white-space normal
-//     display inline-block
-//     box-sizing border-box
-//     width third()
-//     vertical-align top
-//     position relative
-
-//   > :nth-child(3n + 1),
-//   > :nth-child(3n + 3)
-//     iso-left()
-//     background white
-
-//   > :nth-child(3n + 2)
-//      iso-right()
-//      background $grey
+  .{activeClass} &
+    projects-content-in()
+    opacity 1
+    transform scale3d(1, 1, 1) rotateY(0deg)

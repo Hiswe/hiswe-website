@@ -12,8 +12,8 @@ class Services extends Controller
   }
 
   events: {
-    'click .hw-sub-container' : 'serviceZoom'
-    'click .hw-sub-close'     : 'serviceClose'
+    'click .hw-sub-container' : 'open'
+    'click .hw-sub-close'     : 'close'
   }
 
   constructor: ->
@@ -27,21 +27,20 @@ class Services extends Controller
     @servicePanels.removeClass options.activeClass
     this
 
-  serviceZoom: (e) ->
+  open: (e) ->
     $target = $(e.currentTarget)
     e.stopPropagation()
     return if $target.hasClass(options.activeClass)
     window.clearTimeout @timer
-    @log 'Service zoom'
+    @log 'Service open'
     e.preventDefault()
-    e.stopPropagation()
     @clean()
     @el.css('z-index', 2)
     $target.addClass(options.activeClass)
-    @e.trigger 'active'
+    @e.trigger 'open'
     this
 
-  serviceClose: (e) ->
+  close: (e) ->
     @log 'Service close'
     e.preventDefault()
     e.stopPropagation()
@@ -53,7 +52,7 @@ class Services extends Controller
         @el.css('z-index', 1)
       , 2000
     $panel.removeClass(options.activeClass)
-    @e.trigger 'unactive'
+    @e.trigger 'close'
     @clean()
     this
 

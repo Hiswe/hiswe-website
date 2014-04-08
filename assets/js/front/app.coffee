@@ -29,12 +29,12 @@ class App extends Controller
     @body.on 'click', =>
       @services.e.trigger 'clean'
 
-    @services.e.on('active', =>
-      @log('service open')
-      @body.addClass(options.activeBody)
+    @projects.e.on('open', =>
+      @log('projects open')
+      @body.addClass options.activeBody
     )
-    @services.e.on('unactive', =>
-      @log('service close')
+    @projects.e.on('close', =>
+      @log('projects close')
       @body.removeClass options.activeBody
     )
 
