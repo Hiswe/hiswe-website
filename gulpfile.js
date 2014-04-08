@@ -11,7 +11,6 @@ var open        = require('gulp-open');
 var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
 var uslug       = require('uslug');
-var open        = require('gulp-open');
 var source      = require('vinyl-source-stream');
 var marked      = require('marked');
 var stylus      = require('gulp-stylus');
@@ -123,8 +122,6 @@ gulp.task('css', ['stylus'], function() {
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
     .pipe(gulp.dest(path.datas))
-    .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3')) // use to fix  rev manifest https://github.com/sindresorhus/gulp-rev/pull/18
-    .pipe(gulp.dest(path.datas))
     .pipe(livereload(server));
 });
 
@@ -146,7 +143,6 @@ gulp.task('lib', ['clean-js'], function() {
 // front-end app
 gulp.task('frontend-app', function() {
   // see https://github.com/hughsk/vinyl-source-stream example
-
   var bundleStream = browserify({
       entries: path.frontAppBasedir + '/boot.coffee',
       basedir: path.frontAppBasedir
@@ -161,7 +157,8 @@ gulp.task('frontend-app', function() {
     .pipe(rename('app.min.js'))
     .pipe(streamify(uglify({mangle: false})))
     .pipe(gulp.dest('./public'))
-    .pipe(notify({title: 'App', message: 'build done'}));
+    .pipe(notify({title: 'App', message: 'build done'}))
+    .pipe(livereload(server));
 });
 
 gulp.task('js', ['lib', 'frontend-app'], function() {
@@ -169,8 +166,6 @@ gulp.task('js', ['lib', 'frontend-app'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest(path.datas))
-    .pipe(replace(/(.*)(:\s")\/(.*)/gi, '$1$2$3')) // use to fix  rev manifest https://github.com/sindresorhus/gulp-rev/pull/18
     .pipe(gulp.dest(path.datas))
     .pipe(livereload(server));
 });
@@ -246,7 +241,7 @@ gulp.task('watch', function() {
 
   gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
 
-  gulp.watch(['./assets/css/front/**/*.coffee'], ['frontend-app']);
+  gulp.watch(['./assets/js/front/**/*.coffee'], ['frontend-app']);
 
   gulp.watch(['./config/datas/*.md'], ['json']).on('change', function() {
     gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload datas'}));

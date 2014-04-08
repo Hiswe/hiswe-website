@@ -1,19 +1,14 @@
 Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
-class Home extends Controller
-  trace: true
-  logPrefix: '[HOME]'
-  activeClass: options.activeClass
-  activeBody:  options.activeBody
-  carrouselClass: options.carrouselClass
+class Services extends Controller
+  trace: false
+  logPrefix: '[SERVICES]'
   timer: undefined
 
   elements: {
-    '.hw-sub-container'                   : 'servicePanels'
-    'section.hw-services, section.hw-work': 'containers'
-    '.hw-sub-close'                       : 'close'
-    '.hw-work-carrousel ul'               : 'carrousel'
+    '.hw-sub-container' : 'servicePanels'
+    '.hw-sub-close'     : 'close'
   }
 
   events: {
@@ -31,23 +26,21 @@ class Home extends Controller
 
   cleanAll: (e) =>
     @log 'clean' if e?
-    @servicePanels.removeClass @activeClass
+    @servicePanels.removeClass options.activeClass
     this
 
   serviceZoom: (e) ->
     $target = $(e.currentTarget)
     e.stopPropagation()
-    return if $target.hasClass(@activeClass)
+    return if $target.hasClass(options.activeClass)
     window.clearTimeout @timer
     @log 'Service zoom'
     e.preventDefault()
     e.stopPropagation()
-    $papa = $target.closest('section')
     @cleanAll()
-    @containers.not($papa).css('z-index', 1)
-    $papa.css('z-index', 2)
-    $target.addClass(@activeClass)
-    @body.addClass(@activeBody)
+    @el.css('z-index', 2)
+    $target.addClass(options.activeClass)
+    @body.addClass(options.activeBody)
     this
 
   serviceClose: (e) ->
@@ -56,14 +49,14 @@ class Home extends Controller
     e.stopPropagation()
     $target = $(e.currentTarget)
     $panel = @servicePanels.eq( @close.index($target) )
-    return unless $panel.hasClass @activeClass
-    $papa = $panel.closest('section')
+    return unless $panel.hasClass options.activeClass
+    # TODO should be made with transitionend
     @timer = @delay ->
-        $papa.css('z-index', 1)
+        @el.css('z-index', 1)
       , 2000
-    $panel.removeClass(@activeClass)
-    @body.removeClass @activeBody
+    $panel.removeClass(options.activeClass)
+    @body.removeClass options.activeBody
     @cleanAll()
     this
 
-module.exports = Home
+module.exports = Services
