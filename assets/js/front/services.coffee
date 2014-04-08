@@ -20,12 +20,10 @@ class Services extends Controller
     super
     return unless @el.length
     @log 'Init'
-    @body = $('body')
-    @body.on 'click', @cleanAll
+    @e.on 'clean', => @clean()
     this
 
-  cleanAll: (e) =>
-    @log 'clean' if e?
+  clean: =>
     @servicePanels.removeClass options.activeClass
     this
 
@@ -37,10 +35,10 @@ class Services extends Controller
     @log 'Service zoom'
     e.preventDefault()
     e.stopPropagation()
-    @cleanAll()
+    @clean()
     @el.css('z-index', 2)
     $target.addClass(options.activeClass)
-    @body.addClass(options.activeBody)
+    @e.trigger 'active'
     this
 
   serviceClose: (e) ->
@@ -55,8 +53,8 @@ class Services extends Controller
         @el.css('z-index', 1)
       , 2000
     $panel.removeClass(options.activeClass)
-    @body.removeClass options.activeBody
-    @cleanAll()
+    @e.trigger 'unactive'
+    @clean()
     this
 
 module.exports = Services

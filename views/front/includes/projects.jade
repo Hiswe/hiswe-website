@@ -1,0 +1,10 @@
+section.hw-projects
+  h1.hw-title
+    each letter in 'Projects'.split('')
+      span(data-text="#{letter}")= letter
+
+  .hw-projects-list
+    each project in projects
+      dl.hw-projects-item
+        dt.hw-projects-cover: span= project.name
+        dd: article.hw-projects-content!= project.markup

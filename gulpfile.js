@@ -66,7 +66,10 @@ var stylusVar = require('./config/datas/stylus-var.json');
 stylusVar.isDev = true;
 
 
-// Bump json version
+/////////
+// VERSIONS
+/////////
+
 gulp.task('bump', function () {
   return gulp.src(['./package.json', './bower.json'])
     .pipe(bump())
@@ -261,7 +264,7 @@ gulp.task('notify-restart', function () {
 
 gulp.task('express', ['build'], function () {
   nodemon({
-    script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*', 'public/*'],
+    script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*'],
     env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
   })
   .on('restart', ['notify-restart']);
