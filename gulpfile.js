@@ -16,6 +16,7 @@ var uglify      = require('gulp-uglify');
 var concat      = require('gulp-concat');
 var rename      = require('gulp-rename');
 var notify      = require('gulp-notify');
+var svgmin      = require('gulp-svgmin');
 var resize      = require('gulp-image-resize');
 var replace     = require('gulp-replace');
 var nodemon     = require('gulp-nodemon');
@@ -148,15 +149,28 @@ gulp.task('clean-js', function() {
 
 // Resize images
 gulp.task('clean-image', function() {
-  return gulp.src('public/media/images/*', {read: false}).pipe(clean());
+  return gulp.src([path.imgDst + '*', '!' + path.imgDst + '*.svg'], {read: false}).pipe(clean());
+});
+
+gulp.task('clean-svg', function() {
+  return gulp.src(path.imgDst + '*.svg', {read: false}).pipe(clean());
 });
 
 gulp.task('resize', ['clean-image'], function() {
-  gulp.src(path.imgSrc)
+  return gulp.src(path.imgSrc)
     .pipe(resize({width: 294, quality: 0.8}))
     .pipe(rename(function(path) { path.basename = uslug(path.basename); }))
     .pipe(gulp.dest(path.imgDst))
 });
+
+gulp.task('svg', ['clean-svg'], function() {
+  return gulp.src(path.svgSrc)
+    .pipe(svgmin())
+    .pipe(rename(function(path) { path.basename = uslug(path.basename); }))
+    .pipe(gulp.dest(path.imgDst));
+});
+
+gulp.task('image', ['resize', 'svg']);
 
 // Build data json
 gulp.task('json', require('./gulp-data.js'));
@@ -219,15 +233,17 @@ gulp.task("start", ['server'], function(){
 /////////
 
 gulp.task('default', function() {
-  console.log(gutil.colors.red('bump'), '      ', 'patch version of json');
-  console.log(gutil.colors.red('bump-minor'), '', 'minor version of json');
-  console.log(gutil.colors.red('bump-major'), '', 'major version of json');
-  console.log(gutil.colors.red('font'), '      ', 'Copy fonts to the right folder');
-  console.log(gutil.colors.red('js'), '        ', 'Concat & uglify + rev');
-  console.log(gutil.colors.red('css'), '       ', 'Compile stylus + uglify + rev');
-  console.log(gutil.colors.red('build'), '     ', 'js + css + rev');
-  console.log(gutil.colors.red('resize'), '    ', 'Resize images');
-  console.log(gutil.colors.red('express'), '   ', 'Start server');
-  console.log(gutil.colors.red('watch'), '     ', 'Watch stylus');
-  console.log(gutil.colors.red('start'), '     ', 'Watch + server');
+  console.log(gutil.colors.red('bump'), '       ', 'patch version of json');
+  console.log(gutil.colors.red('bump-minor'), ' ', 'minor version of json');
+  console.log(gutil.colors.red('bump-major'), ' ', 'major version of json');
+  console.log(gutil.colors.red('font'), '       ', 'Copy fonts to the right folder');
+  console.log(gutil.colors.red('js'), '         ', 'Concat & uglify + rev');
+  console.log(gutil.colors.red('css'), '        ', 'Compile stylus + uglify + rev');
+  console.log(gutil.colors.red('build'), '      ', 'js + css + rev');
+  console.log(gutil.colors.red('resize'), '     ', 'Resize pixel images');
+  console.log(gutil.colors.red('svg'), '        ', 'clean svg images');
+  console.log(gutil.colors.red('image'), '      ', 'resize + svg');
+  console.log(gutil.colors.red('express'), '    ', 'Start server');
+  console.log(gutil.colors.red('watch'), '      ', 'Watch stylus');
+  console.log(gutil.colors.red('start'), '      ', 'Watch + server');
 });
