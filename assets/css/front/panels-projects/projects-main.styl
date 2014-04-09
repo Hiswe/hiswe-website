@@ -1,0 +1,104 @@
+@import 'nib/positions'
+@import 'nib/reset'
+@import './css-config'
+@import './css-mixins'
+@import './projects-transitions'
+
+.hw-projects
+  clearfix()
+  position relative
+  z-index 1
+
+.hw-projects-item
+  width third()
+  height px2em($panel-height)
+  float left
+
+.hw-projects-cover
+  height 100%
+  relative top left
+  z-index 1
+  iso-left()
+  background white
+  projects-cover-out()
+  box-shadow inset 0 0 0 0 $hover-color
+  text-align center
+  cursor pointer
+
+  span
+    display inline-block
+    percentCenter()
+    font-size 2em
+
+  .hw-projects-item:nth-child(3n + 2) &
+    iso-right()
+    background $grey
+
+  &:hover
+    box-shadow inset 0 0 0 px2em($hover-width) $hover-color
+
+  .hw-projects-item:nth-child(3n + 2).{activeClass} &,
+  .{activeClass} &
+    projects-cover-in()
+    box-shadow inset 0 0 0 0 $hover-color
+    background $dark-grey
+    iso-reset()
+    height 150%
+    top -25%
+    z-index 2
+
+  .hw-projects-item:nth-child(3n + 1).{activeClass} &
+    left 100%
+
+  .hw-projects-item:nth-child(3n + 3).{activeClass} &
+    left -100%
+
+.hw-projects-content-container
+  visibility hidden
+  fixed top left
+  right 100%; bottom 100%
+  right 0; bottom 0
+  perspective 1000px
+  perspective-origin center center
+  projects-container-out()
+
+  .{activeClass} &
+    projects-container-in()
+    visibility visible
+    right 0; bottom 0
+    z-index 9
+
+.hw-projects-content
+  absolute top left
+  bottom 0; right 0
+  overflow auto
+  background white
+  border px2em($main-border) solid $pink
+  transform scale3d(.1, .1, .1) rotateY(180deg)
+  backface-visibility hidden
+  transform-style preserve-3d
+  opacity .5
+  projects-content-out()
+
+  &::after
+    content ''
+    absolute top left
+    bottom 0; right 0
+    backface-visibility hidden
+    background $darkest-grey
+    transform rotateY(0deg)
+    projects-content-out()
+
+  .{activeClass} &
+    projects-content-in()
+    opacity 1
+    transform scale3d(1, 1, 1) rotateY(0deg)
+
+    &::after
+      projects-content-in()
+      transform rotateY(180deg)
+
+  // *
+  //   transform translate3d(0,0,0)
+  //   backface-visibility hidden
+  //   transform-style preserve-3d

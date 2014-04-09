@@ -5,6 +5,6 @@ section.hw-projects
 
   .hw-projects-list
     each project in projects
-      dl.hw-projects-item
+      dl.hw-projects-item(id="#{project.id}")
         dt.hw-projects-cover: span= project.name
         dd.hw-projects-content-container: article.hw-projects-content!= project.markup

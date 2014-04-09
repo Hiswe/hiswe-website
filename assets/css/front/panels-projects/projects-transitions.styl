@@ -1,19 +1,16 @@
 @import 'nib/vendor'
 @import 'hstrap/mixins/h-ease'
 
-// Firefox don't handle time 0.
-// it MUST be 0s
-
 // Timing configuration
 t-cover   = .5s
 t-content = .5s
 t-between = 0s
 
 // Delay computing
-d-cover-in    = (t-cover + t-between) * 2
+d-cover-in    = (t-cover + t-between) * 1
 d-content-out = (t-content + t-between) * 2
 
-// d-full   = t-cover + t-content + t-between * 2
+d-full        = d-cover-in + d-content-out + t-between
 
 // Easing
 e-cover-in    = "easeInCubic"
@@ -21,16 +18,16 @@ e-cover-out   = "easeOutCubic"
 
 // Cover panel
 projects-cover-in()
-  transition-property         transform,          height,             top,                opacity,            box-shadow
-  transition-duration         t-cover,            t-cover,            t-cover,            t-cover,            $hover-transition
-  transition-timing-function  h-ease(e-cover-in), h-ease(e-cover-in), h-ease(e-cover-in), h-ease(e-cover-in), ease
-  transition-delay            0s,                 0s,                 0s,                 t-cover,            0s
+  transition-property         transform,      height,         z-index,      top,            background,     left,           box-shadow
+  transition-duration         t-cover,        t-cover,        0s,           t-cover,        t-cover,        t-cover,        $hover-transition
+  transition-timing-function  ease,           ease,           ease,         ease,           ease,           ease,           ease
+  transition-delay            0s,             0s,             0s,           0s,             0s,             0s,             0s
 
 projects-cover-out()
-  transition-property         transform,          height,             top,                opacity,            box-shadow
-  transition-duration         t-cover,            t-cover,            t-cover,            t-cover,            $hover-transition
-  transition-timing-function  h-ease(e-cover-out),h-ease(e-cover-out),h-ease(e-cover-out),h-ease(e-cover-out),ease
-  transition-delay            d-content-out,      d-content-out,      d-content-out,      d-content-out,      0s
+  transition-property         transform,      height,         z-index,      top,            background,     left,           box-shadow
+  transition-duration         t-cover,        t-cover,        0s,           t-cover,        t-cover,        t-cover,        $hover-transition
+  transition-timing-function  ease,           ease,           ease,         ease,           ease,           ease,           ease
+  transition-delay            d-content-out,  d-content-out,  d-full,       d-content-out,  d-content-out,  d-content-out,  0s
 
 // Container panel
 projects-container-in()

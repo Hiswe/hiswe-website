@@ -9,7 +9,7 @@ Design a portfolio for myself
 ##### On development environment
 - npm install .
 - bower install
-- gulp server
+- gulp start
 
 ##### On Heroku environment
 - gulp build

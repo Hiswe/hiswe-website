@@ -4,6 +4,7 @@ options     = require '../../../config/datas/stylus-var.json'
 class Projects extends Controller
   trace: true
   logPrefix: '[PROJECTS]'
+  timer: undefined
 
   elements: {
     '.hw-projects-item'             :   'all'
@@ -32,7 +33,9 @@ class Projects extends Controller
     return if $target.hasClass(options.activeClass)
     @log 'Projects open'
     e.preventDefault()
+    window.clearTimeout @timer
     @clean()
+    @el.css('z-index', 2)
     $target.addClass options.activeClass
     @e.trigger 'open'
     this
@@ -44,6 +47,9 @@ class Projects extends Controller
     $target = $(e.currentTarget)
     $panel = @all.eq( @content.index($target) )
     $panel.removeClass(options.activeClass)
+    @timer = @delay ->
+        @el.css('z-index', 1)
+      , 2000
     @e.trigger 'close'
     this
 

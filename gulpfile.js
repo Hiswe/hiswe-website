@@ -1,10 +1,9 @@
 'use strict';
 
-var Q           = require('q');
-var fs          = require('fs');
 var lr          = require('tiny-lr'); // livereload depend on tiny-lr
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
+var path        = require('./gulp-path.js');
 var bump        = require('gulp-bump');
 var wait        = require('gulp-wait');
 var open        = require('gulp-open');
@@ -12,7 +11,6 @@ var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
 var uslug       = require('uslug');
 var source      = require('vinyl-source-stream');
-var marked      = require('marked');
 var stylus      = require('gulp-stylus');
 var uglify      = require('gulp-uglify');
 var concat      = require('gulp-concat');
@@ -32,35 +30,6 @@ var browserify  = require('browserify');
 /////////
 
 var server = lr();
-var renderer = new marked.Renderer();
-
-renderer.heading = function (text, level) {
-  var escapedText = text.replace(/-/gi, ' ');
-  return '<h' + level + '>' + escapedText + '</h' + level + '>';
-};
-
-marked.setOptions({
-  renderer: renderer,
-  smartypants: true
-});
-
-var path = {
-  datas: 'config/datas',
-  jsonDb: __dirname + '/config/datas/db-work.json',
-  libs: [
-    'bower_components/modernizr/modernizr.js', // used by js
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/hevent/build/jquery.hevent.js'],
-  frontAppBasedir: __dirname + '/assets/js/front',
-  font: [
-    'bower_components/hiso-font/font/**',
-    '!bower_components/hiso-font/font/*.css'
-  ],
-  imgSrc: 'public/media/source/*',
-  imgDst: 'public/media/images/',
-  cssImport: ['../../../bower_components/hiso-font/font/hiso-font.css',
-    '../../../bower_components/hiso-font/font/hicon.css']
-};
 
 var stylusVar = require('./config/datas/stylus-var.json');
 stylusVar.isDev = true;
@@ -190,39 +159,7 @@ gulp.task('resize', ['clean-image'], function() {
 });
 
 // Build data json
-gulp.task('json', function() {
-  var deferred  = Q.defer();
-  var jsonDb    = [];
-  var walkFiles = function walkFiles(files) {
-
-    return files.filter(function(fileName){
-      return /.md$/.test(fileName);
-    }).map(function (fileName) {
-      return Q.npost(fs, 'readFile', [path.datas + '/' + fileName, {encoding: 'utf8'}])
-        .then(function(data){ parseFile(fileName, data)});
-    });
-  };
-  var parseFile = function readFile(fileName, data) {
-    fileName = fileName.match(/^(\d*)-(.*).md$/)
-    jsonDb.push({
-      order: ~~fileName[1],
-      id: fileName[2],
-      name: fileName[2].replace(/-/gi, ' '),
-      markup: marked(data, {sanitize: true})
-    });
-  };
-
-  Q.ninvoke(fs, 'readdir', path.datas)
-    .then(walkFiles)
-    .all()
-    .done(function(){
-      jsonDb.sort(function(a, b){ return  a.order < b.order});
-      fs.writeFileSync(path.jsonDb, JSON.stringify(jsonDb, null, 2));
-      deferred.resolve();
-    });
-
-  return deferred.promise
-});
+gulp.task('json', require('./gulp-data.js'));
 
 // build for production
 gulp.task('build', ['frontend-app', 'lib', 'stylus', 'json'], function() {
