@@ -17,6 +17,7 @@ module.exports = {
   ],
   svgSrc: 'public/media/source/*.svg',
   imgDst: 'public/media/images/',
+  serverSrc: 'media/images/',
   cssImport: [
     '../../../bower_components/hiso-font/font/hiso-font.css',
     '../../../bower_components/hiso-font/font/hicon.css'

@@ -24,7 +24,7 @@ marked.setOptions({
 var setCover = function setCover(fileName) {
   var deferred  = Q.defer();
   fileName = 'cover-' + fileName[2];
-  var relativePath  = path.imgDst + fileName
+  var relativePath  = path.serverSrc + fileName
   var absolutePath  = __dirname + '/' + path.imgDst + fileName
   openFile(absolutePath + '.png', 'r')
     .then(function () {
@@ -38,7 +38,7 @@ var setCover = function setCover(fileName) {
       }
       return deferred.resolve(file);
     }, function (err){
-      return deferred.reject('no such files' + relativePath + '.png|svg');
+      return deferred.reject('no such files' + relativePath + '.png | svg');
     }).done();
 
   return deferred.promise;
