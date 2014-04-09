@@ -1012,6 +1012,26 @@ body {
   box-shadow: inset 0 0 0 0 #ff0078;
   text-align: center;
   cursor: pointer;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -ms-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-perspective-origin: center center;
+  -moz-perspective-origin: center center;
+  -ms-perspective-origin: center center;
+  perspective-origin: center center;
+}
+.hw-projects-cover span,
+.hw-projects-cover img {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
 }
 .hw-projects-cover span {
   display: inline-block;
@@ -1024,6 +1044,28 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-size: 2em;
+  width: 80%;
+  -webkit-transform: translate(-50%, -50%) rotateY(180deg);
+  -moz-transform: translate(-50%, -50%) rotateY(180deg);
+  -o-transform: translate(-50%, -50%) rotateY(180deg);
+  -ms-transform: translate(-50%, -50%) rotateY(180deg);
+  transform: translate(-50%, -50%) rotateY(180deg);
+  text-transform: uppercase;
+  font-size: 1.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: normal;
+}
+.hw-projects-cover img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
 }
 .hw-projects-item:nth-child(3n + 2) .hw-projects-cover {
   -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -1037,6 +1079,20 @@ body {
 .hw-projects-cover:hover {
   -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
   box-shadow: inset 0 0 0 0.5em #ff0078;
+}
+.hw-projects-cover:hover img {
+  -webkit-transform: translate(-50%, -50%) rotateY(180deg);
+  -moz-transform: translate(-50%, -50%) rotateY(180deg);
+  -o-transform: translate(-50%, -50%) rotateY(180deg);
+  -ms-transform: translate(-50%, -50%) rotateY(180deg);
+  transform: translate(-50%, -50%) rotateY(180deg);
+}
+.hw-projects-cover:hover span {
+  -webkit-transform: translate(-50%, -50%) rotateY(0deg);
+  -moz-transform: translate(-50%, -50%) rotateY(0deg);
+  -o-transform: translate(-50%, -50%) rotateY(0deg);
+  -ms-transform: translate(-50%, -50%) rotateY(0deg);
+  transform: translate(-50%, -50%) rotateY(0deg);
 }
 .hw-projects-item:nth-child(3n + 2).hw-panel-active .hw-projects-cover,
 .hw-panel-active .hw-projects-cover {

@@ -19,26 +19,31 @@ marked.setOptions({
   smartypants: true
 });
 
-
 // Other things
+var imageDescription = function imageDescription(fileName, extension) {
+  return {
+    path: path.serverSrc + fileName + '.' + extension,
+    extension: extension
+  };
+};
+
 var setCover = function setCover(fileName) {
   var deferred  = Q.defer();
   fileName = 'cover-' + fileName[2];
-  var relativePath  = path.serverSrc + fileName
   var absolutePath  = __dirname + '/' + path.imgDst + fileName
   openFile(absolutePath + '.png', 'r')
     .then(function () {
-      return relativePath + '.png';
+      return imageDescription(fileName, 'png');
     }, function (err){
       return openFile(absolutePath + '.svg', 'r')
     })
     .then(function (file){
       if(typeof file === 'number') {
-        return deferred.resolve(relativePath + '.svg');
+        return deferred.resolve(imageDescription(fileName, 'svg'));
       }
       return deferred.resolve(file);
     }, function (err){
-      return deferred.reject('no such files' + relativePath + '.png | svg');
+      return deferred.reject('no such files' + path.serverSrc + fileName + '.png | svg');
     }).done();
 
   return deferred.promise;

@@ -90,7 +90,7 @@ gulp.task('stylus', ['clean-css'], function () {
 });
 
 gulp.task('css', ['stylus'], function() {
-  gulp.src(['public/*.min.css'])
+  gulp.src(path.revFiles)
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
@@ -135,7 +135,7 @@ gulp.task('frontend-app', function() {
 });
 
 gulp.task('js', ['lib', 'frontend-app'], function() {
-  gulp.src(['public/*.min.js'])
+  gulp.src([path.revFiles])
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
@@ -177,7 +177,7 @@ gulp.task('json', require('./gulp-data.js'));
 
 // build for production
 gulp.task('build', ['frontend-app', 'lib', 'stylus', 'json'], function() {
-  return gulp.src(['public/*min.js', 'public/*.min.css'])
+  return gulp.src(path.revFiles)
   .pipe(rev())
   .pipe(gulp.dest('public'))
   .pipe(rev.manifest())

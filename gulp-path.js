@@ -1,6 +1,10 @@
 module.exports = {
   datas: 'config/datas',
   jsonDb: __dirname + '/config/datas/db-work.json',
+  revFiles: [
+    'public/*min.js',
+    'public/*.min.css'
+  ],
   libs: [
     'bower_components/modernizr/modernizr.js', // used by js
     'bower_components/jquery/dist/jquery.js',
