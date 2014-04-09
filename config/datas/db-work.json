@@ -3,18 +3,21 @@
     "order": 3,
     "id": "project-dolidhi",
     "name": "dolidhi",
+    "cover": "public/media/images/cover-dolidhi.svg",
     "markup": "<h1>Dolidhi</h1><h3>Logo for an anthropological research program about the Dolgan Siberian tribe</h3><h6>Specifications</h6><ul>\n<li>Russia</li>\n<li>Tradition &amp; Dolgan culture</li>\n</ul>\n<h6>Technic</h6><ul>\n<li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ul>\n<h6>Images</h6><ul>\n<li><img src=\"media/images/dolidhi-logo-alt.png\" alt=\"logo\"></li>\n<li><img src=\"media/images/dolidhi-sketch.jpg\" alt=\"sketch\"></li>\n</ul>\n"
   },
   {
     "order": 2,
     "id": "project-nori",
     "name": "nori",
+    "cover": "public/media/images/cover-nori.png",
     "markup": "<h1>Nori Home</h1><h3>Logo &amp; illustrations for a company making christmas related accessories</h3><h6>Specifications</h6><ul>\n<li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ul>\n<h6>Technic</h6><ul>\n<li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ul>\n<h6>Image</h6><ul>\n<li><img src=\"media/images/pere_noel.png\" alt=\"santa\"></li>\n<li><img src=\"media/images/nori-skecth.jpg\" alt=\"sketch\"></li>\n<li><img src=\"media/images/nori-logo-alt.png\" alt=\"logo\"></li>\n</ul>\n"
   },
   {
     "order": 1,
     "id": "project-banjai-garden",
     "name": "banjai garden",
+    "cover": "public/media/images/cover-banjai-garden.svg",
     "markup": "<h1>Banjai Garden</h1><h3>Design, integration &amp; development of the guesthouse’s website</h3><h6>Specifications</h6><ul>\n<li>Simplicity &amp; elegance</li>\n<li>Responsive &amp; fast loading</li>\n</ul>\n<h6>Technic</h6><ul>\n<li>Adobe Illustrator</li>\n<li>HTML 5, JavaScript &amp; NodeJs</li>\n</ul>\n<h6>Images</h6><ul>\n<li><img src=\"/media/images/banjai-home.jpg\" alt=\"home\"></li>\n<li><img src=\"media/images/banjai-wireframe.jpg\" alt=\"wireframe\"></li>\n<li><img src=\"media/images/banjai-responsive-2.png\" alt=\"responsive\"></li>\n</ul>\n"
   }
 ]
