@@ -8,6 +8,7 @@ t-between = 0s
 
 // Delay computing
 d-cover-in    = (t-cover + t-between) * 1
+d-content-in  = d-cover-in + (t-content + t-between) * 1
 d-content-out = (t-content + t-between) * 2
 
 d-full        = d-cover-in + d-content-out + t-between
@@ -38,13 +39,13 @@ projects-container-out()
 
 // Content panel
 projects-content-in()
-  transition-property         transform,          opacity
-  transition-duration         t-content*2,        t-content
-  transition-timing-function  ease,               ease
-  transition-delay            d-cover-in,         d-cover-in
+  transition-property         transform,    border,       opacity
+  transition-duration         t-content*2,  t-content,    t-content
+  transition-timing-function  ease,         ease,         ease
+  transition-delay            d-cover-in,   d-content-in, d-cover-in
 
 projects-content-out()
-  transition-property         transform,          opacity
-  transition-duration         t-content*2,        t-content
-  transition-timing-function  ease,               ease
-  transition-delay            0s,                 t-content
+  transition-property         transform,    border,       opacity
+  transition-duration         t-content*2,  t-content*2,  t-content
+  transition-timing-function  ease,         ease,         ease
+  transition-delay            0s,           0s,           t-content

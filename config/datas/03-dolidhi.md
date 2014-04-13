@@ -1,15 +1,15 @@
 # Dolidhi
 
-### Logo for an anthropological research program about the Dolgan Siberian tribe
+## Logo for an anthropological research program about the Dolgan Siberian tribe
 
 ###### Specifications
 
-- Russia
+1. Russia
 - Tradition &amp; Dolgan culture
 
 ###### Technic
 
-- Sketchbook &amp; pen
+1. Sketchbook &amp; pen
 - Adobe Illustrator
 
 ###### Images

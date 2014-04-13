@@ -21,7 +21,7 @@
   iso-left()
   background white
   projects-cover-out()
-  box-shadow inset 0 0 0 0 $hover-color
+  box-shadow inset 0 1px 0 0 noir(.1)
   text-align center
   cursor pointer
   perspective 1000px
@@ -45,6 +45,11 @@
   img
     percentCenter()
     width 80%
+
+  .hw-projects-item:nth-child(1) &,
+  .hw-projects-item:nth-child(2) &,
+  .hw-projects-item:nth-child(3) &
+    box-shadow inset 0 0 0 0 noir(.1)
 
   .hw-projects-item:nth-child(3n + 2) &
     iso-right()
@@ -87,7 +92,7 @@
   .{activeClass} &
     projects-container-in()
     visibility visible
-    right 0; bottom 0
+    right white
     z-index 9
 
 .hw-projects-content
@@ -95,7 +100,7 @@
   bottom 0; right 0
   overflow auto
   background white
-  border px2em($main-border) solid $pink
+  border px2em($main-border) solid $dark-grey
   transform scale3d(.1, .1, .1) rotateY(180deg)
   backface-visibility hidden
   transform-style preserve-3d
@@ -115,6 +120,7 @@
     projects-content-in()
     opacity 1
     transform scale3d(1, 1, 1) rotateY(0deg)
+    border-color white
 
     &::after
       projects-content-in()

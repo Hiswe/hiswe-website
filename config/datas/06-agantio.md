@@ -1,4 +1,4 @@
-# Nori Home
+# Agantio
 
 ## Logo & illustrations for a company making christmas-related accessories
 

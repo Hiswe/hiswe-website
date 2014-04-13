@@ -1,4 +1,5 @@
 @import './css-config'
+@import 'hstrap/mixins/general'
 @import 'hstrap/mixins/ie'
 
 iso-left()
@@ -21,12 +22,18 @@ debug()
 
 font-dark()
   font-family "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  crisp-font-smoothing()
+  font-weight normal
 
 font-bright()
   font-family "hiso-bright", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  crisp-font-smoothing()
+  font-weight normal
 
 font-plain()
   font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  crisp-font-smoothing()
+  font-weight normal
 
 tablet-start()
   unquote("@media screen and (max-width: " + $tablet-width + ") {")

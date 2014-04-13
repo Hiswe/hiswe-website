@@ -1,4 +1,4 @@
-# Banjai Garden
+# Blog Copte
 
 ## Design, integration & development of the guesthouse's website
 

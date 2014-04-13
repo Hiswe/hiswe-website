@@ -1,10 +1,15 @@
 module.exports = {
+  uslug: {
+    lower: true,
+    allowedChars: '-'
+  },
   datas: 'config/datas',
   jsonDb: __dirname + '/config/datas/db-work.json',
   revFiles: [
     'public/*min.js',
     'public/*.min.css'
   ],
+  pack: ['./package.json', './bower.json'],
   libs: [
     'bower_components/modernizr/modernizr.js', // used by js
     'bower_components/jquery/dist/jquery.js',

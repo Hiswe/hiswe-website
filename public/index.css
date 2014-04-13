@@ -106,7 +106,7 @@ a {
   width: 60em;
   margin: 0 auto;
 }
-@media screen and (max-width: 1001px) {
+@media screen and (max-width: 960px) {
 body {
   border: 0;
 }
@@ -188,6 +188,9 @@ body {
 }
 .hw-main-title {
   font-family: "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal;
   background: #fff;
   color: #000;
   font-size: 3em;
@@ -1008,8 +1011,8 @@ body {
   -o-transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
   -ms-transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
   transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
-  -webkit-box-shadow: inset 0 0 0 0 #ff0078;
-  box-shadow: inset 0 0 0 0 #ff0078;
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.1);
   text-align: center;
   cursor: pointer;
   -webkit-perspective: 1000px;
@@ -1066,6 +1069,12 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 80%;
+}
+.hw-projects-item:nth-child(1) .hw-projects-cover,
+.hw-projects-item:nth-child(2) .hw-projects-cover,
+.hw-projects-item:nth-child(3) .hw-projects-cover {
+  -webkit-box-shadow: inset 0 0 0 0 rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 0 0 rgba(0,0,0,0.1);
 }
 .hw-projects-item:nth-child(3n + 2) .hw-projects-cover {
   -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -1165,8 +1174,7 @@ body {
   -ms-transition: all 0s ease 0.5s;
   transition: all 0s ease 0.5s;
   visibility: visible;
-  right: 0;
-  bottom: 0;
+  right: #fff;
   z-index: 9;
 }
 .hw-projects-content {
@@ -1177,7 +1185,7 @@ body {
   right: 0;
   overflow: auto;
   background: #fff;
-  border: 1.3125em solid #ff0078;
+  border: 1.3125em solid #576176;
   -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
@@ -1195,26 +1203,26 @@ body {
   opacity: 0.5;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
-  -webkit-transition-property: -webkit-transform, opacity;
-  -moz-transition-property: -moz-transform, opacity;
-  -o-transition-property: -o-transform, opacity;
-  -ms-transition-property: -ms-transform, opacity;
-  transition-property: transform, opacity;
-  -webkit-transition-duration: 1s, 0.5s;
-  -moz-transition-duration: 1s, 0.5s;
-  -o-transition-duration: 1s, 0.5s;
-  -ms-transition-duration: 1s, 0.5s;
-  transition-duration: 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease;
-  -moz-transition-timing-function: ease, ease;
-  -o-transition-timing-function: ease, ease;
-  -ms-transition-timing-function: ease, ease;
-  transition-timing-function: ease, ease;
-  -webkit-transition-delay: 0s, 0.5s;
-  -moz-transition-delay: 0s, 0.5s;
-  -o-transition-delay: 0s, 0.5s;
-  -ms-transition-delay: 0s, 0.5s;
-  transition-delay: 0s, 0.5s;
+  -webkit-transition-property: -webkit-transform, border, opacity;
+  -moz-transition-property: -moz-transform, border, opacity;
+  -o-transition-property: -o-transform, border, opacity;
+  -ms-transition-property: -ms-transform, border, opacity;
+  transition-property: transform, border, opacity;
+  -webkit-transition-duration: 1s, 1s, 0.5s;
+  -moz-transition-duration: 1s, 1s, 0.5s;
+  -o-transition-duration: 1s, 1s, 0.5s;
+  -ms-transition-duration: 1s, 1s, 0.5s;
+  transition-duration: 1s, 1s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease;
+  transition-timing-function: ease, ease, ease;
+  -webkit-transition-delay: 0s, 0s, 0.5s;
+  -moz-transition-delay: 0s, 0s, 0.5s;
+  -o-transition-delay: 0s, 0s, 0.5s;
+  -ms-transition-delay: 0s, 0s, 0.5s;
+  transition-delay: 0s, 0s, 0.5s;
 }
 .hw-projects-content::after {
   content: '';
@@ -1233,48 +1241,48 @@ body {
   -o-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
   transform: rotateY(0deg);
-  -webkit-transition-property: -webkit-transform, opacity;
-  -moz-transition-property: -moz-transform, opacity;
-  -o-transition-property: -o-transform, opacity;
-  -ms-transition-property: -ms-transform, opacity;
-  transition-property: transform, opacity;
-  -webkit-transition-duration: 1s, 0.5s;
-  -moz-transition-duration: 1s, 0.5s;
-  -o-transition-duration: 1s, 0.5s;
-  -ms-transition-duration: 1s, 0.5s;
-  transition-duration: 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease;
-  -moz-transition-timing-function: ease, ease;
-  -o-transition-timing-function: ease, ease;
-  -ms-transition-timing-function: ease, ease;
-  transition-timing-function: ease, ease;
-  -webkit-transition-delay: 0s, 0.5s;
-  -moz-transition-delay: 0s, 0.5s;
-  -o-transition-delay: 0s, 0.5s;
-  -ms-transition-delay: 0s, 0.5s;
-  transition-delay: 0s, 0.5s;
+  -webkit-transition-property: -webkit-transform, border, opacity;
+  -moz-transition-property: -moz-transform, border, opacity;
+  -o-transition-property: -o-transform, border, opacity;
+  -ms-transition-property: -ms-transform, border, opacity;
+  transition-property: transform, border, opacity;
+  -webkit-transition-duration: 1s, 1s, 0.5s;
+  -moz-transition-duration: 1s, 1s, 0.5s;
+  -o-transition-duration: 1s, 1s, 0.5s;
+  -ms-transition-duration: 1s, 1s, 0.5s;
+  transition-duration: 1s, 1s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease;
+  transition-timing-function: ease, ease, ease;
+  -webkit-transition-delay: 0s, 0s, 0.5s;
+  -moz-transition-delay: 0s, 0s, 0.5s;
+  -o-transition-delay: 0s, 0s, 0.5s;
+  -ms-transition-delay: 0s, 0s, 0.5s;
+  transition-delay: 0s, 0s, 0.5s;
 }
 .hw-panel-active .hw-projects-content {
-  -webkit-transition-property: -webkit-transform, opacity;
-  -moz-transition-property: -moz-transform, opacity;
-  -o-transition-property: -o-transform, opacity;
-  -ms-transition-property: -ms-transform, opacity;
-  transition-property: transform, opacity;
-  -webkit-transition-duration: 1s, 0.5s;
-  -moz-transition-duration: 1s, 0.5s;
-  -o-transition-duration: 1s, 0.5s;
-  -ms-transition-duration: 1s, 0.5s;
-  transition-duration: 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease;
-  -moz-transition-timing-function: ease, ease;
-  -o-transition-timing-function: ease, ease;
-  -ms-transition-timing-function: ease, ease;
-  transition-timing-function: ease, ease;
-  -webkit-transition-delay: 0.5s, 0.5s;
-  -moz-transition-delay: 0.5s, 0.5s;
-  -o-transition-delay: 0.5s, 0.5s;
-  -ms-transition-delay: 0.5s, 0.5s;
-  transition-delay: 0.5s, 0.5s;
+  -webkit-transition-property: -webkit-transform, border, opacity;
+  -moz-transition-property: -moz-transform, border, opacity;
+  -o-transition-property: -o-transform, border, opacity;
+  -ms-transition-property: -ms-transform, border, opacity;
+  transition-property: transform, border, opacity;
+  -webkit-transition-duration: 1s, 0.5s, 0.5s;
+  -moz-transition-duration: 1s, 0.5s, 0.5s;
+  -o-transition-duration: 1s, 0.5s, 0.5s;
+  -ms-transition-duration: 1s, 0.5s, 0.5s;
+  transition-duration: 1s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease;
+  transition-timing-function: ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 1s, 0.5s;
+  -moz-transition-delay: 0.5s, 1s, 0.5s;
+  -o-transition-delay: 0.5s, 1s, 0.5s;
+  -ms-transition-delay: 0.5s, 1s, 0.5s;
+  transition-delay: 0.5s, 1s, 0.5s;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -1283,37 +1291,66 @@ body {
   -o-transform: scale3d(1, 1, 1) rotateY(0deg);
   -ms-transform: scale3d(1, 1, 1) rotateY(0deg);
   transform: scale3d(1, 1, 1) rotateY(0deg);
+  border-color: #fff;
 }
 .hw-panel-active .hw-projects-content::after {
-  -webkit-transition-property: -webkit-transform, opacity;
-  -moz-transition-property: -moz-transform, opacity;
-  -o-transition-property: -o-transform, opacity;
-  -ms-transition-property: -ms-transform, opacity;
-  transition-property: transform, opacity;
-  -webkit-transition-duration: 1s, 0.5s;
-  -moz-transition-duration: 1s, 0.5s;
-  -o-transition-duration: 1s, 0.5s;
-  -ms-transition-duration: 1s, 0.5s;
-  transition-duration: 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease;
-  -moz-transition-timing-function: ease, ease;
-  -o-transition-timing-function: ease, ease;
-  -ms-transition-timing-function: ease, ease;
-  transition-timing-function: ease, ease;
-  -webkit-transition-delay: 0.5s, 0.5s;
-  -moz-transition-delay: 0.5s, 0.5s;
-  -o-transition-delay: 0.5s, 0.5s;
-  -ms-transition-delay: 0.5s, 0.5s;
-  transition-delay: 0.5s, 0.5s;
+  -webkit-transition-property: -webkit-transform, border, opacity;
+  -moz-transition-property: -moz-transform, border, opacity;
+  -o-transition-property: -o-transform, border, opacity;
+  -ms-transition-property: -ms-transform, border, opacity;
+  transition-property: transform, border, opacity;
+  -webkit-transition-duration: 1s, 0.5s, 0.5s;
+  -moz-transition-duration: 1s, 0.5s, 0.5s;
+  -o-transition-duration: 1s, 0.5s, 0.5s;
+  -ms-transition-duration: 1s, 0.5s, 0.5s;
+  transition-duration: 1s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease;
+  transition-timing-function: ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 1s, 0.5s;
+  -moz-transition-delay: 0.5s, 1s, 0.5s;
+  -o-transition-delay: 0.5s, 1s, 0.5s;
+  -ms-transition-delay: 0.5s, 1s, 0.5s;
+  transition-delay: 0.5s, 1s, 0.5s;
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
+.hw-projects-content h1,
+.hw-projects-content h2,
+.hw-projects-content h3,
+.hw-projects-content h4,
+.hw-projects-content h5,
+.hw-projects-content h6,
+.hw-projects-content ol,
+.hw-projects-content p {
+  width: 960px;
+  margin: 0 auto;
+}
 .hw-projects-content h1 {
   color: #ff0078;
   text-align: center;
+  font-family: "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal;
+  font-size: 4em;
+  padding: 0.5em 0;
+}
+.hw-projects-content-gallery {
+  background: #454a5d;
+}
+.hw-projects-content-gallery ul {
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+}
+.hw-projects-content-gallery li {
+  display: inline-block;
 }
 label {
   display: block;
@@ -1859,7 +1896,7 @@ textarea:disabled {
     margin-bottom: 0;
   }
 }
-@media screen and (max-width: 1001px) {
+@media screen and (max-width: 960px) {
 .main-content {
   width: auto;
 }

@@ -20,10 +20,11 @@ var svgmin      = require('gulp-svgmin');
 var resize      = require('gulp-image-resize');
 var replace     = require('gulp-replace');
 var nodemon     = require('gulp-nodemon');
-var coffeeify   = require('coffeeify');
-var streamify   = require('gulp-streamify')
+var plumber     = require('gulp-plumber');
 var minifyCSS   = require('gulp-minify-css');
 var livereload  = require('gulp-livereload');
+var coffeeify   = require('coffeeify');
+var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
 
 /////////
@@ -35,46 +36,36 @@ var server = lr();
 var stylusVar = require('./config/datas/stylus-var.json');
 stylusVar.isDev = true;
 
+// Plumber error callback
+var onError = function onError(err) {
+  gutil.beep();
+  console.log(err);
+};
+
 
 /////////
 // VERSIONS
 /////////
 
-gulp.task('bump', function () {
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump())
-    .pipe(gulp.dest('./'));
+gulp.task('patch', function () {
+  return gulp.src(path.pack).pipe(bump()).pipe(gulp.dest('./'));
 });
 
-gulp.task('bump-minor', function() {
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump({type:'minor'}))
-    .pipe(gulp.dest('./'));
+gulp.task('minor', function() {
+  return gulp.src(path.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
 });
 
-gulp.task('bump-major', function() {
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump({type:'major'}))
-    .pipe(gulp.dest('./'));
+gulp.task('major', function() {
+  return gulp.src(path.pack).pipe(bump({type:'major'})).pipe(gulp.dest('./'));
 });
 
 /////////
-// ASSETS
+// CSS
 /////////
 
-// Copy font
-gulp.task('clean-font', function() {
-  return gulp.src('public/media/font/', {read: false}).pipe(clean());
-});
-
-gulp.task('font', ['clean-font'], function() {
-  gulp.src(path.font, {base: './bower_components/hiso-font'})
-    .pipe(gulp.dest('public/media/'));
-});
-
-// Stylus
 gulp.task('stylus', ['clean-css'], function () {
   return gulp.src('./assets/css/front/index.styl')
+    .pipe(plumber({errorHandler: onError}))
     .pipe(stylus({
       use: ['nib', 'hstrap'],
       define: stylusVar,
@@ -85,6 +76,7 @@ gulp.task('stylus', ['clean-css'], function () {
     .pipe(gulp.dest('./public'))
     .pipe(rename('index.min.css'))
     .pipe(minifyCSS())
+    .pipe(plumber.stop())
     .pipe(gulp.dest('./public'))
     .pipe(notify({title: 'Stylus', message: 'CSS build done'}));
 });
@@ -102,7 +94,11 @@ gulp.task('clean-css', function() {
   return gulp.src('public/*.css', {read: false}).pipe(clean());
 });
 
-// Concat & compress lib
+/////////
+// JS
+/////////
+
+// LIBRARY
 gulp.task('lib', ['clean-js'], function() {
   return gulp.src(path.libs)
     .pipe(concat('lib.js'))
@@ -113,7 +109,11 @@ gulp.task('lib', ['clean-js'], function() {
     .pipe(notify({title: 'Lib', message: 'build done'}));
 });
 
-// front-end app
+gulp.task('clean-js', function() {
+  return gulp.src('public/*.js', {read: false}).pipe(clean());
+});
+
+// FRONT-END APP
 gulp.task('frontend-app', function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
@@ -143,11 +143,21 @@ gulp.task('js', ['lib', 'frontend-app'], function() {
     .pipe(livereload(server));
 });
 
-gulp.task('clean-js', function() {
-  return gulp.src('public/*.js', {read: false}).pipe(clean());
+/////////
+// ASSETS
+/////////
+
+// FONT
+gulp.task('clean-font', function() {
+  return gulp.src('public/media/font/', {read: false}).pipe(clean());
 });
 
-// Resize images
+gulp.task('font', ['clean-font'], function() {
+  gulp.src(path.font, {base: './bower_components/hiso-font'})
+    .pipe(gulp.dest('public/media/'));
+});
+
+// IMAGES
 gulp.task('clean-image', function() {
   return gulp.src([path.imgDst + '*', '!' + path.imgDst + '*.svg'], {read: false}).pipe(clean());
 });
@@ -159,23 +169,26 @@ gulp.task('clean-svg', function() {
 gulp.task('resize', ['clean-image'], function() {
   return gulp.src(path.imgSrc)
     .pipe(resize({width: 294, quality: 0.8}))
-    .pipe(rename(function(path) { path.basename = uslug(path.basename); }))
+    .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
     .pipe(gulp.dest(path.imgDst))
 });
 
 gulp.task('svg', ['clean-svg'], function() {
   return gulp.src(path.svgSrc)
     .pipe(svgmin())
-    .pipe(rename(function(path) { path.basename = uslug(path.basename); }))
+    .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
     .pipe(gulp.dest(path.imgDst));
 });
 
 gulp.task('image', ['resize', 'svg']);
 
-// Build data json
+// JSON
 gulp.task('json', require('./gulp-data.js'));
 
-// build for production
+/////////
+// BUILD ALL
+/////////
+
 gulp.task('build', ['frontend-app', 'lib', 'stylus', 'json'], function() {
   return gulp.src(path.revFiles)
   .pipe(rev())
@@ -197,10 +210,7 @@ gulp.task('watch', function() {
 
   gulp.watch(['./assets/js/front/**/*.coffee'], ['frontend-app']);
 
-  gulp.watch(['./config/datas/*.md'], ['json']).on('change', function() {
-    gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload datas'}));
-    server.changed({body: {files: ['index.html']}});
-  });;
+  gulp.watch(['./config/datas/*.md'], ['json']);
 
   gulp.watch('./views/**/*.jade').on('change', function() {
     gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload html'}));
@@ -210,12 +220,16 @@ gulp.task('watch', function() {
 
 // Nodemon server
 gulp.task('notify-restart', function () {
-  gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
+  // wait server to properly restart
+  setTimeout(function() {
+    gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
+    server.changed({body: {files: ['index.html']}});
+  }, 1000);
 });
 
 gulp.task('express', ['build'], function () {
   nodemon({
-    script: 'server.js', ext: 'js coffee', watch: ['controllers/**/*', 'config/*'],
+    script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-work.json'],
     env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
   })
   .on('restart', ['notify-restart']);
@@ -233,17 +247,16 @@ gulp.task("start", ['server'], function(){
 /////////
 
 gulp.task('default', function() {
-  console.log(gutil.colors.red('bump'), '       ', 'patch version of json');
-  console.log(gutil.colors.red('bump-minor'), ' ', 'minor version of json');
-  console.log(gutil.colors.red('bump-major'), ' ', 'major version of json');
+  console.log(gutil.colors.red('patch'), '      ', 'patch version of json');
+  console.log(gutil.colors.red('minor'), '      ', 'minor version of json');
+  console.log(gutil.colors.red('major'), '      ', 'major version of json');
   console.log(gutil.colors.red('font'), '       ', 'Copy fonts to the right folder');
   console.log(gutil.colors.red('js'), '         ', 'Concat & uglify + rev');
   console.log(gutil.colors.red('css'), '        ', 'Compile stylus + uglify + rev');
+  console.log(gutil.colors.red('json'), '       ', 'Package all datas to json');
   console.log(gutil.colors.red('build'), '      ', 'js + css + rev');
   console.log(gutil.colors.red('resize'), '     ', 'Resize pixel images');
   console.log(gutil.colors.red('svg'), '        ', 'clean svg images');
   console.log(gutil.colors.red('image'), '      ', 'resize + svg');
-  console.log(gutil.colors.red('express'), '    ', 'Start server');
-  console.log(gutil.colors.red('watch'), '      ', 'Watch stylus');
   console.log(gutil.colors.red('start'), '      ', 'Watch + server');
 });

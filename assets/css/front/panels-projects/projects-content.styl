@@ -4,6 +4,24 @@
 @import './css-mixins'
 
 .hw-projects-content
+  h1, h2, h3, h4, h5, h6, ol, p
+    width unit($desktop-width, 'px')
+    margin 0 auto
+
   h1
     color $pink
     text-align center
+    font-dark()
+    font-size 4em
+    padding .5em 0
+
+
+.hw-projects-content-gallery
+  background $darkest-grey
+
+  ul
+    width 100%
+    overflow auto
+    white-space nowrap
+  li
+    display inline-block

@@ -1,4 +1,4 @@
-# Nori Home
+# Taelys
 
 ## Logo & illustrations for a company making christmas-related accessories
 

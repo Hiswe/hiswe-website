@@ -13,6 +13,12 @@ renderer.heading  = function (text, level) {
   var escapedText = text.replace(/-/gi, ' ');
   return '<h' + level + '>' + escapedText + '</h' + level + '>';
 };
+renderer.list     = function (body, ordered) {
+  if (ordered) {
+    return '<ol>' + body + '</ol>';
+  }
+  return '<div class="hw-projects-content-gallery"><ul>' + body + '</ul></div>';
+}
 
 marked.setOptions({
   renderer: renderer,
