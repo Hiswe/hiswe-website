@@ -12,8 +12,8 @@ class Projects extends Controller
   }
 
   events: {
-    'click .hw-projects-item'             : 'open'
-    'click .hw-projects-content-container': 'close'
+    'tap .hw-projects-item'             : 'open'
+    'tap .hw-projects-content-container': 'close'
   }
 
   constructor: ->

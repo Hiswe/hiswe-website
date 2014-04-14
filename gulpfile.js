@@ -18,6 +18,7 @@ var rename      = require('gulp-rename');
 var notify      = require('gulp-notify');
 var svgmin      = require('gulp-svgmin');
 var resize      = require('gulp-image-resize');
+var gulpif      = require('gulp-if');
 var replace     = require('gulp-replace');
 var nodemon     = require('gulp-nodemon');
 var plumber     = require('gulp-plumber');
@@ -78,7 +79,7 @@ gulp.task('stylus', ['clean-css'], function () {
     .pipe(minifyCSS())
     .pipe(plumber.stop())
     .pipe(gulp.dest('./public'))
-    .pipe(notify({title: 'Stylus', message: 'CSS build done'}));
+    .pipe(notify({title: 'HISWE', message: 'CSS build done'}));
 });
 
 gulp.task('css', ['stylus'], function() {
@@ -100,17 +101,18 @@ gulp.task('clean-css', function() {
 
 // LIBRARY
 gulp.task('lib', ['clean-js'], function() {
-  return gulp.src(path.libs)
+  return gulp.src(path.lib.src)
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('public'))
     .pipe(rename('lib.min.js'))
     .pipe(uglify({mangle: false}))
-    .pipe(gulp.dest('public'))
-    .pipe(notify({title: 'Lib', message: 'build done'}));
+    .pipe(gulp.dest(path.lib.dst))
+    .pipe(notify({title: 'HISWE', message: 'LIB build done'}));
 });
 
 gulp.task('clean-js', function() {
-  return gulp.src('public/*.js', {read: false}).pipe(clean());
+  gutil.log(gutil.colors.yellow('Don\'t forget to build ./bower_components/PointerGestures \n cd ./bower_components/PointerGestures && npm install && grunt'));
+  return gulp.src(path.lib.clean, {read: false}).pipe(clean());
 });
 
 // FRONT-END APP
@@ -130,12 +132,12 @@ gulp.task('frontend-app', function() {
     .pipe(rename('app.min.js'))
     .pipe(streamify(uglify({mangle: false})))
     .pipe(gulp.dest('./public'))
-    .pipe(notify({title: 'App', message: 'build done'}))
+    .pipe(notify({title: 'HISWE', message: 'FRONTEND APP build done'}))
     .pipe(livereload(server));
 });
 
 gulp.task('js', ['lib', 'frontend-app'], function() {
-  gulp.src([path.revFiles])
+  gulp.src(path.revFiles)
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
@@ -158,26 +160,27 @@ gulp.task('font', ['clean-font'], function() {
 });
 
 // IMAGES
+// TODO use gulp-if…
 gulp.task('clean-image', function() {
-  return gulp.src([path.imgDst + '*', '!' + path.imgDst + '*.svg'], {read: false}).pipe(clean());
+  return gulp.src([path.img.dst + '*', '!' + path.img.dst + '*.svg'], {read: false}).pipe(clean());
 });
 
 gulp.task('clean-svg', function() {
-  return gulp.src(path.imgDst + '*.svg', {read: false}).pipe(clean());
+  return gulp.src(path.img.dst + '*.svg', {read: false}).pipe(clean());
 });
 
 gulp.task('resize', ['clean-image'], function() {
-  return gulp.src(path.imgSrc)
+  return gulp.src(path.img.src)
     .pipe(resize({width: 294, quality: 0.8}))
     .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
-    .pipe(gulp.dest(path.imgDst))
+    .pipe(gulp.dest(path.img.dst))
 });
 
 gulp.task('svg', ['clean-svg'], function() {
-  return gulp.src(path.svgSrc)
+  return gulp.src(path.img.svg)
     .pipe(svgmin())
     .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
-    .pipe(gulp.dest(path.imgDst));
+    .pipe(gulp.dest(path.img.dst));
 });
 
 gulp.task('image', ['resize', 'svg']);
@@ -213,7 +216,7 @@ gulp.task('watch', function() {
   gulp.watch(['./config/datas/*.md'], ['json']);
 
   gulp.watch('./views/**/*.jade').on('change', function() {
-    gulp.src('').pipe(notify({title: 'Hiswe server', message: 'reload html'}));
+    gulp.src('').pipe(notify({title: 'HISWE', message: 'reload html'}));
     server.changed({body: {files: ['index.html']}});
   });
 });
@@ -222,7 +225,7 @@ gulp.task('watch', function() {
 gulp.task('notify-restart', function () {
   // wait server to properly restart
   setTimeout(function() {
-    gulp.src('').pipe(notify({title: 'Hiswe server', message: 'restart'}));
+    gulp.src('').pipe(notify({title: 'HISWE', message: 'restart server'}));
     server.changed({body: {files: ['index.html']}});
   }, 1000);
 });
@@ -232,7 +235,8 @@ gulp.task('express', ['build'], function () {
     script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-work.json'],
     env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
   })
-  .on('restart', ['notify-restart']);
+  .on('restart', ['notify-restart'])
+  .on('crash', onError);
 });
 
 gulp.task('server', ['watch', 'express']);

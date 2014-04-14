@@ -55,6 +55,7 @@
     "coffeeify": "^0.6.0",
     "gulp-streamify": "0.0.5",
     "gulp-svgmin": "^0.4.5",
-    "gulp-plumber": "^0.6.1"
+    "gulp-plumber": "^0.6.1",
+    "gulp-if": "0.0.5"
   }
 }

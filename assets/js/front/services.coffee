@@ -12,8 +12,8 @@ class Services extends Controller
   }
 
   events: {
-    'click .hw-sub-container' : 'open'
-    'click .hw-sub-close'     : 'close'
+    'pointerup .hw-sub-container' : 'open'
+    'pointerup .hw-sub-close'     : 'close'
   }
 
   constructor: ->
