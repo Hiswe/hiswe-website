@@ -1,5 +1,4 @@
 Controller  = require './front-controller.coffee'
-events      = require './events.coffee'
 
 class Contact extends Controller
   trace: false
@@ -24,7 +23,7 @@ class Contact extends Controller
     @log 'discard'
     $target = $(e.currentTarget)
     window.clearTimeout @timer
-    $target.on(events.animation, ->$(this).remove()).addClass('remove')
+    $target.on('transitionend', ->$(this).remove()).addClass('remove')
 
   addMessage: (type = 'success', text = 'send') ->
     msg = ['<p class="hw-message-', type, '">', text, '</p>']

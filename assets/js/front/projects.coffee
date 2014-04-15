@@ -4,10 +4,9 @@ options     = require '../../../config/datas/stylus-var.json'
 class Projects extends Controller
   trace: true
   logPrefix: '[PROJECTS]'
-  timer: undefined
 
   elements: {
-    '.hw-projects-item'             :   'all'
+    '.hw-projects-item'             : 'all'
     '.hw-projects-content-container': 'content'
   }
 
@@ -46,11 +45,12 @@ class Projects extends Controller
     e.stopPropagation()
     $target = $(e.currentTarget)
     $panel = @all.eq( @content.index($target) )
-    $panel.removeClass(options.activeClass)
-    @timer = @delay ->
+    $panel.one('transitionend', =>
+        @log 'Projects close :: transitionend'
         @el.css('z-index', 1)
-      , 2000
-    @e.trigger 'close'
+        @e.trigger 'close'
+      )
+    $panel.heventRemoveClass(options.activeClass)
     this
 
 module.exports = Projects

@@ -2,18 +2,17 @@ Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Services extends Controller
-  trace: false
+  trace: true
   logPrefix: '[SERVICES]'
-  timer: undefined
 
   elements: {
     '.hw-sub-container' : 'servicePanels'
-    '.hw-sub-close'     : 'close'
+    '.hw-sub-close'     : 'closeButton'
   }
 
   events: {
-    'pointerup .hw-sub-container' : 'open'
-    'pointerup .hw-sub-close'     : 'close'
+    'tap .hw-sub-container' : 'open'
+    'tap .hw-sub-close'     : 'close'
   }
 
   constructor: ->
@@ -28,11 +27,10 @@ class Services extends Controller
     this
 
   open: (e) ->
+    @log 'Service open'
     $target = $(e.currentTarget)
     e.stopPropagation()
     return if $target.hasClass(options.activeClass)
-    window.clearTimeout @timer
-    @log 'Service open'
     e.preventDefault()
     @clean()
     @el.css('z-index', 2)
@@ -45,15 +43,15 @@ class Services extends Controller
     e.preventDefault()
     e.stopPropagation()
     $target = $(e.currentTarget)
-    $panel = @servicePanels.eq( @close.index($target) )
+    $panel = @servicePanels.eq( @closeButton.index($target) )
     return unless $panel.hasClass options.activeClass
-    # TODO should be made with transitionend
-    @timer = @delay ->
-        @el.css('z-index', 1)
-      , 2000
-    $panel.removeClass(options.activeClass)
-    @e.trigger 'close'
-    @clean()
+    $panel.one('transitionend', =>
+      @log 'Service close :: transition end'
+      @el.css('z-index', 1)
+      @e.trigger 'close'
+      @clean()
+    )
+    $panel.heventRemoveClass(options.activeClass)
     this
 
 module.exports = Services

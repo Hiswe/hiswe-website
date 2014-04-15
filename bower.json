@@ -6,7 +6,7 @@
     "pointerevents-polyfill": "~0.2.0",
     "PointerGestures": "Polymer/PointerGestures#~0.2.2",
     "jquery-pointer-events": "git://github.com/jquery/jquery-pointer-events.git",
-    "hevent": "~0.3.0",
+    "hevent": "~0.4.0",
     "hiso-font": "~0.2.2",
     "modernizr": "~2.7.2",
     "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",
@@ -15,6 +15,7 @@
   },
   "resolutions": {
     "jquery": "~1.11.0",
-    "WeakMap": "0.2.2"
+    "WeakMap": "0.2.2",
+    "hevent": "~0.4.0"
   }
 }

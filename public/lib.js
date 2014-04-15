@@ -13231,56 +13231,43 @@ window.PointerEventsPolyfill.external = {
 
 /**
  * hevent - Css animations & transitions events for all browsers
- * @version v0.3.0
+ * @version v0.4.0
  * @link http://hiswe.github.io/hevent/
  * @license WTFPL
  */
 (function($, document, window) {
-  var originalAddClass, originalRemoveClass;
-  originalAddClass = jQuery.fn.addClass;
-  originalRemoveClass = jQuery.fn.removeClass;
-  $.fn.addClass = function(className, silent) {
-    var result;
-    if (silent == null) {
-      silent = false;
-    }
-    result = originalAddClass.apply(this, [className]);
-    window.setTimeout((function(_this) {
-      return function() {
-        if (!silent) {
-          return $(_this).trigger('classChange');
-        }
-      };
-    })(this), 1);
-    return result;
+  var aliases, heventMethod, orginalMethod, _results;
+  aliases = {
+    heventAddClass: jQuery.fn.addClass,
+    heventRemoveClass: jQuery.fn.removeClass,
+    heventToggleClass: jQuery.fn.toggleClass
   };
-  return $.fn.removeClass = function(className, silent) {
-    var result;
-    if (silent == null) {
-      silent = false;
-    }
-    result = originalRemoveClass.apply(this, [className]);
-    window.setTimeout((function(_this) {
-      return function() {
-        if (!silent) {
-          return $(_this).trigger('classChange');
-        }
+  _results = [];
+  for (heventMethod in aliases) {
+    orginalMethod = aliases[heventMethod];
+    _results.push((function() {
+      return $.fn[heventMethod] = function(className) {
+        var result;
+        result = orginalMethod.apply(this, [className]);
+        window.setTimeout((function(_this) {
+          return function() {
+            return $(_this).trigger('classChange');
+          };
+        })(this), 1);
+        return result;
       };
-    })(this), 1);
-    return result;
-  };
+    })());
+  }
+  return _results;
 })(jQuery, document, window);
 
-/**
- * hevent - Css animations & transitions events for all browsers
- * @version v0.3.0
- * @link http://hiswe.github.io/hevent/
- * @license WTFPL
- */
 var __slice = [].slice;
 
-(function($, document, window) {
+(function($, Modernizr, document, window) {
   var aliasesEvent, eventName, isAnimated, lcFirst, log, sniffer, trace, trans, triggerCustomEvent, ucFirst, _i, _len, _ref, _results;
+  if (Modernizr == null) {
+    return typeof console !== "undefined" && console !== null ? console.warn('Modernizr should be installed for hevet to work') : void 0;
+  }
   trace = false;
   trans = 'transanimationend';
   log = function() {
@@ -13299,53 +13286,28 @@ var __slice = [].slice;
     return text.substr(0, 1).toUpperCase() + text.substr(1);
   };
   sniffer = (function() {
-    var animationEvent, animations, bodyStyle, cssPrefix, eventList, match, prop, transAnimationW3c, transitionEvent, transitions, vendorPrefix, vendorRegex;
-    vendorPrefix = '';
-    cssPrefix = '';
-    vendorRegex = /^(Moz|webkit|O|ms)(?=[A-Z])/;
-    bodyStyle = document.body && document.body.style;
-    transitions = false;
-    animations = false;
-    transAnimationW3c = false;
-    if (bodyStyle) {
-      for (prop in bodyStyle) {
-        match = vendorRegex.exec(prop);
-        if (match) {
-          vendorPrefix = ucFirst(match[0]);
-          cssPrefix = match[0];
-          break;
-        }
-      }
-      transitions = !!((bodyStyle["transition"] != null) || (bodyStyle["" + vendorPrefix + "Transition"] != null));
-      animations = !!((bodyStyle["animation"] != null) || (bodyStyle["" + vendorPrefix + "Animation"] != null));
-    }
-    eventList = {
-      'default': ['transitionend', 'animationend'],
-      'Ms': ['MSTransitionEnd', 'MSAnimationEnd'],
-      'O': ['otransitionend', 'oanimationend'],
-      'Moz': ['transitionend', 'animationend'],
-      'Webkit': ['webkitTransitionEnd', 'webkitAnimationEnd']
+    var animationEndEventNames, result, transEndEventNames;
+    transEndEventNames = {
+      'transition': 'transitionend',
+      'msTransition': 'MSTransitionEnd',
+      'OTransition': 'oTransitionEnd',
+      'MozTransition': 'transitionend',
+      'WebkitTransition': 'webkitTransitionEnd'
     };
-    if (transitions === false && animations === false) {
-      transitionEvent = animationEvent = '';
-    } else if (vendorPrefix === '') {
-      transitionEvent = eventList["default"][0];
-      animationEvent = eventList["default"][1];
-      transAnimationW3c = true;
-    } else {
-      transitionEvent = eventList[vendorPrefix][0];
-      animationEvent = eventList[vendorPrefix][1];
-    }
-    return {
-      vendorPrefix: vendorPrefix,
-      cssPrefix: cssPrefix,
-      transitions: transitions,
-      animations: animations,
-      transAnimationSupport: transitions === true && animations === true,
-      transitionend: transitionEvent,
-      animationend: animationEvent,
-      transAnimationW3c: transAnimationW3c
+    animationEndEventNames = {
+      'animation': 'animationend',
+      'msAnimation': 'MSAnimationEnd',
+      'OAnimation': 'oAnimationEnd',
+      'MozAnimation': 'animationend',
+      'WebkitAnimation': 'webkitAnimationEnd'
     };
+    result = {
+      transAnimationSupport: Modernizr.cssanimations === true && Modernizr.csstransitions === true,
+      transitionend: transEndEventNames[Modernizr.prefixed('transition')],
+      animationend: animationEndEventNames[Modernizr.prefixed('animation')]
+    };
+    log('sniffer', result);
+    return result;
   })();
   triggerCustomEvent = function(obj, eventType, event) {
     var originalType;
@@ -13429,7 +13391,7 @@ var __slice = [].slice;
           hevent: eventName
         }, $.noop);
         if (eventName === sniffer[eventName]) {
-          log('Use original event');
+          log('Use original event for', eventName);
           return false;
         }
       },
@@ -13445,4 +13407,4 @@ var __slice = [].slice;
     _results.push(aliasesEvent(eventName));
   }
   return _results;
-})(jQuery, document, window);
+})(jQuery, Modernizr, document, window);

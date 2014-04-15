@@ -43,7 +43,6 @@ var onError = function onError(err) {
   console.log(err);
 };
 
-
 /////////
 // VERSIONS
 /////////
@@ -100,7 +99,11 @@ gulp.task('clean-css', function() {
 /////////
 
 // LIBRARY
-gulp.task('lib', ['clean-js'], function() {
+gulp.task('source-map', function(){
+  return gulp.src(path.lib.srcMap).pipe(gulp.dest(path.lib.dst));
+})
+
+gulp.task('lib', ['clean-js', 'source-map'], function() {
   return gulp.src(path.lib.src)
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('public'))
@@ -116,22 +119,28 @@ gulp.task('clean-js', function() {
 });
 
 // FRONT-END APP
-gulp.task('frontend-app', function() {
+gulp.task('clean-app', function() {
+  return gulp.src(path.front.clean, {read: false}).pipe(clean());
+});
+
+
+gulp.task('frontend-app', ['clean-app'],function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
-      entries: path.frontAppBasedir + '/boot.coffee',
-      basedir: path.frontAppBasedir
+      entries: path.front.basedir + '/boot.coffee',
+      basedir: path.front.basedir
     })
     .transform(coffeeify)
     .bundle();
 
   return bundleStream
-    .pipe(source(path.frontAppBasedir + '/boot.coffee'))
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(source(path.front.basedir + '/boot.coffee'))
     .pipe(rename('app.js'))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest(path.front.dst))
     .pipe(rename('app.min.js'))
     .pipe(streamify(uglify({mangle: false})))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest(path.front.dst))
     .pipe(notify({title: 'HISWE', message: 'FRONTEND APP build done'}))
     .pipe(livereload(server));
 });

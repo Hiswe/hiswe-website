@@ -23,10 +23,16 @@ exports.lib = {
     'bower_components/hevent/build/jquery.hevent.js'
   ],
   dst: 'public',
-  clean: 'public/media/lib*.js'
+  srcMap: 'bower_components/PointerGestures/pointergestures.js.map',
+  clean: 'public/lib*.js'
+
 };
 
-exports.frontAppBasedir = __dirname + '/assets/js/front';
+exports.front = {
+  basedir: __dirname + '/assets/js/front',
+  clean: 'public/app*js',
+  dst: 'public'
+};
 
 exports.font = [
   'bower_components/hiso-font/font/**',
