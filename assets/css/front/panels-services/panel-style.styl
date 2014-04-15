@@ -8,8 +8,29 @@
   position relative
   z-index 1
 
+  .hw-services-list
+    perspective 1000px
+    perspective-origin center center
+    color blanc(.9)
+    crisp-font-smoothing()
+
+    h3:first-child
+      margin-top 0
+
+    .hw-sub-left,
+    .hw-sub-right
+      background $darkest-grey
+
+    .{activeClass} .hw-sub-default
+      color white
+      background $dark-grey
+
+      .hicon
+        color $darkest-gray
+
 .hw-highlight
   z-index 2
+
 
 .hw-services
   .hw-services-title
@@ -26,6 +47,9 @@
 
 .hw-sub-container
   position relative
+  display inline-block
+  width third();
+  transform-style preserve-3d
 
   a
     color $blue
@@ -54,33 +78,11 @@
   &:nth-child(3n+2) .hw-sub-default
     background $grey
 
-.hw-sub-container:not(.{activeClass})
-  .hw-sub-default
+  &:not(.{activeClass}) .hw-sub-default
     cursor pointer
 
   .hw-sub-default:hover
     box-shadow inset 0 0 0 px2em($hover-width) $hover-color
-
-// Panel open
-.hw-services-list
-  perspective 1000px
-  perspective-origin center center
-  color blanc(.9)
-  crisp-font-smoothing()
-
-  h3:first-child
-    margin-top 0
-
-  .hw-sub-left,
-  .hw-sub-right
-    background $darkest-grey
-
-  .{activeClass} .hw-sub-default
-    color white
-    background $dark-grey
-
-    .hicon
-      color $darkest-gray
 
 .hw-sub-panel
   height 100%; width @height
