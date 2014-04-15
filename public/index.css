@@ -361,7 +361,7 @@ body {
   font-weight: normal;
   margin: 0 0 0;
 }
-.hw-sub-container {
+.hw-services-item {
   position: relative;
   display: inline-block;
   width: 33.333333333333336%;
@@ -371,18 +371,18 @@ body {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-.hw-sub-container a {
+.hw-services-item a {
   color: #009ae1;
 }
-.hw-sub-container a:hover {
+.hw-services-item a:hover {
   color: #2db6e9;
 }
-.hw-sub-container .hicon {
+.hw-services-item .hicon {
   font-size: 6em;
   display: inline-block;
   color: #ff0078;
 }
-.hw-sub-container .hw-sub {
+.hw-services-item .hw-sub {
   overflow: hidden;
   height: 100%;
   width: 100%;
@@ -394,18 +394,18 @@ body {
   left: 0;
   z-index: 1;
 }
-.hw-sub-container .hw-sub-default {
+.hw-services-item .hw-sub-default {
   z-index: 3;
   color: #222;
   background: #fff;
 }
-.hw-sub-container:nth-child(3n+2) .hw-sub-default {
+.hw-services-item:nth-child(3n+2) .hw-sub-default {
   background: #cddce4;
 }
-.hw-sub-container:not(.hw-panel-active) .hw-sub-default {
+.hw-services-item:not(.hw-panel-active) .hw-sub-default {
   cursor: pointer;
 }
-.hw-sub-container .hw-sub-default:hover {
+.hw-services-item .hw-sub-default:hover {
   -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
   box-shadow: inset 0 0 0 0.5em #ff0078;
 }
@@ -522,7 +522,7 @@ body {
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
-  .hw-sub-container {
+  .hw-services-item {
     height: 19.5em;
     top: 0;
     z-index: 1;
@@ -548,7 +548,7 @@ body {
     -ms-transition-delay: 1s, 1s, 1s, 1.5s;
     transition-delay: 1s, 1s, 1s, 1.5s;
   }
-  .hw-sub-container .hicon {
+  .hw-services-item .hicon {
     -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -576,7 +576,7 @@ body {
     -ms-transition-delay: 1s, 1s, 1s, 1s;
     transition-delay: 1s, 1s, 1s, 1s;
   }
-  .hw-sub-container .hw-sub-close {
+  .hw-services-item .hw-sub-close {
     opacity: 0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
@@ -601,7 +601,7 @@ body {
     -ms-transition-delay: 0.1s, 0s, 0s;
     transition-delay: 0.1s, 0s, 0s;
   }
-  .hw-sub-container .hw-sub {
+  .hw-services-item .hw-sub {
     visibility: hidden;
     -webkit-transition-property: left, visibility;
     -moz-transition-property: left, visibility;
@@ -624,7 +624,7 @@ body {
     -ms-transition-delay: 0.5s, 1s;
     transition-delay: 0.5s, 1s;
   }
-  .hw-sub-container .hw-sub-default {
+  .hw-services-item .hw-sub-default {
     visibility: visible;
     -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
     -moz-transition-property: -moz-transform, height, background, left, box-shadow;
@@ -647,8 +647,8 @@ body {
     -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
     transition-delay: 1s, 1s, 1s, 0.5s, 0s;
   }
-  .hw-sub-container:nth-child(3n+1) .hw-sub-default,
-  .hw-sub-container:nth-child(3n+3) .hw-sub-default {
+  .hw-services-item:nth-child(3n+1) .hw-sub-default,
+  .hw-services-item:nth-child(3n+3) .hw-sub-default {
     -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
@@ -656,7 +656,7 @@ body {
     transform: matrix(1, -0.5, 0, 1, 0, 0);
     -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
   }
-  .hw-sub-container:nth-child(3n+2) .hw-sub-default {
+  .hw-services-item:nth-child(3n+2) .hw-sub-default {
     -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -664,7 +664,7 @@ body {
     transform: matrix(1, 0.5, 0, 1, 0, 0);
     -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
   }
-  .hw-sub-container:nth-child(3n+2) .hicon {
+  .hw-services-item:nth-child(3n+2) .hicon {
     -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
@@ -672,8 +672,8 @@ body {
     transform: matrix(1, -0.5, 0, 1, 0, 0);
     -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
   }
-  .hw-sub-container:nth-child(3n+2) .hw-sub-left,
-  .hw-sub-container:nth-child(3n+3) .hw-sub-left {
+  .hw-services-item:nth-child(3n+2) .hw-sub-left,
+  .hw-services-item:nth-child(3n+3) .hw-sub-left {
     left: -100%;
     -webkit-transform: rotateY(98.75deg);
     -moz-transform: rotateY(98.75deg);
@@ -686,8 +686,8 @@ body {
     -ms-transform-origin: 101% 50%;
     transform-origin: 101% 50%;
   }
-  .hw-sub-container:nth-child(3n+1) .hw-sub-right,
-  .hw-sub-container:nth-child(3n+2) .hw-sub-right {
+  .hw-services-item:nth-child(3n+1) .hw-sub-right,
+  .hw-services-item:nth-child(3n+2) .hw-sub-right {
     left: 100%;
     -webkit-transform-origin: -1% 50%;
     -moz-transform-origin: -1% 50%;
@@ -700,9 +700,9 @@ body {
     -ms-transform: rotateY(-98.75deg);
     transform: rotateY(-98.75deg);
   }
-  .hw-sub-container:nth-child(3n+2) .hw-sub-right,
-  .hw-sub-container:nth-child(3n+3) .hw-sub-left,
-  .hw-sub-container:nth-child(3n+1) .hw-sub-right {
+  .hw-services-item:nth-child(3n+2) .hw-sub-right,
+  .hw-services-item:nth-child(3n+3) .hw-sub-left,
+  .hw-services-item:nth-child(3n+1) .hw-sub-right {
     -webkit-transition-property: left, visibility, -webkit-transform;
     -moz-transition-property: left, visibility, -moz-transform;
     -o-transition-property: left, visibility, -o-transform;
@@ -724,7 +724,7 @@ body {
     -ms-transition-delay: 0.5s, 0.5s, 0s;
     transition-delay: 0.5s, 0.5s, 0s;
   }
-  .hw-sub-container:nth-child(3n+2) .hw-sub-left {
+  .hw-services-item:nth-child(3n+2) .hw-sub-left {
     -webkit-transition-property: left, visibility, -webkit-transform;
     -moz-transition-property: left, visibility, -moz-transform;
     -o-transition-property: left, visibility, -o-transform;
@@ -746,7 +746,7 @@ body {
     -ms-transition-delay: 1s, 1s, 0.5s;
     transition-delay: 1s, 1s, 0.5s;
   }
-  .hw-sub-container.hw-panel-active {
+  .hw-services-item.hw-panel-active {
     height: 29.25em;
     top: -14.625em;
     margin-bottom: -19.5em;
@@ -772,7 +772,7 @@ body {
     -ms-transition-delay: 0s, 0s, 0s, 0s;
     transition-delay: 0s, 0s, 0s, 0s;
   }
-  .hw-sub-container.hw-panel-active .hicon {
+  .hw-services-item.hw-panel-active .hicon {
     -webkit-transition-property: -webkit-transform, opacity, color, font-size;
     -moz-transition-property: -moz-transform, opacity, color, font-size;
     -o-transition-property: -o-transform, opacity, color, font-size;
@@ -802,7 +802,7 @@ body {
     font-size: 12em;
     color: #576176;
   }
-  .hw-sub-container.hw-panel-active .hw-sub-close {
+  .hw-services-item.hw-panel-active .hw-sub-close {
     -webkit-transition-property: left, opacity, color;
     -moz-transition-property: left, opacity, color;
     -o-transition-property: left, opacity, color;
@@ -827,7 +827,7 @@ body {
     -ms-filter: none;
     filter: none;
   }
-  .hw-sub-container.hw-panel-active .hw-sub {
+  .hw-services-item.hw-panel-active .hw-sub {
     visibility: visible;
     -webkit-transform: rotateY(0) !important;
     -moz-transform: rotateY(0) !important;
@@ -855,7 +855,7 @@ body {
     -ms-transition-delay: 0.5s, 0.5s;
     transition-delay: 0.5s, 0.5s;
   }
-  .hw-sub-container.hw-panel-active .hw-sub-default {
+  .hw-services-item.hw-panel-active .hw-sub-default {
     -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
     -moz-transition-property: -moz-transform, height, background, left, box-shadow;
     -o-transition-property: -o-transform, height, background, left, box-shadow;
@@ -877,9 +877,9 @@ body {
     -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
     transition-delay: 0s, 0s, 0s, 0.5s, 0s;
   }
-  .hw-sub-container.hw-panel-active:nth-child(3n+3) .hw-sub-left,
-  .hw-sub-container.hw-panel-active:nth-child(3n+1) .hw-sub-right,
-  .hw-sub-container.hw-panel-active:nth-child(3n+2) .hw-sub-right {
+  .hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-left,
+  .hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-right,
+  .hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-right {
     -webkit-transition-property: left, visibility, -webkit-transform;
     -moz-transition-property: left, visibility, -moz-transform;
     -o-transition-property: left, visibility, -o-transform;
@@ -901,7 +901,7 @@ body {
     -ms-transition-delay: 1s, 1s, 1s;
     transition-delay: 1s, 1s, 1s;
   }
-  .hw-sub-container.hw-panel-active:nth-child(3n+2) .hw-sub-left {
+  .hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-left {
     -webkit-transition-property: left, visibility, -webkit-transform;
     -moz-transition-property: left, visibility, -moz-transform;
     -o-transition-property: left, visibility, -o-transform;
@@ -2066,8 +2066,8 @@ textarea:disabled {
   .hw-title,
   .hw-title span,
   .hw-panels > :nth-child(n),
-  .hw-sub-container .hw-sub.hw-sub-default,
-  .hw-sub-container .hw-sub.hw-sub-default .hicon {
+  .hw-services-item .hw-sub.hw-sub-default,
+  .hw-services-item .hw-sub.hw-sub-default .hicon {
     -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
     -moz-transform: matrix(1, 0, 0, 1, 0, 0);
     -o-transform: matrix(1, 0, 0, 1, 0, 0);
@@ -2076,7 +2076,7 @@ textarea:disabled {
     -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
   }
   .hw-panels > *,
-  .hw-sub-container {
+  .hw-services-item {
     display: block;
     width: auto;
   }
@@ -2106,28 +2106,28 @@ textarea:disabled {
     right: 0.5em;
     z-index: 3;
   }
-  .hw-sub-container {
+  .hw-services-item {
     height: 13.75em;
     background: #576176;
   }
-  .hw-sub-container h3,
-  .hw-sub-container h3 + h3,
-  .hw-sub-container p {
+  .hw-services-item h3,
+  .hw-services-item h3 + h3,
+  .hw-services-item p {
     margin: 0;
   }
-  .hw-sub-container .hw-sub,
-  .hw-sub-container .hw-sub-close {
+  .hw-services-item .hw-sub,
+  .hw-services-item .hw-sub-close {
     visibility: hidden;
   }
-  .hw-sub-container .hw-sub-default,
-  .hw-sub-container .hw-sub-left,
-  .hw-sub-container .hw-sub-right {
+  .hw-services-item .hw-sub-default,
+  .hw-services-item .hw-sub-left,
+  .hw-services-item .hw-sub-right {
     position: absolute;
     top: 0;
     left: 0;
     height: 13.75em;
   }
-  .hw-sub-container .hw-sub-default {
+  .hw-services-item .hw-sub-default {
     visibility: visible;
     -webkit-transform-origin: center top;
     -moz-transform-origin: center top;
@@ -2155,7 +2155,7 @@ textarea:disabled {
     -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
     transition-delay: 1s, 1s, 1s, 0.5s, 0s;
   }
-  .hw-sub-container .hw-sub-default .hicon {
+  .hw-services-item .hw-sub-default .hicon {
     -webkit-transition-property: -webkit-transform, opacity, color, font-size;
     -moz-transition-property: -moz-transform, opacity, color, font-size;
     -o-transition-property: -o-transform, opacity, color, font-size;
@@ -2180,7 +2180,7 @@ textarea:disabled {
     -ms-filter: none;
     filter: none;
   }
-  .hw-sub-container .hw-sub-default::after {
+  .hw-services-item .hw-sub-default::after {
     -webkit-transition: visibility 0s ease 1s;
     -moz-transition: visibility 0s ease 1s;
     -o-transition: visibility 0s ease 1s;
@@ -2199,8 +2199,8 @@ textarea:disabled {
     margin-left: -0.5em;
     visibility: hidden;
   }
-  .hw-sub-container .hw-sub-left,
-  .hw-sub-container .hw-sub-right {
+  .hw-services-item .hw-sub-left,
+  .hw-services-item .hw-sub-right {
     -webkit-transform: rotateX(90deg);
     -moz-transform: rotateX(90deg);
     -o-transform: rotateX(90deg);
@@ -2212,7 +2212,7 @@ textarea:disabled {
     -ms-transform-origin: top center;
     transform-origin: top center;
   }
-  .hw-sub-container .hw-sub-left {
+  .hw-services-item .hw-sub-left {
     -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
     -moz-transition-property: -moz-transform, visibility, height, z-index, top;
     -o-transition-property: -o-transform, visibility, height, z-index, top;
@@ -2234,7 +2234,7 @@ textarea:disabled {
     -ms-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
     transition-delay: 0.5s, 1s, 1s, 1s, 1s;
   }
-  .hw-sub-container .hw-sub-right {
+  .hw-services-item .hw-sub-right {
     -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
     -moz-transition-property: -moz-transform, visibility, height, z-index, top;
     -o-transition-property: -o-transform, visibility, height, z-index, top;
@@ -2256,12 +2256,12 @@ textarea:disabled {
     -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
     transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
   }
-  .hw-services .hw-sub-container h6 {
+  .hw-services .hw-services-item h6 {
     font-size: 2em;
     letter-spacing: 0.15em;
   }
-  .hw-services .hw-sub-container h6,
-  .hw-sub-container .hw-sub-default img {
+  .hw-services .hw-services-item h6,
+  .hw-services-item .hw-sub-default img {
     -webkit-transform: scaleY(1) translateY(0);
     -moz-transform: scaleY(1) translateY(0);
     -o-transform: scaleY(1) translateY(0);
@@ -2273,16 +2273,16 @@ textarea:disabled {
     -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
     transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
   }
-  .hw-sub-container .hw-sub-links {
+  .hw-services-item .hw-sub-links {
     padding-top: 0.75em;
   }
-  .hw-sub-container .hw-sub-links .hw-sub-panel {
+  .hw-services-item .hw-sub-links .hw-sub-panel {
     padding-top: 0;
   }
-  .hw-sub-container .hw-sub-links a {
+  .hw-services-item .hw-sub-links a {
     margin: 0.25em 0 0.5em;
   }
-  .hw-sub-container .hw-sub-description-points {
+  .hw-services-item .hw-sub-description-points {
     display: -webkit-box;
     display: -moz-box;
     display: -webkit-flex;
@@ -2300,7 +2300,7 @@ textarea:disabled {
     flex-direction: row;
     width: 100%;
   }
-  .hw-sub-container .hw-sub-description-group {
+  .hw-services-item .hw-sub-description-group {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -o-box-flex: 1;
@@ -2309,7 +2309,7 @@ textarea:disabled {
     -ms-flex: 1;
     flex: 1;
   }
-  .hw-sub-container.hw-panel-active .hw-sub-default {
+  .hw-services-item.hw-panel-active .hw-sub-default {
     -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
     -moz-transition-property: -moz-transform, height, background, left, box-shadow;
     -o-transition-property: -o-transform, height, background, left, box-shadow;
@@ -2336,8 +2336,8 @@ textarea:disabled {
     -ms-transform: scaleY(0.5);
     transform: scaleY(0.5);
   }
-  .hw-sub-container.hw-panel-active .hw-sub-default h6,
-  .hw-sub-container.hw-panel-active .hw-sub-default img {
+  .hw-services-item.hw-panel-active .hw-sub-default h6,
+  .hw-services-item.hw-panel-active .hw-sub-default img {
     -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
     -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
     -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
@@ -2349,14 +2349,14 @@ textarea:disabled {
     -ms-transform: scaleY(2);
     transform: scaleY(2);
   }
-  .hw-sub-container.hw-panel-active .hw-sub-default h6 {
+  .hw-services-item.hw-panel-active .hw-sub-default h6 {
     -webkit-transform: scaleY(2) translateY(1em);
     -moz-transform: scaleY(2) translateY(1em);
     -o-transform: scaleY(2) translateY(1em);
     -ms-transform: scaleY(2) translateY(1em);
     transform: scaleY(2) translateY(1em);
   }
-  .hw-sub-container.hw-panel-active .hw-sub-default .hicon {
+  .hw-services-item.hw-panel-active .hw-sub-default .hicon {
     -webkit-transition-property: -webkit-transform, opacity, color, font-size;
     -moz-transition-property: -moz-transform, opacity, color, font-size;
     -o-transition-property: -o-transform, opacity, color, font-size;
@@ -2386,7 +2386,7 @@ textarea:disabled {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
   }
-  .hw-sub-container.hw-panel-active .hw-sub-default::after {
+  .hw-services-item.hw-panel-active .hw-sub-default::after {
     -webkit-transition: visibility 0s ease 0s;
     -moz-transition: visibility 0s ease 0s;
     -o-transition: visibility 0s ease 0s;
@@ -2394,9 +2394,9 @@ textarea:disabled {
     transition: visibility 0s ease 0s;
     visibility: visible;
   }
-  .hw-sub-container.hw-panel-active .hw-sub-close,
-  .hw-sub-container.hw-panel-active .hw-sub-left,
-  .hw-sub-container.hw-panel-active .hw-sub-right {
+  .hw-services-item.hw-panel-active .hw-sub-close,
+  .hw-services-item.hw-panel-active .hw-sub-left,
+  .hw-services-item.hw-panel-active .hw-sub-right {
     z-index: 10;
     visibility: visible;
     -webkit-transform: rotateX(0);
@@ -2405,7 +2405,7 @@ textarea:disabled {
     -ms-transform: rotateX(0);
     transform: rotateX(0);
   }
-  .hw-sub-container.hw-panel-active .hw-sub-left {
+  .hw-services-item.hw-panel-active .hw-sub-left {
     top: 6.875em;
     -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
     -moz-transition-property: -moz-transform, visibility, height, z-index, top;
@@ -2428,10 +2428,10 @@ textarea:disabled {
     -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
     transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
   }
-  .hw-services .hw-sub-container.hw-panel-active .hw-sub-left {
+  .hw-services .hw-services-item.hw-panel-active .hw-sub-left {
     height: 13.75em;
   }
-  .hw-sub-container.hw-panel-active .hw-sub-right {
+  .hw-services-item.hw-panel-active .hw-sub-right {
     top: 20.625em;
     height: 27.5em;
     -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
@@ -2455,7 +2455,7 @@ textarea:disabled {
     -ms-transition-delay: 1s, 1s, 1s, 1s, 1s;
     transition-delay: 1s, 1s, 1s, 1s, 1s;
   }
-  .hw-services .hw-sub-container.hw-panel-active .hw-sub-right {
+  .hw-services .hw-services-item.hw-panel-active .hw-sub-right {
     height: 13.75em;
   }
   .hw-contact aside p {

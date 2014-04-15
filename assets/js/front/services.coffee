@@ -6,12 +6,12 @@ class Services extends Controller
   logPrefix: '[SERVICES]'
 
   elements: {
-    '.hw-sub-container' : 'servicePanels'
+    '.hw-services-item' : 'servicePanels'
     '.hw-sub-close'     : 'closeButton'
   }
 
   events: {
-    'tap .hw-sub-container' : 'open'
+    'tap .hw-services-item' : 'open'
     'tap .hw-sub-close'     : 'close'
   }
 

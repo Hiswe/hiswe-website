@@ -72,12 +72,12 @@
   .hw-title,
   .hw-title span,
   .hw-panels > :nth-child(n),
-  .hw-sub-container .hw-sub.hw-sub-default,
-  .hw-sub-container .hw-sub.hw-sub-default .hicon
+  .hw-services-item .hw-sub.hw-sub-default,
+  .hw-services-item .hw-sub.hw-sub-default .hicon
     iso-reset()
 
   .hw-panels > *,
-  .hw-sub-container
+  .hw-services-item
     display block
     width auto
 
@@ -110,7 +110,7 @@
 
   $$height = px2em(220)
 
-  .hw-sub-container
+  .hw-services-item
     height $$height
     background $dark-grey
 
