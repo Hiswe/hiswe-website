@@ -1,4 +1,5 @@
 Controller  = require './front-controller.coffee'
+Carrousel   = require './projects-carrousel.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Projects extends Controller
@@ -32,13 +33,16 @@ class Projects extends Controller
   transitionend: (event) ->
     e = event.originalEvent
     return unless event.originalEvent?
-    return unless /^top$/.test e.propertyName
-    if @opened is on
+    propertyName = e.propertyName
+    return unless /^top|opacity$/.test propertyName
+    # the last transition of closing
+    if @opened is on and propertyName is 'top'
       @log 'transition end::', 'close'
       @el.css('z-index', 1)
       @e.trigger 'close'
       @opened = false
-    else
+    # the last transition of opening
+    else if @opened is off and propertyName is 'opacity'
       @log 'transition end ::','open'
       @opened = true
 

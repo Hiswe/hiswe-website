@@ -7,7 +7,7 @@
       "path": "media/images/cover-agantio.svg",
       "extension": "svg"
     },
-    "markup": "<h1>Agantio</h1><h2>Let your friends be your travel agents!</h2><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vulputate malesuada lacinia. Phasellus tempor, eros ac iaculis fringilla, orci ipsum imperdiet risus, ac tempor libero mauris at libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc sit amet justo consequat, tempor felis non, cursus sem. Ut at semper velit. Duis congue ipsum tincidunt ornare eleifend. Donec consectetur, risus non fringilla euismod, felis justo iaculis sem, ut aliquet neque risus a odio. Fusce sagittis nibh lorem, malesuada vestibulum velit rutrum quis. Fusce placerat, nisl id ultricies posuere, urna sapien imperdiet sem, sed molestie est nisi id nibh.</p>\n<h6>Specifications</h6><ol><li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Image</h6><div class=\"hw-projects-content-gallery\"><ul><li><img src=\"media/images/agantio-carte-v12_a.jpg\" alt=\"Bare Map\"></li>\n<li><img src=\"media/images/agantio-carte-v12_c.jpg\" alt=\"Map with Stepover\"></li>\n<li><img src=\"media/images/agantio-carte-v12_e.jpg\" alt=\"Map with Friend search\"></li>\n<li><img src=\"media/images/agantio-carte-v12_k.jpg\" alt=\"Map with Hostel search\"></li>\n<li><img src=\"media/images/agantio-gestion-v3_a.jpg\" alt=\"Gestion\"></li>\n<li><img src=\"media/images/agantio-profile-v3_c.jpg\" alt=\"Profile\"></li>\n</ul></div>"
+    "markup": "<h1>Agantio</h1><h2>Let your friends be your travel agents!</h2><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vulputate malesuada lacinia. Phasellus tempor, eros ac iaculis fringilla, orci ipsum imperdiet risus, ac tempor libero mauris at libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc sit amet justo consequat, tempor felis non, cursus sem. Ut at semper velit. Duis congue ipsum tincidunt ornare eleifend. Donec consectetur, risus non fringilla euismod, felis justo iaculis sem, ut aliquet neque risus a odio. Fusce sagittis nibh lorem, malesuada vestibulum velit rutrum quis. Fusce placerat, nisl id ultricies posuere, urna sapien imperdiet sem, sed molestie est nisi id nibh.</p>\n<h6>Specifications</h6><ol><li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Image</h6><div class=\"hw-projects-gallery-container\"><div class=\"hw-projects-gallery\"><ul><li><img src=\"media/images/agantio-carte-v12_a.jpg\" alt=\"Bare Map\"></li>\n<li><img src=\"media/images/agantio-carte-v12_c.jpg\" alt=\"Map with Stepover\"></li>\n<li><img src=\"media/images/agantio-carte-v12_e.jpg\" alt=\"Map with Friend search\"></li>\n<li><img src=\"media/images/agantio-carte-v12_k.jpg\" alt=\"Map with Hostel search\"></li>\n<li><img src=\"media/images/agantio-gestion-v3_a.jpg\" alt=\"Gestion\"></li>\n<li><img src=\"media/images/agantio-profile-v3_c.jpg\" alt=\"Profile\"></li>\n</ul></div></div>"
   },
   {
     "order": 5,
@@ -17,7 +17,7 @@
       "path": "media/images/cover-taelys.svg",
       "extension": "svg"
     },
-    "markup": "<h1>Taelys</h1><h2>Logo &amp; illustrations for a company making christmas related accessories</h2><h6>Specifications</h6><ol><li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Image</h6><div class=\"hw-projects-content-gallery\"><ul><li><img src=\"media/images/pere_noel.png\" alt=\"santa\"></li>\n<li><img src=\"media/images/nori-skecth.jpg\" alt=\"sketch\"></li>\n<li><img src=\"media/images/nori-logo-alt.png\" alt=\"logo\"></li>\n</ul></div>"
+    "markup": "<h1>Taelys</h1><h2>Logo &amp; illustrations for a company making christmas related accessories</h2><h6>Specifications</h6><ol><li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Image</h6><div class=\"hw-projects-gallery-container\"><div class=\"hw-projects-gallery\"><ul><li><img src=\"media/images/pere_noel.png\" alt=\"santa\"></li>\n<li><img src=\"media/images/nori-skecth.jpg\" alt=\"sketch\"></li>\n<li><img src=\"media/images/nori-logo-alt.png\" alt=\"logo\"></li>\n</ul></div></div>"
   },
   {
     "order": 4,
@@ -27,7 +27,7 @@
       "path": "media/images/cover-blog-copte.svg",
       "extension": "svg"
     },
-    "markup": "<h1>Blog Copte</h1><h2>Design, integration &amp; development of the guesthouse’s website</h2><h6>Specifications</h6><ol><li>Simplicity &amp; elegance</li>\n<li>Responsive &amp; fast loading</li>\n</ol><h6>Technic</h6><ol><li>Adobe Illustrator</li>\n<li>HTML 5, JavaScript &amp; NodeJs</li>\n</ol><h6>Images</h6><div class=\"hw-projects-content-gallery\"><ul><li><img src=\"/media/images/banjai-home.jpg\" alt=\"home\"></li>\n<li><img src=\"media/images/banjai-wireframe.jpg\" alt=\"wireframe\"></li>\n<li><img src=\"media/images/banjai-responsive-2.png\" alt=\"responsive\"></li>\n</ul></div>"
+    "markup": "<h1>Blog Copte</h1><h2>Design, integration &amp; development of the guesthouse’s website</h2><h6>Specifications</h6><ol><li>Simplicity &amp; elegance</li>\n<li>Responsive &amp; fast loading</li>\n</ol><h6>Technic</h6><ol><li>Adobe Illustrator</li>\n<li>HTML 5, JavaScript &amp; NodeJs</li>\n</ol><h6>Images</h6><div class=\"hw-projects-gallery-container\"><div class=\"hw-projects-gallery\"><ul><li><img src=\"/media/images/banjai-home.jpg\" alt=\"home\"></li>\n<li><img src=\"media/images/banjai-wireframe.jpg\" alt=\"wireframe\"></li>\n<li><img src=\"media/images/banjai-responsive-2.png\" alt=\"responsive\"></li>\n</ul></div></div>"
   },
   {
     "order": 3,
@@ -37,7 +37,7 @@
       "path": "media/images/cover-dolidhi.svg",
       "extension": "svg"
     },
-    "markup": "<h1>Dolidhi</h1><h2>Logo for an anthropological research program about the Dolgan Siberian tribe</h2><h6>Specifications</h6><ol><li>Russia</li>\n<li>Tradition &amp; Dolgan culture</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Images</h6><div class=\"hw-projects-content-gallery\"><ul><li><img src=\"media/images/dolidhi-logo-alt.png\" alt=\"logo\"></li>\n<li><img src=\"media/images/dolidhi-sketch.jpg\" alt=\"sketch\"></li>\n</ul></div>"
+    "markup": "<h1>Dolidhi</h1><h2>Logo for an anthropological research program about the Dolgan Siberian tribe</h2><h6>Specifications</h6><ol><li>Russia</li>\n<li>Tradition &amp; Dolgan culture</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Images</h6><div class=\"hw-projects-gallery-container\"><div class=\"hw-projects-gallery\"><ul><li><img src=\"media/images/dolidhi-logo-alt.png\" alt=\"logo\"></li>\n<li><img src=\"media/images/dolidhi-sketch.jpg\" alt=\"sketch\"></li>\n</ul></div></div>"
   },
   {
     "order": 2,
@@ -47,7 +47,7 @@
       "path": "media/images/cover-nori.png",
       "extension": "png"
     },
-    "markup": "<h1>Nori Home</h1><h2>Logo &amp; illustrations for a company making christmas related accessories</h2><h6>Specifications</h6><ol><li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Image</h6><div class=\"hw-projects-content-gallery\"><ul><li><img src=\"media/images/pere_noel.png\" alt=\"santa\"></li>\n<li><img src=\"media/images/nori-skecth.jpg\" alt=\"sketch\"></li>\n<li><img src=\"media/images/nori-logo-alt.png\" alt=\"logo\"></li>\n</ul></div>"
+    "markup": "<h1>Nori Home</h1><h2>Logo &amp; illustrations for a company making christmas related accessories</h2><h6>Specifications</h6><ol><li>Festive &amp; charity</li>\n<li>Corporate responsability</li>\n</ol><h6>Technic</h6><ol><li>Sketchbook &amp; pen</li>\n<li>Adobe Illustrator</li>\n</ol><h6>Image</h6><div class=\"hw-projects-gallery-container\"><div class=\"hw-projects-gallery\"><ul><li><img src=\"media/images/pere_noel.png\" alt=\"santa\"></li>\n<li><img src=\"media/images/nori-skecth.jpg\" alt=\"sketch\"></li>\n<li><img src=\"media/images/nori-logo-alt.png\" alt=\"logo\"></li>\n</ul></div></div>"
   },
   {
     "order": 1,
@@ -57,6 +57,6 @@
       "path": "media/images/cover-banjai-garden.svg",
       "extension": "svg"
     },
-    "markup": "<h1>Banjai Garden</h1><h2>Design, integration &amp; development of the guesthouse’s website</h2><h6>Specifications</h6><ol><li>Simplicity &amp; elegance</li>\n<li>Responsive &amp; fast loading</li>\n</ol><h6>Technic</h6><ol><li>Adobe Illustrator</li>\n<li>HTML 5, JavaScript &amp; NodeJs</li>\n</ol><h6>Images</h6><div class=\"hw-projects-content-gallery\"><ul><li><img src=\"/media/images/banjai-home.jpg\" alt=\"home\"></li>\n<li><img src=\"media/images/banjai-wireframe.jpg\" alt=\"wireframe\"></li>\n<li><img src=\"media/images/banjai-responsive-2.png\" alt=\"responsive\"></li>\n</ul></div>"
+    "markup": "<h1>Banjai Garden</h1><h2>Design, integration &amp; development of the guesthouse’s website</h2><h6>Specifications</h6><ol><li>Simplicity &amp; elegance</li>\n<li>Responsive &amp; fast loading</li>\n</ol><h6>Technic</h6><ol><li>Adobe Illustrator</li>\n<li>HTML 5, JavaScript &amp; NodeJs</li>\n</ol><h6>Images</h6><div class=\"hw-projects-gallery-container\"><div class=\"hw-projects-gallery\"><ul><li><img src=\"/media/images/banjai-home.jpg\" alt=\"home\"></li>\n<li><img src=\"media/images/banjai-wireframe.jpg\" alt=\"wireframe\"></li>\n<li><img src=\"media/images/banjai-responsive-2.png\" alt=\"responsive\"></li>\n</ul></div></div>"
   }
 ]

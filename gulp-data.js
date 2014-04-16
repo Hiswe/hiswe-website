@@ -17,7 +17,7 @@ renderer.list     = function (body, ordered) {
   if (ordered) {
     return '<ol>' + body + '</ol>';
   }
-  return '<div class="hw-projects-content-gallery"><ul>' + body + '</ul></div>';
+  return '<div class="hw-projects-gallery-container"><div class="hw-projects-gallery"><ul>' + body + '</ul></div></div>';
 }
 
 marked.setOptions({
@@ -36,7 +36,7 @@ var imageDescription = function imageDescription(fileName, extension) {
 var setCover = function setCover(fileName) {
   var deferred  = Q.defer();
   fileName = 'cover-' + fileName[2];
-  var absolutePath  = __dirname + '/' + path.imgDst + fileName
+  var absolutePath  = __dirname + '/' + path.img.dst + fileName
   openFile(absolutePath + '.png', 'r')
     .then(function () {
       return imageDescription(fileName, 'png');

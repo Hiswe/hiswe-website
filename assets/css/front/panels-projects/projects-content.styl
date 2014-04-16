@@ -29,13 +29,26 @@
     line-height 1.5em
 
 
+.hw-projects-gallery-container
+  background $light-grey
+  margin 1em 0
 
-.hw-projects-content-gallery
+.hw-projects-gallery
   background $darkest-grey
+  width unit($desktop-width, 'px')
+  margin 0 auto
 
   ul
     width 100%
     overflow auto
     white-space nowrap
+    // remove white-space between images
+    // http://yuilibrary.com/yui/docs/cssgrids/
+    // http://davidwalsh.name/remove-whitespace-inline-block
+    letter-spacing -0.31em
+    text-rendering optimizespeed
   li
     display inline-block
+    max-width 80%
+    overflow hidden
+    image-center()

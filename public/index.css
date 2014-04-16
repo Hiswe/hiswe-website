@@ -1351,16 +1351,31 @@ body {
   letter-spacing: 0.16px;
   line-height: 1.5em;
 }
-.hw-projects-content-gallery {
-  background: #454a5d;
+.hw-projects-gallery-container {
+  background: #ecf4f8;
+  margin: 1em 0;
 }
-.hw-projects-content-gallery ul {
+.hw-projects-gallery {
+  background: #454a5d;
+  width: 960px;
+  margin: 0 auto;
+}
+.hw-projects-gallery ul {
   width: 100%;
   overflow: auto;
   white-space: nowrap;
+  letter-spacing: -0.31em;
+  text-rendering: optimizespeed;
 }
-.hw-projects-content-gallery li {
+.hw-projects-gallery li {
   display: inline-block;
+  max-width: 80%;
+  overflow: hidden;
+}
+.hw-projects-gallery li text-align center img {
+  position: relative;
+  left: 100%;
+  margin-left: -200%;
 }
 label {
   display: block;
