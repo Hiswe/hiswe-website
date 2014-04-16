@@ -327,11 +327,11 @@ body {
 .hw-services .hw-services-list .hw-sub-right {
   background: #454a5d;
 }
-.hw-services .hw-services-list .hw-panel-active .hw-sub-default {
+.hw-services .hw-services-list .hw-panel-active .hw-services-cover {
   color: #fff;
   background: #576176;
 }
-.hw-services .hw-services-list .hw-panel-active .hw-sub-default .hicon {
+.hw-services .hw-services-list .hw-panel-active .hw-services-cover .hicon {
   color: #454a5d;
 }
 .hw-highlight {
@@ -394,18 +394,18 @@ body {
   left: 0;
   z-index: 1;
 }
-.hw-services-item .hw-sub-default {
+.hw-services-item .hw-services-cover {
   z-index: 3;
   color: #222;
   background: #fff;
 }
-.hw-services-item:nth-child(3n+2) .hw-sub-default {
+.hw-services-item:nth-child(3n+2) .hw-services-cover {
   background: #cddce4;
 }
-.hw-services-item:not(.hw-panel-active) .hw-sub-default {
+.hw-services-item:not(.hw-panel-active) .hw-services-cover {
   cursor: pointer;
 }
-.hw-services-item .hw-sub-default:hover {
+.hw-services-item .hw-services-cover:hover {
   -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
   box-shadow: inset 0 0 0 0.5em #ff0078;
 }
@@ -532,21 +532,21 @@ body {
     -o-transition-property: height, top, margin-bottom, z-index;
     -ms-transition-property: height, top, margin-bottom, z-index;
     transition-property: height, top, margin-bottom, z-index;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0s;
+    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+    transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
     -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
     -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
     -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
     -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
     transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 1.5s;
-    -moz-transition-delay: 1s, 1s, 1s, 1.5s;
-    -o-transition-delay: 1s, 1s, 1s, 1.5s;
-    -ms-transition-delay: 1s, 1s, 1s, 1.5s;
-    transition-delay: 1s, 1s, 1s, 1.5s;
+    -webkit-transition-delay: 1s, 1s, 1s, 2s;
+    -moz-transition-delay: 1s, 1s, 1s, 2s;
+    -o-transition-delay: 1s, 1s, 1s, 2s;
+    -ms-transition-delay: 1s, 1s, 1s, 2s;
+    transition-delay: 1s, 1s, 1s, 2s;
   }
   .hw-services-item .hicon {
     -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -624,7 +624,7 @@ body {
     -ms-transition-delay: 0.5s, 1s;
     transition-delay: 0.5s, 1s;
   }
-  .hw-services-item .hw-sub-default {
+  .hw-services-item .hw-services-cover {
     visibility: visible;
     -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
     -moz-transition-property: -moz-transform, height, background, left, box-shadow;
@@ -647,8 +647,8 @@ body {
     -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
     transition-delay: 1s, 1s, 1s, 0.5s, 0s;
   }
-  .hw-services-item:nth-child(3n+1) .hw-sub-default,
-  .hw-services-item:nth-child(3n+3) .hw-sub-default {
+  .hw-services-item:nth-child(3n+1) .hw-services-cover,
+  .hw-services-item:nth-child(3n+3) .hw-services-cover {
     -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
     -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
@@ -656,7 +656,7 @@ body {
     transform: matrix(1, -0.5, 0, 1, 0, 0);
     -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
   }
-  .hw-services-item:nth-child(3n+2) .hw-sub-default {
+  .hw-services-item:nth-child(3n+2) .hw-services-cover {
     -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
     -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -855,7 +855,7 @@ body {
     -ms-transition-delay: 0.5s, 0.5s;
     transition-delay: 0.5s, 0.5s;
   }
-  .hw-services-item.hw-panel-active .hw-sub-default {
+  .hw-services-item.hw-panel-active .hw-services-cover {
     -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
     -moz-transition-property: -moz-transform, height, background, left, box-shadow;
     -o-transition-property: -o-transform, height, background, left, box-shadow;
@@ -929,7 +929,7 @@ body {
   .hw-panel-active:nth-child(3n+1) .hw-sub-left {
     left: 0%;
   }
-  .hw-panel-active:nth-child(3n+1) .hw-sub-default {
+  .hw-panel-active:nth-child(3n+1) .hw-services-cover {
     left: 100%;
   }
   .hw-panel-active:nth-child(3n+1) .hw-sub-right {
@@ -941,7 +941,7 @@ body {
   .hw-panel-active:nth-child(3n+2) .hw-sub-left {
     left: -100%;
   }
-  .hw-panel-active:nth-child(3n+2) .hw-sub-default {
+  .hw-panel-active:nth-child(3n+2) .hw-services-cover {
     left: 0%;
   }
   .hw-panel-active:nth-child(3n+2) .hw-sub-right {
@@ -953,7 +953,7 @@ body {
   .hw-panel-active:nth-child(3n+3) .hw-sub-left {
     left: -200%;
   }
-  .hw-panel-active:nth-child(3n+3) .hw-sub-default {
+  .hw-panel-active:nth-child(3n+3) .hw-services-cover {
     left: -100%;
   }
   .hw-panel-active:nth-child(3n+3) .hw-sub-right {
@@ -2066,8 +2066,8 @@ textarea:disabled {
   .hw-title,
   .hw-title span,
   .hw-panels > :nth-child(n),
-  .hw-services-item .hw-sub.hw-sub-default,
-  .hw-services-item .hw-sub.hw-sub-default .hicon {
+  .hw-services-item .hw-sub.hw-services-cover,
+  .hw-services-item .hw-sub.hw-services-cover .hicon {
     -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
     -moz-transform: matrix(1, 0, 0, 1, 0, 0);
     -o-transform: matrix(1, 0, 0, 1, 0, 0);
@@ -2119,7 +2119,7 @@ textarea:disabled {
   .hw-services-item .hw-sub-close {
     visibility: hidden;
   }
-  .hw-services-item .hw-sub-default,
+  .hw-services-item .hw-services-cover,
   .hw-services-item .hw-sub-left,
   .hw-services-item .hw-sub-right {
     position: absolute;
@@ -2127,7 +2127,7 @@ textarea:disabled {
     left: 0;
     height: 13.75em;
   }
-  .hw-services-item .hw-sub-default {
+  .hw-services-item .hw-services-cover {
     visibility: visible;
     -webkit-transform-origin: center top;
     -moz-transform-origin: center top;
@@ -2155,7 +2155,7 @@ textarea:disabled {
     -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
     transition-delay: 1s, 1s, 1s, 0.5s, 0s;
   }
-  .hw-services-item .hw-sub-default .hicon {
+  .hw-services-item .hw-services-cover .hicon {
     -webkit-transition-property: -webkit-transform, opacity, color, font-size;
     -moz-transition-property: -moz-transform, opacity, color, font-size;
     -o-transition-property: -o-transform, opacity, color, font-size;
@@ -2180,7 +2180,7 @@ textarea:disabled {
     -ms-filter: none;
     filter: none;
   }
-  .hw-services-item .hw-sub-default::after {
+  .hw-services-item .hw-services-cover::after {
     -webkit-transition: visibility 0s ease 1s;
     -moz-transition: visibility 0s ease 1s;
     -o-transition: visibility 0s ease 1s;
@@ -2261,7 +2261,7 @@ textarea:disabled {
     letter-spacing: 0.15em;
   }
   .hw-services .hw-services-item h6,
-  .hw-services-item .hw-sub-default img {
+  .hw-services-item .hw-services-cover img {
     -webkit-transform: scaleY(1) translateY(0);
     -moz-transform: scaleY(1) translateY(0);
     -o-transform: scaleY(1) translateY(0);
@@ -2309,7 +2309,7 @@ textarea:disabled {
     -ms-flex: 1;
     flex: 1;
   }
-  .hw-services-item.hw-panel-active .hw-sub-default {
+  .hw-services-item.hw-panel-active .hw-services-cover {
     -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
     -moz-transition-property: -moz-transform, height, background, left, box-shadow;
     -o-transition-property: -o-transform, height, background, left, box-shadow;
@@ -2336,8 +2336,8 @@ textarea:disabled {
     -ms-transform: scaleY(0.5);
     transform: scaleY(0.5);
   }
-  .hw-services-item.hw-panel-active .hw-sub-default h6,
-  .hw-services-item.hw-panel-active .hw-sub-default img {
+  .hw-services-item.hw-panel-active .hw-services-cover h6,
+  .hw-services-item.hw-panel-active .hw-services-cover img {
     -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
     -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
     -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
@@ -2349,14 +2349,14 @@ textarea:disabled {
     -ms-transform: scaleY(2);
     transform: scaleY(2);
   }
-  .hw-services-item.hw-panel-active .hw-sub-default h6 {
+  .hw-services-item.hw-panel-active .hw-services-cover h6 {
     -webkit-transform: scaleY(2) translateY(1em);
     -moz-transform: scaleY(2) translateY(1em);
     -o-transform: scaleY(2) translateY(1em);
     -ms-transform: scaleY(2) translateY(1em);
     transform: scaleY(2) translateY(1em);
   }
-  .hw-services-item.hw-panel-active .hw-sub-default .hicon {
+  .hw-services-item.hw-panel-active .hw-services-cover .hicon {
     -webkit-transition-property: -webkit-transform, opacity, color, font-size;
     -moz-transition-property: -moz-transform, opacity, color, font-size;
     -o-transition-property: -o-transform, opacity, color, font-size;
@@ -2386,7 +2386,7 @@ textarea:disabled {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
   }
-  .hw-services-item.hw-panel-active .hw-sub-default::after {
+  .hw-services-item.hw-panel-active .hw-services-cover::after {
     -webkit-transition: visibility 0s ease 0s;
     -moz-transition: visibility 0s ease 0s;
     -o-transition: visibility 0s ease 0s;

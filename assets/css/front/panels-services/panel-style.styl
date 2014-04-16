@@ -21,7 +21,7 @@
     .hw-sub-right
       background $darkest-grey
 
-    .{activeClass} .hw-sub-default
+    .{activeClass} .hw-services-cover
       color white
       background $dark-grey
 
@@ -70,18 +70,18 @@
     absolute top left
     z-index 1
 
-  .hw-sub-default
+  .hw-services-cover
     z-index 3
     color $black
     background white
 
-  &:nth-child(3n+2) .hw-sub-default
+  &:nth-child(3n+2) .hw-services-cover
     background $grey
 
-  &:not(.{activeClass}) .hw-sub-default
+  &:not(.{activeClass}) .hw-services-cover
     cursor pointer
 
-  .hw-sub-default:hover
+  .hw-services-cover:hover
     box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
 .hw-sub-panel

@@ -72,8 +72,8 @@
   .hw-title,
   .hw-title span,
   .hw-panels > :nth-child(n),
-  .hw-services-item .hw-sub.hw-sub-default,
-  .hw-services-item .hw-sub.hw-sub-default .hicon
+  .hw-services-item .hw-sub.hw-services-cover,
+  .hw-services-item .hw-sub.hw-services-cover .hicon
     iso-reset()
 
   .hw-panels > *,
@@ -121,13 +121,13 @@
     .hw-sub-close
       visibility hidden
 
-    .hw-sub-default,
+    .hw-services-cover,
     .hw-sub-left,
     .hw-sub-right
       absolute top left
       height $$height
 
-    .hw-sub-default
+    .hw-services-cover
       visibility visible
       transform-origin center top
       default-out()
@@ -161,7 +161,7 @@
       letter-spacing 0.15em
 
     .hw-services & h6
-    .hw-sub-default img
+    .hw-services-cover img
       transform scaleY(1) translateY(0)
       mobile-title-out()
 
@@ -182,7 +182,7 @@
       flex 1
 
     &.{activeClass}
-      .hw-sub-default
+      .hw-services-cover
         default-in()
         transform scaleY(.5)
 

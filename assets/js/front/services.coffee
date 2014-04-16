@@ -4,6 +4,7 @@ options     = require '../../../config/datas/stylus-var.json'
 class Services extends Controller
   trace: true
   logPrefix: '[SERVICES]'
+  opened: false
 
   elements: {
     '.hw-services-item' : 'servicePanels'
@@ -13,6 +14,7 @@ class Services extends Controller
   events: {
     'tap .hw-services-item' : 'open'
     'tap .hw-sub-close'     : 'close'
+    'transitionend .hw-services-item': 'transitionend'
   }
 
   constructor: ->
@@ -23,8 +25,24 @@ class Services extends Controller
     this
 
   clean: =>
-    @servicePanels.removeClass options.activeClass
+    @log 'clean'
+    $panel  = @servicePanels.filter(".#{options.activeClass}")
+    $panel.heventRemoveClass(options.activeClass)
     this
+
+  transitionend: (event) ->
+    e = event.originalEvent
+    return unless event.originalEvent?
+    return unless /cover/.test event.target.className
+    return unless /transform/.test e.propertyName
+    if @opened is on
+      @log 'transition end::', 'close'
+      @el.css('z-index', 1)
+      @e.trigger 'close'
+      @opened = false
+    else
+      @log 'transition end ::','open'
+      @opened = true
 
   open: (e) ->
     @log 'Service open'
@@ -34,24 +52,15 @@ class Services extends Controller
     e.preventDefault()
     @clean()
     @el.css('z-index', 2)
-    $target.addClass(options.activeClass)
+    $target.heventAddClass(options.activeClass)
     @e.trigger 'open'
     this
 
   close: (e) ->
     @log 'Service close'
     e.preventDefault()
-    e.stopPropagation()
-    $target = $(e.currentTarget)
-    $panel = @servicePanels.eq( @closeButton.index($target) )
-    return unless $panel.hasClass options.activeClass
-    $panel.one('transitionend', =>
-      @log 'Service close :: transition end'
-      @el.css('z-index', 1)
-      @e.trigger 'close'
-      @clean()
-    )
-    $panel.heventRemoveClass(options.activeClass)
+    e.stopImmediatePropagation()
+    @clean()
     this
 
 module.exports = Services

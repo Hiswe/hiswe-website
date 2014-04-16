@@ -26,7 +26,8 @@ class App extends Controller
     @contact  = new Contact({el: $('form.hw-contact-form')})
 
   bodyEvents: ->
-    @body.on 'click', =>
+    @body.on 'tap', =>
+      @log 'body click'
       @services.e.trigger 'clean'
 
     @projects.e.on('open', =>

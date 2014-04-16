@@ -32,17 +32,17 @@
       visibility hidden
       slide-out()
 
-    .hw-sub-default
+    .hw-services-cover
       visibility visible
       default-out()
 
     &:nth-child(3n+1),
     &:nth-child(3n+3)
-      .hw-sub-default
+      .hw-services-cover
         iso-left()
 
     &:nth-child(3n+2)
-      .hw-sub-default
+      .hw-services-cover
         iso-right()
 
       .hicon
@@ -94,7 +94,7 @@
         transform rotateY(0) !important
         slide-in()
 
-      .hw-sub-default
+      .hw-services-cover
         default-in()
 
       &:nth-child(3n+3) .hw-sub-left,
@@ -114,7 +114,7 @@
       .hw-sub-left
         left unit((1 - num) * 100, '%')
 
-      .hw-sub-default
+      .hw-services-cover
         left unit((2 - num) * 100, '%')
 
       .hw-sub-right

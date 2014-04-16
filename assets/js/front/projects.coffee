@@ -46,10 +46,10 @@ class Projects extends Controller
     $target = $(e.currentTarget)
     $panel = @all.eq( @content.index($target) )
     $panel.one('transitionend', =>
-        @log 'Projects close :: transitionend'
-        @el.css('z-index', 1)
-        @e.trigger 'close'
-      )
+      @log 'Projects close :: transitionend'
+      @el.css('z-index', 1)
+      @e.trigger 'close'
+    )
     $panel.heventRemoveClass(options.activeClass)
     this
 
