@@ -31,6 +31,7 @@ Design a portfolio for myself
 - Project presentation like
   - [polygon](http://www.polygon.com/2014/4/7/5582644/mlb-14-the-show-review)
   - [medium](https://medium.com/gulp-js-build/23812e4c9ec1)
+- replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Retina images
 - Responsive images
 - JS front lib in requireJs

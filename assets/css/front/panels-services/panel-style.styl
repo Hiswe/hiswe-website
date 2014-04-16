@@ -31,20 +31,6 @@
 .hw-highlight
   z-index 2
 
-
-.hw-services
-  .hw-services-title
-    box-sizing border-box
-    padding 3em 0 0
-    text-align center
-    v-align()
-
-  h6
-    font-size 1.75em; text-transform uppercase
-    letter-spacing .2em
-    font-weight normal
-    margin 0 0 0
-
 .hw-services-item
   position relative
   display inline-block
@@ -74,15 +60,26 @@
     z-index 3
     color $black
     background white
+    box-sizing border-box
+    padding 3em 0 0
+    text-align center
+    v-align()
+
+    h6
+      font-size 1.75em; text-transform uppercase
+      letter-spacing .2em
+      font-weight normal
+      margin 0 0 0
 
   &:nth-child(3n+2) .hw-services-cover
     background $grey
 
-  &:not(.{activeClass}) .hw-services-cover
-    cursor pointer
+  &:not(.{activeClass})
+    .hw-services-cover
+      cursor pointer
 
-  .hw-services-cover:hover
-    box-shadow inset 0 0 0 px2em($hover-width) $hover-color
+      &:hover
+        box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
 .hw-sub-panel
   height 100%; width @height
