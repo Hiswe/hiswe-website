@@ -34,4 +34,5 @@ Design a portfolio for myself
 - replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Retina images
 - Responsive images
+- [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - JS front lib in requireJs

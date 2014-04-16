@@ -86,7 +86,7 @@ body {
   border: 1.3125em solid #fff;
   border-top: 0;
   background-repeat: no-repeat;
-  color: #222;
+  color: #333332;
 }
 body.hw-body-active {
   overflow: hidden;
@@ -192,7 +192,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: normal;
   background: #fff;
-  color: #000;
+  color: #333332;
   font-size: 3em;
   font-weight: normal;
   text-align: center;
@@ -239,7 +239,7 @@ body {
   font-size: 1.25em;
   display: block;
   text-align: center;
-  color: #222;
+  color: #333332;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -254,7 +254,7 @@ body {
   font-weight: normal;
   font-size: 2.5em;
   text-align: center;
-  color: #000;
+  color: #333332;
   margin: 1em 0;
 }
 .hw-splash h2 strong {
@@ -372,7 +372,7 @@ body {
 }
 .hw-services-item .hw-services-cover {
   z-index: 3;
-  color: #222;
+  color: #333332;
   background: #fff;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1183,7 +1183,6 @@ body {
   right: 0;
   overflow: auto;
   background: #fff;
-  border: 1.3125em solid #576176;
   -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
@@ -1289,7 +1288,6 @@ body {
   -o-transform: scale3d(1, 1, 1) rotateY(0deg);
   -ms-transform: scale3d(1, 1, 1) rotateY(0deg);
   transform: scale3d(1, 1, 1) rotateY(0deg);
-  border-color: #fff;
 }
 .hw-panel-active .hw-projects-content::after {
   -webkit-transition-property: -webkit-transform, border, opacity;
@@ -1326,8 +1324,10 @@ body {
 .hw-projects-content h6,
 .hw-projects-content ol,
 .hw-projects-content p {
-  width: 960px;
+  width: 700px;
   margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .hw-projects-content h1 {
   color: #ff0078;
@@ -1337,7 +1337,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: normal;
   font-size: 4em;
-  padding: 0.5em 0;
+  padding: 0.5em 0 0.25em;
+}
+.hw-projects-content h1 + h2 {
+  text-align: center;
+  color: #576176;
+  font-weight: 300;
+  font-size: 1.5em;
+  padding-bottom: 1em;
+}
+.hw-projects-content p {
+  font-size: 1.375em;
+  letter-spacing: 0.16px;
+  line-height: 1.5em;
 }
 .hw-projects-content-gallery {
   background: #454a5d;

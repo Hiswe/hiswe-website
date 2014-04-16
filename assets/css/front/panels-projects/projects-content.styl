@@ -5,15 +5,29 @@
 
 .hw-projects-content
   h1, h2, h3, h4, h5, h6, ol, p
-    width unit($desktop-width, 'px')
+    width unit($project-width, 'px')
     margin 0 auto
+    crisp-font-smoothing()
 
   h1
     color $pink
     text-align center
     font-dark()
     font-size 4em
-    padding .5em 0
+    padding .5em 0 .25em
+
+    + h2
+      text-align center
+      color $dark-grey
+      font-weight 300
+      font-size 1.5em
+      padding-bottom 1em
+
+  p
+    font-size px2em(22)
+    letter-spacing 0.16px
+    line-height 1.5em
+
 
 
 .hw-projects-content-gallery
