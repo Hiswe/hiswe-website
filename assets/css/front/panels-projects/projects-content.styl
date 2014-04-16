@@ -28,7 +28,6 @@
     letter-spacing 0.16px
     line-height 1.5em
 
-
 .hw-projects-gallery-container
   background $light-grey
   margin 1em 0
@@ -62,11 +61,12 @@
     overflow visible
     // so jQuery will know it's the offset parent
     position relative
+    transition transform .5s ease 0s
 
   li
     opacity .1
     cursor pointer
-    transition opacity .5s
+    transition opacity .5s ease .5s
 
   .{carrouselClassSelected}
     opacity 1

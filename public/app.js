@@ -397,12 +397,11 @@ ServicesCarrousel = (function(_super) {
       return;
     }
     infos.$current.removeClass(options.carrouselClassSelected);
+    infos.$next.addClass(options.carrouselClassSelected);
     currentTransform = infos.$next.position().left * -1;
     adjustedTransform = this.count === 0 ? currentTransform : currentTransform + (this.galleryWidth * 0.1);
-    return this.list.transition({
-      x: adjustedTransform
-    }, 750, function() {
-      return infos.$next.addClass(options.carrouselClassSelected);
+    return this.list.css({
+      transform: "translate3d(" + adjustedTransform + "px, 0px, 0px)"
     });
   };
 

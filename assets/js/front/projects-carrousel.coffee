@@ -19,7 +19,6 @@ class ServicesCarrousel extends Controller
   }
 
   constructor: ->
-    # Until this carrousel rely on jQuery.transit
     # We can't run it without css transforms
     return unless Modernizr.csstransforms
     super
@@ -57,17 +56,16 @@ class ServicesCarrousel extends Controller
     return if infos.$next.hasClass(options.carrouselClassSelected)
 
     infos.$current.removeClass(options.carrouselClassSelected)
+    infos.$next.addClass(options.carrouselClassSelected)
 
     currentTransform = infos.$next.position().left * - 1
 
     # 10% margin unless first element
     adjustedTransform = if @count is 0 then currentTransform else currentTransform + (@galleryWidth * 0.1)
 
-    @list.transition({
-      x: adjustedTransform
-    }, 750, ->
-      infos.$next.addClass(options.carrouselClassSelected)
-    )
+    @list.css({
+      transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"
+    })
 
 
 module.exports = ServicesCarrousel

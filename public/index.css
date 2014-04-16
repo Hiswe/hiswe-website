@@ -1383,15 +1383,20 @@ body {
   transform: translate3d(0px, 0px, 0px);
   overflow: visible;
   position: relative;
+  -webkit-transition: -webkit-transform 0.5s ease 0s;
+  -moz-transition: -moz-transform 0.5s ease 0s;
+  -o-transition: -o-transform 0.5s ease 0s;
+  -ms-transition: -ms-transform 0.5s ease 0s;
+  transition: transform 0.5s ease 0s;
 }
 .hw-carrousel .hw-projects-gallery li {
   opacity: 0.1;
   cursor: pointer;
-  -webkit-transition: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  -ms-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s ease 0.5s;
+  -moz-transition: opacity 0.5s ease 0.5s;
+  -o-transition: opacity 0.5s ease 0.5s;
+  -ms-transition: opacity 0.5s ease 0.5s;
+  transition: opacity 0.5s ease 0.5s;
 }
 .hw-carrousel .hw-projects-gallery .hw-carrousel-selected {
   opacity: 1;

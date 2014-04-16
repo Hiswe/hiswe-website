@@ -23,7 +23,6 @@ exports.lib = {
     'bower_components/pointerevents-polyfill/pointerevents.dev.js',
     'bower_components/PointerGestures/pointergestures.min.js',
     'bower_components/jquery/dist/jquery.js',
-    'bower_components/jquery.transit/jquery.transit.js',
     'bower_components/jquery-pointer-events/src/pointer.js',
     'bower_components/hevent/build/jquery.hevent.js'
   ],
