@@ -2,7 +2,7 @@ Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Services extends Controller
-  trace: true
+  trace: false
   logPrefix: '[SERVICES]'
   opened: false
 

@@ -4,6 +4,7 @@ options     = require '../../../config/datas/stylus-var.json'
 class Projects extends Controller
   trace: true
   logPrefix: '[PROJECTS]'
+  opened: false
 
   elements: {
     '.hw-projects-item'             : 'all'
@@ -13,18 +14,33 @@ class Projects extends Controller
   events: {
     'tap .hw-projects-item'             : 'open'
     'tap .hw-projects-content-container': 'close'
+    'transitionend .hw-projects-item'   : 'transitionend'
   }
 
   constructor: ->
     super
     return unless @el.length
     @log 'Init'
-    @e.on 'clean', => @clean()
     this
 
   clean: ->
-    @all.removeClass options.activeClass
+    @all
+      .filter(".#{options.activeClass}")
+      .heventRemoveClass(options.activeClass)
     this
+
+  transitionend: (event) ->
+    e = event.originalEvent
+    return unless event.originalEvent?
+    return unless /^top$/.test e.propertyName
+    if @opened is on
+      @log 'transition end::', 'close'
+      @el.css('z-index', 1)
+      @e.trigger 'close'
+      @opened = false
+    else
+      @log 'transition end ::','open'
+      @opened = true
 
   open: (e) ->
     $target = $(e.currentTarget)
@@ -32,25 +48,17 @@ class Projects extends Controller
     return if $target.hasClass(options.activeClass)
     @log 'Projects open'
     e.preventDefault()
-    window.clearTimeout @timer
     @clean()
     @el.css('z-index', 2)
-    $target.addClass options.activeClass
+    $target.heventAddClass options.activeClass
     @e.trigger 'open'
     this
 
   close: (e) ->
     @log 'Projects close'
     e.preventDefault()
-    e.stopPropagation()
-    $target = $(e.currentTarget)
-    $panel = @all.eq( @content.index($target) )
-    $panel.one('transitionend', =>
-      @log 'Projects close :: transitionend'
-      @el.css('z-index', 1)
-      @e.trigger 'close'
-    )
-    $panel.heventRemoveClass(options.activeClass)
+    e.stopImmediatePropagation()
+    @clean()
     this
 
 module.exports = Projects
