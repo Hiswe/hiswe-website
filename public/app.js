@@ -326,11 +326,13 @@ module.exports = Controller;
 
 
 },{}],5:[function(require,module,exports){
-var Controller, ServicesCarrousel,
+var Controller, ServicesCarrousel, options,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 Controller = require('./front-controller.coffee');
+
+options = require('../../../config/datas/stylus-var.json');
 
 ServicesCarrousel = (function(_super) {
   __extends(ServicesCarrousel, _super);
@@ -339,14 +341,70 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.logPrefix = '[CARROUSEL]';
 
+  ServicesCarrousel.prototype.count = 0;
+
+  ServicesCarrousel.prototype.galleryWidth = null;
+
+  ServicesCarrousel.prototype.currentTransform = 0;
+
+  ServicesCarrousel.prototype.events = {
+    'tap .hw-projects-gallery li': 'circle'
+  };
+
+  ServicesCarrousel.prototype.elements = {
+    '.hw-projects-gallery': 'gallery',
+    'ul': 'list',
+    '.hw-projects-gallery li': 'li',
+    '.hw-projects-gallery img': 'images'
+  };
+
   function ServicesCarrousel() {
     ServicesCarrousel.__super__.constructor.apply(this, arguments);
     if (!this.el.length) {
       return;
     }
     this.log('Init');
+    this.el.data('carrousel', true);
+    this.el.addClass(options.carrouselClass);
+    this.galleryWidth = this.gallery.width();
+    this.li.eq(0).addClass(options.carrouselClassSelected);
     this;
   }
+
+  ServicesCarrousel.prototype.getNodesAndDirection = function(event) {
+    var $current, $next, nextNodeIndex, sign;
+    $current = this.li.eq(this.count);
+    $next = $(event.currentTarget);
+    nextNodeIndex = this.li.index($next);
+    sign = nextNodeIndex > this.count ? 1 : -1;
+    this.log('move from', this.count, 'to', nextNodeIndex);
+    this.count = nextNodeIndex;
+    return {
+      $current: $current,
+      $next: $next,
+      sign: sign
+    };
+  };
+
+  ServicesCarrousel.prototype.circle = function(event) {
+    var $currentWidth, adjustedTransform, infos;
+    this.log('circle');
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    infos = this.getNodesAndDirection(event);
+    if (infos.$next.hasClass(options.carrouselClassSelected)) {
+      return;
+    }
+    infos.$current.removeClass(options.carrouselClassSelected);
+    $currentWidth = infos.$current.width();
+    this.currentTransform = this.currentTransform - ($currentWidth * infos.sign);
+    adjustedTransform = this.count === 0 ? this.currentTransform : this.currentTransform + (this.galleryWidth * 0.1);
+    return this.list.transition({
+      x: adjustedTransform
+    }, function() {
+      return infos.$next.addClass(options.carrouselClassSelected);
+    });
+  };
 
   return ServicesCarrousel;
 
@@ -355,7 +413,7 @@ ServicesCarrousel = (function(_super) {
 module.exports = ServicesCarrousel;
 
 
-},{"./front-controller.coffee":4}],6:[function(require,module,exports){
+},{"../../../config/datas/stylus-var.json":8,"./front-controller.coffee":4}],6:[function(require,module,exports){
 var Carrousel, Controller, Projects, options,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -395,13 +453,17 @@ Projects = (function(_super) {
     this;
   }
 
+  Projects.prototype.currentPanel = function() {
+    return this.all.filter("." + options.activeClass);
+  };
+
   Projects.prototype.clean = function() {
-    this.all.filter("." + options.activeClass).heventRemoveClass(options.activeClass);
+    this.currentPanel().heventRemoveClass(options.activeClass);
     return this;
   };
 
   Projects.prototype.transitionend = function(event) {
-    var e, propertyName;
+    var $currentPanel, e, propertyName;
     e = event.originalEvent;
     if (event.originalEvent == null) {
       return;
@@ -414,11 +476,18 @@ Projects = (function(_super) {
       this.log('transition end::', 'close');
       this.el.css('z-index', 1);
       this.e.trigger('close');
-      return this.opened = false;
+      this.opened = false;
     } else if (this.opened === false && propertyName === 'opacity') {
       this.log('transition end ::', 'open');
-      return this.opened = true;
+      $currentPanel = this.currentPanel();
+      if (!$currentPanel.data('carrousel')) {
+        new Carrousel({
+          el: $currentPanel
+        });
+      }
+      this.opened = true;
     }
+    return this;
   };
 
   Projects.prototype.open = function(e) {
@@ -563,6 +632,7 @@ module.exports = Services;
 module.exports={
   "activeClass"     : "hw-panel-active",
   "activeBody"      : "hw-body-active",
-  "carrouselClass"  : "hw-carrousel"
+  "carrouselClass"  : "hw-carrousel",
+  "carrouselClassSelected"  : "hw-carrousel-selected"
 }
 },{}]},{},[2])

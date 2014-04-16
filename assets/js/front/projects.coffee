@@ -24,10 +24,11 @@ class Projects extends Controller
     @log 'Init'
     this
 
+  currentPanel: ->
+    return @all.filter(".#{options.activeClass}")
+
   clean: ->
-    @all
-      .filter(".#{options.activeClass}")
-      .heventRemoveClass(options.activeClass)
+    @currentPanel().heventRemoveClass(options.activeClass)
     this
 
   transitionend: (event) ->
@@ -44,7 +45,10 @@ class Projects extends Controller
     # the last transition of opening
     else if @opened is off and propertyName is 'opacity'
       @log 'transition end ::','open'
+      $currentPanel = @currentPanel()
+      new Carrousel({el: $currentPanel}) unless $currentPanel.data('carrousel')
       @opened = true
+    this
 
   open: (e) ->
     $target = $(e.currentTarget)

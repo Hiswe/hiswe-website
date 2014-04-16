@@ -1,5 +1,6 @@
 {
   "activeClass"     : "hw-panel-active",
   "activeBody"      : "hw-body-active",
-  "carrouselClass"  : "hw-carrousel"
+  "carrouselClass"  : "hw-carrousel",
+  "carrouselClassSelected"  : "hw-carrousel-selected"
 }

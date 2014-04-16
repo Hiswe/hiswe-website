@@ -1356,7 +1356,7 @@ body {
   margin: 1em 0;
 }
 .hw-projects-gallery {
-  background: #454a5d;
+  background: #333332;
   width: 960px;
   margin: 0 auto;
 }
@@ -1376,6 +1376,38 @@ body {
   position: relative;
   left: 100%;
   margin-left: -200%;
+}
+.hw-carrousel .hw-projects-gallery {
+  overflow: hidden;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -ms-perspective: 1000px;
+  perspective: 1000px;
+}
+.hw-carrousel .hw-projects-gallery ul {
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate3d(0px, 0px, 0px);
+  -ms-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+  overflow: visible;
+}
+.hw-carrousel .hw-projects-gallery li {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: pointer;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+.hw-carrousel .hw-projects-gallery .hw-carrousel-selected {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  cursor: inherit;
 }
 label {
   display: block;

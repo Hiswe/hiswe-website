@@ -23,6 +23,7 @@ exports.lib = {
     'bower_components/pointerevents-polyfill/pointerevents.dev.js',
     'bower_components/PointerGestures/pointergestures.min.js',
     'bower_components/jquery/dist/jquery.js',
+    'bower_components/jquery.transit/jquery.transit.js',
     'bower_components/jquery-pointer-events/src/pointer.js',
     'bower_components/hevent/build/jquery.hevent.js'
   ],
@@ -40,11 +41,6 @@ exports.front = {
 exports.font = [
   'bower_components/hiso-font/font/**',
   '!bower_components/hiso-font/font/*.css'
-];
-
-exports.imgSrc = [
-  'public/media/source/*',
-  '!public/media/source/*.svg'
 ];
 
 var imgSrc = 'public/media/source/';

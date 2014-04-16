@@ -34,7 +34,7 @@
   margin 1em 0
 
 .hw-projects-gallery
-  background $darkest-grey
+  background $black
   width unit($desktop-width, 'px')
   margin 0 auto
 
@@ -52,3 +52,20 @@
     max-width 80%
     overflow hidden
     image-center()
+
+.{carrouselClass} .hw-projects-gallery
+  overflow hidden
+  perspective 1000px
+
+  ul
+    transform translate3d(0px,0px,0px)
+    overflow visible
+
+  li
+    opacity .5
+    cursor pointer
+    transition opacity .5s
+
+  .{carrouselClassSelected}
+    opacity 1
+    cursor inherit
