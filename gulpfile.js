@@ -1,8 +1,10 @@
 'use strict';
 
+var fs          = require('fs');
 var lr          = require('tiny-lr'); // livereload depend on tiny-lr
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
+var args        = require('yargs').argv;
 var path        = require('./gulp-path.js');
 var bump        = require('gulp-bump');
 var wait        = require('gulp-wait');
@@ -123,7 +125,6 @@ gulp.task('clean-app', function() {
   return gulp.src(path.front.clean, {read: false}).pipe(clean());
 });
 
-
 gulp.task('frontend-app', ['clean-app'],function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
@@ -169,20 +170,30 @@ gulp.task('font', ['clean-font'], function() {
 });
 
 // IMAGES
-// TODO use gulp-if…
-gulp.task('clean-image', function() {
-  return gulp.src([path.img.dst + '*', '!' + path.img.dst + '*.svg'], {read: false}).pipe(clean());
+// gulp-if not working… May be because gulp-resize don't rely on stream
+gulp.task('clean-pixel', function() {
+  return gulp.src(path.img.cleanPixel, {read: false}).pipe(clean());
+});
+
+gulp.task('pixel', ['clean-pixel'], function() {
+  return gulp.src(path.img.pixel)
+    .pipe(resize({height: 549, quality: 0.8}))
+    .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
+    .pipe(gulp.dest(path.img.dst))
+});
+
+gulp.task('clean-splash', function() {
+  return gulp.src(path.img.cleanPixel, {read: false}).pipe(clean());
+});
+
+gulp.task('splash', ['clean-splash'], function() {
+  return gulp.src(path.img.pixel)
+    .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
+    .pipe(gulp.dest(path.img.dst))
 });
 
 gulp.task('clean-svg', function() {
-  return gulp.src(path.img.dst + '*.svg', {read: false}).pipe(clean());
-});
-
-gulp.task('resize', ['clean-image'], function() {
-  return gulp.src(path.img.src)
-    .pipe(resize({width: 294, quality: 0.8}))
-    .pipe(rename(function(path) { path.basename = uslug(path.basename, path.uslug); }))
-    .pipe(gulp.dest(path.img.dst))
+  return gulp.src(path.img.cleanSvg, {read: false}).pipe(clean());
 });
 
 gulp.task('svg', ['clean-svg'], function() {
@@ -192,7 +203,20 @@ gulp.task('svg', ['clean-svg'], function() {
     .pipe(gulp.dest(path.img.dst));
 });
 
-gulp.task('image', ['resize', 'svg']);
+gulp.task('list', function(cb) {
+  var projectName = args.project;
+  if (projectName != null) {
+    var fileList = fs.readdirSync(path.img.fullDst)
+      .filter(function (item) { return item.indexOf(projectName) > -1 })
+      .map(function (item) { return '- ![](media/images/' + item + ')'; });
+    console.log(fileList.join('\n'));
+  } else {
+    gutil.log('You shoul call ', gutil.colors.yellow('gulp list --project NAME'));
+  }
+  cb(null);
+});
+
+gulp.task('image', ['pixel', 'splash','svg']);
 
 // JSON
 gulp.task('json', require('./gulp-data.js'));

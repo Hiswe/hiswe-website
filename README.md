@@ -28,6 +28,9 @@ Design a portfolio for myself
 
 ### TODO
 
+- Amazon s3 static files with:
+  - [amazon s3](http://aws.amazon.com/fr/s3/)
+  - [gulp-awspublish](https://www.npmjs.org/package/gulp-awspublish)
 - Project presentation like
   - [polygon](http://www.polygon.com/2014/4/7/5582644/mlb-14-the-show-review)
   - [medium](https://medium.com/gulp-js-build/23812e4c9ec1)

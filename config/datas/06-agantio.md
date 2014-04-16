@@ -16,6 +16,9 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
 
 ###### Image
 
-- ![santa](media/images/pere_noel.png)
-- ![sketch](media/images/nori-skecth.jpg)
-- ![logo](media/images/nori-logo-alt.png)
+- ![Bare Map](media/images/agantio-carte-v12_a.jpg)
+- ![Map with Stepover](media/images/agantio-carte-v12_c.jpg)
+- ![Map with Friend search](media/images/agantio-carte-v12_e.jpg)
+- ![Map with Hostel search](media/images/agantio-carte-v12_k.jpg)
+- ![Gestion](media/images/agantio-gestion-v3_a.jpg)
+- ![Profile](media/images/agantio-profile-v3_c.jpg)

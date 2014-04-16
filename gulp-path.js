@@ -2,6 +2,7 @@ exports.uslug = {
   lower: true,
   allowedChars: '-'
 };
+
 exports.datas = 'config/datas';
 
 exports.jsonDb = __dirname + '/config/datas/db-work.json';
@@ -11,7 +12,10 @@ exports.revFiles = [
   'public/*.min.css'
 ];
 
-exports.pack = ['./package.json', './bower.json'];
+exports.pack = [
+  './package.json',
+  './bower.json'
+];
 
 exports.lib = {
   src: [
@@ -25,7 +29,6 @@ exports.lib = {
   dst: 'public',
   srcMap: 'bower_components/PointerGestures/pointergestures.js.map',
   clean: 'public/lib*.js'
-
 };
 
 exports.front = {
@@ -44,15 +47,19 @@ exports.imgSrc = [
   '!public/media/source/*.svg'
 ];
 
-exports.svgSrc = 'public/media/source/*.svg';
-
-exports.imgDst = 'public/media/images/';
+var imgSrc = 'public/media/source/';
+var imgDst = 'public/media/images/';
 
 exports.img = {
-  src: ['public/media/source/*', '!public/media/source/*.svg'],
-  svg: 'public/media/source/*.svg',
-  dst: 'public/media/images/'
-}
+  pixel:      [imgSrc + '*.{jpg,jpeg,png}', '!' + imgSrc + 'splash*.{jpg,jpeg,png}'],
+  cleanPixel: [imgDst + '*.{jpg,jpeg,png}', '!' + imgDst + 'splash*.{jpg,jpeg,png}'],
+  splash:     imgSrc + 'splash*.{jpg,jpeg,png}',
+  cleanSplash:imgDst + 'splash*.{jpg,jpeg,png}',
+  svg:        imgSrc + '*.svg',
+  cleanSvg:   imgDst + '*.svg',
+  dst:        imgDst,
+  fullDst:    __dirname + '/' + imgDst
+};
 
 exports.serverSrc = 'media/images/';
 

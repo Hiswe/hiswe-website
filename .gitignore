@@ -8,6 +8,7 @@ node_modules
 /components
 /bower_components
 public/media/source
+public/media/images
 public/index.css
 public/index.min.css
 public/app.js
