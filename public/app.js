@@ -345,8 +345,6 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.galleryWidth = null;
 
-  ServicesCarrousel.prototype.currentTransform = 0;
-
   ServicesCarrousel.prototype.events = {
     'tap .hw-projects-gallery li': 'circle'
   };
@@ -359,6 +357,9 @@ ServicesCarrousel = (function(_super) {
   };
 
   function ServicesCarrousel() {
+    if (!Modernizr.csstransforms) {
+      return;
+    }
     ServicesCarrousel.__super__.constructor.apply(this, arguments);
     if (!this.el.length) {
       return;
@@ -387,7 +388,7 @@ ServicesCarrousel = (function(_super) {
   };
 
   ServicesCarrousel.prototype.circle = function(event) {
-    var $currentWidth, adjustedTransform, infos;
+    var adjustedTransform, currentTransform, infos;
     this.log('circle');
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -396,12 +397,11 @@ ServicesCarrousel = (function(_super) {
       return;
     }
     infos.$current.removeClass(options.carrouselClassSelected);
-    $currentWidth = infos.$current.width();
-    this.currentTransform = this.currentTransform - ($currentWidth * infos.sign);
-    adjustedTransform = this.count === 0 ? this.currentTransform : this.currentTransform + (this.galleryWidth * 0.1);
+    currentTransform = infos.$next.position().left * -1;
+    adjustedTransform = this.count === 0 ? currentTransform : currentTransform + (this.galleryWidth * 0.1);
     return this.list.transition({
       x: adjustedTransform
-    }, function() {
+    }, 750, function() {
       return infos.$next.addClass(options.carrouselClassSelected);
     });
   };

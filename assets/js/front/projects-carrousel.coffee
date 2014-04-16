@@ -6,7 +6,6 @@ class ServicesCarrousel extends Controller
   logPrefix: '[CARROUSEL]'
   count: 0
   galleryWidth: null
-  currentTransform: 0
 
   events: {
     'tap .hw-projects-gallery li': 'circle'
@@ -20,13 +19,15 @@ class ServicesCarrousel extends Controller
   }
 
   constructor: ->
+    # Until this carrousel rely on jQuery.transit
+    # We can't run it without css transforms
+    return unless Modernizr.csstransforms
     super
     return unless @el.length
     @log 'Init'
     @el.data('carrousel', true)
     @el.addClass(options.carrouselClass)
     @galleryWidth = @gallery.width()
-    # @ul.transition({transform: "translate3d(0px, 0px, 0px)"}
     @li.eq(0).addClass(options.carrouselClassSelected)
     this
 
@@ -57,15 +58,14 @@ class ServicesCarrousel extends Controller
 
     infos.$current.removeClass(options.carrouselClassSelected)
 
-    $currentWidth     = infos.$current.width()
-    @currentTransform = @currentTransform - ($currentWidth * infos.sign)
+    currentTransform = infos.$next.position().left * - 1
 
     # 10% margin unless first element
-    adjustedTransform = if @count is 0 then @currentTransform else @currentTransform + (@galleryWidth * 0.1)
+    adjustedTransform = if @count is 0 then currentTransform else currentTransform + (@galleryWidth * 0.1)
 
     @list.transition({
       x: adjustedTransform
-    }, ->
+    }, 750, ->
       infos.$next.addClass(options.carrouselClassSelected)
     )
 

@@ -60,9 +60,11 @@
   ul
     transform translate3d(0px,0px,0px)
     overflow visible
+    // so jQuery will know it's the offset parent
+    position relative
 
   li
-    opacity .5
+    opacity .1
     cursor pointer
     transition opacity .5s
 
