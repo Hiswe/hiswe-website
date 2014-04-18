@@ -5,7 +5,7 @@ Contact     = require './contact.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class App extends Controller
-  trace: false
+  trace: true
   logPrefix: '[APP]'
   elements: {
     'body' : 'body'

@@ -49,3 +49,16 @@ projects-content-out()
   transition-duration         t-content*2,  t-content*2,  t-content
   transition-timing-function  ease,         ease,         ease
   transition-delay            0s,           0s,           t-content
+
+// Close button
+projects-close-button-in()
+  transition-property         visibility,   top,          right,        opacity
+  transition-duration         0s,           0s,           0s,           t-content
+  transition-timing-function  ease,         ease,         ease,         ease
+  transition-delay            d-content-in*2, d-content-in*2, d-content-in*2, d-content-in*2
+
+projects-close-button-out()
+  transition-property         visibility,   top,          right,        opacity
+  transition-duration         0s,           0s,           0s,           t-content
+  transition-timing-function  ease,         ease,         ease,         ease
+  transition-delay            t-content,    t-content,    t-content,    0s

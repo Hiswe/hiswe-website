@@ -248,7 +248,7 @@ body {
 }
 .hw-splash {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 .hw-splash h2 {
   font-weight: normal;
@@ -1307,6 +1307,84 @@ body {
   -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
+.hw-projects-close {
+  position: fixed;
+  top: -9em;
+  right: -9em;
+  width: 2em;
+  height: 2em;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: visibility, top, right, opacity;
+  -moz-transition-property: visibility, top, right, opacity;
+  -o-transition-property: visibility, top, right, opacity;
+  -ms-transition-property: visibility, top, right, opacity;
+  transition-property: visibility, top, right, opacity;
+  -webkit-transition-duration: 0s, 0s, 0s, 0.5s;
+  -moz-transition-duration: 0s, 0s, 0s, 0.5s;
+  -o-transition-duration: 0s, 0s, 0s, 0.5s;
+  -ms-transition-duration: 0s, 0s, 0s, 0.5s;
+  transition-duration: 0s, 0s, 0s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease, ease;
+  transition-timing-function: ease, ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
+  -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
+  -o-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
+  -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
+  transition-delay: 0.5s, 0.5s, 0.5s, 0s;
+  background: #ecf4f8;
+  text-indent: -1000em;
+  overflow: hidden;
+}
+.hw-projects-close::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #576176;
+  font-size: 2em;
+  content: '×';
+  font-weight: bold;
+  text-indent: 0;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  line-height: 0.75em;
+}
+.hw-panel-active .hw-projects-close {
+  opacity: 1;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  visibility: visible;
+  -webkit-transition-property: visibility, top, right, opacity;
+  -moz-transition-property: visibility, top, right, opacity;
+  -o-transition-property: visibility, top, right, opacity;
+  -ms-transition-property: visibility, top, right, opacity;
+  transition-property: visibility, top, right, opacity;
+  -webkit-transition-duration: 0s, 0s, 0s, 0.5s;
+  -moz-transition-duration: 0s, 0s, 0s, 0.5s;
+  -o-transition-duration: 0s, 0s, 0s, 0.5s;
+  -ms-transition-duration: 0s, 0s, 0s, 0.5s;
+  transition-duration: 0s, 0s, 0s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease, ease;
+  transition-timing-function: ease, ease, ease, ease;
+  -webkit-transition-delay: 2s, 2s, 2s, 2s;
+  -moz-transition-delay: 2s, 2s, 2s, 2s;
+  -o-transition-delay: 2s, 2s, 2s, 2s;
+  -ms-transition-delay: 2s, 2s, 2s, 2s;
+  transition-delay: 2s, 2s, 2s, 2s;
+}
 .hw-projects-content h1,
 .hw-projects-content h2,
 .hw-projects-content h3,
@@ -1383,20 +1461,20 @@ body {
   transform: translate3d(0px, 0px, 0px);
   overflow: visible;
   position: relative;
-  -webkit-transition: -webkit-transform 0.5s ease 0s;
-  -moz-transition: -moz-transform 0.5s ease 0s;
-  -o-transition: -o-transform 0.5s ease 0s;
-  -ms-transition: -ms-transform 0.5s ease 0s;
-  transition: transform 0.5s ease 0s;
+  -webkit-transition: -webkit-transform 0.75s ease 0s;
+  -moz-transition: -moz-transform 0.75s ease 0s;
+  -o-transition: -o-transform 0.75s ease 0s;
+  -ms-transition: -ms-transform 0.75s ease 0s;
+  transition: transform 0.75s ease 0s;
 }
 .hw-carrousel .hw-projects-gallery li {
   opacity: 0.1;
   cursor: pointer;
-  -webkit-transition: opacity 0.5s ease 0.5s;
-  -moz-transition: opacity 0.5s ease 0.5s;
-  -o-transition: opacity 0.5s ease 0.5s;
-  -ms-transition: opacity 0.5s ease 0.5s;
-  transition: opacity 0.5s ease 0.5s;
+  -webkit-transition: opacity 0.75s ease 0.75s;
+  -moz-transition: opacity 0.75s ease 0.75s;
+  -o-transition: opacity 0.75s ease 0.75s;
+  -ms-transition: opacity 0.75s ease 0.75s;
+  transition: opacity 0.75s ease 0.75s;
 }
 .hw-carrousel .hw-projects-gallery .hw-carrousel-selected {
   opacity: 1;

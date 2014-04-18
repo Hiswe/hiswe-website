@@ -126,6 +126,34 @@
       projects-content-in()
       transform rotateY(180deg)
 
+.hw-projects-close
+  fixed top -9em right -9em
+  width 2em; height @width
+  visibility hidden
+  opacity 0
+  projects-close-button-out()
+  background $light-grey
+  text-indent -1000em
+  overflow hidden
+
+  &::after
+    percentCenter()
+    color $dark-grey
+    font-size 2em
+    content '×'
+    font-weight bold
+    text-indent 0
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    line-height: .75em;
+
+  .{activeClass} &
+    opacity 1
+    fixed top 1em right 1em
+    visibility visible
+    projects-close-button-in()
+
   // *
   //   transform translate3d(0,0,0)
   //   backface-visibility hidden

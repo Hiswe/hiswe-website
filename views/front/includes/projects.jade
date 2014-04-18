@@ -9,4 +9,6 @@ section.hw-projects
         dt.hw-projects-cover
           span= project.name
           img(src="#{project.cover.path}")
-        dd.hw-projects-content-container: article.hw-projects-content!= project.markup
+        dd.hw-projects-content-container
+          article.hw-projects-content!= project.markup
+          a(href="#").hw-projects-close close

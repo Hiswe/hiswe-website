@@ -15,14 +15,13 @@ class ServicesCarrousel extends Controller
     '.hw-projects-gallery':     'gallery'
     'ul':                       'list'
     '.hw-projects-gallery li':  'li'
-    '.hw-projects-gallery img': 'images'
   }
 
   constructor: ->
     # We can't run it without css transforms
-    return unless Modernizr.csstransforms
+    return @warn 'No css transform available' unless Modernizr.csstransforms
     super
-    return unless @el.length
+    return @warn 'No element defined' unless @el.length
     @log 'Init'
     @el.data('carrousel', true)
     @el.addClass(options.carrouselClass)
@@ -30,20 +29,18 @@ class ServicesCarrousel extends Controller
     @li.eq(0).addClass(options.carrouselClassSelected)
     this
 
-  getNodesAndDirection: (event) ->
+  getNodes: (event) ->
     $current      = @li.eq(@count)
     $next         = $(event.currentTarget)
 
     nextNodeIndex = @li.index($next)
 
-    sign = if nextNodeIndex > @count then 1 else -1
     @log 'move from', @count, 'to', nextNodeIndex
     @count = nextNodeIndex
 
-    {
+    return {
       $current: $current
       $next: $next
-      sign: sign
     }
 
   circle: (event) ->
@@ -51,14 +48,14 @@ class ServicesCarrousel extends Controller
     event.preventDefault()
     event.stopImmediatePropagation()
 
-    infos = @getNodesAndDirection(event)
+    el = @getNodes(event)
 
-    return if infos.$next.hasClass(options.carrouselClassSelected)
+    return if el.$next.hasClass(options.carrouselClassSelected)
 
-    infos.$current.removeClass(options.carrouselClassSelected)
-    infos.$next.addClass(options.carrouselClassSelected)
+    el.$current.removeClass(options.carrouselClassSelected)
+    el.$next.addClass(options.carrouselClassSelected)
 
-    currentTransform = infos.$next.position().left * - 1
+    currentTransform = el.$next.position().left * - 1
 
     # 10% margin unless first element
     adjustedTransform = if @count is 0 then currentTransform else currentTransform + (@galleryWidth * 0.1)
@@ -66,6 +63,7 @@ class ServicesCarrousel extends Controller
     @list.css({
       transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"
     })
+    this
 
 
 module.exports = ServicesCarrousel

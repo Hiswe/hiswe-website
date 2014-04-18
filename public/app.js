@@ -16,7 +16,7 @@ options = require('../../../config/datas/stylus-var.json');
 App = (function(_super) {
   __extends(App, _super);
 
-  App.prototype.trace = false;
+  App.prototype.trace = true;
 
   App.prototype.logPrefix = '[APP]';
 
@@ -352,17 +352,16 @@ ServicesCarrousel = (function(_super) {
   ServicesCarrousel.prototype.elements = {
     '.hw-projects-gallery': 'gallery',
     'ul': 'list',
-    '.hw-projects-gallery li': 'li',
-    '.hw-projects-gallery img': 'images'
+    '.hw-projects-gallery li': 'li'
   };
 
   function ServicesCarrousel() {
     if (!Modernizr.csstransforms) {
-      return;
+      return this.warn('No css transform available');
     }
     ServicesCarrousel.__super__.constructor.apply(this, arguments);
     if (!this.el.length) {
-      return;
+      return this.warn('No element defined');
     }
     this.log('Init');
     this.el.data('carrousel', true);
@@ -372,37 +371,36 @@ ServicesCarrousel = (function(_super) {
     this;
   }
 
-  ServicesCarrousel.prototype.getNodesAndDirection = function(event) {
-    var $current, $next, nextNodeIndex, sign;
+  ServicesCarrousel.prototype.getNodes = function(event) {
+    var $current, $next, nextNodeIndex;
     $current = this.li.eq(this.count);
     $next = $(event.currentTarget);
     nextNodeIndex = this.li.index($next);
-    sign = nextNodeIndex > this.count ? 1 : -1;
     this.log('move from', this.count, 'to', nextNodeIndex);
     this.count = nextNodeIndex;
     return {
       $current: $current,
-      $next: $next,
-      sign: sign
+      $next: $next
     };
   };
 
   ServicesCarrousel.prototype.circle = function(event) {
-    var adjustedTransform, currentTransform, infos;
+    var adjustedTransform, currentTransform, el;
     this.log('circle');
     event.preventDefault();
     event.stopImmediatePropagation();
-    infos = this.getNodesAndDirection(event);
-    if (infos.$next.hasClass(options.carrouselClassSelected)) {
+    el = this.getNodes(event);
+    if (el.$next.hasClass(options.carrouselClassSelected)) {
       return;
     }
-    infos.$current.removeClass(options.carrouselClassSelected);
-    infos.$next.addClass(options.carrouselClassSelected);
-    currentTransform = infos.$next.position().left * -1;
+    el.$current.removeClass(options.carrouselClassSelected);
+    el.$next.addClass(options.carrouselClassSelected);
+    currentTransform = el.$next.position().left * -1;
     adjustedTransform = this.count === 0 ? currentTransform : currentTransform + (this.galleryWidth * 0.1);
-    return this.list.css({
+    this.list.css({
       transform: "translate3d(" + adjustedTransform + "px, 0px, 0px)"
     });
+    return this;
   };
 
   return ServicesCarrousel;
@@ -439,7 +437,7 @@ Projects = (function(_super) {
 
   Projects.prototype.events = {
     'tap .hw-projects-item': 'open',
-    'tap .hw-projects-content-container': 'close',
+    'tap .hw-projects-close': 'close',
     'transitionend .hw-projects-item': 'transitionend'
   };
 
@@ -469,6 +467,9 @@ Projects = (function(_super) {
     }
     propertyName = e.propertyName;
     if (!/^top|opacity$/.test(propertyName)) {
+      return;
+    }
+    if (!/content|cover/.test(event.target.className)) {
       return;
     }
     if (this.opened === true && propertyName === 'top') {

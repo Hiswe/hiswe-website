@@ -14,7 +14,7 @@ class Projects extends Controller
 
   events: {
     'tap .hw-projects-item'             : 'open'
-    'tap .hw-projects-content-container': 'close'
+    'tap .hw-projects-close'            : 'close'
     'transitionend .hw-projects-item'   : 'transitionend'
   }
 
@@ -36,18 +36,19 @@ class Projects extends Controller
     return unless event.originalEvent?
     propertyName = e.propertyName
     return unless /^top|opacity$/.test propertyName
+    return unless /content|cover/.test event.target.className
     # the last transition of closing
     if @opened is on and propertyName is 'top'
       @log 'transition end::', 'close'
       @el.css('z-index', 1)
       @e.trigger 'close'
-      @opened = false
+      @opened = off
     # the last transition of opening
     else if @opened is off and propertyName is 'opacity'
       @log 'transition end ::','open'
       $currentPanel = @currentPanel()
       new Carrousel({el: $currentPanel}) unless $currentPanel.data('carrousel')
-      @opened = true
+      @opened = on
     this
 
   open: (e) ->
