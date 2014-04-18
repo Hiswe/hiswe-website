@@ -5,11 +5,18 @@ var r = new marked.Renderer();
 
 r.heading = function (text, level) {
   var escapedText = text.replace(/-/gi, ' ');
-  return [
-    '<div class="hw-projects-center">',
+  if (level > 2) {
+    return [
       '<h' + level + '>' + escapedText + '</h' + level + '>',
-    '</div>'
-  ].join('\n')
+    ].join('\n')
+  } else {
+    return [
+      '<div class="hw-projects-center">',
+        '<h' + level + '>' + escapedText + '</h' + level + '>',
+      '</div>'
+    ].join('\n')
+  }
+
 };
 
 r.list = function (body, ordered) {

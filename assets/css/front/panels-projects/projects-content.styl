@@ -46,7 +46,6 @@
     border 1px solid $grey
 
   h6, ol, li, p
-    font-size 1em
     margin 0
     text-align center
 
@@ -58,25 +57,26 @@
     padding-top 0
     list-style none
 
-  h6
+  h6:not(:first-child)
     border-top 1px solid $grey
 
-  & .hw-projects-center:first-child h6
-    border-top none
+    // &:first-child
+    //   border-top none
 
   h6, li
     text-transform uppercase
 
   h6
     color $dark-grey
-    font-size px2em(12)
+    font-size px2em(11)
     font-weight normal
 
-  li
+  li, p
     font-weight black
-    font-size px2em(14)
+    font-size px2em(12)
     color $black
     font-weight bold
+    letter-spacing 0
 
   a
     color $pink
@@ -87,7 +87,6 @@
 .hw-projects-gallery-container
   background $grey
   margin 1em 0
-
 
 .hw-projects-gallery
   background $black
@@ -111,6 +110,7 @@
 .{carrouselClass} .hw-projects-gallery
   overflow hidden
   perspective 1000px
+  backface-visibility hidden
 
   ul
     transform translate3d(0px,0px,0px)

@@ -1449,7 +1449,6 @@ body {
 .hw-projects-aside ol,
 .hw-projects-aside li,
 .hw-projects-aside p {
-  font-size: 1em;
   margin: 0;
   text-align: center;
 }
@@ -1463,11 +1462,8 @@ body {
   padding-top: 0;
   list-style: none;
 }
-.hw-projects-aside h6 {
+.hw-projects-aside h6:not(:first-child) {
   border-top: 1px solid #cddce4;
-}
-.hw-projects-aside .hw-projects-center:first-child h6 {
-  border-top: none;
 }
 .hw-projects-aside h6,
 .hw-projects-aside li {
@@ -1475,14 +1471,16 @@ body {
 }
 .hw-projects-aside h6 {
   color: #576176;
-  font-size: 0.75em;
+  font-size: 0.6875em;
   font-weight: normal;
 }
-.hw-projects-aside li {
+.hw-projects-aside li,
+.hw-projects-aside p {
   font-weight: #000;
-  font-size: 0.875em;
+  font-size: 0.75em;
   color: #222;
   font-weight: bold;
+  letter-spacing: 0;
 }
 .hw-projects-aside a {
   color: #ff0078;
@@ -1523,6 +1521,10 @@ body {
   -moz-perspective: 1000px;
   -ms-perspective: 1000px;
   perspective: 1000px;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .hw-carrousel .hw-projects-gallery ul {
   -webkit-transform: translate3d(0px, 0px, 0px);
