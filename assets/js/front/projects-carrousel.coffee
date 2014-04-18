@@ -5,6 +5,7 @@ class ServicesCarrousel extends Controller
   trace: true
   logPrefix: '[CARROUSEL]'
   count: 0
+  total: 0
   galleryWidth: null
 
   events: {
@@ -22,11 +23,25 @@ class ServicesCarrousel extends Controller
     return @warn 'No css transform available' unless Modernizr.csstransforms
     super
     return @warn 'No element defined' unless @el.length
+    return @warn 'Carrousel already intialized' if @el.hasClass(options.carrouselClass)
+    @init()
+    this
+
+  init: ->
     @log 'Init'
-    @el.data('carrousel', true)
-    @el.addClass(options.carrouselClass)
+
+    @el
+      .data('carrousel', true)
+      .addClass(options.carrouselClass)
+    @li
+      .eq(0)
+      .addClass(options.carrouselClassSelected)
+
+    @total        = @li.length
     @galleryWidth = @gallery.width()
-    @li.eq(0).addClass(options.carrouselClassSelected)
+
+    @log @total
+
     this
 
   getNodes: (event) ->
@@ -57,8 +72,15 @@ class ServicesCarrousel extends Controller
 
     currentTransform = el.$next.position().left * - 1
 
-    # 10% margin unless first element
-    adjustedTransform = if @count is 0 then currentTransform else currentTransform + (@galleryWidth * 0.05)
+    if @count is 0
+      # First goes to the carrousel's left
+      adjustedTransform = currentTransform
+    else if @count is @total - 1
+      # Last goes to the carrousel's right
+      adjustedTransform = currentTransform + @galleryWidth - el.$next.width()
+    else
+      # 5% margin for controls
+      adjustedTransform = currentTransform + (@galleryWidth * 0.05)
 
     @list.css({
       transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"

@@ -343,6 +343,8 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.count = 0;
 
+  ServicesCarrousel.prototype.total = 0;
+
   ServicesCarrousel.prototype.galleryWidth = null;
 
   ServicesCarrousel.prototype.events = {
@@ -363,13 +365,22 @@ ServicesCarrousel = (function(_super) {
     if (!this.el.length) {
       return this.warn('No element defined');
     }
-    this.log('Init');
-    this.el.data('carrousel', true);
-    this.el.addClass(options.carrouselClass);
-    this.galleryWidth = this.gallery.width();
-    this.li.eq(0).addClass(options.carrouselClassSelected);
+    if (this.el.hasClass(options.carrouselClass)) {
+      return this.warn('Carrousel already intialized');
+    }
+    this.init();
     this;
   }
+
+  ServicesCarrousel.prototype.init = function() {
+    this.log('Init');
+    this.el.data('carrousel', true).addClass(options.carrouselClass);
+    this.li.eq(0).addClass(options.carrouselClassSelected);
+    this.total = this.li.length;
+    this.galleryWidth = this.gallery.width();
+    this.log(this.total);
+    return this;
+  };
 
   ServicesCarrousel.prototype.getNodes = function(event) {
     var $current, $next, nextNodeIndex;
@@ -396,7 +407,13 @@ ServicesCarrousel = (function(_super) {
     el.$current.removeClass(options.carrouselClassSelected);
     el.$next.addClass(options.carrouselClassSelected);
     currentTransform = el.$next.position().left * -1;
-    adjustedTransform = this.count === 0 ? currentTransform : currentTransform + (this.galleryWidth * 0.05);
+    if (this.count === 0) {
+      adjustedTransform = currentTransform;
+    } else if (this.count === this.total - 1) {
+      adjustedTransform = currentTransform + this.galleryWidth - el.$next.width();
+    } else {
+      adjustedTransform = currentTransform + (this.galleryWidth * 0.05);
+    }
     this.list.css({
       transform: "translate3d(" + adjustedTransform + "px, 0px, 0px)"
     });
