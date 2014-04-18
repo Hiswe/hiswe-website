@@ -1,3 +1,5 @@
+'use strict';
+
 var Q             = require('q');
 var fs            = require('fs');
 var path          = require('./gulp-path.js');
@@ -8,20 +10,8 @@ var jsonDb        = [];
 var openFile      = Q.denodeify(fs.open);
 
 // Markdown config
-var renderer      = new marked.Renderer();
-renderer.heading  = function (text, level) {
-  var escapedText = text.replace(/-/gi, ' ');
-  return '<h' + level + '>' + escapedText + '</h' + level + '>';
-};
-renderer.list     = function (body, ordered) {
-  if (ordered) {
-    return '<ol>' + body + '</ol>';
-  }
-  return '<div class="hw-projects-gallery-container"><div class="hw-projects-gallery"><ul>' + body + '</ul></div></div>';
-}
-
 marked.setOptions({
-  renderer: renderer,
+  renderer: require('./marked-renderer.js'),
   smartypants: true
 });
 
@@ -56,7 +46,9 @@ var setCover = function setCover(fileName) {
 };
 
 var parseFile = function readFile(fileName, data, deferred) {
-  fileName = fileName.match(/^(\d*)-(.*).md$/)
+  fileName = fileName.match(/^(\d*)-(.*).md$/);
+
+  // console.log(marked(data, {sanitize: true}));
 
   setCover(fileName)
     .then(function (coverImage) {
@@ -69,8 +61,8 @@ var parseFile = function readFile(fileName, data, deferred) {
       });
       return deferred.resolve();
     }, function (err){
-      deferred.reject(err);
-    });
+      return deferred.reject(err);
+    }).done();
 };
 
 var walkFiles = function walkFiles(files) {
@@ -80,8 +72,11 @@ var walkFiles = function walkFiles(files) {
   return mdFiles.map(function (fileName) {
     var deferred  = Q.defer();
     Q.npost(fs, 'readFile', [path.datas + '/' + fileName, {encoding: 'utf8'}])
-      .then(function(data){ parseFile(fileName, data, deferred)});
-    return deferred.promise
+      .then(
+        function (data) {
+          return parseFile(fileName, data, deferred)
+      });
+    return deferred.promise;
   });
 };
 

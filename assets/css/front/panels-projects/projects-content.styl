@@ -4,9 +4,11 @@
 @import './css-mixins'
 
 .hw-projects-content
-  h1, h2, h3, h4, h5, h6, ol, p
+  > .hw-projects-center
     width unit($project-width, 'px')
     margin 0 auto
+
+  h1, h2, h3, h4, h5, h6, ol, p
     crisp-font-smoothing()
 
   h1
@@ -15,27 +17,80 @@
     font-dark()
     font-size 4em
     padding .5em 0 .25em
+    margin-bottom 0
 
-    + h2
-      text-align center
-      color $dark-grey
-      font-weight 300
-      font-size 1.5em
-      padding-bottom 1em
+  h2
+    text-align center
+    color $dark-grey
+    font-weight 300
+    font-size 1.5em
+    padding-bottom 1em
+    margin-top 0
 
   p
     font-size px2em(22)
     letter-spacing 0.16px
     line-height 1.5em
 
+.hw-projects-aside,
+.hw-projects-gallery
+  width unit($desktop-width, 'px')
+  margin 0 auto
+
+.hw-projects-aside
+  position relative
+
+  aside
+    absolute top left
+    width unit(($desktop-width - $project-width) / 2 - $h-fs, 'px')
+    border 1px solid $grey
+
+  h6, ol, li, p
+    font-size 1em
+    margin 0
+    text-align center
+
+
+  h6, ol, p
+    padding .5em 0
+
+  ol, li
+    padding-top 0
+    list-style none
+
+  h6
+    border-top 1px solid $grey
+
+  & .hw-projects-center:first-child h6
+    border-top none
+
+  h6, li
+    text-transform uppercase
+
+  h6
+    color $dark-grey
+    font-size px2em(12)
+    font-weight normal
+
+  li
+    font-weight black
+    font-size px2em(14)
+    color $black
+    font-weight bold
+
+  a
+    color $pink
+
+    &:hover
+      color $light-pink
+
 .hw-projects-gallery-container
-  background $light-grey
+  background $grey
   margin 1em 0
+
 
 .hw-projects-gallery
   background $black
-  width unit($desktop-width, 'px')
-  margin 0 auto
 
   ul
     width 100%
@@ -46,9 +101,10 @@
     // http://davidwalsh.name/remove-whitespace-inline-block
     letter-spacing -0.31em
     text-rendering optimizespeed
+
   li
     display inline-block
-    max-width 80%
+    max-width 90%
     overflow hidden
     image-center()
 
@@ -71,3 +127,4 @@
   .{carrouselClassSelected}
     opacity 1
     cursor inherit
+

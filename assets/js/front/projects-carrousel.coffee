@@ -58,7 +58,7 @@ class ServicesCarrousel extends Controller
     currentTransform = el.$next.position().left * - 1
 
     # 10% margin unless first element
-    adjustedTransform = if @count is 0 then currentTransform else currentTransform + (@galleryWidth * 0.1)
+    adjustedTransform = if @count is 0 then currentTransform else currentTransform + (@galleryWidth * 0.05)
 
     @list.css({
       transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"

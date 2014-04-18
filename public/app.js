@@ -396,7 +396,7 @@ ServicesCarrousel = (function(_super) {
     el.$current.removeClass(options.carrouselClassSelected);
     el.$next.addClass(options.carrouselClassSelected);
     currentTransform = el.$next.position().left * -1;
-    adjustedTransform = this.count === 0 ? currentTransform : currentTransform + (this.galleryWidth * 0.1);
+    adjustedTransform = this.count === 0 ? currentTransform : currentTransform + (this.galleryWidth * 0.05);
     this.list.css({
       transform: "translate3d(" + adjustedTransform + "px, 0px, 0px)"
     });
