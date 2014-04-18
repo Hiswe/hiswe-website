@@ -2,6 +2,7 @@
 @import 'nib/reset'
 @import './css-config'
 @import './css-mixins'
+@import './projects-transitions'
 
 .hw-projects-content
   > .hw-projects-center
@@ -86,7 +87,13 @@
 
 .hw-projects-gallery-container
   background $grey
+  visibility hidden
   margin 1em 0
+  projects-gallery-out()
+
+  .{activeClass} &
+    visibility visible
+    projects-gallery-in()
 
 .hw-projects-gallery
   background $black
