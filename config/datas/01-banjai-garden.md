@@ -3,23 +3,23 @@
 ## The small five small stars guesthouse
 
 > ###### Website
-> 
-> [www.banjai-garden.com](www.banjai-garden.com)
-> 
+>
+> [www.banjai-garden.com](http://www.banjai-garden.com)
+>
 > ###### Work
-> 
+>
 > 1. WebDesign
 > - Front & Back Coding
-> 
+>
 > ###### Keywords
-> 
+>
 > 1. Simplicity
 > - elegance
 > - Responsive
 > - fast loading
-> 
+>
 > ###### Technic
-> 
+>
 > 1. Adobe Illustrator
 > - HTML 5, JavaScript &amp; NodeJs
 

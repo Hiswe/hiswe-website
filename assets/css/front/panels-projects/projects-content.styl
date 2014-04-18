@@ -49,7 +49,7 @@
   h6, ol, li, p
     margin 0
     text-align center
-
+    font-weight 300
 
   h6, ol, p
     padding .5em 0
@@ -61,16 +61,12 @@
   h6:not(:first-child)
     border-top 1px solid $grey
 
-    // &:first-child
-    //   border-top none
-
   h6, li
     text-transform uppercase
 
   h6
     color $dark-grey
     font-size px2em(11)
-    font-weight normal
 
   li, p
     font-weight black
@@ -81,6 +77,7 @@
 
   a
     color $pink
+    font-weight 300
 
     &:hover
       color $light-pink
@@ -110,9 +107,16 @@
 
   li
     display inline-block
+    position relative
     max-width 90%
     overflow hidden
     image-center()
+
+    &::after
+      content ' '
+      absolute top left
+      right 0; bottom 0
+
 
 .{carrouselClass} .hw-projects-gallery
   overflow hidden
@@ -130,11 +134,21 @@
     transition transform .75s ease 0s
 
   li
-    opacity .1
     cursor pointer
+
+    &:hover::after
+      background rgba($pink, .25)
+
+  img
+    opacity .15
     transition opacity .75s ease .75s
 
   .{carrouselClassSelected}
-    opacity 1
     cursor inherit
 
+    img
+      opacity 1
+
+    &::after,
+    &:hover::after
+      background rgba($pink, 0)

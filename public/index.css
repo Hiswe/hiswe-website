@@ -1457,6 +1457,7 @@ body {
 .hw-projects-aside p {
   margin: 0;
   text-align: center;
+  font-weight: 300;
 }
 .hw-projects-aside h6,
 .hw-projects-aside ol,
@@ -1478,7 +1479,6 @@ body {
 .hw-projects-aside h6 {
   color: #576176;
   font-size: 0.6875em;
-  font-weight: normal;
 }
 .hw-projects-aside li,
 .hw-projects-aside p {
@@ -1490,6 +1490,7 @@ body {
 }
 .hw-projects-aside a {
   color: #ff0078;
+  font-weight: 300;
 }
 .hw-projects-aside a:hover {
   color: $light-pink;
@@ -1524,6 +1525,7 @@ body {
 }
 .hw-projects-gallery li {
   display: inline-block;
+  position: relative;
   max-width: 90%;
   overflow: hidden;
 }
@@ -1534,6 +1536,14 @@ body {
   position: relative;
   left: 100%;
   margin-left: -200%;
+}
+.hw-projects-gallery li::after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .hw-carrousel .hw-projects-gallery {
   overflow: hidden;
@@ -1576,8 +1586,13 @@ body {
   transition: transform 0.75s ease 0s;
 }
 .hw-carrousel .hw-projects-gallery li {
-  opacity: 0.1;
   cursor: pointer;
+}
+.hw-carrousel .hw-projects-gallery li:hover::after {
+  background: rgba(255,0,120,0.25);
+}
+.hw-carrousel .hw-projects-gallery img {
+  opacity: 0.15;
   -webkit-transition: opacity 0.75s ease 0.75s;
   -moz-transition: opacity 0.75s ease 0.75s;
   -o-transition: opacity 0.75s ease 0.75s;
@@ -1585,8 +1600,14 @@ body {
   transition: opacity 0.75s ease 0.75s;
 }
 .hw-carrousel .hw-projects-gallery .hw-carrousel-selected {
-  opacity: 1;
   cursor: inherit;
+}
+.hw-carrousel .hw-projects-gallery .hw-carrousel-selected img {
+  opacity: 1;
+}
+.hw-carrousel .hw-projects-gallery .hw-carrousel-selected::after,
+.hw-carrousel .hw-projects-gallery .hw-carrousel-selected:hover::after {
+  background: rgba(255,0,120,0);
 }
 label {
   display: block;
