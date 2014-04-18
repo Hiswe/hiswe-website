@@ -110,10 +110,13 @@
 .{carrouselClass} .hw-projects-gallery
   overflow hidden
   perspective 1000px
-  backface-visibility hidden
+  transform-origin center center
+  transform-style preserve-3d
 
   ul
     transform translate3d(0px,0px,0px)
+    backface-visibility hidden
+    transform-style preserve-3d
     overflow visible
     // so jQuery will know it's the offset parent
     position relative

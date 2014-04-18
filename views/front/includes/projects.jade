@@ -5,10 +5,10 @@ section.hw-projects
 
   .hw-projects-list
     each project in projects
-      dl.hw-projects-item(id="#{project.id}")
+      dl(id="#{project.id}").hw-projects-item
         dt.hw-projects-cover
           span= project.name
           img(src="#{project.cover.path}")
         dd.hw-projects-content-container
           article.hw-projects-content!= project.markup
-          a(href="#").hw-projects-close close
+          a(href="##{project.id}").hw-projects-close close

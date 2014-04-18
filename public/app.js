@@ -432,7 +432,8 @@ Projects = (function(_super) {
 
   Projects.prototype.elements = {
     '.hw-projects-item': 'all',
-    '.hw-projects-content-container': 'content'
+    '.hw-projects-content-container': 'content',
+    '.hw-projects-content': 'container'
   };
 
   Projects.prototype.events = {
@@ -510,6 +511,7 @@ Projects = (function(_super) {
     this.log('Projects close');
     e.preventDefault();
     e.stopImmediatePropagation();
+    this.container.scrollTop(0);
     this.clean();
     return this;
   };

@@ -1182,22 +1182,22 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: auto;
+  overflow: hidden;
   background: #fff;
   -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
   transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
   opacity: 0.5;
   -webkit-transition-property: -webkit-transform, border, opacity;
   -moz-transition-property: -moz-transform, border, opacity;
@@ -1227,6 +1227,11 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -1259,6 +1264,7 @@ body {
   transition-delay: 0s, 0s, 0.5s;
 }
 .hw-panel-active .hw-projects-content {
+  overflow: auto;
   -webkit-transition-property: -webkit-transform, border, opacity;
   -moz-transition-property: -moz-transform, border, opacity;
   -o-transition-property: -o-transform, border, opacity;
@@ -1521,10 +1527,16 @@ body {
   -moz-perspective: 1000px;
   -ms-perspective: 1000px;
   perspective: 1000px;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -o-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 .hw-carrousel .hw-projects-gallery ul {
   -webkit-transform: translate3d(0px, 0px, 0px);
@@ -1532,6 +1544,15 @@ body {
   -o-transform: translate3d(0px, 0px, 0px);
   -ms-transform: translate3d(0px, 0px, 0px);
   transform: translate3d(0px, 0px, 0px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   overflow: visible;
   position: relative;
   -webkit-transition: -webkit-transform 0.75s ease 0s;

@@ -101,12 +101,12 @@
 .hw-projects-content
   absolute top left
   bottom 0; right 0
-  overflow auto
+  overflow hidden
   background white
   // border px2em($main-border) solid $dark-grey
   transform scale3d(.1, .1, .1) rotateY(180deg)
-  backface-visibility hidden
   transform-style preserve-3d
+  backface-visibility hidden
   opacity .5
   projects-content-out()
 
@@ -114,12 +114,14 @@
     content ''
     absolute top left
     bottom 0; right 0
+    transform-style preserve-3d
     backface-visibility hidden
     background $darkest-grey
     transform rotateY(0deg)
     projects-content-out()
 
   .{activeClass} &
+    overflow auto
     projects-content-in()
     opacity 1
     transform scale3d(1, 1, 1) rotateY(0deg)

@@ -10,6 +10,7 @@ class Projects extends Controller
   elements: {
     '.hw-projects-item'             : 'all'
     '.hw-projects-content-container': 'content'
+    '.hw-projects-content'          : 'container'
   }
 
   events: {
@@ -67,6 +68,9 @@ class Projects extends Controller
     @log 'Projects close'
     e.preventDefault()
     e.stopImmediatePropagation()
+    # Force scroll to top
+    # So the backface of the project appear on the animation
+    @container.scrollTop(0)
     @clean()
     this
 
