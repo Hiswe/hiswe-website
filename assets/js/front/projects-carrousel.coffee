@@ -31,7 +31,6 @@ class ServicesCarrousel extends Controller
     @log 'Init'
 
     @el
-      .data('carrousel', true)
       .addClass(options.carrouselClass)
     @li
       .eq(0)

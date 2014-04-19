@@ -1,19 +1,21 @@
 # Nori Home
 
-## Logo & illustrations for a company making christmas-related accessories
+## Christmas tree sack
 
-###### Specifications
+> ###### Website
+> [www.christmastreesack.com](http://www.christmastreesack.com/)
+> ###### Work
+> 1. Logo
+> - Illustrations
+> ###### Technic
+> 1. Sketchbook & pen
+> - Illustrator
 
-1. Festive & charity
-- Corporate responsability
+Festive & charity Corporate responsability
 
-###### Technic
+### Image
 
-1. Sketchbook & pen
-- Adobe Illustrator
-
-###### Image
-
-- ![santa](media/images/pere_noel.png)
-- ![sketch](media/images/nori-skecth.jpg)
 - ![logo](media/images/nori-logo-alt.png)
+- ![](media/images/nori-skecth.jpg)
+- ![santa](media/images/nori-perenoel.png)
+

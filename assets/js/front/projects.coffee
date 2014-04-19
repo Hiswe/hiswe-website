@@ -11,6 +11,7 @@ class Projects extends Controller
     '.hw-projects-item'             : 'all'
     '.hw-projects-content-container': 'content'
     '.hw-projects-content'          : 'container'
+    '.hw-projects-gallery-container': 'carrouselList'
   }
 
   events: {
@@ -48,7 +49,14 @@ class Projects extends Controller
     else if @opened is off and propertyName is 'opacity'
       @log 'transition end ::','open'
       $currentPanel = @currentPanel()
-      new Carrousel({el: $currentPanel}) unless $currentPanel.data('carrousel')
+
+      # init carrousel
+      unless $currentPanel.data('carrousel')
+        $currentPanel.data('carrousel', true)
+        $.each(@carrouselList, ->
+          new Carrousel({el: $(this)})
+        )
+
       @opened = on
     this
 

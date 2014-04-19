@@ -374,7 +374,7 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.init = function() {
     this.log('Init');
-    this.el.data('carrousel', true).addClass(options.carrouselClass);
+    this.el.addClass(options.carrouselClass);
     this.li.eq(0).addClass(options.carrouselClassSelected);
     this.total = this.li.length;
     this.galleryWidth = this.gallery.width();
@@ -450,7 +450,8 @@ Projects = (function(_super) {
   Projects.prototype.elements = {
     '.hw-projects-item': 'all',
     '.hw-projects-content-container': 'content',
-    '.hw-projects-content': 'container'
+    '.hw-projects-content': 'container',
+    '.hw-projects-gallery-container': 'carrouselList'
   };
 
   Projects.prototype.events = {
@@ -499,8 +500,11 @@ Projects = (function(_super) {
       this.log('transition end ::', 'open');
       $currentPanel = this.currentPanel();
       if (!$currentPanel.data('carrousel')) {
-        new Carrousel({
-          el: $currentPanel
+        $currentPanel.data('carrousel', true);
+        $.each(this.carrouselList, function() {
+          return new Carrousel({
+            el: $(this)
+          });
         });
       }
       this.opened = true;

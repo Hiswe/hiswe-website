@@ -11,6 +11,7 @@
 
   h1, h2, h3, h4, h5, h6, ol, p
     crisp-font-smoothing()
+    font-weight 300
 
   h1
     color $pink
@@ -20,28 +21,54 @@
     padding .5em 0 .25em
     margin-bottom 0
 
+  // Title baseline
   h2
     text-align center
     color $dark-grey
-    font-weight 300
     font-size 1.5em
     padding-bottom 1em
     margin-top 0
+
+  // Gallery title
+  h3
+    font-size 4em
+    text-align center
+    font-dark()
+    color $dark-grey
+    margin-bottom .5em
+
+  // Paragraph title
+  h4
+    font-size 2em
+    color $dark-grey
+    padding .5em 0 .25em
 
   p
     font-size px2em(22)
     letter-spacing 0.16px
     line-height 1.5em
+    padding 0 0 1em
 
-.hw-projects-aside,
+  a
+    color $black
+    background-image linear-gradient(to bottom,#fff 50%,#666665 50%)
+    background-repeat repeat-x
+    background-size 2px 2px
+    background-position 0 24px
+
+    &:hover
+      color $black
+
+.hw-projects-aside-container,
 .hw-projects-gallery
   width unit($desktop-width, 'px')
   margin 0 auto
 
-.hw-projects-aside
+// Summary
+.hw-projects-aside-container
   position relative
 
-  aside
+  .hw-projects-aside
     absolute top left
     width unit(($desktop-width - $project-width) / 2 - $h-fs, 'px')
     border 1px solid $grey
@@ -83,12 +110,18 @@
     &:hover
       text-decoration underline
 
+// Gallery
 .hw-projects-gallery-container
   background $grey
+  border solid $grey
+  border-width 1px 0
   visibility hidden
-  margin 1em 0
+  margin 4em 0
   height px2em(carrouselHeight)
   projects-gallery-out()
+
+  h3 + &
+    margin-top 0
 
   .{activeClass} &
     visibility visible
@@ -115,7 +148,7 @@
     position relative
     max-width 90%
     overflow hidden
-    image-center()
+    // image-center()
     v-align()
 
     &::after
@@ -140,7 +173,7 @@
 
   li
     cursor pointer
-    border-left 1px solid $grey
+    border-left 1px solid $dark-grey
 
     &:first-child
       border-left 0

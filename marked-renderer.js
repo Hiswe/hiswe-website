@@ -5,18 +5,14 @@ var r = new marked.Renderer();
 
 r.heading = function (text, level) {
   var escapedText = text.replace(/-/gi, ' ');
-  if (level > 2) {
+  if (level === 4) {
     return [
-      '<h' + level + '>' + escapedText + '</h' + level + '>',
-    ].join('\n')
-  } else {
-    return [
-      '<div class="hw-projects-center">',
-        '<h' + level + '>' + escapedText + '</h' + level + '>',
-      '</div>'
+      '<h' + level + ' class="hw-projects-center">' + escapedText + '</h' + level + '>'
     ].join('\n')
   }
-
+  return [
+    '<h' + level + '>' + escapedText + '</h' + level + '>',
+  ].join('\n')
 };
 
 r.list = function (body, ordered) {
@@ -36,17 +32,15 @@ r.list = function (body, ordered) {
 
 r.blockquote = function (quote) {
   return [
-    '<div class="hw-projects-aside">',
-      '<aside>' + quote + '</aside>',
-    '</div>'
+    '<aside class="hw-projects-aside-container">',
+      '<div class="hw-projects-aside">' + quote + '</div>',
+    '</aside>'
   ].join('\n');
 };
 
 r.paragraph = function (text) {
   return [
-    '<div class="hw-projects-center">',
-      '<p>' + text + '</p>',
-    '</div>'
+    '<p class="hw-projects-center">' + text + '</p>'
   ].join('\n');
 };
 

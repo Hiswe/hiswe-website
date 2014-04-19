@@ -10,16 +10,29 @@
 > - UX Design 
 > - Html snippet
 
-Agantio is a new service providing an easy way to plan & build your travels with your friends' help.
+Taelys is a web service providing a solution for debt & risk management. 
 
-This company needs help for doing all the webdesign in a way that will be **simple**, **clean** and in the same spirit as the logo.
+#### Logo
+
+The first step was to draw a logo based on the client draft.  
+The keywords for this work where: *finance, technology & proximity*.
+
+#### Webdesign & UX Design
+
+The focus was on **UX Design**. As finance can be very hard to understand, **the interface should adapt according to your knowledge**: you sould be able to perform basics tasks without being distract by advanced parameters, but experimented user should access those quickly.
+
+As this UX is part of Taelys IP, I'm unable to show the designs.
+
+#### Integration
 
 They also need some integration help for some specific component like a [selectbox](http://dabblet.com/gist/11043337) or a [colored image](http://dabblet.com/gist/11045609)
 
-- ![Bare Map](media/images/agantio-carte-v12a.jpg)
-- ![Map with Stepover](media/images/agantio-carte-v12c.jpg)
-- ![Map with Friend search](media/images/agantio-carte-v12e.jpg)
-- ![Map with Hostel search](media/images/agantio-carte-v12k.jpg)
-- ![Gestion](media/images/agantio-gestion-v3a.jpg)
-- ![Profile](media/images/agantio-profile-v3c.jpg)
+### Logo
 
+- ![Client base](media/images/taelys-propositions-logo.jpg)
+- ![First test](media/images/taelys-logo-alpha.svg)
+
+### layout
+
+- ![](media/images/taelys-vitrine-v2d.jpg)
+- ![](media/images/taelys-vitrine-v3f-recrutement.jpg)
