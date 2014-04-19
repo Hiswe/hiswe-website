@@ -1,3 +1,5 @@
+sharedVar = require('./config/datas/stylus-var.json');
+
 exports.uslug = {
   lower: true,
   allowedChars: '-'
@@ -53,6 +55,8 @@ exports.img = {
   svg:        imgSrc + '*.svg',
   cleanSvg:   imgDst + '*.svg',
   dst:        imgDst,
+  height:     sharedVar.carrouselHeight,
+  width:      sharedVar.desktopWidth - ( sharedVar.desktopWidth * 0.1 ),
   fullDst:    __dirname + '/' + imgDst
 };
 

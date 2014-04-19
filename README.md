@@ -25,7 +25,6 @@ Design a portfolio for myself
 - **2.0.1** — Update content
 - **2.0.0** — Complete retake
 
-
 ### TODO
 
 - Amazon s3 static files with:
@@ -37,5 +36,6 @@ Design a portfolio for myself
 - replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Retina images
 - Responsive images
+- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - JS front lib in requireJs

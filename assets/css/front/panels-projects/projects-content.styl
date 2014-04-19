@@ -66,11 +66,11 @@
 
   h6
     color $dark-grey
-    font-size px2em(11)
+    font-size px2em(12)
 
   li, p
     font-weight black
-    font-size px2em(12)
+    font-size px2em(14)
     color $black
     font-weight bold
     letter-spacing 0
@@ -78,14 +78,16 @@
   a
     color $pink
     font-weight 300
+    font-size 1em
 
     &:hover
-      color $light-pink
+      text-decoration underline
 
 .hw-projects-gallery-container
   background $grey
   visibility hidden
   margin 1em 0
+  height px2em(carrouselHeight)
   projects-gallery-out()
 
   .{activeClass} &
@@ -94,9 +96,11 @@
 
 .hw-projects-gallery
   background $black
+  height 100%
 
   ul
     width 100%
+    height 100%
     overflow auto
     white-space nowrap
     // remove white-space between images
@@ -106,17 +110,18 @@
     text-rendering optimizespeed
 
   li
+    height 100%
     display inline-block
     position relative
     max-width 90%
     overflow hidden
     image-center()
+    v-align()
 
     &::after
       content ' '
       absolute top left
       right 0; bottom 0
-
 
 .{carrouselClass} .hw-projects-gallery
   overflow hidden
@@ -135,6 +140,10 @@
 
   li
     cursor pointer
+    border-left 1px solid $grey
+
+    &:first-child
+      border-left 0
 
     &:hover::after
       background rgba($pink, .25)

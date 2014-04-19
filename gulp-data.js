@@ -2,7 +2,7 @@
 
 var Q             = require('q');
 var fs            = require('fs');
-var path          = require('./gulp-path.js');
+var conf          = require('./gulp-config.js');
 var gutil         = require('gulp-util');
 var marked        = require('marked');
 
@@ -18,7 +18,7 @@ marked.setOptions({
 // Other things
 var imageDescription = function imageDescription(fileName, extension) {
   return {
-    path: path.serverSrc + fileName + '.' + extension,
+    path: conf.serverSrc + fileName + '.' + extension,
     extension: extension
   };
 };
@@ -26,7 +26,7 @@ var imageDescription = function imageDescription(fileName, extension) {
 var setCover = function setCover(fileName) {
   var deferred  = Q.defer();
   fileName = 'cover-' + fileName[2];
-  var absolutePath  = __dirname + '/' + path.img.dst + fileName
+  var absolutePath  = __dirname + '/' + conf.img.dst + fileName
   openFile(absolutePath + '.png', 'r')
     .then(function () {
       return imageDescription(fileName, 'png');
@@ -39,7 +39,7 @@ var setCover = function setCover(fileName) {
       }
       return deferred.resolve(file);
     }, function (err){
-      return deferred.reject('no such files' + path.serverSrc + fileName + '.png | svg');
+      return deferred.reject('no such files' + conf.serverSrc + fileName + '.png | svg');
     }).done();
 
   return deferred.promise;
@@ -71,7 +71,7 @@ var walkFiles = function walkFiles(files) {
   });
   return mdFiles.map(function (fileName) {
     var deferred  = Q.defer();
-    Q.npost(fs, 'readFile', [path.datas + '/' + fileName, {encoding: 'utf8'}])
+    Q.npost(fs, 'readFile', [conf.datas + '/' + fileName, {encoding: 'utf8'}])
       .then(
         function (data) {
           return parseFile(fileName, data, deferred)
@@ -84,12 +84,12 @@ var bundleData = function bundleData(){
   var deferred  = Q.defer();
   jsonDb    = [];
 
-  Q.ninvoke(fs, 'readdir', path.datas)
+  Q.ninvoke(fs, 'readdir', conf.datas)
     .then(walkFiles)
     .all()
     .done(function(){
       jsonDb.sort(function(a, b){ return  a.order < b.order});
-      fs.writeFileSync(path.jsonDb, JSON.stringify(jsonDb, null, 2));
+      fs.writeFileSync(conf.jsonDb, JSON.stringify(jsonDb, null, 2));
       return deferred.resolve();
     }, function(err){
       return deferred.reject(new gutil.PluginError('json', err));

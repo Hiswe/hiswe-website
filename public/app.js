@@ -652,6 +652,8 @@ module.exports={
   "activeClass"     : "hw-panel-active",
   "activeBody"      : "hw-body-active",
   "carrouselClass"  : "hw-carrousel",
+  "desktopWidth"    : 1080,
+  "carrouselHeight"  : 552,
   "carrouselClassSelected"  : "hw-carrousel-selected"
 }
 },{}]},{},[2])

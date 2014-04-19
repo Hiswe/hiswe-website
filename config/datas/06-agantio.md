@@ -3,17 +3,21 @@
 ## Let your friends be your travel agents!
 
 > ###### Website
-> [http://agant.io](http://agant.io)
+> [agant.io](http://launch.agant.io)
 > ###### Work
 > 1. WebDesign
-> - UX Design
+> - UX Design 
 > - Html snippet
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc vulputate malesuada lacinia. Phasellus tempor, eros ac iaculis fringilla, orci ipsum imperdiet risus, ac tempor libero mauris at libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc sit amet justo consequat, tempor felis non, cursus sem. Ut at semper velit. Duis congue ipsum tincidunt ornare eleifend. Donec consectetur, risus non fringilla euismod, felis justo iaculis sem, ut aliquet neque risus a odio. Fusce sagittis nibh lorem, malesuada vestibulum velit rutrum quis. Fusce placerat, nisl id ultricies posuere, urna sapien imperdiet sem, sed molestie est nisi id nibh.
+Agantio is a new service providing an easy way to plan & build your travels with your friends' help.
 
-- ![Bare Map](media/images/agantio-carte-v12_a.jpg)
-- ![Map with Stepover](media/images/agantio-carte-v12_c.jpg)
-- ![Map with Friend search](media/images/agantio-carte-v12_e.jpg)
-- ![Map with Hostel search](media/images/agantio-carte-v12_k.jpg)
-- ![Gestion](media/images/agantio-gestion-v3_a.jpg)
-- ![Profile](media/images/agantio-profile-v3_c.jpg)
+This company needs help for doing all the webdesign in a way that will be **simple**, **clean** and in the same spirit as the logo.
+
+They also need some integration help for some specific component like a [selectbox](http://dabblet.com/gist/11043337) or a [colored image](http://dabblet.com/gist/11045609)
+
+- ![Bare Map](media/images/agantio-carte-v12a.jpg)
+- ![Map with Stepover](media/images/agantio-carte-v12c.jpg)
+- ![Map with Friend search](media/images/agantio-carte-v12e.jpg)
+- ![Map with Hostel search](media/images/agantio-carte-v12k.jpg)
+- ![Gestion](media/images/agantio-gestion-v3a.jpg)
+- ![Profile](media/images/agantio-profile-v3c.jpg)
