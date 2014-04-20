@@ -13,9 +13,10 @@
 
 Festive & charity Corporate responsability
 
-### Image
+### Logo
 
 - ![logo](media/images/nori-logo-alt.png)
 - ![](media/images/nori-skecth.jpg)
 - ![santa](media/images/nori-perenoel.png)
 
+### Illustrations

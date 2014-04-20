@@ -1,18 +1,18 @@
 # Dolidhi
 
-## Logo for an anthropological research program about the Dolgan Siberian tribe
+## Dolgan, Identity, History
 
-###### Specifications
+> ###### Work
+> 1. Logo
+> ###### Technic
+> 1. Sketchbook & pen
+> - Illustrator
 
-1. Russia
-- Tradition &amp; Dolgan culture
+Agantio is a new service providing an easy way to plan & build your travels with your friends' help.
 
-###### Technic
+This company needs help for doing all the **webdesign** in a way that will be **simple**, **clean** and in the same spirit as the logo.
 
-1. Sketchbook &amp; pen
-- Adobe Illustrator
-
-###### Images
+They also need some **integration help** for some specific component like a [selectbox](http://dabblet.com/gist/11043337) or a [colored image](http://dabblet.com/gist/11045609)
 
 - ![logo](media/images/dolidhi-logo-alt.png)
 - ![sketch](media/images/dolidhi-sketch.jpg)

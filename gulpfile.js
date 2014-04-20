@@ -181,7 +181,8 @@ gulp.task('clean-pixel', function() {
 
 gulp.task('pixel', ['clean-pixel'], function() {
   return gulp.src(conf.img.pixel)
-    .pipe(resize({height: conf.img.height, width: conf.img.width, quality: 0.8}))
+    .pipe(resize({height: conf.img.height}))
+    .pipe(resize({width: conf.img.width, quality: 0.8}))
     .pipe(rename(function(path) { path.basename = uslug(path.basename, conf.uslug); }))
     .pipe(gulp.dest(conf.img.dst))
 });
@@ -212,7 +213,7 @@ gulp.task('list', function(cb) {
   if (projectName != null) {
     var fileList = fs.readdirSync(conf.img.fullDst)
       .filter(function (item) { return item.indexOf(projectName) > -1 })
-      .map(function (item) { return '- ![](media/images/' + item + ')'; });
+      .map(function (item) { return '- ![](media/images/' + item + ' "" )'; });
     console.log(fileList.join('\n'));
   } else {
     gutil.log('You shoul call ', gutil.colors.yellow('gulp list --project NAME'));

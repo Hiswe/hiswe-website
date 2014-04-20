@@ -44,4 +44,22 @@ r.paragraph = function (text) {
   ].join('\n');
 };
 
+r.image = function (href, title, text) {
+  var type = /\.svg$/.test(href) ? 'hw-projects-image-vector' : 'hw-projects-image-pixel';
+  var imageMarkup =  [
+    '<figure class="' + type + '">',
+      '<img src="' + href + '"/>',
+    '</figure>'
+  ];
+
+  if (typeof title !== "undefined" && title !== null && title !== null) {
+    imageMarkup[1] = '<img src="' + href + '" alt="' + title + '"/>';
+  }
+  if (typeof text !== "undefined" && text !== null && text !== '') {
+    imageMarkup.splice(2, 0,'<figcaption>' + text + '</figcaption>');
+  }
+
+  return imageMarkup.join('\n')
+};
+
 module.exports = r;

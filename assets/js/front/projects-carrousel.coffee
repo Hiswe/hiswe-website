@@ -30,8 +30,7 @@ class ServicesCarrousel extends Controller
   init: ->
     @log 'Init'
 
-    @el
-      .addClass(options.carrouselClass)
+    @el.addClass(options.carrouselClass)
     @li
       .eq(0)
       .addClass(options.carrouselClassSelected)

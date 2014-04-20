@@ -39,9 +39,10 @@
 
   // Paragraph title
   h4
-    font-size 2em
-    color $dark-grey
-    padding .5em 0 .25em
+    font-size 1.5em
+    text-transform uppercase
+    color darken($grey, 10%)
+    padding .5em 0
 
   p
     font-size px2em(22)
@@ -96,7 +97,7 @@
     font-size px2em(12)
 
   li, p
-    font-weight black
+    font-weight 300
     font-size px2em(14)
     color $black
     font-weight bold
@@ -151,6 +152,22 @@
     // image-center()
     v-align()
 
+    figure
+      padding 0; margin 0
+
+    figcaption
+      absolute bottom left
+      right 0
+      background rgba($black, .5)
+      letter-spacing 0
+      text-align center
+      padding .5em 0
+      color white
+
+    .hw-projects-image-vector img
+      max-width 100%
+      max-height 100%
+
     &::after
       content ' '
       absolute top left
@@ -173,7 +190,7 @@
 
   li
     cursor pointer
-    border-left 1px solid $dark-grey
+    border-left 1px solid $grey
 
     &:first-child
       border-left 0
@@ -181,14 +198,17 @@
     &:hover::after
       background rgba($pink, .25)
 
-  img
+  img, figcaption
     opacity .15
     transition opacity .75s ease .75s
+
+  figcaption
+    opacity 0
 
   .{carrouselClassSelected}
     cursor inherit
 
-    img
+    img, figcaption
       opacity 1
 
     &::after,
