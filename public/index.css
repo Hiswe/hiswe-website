@@ -2731,6 +2731,12 @@ body {
   width: 700px;
   margin: 0 auto;
 }
+.hw-projects-content > .hw-projects-center a[href^='http://']::after {
+  font-size: 0.75em;
+  padding-left: 0.5em;
+  font-family: FontAwesome;
+  content: '\f08e';
+}
 .hw-projects-content h1,
 .hw-projects-content h2,
 .hw-projects-content h3,

@@ -9,6 +9,12 @@
     width unit($project-width, 'px')
     margin 0 auto
 
+    a[href^='http://']::after
+      font-size .75em
+      padding-left .5em
+      font-family FontAwesome
+      content '\f08e'
+
   h1, h2, h3, h4, h5, h6, ol, p
     crisp-font-smoothing()
     font-weight 300
