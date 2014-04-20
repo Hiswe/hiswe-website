@@ -30,6 +30,7 @@ var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
 
+
 /////////
 // CONF
 /////////
@@ -66,20 +67,21 @@ gulp.task('major', function() {
 /////////
 
 gulp.task('stylus', ['clean-css'], function () {
-  return gulp.src('./assets/css/front/index.styl')
+  return gulp.src(conf.css.src)
     .pipe(plumber({errorHandler: onError}))
-    .pipe(stylus({
+    .pipe(gulpif(/[.]styl$/, stylus({
       use: ['nib', 'hstrap'],
       define: stylusVar,
-      import: conf.cssImport,
-      set:['resolve url', 'include css']
-    }))
-    .pipe(replace(/\.\.\/\.\.\/\.\.\/bower_components\/hiso-font/gi, './media'))
+      set:['resolve url']
+    })))
+    .pipe(concat('index.css'))
+    .pipe(replace(conf.css.replace.hisoFont, '$1./media/font/$2'))
+    .pipe(replace(conf.css.replace.fontawesome, 'url(\'./media/font/$2'))
     .pipe(gulp.dest('./public'))
     .pipe(rename('index.min.css'))
-    .pipe(minifyCSS())
+    .pipe(minifyCSS({keepSpecialComments: 0}))
     .pipe(plumber.stop())
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest(conf.css.dst))
     .pipe(notify({title: 'HISWE', message: 'CSS build done'}));
 });
 
@@ -165,12 +167,12 @@ gulp.task('js', ['lib', 'frontend-app'], function() {
 
 // FONT
 gulp.task('clean-font', function() {
-  return gulp.src('public/media/font/', {read: false}).pipe(clean());
+  return gulp.src(conf.font.dst, {read: false}).pipe(clean());
 });
 
 gulp.task('font', ['clean-font'], function() {
-  gulp.src(conf.font, {base: './bower_components/hiso-font'})
-    .pipe(gulp.dest('public/media/'));
+  gulp.src(conf.font.src)
+    .pipe(gulp.dest(conf.font.dst));
 });
 
 // IMAGES

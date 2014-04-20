@@ -11,7 +11,7 @@ exports.jsonDb = __dirname + '/config/datas/db-work.json';
 
 exports.revFiles = [
   'public/*min.js',
-  'public/*.min.css'
+  'public/*min.css'
 ];
 
 exports.pack = [
@@ -33,16 +33,35 @@ exports.lib = {
   clean: 'public/lib*.js'
 };
 
+exports.css = {
+  externalFiles: '',
+  replace: {
+    hisoFont: /(url\(')(hiso)/gi,
+    fontawesome: /(url\('..\/fonts\/)(fontawesome)/gi
+  },
+  src: [
+    'bower_components/hiso-font/font/hiso-font.css',
+    'bower_components/hiso-font/font/hicon.css',
+    'bower_components/fontawesome/css/font-awesome.css',
+    'assets/css/front/index.styl'
+  ],
+  dst: 'public'
+};
+
 exports.front = {
   basedir: __dirname + '/assets/js/front',
   clean: 'public/app*js',
   dst: 'public'
 };
 
-exports.font = [
-  'bower_components/hiso-font/font/**',
-  '!bower_components/hiso-font/font/*.css'
-];
+exports.font = {
+  src: [
+    'bower_components/hiso-font/font/*',
+    '!bower_components/hiso-font/font/*.css',
+    'bower_components/fontawesome/fonts/*'
+  ],
+  dst: 'public/media/font'
+};
 
 var imgSrc = 'public/media/source/';
 var imgDst = 'public/media/images/';
@@ -62,7 +81,4 @@ exports.img = {
 
 exports.serverSrc = 'media/images/';
 
-exports.cssImport = [
-  '../../../bower_components/hiso-font/font/hiso-font.css',
-  '../../../bower_components/hiso-font/font/hicon.css'
-];
+

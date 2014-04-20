@@ -20,9 +20,12 @@ Blogcopte is a french website gathering all informations around the world relate
 
 #### Logo
 
+classic
+
 
 #### Webdesign
 
+modern
 
 ### Logo
 
