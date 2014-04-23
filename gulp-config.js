@@ -22,9 +22,15 @@ exports.pack = [
 exports.lib = {
   src: [
     'bower_components/modernizr/modernizr.js', // used by js
+    'bower_components/modernizr/feature-detects/elem-progress-meter.js',
     'bower_components/pointerevents-polyfill/pointerevents.dev.js',
     'bower_components/PointerGestures/pointergestures.min.js',
+    // jQuery
     'bower_components/jquery/dist/jquery.js',
+    // Plugin depending on jQuery
+    'bower_components/eventEmitter/EventEmitter.js', // imagesloaded dependencie
+    'bower_components/eventie/eventie.js', // imagesloaded dependencie
+    'bower_components/imagesloaded/imagesloaded.js',
     'bower_components/jquery-pointer-events/src/pointer.js',
     'bower_components/hevent/build/jquery.hevent.js'
   ],

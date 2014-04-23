@@ -27,6 +27,6 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
 
 ### Images
 
-- ![home](/media/images/banjai-home.jpg)
+- ![home](media/images/banjai-home.jpg)
 - ![wireframe](media/images/banjai-wireframe.jpg)
 - ![responsive](media/images/banjai-responsive-2.png)

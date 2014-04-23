@@ -8,7 +8,7 @@ module.exports = (app) ->
   if app.get('env') is 'development'
     app.use (req, res, next) ->
       if /\.(jpg||jpeg||png||svg)$/i.test req.url
-        setTimeout(next, 250 + Math.round(1000 * Math.random()))
+        setTimeout(next, 3000 + Math.round(1000 * Math.random()))
       else
         next()
 

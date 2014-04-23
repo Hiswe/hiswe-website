@@ -16,14 +16,17 @@ class ServicesCarrousel extends Controller
     '.hw-projects-gallery':     'gallery'
     'ul':                       'list'
     '.hw-projects-gallery li':  'li'
+    '.hw-projects-gallery img': 'images'
   }
 
   constructor: ->
     # We can't run it without css transforms
+    # TODO
     return @warn 'No css transform available' unless Modernizr.csstransforms
     super
     return @warn 'No element defined' unless @el.length
     return @warn 'Carrousel already intialized' if @el.hasClass(options.carrouselClass)
+
     @init()
     this
 
@@ -31,17 +34,41 @@ class ServicesCarrousel extends Controller
     @log 'Init'
 
     @el.addClass(options.carrouselClass)
-    @li
-      .eq(0)
+    @li.eq(0)
       .addClass(options.carrouselClassSelected)
 
     @total        = @li.length
     @galleryWidth = @gallery.width()
 
-    @log @total
+    @log 'with', @total, 'image(s)'
+
+    loadedImages = @initLoading()
+    loadedImages.done( => @log 'all images loaded')
+
+    # if Modernizr.progressbar
+    #   @initProgress()
+    #   loadedImages.progress((instance, image) => @updateProgress())
 
     this
 
+  # Images Lazy load
+  initLoading: ->
+    @log 'Init loading'
+    @images.each @loadImage
+    return @images.imagesLoaded()
+
+  loadImage: (index, image) =>
+    $img = $(image).css('opacity', 0)
+    $parent = $img.parent().addClass('hw-projects-lazyload-loading')
+    # imgSrc = if @pixelRatio is 1 then img.data('original') else img.data('retina')
+    imgSrc = $img.data('original')
+    @log 'Load image', imgSrc
+    return $img.attr('src', imgSrc).imagesLoaded =>
+      @log imgSrc, 'loaded'
+      $parent.removeClass 'hw-projects-lazyload-loading'
+      $img.css('opacity', '')
+
+  # Carrousel
   getNodes: (event) ->
     $current      = @li.eq(@count)
     $next         = $(event.currentTarget)

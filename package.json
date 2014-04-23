@@ -57,6 +57,8 @@
     "gulp-svgmin": "^0.4.5",
     "gulp-plumber": "^0.6.1",
     "gulp-if": "0.0.5",
-    "yargs": "^1.2.1"
+    "yargs": "^1.2.1",
+    "image-size": "^0.2.3",
+    "xml2js": "^0.4.2"
   }
 }

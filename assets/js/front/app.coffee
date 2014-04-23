@@ -14,8 +14,8 @@ class App extends Controller
   constructor: ->
     super
     @log 'init'
-    # TODO handle all body behavior here
     @body.removeClass('preload')
+    @getPixelRatio()
     @instanciate()
     @bodyEvents()
     this
@@ -38,5 +38,9 @@ class App extends Controller
       @log('projects close')
       @body.removeClass options.activeBody
     )
+
+  getPixelRatio: ->
+    pixelRatio = if window.devicePixelRatio? then window.devicePixelRatio else 1
+    Controller::pixelRatio = pixelRatio
 
 module.exports = App

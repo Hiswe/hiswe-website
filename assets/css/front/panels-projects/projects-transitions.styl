@@ -69,3 +69,14 @@ projects-close-button-out()
   transition-duration         0s,           0s,           0s,           t-content
   transition-timing-function  ease,         ease,         ease,         ease
   transition-delay            t-content,    t-content,    t-content,    0s
+
+// Loading spinner
+
+@keyframes spinner {
+  0% {  clip: rect(0, 30px, 2px, 0); }
+  25% { clip: rect(0, 30px, 30px, 28px); }
+  50% { clip: rect(28px, 30px, 30px, 0); }
+  75% { clip: rect(0, 2px, 30px, 0); }
+  100% { clip:rect(0, 30px, 2px, 0); }
+}
+

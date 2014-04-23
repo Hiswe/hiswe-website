@@ -11,7 +11,6 @@ class Projects extends Controller
     '.hw-projects-item'             : 'all'
     '.hw-projects-content-container': 'content'
     '.hw-projects-content'          : 'container'
-    '.hw-projects-gallery-container': 'carrouselList'
   }
 
   events: {
@@ -50,15 +49,22 @@ class Projects extends Controller
       @log 'transition end ::','open'
       $currentPanel = @currentPanel()
 
-      # init carrousel
-      unless $currentPanel.data('carrousel')
-        $currentPanel.data('carrousel', true)
-        $.each(@carrouselList, ->
-          new Carrousel({el: $(this)})
-        )
+      @initCarrousel($currentPanel) unless $currentPanel.data('carrousel')
 
       @opened = on
+
     this
+
+  initCarrousel: ($currentPanel) ->
+    $carrousel = $currentPanel
+      .data('carrousel', true)
+      .find('.hw-projects-gallery-container')
+
+    @log 'init', $carrousel.length, 'carrousel(s)'
+
+    $.each($carrousel, ->
+      new Carrousel({el: $(this)})
+    )
 
   open: (e) ->
     $target = $(e.currentTarget)

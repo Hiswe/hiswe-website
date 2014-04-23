@@ -28,6 +28,7 @@ App = (function(_super) {
     App.__super__.constructor.apply(this, arguments);
     this.log('init');
     this.body.removeClass('preload');
+    this.getPixelRatio();
     this.instanciate();
     this.bodyEvents();
     this;
@@ -64,6 +65,12 @@ App = (function(_super) {
         return _this.body.removeClass(options.activeBody);
       };
     })(this));
+  };
+
+  App.prototype.getPixelRatio = function() {
+    var pixelRatio;
+    pixelRatio = window.devicePixelRatio != null ? window.devicePixelRatio : 1;
+    return Controller.prototype.pixelRatio = pixelRatio;
   };
 
   return App;
@@ -188,8 +195,10 @@ module.exports = Contact;
 
 
 },{"./front-controller.coffee":4}],4:[function(require,module,exports){
-var Controller,
+var Controller, id,
   __slice = [].slice;
+
+id = 0;
 
 Controller = (function() {
   Controller.prototype.eventSplitter = /^(\S+)\s*(.*)$/;
@@ -205,7 +214,7 @@ Controller = (function() {
       return;
     }
     if (this.logPrefix) {
-      args.unshift(this.logPrefix);
+      args.unshift("" + this.logPrefix + " – " + this.id);
     }
     if (typeof console !== "undefined" && console !== null) {
       if (typeof console.log === "function") {
@@ -222,7 +231,7 @@ Controller = (function() {
       return;
     }
     if (this.logPrefix) {
-      args.unshift(this.logPrefix);
+      args.unshift("" + this.logPrefix + " – " + this.id);
     }
     if (typeof console !== "undefined" && console !== null) {
       if (typeof console.warn === "function") {
@@ -246,6 +255,8 @@ Controller = (function() {
 
   function Controller(options) {
     var key, value, _ref;
+    id = id + 1;
+    this.id = id;
     this.options = options || {};
     _ref = this.options;
     for (key in _ref) {
@@ -327,6 +338,7 @@ module.exports = Controller;
 
 },{}],5:[function(require,module,exports){
 var Controller, ServicesCarrousel, options,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -354,10 +366,12 @@ ServicesCarrousel = (function(_super) {
   ServicesCarrousel.prototype.elements = {
     '.hw-projects-gallery': 'gallery',
     'ul': 'list',
-    '.hw-projects-gallery li': 'li'
+    '.hw-projects-gallery li': 'li',
+    '.hw-projects-gallery img': 'images'
   };
 
   function ServicesCarrousel() {
+    this.loadImage = __bind(this.loadImage, this);
     if (!Modernizr.csstransforms) {
       return this.warn('No css transform available');
     }
@@ -373,13 +387,41 @@ ServicesCarrousel = (function(_super) {
   }
 
   ServicesCarrousel.prototype.init = function() {
+    var loadedImages;
     this.log('Init');
     this.el.addClass(options.carrouselClass);
     this.li.eq(0).addClass(options.carrouselClassSelected);
     this.total = this.li.length;
     this.galleryWidth = this.gallery.width();
-    this.log(this.total);
+    this.log('with', this.total, 'image(s)');
+    loadedImages = this.initLoading();
+    loadedImages.done((function(_this) {
+      return function() {
+        return _this.log('all images loaded');
+      };
+    })(this));
     return this;
+  };
+
+  ServicesCarrousel.prototype.initLoading = function() {
+    this.log('Init loading');
+    this.images.each(this.loadImage);
+    return this.images.imagesLoaded();
+  };
+
+  ServicesCarrousel.prototype.loadImage = function(index, image) {
+    var $img, $parent, imgSrc;
+    $img = $(image).css('opacity', 0);
+    $parent = $img.parent().addClass('hw-projects-lazyload-loading');
+    imgSrc = $img.data('original');
+    this.log('Load image', imgSrc);
+    return $img.attr('src', imgSrc).imagesLoaded((function(_this) {
+      return function() {
+        _this.log(imgSrc, 'loaded');
+        $parent.removeClass('hw-projects-lazyload-loading');
+        return $img.css('opacity', '');
+      };
+    })(this));
   };
 
   ServicesCarrousel.prototype.getNodes = function(event) {
@@ -450,8 +492,7 @@ Projects = (function(_super) {
   Projects.prototype.elements = {
     '.hw-projects-item': 'all',
     '.hw-projects-content-container': 'content',
-    '.hw-projects-content': 'container',
-    '.hw-projects-gallery-container': 'carrouselList'
+    '.hw-projects-content': 'container'
   };
 
   Projects.prototype.events = {
@@ -500,16 +541,22 @@ Projects = (function(_super) {
       this.log('transition end ::', 'open');
       $currentPanel = this.currentPanel();
       if (!$currentPanel.data('carrousel')) {
-        $currentPanel.data('carrousel', true);
-        $.each(this.carrouselList, function() {
-          return new Carrousel({
-            el: $(this)
-          });
-        });
+        this.initCarrousel($currentPanel);
       }
       this.opened = true;
     }
     return this;
+  };
+
+  Projects.prototype.initCarrousel = function($currentPanel) {
+    var $carrousel;
+    $carrousel = $currentPanel.data('carrousel', true).find('.hw-projects-gallery-container');
+    this.log('init', $carrousel.length, 'carrousel(s)');
+    return $.each($carrousel, function() {
+      return new Carrousel({
+        el: $(this)
+      });
+    });
   };
 
   Projects.prototype.open = function(e) {

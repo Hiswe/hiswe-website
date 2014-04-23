@@ -1,3 +1,5 @@
+id = 0
+
 class Controller
   eventSplitter: /^(\S+)\s*(.*)$/
   trace: false
@@ -5,13 +7,13 @@ class Controller
 
   log: (args...) ->
     return unless @trace
-    if @logPrefix then args.unshift(@logPrefix)
+    if @logPrefix then args.unshift("#{@logPrefix} – #{@id}")
     console?.log?(args...)
     this
 
   warn: (args...) ->
     return unless @trace
-    if @logPrefix then args.unshift(@logPrefix)
+    if @logPrefix then args.unshift("#{@logPrefix} – #{@id}")
     console?.warn?(args...)
     this
 
@@ -22,6 +24,8 @@ class Controller
     => func.apply(this, arguments)
 
   constructor: (options) ->
+    id = id + 1
+    @id = id
     @options = options or {}
 
     for key, value of @options

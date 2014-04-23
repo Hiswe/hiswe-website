@@ -30,7 +30,6 @@ var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
 
-
 /////////
 // CONF
 /////////
@@ -176,14 +175,14 @@ gulp.task('font', ['clean-font'], function() {
 });
 
 // IMAGES
-// gulp-if not working… May be because gulp-resize don't rely on stream
+// Can't use gulp-if because gulp-resize don't rely on stream
 gulp.task('clean-pixel', function() {
   return gulp.src(conf.img.cleanPixel, {read: false}).pipe(clean());
 });
 
 gulp.task('pixel', ['clean-pixel'], function() {
   return gulp.src(conf.img.pixel)
-    .pipe(resize({height: conf.img.height}))
+    .pipe(resize({height: conf.img.height, quality: 1}))
     .pipe(resize({width: conf.img.width, quality: 0.8}))
     .pipe(rename(function(path) { path.basename = uslug(path.basename, conf.uslug); }))
     .pipe(gulp.dest(conf.img.dst))

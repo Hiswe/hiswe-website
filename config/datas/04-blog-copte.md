@@ -20,12 +20,12 @@ Blogcopte is a french website gathering all informations around the world relate
 
 #### Logo
 
-classic
-
+The demand was to design a logo that looks like **traditional**. It should use **coptic pattern** and/or **coptic font** but bear no reference to the Egypt country.  
+The color scheme are also som traditionals **coptic colors**.  
 
 #### Webdesign
 
-modern
+Unlike the logo, the webdedesign should be **more modern**, but still **related to coptic art**.
 
 ### Logo
 
