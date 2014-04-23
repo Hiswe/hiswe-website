@@ -400,6 +400,14 @@ ServicesCarrousel = (function(_super) {
         return _this.log('all images loaded');
       };
     })(this));
+    if (Modernizr.progressbar) {
+      this.initProgress();
+      loadedImages.progress((function(_this) {
+        return function(instance, image) {
+          return _this.updateProgress();
+        };
+      })(this));
+    }
     return this;
   };
 
@@ -414,14 +422,31 @@ ServicesCarrousel = (function(_super) {
     $img = $(image).css('opacity', 0);
     $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
-    this.log('Load image', imgSrc);
     return $img.attr('src', imgSrc).imagesLoaded((function(_this) {
       return function() {
-        _this.log(imgSrc, 'loaded');
         $parent.removeClass('hw-projects-lazyload-loading');
         return $img.css('opacity', '');
       };
     })(this));
+  };
+
+  ServicesCarrousel.prototype.initProgress = function() {
+    var progressMarkup;
+    this.log('Init progress bar');
+    this.progressCurrent = 0;
+    this.total = this.li.length;
+    progressMarkup = '<progress class="bg-projects-progress" value="0"  max="';
+    progressMarkup += this.total + '"></progress>';
+    return this.progressBar = $(progressMarkup).appendTo(this.el);
+  };
+
+  ServicesCarrousel.prototype.updateProgress = function() {
+    this.log('update progress bar');
+    this.progressCurrent += 1;
+    this.progressBar.attr('value', this.progressCurrent);
+    if (this.progressCurrent === this.total) {
+      return this.progressBar.remove();
+    }
   };
 
   ServicesCarrousel.prototype.getNodes = function(event) {

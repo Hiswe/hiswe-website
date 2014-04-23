@@ -45,9 +45,9 @@ class ServicesCarrousel extends Controller
     loadedImages = @initLoading()
     loadedImages.done( => @log 'all images loaded')
 
-    # if Modernizr.progressbar
-    #   @initProgress()
-    #   loadedImages.progress((instance, image) => @updateProgress())
+    if Modernizr.progressbar
+      @initProgress()
+      loadedImages.progress((instance, image) => @updateProgress())
 
     this
 
@@ -62,11 +62,25 @@ class ServicesCarrousel extends Controller
     $parent = $img.parent().addClass('hw-projects-lazyload-loading')
     # imgSrc = if @pixelRatio is 1 then img.data('original') else img.data('retina')
     imgSrc = $img.data('original')
-    @log 'Load image', imgSrc
+    # @log 'Load image', imgSrc
     return $img.attr('src', imgSrc).imagesLoaded =>
-      @log imgSrc, 'loaded'
+      # @log imgSrc, 'loaded'
       $parent.removeClass 'hw-projects-lazyload-loading'
       $img.css('opacity', '')
+
+  initProgress: ->
+    @log 'Init progress bar'
+    @progressCurrent  = 0
+    @total    = @li.length
+    progressMarkup = '<progress class="bg-projects-progress" value="0"  max="'
+    progressMarkup += @total + '"></progress>'
+    @progressBar = $(progressMarkup).appendTo(@el)
+
+  updateProgress: ->
+    @log 'update progress bar'
+    @progressCurrent += 1
+    @progressBar.attr('value', @progressCurrent)
+    @progressBar.remove() if @progressCurrent is @total
 
   # Carrousel
   getNodes: (event) ->

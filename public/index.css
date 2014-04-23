@@ -3155,6 +3155,9 @@ h3 + .hw-projects-gallery-container {
   right: 0;
   bottom: 0;
 }
+.hw-carrousel {
+  position: relative;
+}
 .hw-carrousel .hw-projects-gallery {
   overflow: hidden;
   -webkit-perspective: 1000px;
@@ -3172,7 +3175,7 @@ h3 + .hw-projects-gallery-container {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-.hw-carrousel .hw-projects-gallery ul {
+.hw-carrousel ul {
   -webkit-transform: translate3d(0px, 0px, 0px);
   -moz-transform: translate3d(0px, 0px, 0px);
   -o-transform: translate3d(0px, 0px, 0px);
@@ -3195,17 +3198,17 @@ h3 + .hw-projects-gallery-container {
   -ms-transition: -ms-transform 0.75s ease 0s;
   transition: transform 0.75s ease 0s;
 }
-.hw-carrousel .hw-projects-gallery li {
+.hw-carrousel li {
   cursor: pointer;
   border-left: 1px solid #cddce4;
 }
-.hw-carrousel .hw-projects-gallery li:first-child {
+.hw-carrousel li:first-child {
   border-left: 0;
 }
-.hw-carrousel .hw-projects-gallery li:hover::after {
+.hw-carrousel li:hover::after {
   background: rgba(255,0,120,0.25);
 }
-.hw-carrousel .hw-projects-gallery figure.hw-projects-lazyload-loading::after {
+.hw-carrousel figure.hw-projects-lazyload-loading::after {
   content: '';
   width: 30px;
   height: 30px;
@@ -3232,7 +3235,29 @@ h3 + .hw-projects-gallery-container {
   box-shadow: inset 0 0 0 2px #000;
   opacity: 0.5;
 }
-.hw-carrousel .hw-projects-gallery img {
+.hw-carrousel progress.bg-projects-progress {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 2px;
+  right: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: auto;
+  background: #445;
+}
+.hw-carrousel progress.bg-projects-progress::-webkit-progress-bar {
+  background: #445;
+}
+.hw-carrousel progress.bg-projects-progress::-moz-progress-bar {
+  background: #ff0078;
+}
+.hw-carrousel progress.bg-projects-progress::-webkit-progress-value {
+  background: #ff0078;
+}
+.hw-carrousel img {
   opacity: 0.15;
   -webkit-transition: opacity 0.75s ease 0.75s;
   -moz-transition: opacity 0.75s ease 0.75s;
@@ -3240,7 +3265,7 @@ h3 + .hw-projects-gallery-container {
   -ms-transition: opacity 0.75s ease 0.75s;
   transition: opacity 0.75s ease 0.75s;
 }
-.hw-carrousel .hw-projects-gallery figcaption {
+.hw-carrousel figcaption {
   -webkit-transform: translate3d(0, 100%, 0);
   -moz-transform: translate3d(0, 100%, 0);
   -o-transform: translate3d(0, 100%, 0);
@@ -3252,21 +3277,21 @@ h3 + .hw-projects-gallery-container {
   -ms-transition: -ms-transform 0.75s ease 1.5s;
   transition: transform 0.75s ease 1.5s;
 }
-.hw-carrousel .hw-projects-gallery .hw-carrousel-selected {
+.hw-carrousel .hw-carrousel-selected {
   cursor: inherit;
 }
-.hw-carrousel .hw-projects-gallery .hw-carrousel-selected img {
+.hw-carrousel .hw-carrousel-selected img {
   opacity: 1;
 }
-.hw-carrousel .hw-projects-gallery .hw-carrousel-selected figcaption {
+.hw-carrousel .hw-carrousel-selected figcaption {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-.hw-carrousel .hw-projects-gallery .hw-carrousel-selected::after,
-.hw-carrousel .hw-projects-gallery .hw-carrousel-selected:hover::after {
+.hw-carrousel .hw-carrousel-selected::after,
+.hw-carrousel .hw-carrousel-selected:hover::after {
   background: rgba(255,0,120,0);
 }
 label {
