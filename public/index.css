@@ -1863,12 +1863,11 @@ h3 + .hw-projects-gallery-container {
   top: -1px;
   left: 0;
   height: 2px;
-  right: 0;
+  width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
-  width: auto;
   background: #445;
 }
 .hw-carrousel progress.bg-projects-progress::-webkit-progress-bar {

@@ -349,7 +349,7 @@ options = require('../../../config/datas/stylus-var.json');
 ServicesCarrousel = (function(_super) {
   __extends(ServicesCarrousel, _super);
 
-  ServicesCarrousel.prototype.trace = false;
+  ServicesCarrousel.prototype.trace = true;
 
   ServicesCarrousel.prototype.logPrefix = '[CARROUSEL]';
 
@@ -371,7 +371,9 @@ ServicesCarrousel = (function(_super) {
   };
 
   function ServicesCarrousel() {
+    this.updateProgress = __bind(this.updateProgress, this);
     this.loadImage = __bind(this.loadImage, this);
+    this.onProgress = __bind(this.onProgress, this);
     if (!Modernizr.csstransforms) {
       return this.warn('No css transform available');
     }
@@ -394,19 +396,15 @@ ServicesCarrousel = (function(_super) {
     this.total = this.li.length;
     this.galleryWidth = this.gallery.width();
     this.log('with', this.total, 'image(s)');
-    loadedImages = this.initLoading();
-    loadedImages.done((function(_this) {
+    loadedImages = this.initLoading().imagesLoaded();
+    loadedImages.progress(this.onProgress).done((function(_this) {
       return function() {
         return _this.log('all images loaded');
       };
     })(this));
     if (Modernizr.progressbar) {
       this.initProgress();
-      loadedImages.progress((function(_this) {
-        return function(instance, image) {
-          return _this.updateProgress();
-        };
-      })(this));
+      loadedImages.progress(this.updateProgress);
     }
     return this;
   };
@@ -414,7 +412,12 @@ ServicesCarrousel = (function(_super) {
   ServicesCarrousel.prototype.initLoading = function() {
     this.log('Init loading');
     this.images.each(this.loadImage);
-    return this.images.imagesLoaded();
+    return this.images;
+  };
+
+  ServicesCarrousel.prototype.onProgress = function(instance, image) {
+    this.log('on progress');
+    return $(image.img).css('opacity', '').parent().removeClass('hw-projects-lazyload-loading');
   };
 
   ServicesCarrousel.prototype.loadImage = function(index, image) {
@@ -422,12 +425,7 @@ ServicesCarrousel = (function(_super) {
     $img = $(image).css('opacity', 0);
     $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
-    return $img.attr('src', imgSrc).imagesLoaded((function(_this) {
-      return function() {
-        $parent.removeClass('hw-projects-lazyload-loading');
-        return $img.css('opacity', '');
-      };
-    })(this));
+    return this;
   };
 
   ServicesCarrousel.prototype.initProgress = function() {

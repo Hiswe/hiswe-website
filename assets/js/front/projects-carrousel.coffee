@@ -2,7 +2,7 @@ Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class ServicesCarrousel extends Controller
-  trace: false
+  trace: true
   logPrefix: '[CARROUSEL]'
   count: 0
   total: 0
@@ -42,12 +42,14 @@ class ServicesCarrousel extends Controller
 
     @log 'with', @total, 'image(s)'
 
-    loadedImages = @initLoading()
-    loadedImages.done( => @log 'all images loaded')
+    loadedImages = @initLoading().imagesLoaded()
+    loadedImages
+      .progress(@onProgress)
+      .done( => @log 'all images loaded')
 
     if Modernizr.progressbar
       @initProgress()
-      loadedImages.progress((instance, image) => @updateProgress())
+      loadedImages.progress( @updateProgress )
 
     this
 
@@ -55,18 +57,21 @@ class ServicesCarrousel extends Controller
   initLoading: ->
     @log 'Init loading'
     @images.each @loadImage
-    return @images.imagesLoaded()
+    return @images
+
+  onProgress: (instance, image) =>
+    @log 'on progress'
+    $( image.img )
+      .css('opacity', '')
+      .parent()
+      .removeClass('hw-projects-lazyload-loading')
 
   loadImage: (index, image) =>
     $img = $(image).css('opacity', 0)
     $parent = $img.parent().addClass('hw-projects-lazyload-loading')
     # imgSrc = if @pixelRatio is 1 then img.data('original') else img.data('retina')
     imgSrc = $img.data('original')
-    # @log 'Load image', imgSrc
-    return $img.attr('src', imgSrc).imagesLoaded =>
-      # @log imgSrc, 'loaded'
-      $parent.removeClass 'hw-projects-lazyload-loading'
-      $img.css('opacity', '')
+    this
 
   initProgress: ->
     @log 'Init progress bar'
@@ -76,7 +81,7 @@ class ServicesCarrousel extends Controller
     progressMarkup += @total + '"></progress>'
     @progressBar = $(progressMarkup).appendTo(@el)
 
-  updateProgress: ->
+  updateProgress: =>
     @log 'update progress bar'
     @progressCurrent += 1
     @progressBar.attr('value', @progressCurrent)
