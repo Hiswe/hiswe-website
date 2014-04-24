@@ -8,7 +8,7 @@ section.hw-projects
       dl(id="#{project.id}").hw-projects-item
         dt.hw-projects-cover
           span= project.name
-          img(src="#{project.cover.path}")
+          img(src="#{project.cover.path}", alt="#{project.name} cover")
         dd.hw-projects-content-container
           article.hw-projects-content!= project.markup
           a(href="##{project.id}").hw-projects-close close

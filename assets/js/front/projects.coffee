@@ -3,7 +3,7 @@ Carrousel   = require './projects-carrousel.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Projects extends Controller
-  trace: true
+  trace: false
   logPrefix: '[PROJECTS]'
   opened: false
 

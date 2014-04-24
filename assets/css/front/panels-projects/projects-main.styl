@@ -84,52 +84,48 @@
     left -100%
 
 .hw-projects-content-container
-  visibility hidden
   fixed top left
   right 100%; bottom 100%
-  right 0; bottom 0
   perspective 1000px
+  z-index 9
+  overflow hidden
   perspective-origin center center
   projects-container-out()
 
-  .{activeClass} &
-    projects-container-in()
-    visibility visible
-    right white
-    z-index 9
-
-.hw-projects-content
-  absolute top left
-  bottom 0; right 0
-  overflow hidden
-  background white
-  // border px2em($main-border) solid $dark-grey
-  transform scale3d(.1, .1, .1) rotateY(180deg)
-  transform-style preserve-3d
-  backface-visibility hidden
-  opacity .5
-  projects-content-out()
-
-  &::after
-    content ''
+  &::after,
+  .hw-projects-content
     absolute top left
     bottom 0; right 0
     transform-style preserve-3d
     backface-visibility hidden
-    background $darkest-grey
-    transform rotateY(0deg)
     projects-content-out()
 
-  .{activeClass} &
-    overflow auto
+  &::after
+    content ''
+    background $darkest-grey
+    transform scale3d(.1, .1, .1)  rotateY(0deg)
+
+.{activeClass} .hw-projects-content-container
+  right 0%; bottom 0%
+  projects-container-in()
+
+  &::after
+    transform scale3d(1, 1, 1)  rotateY(180deg)
+
+  &::after,
+  .hw-projects-content
     projects-content-in()
+
+  .hw-projects-content
+    overflow auto
     opacity 1
     transform scale3d(1, 1, 1) rotateY(0deg)
-    // border-color white
 
-    &::after
-      projects-content-in()
-      transform rotateY(180deg)
+.hw-projects-content
+  overflow hidden
+  background white
+  transform scale3d(.1, .1, .1) rotateY(180deg)
+  opacity .5
 
 .hw-projects-close
   fixed top -9em right -9em

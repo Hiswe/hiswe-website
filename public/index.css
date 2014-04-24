@@ -1252,18 +1252,17 @@ body {
   left: -100%;
 }
 .hw-projects-content-container {
-  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
   right: 100%;
   bottom: 100%;
-  right: 0;
-  bottom: 0;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   -ms-perspective: 1000px;
   perspective: 1000px;
+  z-index: 9;
+  overflow: hidden;
   -webkit-perspective-origin: center center;
   -moz-perspective-origin: center center;
   -ms-perspective-origin: center center;
@@ -1274,105 +1273,70 @@ body {
   -ms-transition: all 0s ease 1s;
   transition: all 0s ease 1s;
 }
+.hw-projects-content-container::after,
+.hw-projects-content-container .hw-projects-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform, border, opacity;
+  -moz-transition-property: -moz-transform, border, opacity;
+  -o-transition-property: -o-transform, border, opacity;
+  -ms-transition-property: -ms-transform, border, opacity;
+  transition-property: transform, border, opacity;
+  -webkit-transition-duration: 1s, 1s, 0.5s;
+  -moz-transition-duration: 1s, 1s, 0.5s;
+  -o-transition-duration: 1s, 1s, 0.5s;
+  -ms-transition-duration: 1s, 1s, 0.5s;
+  transition-duration: 1s, 1s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease;
+  transition-timing-function: ease, ease, ease;
+  -webkit-transition-delay: 0s, 0s, 0.5s;
+  -moz-transition-delay: 0s, 0s, 0.5s;
+  -o-transition-delay: 0s, 0s, 0.5s;
+  -ms-transition-delay: 0s, 0s, 0.5s;
+  transition-delay: 0s, 0s, 0.5s;
+}
+.hw-projects-content-container::after {
+  content: '';
+  background: #454a5d;
+  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(0deg);
+  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(0deg);
+  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(0deg);
+  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(0deg);
+  transform: scale3d(0.1, 0.1, 0.1) rotateY(0deg);
+}
 .hw-panel-active .hw-projects-content-container {
+  right: 0%;
+  bottom: 0%;
   -webkit-transition: all 0s ease 0.5s;
   -moz-transition: all 0s ease 0.5s;
   -o-transition: all 0s ease 0.5s;
   -ms-transition: all 0s ease 0.5s;
   transition: all 0s ease 0.5s;
-  visibility: visible;
-  right: #fff;
-  z-index: 9;
 }
-.hw-projects-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: hidden;
-  background: #fff;
-  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  opacity: 0.5;
-  -webkit-transition-property: -webkit-transform, border, opacity;
-  -moz-transition-property: -moz-transform, border, opacity;
-  -o-transition-property: -o-transform, border, opacity;
-  -ms-transition-property: -ms-transform, border, opacity;
-  transition-property: transform, border, opacity;
-  -webkit-transition-duration: 1s, 1s, 0.5s;
-  -moz-transition-duration: 1s, 1s, 0.5s;
-  -o-transition-duration: 1s, 1s, 0.5s;
-  -ms-transition-duration: 1s, 1s, 0.5s;
-  transition-duration: 1s, 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease;
-  transition-timing-function: ease, ease, ease;
-  -webkit-transition-delay: 0s, 0s, 0.5s;
-  -moz-transition-delay: 0s, 0s, 0.5s;
-  -o-transition-delay: 0s, 0s, 0.5s;
-  -ms-transition-delay: 0s, 0s, 0.5s;
-  transition-delay: 0s, 0s, 0.5s;
+.hw-panel-active .hw-projects-content-container::after {
+  -webkit-transform: scale3d(1, 1, 1) rotateY(180deg);
+  -moz-transform: scale3d(1, 1, 1) rotateY(180deg);
+  -o-transform: scale3d(1, 1, 1) rotateY(180deg);
+  -ms-transform: scale3d(1, 1, 1) rotateY(180deg);
+  transform: scale3d(1, 1, 1) rotateY(180deg);
 }
-.hw-projects-content::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  background: #454a5d;
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -o-transform: rotateY(0deg);
-  -ms-transform: rotateY(0deg);
-  transform: rotateY(0deg);
-  -webkit-transition-property: -webkit-transform, border, opacity;
-  -moz-transition-property: -moz-transform, border, opacity;
-  -o-transition-property: -o-transform, border, opacity;
-  -ms-transition-property: -ms-transform, border, opacity;
-  transition-property: transform, border, opacity;
-  -webkit-transition-duration: 1s, 1s, 0.5s;
-  -moz-transition-duration: 1s, 1s, 0.5s;
-  -o-transition-duration: 1s, 1s, 0.5s;
-  -ms-transition-duration: 1s, 1s, 0.5s;
-  transition-duration: 1s, 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease;
-  transition-timing-function: ease, ease, ease;
-  -webkit-transition-delay: 0s, 0s, 0.5s;
-  -moz-transition-delay: 0s, 0s, 0.5s;
-  -o-transition-delay: 0s, 0s, 0.5s;
-  -ms-transition-delay: 0s, 0s, 0.5s;
-  transition-delay: 0s, 0s, 0.5s;
-}
-.hw-panel-active .hw-projects-content {
-  overflow: auto;
+.hw-panel-active .hw-projects-content-container::after,
+.hw-panel-active .hw-projects-content-container .hw-projects-content {
   -webkit-transition-property: -webkit-transform, border, opacity;
   -moz-transition-property: -moz-transform, border, opacity;
   -o-transition-property: -o-transform, border, opacity;
@@ -1393,6 +1357,9 @@ body {
   -o-transition-delay: 0.5s, 1s, 0.5s;
   -ms-transition-delay: 0.5s, 1s, 0.5s;
   transition-delay: 0.5s, 1s, 0.5s;
+}
+.hw-panel-active .hw-projects-content-container .hw-projects-content {
+  overflow: auto;
   opacity: 1;
   -webkit-transform: scale3d(1, 1, 1) rotateY(0deg);
   -moz-transform: scale3d(1, 1, 1) rotateY(0deg);
@@ -1400,32 +1367,15 @@ body {
   -ms-transform: scale3d(1, 1, 1) rotateY(0deg);
   transform: scale3d(1, 1, 1) rotateY(0deg);
 }
-.hw-panel-active .hw-projects-content::after {
-  -webkit-transition-property: -webkit-transform, border, opacity;
-  -moz-transition-property: -moz-transform, border, opacity;
-  -o-transition-property: -o-transform, border, opacity;
-  -ms-transition-property: -ms-transform, border, opacity;
-  transition-property: transform, border, opacity;
-  -webkit-transition-duration: 1s, 0.5s, 0.5s;
-  -moz-transition-duration: 1s, 0.5s, 0.5s;
-  -o-transition-duration: 1s, 0.5s, 0.5s;
-  -ms-transition-duration: 1s, 0.5s, 0.5s;
-  transition-duration: 1s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease;
-  transition-timing-function: ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 1s, 0.5s;
-  -moz-transition-delay: 0.5s, 1s, 0.5s;
-  -o-transition-delay: 0.5s, 1s, 0.5s;
-  -ms-transition-delay: 0.5s, 1s, 0.5s;
-  transition-delay: 0.5s, 1s, 0.5s;
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+.hw-projects-content {
+  overflow: hidden;
+  background: #fff;
+  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  opacity: 0.5;
 }
 .hw-projects-close {
   position: fixed;
@@ -2279,11 +2229,11 @@ textarea:disabled {
   -o-animation: fadeOut 1s;
   -ms-animation: fadeOut 1s;
   animation: fadeOut 1s;
-  -webkit-animation-delay: 0;
-  -moz-animation-delay: 0;
-  -o-animation-delay: 0;
-  -ms-animation-delay: 0;
-  animation-delay: 0;
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  -o-animation-delay: 0s;
+  -ms-animation-delay: 0s;
+  animation-delay: 0s;
 }
 .hw-contact .hw-message-success {
   padding: 16px;
