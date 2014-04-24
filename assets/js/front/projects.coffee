@@ -34,26 +34,42 @@ class Projects extends Controller
 
   transitionend: (event) ->
     e = event.originalEvent
+    @log 'transitionend', e.type
     return unless event.originalEvent?
+
+    # No support of transitionend
+    if e.type is 'hevent'
+      if @opened is on
+        @closeTransitionEnd()
+      else
+        @openTransitionEnd()
+      return
+
     propertyName = e.propertyName
     return unless /^top|opacity$/.test propertyName
     return unless /content|cover/.test event.target.className
     # the last transition of closing
     if @opened is on and propertyName is 'top'
-      @log 'transition end::', 'close'
-      @el.css('z-index', 1)
-      @e.trigger 'close'
-      @opened = off
+      @closeTransitionEnd()
     # the last transition of opening
     else if @opened is off and propertyName is 'opacity'
-      @log 'transition end ::','open'
-      $currentPanel = @currentPanel()
-
-      @initCarrousel($currentPanel) unless $currentPanel.data('carrousel')
-
-      @opened = on
+      @openTransitionEnd()
 
     this
+
+  openTransitionEnd: ->
+    return this if @opened is on
+    @log 'transition end ::','open'
+    $currentPanel = @currentPanel()
+    @initCarrousel($currentPanel) unless $currentPanel.data('carrousel')
+    @opened = on
+
+  closeTransitionEnd: ->
+    return this if @opened is off
+    @log 'transition end::', 'close'
+    @el.css('z-index', 1)
+    @e.trigger 'close'
+    @opened = off
 
   initCarrousel: ($currentPanel) ->
     $carrousel = $currentPanel

@@ -14130,7 +14130,7 @@ window.PointerEventsPolyfill.external = {
 
 /**
  * hevent - Css animations & transitions events for all browsers
- * @version v0.4.1
+ * @version v0.4.4
  * @link http://hiswe.github.io/hevent/
  * @license WTFPL
  */
@@ -14161,12 +14161,11 @@ window.PointerEventsPolyfill.external = {
 var __slice = [].slice;
 
 (function($, Modernizr, document, window) {
-  var aliasesEvent, eventName, isAnimated, lcFirst, log, sniffer, trace, trans, triggerCustomEvent, ucFirst, _i, _len, _ref, _results;
+  var aliasesEvent, eventName, isAnimated, lcFirst, log, sniffer, trace, triggerCustomEvent, ucFirst, _i, _len, _ref, _results;
   if (Modernizr == null) {
     return typeof console !== "undefined" && console !== null ? console.warn('Modernizr should be installed for hevet to work') : void 0;
   }
   trace = false;
-  trans = 'transanimationend';
   log = function() {
     var args;
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
@@ -14199,58 +14198,61 @@ var __slice = [].slice;
       'WebkitAnimation': 'webkitAnimationEnd'
     };
     result = {
+      transitionendSupport: Modernizr.csstransitions === true,
+      animationendSupport: Modernizr.cssanimations === true,
       transAnimationSupport: Modernizr.cssanimations === true && Modernizr.csstransitions === true,
       transitionend: transEndEventNames[Modernizr.prefixed('transition')],
-      animationend: animationEndEventNames[Modernizr.prefixed('animation')]
+      animationend: animationEndEventNames[Modernizr.prefixed('animation')],
+      durations: [Modernizr.prefixed('TransitionDuration'), Modernizr.prefixed('AnimationDuration')]
     };
     log('sniffer', result);
     return result;
   })();
-  triggerCustomEvent = function(obj, eventType, event) {
-    var originalType;
-    log('triggerCustomEvent');
-    originalType = event.type;
-    event.type = eventType;
-    $.event.dispatch.call(obj, event);
-    return event.type = originalType;
-  };
   isAnimated = function(el) {
-    var animated, hasDuration, key, prefix, style, _i, _len, _ref;
-    log('isAnimated', 'begin animation check');
+    var animated, hasDuration, key, style, _i, _len, _ref;
     if (!sniffer.transAnimationSupport) {
       return false;
     }
     style = window.getComputedStyle(el) || {};
-    prefix = sniffer.cssPrefix;
     animated = false;
-    _ref = ["TransitionDuration", "AnimationDuration"];
+    _ref = sniffer.durations;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       key = _ref[_i];
-      hasDuration = style[lcFirst(key)] || style["" + prefix + key];
+      hasDuration = style[lcFirst(key)];
       if ((hasDuration != null) && hasDuration !== '' && hasDuration !== '0s') {
         animated = true;
         break;
       }
     }
-    log('isAnimated', animated);
+    log('[IS ANIMATED]', animated);
     return animated;
   };
-  $.event.special[trans] = {
+  triggerCustomEvent = function(obj, eventType, event) {
+    var originalType;
+    log('[TRIGGER CUSTOM EVENT]', event);
+    originalType = event.type;
+    event.type = eventType;
+    $.event.dispatch.call(obj, event);
+    return event.type = originalType;
+  };
+  $.event.special.heventend = {
     sniffer: sniffer,
-    setup: function(data, namespaces, eventHandle) {
+    setup: function(data, namespaces) {
       var $this, eventName, thisObject;
       log('setup');
       thisObject = this;
       $this = $(thisObject);
       eventName = data.hevent;
       $this.on('classChange', function(event) {
-        return $.event.special[trans].handleClassChange(thisObject, event.target, eventName);
+        return $.event.special.heventend.handleClassChange(thisObject, event, eventName);
       });
       if (eventName === sniffer[eventName]) {
-        return log('W3C event name');
+        log('W3C event', eventName);
+        return false;
       }
       return $this.on(sniffer[eventName], function(event) {
-        return $.event.special[trans].fireEvent(thisObject, event.target, eventName);
+        log('original event', event);
+        return $.event.special.heventend.fireEvent(thisObject, event, eventName);
       });
     },
     teardown: function(namespaces) {
@@ -14260,40 +14262,55 @@ var __slice = [].slice;
       $this.off("" + sniffer.transitionEnd + " " + sniffer.animationEnd);
       return $this.off("transitionend animationend");
     },
-    handleClassChange: function(thisObject, origTarget, eventName) {
-      var ev;
-      log('handleClassChange');
-      ev = $.Event(trans, {
+    handleClassChange: function(thisObject, event, eventName) {
+      var ev, origTarget;
+      origTarget = event.target;
+      log('[HANDLE CLASS CHANGE]', event);
+      ev = $.Event('heventend', {
         target: origTarget
       });
-      triggerCustomEvent(thisObject, trans, ev);
+      triggerCustomEvent(thisObject, 'heventend', ev);
       if (isAnimated(thisObject)) {
         return true;
       }
-      return $.event.special[trans].fireEvent(thisObject, origTarget, eventName);
+      return $.event.special.heventend.fireEvent(thisObject, event, eventName);
     },
-    fireEvent: function(thisObject, origTarget, eventName) {
-      var ev;
-      log('fireEvent');
-      ev = $.Event(eventName, {
-        target: origTarget
+    fireEvent: function(thisObject, event, eventName) {
+      var newEvent, originalEvent;
+      log('[FIRE EVENT]', event.type);
+      if (event.type === sniffer[eventName] || event.type === eventName) {
+        log('[FIRE EVENT]', 'use DOM originalEvent');
+        originalEvent = event;
+      } else {
+        log('[FIRE EVENT]', 'Create custom original');
+        originalEvent = $.Event('hevent', {
+          target: event.target
+        });
+      }
+      newEvent = $.Event(eventName, {
+        target: event.target,
+        originalEvent: originalEvent
       });
-      return triggerCustomEvent(thisObject, eventName, ev);
+      log('[FIRE EVENT] final event');
+      return $.event.dispatch.call(thisObject, newEvent);
     }
   };
   aliasesEvent = function(eventName) {
+    jQuery.event.fixHooks[eventName] = {
+      props: ['propertyName', 'elapsedTime']
+    };
     return $.event.special[eventName] = {
       setup: function() {
-        $(this).on(trans, {
+        $(this).on('heventend', {
           hevent: eventName
         }, $.noop);
-        if (eventName === sniffer[eventName]) {
-          log('Use original event for', eventName);
+        if (sniffer[eventName + 'Support']) {
+          log('Use browser event for', eventName);
           return false;
         }
       },
       teardown: function() {
-        return $(this).off(trans);
+        return $(this).off('heventend');
       }
     };
   };

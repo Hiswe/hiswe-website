@@ -16,7 +16,7 @@ options = require('../../../config/datas/stylus-var.json');
 App = (function(_super) {
   __extends(App, _super);
 
-  App.prototype.trace = true;
+  App.prototype.trace = false;
 
   App.prototype.logPrefix = '[APP]';
 
@@ -349,7 +349,7 @@ options = require('../../../config/datas/stylus-var.json');
 ServicesCarrousel = (function(_super) {
   __extends(ServicesCarrousel, _super);
 
-  ServicesCarrousel.prototype.trace = true;
+  ServicesCarrousel.prototype.trace = false;
 
   ServicesCarrousel.prototype.logPrefix = '[CARROUSEL]';
 
@@ -545,9 +545,18 @@ Projects = (function(_super) {
   };
 
   Projects.prototype.transitionend = function(event) {
-    var $currentPanel, e, propertyName;
+    var e, propertyName;
     e = event.originalEvent;
+    this.log('transitionend', e.type);
     if (event.originalEvent == null) {
+      return;
+    }
+    if (e.type === 'hevent') {
+      if (this.opened === true) {
+        this.closeTransitionEnd();
+      } else {
+        this.openTransitionEnd();
+      }
       return;
     }
     propertyName = e.propertyName;
@@ -558,19 +567,34 @@ Projects = (function(_super) {
       return;
     }
     if (this.opened === true && propertyName === 'top') {
-      this.log('transition end::', 'close');
-      this.el.css('z-index', 1);
-      this.e.trigger('close');
-      this.opened = false;
+      this.closeTransitionEnd();
     } else if (this.opened === false && propertyName === 'opacity') {
-      this.log('transition end ::', 'open');
-      $currentPanel = this.currentPanel();
-      if (!$currentPanel.data('carrousel')) {
-        this.initCarrousel($currentPanel);
-      }
-      this.opened = true;
+      this.openTransitionEnd();
     }
     return this;
+  };
+
+  Projects.prototype.openTransitionEnd = function() {
+    var $currentPanel;
+    if (this.opened === true) {
+      return this;
+    }
+    this.log('transition end ::', 'open');
+    $currentPanel = this.currentPanel();
+    if (!$currentPanel.data('carrousel')) {
+      this.initCarrousel($currentPanel);
+    }
+    return this.opened = true;
+  };
+
+  Projects.prototype.closeTransitionEnd = function() {
+    if (this.opened === false) {
+      return this;
+    }
+    this.log('transition end::', 'close');
+    this.el.css('z-index', 1);
+    this.e.trigger('close');
+    return this.opened = false;
   };
 
   Projects.prototype.initCarrousel = function($currentPanel) {

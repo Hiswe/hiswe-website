@@ -48,7 +48,7 @@ exports.css = {
   src: [
     'bower_components/hiso-font/font/hiso-font.css',
     'bower_components/hiso-font/font/hicon.css',
-    'bower_components/fontawesome/css/font-awesome.css',
+    // 'bower_components/fontawesome/css/font-awesome.css',
     'assets/css/front/index.styl'
   ],
   dst: 'public'
