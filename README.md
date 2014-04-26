@@ -20,6 +20,9 @@ Design a portfolio for myself
 
 ### Release History
 
+- **3.4.0** — Assets on a CDN
+- **3.3.0** — Add carrousel
+- **3.0.0** — Revamp
 - **2.0.3** — rc conf manager
 - **2.0.2** — Gulp build system
 - **2.0.1** — Update content
@@ -27,19 +30,16 @@ Design a portfolio for myself
 
 ### TODO
 
-- Amazon s3 static files with:
-  - [amazon s3](http://aws.amazon.com/fr/s3/)
-  - [gulp-awspublish](https://www.npmjs.org/package/gulp-awspublish)
-  - [Static routing](http://stackoverflow.com/questions/17516820/serving-files-stored-in-s3-in-express-nodejs-app)
-
-- replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
+1. Lazy load of projects cover 
+- Static page for projects
+- Responsive Website
 - Retina images
-- Responsive images
-- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
-- [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
-- JS front lib in requireJs
-- Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
+- replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Routing can be improved with [express-resource](https://www.npmjs.org/package/express-resource)
+- [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
+- Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
+- JS front lib in requireJs
+- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 
 ### Ispiration
 

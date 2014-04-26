@@ -13,7 +13,6 @@ aws       = require('knox').createClient({
 })
 
 streamAws = (req, res, next)  ->
-
   aws.getFile "/#{req.params.id}", (err, resp) ->
     if err
       console.log awsLog.error, req.params.id, err
