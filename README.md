@@ -29,7 +29,6 @@ Design a portfolio for myself
 
 - Amazon s3 static files with:
   - [amazon s3](http://aws.amazon.com/fr/s3/)
-  - [AWS JS SDJ](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-intro.html)
   - [gulp-awspublish](https://www.npmjs.org/package/gulp-awspublish)
   - [Static routing](http://stackoverflow.com/questions/17516820/serving-files-stored-in-s3-in-express-nodejs-app)
 
@@ -39,7 +38,8 @@ Design a portfolio for myself
 - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - JS front lib in requireJs
-- Routeing can be improved with [express-resource](https://www.npmjs.org/package/express-resource)
+- Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
+- Routing can be improved with [express-resource](https://www.npmjs.org/package/express-resource)
 
 ### Ispiration
 

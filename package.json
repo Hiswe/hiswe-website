@@ -22,7 +22,8 @@
     "connect-assets": "~2.5.x",
     "connect-flash": "~0.1.x",
     "rc": "~0.3.x",
-    "marked": "^0.3.2"
+    "marked": "^0.3.2",
+    "knox": "^0.8.9"
   },
   "devDependencies": {
     "uslug": "~1.x.x",
@@ -59,6 +60,7 @@
     "gulp-if": "0.0.5",
     "yargs": "^1.2.1",
     "image-size": "^0.2.3",
-    "xml2js": "^0.4.2"
+    "xml2js": "^0.4.2",
+    "gulp-awspublish": "0.0.14"
   }
 }

@@ -1,34 +1,39 @@
 'use strict';
 
 var fs          = require('fs');
-var lr          = require('tiny-lr'); // livereload depend on tiny-lr
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
 var args        = require('yargs').argv;
 var conf        = require('./gulp-config.js');
 var bump        = require('gulp-bump');
-var wait        = require('gulp-wait');
-var open        = require('gulp-open');
 var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
 var uslug       = require('uslug');
-var source      = require('vinyl-source-stream');
-var stylus      = require('gulp-stylus');
 var uglify      = require('gulp-uglify');
-var concat      = require('gulp-concat');
 var rename      = require('gulp-rename');
 var notify      = require('gulp-notify');
-var svgmin      = require('gulp-svgmin');
-var resize      = require('gulp-image-resize');
 var gulpif      = require('gulp-if');
+var concat      = require('gulp-concat');
 var replace     = require('gulp-replace');
-var nodemon     = require('gulp-nodemon');
 var plumber     = require('gulp-plumber');
+// css
+var stylus      = require('gulp-stylus');
 var minifyCSS   = require('gulp-minify-css');
-var livereload  = require('gulp-livereload');
+// browserify js
+var source      = require('vinyl-source-stream');
 var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
+// images
+var svgmin      = require('gulp-svgmin');
+var resize      = require('gulp-image-resize');
+var awspublish  = require('gulp-awspublish');
+// server
+var lr          = require('tiny-lr'); // livereload depend on tiny-lr
+var wait        = require('gulp-wait');
+var open        = require('gulp-open');
+var nodemon     = require('gulp-nodemon');
+var livereload  = require('gulp-livereload');
 
 /////////
 // CONF
@@ -36,7 +41,7 @@ var browserify  = require('browserify');
 
 var server = lr();
 
-var stylusVar = require('./config/datas/stylus-var.json');
+var stylusVar   = require('./config/datas/stylus-var.json');
 stylusVar.isDev = true;
 
 // Plumber error callback
@@ -49,6 +54,7 @@ var onError = function onError(err) {
 // VERSIONS
 /////////
 
+// TODO: should be done with arguments
 gulp.task('patch', function () {
   return gulp.src(conf.pack).pipe(bump()).pipe(gulp.dest('./'));
 });
@@ -161,10 +167,9 @@ gulp.task('js', ['lib', 'frontend-app'], function() {
 });
 
 /////////
-// ASSETS
+// FONT
 /////////
 
-// FONT
 gulp.task('clean-font', function() {
   return gulp.src(conf.font.dst, {read: false}).pipe(clean());
 });
@@ -174,8 +179,13 @@ gulp.task('font', ['clean-font'], function() {
     .pipe(gulp.dest(conf.font.dst));
 });
 
+
+/////////
 // IMAGES
+/////////
+
 // Can't use gulp-if because gulp-resize don't rely on stream
+//TODO: May have a workaround with gulp-streamify
 gulp.task('clean-pixel', function() {
   return gulp.src(conf.img.cleanPixel, {read: false}).pipe(clean());
 });
@@ -222,7 +232,8 @@ gulp.task('list', function(cb) {
   cb(null);
 });
 
-gulp.task('image', ['pixel', 'splash','svg']);
+gulp.task('image', ['pixel', 'splash', 'svg']);
+gulp.task('resize', ['image']); // Aliase because I just often mess around
 
 // JSON
 gulp.task('json', require('./gulp-data.js'));
@@ -300,7 +311,7 @@ gulp.task('default', function() {
   console.log(gutil.colors.red('build'), '              ', 'js + css + rev');
   console.log(gutil.colors.red('pixel'), '              ', 'Resize pixel images');
   console.log(gutil.colors.red('svg'), '                ', 'clean svg images');
-  console.log(gutil.colors.red('image'), '              ', 'resize + svg');
+  console.log(gutil.colors.red('image'), '              ', 'pixel + svg');
   console.log(gutil.colors.red('list --project name'), '', 'list image of a current project');
   console.log(gutil.colors.red('start'), '              ', 'Watch + server');
 });

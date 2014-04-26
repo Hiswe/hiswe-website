@@ -1,5 +1,7 @@
 sharedVar = require('./config/datas/stylus-var.json');
 
+var conf = exports.conf = require('rc')('HISWE');
+
 exports.uslug = {
   lower: true,
   allowedChars: '-'
@@ -69,7 +71,7 @@ exports.font = {
   dst: 'public/media/font'
 };
 
-var imgSrc = 'public/media/source/';
+var imgSrc = conf.GULP_SRC; // don't want a local path in my code :P
 var imgDst = 'public/media/images/';
 
 exports.img = {
