@@ -425,6 +425,7 @@ ServicesCarrousel = (function(_super) {
     $img = $(image).css('opacity', 0);
     $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
+    $img.attr('src', imgSrc);
     return this;
   };
 

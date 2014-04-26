@@ -71,6 +71,7 @@ class ServicesCarrousel extends Controller
     $parent = $img.parent().addClass('hw-projects-lazyload-loading')
     # imgSrc = if @pixelRatio is 1 then img.data('original') else img.data('retina')
     imgSrc = $img.data('original')
+    $img.attr 'src', imgSrc
     this
 
   initProgress: ->

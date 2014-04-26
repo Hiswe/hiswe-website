@@ -235,6 +235,23 @@ gulp.task('list', function(cb) {
 gulp.task('image', ['pixel', 'splash', 'svg']);
 gulp.task('resize', ['image']); // Aliase because I just often mess around
 
+
+// Upload to Amazon S3
+gulp.task('upload', function () {
+  var publisher = awspublish.create({
+    key:    conf.rc.AWS_ACCESS_KEY_ID,
+    secret: conf.rc.AWS_SECRET_KEY,
+    bucket: conf.rc.AWS_BUCKET
+  });
+
+  return gulp.src(conf.img.dst + '*')
+    .pipe(publisher.publish())
+    .pipe(publisher.sync())
+    .pipe(awspublish.reporter());
+    // Don't notify has it run for every images…
+    // .pipe(notify({title: 'HISWE', message: 'UPLOAD done'}));
+});
+
 // JSON
 gulp.task('json', require('./gulp-data.js'));
 

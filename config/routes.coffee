@@ -1,7 +1,7 @@
 fs        = require 'fs'
 nodePath  = require 'path'
 
-log = '[ROUTES]'
+log       = '[ROUTES]'
 
 module.exports = (app) ->
   console.log log.prompt, 'setup front'
