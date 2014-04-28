@@ -20,7 +20,7 @@ Design a portfolio for myself
 
 ### Release History
 
-- **3.4.2** — Static page for projects
+- **3.4.2** — Static page for projects + direct link to originals
 - **3.4.1** — Lazy load of projects cover 
 - **3.4.0** — Assets on a CDN
 - **3.3.0** — Add carrousel
@@ -34,7 +34,6 @@ Design a portfolio for myself
 
 1. Responsive Website
 - Change top menu
-- Brand up 404 page 
 - Content
 - Add a robot.txt
 - No change of page for contact

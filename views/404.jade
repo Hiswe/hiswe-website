@@ -4,31 +4,50 @@ html
     style.
       html, body {
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
       }
       html {
         height: 100%;
-        background: #fff;
-        padding: 1.875em;
+        background: #ecf4f8;
       }
       body {
         min-height: 100%;
-        text-align: center;
-      }
-      body {
-        background-image: -moz-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
-        background-image: -webkit-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
-        background-image: -o-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
-        background-image: -ms-radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
-        background-image: radial-gradient(circle at 25% 25%, #ff0078 0%, #7a0037 75%);
-        color: #fff;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1.3125em solid #fff;
+        background-repeat: no-repeat;
+        color: #445;
       }
       .hw-404-container {
-        width: 960px;
         margin: 0 auto;
+        text-align: center;
         padding: 1em;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
       }
       h1 {
         font-size: 6em;
+        font-weight: 300;
+        color: #cddce4;
+        letter-spacing: .15em;
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        color: #ff0078;
+      }
+      a:hover{
+        text-decoration: underline;
       }
 
   body: .hw-404-container
