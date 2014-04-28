@@ -3,9 +3,9 @@ Carrousel   = require './projects-carrousel.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Projects extends Controller
-  trace: false
-  logPrefix: '[PROJECTS]'
-  opened: false
+  trace:      true
+  logPrefix:  '[PROJECTS]'
+  opened:     false
 
   elements: {
     '.hw-projects-item'             : 'all'
@@ -23,6 +23,7 @@ class Projects extends Controller
     super
     return unless @el.length
     @log 'Init'
+    @loadCovers()
     this
 
   currentPanel: ->
@@ -31,6 +32,23 @@ class Projects extends Controller
   clean: ->
     @currentPanel().heventRemoveClass(options.activeClass)
     this
+
+  loadCovers: ->
+    @$(".#{options.projectCoverLoad}")
+      .each( ->
+        $cover = $(this)
+        $title = $cover.find('span')
+        imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
+
+
+        $(imgMarkup)
+          .appendTo($cover)
+          .imagesLoaded()
+          .done( ->
+            console.log 'end'
+            $cover.removeClass(options.projectCoverLoad)
+          )
+      )
 
   transitionend: (event) ->
     e = event.originalEvent

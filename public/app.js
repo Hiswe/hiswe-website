@@ -507,7 +507,7 @@ options = require('../../../config/datas/stylus-var.json');
 Projects = (function(_super) {
   __extends(Projects, _super);
 
-  Projects.prototype.trace = false;
+  Projects.prototype.trace = true;
 
   Projects.prototype.logPrefix = '[PROJECTS]';
 
@@ -531,6 +531,7 @@ Projects = (function(_super) {
       return;
     }
     this.log('Init');
+    this.loadCovers();
     this;
   }
 
@@ -541,6 +542,19 @@ Projects = (function(_super) {
   Projects.prototype.clean = function() {
     this.currentPanel().heventRemoveClass(options.activeClass);
     return this;
+  };
+
+  Projects.prototype.loadCovers = function() {
+    return this.$("." + options.projectCoverLoad).each(function() {
+      var $cover, $title, imgMarkup;
+      $cover = $(this);
+      $title = $cover.find('span');
+      imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />';
+      return $(imgMarkup).appendTo($cover).imagesLoaded().done(function() {
+        console.log('end');
+        return $cover.removeClass(options.projectCoverLoad);
+      });
+    });
   };
 
   Projects.prototype.transitionend = function(event) {
@@ -748,11 +762,12 @@ module.exports = Services;
 
 },{"../../../config/datas/stylus-var.json":8,"./front-controller.coffee":4}],8:[function(require,module,exports){
 module.exports={
-  "activeClass"     : "hw-panel-active",
-  "activeBody"      : "hw-body-active",
-  "carrouselClass"  : "hw-carrousel",
-  "desktopWidth"    : 1080,
-  "carrouselHeight"  : 552,
-  "carrouselClassSelected"  : "hw-carrousel-selected"
+  "activeClass"             : "hw-panel-active",
+  "activeBody"              : "hw-body-active",
+  "carrouselClass"          : "hw-carrousel",
+  "desktopWidth"            : 1080,
+  "carrouselHeight"         : 552,
+  "carrouselClassSelected"  : "hw-carrousel-selected",
+  "projectCoverLoad"        : "hw-projects-cover-lazyload"
 }
 },{}]},{},[2])

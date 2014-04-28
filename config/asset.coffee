@@ -12,6 +12,7 @@ aws       = require('knox').createClient({
   secure: off
 })
 
+# Other examples on http://stackoverflow.com/questions/17516820/serving-files-stored-in-s3-in-express-nodejs-app
 streamAws = (req, res, next)  ->
   aws.getFile "/#{req.params.id}", (err, resp) ->
     if err

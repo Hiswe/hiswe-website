@@ -20,6 +20,7 @@ Design a portfolio for myself
 
 ### Release History
 
+- **3.4.1** — Lazy load of projects cover 
 - **3.4.0** — Assets on a CDN
 - **3.3.0** — Add carrousel
 - **3.0.0** — Revamp
@@ -30,11 +31,10 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Lazy load of projects cover 
-- Static page for projects
+1. Static page for projects
 - Responsive Website
 - Retina images
-- replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
+- Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Routing can be improved with [express-resource](https://www.npmjs.org/package/express-resource)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)

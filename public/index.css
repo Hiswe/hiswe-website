@@ -1196,14 +1196,18 @@ body {
   -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
   box-shadow: inset 0 0 0 0.5em #ff0078;
 }
-.hw-projects-cover:hover img {
+.hw-projects-cover:hover img,
+.hw-projects-cover.hw-projects-cover-lazyload img,
+.hw-projects-cover:hover.hw-projects-cover-lazyload img {
   -webkit-transform: translate(-50%, -50%) rotateY(180deg);
   -moz-transform: translate(-50%, -50%) rotateY(180deg);
   -o-transform: translate(-50%, -50%) rotateY(180deg);
   -ms-transform: translate(-50%, -50%) rotateY(180deg);
   transform: translate(-50%, -50%) rotateY(180deg);
 }
-.hw-projects-cover:hover span {
+.hw-projects-cover:hover span,
+.hw-projects-cover.hw-projects-cover-lazyload span,
+.hw-projects-cover:hover.hw-projects-cover-lazyload span {
   -webkit-transform: translate(-50%, -50%) rotateY(0deg);
   -moz-transform: translate(-50%, -50%) rotateY(0deg);
   -o-transform: translate(-50%, -50%) rotateY(0deg);
