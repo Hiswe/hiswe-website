@@ -95,7 +95,7 @@ gulp.task('css', ['stylus'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest(conf.datas))
+    .pipe(gulp.dest(conf.db.src))
     .pipe(livereload(server));
 });
 
@@ -162,7 +162,7 @@ gulp.task('js', ['lib', 'frontend-app'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest(conf.datas))
+    .pipe(gulp.dest(conf.db.src))
     .pipe(livereload(server));
 });
 
@@ -264,7 +264,7 @@ gulp.task('build', ['frontend-app', 'lib', 'stylus', 'json'], function() {
   .pipe(rev())
   .pipe(gulp.dest('public'))
   .pipe(rev.manifest())
-  .pipe(gulp.dest(conf.datas))
+  .pipe(gulp.dest(conf.db.src))
   .pipe(livereload(server));
 });
 
@@ -299,7 +299,7 @@ gulp.task('notify-restart', function () {
 
 gulp.task('express', ['build'], function () {
   nodemon({
-    script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-work.json'],
+    script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-home.json'],
     env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
   })
   .on('restart', ['notify-restart'])

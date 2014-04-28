@@ -20,6 +20,7 @@ Design a portfolio for myself
 
 ### Release History
 
+- **3.4.2** — Static page for projects
 - **3.4.1** — Lazy load of projects cover 
 - **3.4.0** — Assets on a CDN
 - **3.3.0** — Add carrousel
@@ -31,8 +32,11 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Static page for projects
-- Responsive Website
+1. Responsive Website
+- Change top menu
+- Brand up 404 page 
+- Content
+- No change of page for contact
 - Retina images
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Routing can be improved with [express-resource](https://www.npmjs.org/package/express-resource)

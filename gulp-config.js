@@ -7,9 +7,14 @@ exports.uslug = {
   allowedChars: '-'
 };
 
-exports.datas = 'config/datas';
 
-exports.jsonDb = __dirname + '/config/datas/db-work.json';
+
+var dbDst = __dirname + '/config/datas/'
+exports.db = {
+  src: 'config/datas',
+  homeDst: dbDst     + 'db-home.json',
+  projectsDst: dbDst + 'db-projects.json'
+}
 
 exports.revFiles = [
   'public/*min.js',

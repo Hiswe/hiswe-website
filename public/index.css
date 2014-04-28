@@ -87,6 +87,11 @@ body {
 body.hw-body-active {
   overflow: hidden;
 }
+.projects-page,
+.projects-page body {
+  border: none;
+  background: #fff;
+}
 a {
   text-decoration: none;
   outline: none;
@@ -1074,6 +1079,9 @@ body {
 .hw-projects:after {
   clear: both;
 }
+.hw-projects-content {
+  background: #fff;
+}
 .hw-projects-item {
   width: 33.333333333333336%;
   height: 19.5em;
@@ -1314,6 +1322,15 @@ body {
   -ms-transition-delay: 0s, 0s, 0.5s;
   transition-delay: 0s, 0s, 0.5s;
 }
+.hw-projects-content-container .hw-projects-content {
+  overflow: hidden;
+  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  opacity: 0.5;
+}
 .hw-projects-content-container::after {
   content: '';
   background: #454a5d;
@@ -1370,16 +1387,6 @@ body {
   -o-transform: scale3d(1, 1, 1) rotateY(0deg);
   -ms-transform: scale3d(1, 1, 1) rotateY(0deg);
   transform: scale3d(1, 1, 1) rotateY(0deg);
-}
-.hw-projects-content {
-  overflow: hidden;
-  background: #fff;
-  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
-  opacity: 0.5;
 }
 .hw-projects-close {
   position: fixed;
@@ -1706,7 +1713,6 @@ body {
   background: #cddce4;
   border: solid #cddce4;
   border-width: 1px 0;
-  visibility: hidden;
   margin: 4em 0;
   height: 34.5em;
   -webkit-transition: visibility 0s ease 0s;
@@ -1717,6 +1723,9 @@ body {
 }
 h3 + .hw-projects-gallery-container {
   margin-top: 0;
+}
+.hw-projects-content-container .hw-projects-gallery-container {
+  visibility: hidden;
 }
 .hw-panel-active .hw-projects-gallery-container {
   visibility: visible;
@@ -1744,6 +1753,7 @@ h3 + .hw-projects-gallery-container {
   position: relative;
   max-width: 90%;
   overflow: hidden;
+  vertical-align: text-top;
 }
 .hw-projects-gallery li:before,
 .hw-projects-gallery li > * {
@@ -1769,6 +1779,7 @@ h3 + .hw-projects-gallery-container {
   text-align: center;
   padding: 0.5em 0;
   color: #fff;
+  text-rendering: optimizeLegibility;
 }
 .hw-projects-gallery li .hw-projects-image-vector img {
   max-width: 100%;

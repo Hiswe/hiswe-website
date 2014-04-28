@@ -4,21 +4,17 @@ var Q             = require('q');
 var fs            = require('fs');
 var conf          = require('./gulp-config.js');
 var gutil         = require('gulp-util');
+var renderer      = require('./marked-renderer.js');
 var marked        = require('marked');
-
-var jsonDb        = [];
+var homeDb        = [];
+var projectsDb    = {};
 var openFile      = Q.denodeify(fs.open);
 
-// Markdown config
-marked.setOptions({
-  renderer: require('./marked-renderer.js'),
-  smartypants: true
-});
 
 // Other things
 var imageDescription = function imageDescription(fileName, extension) {
   return {
-    path: conf.serverSrc + fileName + '.' + extension,
+    path: '/' + conf.serverSrc + fileName + '.' + extension,
     extension: extension
   };
 };
@@ -45,25 +41,44 @@ var setCover = function setCover(fileName) {
   return deferred.promise;
 };
 
-var parseFile = function readFile(fileName, data, deferred) {
-  fileName = fileName.match(/^(\d*)-(.*).md$/);
+var saveforHome = function saveforHome(fileName, data,coverImage) {
+  marked.setOptions({
+    renderer: renderer.homeRenderer,
+    smartypants: true
+  });
 
-  // console.log(marked(data, {sanitize: true}));
+  homeDb.push({
+    order: ~~fileName[1],
+    id: 'project-' + fileName[2],
+    name: fileName[2].replace(/-/gi, ' '),
+    cover: coverImage,
+    markup: marked(data, {sanitize: true})
+  });
+};
+
+var saveForProject = function saveForProject(fileName, data, coverImage) {
+  marked.setOptions({
+    renderer: renderer.projectsRenderer,
+    smartypants: true
+  });
+
+  projectsDb[fileName[2]] = marked(data, {sanitize: true});
+};
+
+var processMarkdownFile = function readFile(fileName, data, deferred) {
+
+  fileName = fileName.match(/^(\d*)-(.*).md$/);
 
   setCover(fileName)
     .then(function (coverImage) {
-      jsonDb.push({
-        order: ~~fileName[1],
-        id: 'project-' + fileName[2],
-        name: fileName[2].replace(/-/gi, ' '),
-        cover: coverImage,
-        markup: marked(data, {sanitize: true})
-      });
+      saveforHome(fileName, data, coverImage);
+      saveForProject(fileName, data, coverImage);
       return deferred.resolve();
     }, function (err){
       return deferred.reject(err);
     }).done();
 };
+
 
 var walkFiles = function walkFiles(files) {
   var mdFiles = files.filter(function(fileName){
@@ -71,10 +86,10 @@ var walkFiles = function walkFiles(files) {
   });
   return mdFiles.map(function (fileName) {
     var deferred  = Q.defer();
-    Q.npost(fs, 'readFile', [conf.datas + '/' + fileName, {encoding: 'utf8'}])
+    Q.npost(fs, 'readFile', [conf.db.src + '/' + fileName, {encoding: 'utf8'}])
       .then(
         function (data) {
-          return parseFile(fileName, data, deferred)
+          return processMarkdownFile(fileName, data, deferred)
       });
     return deferred.promise;
   });
@@ -82,14 +97,15 @@ var walkFiles = function walkFiles(files) {
 
 var bundleData = function bundleData(){
   var deferred  = Q.defer();
-  jsonDb    = [];
+  homeDb    = [];
 
-  Q.ninvoke(fs, 'readdir', conf.datas)
+  Q.ninvoke(fs, 'readdir', conf.db.src)
     .then(walkFiles)
     .all()
     .done(function(){
-      jsonDb.sort(function(a, b){ return  a.order < b.order});
-      fs.writeFileSync(conf.jsonDb, JSON.stringify(jsonDb, null, 2));
+      homeDb.sort(function(a, b){ return  a.order < b.order});
+      fs.writeFileSync(conf.db.homeDst, JSON.stringify(homeDb, null, 2));
+      fs.writeFileSync(conf.db.projectsDst, JSON.stringify(projectsDb, null, 2));
       return deferred.resolve();
     }, function(err){
       return deferred.reject(new gutil.PluginError('json', err));

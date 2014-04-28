@@ -9,6 +9,9 @@
   position relative
   z-index 1
 
+.hw-projects-content
+  background white
+
 .hw-projects-item
   width third()
   height px2em($panel-height)
@@ -103,6 +106,12 @@
     backface-visibility hidden
     projects-content-out()
 
+  // Here
+  .hw-projects-content
+    overflow hidden
+    transform scale3d(.1, .1, .1) rotateY(180deg)
+    opacity .5
+
   &::after
     content ''
     background $darkest-grey
@@ -123,12 +132,6 @@
     overflow auto
     opacity 1
     transform scale3d(1, 1, 1) rotateY(0deg)
-
-.hw-projects-content
-  overflow hidden
-  background white
-  transform scale3d(.1, .1, .1) rotateY(180deg)
-  opacity .5
 
 .hw-projects-close
   fixed top -9em right -9em
@@ -157,8 +160,3 @@
     fixed top 1em right 1em
     visibility visible
     projects-close-button-in()
-
-  // *
-  //   transform translate3d(0,0,0)
-  //   backface-visibility hidden
-  //   transform-style preserve-3d

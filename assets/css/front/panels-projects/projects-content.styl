@@ -122,13 +122,15 @@
   background $grey
   border solid $grey
   border-width 1px 0
-  visibility hidden
   margin 4em 0
   height px2em(carrouselHeight)
   projects-gallery-out()
 
   h3 + &
     margin-top 0
+
+  .hw-projects-content-container &
+    visibility hidden
 
   .{activeClass} &
     visibility visible
@@ -155,7 +157,7 @@
     position relative
     max-width 90%
     overflow hidden
-    // image-center()
+    vertical-align text-top
     v-align()
 
     figure
@@ -169,6 +171,7 @@
       text-align center
       padding .5em 0
       color white
+      text-rendering optimizeLegibility
 
     .hw-projects-image-vector img
       max-width 100%

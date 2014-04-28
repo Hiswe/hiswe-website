@@ -507,7 +507,7 @@ options = require('../../../config/datas/stylus-var.json');
 Projects = (function(_super) {
   __extends(Projects, _super);
 
-  Projects.prototype.trace = true;
+  Projects.prototype.trace = false;
 
   Projects.prototype.logPrefix = '[PROJECTS]';
 

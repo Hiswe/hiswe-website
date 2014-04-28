@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "scripts": {
     "start": "node server.js"
   },
@@ -23,7 +23,8 @@
     "connect-flash": "~0.1.x",
     "rc": "~0.3.x",
     "marked": "^0.3.2",
-    "knox": "^0.8.9"
+    "knox": "^0.8.9",
+    "express-resource": "^1.0.0"
   },
   "devDependencies": {
     "uslug": "~1.x.x",

@@ -1,5 +1,6 @@
 # Load dependencies
 express       = require 'express'
+Resource      = require 'express-resource'
 configApp     = require './config-app'
 routes        = require './routes'
 

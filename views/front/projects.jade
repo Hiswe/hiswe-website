@@ -1,0 +1,9 @@
+html.projects-page
+  include layout/head
+
+  body
+    article.hw-projects-content!= project
+
+    //- analytics
+    if env == 'production'
+      include layout/analytic

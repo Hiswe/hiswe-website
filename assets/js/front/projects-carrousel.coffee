@@ -21,7 +21,6 @@ class ServicesCarrousel extends Controller
 
   constructor: ->
     # We can't run it without css transforms
-    # TODO
     return @warn 'No css transform available' unless Modernizr.csstransforms
     super
     return @warn 'No element defined' unless @el.length

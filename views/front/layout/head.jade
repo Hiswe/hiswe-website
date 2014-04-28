@@ -14,8 +14,8 @@ head
   meta(name="apple-mobile-web-app-capable",content="yes")
   //- CSS
   if env == 'production'
-    link(rel='stylesheet', href="#{assets['index.min.css']}")
+    link(rel='stylesheet', href="/#{assets['index.min.css']}")
   else
-    link(rel='stylesheet', href="index.css")
+    link(rel='stylesheet', href="/index.css")
 
-  link(rel='icon', href='media/favicon.png', type='image/png')
+  link(rel='icon', href='/media/favicon.png', type='image/png')
