@@ -6,16 +6,16 @@ var projectsRenderer      = new marked.Renderer();
 var fs                    = require('fs');
 var sizeOf                = require('image-size');
 var parseString           = require('xml2js').parseString;
-var pathToTransparentGif  = __dirname + '/public/media/blank.gif';
+
 
 // Create a base64 transparent gif
 // This prevent image src to be empty…
+var pathToTransparentGif  = __dirname + '/public/media/blank.gif';
 var blankGif = new Buffer(fs.readFileSync(pathToTransparentGif)).toString('base64');
 blankGif = 'data:image/gif;base64,' + blankGif;
 
 // All the join are made with '' instead of '\n'
 // We don't need to preserve source formating
-
 var heading = function heading (text, level) {
   var escapedText = text.replace(/-/gi, ' ');
   if (level === 4) {
@@ -87,11 +87,15 @@ var getImageInfo = function getImageInfo(href) {
 var buildImage = function buildImage(href, title) {
   // fix leading slash
   href = /^\//.test(href) ? href : "/" + href;
+  // make preview href
+  var previewHref = href.replace(/(.*)\.(jpg|png|svg|jpeg)$/, '$1-preview.$2');
 
-  var imageInformations = getImageInfo(href);
+  var imageInformations = getImageInfo(previewHref);
   var imageMarkup = [
     '<img',
-    ' src="' + href + '"',
+    ' src="',
+    previewHref,
+    '"',
     ' height="' + imageInformations.height + '"',
     ' width="' + imageInformations.width + '"',
     ' />'];
@@ -99,53 +103,49 @@ var buildImage = function buildImage(href, title) {
 
   if (typeof title !== "undefined" && title !== null && title !== null) {
     imageMarkup.splice(index, 0, ' alt="' + title + '"');
+  } else {
+    // need this for the link in figure
+    title = href;
   }
 
   return {
+    title: title,
     markup: imageMarkup,
+    href: href,
     type: imageInformations.type
   };
 };
 
+var buildFigure = function (image, text) {
+  var figureMarkup =  [
+    '<figure class="' + image.type + '">',
+      image.markup.join(''),
+      '<a href="' + image.href + '">' + image.title + '</a>',
+    '</figure>'
+  ];
+
+  if (typeof text !== "undefined" && text !== null && text !== '') {
+    figureMarkup.splice(figureMarkup.length - 1, 0,'<figcaption>' + text + '</figcaption>');
+  }
+
+  return figureMarkup.join('')
+}
+
 // All operations are done sync
 // I don't think that marked support async rendering functions
 var homeImage = function homeImage(href, title, text) {
-
   var image       = buildImage(href, title);
-  var imageMarkup = image.markup;
-  var index = imageMarkup.length - 1;
+  var nodeData = ' data-original="' + href + '"' + ' class="hw-projects-lazyload"';
 
-  imageMarkup.splice(index, 0, ' data-original="', href, '"', ' class="hw-projects-lazyload"');
-  imageMarkup[2] = blankGif;
+  image.markup.splice(image.markup.length - 1, 0, nodeData);
+  image.markup[2] = blankGif;
 
-  var rendereMarkup =  [
-    '<figure class="' + image.type + '">',
-      imageMarkup.join(''),
-    '</figure>'
-  ];
-  if (typeof text !== "undefined" && text !== null && text !== '') {
-    rendereMarkup.splice(rendereMarkup.length - 1, 0,'<figcaption>' + text + '</figcaption>');
-  }
-
-  return rendereMarkup.join('')
+  return buildFigure(image, text);
 };
 
 var projectsImage = function projectsImage(href, title, text) {
-
   var image       = buildImage(href, title);
-  var imageMarkup = image.markup;
-  var index       = imageMarkup.length - 1;
-
-  var rendereMarkup =  [
-    '<figure class="' + image.type + '">',
-      imageMarkup.join(''),
-    '</figure>'
-  ];
-  if (typeof text !== "undefined" && text !== null && text !== '') {
-    rendereMarkup.splice(rendereMarkup.length - 1, 0,'<figcaption>' + text + '</figcaption>');
-  }
-
-  return rendereMarkup.join('')
+  return buildFigure(image, text);
 };
 
 homeRenderer.heading        = heading;

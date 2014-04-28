@@ -551,7 +551,6 @@ Projects = (function(_super) {
       $title = $cover.find('span');
       imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />';
       return $(imgMarkup).appendTo($cover).imagesLoaded().done(function() {
-        console.log('end');
         return $cover.removeClass(options.projectCoverLoad);
       });
     });

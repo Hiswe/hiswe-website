@@ -163,6 +163,22 @@
     figure
       padding 0; margin 0
 
+    a
+      absolute top 1em right 1em
+      z-index 2
+      text-indent -666em
+
+      &::after
+        font-size 1.5em
+        font-family FontAwesome
+        content '\f08e'
+        text-indent 0
+        color $pink
+        absolute top right
+
+      &:hover::after
+        color $blue
+
     figcaption
       absolute bottom left
       right 0
@@ -204,6 +220,9 @@
     cursor pointer
     border-left 1px solid $grey
 
+    a
+      display none
+
     &:first-child
       border-left 0
 
@@ -244,6 +263,9 @@
 
   .{carrouselClassSelected}
     cursor inherit
+
+    a
+      display block
 
     img
       opacity 1

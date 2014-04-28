@@ -40,12 +40,10 @@ class Projects extends Controller
         $title = $cover.find('span')
         imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
 
-
         $(imgMarkup)
           .appendTo($cover)
           .imagesLoaded()
           .done( ->
-            console.log 'end'
             $cover.removeClass(options.projectCoverLoad)
           )
       )

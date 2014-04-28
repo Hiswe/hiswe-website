@@ -36,6 +36,7 @@ Design a portfolio for myself
 - Change top menu
 - Brand up 404 page 
 - Content
+- Add a robot.txt
 - No change of page for contact
 - Retina images
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)

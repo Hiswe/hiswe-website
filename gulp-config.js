@@ -1,13 +1,8 @@
-sharedVar = require('./config/datas/stylus-var.json');
+'use strict';
 
+var sharedVar       = require('./config/datas/stylus-var.json');
 var rc = exports.rc = require('rc')('HISWE');
-
-exports.uslug = {
-  lower: true,
-  allowedChars: '-'
-};
-
-
+var uslug           = require('uslug');
 
 var dbDst = __dirname + '/config/datas/'
 exports.db = {
@@ -78,7 +73,10 @@ exports.font = {
 
 var imgSrc = rc.GULP_SRC; // don't want a local path in my code :P
 var imgDst = 'public/media/images/';
-
+var uslugOptions = {
+  lower: true,
+  allowedChars: '-'
+};
 exports.img = {
   pixel:      [imgSrc + '*.{jpg,jpeg,png}', '!' + imgSrc + 'splash*.{jpg,jpeg,png}'],
   cleanPixel: [imgDst + '*.{jpg,jpeg,png}', '!' + imgDst + 'splash*.{jpg,jpeg,png}'],
@@ -89,7 +87,13 @@ exports.img = {
   dst:        imgDst,
   height:     sharedVar.carrouselHeight,
   width:      sharedVar.desktopWidth - ( sharedVar.desktopWidth * 0.1 ),
-  fullDst:    __dirname + '/' + imgDst
+  fullDst:    __dirname + '/' + imgDst,
+  formatOriginal: function formatOriginal(path) {
+    path.basename = uslug(path.basename, uslugOptions);
+  },
+  formatPreview: function formatPreview (path) {
+    path.basename = uslug(path.basename, uslugOptions) + '-preview';
+  }
 };
 
 exports.serverSrc = 'media/images/';

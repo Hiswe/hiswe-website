@@ -31,7 +31,7 @@ module.exports = (app) ->
     app.use express.urlencoded()
     app.use express.json()
     app.use express.methodOverride()
-    app.use express.favicon()
+    app.use express.favicon(__dirname + '/../public/media/favicon.png')
 
     # flash messages
     app.use express.cookieParser('hiswe rocks')

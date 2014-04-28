@@ -8,7 +8,6 @@ var conf        = require('./gulp-config.js');
 var bump        = require('gulp-bump');
 var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
-var uslug       = require('uslug');
 var uglify      = require('gulp-uglify');
 var rename      = require('gulp-rename');
 var notify      = require('gulp-notify');
@@ -192,9 +191,11 @@ gulp.task('clean-pixel', function() {
 
 gulp.task('pixel', ['clean-pixel'], function() {
   return gulp.src(conf.img.pixel)
+    .pipe(rename(conf.img.formatOriginal))
+    .pipe(gulp.dest(conf.img.dst))
     .pipe(resize({height: conf.img.height, quality: 1}))
     .pipe(resize({width: conf.img.width, quality: 0.8}))
-    .pipe(rename(function(path) { path.basename = uslug(path.basename, conf.uslug); }))
+    .pipe(rename(conf.img.formatPreview))
     .pipe(gulp.dest(conf.img.dst))
 });
 
@@ -204,7 +205,9 @@ gulp.task('clean-splash', function() {
 
 gulp.task('splash', ['clean-splash'], function() {
   return gulp.src(conf.img.pixel)
-    .pipe(rename(function(path) { path.basename = uslug(path.basename, conf.uslug); }))
+    .pipe(rename(conf.img.formatOriginal))
+    .pipe(gulp.dest(conf.img.dst))
+    .pipe(rename(conf.img.formatPreview))
     .pipe(gulp.dest(conf.img.dst))
 });
 
@@ -215,7 +218,9 @@ gulp.task('clean-svg', function() {
 gulp.task('svg', ['clean-svg'], function() {
   return gulp.src(conf.img.svg)
     .pipe(svgmin())
-    .pipe(rename(function(path) { path.basename = uslug(path.basename, conf.uslug); }))
+    .pipe(rename(conf.img.formatOriginal))
+    .pipe(gulp.dest(conf.img.dst))
+    .pipe(rename(conf.img.formatPreview))
     .pipe(gulp.dest(conf.img.dst));
 });
 

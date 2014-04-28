@@ -41,7 +41,7 @@ var setCover = function setCover(fileName) {
   return deferred.promise;
 };
 
-var saveforHome = function saveforHome(fileName, data,coverImage) {
+var saveforHome = function saveforHome(fileName, data, coverImage) {
   marked.setOptions({
     renderer: renderer.homeRenderer,
     smartypants: true
