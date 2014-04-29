@@ -291,6 +291,22 @@ body {
 .hw-splash p + p {
   padding-right: 0;
 }
+@media screen and (max-width: 479px) {
+.hw-splash h2 {
+  font-size: 1.5em;
+}
+.hw-splah-description p {
+  display: block;
+  width: auto;
+  height: auto;
+  min-height: auto;
+  padding-bottom: 1em;
+  line-height: 140%;
+}
+.hw-splah-description p + p {
+  text-align: left;
+}
+}
 .hw-services {
   position: relative;
   z-index: 1;
@@ -2679,21 +2695,6 @@ body {
 .hw-services .hw-services-title {
   padding: 0;
 }
-.hw-splash h2 {
-  font-size: 1.5em;
-}
-.hw-splah-description p,
-.hw-splah-description p + p {
-  display: block;
-  width: auto;
-  height: auto;
-  min-height: auto;
-  padding-bottom: 1em;
-  line-height: 140%;
-}
-.hw-splah-description p + p {
-  display: none;
-}
 .hw-sub-close {
   top: 0.5em;
   right: 0.5em;
@@ -2701,7 +2702,6 @@ body {
 }
 .hw-services-item {
   height: 13.75em;
-  background: #576176;
 }
 .hw-services-item h3,
 .hw-services-item h3 + h3,
