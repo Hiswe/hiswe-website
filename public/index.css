@@ -115,16 +115,19 @@ a:hover {
   width: 67.5em;
   margin: 0 auto;
 }
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1121px) {
 body {
   border: 0;
 }
 .hw-main-navigation,
-.hw-splash,
+.hw-splash {
+  width: auto;
+  padding: 0 1em;
+}
 .hw-detail-panels,
 .hw-contact {
   width: auto;
-  padding: 0 1em;
+  padding: 0;
 }
 }
 .hw-title {
@@ -378,33 +381,6 @@ body {
   left: 0;
   z-index: 1;
 }
-.hw-services-item .hw-services-cover {
-  z-index: 3;
-  color: #445;
-  background: #fff;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 3em 0 0;
-  text-align: center;
-}
-.hw-services-item .hw-services-cover:before,
-.hw-services-item .hw-services-cover > * {
-  display: inline-block;
-  vertical-align: middle;
-}
-.hw-services-item .hw-services-cover:before {
-  content: ' ';
-  width: 0;
-  height: 100%;
-}
-.hw-services-item .hw-services-cover h6 {
-  font-size: 1.75em;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: normal;
-  margin: 0 0 0;
-}
 .hw-services-item:nth-child(3n+2) .hw-services-cover {
   background: #cddce4;
 }
@@ -414,6 +390,33 @@ body {
 .hw-services-item:not(.hw-panel-active) .hw-services-cover:hover {
   -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
   box-shadow: inset 0 0 0 0.5em #ff0078;
+}
+.hw-services-cover {
+  z-index: 3;
+  color: #445;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 3em 0 0;
+  text-align: center;
+}
+.hw-services-cover:before,
+.hw-services-cover > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.hw-services-cover:before {
+  content: ' ';
+  width: 0;
+  height: 100%;
+}
+.hw-services-cover h6 {
+  font-size: 1.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: normal;
+  margin: 0 0 0;
 }
 .hw-sub-panel {
   height: 100%;
@@ -450,6 +453,12 @@ body {
   color: #576176;
   position: absolute;
   left: 0;
+}
+@media screen and (max-width: 1121px) {
+.hw-services h6 {
+  font-size: 1.25em;
+  letter-spacing: 0em;
+}
 }
 .hw-sub-close {
   width: 2em;
@@ -1466,110 +1475,30 @@ body {
   -ms-transition-delay: 2s, 2s, 2s, 2s;
   transition-delay: 2s, 2s, 2s, 2s;
 }
-@-moz-keyframes spinner {
-  0% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-
-  25% {
-    clip: rect(0, 30px, 30px, 28px);
-  }
-
-  50% {
-    clip: rect(28px, 30px, 30px, 0);
-  }
-
-  75% {
-    clip: rect(0, 2px, 30px, 0);
-  }
-
-  100% {
-    clip: rect(0, 30px, 2px, 0);
-  }
+@media screen and (max-width: 479px) {
+.hw-projects-item.hw-panel-active:nth-child(3n + 2) .hw-projects-cover,
+.hw-projects-item.hw-panel-active .hw-projects-cover {
+  height: 100%;
+  top: 0;
 }
-@-webkit-keyframes spinner {
-  0% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-
-  25% {
-    clip: rect(0, 30px, 30px, 28px);
-  }
-
-  50% {
-    clip: rect(28px, 30px, 30px, 0);
-  }
-
-  75% {
-    clip: rect(0, 2px, 30px, 0);
-  }
-
-  100% {
-    clip: rect(0, 30px, 2px, 0);
-  }
+.hw-projects-item.hw-panel-active:nth-child(3n + 1) .hw-projects-cover,
+.hw-projects-item.hw-panel-active:nth-child(3n + 3) .hw-projects-cover {
+  left: 0;
 }
-@-o-keyframes spinner {
-  0% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-
-  25% {
-    clip: rect(0, 30px, 30px, 28px);
-  }
-
-  50% {
-    clip: rect(28px, 30px, 30px, 0);
-  }
-
-  75% {
-    clip: rect(0, 2px, 30px, 0);
-  }
-
-  100% {
-    clip: rect(0, 30px, 2px, 0);
-  }
+.hw-projects-item {
+  width: auto;
+  float: none;
+  height: 13.75em;
 }
-@-ms-keyframes spinner {
-  0% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-
-  25% {
-    clip: rect(0, 30px, 30px, 28px);
-  }
-
-  50% {
-    clip: rect(28px, 30px, 30px, 0);
-  }
-
-  75% {
-    clip: rect(0, 2px, 30px, 0);
-  }
-
-  100% {
-    clip: rect(0, 30px, 2px, 0);
-  }
+.hw-projects-cover,
+.hw-projects-item:nth-child(3n + 2) .hw-projects-cover {
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
 }
-@keyframes spinner {
-  0% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-
-  25% {
-    clip: rect(0, 30px, 30px, 28px);
-  }
-
-  50% {
-    clip: rect(28px, 30px, 30px, 0);
-  }
-
-  75% {
-    clip: rect(0, 2px, 30px, 0);
-  }
-
-  100% {
-    clip: rect(0, 30px, 2px, 0);
-  }
 }
 .hw-projects-content > .hw-projects-center {
   width: 700px;
@@ -1647,7 +1576,12 @@ body {
   background-position: 0 24px;
 }
 .hw-projects-content a:hover {
-  color: #445;
+  color: #ff0078;
+  background-image: -webkit-linear-gradient(top, #fff 50%, #ff0078 50%);
+  background-image: -moz-linear-gradient(top, #fff 50%, #ff0078 50%);
+  background-image: -o-linear-gradient(top, #fff 50%, #ff0078 50%);
+  background-image: -ms-linear-gradient(top, #fff 50%, #ff0078 50%);
+  background-image: linear-gradient(to bottom, #fff 50%, #ff0078 50%);
 }
 .hw-projects-aside-container,
 .hw-projects-gallery {
@@ -1779,7 +1713,7 @@ h3 + .hw-projects-gallery-container {
 .hw-projects-gallery li a::after {
   font-size: 1.5em;
   font-family: FontAwesome;
-  content: '\f08e';
+  content: '\f065';
   text-indent: 0;
   color: #ff0078;
   position: absolute;
@@ -1956,6 +1890,84 @@ h3 + .hw-projects-gallery-container {
 .hw-carrousel .hw-carrousel-selected::after,
 .hw-carrousel .hw-carrousel-selected:hover::after {
   background: rgba(255,0,120,0);
+}
+@media screen and (max-width: 1121px) {
+.hw-projects-aside-container {
+  width: 700;
+  position: static;
+}
+.hw-projects-aside-container .hw-projects-aside {
+  width: auto;
+  position: static;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  background: #ecf4f8;
+}
+.hw-projects-aside-container .hw-projects-aside:before,
+.hw-projects-aside-container .hw-projects-aside:after {
+  content: "";
+  display: table;
+}
+.hw-projects-aside-container .hw-projects-aside:after {
+  clear: both;
+}
+.hw-projects-aside-container .hw-projects-aside,
+.hw-projects-aside-container h6:not(:first-child) {
+  border: none;
+}
+.hw-projects-aside-container h6:not(:first-child) {
+  padding-left: 1em;
+}
+.hw-projects-aside-container h6 {
+  padding-right: 0.5em;
+}
+.hw-projects-aside-container h6,
+.hw-projects-aside-container p,
+.hw-projects-aside-container ol,
+.hw-projects-aside-container li {
+  float: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1em;
+}
+.hw-projects-aside-container li {
+  font-weight: normal;
+  padding-right: 0.25em;
+  text-transform: lowercase;
+}
+.hw-projects-aside-container li:not(:last-child)::after {
+  content: ',';
+}
+.hw-projects-aside-container h6 {
+  padding-top: 0.15em;
+}
+.hw-projects-content h1 {
+  margin-top: 0;
+}
+.hw-projects-gallery {
+  width: 100%;
+}
+.hw-carrousel img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+}
+@media screen and (max-width: 699px) {
+  .hw-projects-content {
+    padding: 0 1em;
+  }
+  .hw-projects-content > .hw-projects-center,
+  .hw-projects-aside-container {
+    width: auto;
+  }
+  .hw-projects-aside h6 ~ h6 {
+    clear: left;
+  }
+  .hw-projects-aside h6:not(:first-child) {
+    padding-left: 0;
+  }
 }
 label {
   display: block;
@@ -2461,7 +2473,7 @@ textarea:disabled {
     margin-bottom: 0;
   }
 }
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1121px) {
 .main-content {
   width: auto;
 }
@@ -2525,10 +2537,6 @@ textarea:disabled {
   top: 0;
   left: 0;
 }
-.hw-services h6 {
-  font-size: 1.25em;
-  letter-spacing: 0.05em;
-}
 .hw-sub-description .hw-sub-panel {
   font-size: 1em;
 }
@@ -2560,472 +2568,472 @@ textarea:disabled {
   display: inline;
   white-space: nowrap;
 }
-@media only screen and (max-width: 479px) {
-  body {
-    padding-top: 0;
-  }
-  .hw-responsive-linebreak {
-    display: inline;
-  }
-  .main-content {
-    -webkit-transition: padding 0.5s;
-    -moz-transition: padding 0.5s;
-    -o-transition: padding 0.5s;
-    -ms-transition: padding 0.5s;
-    transition: padding 0.5s;
-  }
-  .hw-body-active .main-content {
-    padding-bottom: 36em;
-  }
-  .hw-main-title {
-    position: relative;
-    z-index: 2;
-    padding-top: 0.15em;
-    padding-bottom: 0.35em;
-    padding-left: 0;
-  }
-  .hw-main-title,
-  .hw-title {
-    margin: 0;
-    top: auto;
-    text-align: center;
-    position: relative;
-    width: auto;
-  }
-  .hw-title {
-    text-align: center;
-    font-size: 2.75em;
-    display: block;
-    padding: 1em 0 0.25em;
-  }
-  .hw-main-navigation {
-    width: auto;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: auto;
-    padding-bottom: 0;
-  }
-  .hw-main-navigation ul {
-    margin-top: 0;
-  }
-  .hw-main-navigation ul:before,
-  .hw-main-navigation ul:after {
-    content: "";
-    display: table;
-  }
-  .hw-main-navigation ul:after {
-    clear: both;
-  }
-  .hw-main-navigation li {
-    width: 33.333333333333336%;
-    float: left;
-    background: rgba(0,0,0,0.75) !important;
-  }
-  .hw-main-navigation li a {
-    padding: 0.5em 0;
-  }
-  .hw-main-title,
-  .hw-main-title span,
-  .hw-title,
-  .hw-title span,
-  .hw-panels > :nth-child(n),
-  .hw-services-item .hw-sub.hw-services-cover,
-  .hw-services-item .hw-sub.hw-services-cover .hicon {
-    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-    -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-    -o-transform: matrix(1, 0, 0, 1, 0, 0);
-    -ms-transform: matrix(1, 0, 0, 1, 0, 0);
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
-  }
-  .hw-panels > *,
-  .hw-services-item {
-    display: block;
-    width: auto;
-  }
-  .hw-services-title p {
-    margin: 0;
-  }
-  .hw-services .hw-services-title {
-    padding: 0;
-  }
-  .hw-splash h2 {
-    font-size: 1.5em;
-  }
-  .hw-splah-description p,
-  .hw-splah-description p + p {
-    display: block;
-    width: auto;
-    height: auto;
-    min-height: auto;
-    padding-bottom: 1em;
-    line-height: 140%;
-  }
-  .hw-splah-description p + p {
-    display: none;
-  }
-  .hw-sub-close {
-    top: 0.5em;
-    right: 0.5em;
-    z-index: 3;
-  }
-  .hw-services-item {
-    height: 13.75em;
-    background: #576176;
-  }
-  .hw-services-item h3,
-  .hw-services-item h3 + h3,
-  .hw-services-item p {
-    margin: 0;
-  }
-  .hw-services-item .hw-sub,
-  .hw-services-item .hw-sub-close {
-    visibility: hidden;
-  }
-  .hw-services-item .hw-services-cover,
-  .hw-services-item .hw-sub-left,
-  .hw-services-item .hw-sub-right {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 13.75em;
-  }
-  .hw-services-item .hw-services-cover {
-    visibility: visible;
-    -webkit-transform-origin: center top;
-    -moz-transform-origin: center top;
-    -o-transform-origin: center top;
-    -ms-transform-origin: center top;
-    transform-origin: center top;
-    -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-    -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-    -o-transition-property: -o-transform, height, background, left, box-shadow;
-    -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-    transition-property: transform, height, background, left, box-shadow;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  }
-  .hw-services-item .hw-services-cover .hicon {
-    -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-    -moz-transition-property: -moz-transform, opacity, color, font-size;
-    -o-transition-property: -o-transform, opacity, color, font-size;
-    -ms-transition-property: -ms-transform, opacity, color, font-size;
-    transition-property: transform, opacity, color, font-size;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 1s;
-    -moz-transition-delay: 1s, 1s, 1s, 1s;
-    -o-transition-delay: 1s, 1s, 1s, 1s;
-    -ms-transition-delay: 1s, 1s, 1s, 1s;
-    transition-delay: 1s, 1s, 1s, 1s;
-    opacity: 1;
-  }
-  .hw-services-item .hw-services-cover::after {
-    -webkit-transition: visibility 0s ease 1s;
-    -moz-transition: visibility 0s ease 1s;
-    -o-transition: visibility 0s ease 1s;
-    -ms-transition: visibility 0s ease 1s;
-    transition: visibility 0s ease 1s;
-    display: block;
-    width: 0;
-    height: 0;
-    content: "";
-    border: 1em solid transparent;
-    border-top-width: 0;
-    border-bottom-color: #454a5d;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    margin-left: -0.5em;
-    visibility: hidden;
-  }
-  .hw-services-item .hw-sub-left,
-  .hw-services-item .hw-sub-right {
-    -webkit-transform: rotateX(90deg);
-    -moz-transform: rotateX(90deg);
-    -o-transform: rotateX(90deg);
-    -ms-transform: rotateX(90deg);
-    transform: rotateX(90deg);
-    -webkit-transform-origin: top center;
-    -moz-transform-origin: top center;
-    -o-transform-origin: top center;
-    -ms-transform-origin: top center;
-    transform-origin: top center;
-  }
-  .hw-services-item .hw-sub-left {
-    -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-    -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-    -o-transition-property: -o-transform, visibility, height, z-index, top;
-    -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-    transition-property: transform, visibility, height, z-index, top;
-    -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-    -webkit-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-    -moz-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-    -o-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-    -ms-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-    transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  }
-  .hw-services-item .hw-sub-right {
-    -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-    -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-    -o-transition-property: -o-transform, visibility, height, z-index, top;
-    -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-    transition-property: transform, visibility, height, z-index, top;
-    -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -webkit-transition-timing-function: ease, ease, ease, ease, ease;
-    -moz-transition-timing-function: ease, ease, ease, ease, ease;
-    -o-transition-timing-function: ease, ease, ease, ease, ease;
-    -ms-transition-timing-function: ease, ease, ease, ease, ease;
-    transition-timing-function: ease, ease, ease, ease, ease;
-    -webkit-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-    -moz-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-    -o-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-    -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-    transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  }
-  .hw-services .hw-services-item h6 {
-    font-size: 2em;
-    letter-spacing: 0.15em;
-  }
-  .hw-services .hw-services-item h6,
-  .hw-services-item .hw-services-cover img {
-    -webkit-transform: scaleY(1) translateY(0);
-    -moz-transform: scaleY(1) translateY(0);
-    -o-transform: scaleY(1) translateY(0);
-    -ms-transform: scaleY(1) translateY(0);
-    transform: scaleY(1) translateY(0);
-    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-    -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-    -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-    -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-    transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-  }
-  .hw-services-item .hw-sub-links {
-    padding-top: 0.75em;
-  }
-  .hw-services-item .hw-sub-links .hw-sub-panel {
-    padding-top: 0;
-  }
-  .hw-services-item .hw-sub-links a {
-    margin: 0.25em 0 0.5em;
-  }
-  .hw-services-item .hw-sub-description-points {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: box;
-    display: flex;
-    -ms-flex-line-pack: stretch;
-    -webkit-align-content: stretch;
-    align-content: stretch;
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -o-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    width: 100%;
-  }
-  .hw-services-item .hw-sub-description-group {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -o-box-flex: 1;
-    box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-  }
-  .hw-services-item.hw-panel-active .hw-services-cover {
-    -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-    -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-    -o-transition-property: -o-transform, height, background, left, box-shadow;
-    -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-    transition-property: transform, height, background, left, box-shadow;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -webkit-transform: scaleY(0.5);
-    -moz-transform: scaleY(0.5);
-    -o-transform: scaleY(0.5);
-    -ms-transform: scaleY(0.5);
-    transform: scaleY(0.5);
-  }
-  .hw-services-item.hw-panel-active .hw-services-cover h6,
-  .hw-services-item.hw-panel-active .hw-services-cover img {
-    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-    -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-    -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-    -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-    transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-    -webkit-transform: scaleY(2);
-    -moz-transform: scaleY(2);
-    -o-transform: scaleY(2);
-    -ms-transform: scaleY(2);
-    transform: scaleY(2);
-  }
-  .hw-services-item.hw-panel-active .hw-services-cover h6 {
-    -webkit-transform: scaleY(2) translateY(1em);
-    -moz-transform: scaleY(2) translateY(1em);
-    -o-transform: scaleY(2) translateY(1em);
-    -ms-transform: scaleY(2) translateY(1em);
-    transform: scaleY(2) translateY(1em);
-  }
-  .hw-services-item.hw-panel-active .hw-services-cover .hicon {
-    -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-    -moz-transition-property: -moz-transform, opacity, color, font-size;
-    -o-transition-property: -o-transform, opacity, color, font-size;
-    -ms-transition-property: -ms-transform, opacity, color, font-size;
-    transition-property: transform, opacity, color, font-size;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -webkit-transition-delay: 0s, 0s, 0s, 0s;
-    -moz-transition-delay: 0s, 0s, 0s, 0s;
-    -o-transition-delay: 0s, 0s, 0s, 0s;
-    -ms-transition-delay: 0s, 0s, 0s, 0s;
-    transition-delay: 0s, 0s, 0s, 0s;
-    -webkit-transform: scale(0.01);
-    -moz-transform: scale(0.01);
-    -o-transform: scale(0.01);
-    -ms-transform: scale(0.01);
-    transform: scale(0.01);
-    opacity: 0;
-  }
-  .hw-services-item.hw-panel-active .hw-services-cover::after {
-    -webkit-transition: visibility 0s ease 0s;
-    -moz-transition: visibility 0s ease 0s;
-    -o-transition: visibility 0s ease 0s;
-    -ms-transition: visibility 0s ease 0s;
-    transition: visibility 0s ease 0s;
-    visibility: visible;
-  }
-  .hw-services-item.hw-panel-active .hw-sub-close,
-  .hw-services-item.hw-panel-active .hw-sub-left,
-  .hw-services-item.hw-panel-active .hw-sub-right {
-    z-index: 10;
-    visibility: visible;
-    -webkit-transform: rotateX(0);
-    -moz-transform: rotateX(0);
-    -o-transform: rotateX(0);
-    -ms-transform: rotateX(0);
-    transform: rotateX(0);
-  }
-  .hw-services-item.hw-panel-active .hw-sub-left {
-    top: 6.875em;
-    -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-    -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-    -o-transition-property: -o-transform, visibility, height, z-index, top;
-    -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-    transition-property: transform, visibility, height, z-index, top;
-    -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-    -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-    -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-    -o-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-    -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-    transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  }
-  .hw-services .hw-services-item.hw-panel-active .hw-sub-left {
-    height: 13.75em;
-  }
-  .hw-services-item.hw-panel-active .hw-sub-right {
-    top: 20.625em;
-    height: 27.5em;
-    -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-    -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-    -o-transition-property: -o-transform, visibility, height, z-index, top;
-    -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-    transition-property: transform, visibility, height, z-index, top;
-    -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-    -webkit-transition-timing-function: ease, ease, ease, ease, ease;
-    -moz-transition-timing-function: ease, ease, ease, ease, ease;
-    -o-transition-timing-function: ease, ease, ease, ease, ease;
-    -ms-transition-timing-function: ease, ease, ease, ease, ease;
-    transition-timing-function: ease, ease, ease, ease, ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 1s, 1s;
-    -moz-transition-delay: 1s, 1s, 1s, 1s, 1s;
-    -o-transition-delay: 1s, 1s, 1s, 1s, 1s;
-    -ms-transition-delay: 1s, 1s, 1s, 1s, 1s;
-    transition-delay: 1s, 1s, 1s, 1s, 1s;
-  }
-  .hw-services .hw-services-item.hw-panel-active .hw-sub-right {
-    height: 13.75em;
-  }
-  .hw-contact aside p {
-    line-height: 1em;
-    padding-top: 0;
-  }
-  .hw-contact .hw-submit {
-    width: 100%;
-  }
-  .hw-contact .hw-reset {
-    display: none;
-  }
+@media screen and (max-width: 479px) {
+body {
+  padding-top: 0;
+}
+.hw-responsive-linebreak {
+  display: inline;
+}
+.main-content {
+  -webkit-transition: padding 0.5s;
+  -moz-transition: padding 0.5s;
+  -o-transition: padding 0.5s;
+  -ms-transition: padding 0.5s;
+  transition: padding 0.5s;
+}
+.hw-body-active .main-content {
+  padding-bottom: 36em;
+}
+.hw-main-title {
+  position: relative;
+  z-index: 2;
+  padding-top: 0.15em;
+  padding-bottom: 0.35em;
+  padding-left: 0;
+}
+.hw-main-title,
+.hw-title {
+  margin: 0;
+  top: auto;
+  text-align: center;
+  position: relative;
+  width: auto;
+}
+.hw-title {
+  text-align: center;
+  font-size: 2.75em;
+  display: block;
+  padding: 1em 0 0.25em;
+}
+.hw-main-navigation {
+  width: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: auto;
+  padding-bottom: 0;
+}
+.hw-main-navigation ul {
+  margin-top: 0;
+}
+.hw-main-navigation ul:before,
+.hw-main-navigation ul:after {
+  content: "";
+  display: table;
+}
+.hw-main-navigation ul:after {
+  clear: both;
+}
+.hw-main-navigation li {
+  width: 33.333333333333336%;
+  float: left;
+  background: rgba(0,0,0,0.75) !important;
+}
+.hw-main-navigation li a {
+  padding: 0.5em 0;
+}
+.hw-main-title,
+.hw-main-title span,
+.hw-title,
+.hw-title span,
+.hw-panels > :nth-child(n),
+.hw-services-item .hw-sub.hw-services-cover,
+.hw-services-item .hw-sub.hw-services-cover .hicon {
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
+}
+.hw-panels > *,
+.hw-services-item {
+  display: block;
+  width: auto;
+}
+.hw-services-title p {
+  margin: 0;
+}
+.hw-services .hw-services-title {
+  padding: 0;
+}
+.hw-splash h2 {
+  font-size: 1.5em;
+}
+.hw-splah-description p,
+.hw-splah-description p + p {
+  display: block;
+  width: auto;
+  height: auto;
+  min-height: auto;
+  padding-bottom: 1em;
+  line-height: 140%;
+}
+.hw-splah-description p + p {
+  display: none;
+}
+.hw-sub-close {
+  top: 0.5em;
+  right: 0.5em;
+  z-index: 3;
+}
+.hw-services-item {
+  height: 13.75em;
+  background: #576176;
+}
+.hw-services-item h3,
+.hw-services-item h3 + h3,
+.hw-services-item p {
+  margin: 0;
+}
+.hw-services-item .hw-sub,
+.hw-services-item .hw-sub-close {
+  visibility: hidden;
+}
+.hw-services-item .hw-services-cover,
+.hw-services-item .hw-sub-left,
+.hw-services-item .hw-sub-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 13.75em;
+}
+.hw-services-item .hw-services-cover {
+  visibility: visible;
+  -webkit-transform-origin: center top;
+  -moz-transform-origin: center top;
+  -o-transform-origin: center top;
+  -ms-transform-origin: center top;
+  transform-origin: center top;
+  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
+  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
+  -o-transition-property: -o-transform, height, background, left, box-shadow;
+  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
+  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+}
+.hw-services-item .hw-services-cover .hicon {
+  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
+  -moz-transition-property: -moz-transform, opacity, color, font-size;
+  -o-transition-property: -o-transform, opacity, color, font-size;
+  -ms-transition-property: -ms-transform, opacity, color, font-size;
+  transition-property: transform, opacity, color, font-size;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 1s, 1s, 1s, 1s;
+  -o-transition-delay: 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 1s, 1s, 1s, 1s;
+  transition-delay: 1s, 1s, 1s, 1s;
+  opacity: 1;
+}
+.hw-services-item .hw-services-cover::after {
+  -webkit-transition: visibility 0s ease 1s;
+  -moz-transition: visibility 0s ease 1s;
+  -o-transition: visibility 0s ease 1s;
+  -ms-transition: visibility 0s ease 1s;
+  transition: visibility 0s ease 1s;
+  display: block;
+  width: 0;
+  height: 0;
+  content: "";
+  border: 1em solid transparent;
+  border-top-width: 0;
+  border-bottom-color: #454a5d;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -0.5em;
+  visibility: hidden;
+}
+.hw-services-item .hw-sub-left,
+.hw-services-item .hw-sub-right {
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  -o-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: top center;
+  -moz-transform-origin: top center;
+  -o-transform-origin: top center;
+  -ms-transform-origin: top center;
+  transform-origin: top center;
+}
+.hw-services-item .hw-sub-left {
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -o-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+}
+.hw-services-item .hw-sub-right {
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease, ease, ease;
+  transition-timing-function: ease, ease, ease, ease, ease;
+  -webkit-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+}
+.hw-services .hw-services-item h6 {
+  font-size: 2em;
+  letter-spacing: 0.15em;
+}
+.hw-services .hw-services-item h6,
+.hw-services-item .hw-services-cover img {
+  -webkit-transform: scaleY(1) translateY(0);
+  -moz-transform: scaleY(1) translateY(0);
+  -o-transform: scaleY(1) translateY(0);
+  -ms-transform: scaleY(1) translateY(0);
+  transform: scaleY(1) translateY(0);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+}
+.hw-services-item .hw-sub-links {
+  padding-top: 0.75em;
+}
+.hw-services-item .hw-sub-links .hw-sub-panel {
+  padding-top: 0;
+}
+.hw-services-item .hw-sub-links a {
+  margin: 0.25em 0 0.5em;
+}
+.hw-services-item .hw-sub-description-points {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+}
+.hw-services-item .hw-sub-description-group {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.hw-services-item.hw-panel-active .hw-services-cover {
+  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
+  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
+  -o-transition-property: -o-transform, height, background, left, box-shadow;
+  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
+  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -webkit-transform: scaleY(0.5);
+  -moz-transform: scaleY(0.5);
+  -o-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.hw-services-item.hw-panel-active .hw-services-cover h6,
+.hw-services-item.hw-panel-active .hw-services-cover img {
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -webkit-transform: scaleY(2);
+  -moz-transform: scaleY(2);
+  -o-transform: scaleY(2);
+  -ms-transform: scaleY(2);
+  transform: scaleY(2);
+}
+.hw-services-item.hw-panel-active .hw-services-cover h6 {
+  -webkit-transform: scaleY(2) translateY(1em);
+  -moz-transform: scaleY(2) translateY(1em);
+  -o-transform: scaleY(2) translateY(1em);
+  -ms-transform: scaleY(2) translateY(1em);
+  transform: scaleY(2) translateY(1em);
+}
+.hw-services-item.hw-panel-active .hw-services-cover .hicon {
+  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
+  -moz-transition-property: -moz-transform, opacity, color, font-size;
+  -o-transition-property: -o-transform, opacity, color, font-size;
+  -ms-transition-property: -ms-transform, opacity, color, font-size;
+  transition-property: transform, opacity, color, font-size;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0s;
+  transition-delay: 0s, 0s, 0s, 0s;
+  -webkit-transform: scale(0.01);
+  -moz-transform: scale(0.01);
+  -o-transform: scale(0.01);
+  -ms-transform: scale(0.01);
+  transform: scale(0.01);
+  opacity: 0;
+}
+.hw-services-item.hw-panel-active .hw-services-cover::after {
+  -webkit-transition: visibility 0s ease 0s;
+  -moz-transition: visibility 0s ease 0s;
+  -o-transition: visibility 0s ease 0s;
+  -ms-transition: visibility 0s ease 0s;
+  transition: visibility 0s ease 0s;
+  visibility: visible;
+}
+.hw-services-item.hw-panel-active .hw-sub-close,
+.hw-services-item.hw-panel-active .hw-sub-left,
+.hw-services-item.hw-panel-active .hw-sub-right {
+  z-index: 10;
+  visibility: visible;
+  -webkit-transform: rotateX(0);
+  -moz-transform: rotateX(0);
+  -o-transform: rotateX(0);
+  -ms-transform: rotateX(0);
+  transform: rotateX(0);
+}
+.hw-services-item.hw-panel-active .hw-sub-left {
+  top: 6.875em;
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+}
+.hw-services .hw-services-item.hw-panel-active .hw-sub-left {
+  height: 13.75em;
+}
+.hw-services-item.hw-panel-active .hw-sub-right {
+  top: 20.625em;
+  height: 27.5em;
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease, ease, ease;
+  transition-timing-function: ease, ease, ease, ease, ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -o-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  transition-delay: 1s, 1s, 1s, 1s, 1s;
+}
+.hw-services .hw-services-item.hw-panel-active .hw-sub-right {
+  height: 13.75em;
+}
+.hw-contact aside p {
+  line-height: 1em;
+  padding-top: 0;
+}
+.hw-contact .hw-submit {
+  width: 100%;
+}
+.hw-contact .hw-reset {
+  display: none;
+}
 }

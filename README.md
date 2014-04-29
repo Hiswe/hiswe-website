@@ -33,19 +33,21 @@ Design a portfolio for myself
 ### TODO
 
 1. Responsive Website
+- Add links on home to static pages
 - Change top menu
-- Content
+- Update Content
+- Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
 - Add a robot.txt
 - No change of page for contact
 - Retina images
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
-- Routing can be improved with [express-resource](https://www.npmjs.org/package/express-resource)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
+- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 - JS front lib in requireJs
-- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 
-### Ispiration
+
+### Inspiration
 
 - [polygon](http://www.polygon.com/2014/4/7/5582644/mlb-14-the-show-review)
 - [medium](https://medium.com/gulp-js-build/23812e4c9ec1)

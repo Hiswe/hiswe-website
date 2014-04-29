@@ -1,11 +1,5 @@
-@import 'nib/reset'
-@import 'nib/positions'
-@import './css-config'
-@import './css-mixins'
-
 html, body, ul, dt, dl, dd
   reset-box-model()
-
 
 @font-face
   font-family 'FontAwesome'
@@ -60,19 +54,23 @@ a
   width px2em($desktop-width)
   margin 0 auto
 
-tablet-start()
+media-tablet()
 
 body
   border 0
 
 .hw-main-navigation,
-.hw-splash,
-.hw-detail-panels,
-.hw-contact
+.hw-splash
   width auto
   padding 0 1em
 
-tablet-end()
+.hw-detail-panels,
+.hw-contact
+  width auto
+  padding 0
+
+
+media-query-end()
 
 
 .hw-title

@@ -4,6 +4,7 @@
   "carrouselClass"          : "hw-carrousel",
   "desktopWidth"            : 1080,
   "carrouselHeight"         : 552,
+  "carrouselImageLoaded"    : "hw-carrousel-image-loaded",
   "carrouselClassSelected"  : "hw-carrousel-selected",
   "projectCoverLoad"        : "hw-projects-cover-lazyload"
 }

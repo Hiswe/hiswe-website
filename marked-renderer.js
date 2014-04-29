@@ -120,7 +120,7 @@ var buildFigure = function (image, text) {
   var figureMarkup =  [
     '<figure class="' + image.type + '">',
       image.markup.join(''),
-      '<a href="' + image.href + '">' + image.title + '</a>',
+      '<a href="' + image.href + '" target="_blank">' + image.title + '</a>',
     '</figure>'
   ];
 

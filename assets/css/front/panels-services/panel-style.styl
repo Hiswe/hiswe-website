@@ -1,9 +1,3 @@
-@import 'nib/reset'
-@import 'nib/vendor'
-@import 'nib/positions'
-@import '../css-config'
-@import '../css-mixins'
-
 .hw-services
   position relative
   z-index 1
@@ -50,7 +44,17 @@
     absolute top left
     z-index 1
 
-  .hw-services-cover
+  &:nth-child(3n+2) .hw-services-cover
+    background $grey
+
+  &:not(.{activeClass})
+    .hw-services-cover
+      cursor pointer
+
+      &:hover
+        box-shadow inset 0 0 0 px2em($hover-width) $hover-color
+
+.hw-services-cover
     z-index 3
     color $black
     background white
@@ -64,16 +68,6 @@
       letter-spacing .2em
       font-weight normal
       margin 0 0 0
-
-  &:nth-child(3n+2) .hw-services-cover
-    background $grey
-
-  &:not(.{activeClass})
-    .hw-services-cover
-      cursor pointer
-
-      &:hover
-        box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
 .hw-sub-panel
   height 100%; width @height
@@ -103,6 +97,13 @@
       color $dark-grey
       absolute left
 
+media-tablet()
+
+.hw-services h6
+  font-size 1.25em
+  letter-spacing 0em
+
+media-query-end()
 // Close button
 .hw-sub-close
   width 2em; height @width

@@ -47,8 +47,14 @@ image-center(selector = 'img')
       left 100%
       margin-left -200%
 
-tablet-start()
+media-tablet()
   unquote("@media screen and (max-width: " + $tablet-width + ") {")
 
-tablet-end()
+media-big-mobile()
+  unquote("@media screen and (max-width: " + 800px + ") {")
+
+media-small-mobile()
+  unquote("@media screen and (max-width: " + $mobile-width + ") {")
+
+media-query-end()
   unquote("}")

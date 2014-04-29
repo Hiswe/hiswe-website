@@ -374,9 +374,6 @@ ServicesCarrousel = (function(_super) {
     this.updateProgress = __bind(this.updateProgress, this);
     this.loadImage = __bind(this.loadImage, this);
     this.onProgress = __bind(this.onProgress, this);
-    if (!Modernizr.csstransforms) {
-      return this.warn('No css transform available');
-    }
     ServicesCarrousel.__super__.constructor.apply(this, arguments);
     if (!this.el.length) {
       return this.warn('No element defined');
@@ -384,18 +381,27 @@ ServicesCarrousel = (function(_super) {
     if (this.el.hasClass(options.carrouselClass)) {
       return this.warn('Carrousel already intialized');
     }
-    this.init();
+    this.initCarrousel();
+    this.loadImages();
     this;
   }
 
-  ServicesCarrousel.prototype.init = function() {
-    var loadedImages;
+  ServicesCarrousel.prototype.initCarrousel = function() {
+    if (!Modernizr.csstransforms) {
+      this.el.off('tap', '.hw-projects-gallery li');
+      return this.warn('No css transform available');
+    }
     this.log('Init');
     this.el.addClass(options.carrouselClass);
     this.li.eq(0).addClass(options.carrouselClassSelected);
     this.total = this.li.length;
     this.galleryWidth = this.gallery.width();
     this.log('with', this.total, 'image(s)');
+    return this;
+  };
+
+  ServicesCarrousel.prototype.loadImages = function() {
+    var loadedImages;
     loadedImages = this.initLoading().imagesLoaded();
     loadedImages.progress(this.onProgress).done((function(_this) {
       return function() {
@@ -417,7 +423,7 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.onProgress = function(instance, image) {
     this.log('on progress');
-    return $(image.img).css('opacity', '').parent().removeClass('hw-projects-lazyload-loading');
+    return $(image.img).addClass(options.carrouselImageLoaded).css('opacity', '').parent().removeClass('hw-projects-lazyload-loading');
   };
 
   ServicesCarrousel.prototype.loadImage = function(index, image) {
@@ -766,6 +772,7 @@ module.exports={
   "carrouselClass"          : "hw-carrousel",
   "desktopWidth"            : 1080,
   "carrouselHeight"         : 552,
+  "carrouselImageLoaded"    : "hw-carrousel-image-loaded",
   "carrouselClassSelected"  : "hw-carrousel-selected",
   "projectCoverLoad"        : "hw-projects-cover-lazyload"
 }

@@ -1,9 +1,3 @@
-@import 'nib/positions'
-@import 'nib/reset'
-@import './css-config'
-@import './css-mixins'
-@import './projects-transitions'
-
 .hw-projects
   clearfix()
   position relative
@@ -160,3 +154,32 @@
     fixed top 1em right 1em
     visibility visible
     projects-close-button-in()
+
+// media-tablet()
+
+// media-query-end()
+
+media-small-mobile()
+
+.hw-projects-item.{activeClass}
+
+  &:nth-child(3n + 2) .hw-projects-cover,
+  & .hw-projects-cover
+    height 100%
+    top 0
+
+  &:nth-child(3n + 1) .hw-projects-cover,
+  &:nth-child(3n + 3) .hw-projects-cover
+    left 0
+
+.hw-projects-item
+  width auto
+  float none
+  height px2em($mobile-cover-height)
+
+
+.hw-projects-cover,
+.hw-projects-item:nth-child(3n + 2) .hw-projects-cover
+  iso-reset()
+
+media-query-end()

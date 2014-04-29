@@ -1,7 +1,3 @@
-@import 'nib/positions'
-@import 'hstrap/mixins/general'
-@import './../css-config'
-@import './../css-mixins'
 @import './../panels-services/panel-transitions'
 
 .hw-responsive-linebreak
@@ -12,226 +8,229 @@
   white-space nowrap
 
 // Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
-@media only screen and (max-width: 479px)
-  if debug()
-    html::before
-      content "479"
+media-small-mobile()
 
-  body
-    padding-top 0
+if debug()
+  html::before
+    content "479"
 
-  .hw-responsive-linebreak
-    display inline
+body
+  padding-top 0
 
-  .main-content
-    transition padding .5s
+.hw-responsive-linebreak
+  display inline
 
-    .{activeBody} &
-      padding-bottom 36em
+.main-content
+  transition padding .5s
 
-  .hw-main-title
-    position relative; z-index 2
-    padding-top .15em
-    padding-bottom .35em
-    padding-left 0
+  .{activeBody} &
+    padding-bottom 36em
 
-  .hw-main-title,
-  .hw-title
-    margin 0; top auto
-    text-align center
-    position relative
-    width auto
+.hw-main-title
+  position relative; z-index 2
+  padding-top .15em
+  padding-bottom .35em
+  padding-left 0
 
-  .hw-title
-    text-align center
-    font-size 2.75em
-    display block
-    padding  1em 0 .25em
+.hw-main-title,
+.hw-title
+  margin 0; top auto
+  text-align center
+  position relative
+  width auto
 
-  .hw-main-navigation
-    width auto
-    fixed left bottom
-    top auto
-    padding-bottom 0
+.hw-title
+  text-align center
+  font-size 2.75em
+  display block
+  padding  1em 0 .25em
 
-    ul
-      clearfix()
-      margin-top 0
+.hw-main-navigation
+  width auto
+  fixed left bottom
+  top auto
+  padding-bottom 0
 
-    li
-      width third()
-      float left
-      // TODO find a way to remove the important
-      background noir(.75) !important
+  ul
+    clearfix()
+    margin-top 0
 
-      a
-        padding .5em 0
+  li
+    width third()
+    float left
+    // TODO find a way to remove the important
+    background noir(.75) !important
 
-  .hw-main-title,
-  .hw-main-title span,
-  .hw-title,
-  .hw-title span,
-  .hw-panels > :nth-child(n),
-  .hw-services-item .hw-sub.hw-services-cover,
-  .hw-services-item .hw-sub.hw-services-cover .hicon
-    iso-reset()
+    a
+      padding .5em 0
 
-  .hw-panels > *,
-  .hw-services-item
-    display block
-    width auto
+.hw-main-title,
+.hw-main-title span,
+.hw-title,
+.hw-title span,
+.hw-panels > :nth-child(n),
+.hw-services-item .hw-sub.hw-services-cover,
+.hw-services-item .hw-sub.hw-services-cover .hicon
+  iso-reset()
 
-  .hw-services-title p
-      margin 0
+.hw-panels > *,
+.hw-services-item
+  display block
+  width auto
 
-  .hw-services .hw-services-title
-    padding 0
+.hw-services-title p
+    margin 0
 
-  // Splash
-  .hw-splash
-    h2
-      font-size 1.5em
+.hw-services .hw-services-title
+  padding 0
 
-  .hw-splah-description p,
-  .hw-splah-description p + p
-    display block
-    width auto; height auto; min-height auto
-    padding-bottom 1em
-    line-height 140%
+// Splash
+.hw-splash
+  h2
+    font-size 1.5em
 
-  .hw-splah-description p + p
-    display none
+.hw-splah-description p,
+.hw-splah-description p + p
+  display block
+  width auto; height auto; min-height auto
+  padding-bottom 1em
+  line-height 140%
 
-  // panels animation
+.hw-splah-description p + p
+  display none
+
+// panels animation
+.hw-sub-close
+  top .5em
+  right .5em
+  z-index 3
+
+$$height = px2em($mobile-cover-height)
+
+.hw-services-item
+  height $$height
+  background $dark-grey
+
+  h3, h3 + h3, p
+    margin 0
+
+  .hw-sub,
   .hw-sub-close
-    top .5em
-    right .5em
-    z-index 3
+    visibility hidden
 
-  $$height = px2em(220)
-
-  .hw-services-item
+  .hw-services-cover,
+  .hw-sub-left,
+  .hw-sub-right
+    absolute top left
     height $$height
-    background $dark-grey
 
-    h3, h3 + h3, p
-      margin 0
+  .hw-services-cover
+    visibility visible
+    transform-origin center top
+    default-out()
 
-    .hw-sub,
-    .hw-sub-close
+    .hicon
+      icon-out()
+      opacity 1
+
+    &::after
+      mobile-stem-out()
+      $$stem-size = 1em
+      stem("top", $darkest-grey, $$stem-size)
+      absolute bottom 0 left 50%
+      margin-left -($$stem-size/2)
       visibility hidden
 
-    .hw-services-cover,
-    .hw-sub-left,
-    .hw-sub-right
-      absolute top left
-      height $$height
+  .hw-sub-left,
+  .hw-sub-right
+    transform rotateX(90deg)
+    transform-origin top center
 
+  .hw-sub-left
+    mobile-left-out()
+
+  .hw-sub-right
+    mobile-right-out()
+
+  // description in services
+  .hw-services & h6
+    font-size 2em
+    letter-spacing 0.15em
+
+  .hw-services & h6
+  .hw-services-cover img
+    transform scaleY(1) translateY(0)
+    mobile-title-out()
+
+  .hw-sub-links
+    padding-top .75em
+
+    .hw-sub-panel
+      padding-top 0
+    a
+      margin .25em 0 .5em
+
+  // description in work
+  .hw-sub-description-points
+    flex-row()
+    width 100%
+
+  .hw-sub-description-group
+    flex 1
+
+  &.{activeClass}
     .hw-services-cover
-      visibility visible
-      transform-origin center top
-      default-out()
+      default-in()
+      transform scaleY(.5)
+
+      h6, img
+        mobile-title-in()
+        transform scaleY(2)
+
+      h6
+        transform scaleY(2) translateY(1em)
 
       .hicon
-        icon-out()
-        opacity 1
+        icon-in()
+        transform scale(0.01)
+        opacity 0
 
       &::after
-        mobile-stem-out()
-        $$stem-size = 1em
-        stem("top", $darkest-grey, $$stem-size)
-        absolute bottom 0 left 50%
-        margin-left -($$stem-size/2)
-        visibility hidden
+        mobile-stem-in()
+        visibility visible
 
+    .hw-sub-close,
     .hw-sub-left,
     .hw-sub-right
-      transform rotateX(90deg)
-      transform-origin top center
+      z-index 10
+      visibility visible
+      transform rotateX(0)
 
     .hw-sub-left
-      mobile-left-out()
+      top ($$height / 2)
+      mobile-left-in()
+
+      .hw-services &
+        height $$height
 
     .hw-sub-right
-      mobile-right-out()
+      top ($$height * 1.5)
+      height ($$height * 2)
+      mobile-right-in()
 
-    // description in services
-    .hw-services & h6
-      font-size 2em
-      letter-spacing 0.15em
+      .hw-services &
+        height $$height
 
-    .hw-services & h6
-    .hw-services-cover img
-      transform scaleY(1) translateY(0)
-      mobile-title-out()
+.hw-contact
 
-    .hw-sub-links
-      padding-top .75em
+  aside p
+    line-height 1em
+    padding-top 0
 
-      .hw-sub-panel
-        padding-top 0
-      a
-        margin .25em 0 .5em
+  .hw-submit
+    width 100%
 
-    // description in work
-    .hw-sub-description-points
-      flex-row()
-      width 100%
+  .hw-reset
+    display none
 
-    .hw-sub-description-group
-      flex 1
-
-    &.{activeClass}
-      .hw-services-cover
-        default-in()
-        transform scaleY(.5)
-
-        h6, img
-          mobile-title-in()
-          transform scaleY(2)
-
-        h6
-          transform scaleY(2) translateY(1em)
-
-        .hicon
-          icon-in()
-          transform scale(0.01)
-          opacity 0
-
-        &::after
-          mobile-stem-in()
-          visibility visible
-
-      .hw-sub-close,
-      .hw-sub-left,
-      .hw-sub-right
-        z-index 10
-        visibility visible
-        transform rotateX(0)
-
-      .hw-sub-left
-        top ($$height / 2)
-        mobile-left-in()
-
-        .hw-services &
-          height $$height
-
-      .hw-sub-right
-        top ($$height * 1.5)
-        height ($$height * 2)
-        mobile-right-in()
-
-        .hw-services &
-          height $$height
-
-  .hw-contact
-
-    aside p
-      line-height 1em
-      padding-top 0
-
-    .hw-submit
-      width 100%
-
-    .hw-reset
-      display none
+media-query-end()

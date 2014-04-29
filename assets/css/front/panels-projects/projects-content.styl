@@ -1,9 +1,3 @@
-@import 'nib/positions'
-@import 'nib/reset'
-@import './css-config'
-@import './css-mixins'
-@import './projects-transitions'
-
 .hw-projects-content
   > .hw-projects-center
     width unit($project-width, 'px')
@@ -64,7 +58,8 @@
     background-position 0 24px
 
     &:hover
-      color $black
+      color $pink
+      background-image linear-gradient(to bottom,#fff 50%,$pink 50%)
 
 .hw-projects-aside-container,
 .hw-projects-gallery
@@ -171,7 +166,7 @@
       &::after
         font-size 1.5em
         font-family FontAwesome
-        content '\f08e'
+        content '\f065'
         text-indent 0
         color $pink
         absolute top right
@@ -276,3 +271,72 @@
     &::after,
     &:hover::after
       background rgba($pink, 0)
+
+media-tablet()
+
+.hw-projects-aside-container
+  width $project-width
+  position static
+
+  .hw-projects-aside
+    width auto
+    position static
+    padding .5em
+    margin-bottom 1em
+    background $light-grey
+    clearfix()
+
+  .hw-projects-aside,
+  h6:not(:first-child)
+    border none
+
+  h6:not(:first-child)
+    padding-left 1em
+
+  h6
+    padding-right .5em
+
+  h6, p, ol, li
+    float left
+    padding-top 0; padding-bottom 0
+    line-height 1em
+
+  li
+    font-weight normal
+    padding-right .25em
+    text-transform lowercase
+
+    &:not(:last-child)::after
+      content ','
+
+  h6
+    // compensating the font-size difference…
+    padding-top .15em
+
+
+
+.hw-projects-content h1
+  margin-top 0
+
+.hw-projects-gallery
+  width 100%
+
+.{carrouselClass} img
+  width auto; height auto
+  max-width 100%; max-height 100%
+
+media-query-end()
+
+@media screen and (max-width: 699px)
+  .hw-projects-content
+    padding 0 1em
+
+  .hw-projects-content > .hw-projects-center,
+  .hw-projects-aside-container
+    width auto
+
+  .hw-projects-aside h6 ~ h6
+    clear left
+
+  .hw-projects-aside h6:not(:first-child)
+    padding-left 0

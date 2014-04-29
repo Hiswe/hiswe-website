@@ -20,18 +20,20 @@ class ServicesCarrousel extends Controller
   }
 
   constructor: ->
-    # We can't run it without css transforms
-    return @warn 'No css transform available' unless Modernizr.csstransforms
     super
     return @warn 'No element defined' unless @el.length
     return @warn 'Carrousel already intialized' if @el.hasClass(options.carrouselClass)
 
-    @init()
+    @initCarrousel()
+    @loadImages()
     this
 
-  init: ->
-    @log 'Init'
+  initCarrousel: ->
+    unless Modernizr.csstransforms
+      @el.off('tap', '.hw-projects-gallery li')
+      return @warn 'No css transform available'
 
+    @log 'Init'
     @el.addClass(options.carrouselClass)
     @li.eq(0)
       .addClass(options.carrouselClassSelected)
@@ -40,7 +42,11 @@ class ServicesCarrousel extends Controller
     @galleryWidth = @gallery.width()
 
     @log 'with', @total, 'image(s)'
+    this
 
+
+  # Images Lazy load
+  loadImages: ->
     loadedImages = @initLoading().imagesLoaded()
     loadedImages
       .progress(@onProgress)
@@ -52,7 +58,6 @@ class ServicesCarrousel extends Controller
 
     this
 
-  # Images Lazy load
   initLoading: ->
     @log 'Init loading'
     @images.each @loadImage
@@ -61,6 +66,7 @@ class ServicesCarrousel extends Controller
   onProgress: (instance, image) =>
     @log 'on progress'
     $( image.img )
+      .addClass(options.carrouselImageLoaded)
       .css('opacity', '')
       .parent()
       .removeClass('hw-projects-lazyload-loading')
