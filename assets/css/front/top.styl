@@ -64,12 +64,10 @@
   .hw-splah-description
     position relative
 
-  p, .hw-hire
+  p
     box-sizing border-box
     display inline-block
     font-size px2em(21)
-
-  p
     vertical-align top
     width 50%; height 3em
     padding 0 1em
@@ -78,21 +76,3 @@
 
     + p
       padding-right 0
-
-  .hw-hire
-    $hw-hire-depth = .5em
-    width 45%; padding 1em; margin-top -2.75em
-    background $dark-blue
-    color white
-    float right
-    position relative
-    text-align center; font-weight bold
-    transition box-shadow $hover-transition, background $hover-transition
-
-    &:hover
-      box-shadow inset 0 0 0 .5em $hover-color
-
-    &:active
-      left -9px
-      top -5px
-      box-shadow none

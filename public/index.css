@@ -275,15 +275,12 @@ body {
 .hw-splash .hw-splah-description {
   position: relative;
 }
-.hw-splash p,
-.hw-splash .hw-hire {
+.hw-splash p {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
   font-size: 1.3125em;
-}
-.hw-splash p {
   vertical-align: top;
   width: 50%;
   height: 3em;
@@ -293,32 +290,6 @@ body {
 }
 .hw-splash p + p {
   padding-right: 0;
-}
-.hw-splash .hw-hire {
-  width: 45%;
-  padding: 1em;
-  margin-top: -2.75em;
-  background: #008edc;
-  color: #fff;
-  float: right;
-  position: relative;
-  text-align: center;
-  font-weight: bold;
-  -webkit-transition: box-shadow 0.25s, background 0.25s;
-  -moz-transition: box-shadow 0.25s, background 0.25s;
-  -o-transition: box-shadow 0.25s, background 0.25s;
-  -ms-transition: box-shadow 0.25s, background 0.25s;
-  transition: box-shadow 0.25s, background 0.25s;
-}
-.hw-splash .hw-hire:hover {
-  -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
-  box-shadow: inset 0 0 0 0.5em #ff0078;
-}
-.hw-splash .hw-hire:active {
-  left: -9px;
-  top: -5px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 .hw-services {
   position: relative;
@@ -2556,7 +2527,6 @@ textarea:disabled {
 .hw-main-title,
 .hw-main-title a span,
 .hw-main-navigation .hw-panels-pink li,
-.hw-splah-description .hw-hire,
 .hw-splah-description p,
 .hw-splah-description p + p,
 .hw-contact aside {
@@ -2593,20 +2563,6 @@ textarea:disabled {
 }
 .hw-splah-description p + p {
   text-align: right;
-}
-.hw-splah-description .hw-hire {
-  float: none;
-  display: block;
-  margin: 0 1em;
-  width: auto;
-}
-.hw-splah-description .hw-hire:before,
-.hw-splah-description .hw-hire:after {
-  display: none;
-}
-.hw-splah-description .hw-hire:active {
-  top: 0;
-  left: 0;
 }
 .hw-sub-description .hw-sub-panel {
   font-size: 1em;
