@@ -344,6 +344,9 @@ body {
 .hw-services .hw-services-list .hw-sub-right {
   background: #454a5d;
 }
+.hw-services .hw-services-list .hw-panel-active {
+  z-index: 2;
+}
 .hw-services .hw-services-list .hw-panel-active .hw-services-cover {
   color: #fff;
   background: #576176;
@@ -454,12 +457,6 @@ body {
   position: absolute;
   left: 0;
 }
-@media screen and (max-width: 1121px) {
-.hw-services h6 {
-  font-size: 1.25em;
-  letter-spacing: 0em;
-}
-}
 .hw-sub-close {
   width: 2em;
   height: 2em;
@@ -521,6 +518,35 @@ body {
 .hw-panel-cover object {
   max-width: 100%;
   max-height: 100%;
+}
+@media screen and (max-width: 1121px) {
+.hw-services h6 {
+  font-size: 1.25em;
+  letter-spacing: 0em;
+}
+}
+@media screen and (max-width: 800px) {
+.hw-services-item {
+  width: 50%;
+}
+.hw-services-item:nth-child(2n) .hw-services-cover {
+  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
+  background: #cddce4;
+}
+.hw-services-item:nth-child(2n + 1) .hw-services-cover {
+  -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
+  background: #fff;
+}
 }
 @media only screen and (min-width: 480px) {
   .hw-services {
@@ -1475,7 +1501,66 @@ body {
   -ms-transition-delay: 2s, 2s, 2s, 2s;
   transition-delay: 2s, 2s, 2s, 2s;
 }
+@media screen and (max-width: 800px) {
+.hw-projects-item {
+  width: 50%;
+}
+.hw-projects-item:nth-child(2n).hw-panel-active .hw-projects-cover {
+  left: -50%;
+}
+.hw-projects-item:nth-child(2n) .hw-projects-cover {
+  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
+  background: #cddce4;
+}
+.hw-projects-item:nth-child(2n + 1).hw-panel-active .hw-projects-cover {
+  left: 50%;
+}
+.hw-projects-item:nth-child(2n + 1) .hw-projects-cover {
+  -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
+  background: #fff;
+}
+.hw-projects-item:nth-child(2n).hw-panel-active .hw-projects-cover,
+.hw-projects-item:nth-child(2n + 1).hw-panel-active .hw-projects-cover {
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
+}
+}
 @media screen and (max-width: 479px) {
+.hw-projects-item:nth-child(2n),
+.hw-projects-item:nth-child(2n + 1) {
+  width: auto;
+  float: none;
+  height: 13.75em;
+}
+.hw-projects-item:nth-child(2n) .hw-projects-cover,
+.hw-projects-item:nth-child(2n + 1) .hw-projects-cover {
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
+}
+.hw-projects-item:nth-child(2n) .hw-projects-cover {
+  background: #fff;
+}
+.hw-projects-item:nth-child(2n + 1) .hw-projects-cover {
+  background: #cddce4;
+}
 .hw-projects-item.hw-panel-active:nth-child(3n + 2) .hw-projects-cover,
 .hw-projects-item.hw-panel-active .hw-projects-cover {
   height: 100%;
@@ -1484,20 +1569,6 @@ body {
 .hw-projects-item.hw-panel-active:nth-child(3n + 1) .hw-projects-cover,
 .hw-projects-item.hw-panel-active:nth-child(3n + 3) .hw-projects-cover {
   left: 0;
-}
-.hw-projects-item {
-  width: auto;
-  float: none;
-  height: 13.75em;
-}
-.hw-projects-cover,
-.hw-projects-item:nth-child(3n + 2) .hw-projects-cover {
-  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-  -o-transform: matrix(1, 0, 0, 1, 0, 0);
-  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
-  transform: matrix(1, 0, 0, 1, 0, 0);
-  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
 }
 }
 .hw-projects-content > .hw-projects-center {

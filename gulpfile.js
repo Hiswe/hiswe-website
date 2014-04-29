@@ -41,7 +41,6 @@ var livereload  = require('gulp-livereload');
 var server = lr();
 
 var stylusVar   = require('./config/datas/stylus-var.json');
-stylusVar.isDev = true;
 
 // Plumber error callback
 var onError = function onError(err) {

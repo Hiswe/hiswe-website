@@ -5,6 +5,8 @@ class Controller
   trace: false
   logPrefix: '(App)'
 
+  @e: $({})
+
   log: (args...) ->
     return unless @trace
     if @logPrefix then args.unshift("#{@logPrefix} – #{@id}")

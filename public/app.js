@@ -207,6 +207,8 @@ Controller = (function() {
 
   Controller.prototype.logPrefix = '(App)';
 
+  Controller.e = $({});
+
   Controller.prototype.log = function() {
     var args;
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];

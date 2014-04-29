@@ -155,11 +155,51 @@
     visibility visible
     projects-close-button-in()
 
-// media-tablet()
+// Big Mobile
+media-big-mobile()
 
-// media-query-end()
+.hw-projects-item
+  width 50%
 
+.hw-projects-item:nth-child(2n)
+  &.{activeClass} .hw-projects-cover
+    left -50%
+
+  .hw-projects-cover
+    iso-right()
+    background $grey
+
+.hw-projects-item:nth-child(2n + 1)
+  &.{activeClass} .hw-projects-cover
+    left 50%
+
+  .hw-projects-cover
+    iso-left()
+    background white
+
+.hw-projects-item:nth-child(2n)
+.hw-projects-item:nth-child(2n + 1)
+  &.{activeClass} .hw-projects-cover
+    iso-reset()
+
+media-query-end()
+
+// Small Mobile
 media-small-mobile()
+
+.hw-projects-item:nth-child(2n),
+.hw-projects-item:nth-child(2n + 1)
+  width auto
+  float none
+  height px2em($mobile-cover-height)
+
+  .hw-projects-cover
+    iso-reset()
+
+.hw-projects-item:nth-child(2n) .hw-projects-cover
+  background white
+.hw-projects-item:nth-child(2n + 1) .hw-projects-cover
+  background $grey
 
 .hw-projects-item.{activeClass}
 
@@ -172,14 +212,8 @@ media-small-mobile()
   &:nth-child(3n + 3) .hw-projects-cover
     left 0
 
-.hw-projects-item
-  width auto
-  float none
-  height px2em($mobile-cover-height)
-
-
-.hw-projects-cover,
-.hw-projects-item:nth-child(3n + 2) .hw-projects-cover
-  iso-reset()
+// .hw-projects-cover,
+// .hw-projects-item:nth-child(3n + 2) .hw-projects-cover
+//   iso-reset()
 
 media-query-end()

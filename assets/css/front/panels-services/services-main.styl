@@ -15,12 +15,15 @@
     .hw-sub-right
       background $darkest-grey
 
-    .{activeClass} .hw-services-cover
-      color white
-      background $dark-grey
+    .{activeClass}
+      z-index 2
 
-      .hicon
-        color $darkest-gray
+      .hw-services-cover
+        color white
+        background $dark-grey
+
+        .hicon
+          color $darkest-gray
 
 .hw-highlight
   z-index 2
@@ -97,13 +100,7 @@
       color $dark-grey
       absolute left
 
-media-tablet()
 
-.hw-services h6
-  font-size 1.25em
-  letter-spacing 0em
-
-media-query-end()
 // Close button
 .hw-sub-close
   width 2em; height @width
@@ -143,3 +140,41 @@ media-query-end()
   object
     max-width 100%
     max-height 100%
+
+// @media Tablet
+media-tablet()
+
+.hw-services h6
+  font-size 1.25em
+  letter-spacing 0em
+
+media-query-end()
+
+// @media Big Mobile
+media-big-mobile()
+
+.hw-services-item
+  width 50%
+
+.hw-services-item:nth-child(2n)
+  // &.{activeClass} .hw-services-cover
+  //   left -50%
+
+  .hw-services-cover
+    iso-right()
+    background $grey
+
+.hw-services-item:nth-child(2n + 1)
+  // &.{activeClass} .hw-services-cover
+  //   left 50%
+
+  .hw-services-cover
+    iso-left()
+    background white
+
+// .hw-projects-item:nth-child(2n)
+// .hw-projects-item:nth-child(2n + 1)
+//   &.{activeClass} .hw-projects-cover
+//     iso-reset()
+
+media-query-end()
