@@ -194,12 +194,9 @@ media-small-mobile()
   height px2em($mobile-cover-height)
 
   .hw-projects-cover
+    background white
     iso-reset()
-
-.hw-projects-item:nth-child(2n) .hw-projects-cover
-  background white
-.hw-projects-item:nth-child(2n + 1) .hw-projects-cover
-  background $grey
+    box-shadow inset 0 1px 0 0 noir(.1)
 
 .hw-projects-item.{activeClass}
 
