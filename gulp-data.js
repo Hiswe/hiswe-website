@@ -26,7 +26,8 @@ var setCover = function setCover(fileName) {
   openFile(absolutePath + '.png', 'r')
     .then(function () {
       return imageDescription(fileName, 'png');
-    }, function (err){
+    })
+    .catch(function (err){
       return openFile(absolutePath + '.svg', 'r')
     })
     .then(function (file){
@@ -34,9 +35,11 @@ var setCover = function setCover(fileName) {
         return deferred.resolve(imageDescription(fileName, 'svg'));
       }
       return deferred.resolve(file);
-    }, function (err){
+    })
+    .catch(function (err){
       return deferred.reject('no such files' + conf.serverSrc + fileName + '.png | svg');
-    }).done();
+    })
+    .done();
 
   return deferred.promise;
 };
@@ -65,7 +68,7 @@ var saveForProject = function saveForProject(fileName, data, coverImage) {
   projectsDb[fileName[2]] = marked(data, {sanitize: true});
 };
 
-var processMarkdownFile = function readFile(fileName, data, deferred) {
+var processMarkdownFile = function processMarkdownFile(fileName, data, deferred) {
 
   fileName = fileName.match(/^(\d*)-(.*).md$/);
 
@@ -74,11 +77,12 @@ var processMarkdownFile = function readFile(fileName, data, deferred) {
       saveforHome(fileName, data, coverImage);
       saveForProject(fileName, data, coverImage);
       return deferred.resolve();
-    }, function (err){
+    })
+    .catch(function (err){
       return deferred.reject(err);
-    }).done();
+    })
+    .done();
 };
-
 
 var walkFiles = function walkFiles(files) {
   var mdFiles = files.filter(function(fileName){
@@ -87,9 +91,8 @@ var walkFiles = function walkFiles(files) {
   return mdFiles.map(function (fileName) {
     var deferred  = Q.defer();
     Q.npost(fs, 'readFile', [conf.db.src + '/' + fileName, {encoding: 'utf8'}])
-      .then(
-        function (data) {
-          return processMarkdownFile(fileName, data, deferred)
+      .then(function (data) {
+        return processMarkdownFile(fileName, data, deferred)
       });
     return deferred.promise;
   });
