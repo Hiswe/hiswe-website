@@ -9,6 +9,7 @@ var marked        = require('marked');
 var homeDb        = [];
 var projectsDb    = {};
 var openFile      = Q.denodeify(fs.open);
+var readFile      = Q.denodeify(fs.readFile);
 
 
 // Other things
@@ -90,7 +91,7 @@ var walkFiles = function walkFiles(files) {
   });
   return mdFiles.map(function (fileName) {
     var deferred  = Q.defer();
-    Q.npost(fs, 'readFile', [conf.db.src + '/' + fileName, {encoding: 'utf8'}])
+    readFile(conf.db.src + '/' + fileName, {encoding: 'utf8'})
       .then(function (data) {
         return processMarkdownFile(fileName, data, deferred)
       });
