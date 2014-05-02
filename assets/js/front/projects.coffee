@@ -34,19 +34,21 @@ class Projects extends Controller
     this
 
   loadCovers: ->
-    @$(".#{options.projectCoverLoad}")
-      .each( ->
-        $cover = $(this)
-        $title = $cover.find('span')
-        imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
+    @wait(1000).then =>
+      @log 'init load cover'
+      @$(".#{options.projectCoverLoad}")
+        .each( ->
+          $cover = $(this)
+          $title = $cover.find('span')
+          imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
 
-        $(imgMarkup)
-          .appendTo($cover)
-          .imagesLoaded()
-          .done( ->
-            $cover.removeClass(options.projectCoverLoad)
-          )
-      )
+          $(imgMarkup)
+            .appendTo($cover)
+            .imagesLoaded()
+            .done( ->
+              $cover.removeClass(options.projectCoverLoad)
+            )
+        )
 
   transitionend: (event) ->
     e = event.originalEvent

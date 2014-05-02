@@ -247,6 +247,13 @@ Controller = (function() {
     return setTimeout(this.proxy(func), timeout || 1);
   };
 
+  Controller.prototype.wait = function(timeout) {
+    var dfd;
+    dfd = new jQuery.Deferred();
+    setTimeout(dfd.resolve, timeout);
+    return dfd.promise();
+  };
+
   Controller.prototype.proxy = function(func) {
     return (function(_this) {
       return function() {
@@ -553,15 +560,20 @@ Projects = (function(_super) {
   };
 
   Projects.prototype.loadCovers = function() {
-    return this.$("." + options.projectCoverLoad).each(function() {
-      var $cover, $title, imgMarkup;
-      $cover = $(this);
-      $title = $cover.find('span');
-      imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />';
-      return $(imgMarkup).appendTo($cover).imagesLoaded().done(function() {
-        return $cover.removeClass(options.projectCoverLoad);
-      });
-    });
+    return this.wait(1000).then((function(_this) {
+      return function() {
+        _this.log('init load cover');
+        return _this.$("." + options.projectCoverLoad).each(function() {
+          var $cover, $title, imgMarkup;
+          $cover = $(this);
+          $title = $cover.find('span');
+          imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />';
+          return $(imgMarkup).appendTo($cover).imagesLoaded().done(function() {
+            return $cover.removeClass(options.projectCoverLoad);
+          });
+        });
+      };
+    })(this));
   };
 
   Projects.prototype.transitionend = function(event) {

@@ -54,25 +54,6 @@ a
   width px2em($desktop-width)
   margin 0 auto
 
-media-tablet()
-
-body
-  border 0
-
-.hw-main-navigation,
-.hw-splash
-  width auto
-  padding 0 1em
-
-.hw-detail-panels,
-.hw-contact
-  width auto
-  padding 0
-
-
-media-query-end()
-
-
 .hw-title
   font-size 3em; font-weight normal
   font-family "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
@@ -109,6 +90,26 @@ media-query-end()
 
 // Don't play animation on page OnLoad
 // http://css-tricks.com/transitions-only-after-page-load/
-.preload *
+.preload *,
+.prevent-transition *
   transition: none !important
 
+// —————————————
+// @media Tablet
+// —————————————
+media-tablet()
+
+body
+  border 0
+
+.hw-main-navigation,
+.hw-splash
+  width auto
+  padding 0 1em
+
+.hw-detail-panels,
+.hw-contact
+  width auto
+  padding 0
+
+media-query-end()

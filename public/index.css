@@ -115,21 +115,6 @@ a:hover {
   width: 67.5em;
   margin: 0 auto;
 }
-@media screen and (max-width: 1121px) {
-body {
-  border: 0;
-}
-.hw-main-navigation,
-.hw-splash {
-  width: auto;
-  padding: 0 1em;
-}
-.hw-detail-panels,
-.hw-contact {
-  width: auto;
-  padding: 0;
-}
-}
 .hw-title {
   font-size: 3em;
   font-weight: normal;
@@ -191,12 +176,28 @@ body {
   transform: matrix(1, 0.5, 0, 1, 0, 0);
   -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
 }
-.preload * {
+.preload *,
+.prevent-transition * {
   -webkit-transition: none !important;
   -moz-transition: none !important;
   -o-transition: none !important;
   -ms-transition: none !important;
   transition: none !important;
+}
+@media screen and (max-width: 1121px) {
+body {
+  border: 0;
+}
+.hw-main-navigation,
+.hw-splash {
+  width: auto;
+  padding: 0 1em;
+}
+.hw-detail-panels,
+.hw-contact {
+  width: auto;
+  padding: 0;
+}
 }
 .hw-main-title {
   font-family: "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -291,6 +292,42 @@ body {
 .hw-splash p + p {
   padding-right: 0;
 }
+@media screen and (max-width: 1121px) {
+.main-content {
+  width: auto;
+}
+.hw-title {
+  font-size: 2.25em;
+  position: relative;
+  top: -0.25em;
+}
+.hw-main-title {
+  right: 0;
+  text-align: center;
+}
+.hw-main-navigation {
+  width: 66.66666666666667%;
+}
+.hw-splash .hw-splah-description {
+  padding: 0;
+  margin: 0;
+}
+.hw-splah-description {
+  z-index: 1;
+}
+.hw-splah-description p,
+.hw-splah-description p + p {
+  background: none;
+  height: auto;
+}
+.hw-splah-description p {
+  line-height: 130%;
+  padding-bottom: 1em;
+}
+.hw-splah-description p + p {
+  text-align: right;
+}
+}
 @media screen and (max-width: 479px) {
 .hw-splash h2 {
   font-size: 1.5em;
@@ -330,16 +367,6 @@ body {
 .hw-services .hw-services-list .hw-sub-left,
 .hw-services .hw-services-list .hw-sub-right {
   background: #454a5d;
-}
-.hw-services .hw-services-list .hw-panel-active {
-  z-index: 2;
-}
-.hw-services .hw-services-list .hw-panel-active .hw-services-cover {
-  color: #fff;
-  background: #576176;
-}
-.hw-services .hw-services-list .hw-panel-active .hw-services-cover .hicon {
-  color: #454a5d;
 }
 .hw-highlight {
   z-index: 2;
@@ -506,6 +533,442 @@ body {
   max-width: 100%;
   max-height: 100%;
 }
+.hw-services {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.hw-sub-panel {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.hw-services-item {
+  height: 19.5em;
+  top: 0;
+  z-index: 1;
+  margin-bottom: 0;
+  -webkit-transition-property: height, top, margin-bottom, z-index;
+  -moz-transition-property: height, top, margin-bottom, z-index;
+  -o-transition-property: height, top, margin-bottom, z-index;
+  -ms-transition-property: height, top, margin-bottom, z-index;
+  transition-property: height, top, margin-bottom, z-index;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 2s;
+  -moz-transition-delay: 1s, 1s, 1s, 2s;
+  -o-transition-delay: 1s, 1s, 1s, 2s;
+  -ms-transition-delay: 1s, 1s, 1s, 2s;
+  transition-delay: 1s, 1s, 1s, 2s;
+}
+.hw-services-item .hicon {
+  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
+  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
+  -moz-transition-property: -moz-transform, opacity, color, font-size;
+  -o-transition-property: -o-transform, opacity, color, font-size;
+  -ms-transition-property: -ms-transform, opacity, color, font-size;
+  transition-property: transform, opacity, color, font-size;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 1s, 1s, 1s, 1s;
+  -o-transition-delay: 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 1s, 1s, 1s, 1s;
+  transition-delay: 1s, 1s, 1s, 1s;
+}
+.hw-services-item .hw-sub-close {
+  opacity: 0;
+  -webkit-transition: left 0s ease 0.1s, opacity 0.1s ease 0s, color 0.5s ease 0s;
+  -moz-transition: left 0s ease 0.1s, opacity 0.1s ease 0s, color 0.5s ease 0s;
+  -o-transition: left 0s ease 0.1s, opacity 0.1s ease 0s, color 0.5s ease 0s;
+  -ms-transition: left 0s ease 0.1s, opacity 0.1s ease 0s, color 0.5s ease 0s;
+  transition: left 0s ease 0.1s, opacity 0.1s ease 0s, color 0.5s ease 0s;
+}
+.hw-services-item .hw-sub {
+  visibility: hidden;
+  -webkit-transition-property: left, visibility;
+  -moz-transition-property: left, visibility;
+  -o-transition-property: left, visibility;
+  -ms-transition-property: left, visibility;
+  transition-property: left, visibility;
+  -webkit-transition-duration: 0.5s, 0s;
+  -moz-transition-duration: 0.5s, 0s;
+  -o-transition-duration: 0.5s, 0s;
+  -ms-transition-duration: 0.5s, 0s;
+  transition-duration: 0.5s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0.5s, 1s;
+  -moz-transition-delay: 0.5s, 1s;
+  -o-transition-delay: 0.5s, 1s;
+  -ms-transition-delay: 0.5s, 1s;
+  transition-delay: 0.5s, 1s;
+}
+.hw-services-item .hw-services-cover {
+  visibility: visible;
+  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
+  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
+  -o-transition-property: -o-transform, height, background, left, box-shadow;
+  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
+  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+}
+.hw-services-item:nth-child(3n+1) .hw-services-cover,
+.hw-services-item:nth-child(3n+3) .hw-services-cover {
+  -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
+}
+.hw-services-item:nth-child(3n+2) .hw-services-cover {
+  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
+}
+.hw-services-item:nth-child(3n+2) .hicon {
+  -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
+}
+.hw-services-item:nth-child(3n+2) .hw-sub-left,
+.hw-services-item:nth-child(3n+3) .hw-sub-left {
+  left: -100%;
+  -webkit-transform: rotateY(98.75deg);
+  -moz-transform: rotateY(98.75deg);
+  -o-transform: rotateY(98.75deg);
+  -ms-transform: rotateY(98.75deg);
+  transform: rotateY(98.75deg);
+  -webkit-transform-origin: 101% 50%;
+  -moz-transform-origin: 101% 50%;
+  -o-transform-origin: 101% 50%;
+  -ms-transform-origin: 101% 50%;
+  transform-origin: 101% 50%;
+}
+.hw-services-item:nth-child(3n+1) .hw-sub-right,
+.hw-services-item:nth-child(3n+2) .hw-sub-right {
+  left: 100%;
+  -webkit-transform-origin: -1% 50%;
+  -moz-transform-origin: -1% 50%;
+  -o-transform-origin: -1% 50%;
+  -ms-transform-origin: -1% 50%;
+  transform-origin: -1% 50%;
+  -webkit-transform: rotateY(-98.75deg);
+  -moz-transform: rotateY(-98.75deg);
+  -o-transform: rotateY(-98.75deg);
+  -ms-transform: rotateY(-98.75deg);
+  transform: rotateY(-98.75deg);
+}
+.hw-services-item:nth-child(3n+2) .hw-sub-right,
+.hw-services-item:nth-child(3n+3) .hw-sub-left,
+.hw-services-item:nth-child(3n+1) .hw-sub-right {
+  -webkit-transition-property: left, visibility, -webkit-transform;
+  -moz-transition-property: left, visibility, -moz-transform;
+  -o-transition-property: left, visibility, -o-transform;
+  -ms-transition-property: left, visibility, -ms-transform;
+  transition-property: left, visibility, transform;
+  -webkit-transition-duration: 0s, 0s, 0.5s;
+  -moz-transition-duration: 0s, 0s, 0.5s;
+  -o-transition-duration: 0s, 0s, 0.5s;
+  -ms-transition-duration: 0s, 0s, 0.5s;
+  transition-duration: 0s, 0s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -webkit-transition-delay: 0.5s, 0.5s, 0s;
+  -moz-transition-delay: 0.5s, 0.5s, 0s;
+  -o-transition-delay: 0.5s, 0.5s, 0s;
+  -ms-transition-delay: 0.5s, 0.5s, 0s;
+  transition-delay: 0.5s, 0.5s, 0s;
+}
+.hw-services-item:nth-child(3n+2) .hw-sub-left {
+  -webkit-transition-property: left, visibility, -webkit-transform;
+  -moz-transition-property: left, visibility, -moz-transform;
+  -o-transition-property: left, visibility, -o-transform;
+  -ms-transition-property: left, visibility, -ms-transform;
+  transition-property: left, visibility, transform;
+  -webkit-transition-duration: 0s, 0s, 0.5s;
+  -moz-transition-duration: 0s, 0s, 0.5s;
+  -o-transition-duration: 0s, 0s, 0.5s;
+  -ms-transition-duration: 0s, 0s, 0.5s;
+  transition-duration: 0s, 0s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -webkit-transition-delay: 1s, 1s, 0.5s;
+  -moz-transition-delay: 1s, 1s, 0.5s;
+  -o-transition-delay: 1s, 1s, 0.5s;
+  -ms-transition-delay: 1s, 1s, 0.5s;
+  transition-delay: 1s, 1s, 0.5s;
+}
+.hw-services-item.hw-panel-active {
+  height: 29.25em;
+  top: -14.625em;
+  margin-bottom: -19.5em;
+  z-index: 10;
+  -webkit-transition-property: height, top, margin-bottom, z-index;
+  -moz-transition-property: height, top, margin-bottom, z-index;
+  -o-transition-property: height, top, margin-bottom, z-index;
+  -ms-transition-property: height, top, margin-bottom, z-index;
+  transition-property: height, top, margin-bottom, z-index;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0s;
+  transition-delay: 0s, 0s, 0s, 0s;
+}
+.hw-services-item.hw-panel-active .hw-services-cover {
+  color: #fff;
+  background: #576176;
+}
+.hw-services-item.hw-panel-active .hicon {
+  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
+  -moz-transition-property: -moz-transform, opacity, color, font-size;
+  -o-transition-property: -o-transform, opacity, color, font-size;
+  -ms-transition-property: -ms-transform, opacity, color, font-size;
+  transition-property: transform, opacity, color, font-size;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0s;
+  transition-delay: 0s, 0s, 0s, 0s;
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
+  font-size: 12em;
+  color: #454a5d;
+}
+.hw-services-item.hw-panel-active .hw-sub-close {
+  -webkit-transition-property: left, opacity, color;
+  -moz-transition-property: left, opacity, color;
+  -o-transition-property: left, opacity, color;
+  -ms-transition-property: left, opacity, color;
+  transition-property: left, opacity, color;
+  -webkit-transition-duration: 0s, 0.5s, 0.5s;
+  -moz-transition-duration: 0s, 0.5s, 0.5s;
+  -o-transition-duration: 0s, 0.5s, 0.5s;
+  -ms-transition-duration: 0s, 0.5s, 0.5s;
+  transition-duration: 0s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease;
+  transition-timing-function: ease, ease, ease;
+  -webkit-transition-delay: 1.5s, 1.5s, 0s;
+  -moz-transition-delay: 1.5s, 1.5s, 0s;
+  -o-transition-delay: 1.5s, 1.5s, 0s;
+  -ms-transition-delay: 1.5s, 1.5s, 0s;
+  transition-delay: 1.5s, 1.5s, 0s;
+  opacity: 1;
+}
+.hw-services-item.hw-panel-active .hw-sub {
+  visibility: visible;
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+  -o-transform: rotateY(0);
+  -ms-transform: rotateY(0);
+  transform: rotateY(0);
+  -webkit-transition-property: left, visibility;
+  -moz-transition-property: left, visibility;
+  -o-transition-property: left, visibility;
+  -ms-transition-property: left, visibility;
+  transition-property: left, visibility;
+  -webkit-transition-duration: 0.5s, 0s;
+  -moz-transition-duration: 0.5s, 0s;
+  -o-transition-duration: 0.5s, 0s;
+  -ms-transition-duration: 0.5s, 0s;
+  transition-duration: 0.5s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 0.5s, 0.5s;
+  -moz-transition-delay: 0.5s, 0.5s;
+  -o-transition-delay: 0.5s, 0.5s;
+  -ms-transition-delay: 0.5s, 0.5s;
+  transition-delay: 0.5s, 0.5s;
+}
+.hw-services-item.hw-panel-active .hw-services-cover {
+  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
+  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
+  -o-transition-property: -o-transform, height, background, left, box-shadow;
+  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
+  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-left,
+.hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-right,
+.hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-right {
+  -webkit-transition-property: left, visibility, -webkit-transform;
+  -moz-transition-property: left, visibility, -moz-transform;
+  -o-transition-property: left, visibility, -o-transform;
+  -ms-transition-property: left, visibility, -ms-transform;
+  transition-property: left, visibility, transform;
+  -webkit-transition-duration: 0s, 0s, 0.5s;
+  -moz-transition-duration: 0s, 0s, 0.5s;
+  -o-transition-duration: 0s, 0s, 0.5s;
+  -ms-transition-duration: 0s, 0s, 0.5s;
+  transition-duration: 0s, 0s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -webkit-transition-delay: 1s, 1s, 1s;
+  -moz-transition-delay: 1s, 1s, 1s;
+  -o-transition-delay: 1s, 1s, 1s;
+  -ms-transition-delay: 1s, 1s, 1s;
+  transition-delay: 1s, 1s, 1s;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-left {
+  -webkit-transition-property: left, visibility, -webkit-transform;
+  -moz-transition-property: left, visibility, -moz-transform;
+  -o-transition-property: left, visibility, -o-transform;
+  -ms-transition-property: left, visibility, -ms-transform;
+  transition-property: left, visibility, transform;
+  -webkit-transition-duration: 0s, 0s, 0.5s;
+  -moz-transition-duration: 0s, 0s, 0.5s;
+  -o-transition-duration: 0s, 0s, 0.5s;
+  -ms-transition-duration: 0s, 0s, 0.5s;
+  transition-duration: 0s, 0s, 0.5s;
+  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  -webkit-transition-delay: 0.5s, 0.5s, 0.5s;
+  -moz-transition-delay: 0.5s, 0.5s, 0.5s;
+  -o-transition-delay: 0.5s, 0.5s, 0.5s;
+  -ms-transition-delay: 0.5s, 0.5s, 0.5s;
+  transition-delay: 0.5s, 0.5s, 0.5s;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-close {
+  left: 300%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-left {
+  left: 0%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+1) .hw-services-cover {
+  left: 100%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-right {
+  left: 200%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-close {
+  left: 200%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-left {
+  left: -100%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+2) .hw-services-cover {
+  left: 0%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-right {
+  left: 100%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-close {
+  left: 100%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-left {
+  left: -200%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+3) .hw-services-cover {
+  left: -100%;
+}
+.hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-right {
+  left: 0%;
+}
 @media screen and (max-width: 1121px) {
 .hw-services h6 {
   font-size: 1.25em;
@@ -513,19 +976,59 @@ body {
 }
 }
 @media screen and (max-width: 800px) {
-.hw-services-item {
+.hw-services-item:nth-child(2n + 1) .hw-sub-left,
+.hw-services-item:nth-child(2n) .hw-sub-left,
+.hw-services-item:nth-child(2n + 1) .hw-sub-right,
+.hw-services-item:nth-child(2n) .hw-sub-right {
+  -webkit-transition: -webkit-transform 0.5s ease 0s, height 0s ease 0.5s, visibility 0s ease 0.5s, left 0s ease 0.5s, top 0s ease 0.5s;
+  -moz-transition: -moz-transform 0.5s ease 0s, height 0s ease 0.5s, visibility 0s ease 0.5s, left 0s ease 0.5s, top 0s ease 0.5s;
+  -o-transition: -o-transform 0.5s ease 0s, height 0s ease 0.5s, visibility 0s ease 0.5s, left 0s ease 0.5s, top 0s ease 0.5s;
+  -ms-transition: -ms-transform 0.5s ease 0s, height 0s ease 0.5s, visibility 0s ease 0.5s, left 0s ease 0.5s, top 0s ease 0.5s;
+  transition: transform 0.5s ease 0s, height 0s ease 0.5s, visibility 0s ease 0.5s, left 0s ease 0.5s, top 0s ease 0.5s;
+}
+.hw-services-item:nth-child(2n + 1) .hw-sub-left,
+.hw-services-item:nth-child(2n) .hw-sub-left {
+  -webkit-transform: rotateY(90deg);
+  -moz-transform: rotateY(90deg);
+  -o-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+  -webkit-transform-origin: 100% 50%;
+  -moz-transform-origin: 100% 50%;
+  -o-transform-origin: 100% 50%;
+  -ms-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+}
+.hw-services-item:nth-child(2n + 1) .hw-sub-right,
+.hw-services-item:nth-child(2n) .hw-sub-right {
+  -webkit-transform-origin: 0% 50%;
+  -moz-transform-origin: 0% 50%;
+  -o-transform-origin: 0% 50%;
+  -ms-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+  -webkit-transform: rotateY(-90deg);
+  -moz-transform: rotateY(-90deg);
+  -o-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+}
+.hw-services-item,
+.hw-services-item.hw-panel-active {
   width: 50%;
 }
-.hw-services-item:nth-child(2n) .hw-services-cover {
-  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
-  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
-  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
-  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
-  transform: matrix(1, 0.5, 0, 1, 0, 0);
-  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
-  background: #cddce4;
+.hw-services-item:nth-child(2n + 1),
+.hw-services-item.hw-panel-active:nth-child(2n + 1) {
+  -webkit-perspective: 10000;
+  -moz-perspective: 10000;
+  -ms-perspective: 10000;
+  perspective: 10000;
+  -webkit-perspective-origin: center right;
+  -moz-perspective-origin: center right;
+  -ms-perspective-origin: center right;
+  perspective-origin: center right;
 }
-.hw-services-item:nth-child(2n + 1) .hw-services-cover {
+.hw-services-item:nth-child(2n + 1) .hw-services-cover,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-services-cover {
   -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
   -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
   -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
@@ -534,455 +1037,494 @@ body {
   -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
   background: #fff;
 }
+.hw-services-item:nth-child(2n + 1) .hw-services-cover .hicon,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-services-cover .hicon {
+  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
 }
-@media only screen and (min-width: 480px) {
-  .hw-services {
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  .hw-sub-panel {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  .hw-services-item {
-    height: 19.5em;
-    top: 0;
-    z-index: 1;
-    margin-bottom: 0;
-    -webkit-transition-property: height, top, margin-bottom, z-index;
-    -moz-transition-property: height, top, margin-bottom, z-index;
-    -o-transition-property: height, top, margin-bottom, z-index;
-    -ms-transition-property: height, top, margin-bottom, z-index;
-    transition-property: height, top, margin-bottom, z-index;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 2s;
-    -moz-transition-delay: 1s, 1s, 1s, 2s;
-    -o-transition-delay: 1s, 1s, 1s, 2s;
-    -ms-transition-delay: 1s, 1s, 1s, 2s;
-    transition-delay: 1s, 1s, 1s, 2s;
-  }
-  .hw-services-item .hicon {
-    -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
-    -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-    -moz-transition-property: -moz-transform, opacity, color, font-size;
-    -o-transition-property: -o-transform, opacity, color, font-size;
-    -ms-transition-property: -ms-transform, opacity, color, font-size;
-    transition-property: transform, opacity, color, font-size;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 1s;
-    -moz-transition-delay: 1s, 1s, 1s, 1s;
-    -o-transition-delay: 1s, 1s, 1s, 1s;
-    -ms-transition-delay: 1s, 1s, 1s, 1s;
-    transition-delay: 1s, 1s, 1s, 1s;
-  }
-  .hw-services-item .hw-sub-close {
-    opacity: 0;
-    -webkit-transition-property: left, opacity, color;
-    -moz-transition-property: left, opacity, color;
-    -o-transition-property: left, opacity, color;
-    -ms-transition-property: left, opacity, color;
-    transition-property: left, opacity, color;
-    -webkit-transition-duration: 0s, 0.1s, 0.5s;
-    -moz-transition-duration: 0s, 0.1s, 0.5s;
-    -o-transition-duration: 0s, 0.1s, 0.5s;
-    -ms-transition-duration: 0s, 0.1s, 0.5s;
-    transition-duration: 0s, 0.1s, 0.5s;
-    -webkit-transition-timing-function: ease, ease, ease;
-    -moz-transition-timing-function: ease, ease, ease;
-    -o-transition-timing-function: ease, ease, ease;
-    -ms-transition-timing-function: ease, ease, ease;
-    transition-timing-function: ease, ease, ease;
-    -webkit-transition-delay: 0.1s, 0s, 0s;
-    -moz-transition-delay: 0.1s, 0s, 0s;
-    -o-transition-delay: 0.1s, 0s, 0s;
-    -ms-transition-delay: 0.1s, 0s, 0s;
-    transition-delay: 0.1s, 0s, 0s;
-  }
-  .hw-services-item .hw-sub {
-    visibility: hidden;
-    -webkit-transition-property: left, visibility;
-    -moz-transition-property: left, visibility;
-    -o-transition-property: left, visibility;
-    -ms-transition-property: left, visibility;
-    transition-property: left, visibility;
-    -webkit-transition-duration: 0.5s, 0s;
-    -moz-transition-duration: 0.5s, 0s;
-    -o-transition-duration: 0.5s, 0s;
-    -ms-transition-duration: 0.5s, 0s;
-    transition-duration: 0.5s, 0s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -webkit-transition-delay: 0.5s, 1s;
-    -moz-transition-delay: 0.5s, 1s;
-    -o-transition-delay: 0.5s, 1s;
-    -ms-transition-delay: 0.5s, 1s;
-    transition-delay: 0.5s, 1s;
-  }
-  .hw-services-item .hw-services-cover {
-    visibility: visible;
-    -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-    -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-    -o-transition-property: -o-transform, height, background, left, box-shadow;
-    -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-    transition-property: transform, height, background, left, box-shadow;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-    transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  }
-  .hw-services-item:nth-child(3n+1) .hw-services-cover,
-  .hw-services-item:nth-child(3n+3) .hw-services-cover {
-    -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
-  }
-  .hw-services-item:nth-child(3n+2) .hw-services-cover {
-    -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
-    transform: matrix(1, 0.5, 0, 1, 0, 0);
-    -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
-  }
-  .hw-services-item:nth-child(3n+2) .hicon {
-    -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
-    transform: matrix(1, -0.5, 0, 1, 0, 0);
-    -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
-  }
-  .hw-services-item:nth-child(3n+2) .hw-sub-left,
-  .hw-services-item:nth-child(3n+3) .hw-sub-left {
-    left: -100%;
-    -webkit-transform: rotateY(98.75deg);
-    -moz-transform: rotateY(98.75deg);
-    -o-transform: rotateY(98.75deg);
-    -ms-transform: rotateY(98.75deg);
-    transform: rotateY(98.75deg);
-    -webkit-transform-origin: 101% 50%;
-    -moz-transform-origin: 101% 50%;
-    -o-transform-origin: 101% 50%;
-    -ms-transform-origin: 101% 50%;
-    transform-origin: 101% 50%;
-  }
-  .hw-services-item:nth-child(3n+1) .hw-sub-right,
-  .hw-services-item:nth-child(3n+2) .hw-sub-right {
-    left: 100%;
-    -webkit-transform-origin: -1% 50%;
-    -moz-transform-origin: -1% 50%;
-    -o-transform-origin: -1% 50%;
-    -ms-transform-origin: -1% 50%;
-    transform-origin: -1% 50%;
-    -webkit-transform: rotateY(-98.75deg);
-    -moz-transform: rotateY(-98.75deg);
-    -o-transform: rotateY(-98.75deg);
-    -ms-transform: rotateY(-98.75deg);
-    transform: rotateY(-98.75deg);
-  }
-  .hw-services-item:nth-child(3n+2) .hw-sub-right,
-  .hw-services-item:nth-child(3n+3) .hw-sub-left,
-  .hw-services-item:nth-child(3n+1) .hw-sub-right {
-    -webkit-transition-property: left, visibility, -webkit-transform;
-    -moz-transition-property: left, visibility, -moz-transform;
-    -o-transition-property: left, visibility, -o-transform;
-    -ms-transition-property: left, visibility, -ms-transform;
-    transition-property: left, visibility, transform;
-    -webkit-transition-duration: 0s, 0s, 0.5s;
-    -moz-transition-duration: 0s, 0s, 0.5s;
-    -o-transition-duration: 0s, 0s, 0.5s;
-    -ms-transition-duration: 0s, 0s, 0.5s;
-    transition-duration: 0s, 0s, 0.5s;
-    -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -webkit-transition-delay: 0.5s, 0.5s, 0s;
-    -moz-transition-delay: 0.5s, 0.5s, 0s;
-    -o-transition-delay: 0.5s, 0.5s, 0s;
-    -ms-transition-delay: 0.5s, 0.5s, 0s;
-    transition-delay: 0.5s, 0.5s, 0s;
-  }
-  .hw-services-item:nth-child(3n+2) .hw-sub-left {
-    -webkit-transition-property: left, visibility, -webkit-transform;
-    -moz-transition-property: left, visibility, -moz-transform;
-    -o-transition-property: left, visibility, -o-transform;
-    -ms-transition-property: left, visibility, -ms-transform;
-    transition-property: left, visibility, transform;
-    -webkit-transition-duration: 0s, 0s, 0.5s;
-    -moz-transition-duration: 0s, 0s, 0.5s;
-    -o-transition-duration: 0s, 0s, 0.5s;
-    -ms-transition-duration: 0s, 0s, 0.5s;
-    transition-duration: 0s, 0s, 0.5s;
-    -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -webkit-transition-delay: 1s, 1s, 0.5s;
-    -moz-transition-delay: 1s, 1s, 0.5s;
-    -o-transition-delay: 1s, 1s, 0.5s;
-    -ms-transition-delay: 1s, 1s, 0.5s;
-    transition-delay: 1s, 1s, 0.5s;
-  }
-  .hw-services-item.hw-panel-active {
-    height: 29.25em;
-    top: -14.625em;
-    margin-bottom: -19.5em;
-    z-index: 10;
-    -webkit-transition-property: height, top, margin-bottom, z-index;
-    -moz-transition-property: height, top, margin-bottom, z-index;
-    -o-transition-property: height, top, margin-bottom, z-index;
-    -ms-transition-property: height, top, margin-bottom, z-index;
-    transition-property: height, top, margin-bottom, z-index;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -webkit-transition-delay: 0s, 0s, 0s, 0s;
-    -moz-transition-delay: 0s, 0s, 0s, 0s;
-    -o-transition-delay: 0s, 0s, 0s, 0s;
-    -ms-transition-delay: 0s, 0s, 0s, 0s;
-    transition-delay: 0s, 0s, 0s, 0s;
-  }
-  .hw-services-item.hw-panel-active .hicon {
-    -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-    -moz-transition-property: -moz-transform, opacity, color, font-size;
-    -o-transition-property: -o-transform, opacity, color, font-size;
-    -ms-transition-property: -ms-transform, opacity, color, font-size;
-    transition-property: transform, opacity, color, font-size;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -webkit-transition-delay: 0s, 0s, 0s, 0s;
-    -moz-transition-delay: 0s, 0s, 0s, 0s;
-    -o-transition-delay: 0s, 0s, 0s, 0s;
-    -ms-transition-delay: 0s, 0s, 0s, 0s;
-    transition-delay: 0s, 0s, 0s, 0s;
-    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-    -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-    -o-transform: matrix(1, 0, 0, 1, 0, 0);
-    -ms-transform: matrix(1, 0, 0, 1, 0, 0);
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
-    font-size: 12em;
-    color: #576176;
-  }
-  .hw-services-item.hw-panel-active .hw-sub-close {
-    -webkit-transition-property: left, opacity, color;
-    -moz-transition-property: left, opacity, color;
-    -o-transition-property: left, opacity, color;
-    -ms-transition-property: left, opacity, color;
-    transition-property: left, opacity, color;
-    -webkit-transition-duration: 0s, 0.5s, 0.5s;
-    -moz-transition-duration: 0s, 0.5s, 0.5s;
-    -o-transition-duration: 0s, 0.5s, 0.5s;
-    -ms-transition-duration: 0s, 0.5s, 0.5s;
-    transition-duration: 0s, 0.5s, 0.5s;
-    -webkit-transition-timing-function: ease, ease, ease;
-    -moz-transition-timing-function: ease, ease, ease;
-    -o-transition-timing-function: ease, ease, ease;
-    -ms-transition-timing-function: ease, ease, ease;
-    transition-timing-function: ease, ease, ease;
-    -webkit-transition-delay: 1.5s, 1.5s, 0s;
-    -moz-transition-delay: 1.5s, 1.5s, 0s;
-    -o-transition-delay: 1.5s, 1.5s, 0s;
-    -ms-transition-delay: 1.5s, 1.5s, 0s;
-    transition-delay: 1.5s, 1.5s, 0s;
-    opacity: 1;
-  }
-  .hw-services-item.hw-panel-active .hw-sub {
-    visibility: visible;
-    -webkit-transform: rotateY(0) !important;
-    -moz-transform: rotateY(0) !important;
-    -o-transform: rotateY(0) !important;
-    -ms-transform: rotateY(0) !important;
-    transform: rotateY(0) !important;
-    -webkit-transition-property: left, visibility;
-    -moz-transition-property: left, visibility;
-    -o-transition-property: left, visibility;
-    -ms-transition-property: left, visibility;
-    transition-property: left, visibility;
-    -webkit-transition-duration: 0.5s, 0s;
-    -moz-transition-duration: 0.5s, 0s;
-    -o-transition-duration: 0.5s, 0s;
-    -ms-transition-duration: 0.5s, 0s;
-    transition-duration: 0.5s, 0s;
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-    -webkit-transition-delay: 0.5s, 0.5s;
-    -moz-transition-delay: 0.5s, 0.5s;
-    -o-transition-delay: 0.5s, 0.5s;
-    -ms-transition-delay: 0.5s, 0.5s;
-    transition-delay: 0.5s, 0.5s;
-  }
-  .hw-services-item.hw-panel-active .hw-services-cover {
-    -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-    -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-    -o-transition-property: -o-transform, height, background, left, box-shadow;
-    -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-    transition-property: transform, height, background, left, box-shadow;
-    -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-    -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-    -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-    transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  }
-  .hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-left,
-  .hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-right,
-  .hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-right {
-    -webkit-transition-property: left, visibility, -webkit-transform;
-    -moz-transition-property: left, visibility, -moz-transform;
-    -o-transition-property: left, visibility, -o-transform;
-    -ms-transition-property: left, visibility, -ms-transform;
-    transition-property: left, visibility, transform;
-    -webkit-transition-duration: 0s, 0s, 0.5s;
-    -moz-transition-duration: 0s, 0s, 0.5s;
-    -o-transition-duration: 0s, 0s, 0.5s;
-    -ms-transition-duration: 0s, 0s, 0.5s;
-    transition-duration: 0s, 0s, 0.5s;
-    -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -webkit-transition-delay: 1s, 1s, 1s;
-    -moz-transition-delay: 1s, 1s, 1s;
-    -o-transition-delay: 1s, 1s, 1s;
-    -ms-transition-delay: 1s, 1s, 1s;
-    transition-delay: 1s, 1s, 1s;
-  }
-  .hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-left {
-    -webkit-transition-property: left, visibility, -webkit-transform;
-    -moz-transition-property: left, visibility, -moz-transform;
-    -o-transition-property: left, visibility, -o-transform;
-    -ms-transition-property: left, visibility, -ms-transform;
-    transition-property: left, visibility, transform;
-    -webkit-transition-duration: 0s, 0s, 0.5s;
-    -moz-transition-duration: 0s, 0s, 0.5s;
-    -o-transition-duration: 0s, 0s, 0.5s;
-    -ms-transition-duration: 0s, 0s, 0.5s;
-    transition-duration: 0s, 0s, 0.5s;
-    -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-    -webkit-transition-delay: 0.5s, 0.5s, 0.5s;
-    -moz-transition-delay: 0.5s, 0.5s, 0.5s;
-    -o-transition-delay: 0.5s, 0.5s, 0.5s;
-    -ms-transition-delay: 0.5s, 0.5s, 0.5s;
-    transition-delay: 0.5s, 0.5s, 0.5s;
-  }
-  .hw-panel-active:nth-child(3n+1) .hw-sub-close {
-    left: 300%;
-  }
-  .hw-panel-active:nth-child(3n+1) .hw-sub-left {
-    left: 0%;
-  }
-  .hw-panel-active:nth-child(3n+1) .hw-services-cover {
-    left: 100%;
-  }
-  .hw-panel-active:nth-child(3n+1) .hw-sub-right {
-    left: 200%;
-  }
-  .hw-panel-active:nth-child(3n+2) .hw-sub-close {
-    left: 200%;
-  }
-  .hw-panel-active:nth-child(3n+2) .hw-sub-left {
-    left: -100%;
-  }
-  .hw-panel-active:nth-child(3n+2) .hw-services-cover {
-    left: 0%;
-  }
-  .hw-panel-active:nth-child(3n+2) .hw-sub-right {
-    left: 100%;
-  }
-  .hw-panel-active:nth-child(3n+3) .hw-sub-close {
-    left: 100%;
-  }
-  .hw-panel-active:nth-child(3n+3) .hw-sub-left {
-    left: -200%;
-  }
-  .hw-panel-active:nth-child(3n+3) .hw-services-cover {
-    left: -100%;
-  }
-  .hw-panel-active:nth-child(3n+3) .hw-sub-right {
-    left: 0%;
-  }
+.hw-services-item:nth-child(2n),
+.hw-services-item.hw-panel-active:nth-child(2n) {
+  -webkit-perspective: 10000;
+  -moz-perspective: 10000;
+  -ms-perspective: 10000;
+  perspective: 10000;
+  -webkit-perspective-origin: center left;
+  -moz-perspective-origin: center left;
+  -ms-perspective-origin: center left;
+  perspective-origin: center left;
+}
+.hw-services-item:nth-child(2n) .hw-services-cover,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-services-cover {
+  -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
+  background: #cddce4;
+}
+.hw-services-item:nth-child(2n) .hw-services-cover .hicon,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-services-cover .hicon {
+  -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -o-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-transform: matrix(1, -0.5, 0, 1, 0, 0);
+  transform: matrix(1, -0.5, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
+}
+.hw-services-item:nth-child(2n + 1) .hw-services-cover,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-services-cover,
+.hw-services-item:nth-child(2n) .hw-services-cover,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-services-cover {
+  color: #445;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+.hw-services-item:nth-child(2n + 1) .hw-sub-right,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-right,
+.hw-services-item:nth-child(2n) .hw-sub-right,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-right {
+  background: #576176;
+}
+.hw-services-item:nth-child(2n + 1) .hicon,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hicon,
+.hw-services-item:nth-child(2n) .hicon,
+.hw-services-item.hw-panel-active:nth-child(2n) .hicon {
+  color: #ff0078;
+  font-size: 6em;
+}
+.hw-services-item.hw-panel-active {
+  height: 19.5em;
+  top: 0;
+  margin-bottom: 0;
+}
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-services-cover,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-services-cover {
+  top: 0;
+}
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-left,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-left,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-right,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-right {
+  -webkit-transition: -webkit-transform 0.5s ease 0s, height 0s ease 0s, visibility 0s ease 0s, left 0s ease 0s, top 0s ease 0s;
+  -moz-transition: -moz-transform 0.5s ease 0s, height 0s ease 0s, visibility 0s ease 0s, left 0s ease 0s, top 0s ease 0s;
+  -o-transition: -o-transform 0.5s ease 0s, height 0s ease 0s, visibility 0s ease 0s, left 0s ease 0s, top 0s ease 0s;
+  -ms-transition: -ms-transform 0.5s ease 0s, height 0s ease 0s, visibility 0s ease 0s, left 0s ease 0s, top 0s ease 0s;
+  transition: transform 0.5s ease 0s, height 0s ease 0s, visibility 0s ease 0s, left 0s ease 0s, top 0s ease 0s;
+  height: 29.25em;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-left,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-left,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-right,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-right,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-close,
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-close {
+  top: -4.875em;
+}
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-services-cover,
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-left {
+  left: 0;
+}
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-right {
+  left: 100%;
+}
+.hw-services-item.hw-panel-active:nth-child(2n + 1) .hw-sub-close {
+  left: 200%;
+}
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-left {
+  left: -100%;
+}
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-right {
+  left: 0;
+}
+.hw-services-item.hw-panel-active:nth-child(2n) .hw-sub-close {
+  left: 100%;
+}
+}
+@media screen and (max-width: 479px) {
+.hw-services-item {
+  display: block;
+  width: auto;
+}
+.hw-services-item .hw-sub.hw-services-cover,
+.hw-services-item .hw-sub.hw-services-cover .hicon {
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
+}
+.hw-services-title p {
+  margin: 0;
+}
+.hw-services .hw-services-title {
+  padding: 0;
+}
+.hw-sub-close {
+  top: 0.5em;
+  right: 0.5em;
+  z-index: 3;
+}
+.hw-services-item {
+  height: 13.75em;
+}
+.hw-services-item h3,
+.hw-services-item h3 + h3,
+.hw-services-item p {
+  margin: 0;
+}
+.hw-services-item .hw-sub,
+.hw-services-item .hw-sub-close {
+  visibility: hidden;
+}
+.hw-services-item .hw-services-cover,
+.hw-services-item .hw-sub-left,
+.hw-services-item .hw-sub-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 13.75em;
+}
+.hw-services-item .hw-services-cover {
+  visibility: visible;
+  -webkit-transform-origin: center top;
+  -moz-transform-origin: center top;
+  -o-transform-origin: center top;
+  -ms-transform-origin: center top;
+  transform-origin: center top;
+  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
+  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
+  -o-transition-property: -o-transform, height, background, left, box-shadow;
+  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
+  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+}
+.hw-services-item .hw-services-cover .hicon {
+  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
+  -moz-transition-property: -moz-transform, opacity, color, font-size;
+  -o-transition-property: -o-transform, opacity, color, font-size;
+  -ms-transition-property: -ms-transform, opacity, color, font-size;
+  transition-property: transform, opacity, color, font-size;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 1s, 1s, 1s, 1s;
+  -o-transition-delay: 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 1s, 1s, 1s, 1s;
+  transition-delay: 1s, 1s, 1s, 1s;
+  opacity: 1;
+}
+.hw-services-item .hw-services-cover::after {
+  -webkit-transition: visibility 0s ease 1s;
+  -moz-transition: visibility 0s ease 1s;
+  -o-transition: visibility 0s ease 1s;
+  -ms-transition: visibility 0s ease 1s;
+  transition: visibility 0s ease 1s;
+  display: block;
+  width: 0;
+  height: 0;
+  content: "";
+  border: 1em solid transparent;
+  border-top-width: 0;
+  border-bottom-color: #454a5d;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -0.5em;
+  visibility: hidden;
+}
+.hw-services-item .hw-sub-left,
+.hw-services-item .hw-sub-right {
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  -o-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: top center;
+  -moz-transform-origin: top center;
+  -o-transform-origin: top center;
+  -ms-transform-origin: top center;
+  transform-origin: top center;
+}
+.hw-services-item .hw-sub-left {
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -o-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+}
+.hw-services-item .hw-sub-right {
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease, ease, ease;
+  transition-timing-function: ease, ease, ease, ease, ease;
+  -webkit-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+}
+.hw-services .hw-services-item h6 {
+  font-size: 2em;
+  letter-spacing: 0.15em;
+}
+.hw-services .hw-services-item h6,
+.hw-services-item .hw-services-cover img {
+  -webkit-transform: scaleY(1) translateY(0);
+  -moz-transform: scaleY(1) translateY(0);
+  -o-transform: scaleY(1) translateY(0);
+  -ms-transform: scaleY(1) translateY(0);
+  transform: scaleY(1) translateY(0);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
+}
+.hw-services-item .hw-sub-links {
+  padding-top: 0.75em;
+}
+.hw-services-item .hw-sub-links .hw-sub-panel {
+  padding-top: 0;
+}
+.hw-services-item .hw-sub-links a {
+  margin: 0.25em 0 0.5em;
+}
+.hw-services-item .hw-sub-description-points {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+}
+.hw-services-item .hw-sub-description-group {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.hw-services-item.hw-panel-active .hw-services-cover {
+  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
+  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
+  -o-transition-property: -o-transform, height, background, left, box-shadow;
+  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
+  transition-property: transform, height, background, left, box-shadow;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -webkit-transform: scaleY(0.5);
+  -moz-transform: scaleY(0.5);
+  -o-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.hw-services-item.hw-panel-active .hw-services-cover h6,
+.hw-services-item.hw-panel-active .hw-services-cover img {
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
+  -webkit-transform: scaleY(2);
+  -moz-transform: scaleY(2);
+  -o-transform: scaleY(2);
+  -ms-transform: scaleY(2);
+  transform: scaleY(2);
+}
+.hw-services-item.hw-panel-active .hw-services-cover h6 {
+  -webkit-transform: scaleY(2) translateY(1em);
+  -moz-transform: scaleY(2) translateY(1em);
+  -o-transform: scaleY(2) translateY(1em);
+  -ms-transform: scaleY(2) translateY(1em);
+  transform: scaleY(2) translateY(1em);
+}
+.hw-services-item.hw-panel-active .hw-services-cover .hicon {
+  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
+  -moz-transition-property: -moz-transform, opacity, color, font-size;
+  -o-transition-property: -o-transform, opacity, color, font-size;
+  -ms-transition-property: -ms-transform, opacity, color, font-size;
+  transition-property: transform, opacity, color, font-size;
+  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
+  -webkit-transition-delay: 0s, 0s, 0s, 0s;
+  -moz-transition-delay: 0s, 0s, 0s, 0s;
+  -o-transition-delay: 0s, 0s, 0s, 0s;
+  -ms-transition-delay: 0s, 0s, 0s, 0s;
+  transition-delay: 0s, 0s, 0s, 0s;
+  -webkit-transform: scale(0.01);
+  -moz-transform: scale(0.01);
+  -o-transform: scale(0.01);
+  -ms-transform: scale(0.01);
+  transform: scale(0.01);
+  opacity: 0;
+}
+.hw-services-item.hw-panel-active .hw-services-cover::after {
+  -webkit-transition: visibility 0s ease 0s;
+  -moz-transition: visibility 0s ease 0s;
+  -o-transition: visibility 0s ease 0s;
+  -ms-transition: visibility 0s ease 0s;
+  transition: visibility 0s ease 0s;
+  visibility: visible;
+}
+.hw-services-item.hw-panel-active .hw-sub-close,
+.hw-services-item.hw-panel-active .hw-sub-left,
+.hw-services-item.hw-panel-active .hw-sub-right {
+  z-index: 10;
+  visibility: visible;
+  -webkit-transform: rotateX(0);
+  -moz-transform: rotateX(0);
+  -o-transform: rotateX(0);
+  -ms-transform: rotateX(0);
+  transform: rotateX(0);
+}
+.hw-services-item.hw-panel-active .hw-sub-left {
+  top: 6.875em;
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
+  -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -o-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+}
+.hw-services .hw-services-item.hw-panel-active .hw-sub-left {
+  height: 13.75em;
+}
+.hw-services-item.hw-panel-active .hw-sub-right {
+  top: 20.625em;
+  height: 27.5em;
+  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
+  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
+  -o-transition-property: -o-transform, visibility, height, z-index, top;
+  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
+  transition-property: transform, visibility, height, z-index, top;
+  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
+  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
+  -moz-transition-timing-function: ease, ease, ease, ease, ease;
+  -o-transition-timing-function: ease, ease, ease, ease, ease;
+  -ms-transition-timing-function: ease, ease, ease, ease, ease;
+  transition-timing-function: ease, ease, ease, ease, ease;
+  -webkit-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -moz-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -o-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -ms-transition-delay: 1s, 1s, 1s, 1s, 1s;
+  transition-delay: 1s, 1s, 1s, 1s, 1s;
+}
+.hw-services .hw-services-item.hw-panel-active .hw-sub-right {
+  height: 13.75em;
+}
 }
 @-moz-keyframes spinner {
   0% {
@@ -2009,20 +2551,20 @@ h3 + .hw-projects-gallery-container {
   max-height: 100%;
 }
 }
-@media screen and (max-width: 699px) {
-  .hw-projects-content {
-    padding: 0 1em;
-  }
-  .hw-projects-content > .hw-projects-center,
-  .hw-projects-aside-container {
-    width: auto;
-  }
-  .hw-projects-aside h6 ~ h6 {
-    clear: left;
-  }
-  .hw-projects-aside h6:not(:first-child) {
-    padding-left: 0;
-  }
+@media screen and (max-width: 800px) {
+.hw-projects-content {
+  padding: 0 1em;
+}
+.hw-projects-content > .hw-projects-center,
+.hw-projects-aside-container {
+  width: auto;
+}
+.hw-projects-aside h6 ~ h6 {
+  clear: left;
+}
+.hw-projects-aside h6:not(:first-child) {
+  padding-left: 0;
+}
 }
 label {
   display: block;
@@ -2358,6 +2900,40 @@ textarea:disabled {
   -webkit-box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.15);
   box-shadow: inset 2px 2px 0 0 rgba(0,0,0,0.15);
 }
+@media screen and (max-width: 1121px) {
+.hw-contact aside,
+.hw-contact .hw-contact-form {
+  float: none;
+  min-height: 0;
+  margin: 0 auto;
+  width: auto;
+  padding: 0 1em;
+}
+.hw-contact aside {
+  background: none;
+  margin-top: 0.5em;
+}
+.hw-contact aside p {
+  line-height: auto;
+  padding: 1em 0 0;
+  margin: 0;
+}
+.hw-contact aside span {
+  display: inline;
+}
+}
+@media screen and (max-width: 479px) {
+.hw-contact aside p {
+  line-height: 1em;
+  padding-top: 0;
+}
+.hw-contact .hw-submit {
+  width: 100%;
+}
+.hw-contact .hw-reset {
+  display: none;
+}
+}
 @-moz-keyframes fadeIn {
   0% {
     opacity: 0;
@@ -2528,78 +3104,6 @@ textarea:disabled {
     margin-bottom: 0;
   }
 }
-@media screen and (max-width: 1121px) {
-.main-content {
-  width: auto;
-}
-.hw-title {
-  font-size: 2.25em;
-  position: relative;
-  top: -0.25em;
-}
-.hw-main-title,
-.hw-main-title a span,
-.hw-splah-description p,
-.hw-splah-description p + p,
-.hw-contact aside {
-  margin: 0;
-  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-  -o-transform: matrix(1, 0, 0, 1, 0, 0);
-  -ms-transform: matrix(1, 0, 0, 1, 0, 0);
-  transform: matrix(1, 0, 0, 1, 0, 0);
-  -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
-}
-.hw-main-title {
-  right: 0;
-  text-align: center;
-}
-.hw-main-navigation {
-  width: 66.66666666666667%;
-}
-.hw-splash .hw-splah-description {
-  padding: 0;
-  margin: 0;
-}
-.hw-splah-description {
-  z-index: 1;
-}
-.hw-splah-description p,
-.hw-splah-description p + p {
-  background: none;
-  height: auto;
-}
-.hw-splah-description p {
-  line-height: 130%;
-  padding-bottom: 1em;
-}
-.hw-splah-description p + p {
-  text-align: right;
-}
-.hw-sub-description .hw-sub-panel {
-  font-size: 1em;
-}
-.hw-contact aside,
-.hw-contact .hw-contact-form {
-  float: none;
-  min-height: 0;
-  margin: 0 auto;
-  width: auto;
-  padding: 0 1em;
-}
-.hw-contact aside {
-  background: none;
-  margin-top: 0.5em;
-}
-.hw-contact aside p {
-  line-height: auto;
-  padding: 1em 0 0;
-  margin: 0;
-}
-.hw-contact aside span {
-  display: inline;
-}
-}
 .hw-responsive-linebreak {
   display: block;
 }
@@ -2675,386 +3179,12 @@ body {
 .hw-main-title,
 .hw-main-title span,
 .hw-title,
-.hw-title span,
-.hw-services-item .hw-sub.hw-services-cover,
-.hw-services-item .hw-sub.hw-services-cover .hicon {
+.hw-title span {
   -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
   -moz-transform: matrix(1, 0, 0, 1, 0, 0);
   -o-transform: matrix(1, 0, 0, 1, 0, 0);
   -ms-transform: matrix(1, 0, 0, 1, 0, 0);
   transform: matrix(1, 0, 0, 1, 0, 0);
   -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand');
-}
-.hw-services-item {
-  display: block;
-  width: auto;
-}
-.hw-services-title p {
-  margin: 0;
-}
-.hw-services .hw-services-title {
-  padding: 0;
-}
-.hw-sub-close {
-  top: 0.5em;
-  right: 0.5em;
-  z-index: 3;
-}
-.hw-services-item {
-  height: 13.75em;
-}
-.hw-services-item h3,
-.hw-services-item h3 + h3,
-.hw-services-item p {
-  margin: 0;
-}
-.hw-services-item .hw-sub,
-.hw-services-item .hw-sub-close {
-  visibility: hidden;
-}
-.hw-services-item .hw-services-cover,
-.hw-services-item .hw-sub-left,
-.hw-services-item .hw-sub-right {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 13.75em;
-}
-.hw-services-item .hw-services-cover {
-  visibility: visible;
-  -webkit-transform-origin: center top;
-  -moz-transform-origin: center top;
-  -o-transform-origin: center top;
-  -ms-transform-origin: center top;
-  transform-origin: center top;
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-}
-.hw-services-item .hw-services-cover .hicon {
-  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-  -moz-transition-property: -moz-transform, opacity, color, font-size;
-  -o-transition-property: -o-transform, opacity, color, font-size;
-  -ms-transition-property: -ms-transform, opacity, color, font-size;
-  transition-property: transform, opacity, color, font-size;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 1s, 1s, 1s, 1s;
-  -o-transition-delay: 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 1s, 1s, 1s, 1s;
-  transition-delay: 1s, 1s, 1s, 1s;
-  opacity: 1;
-}
-.hw-services-item .hw-services-cover::after {
-  -webkit-transition: visibility 0s ease 1s;
-  -moz-transition: visibility 0s ease 1s;
-  -o-transition: visibility 0s ease 1s;
-  -ms-transition: visibility 0s ease 1s;
-  transition: visibility 0s ease 1s;
-  display: block;
-  width: 0;
-  height: 0;
-  content: "";
-  border: 1em solid transparent;
-  border-top-width: 0;
-  border-bottom-color: #454a5d;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -0.5em;
-  visibility: hidden;
-}
-.hw-services-item .hw-sub-left,
-.hw-services-item .hw-sub-right {
-  -webkit-transform: rotateX(90deg);
-  -moz-transform: rotateX(90deg);
-  -o-transform: rotateX(90deg);
-  -ms-transform: rotateX(90deg);
-  transform: rotateX(90deg);
-  -webkit-transform-origin: top center;
-  -moz-transform-origin: top center;
-  -o-transform-origin: top center;
-  -ms-transform-origin: top center;
-  transform-origin: top center;
-}
-.hw-services-item .hw-sub-left {
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  -o-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-}
-.hw-services-item .hw-sub-right {
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease, ease;
-  -webkit-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-}
-.hw-services .hw-services-item h6 {
-  font-size: 2em;
-  letter-spacing: 0.15em;
-}
-.hw-services .hw-services-item h6,
-.hw-services-item .hw-services-cover img {
-  -webkit-transform: scaleY(1) translateY(0);
-  -moz-transform: scaleY(1) translateY(0);
-  -o-transform: scaleY(1) translateY(0);
-  -ms-transform: scaleY(1) translateY(0);
-  transform: scaleY(1) translateY(0);
-  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s;
-}
-.hw-services-item .hw-sub-links {
-  padding-top: 0.75em;
-}
-.hw-services-item .hw-sub-links .hw-sub-panel {
-  padding-top: 0;
-}
-.hw-services-item .hw-sub-links a {
-  margin: 0.25em 0 0.5em;
-}
-.hw-services-item .hw-sub-description-points {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
-  -ms-flex-line-pack: stretch;
-  -webkit-align-content: stretch;
-  align-content: stretch;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -o-box-orient: horizontal;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  width: 100%;
-}
-.hw-services-item .hw-sub-description-group {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-.hw-services-item.hw-panel-active .hw-services-cover {
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -webkit-transform: scaleY(0.5);
-  -moz-transform: scaleY(0.5);
-  -o-transform: scaleY(0.5);
-  -ms-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-}
-.hw-services-item.hw-panel-active .hw-services-cover h6,
-.hw-services-item.hw-panel-active .hw-services-cover img {
-  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s;
-  -webkit-transform: scaleY(2);
-  -moz-transform: scaleY(2);
-  -o-transform: scaleY(2);
-  -ms-transform: scaleY(2);
-  transform: scaleY(2);
-}
-.hw-services-item.hw-panel-active .hw-services-cover h6 {
-  -webkit-transform: scaleY(2) translateY(1em);
-  -moz-transform: scaleY(2) translateY(1em);
-  -o-transform: scaleY(2) translateY(1em);
-  -ms-transform: scaleY(2) translateY(1em);
-  transform: scaleY(2) translateY(1em);
-}
-.hw-services-item.hw-panel-active .hw-services-cover .hicon {
-  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-  -moz-transition-property: -moz-transform, opacity, color, font-size;
-  -o-transition-property: -o-transform, opacity, color, font-size;
-  -ms-transition-property: -ms-transform, opacity, color, font-size;
-  transition-property: transform, opacity, color, font-size;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0s;
-  transition-delay: 0s, 0s, 0s, 0s;
-  -webkit-transform: scale(0.01);
-  -moz-transform: scale(0.01);
-  -o-transform: scale(0.01);
-  -ms-transform: scale(0.01);
-  transform: scale(0.01);
-  opacity: 0;
-}
-.hw-services-item.hw-panel-active .hw-services-cover::after {
-  -webkit-transition: visibility 0s ease 0s;
-  -moz-transition: visibility 0s ease 0s;
-  -o-transition: visibility 0s ease 0s;
-  -ms-transition: visibility 0s ease 0s;
-  transition: visibility 0s ease 0s;
-  visibility: visible;
-}
-.hw-services-item.hw-panel-active .hw-sub-close,
-.hw-services-item.hw-panel-active .hw-sub-left,
-.hw-services-item.hw-panel-active .hw-sub-right {
-  z-index: 10;
-  visibility: visible;
-  -webkit-transform: rotateX(0);
-  -moz-transform: rotateX(0);
-  -o-transform: rotateX(0);
-  -ms-transform: rotateX(0);
-  transform: rotateX(0);
-}
-.hw-services-item.hw-panel-active .hw-sub-left {
-  top: 6.875em;
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-}
-.hw-services .hw-services-item.hw-panel-active .hw-sub-left {
-  height: 13.75em;
-}
-.hw-services-item.hw-panel-active .hw-sub-right {
-  top: 20.625em;
-  height: 27.5em;
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease, ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  -o-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  transition-delay: 1s, 1s, 1s, 1s, 1s;
-}
-.hw-services .hw-services-item.hw-panel-active .hw-sub-right {
-  height: 13.75em;
-}
-.hw-contact aside p {
-  line-height: 1em;
-  padding-top: 0;
-}
-.hw-contact .hw-submit {
-  width: 100%;
-}
-.hw-contact .hw-reset {
-  display: none;
 }
 }

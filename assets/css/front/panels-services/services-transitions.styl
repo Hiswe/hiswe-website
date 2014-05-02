@@ -109,10 +109,24 @@ close-in()
   transition-delay            d-full,             d-full,             0s
 
 close-out()
-  transition-property         left,               opacity,            color
-  transition-duration         0s,                 .1s,                t-book
-  transition-timing-function  ease,               ease,               ease
-  transition-delay            .1s,                0s,                 0s
+  transition  left      0s        ease  .1s,
+              opacity   .1s       ease  0s,
+              color     t-book    ease  0s
+
+// Big mobile
+services-big-in()
+  transition  transform   t-book  ease  0s,
+              height      0s      ease  0s,
+              visibility  0s      ease  0s,
+              left        0s      ease  0s,
+              top         0s      ease  0s
+
+services-big-out()
+  transition  transform   t-book  ease  0s,
+              height      0s      ease  d-out-1,
+              visibility  0s      ease  d-out-1,
+              left        0s      ease  d-out-1,
+              top         0s      ease  d-out-1
 
 // mobile first panel
 mobile-title-in()
@@ -150,21 +164,3 @@ mobile-right-out()
   transition-duration         t-book,             0s,                 0s,                 0s,                 0s
   transition-timing-function  ease,               ease,               ease,               ease,               ease
   transition-delay            0s,                 d-out-1,            d-out-1,            d-out-1,            d-out-1
-
-// mobile-slide-in()
-//   transition-property         left,                 visibility
-//   transition-duration         d-slide,              0s
-//   transition-timing-function  h-ease(e-slide-in),   ease
-//   transition-delay            d-in-1,               d-in-1
-
-// mobile-slide-out()
-//   transition-property         left,                 visibility
-//   transition-duration         d-slide,              0s
-//   transition-timing-function  h-ease(e-slide-out),  ease
-//   transition-delay            d-out-1,              d-out-2
-
-// mobile Second in
-// mobile Second out
-
-
-

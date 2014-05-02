@@ -30,9 +30,7 @@ exports.lib = {
     // jQuery
     'bower_components/jquery/dist/jquery.js',
     // Plugin depending on jQuery
-    'bower_components/eventEmitter/EventEmitter.js', // imagesloaded dependencie
-    'bower_components/eventie/eventie.js', // imagesloaded dependencie
-    'bower_components/imagesloaded/imagesloaded.js',
+    'bower_components/imagesloaded/imagesloaded.pkgd.js',
     'bower_components/jquery-pointer-events/src/pointer.js',
     'bower_components/hevent/build/jquery.hevent.js'
   ],

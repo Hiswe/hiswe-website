@@ -272,6 +272,9 @@
     &:hover::after
       background rgba($pink, 0)
 
+// ———————————————————
+// @media Tablet
+// ———————————————————
 media-tablet()
 
 .hw-projects-aside-container
@@ -313,8 +316,6 @@ media-tablet()
     // compensating the font-size difference…
     padding-top .15em
 
-
-
 .hw-projects-content h1
   margin-top 0
 
@@ -327,16 +328,23 @@ media-tablet()
 
 media-query-end()
 
-@media screen and (max-width: 699px)
-  .hw-projects-content
-    padding 0 1em
+// ———————————————————
+// @media Big Mobile
+// ———————————————————
 
-  .hw-projects-content > .hw-projects-center,
-  .hw-projects-aside-container
-    width auto
+media-big-mobile()
 
-  .hw-projects-aside h6 ~ h6
-    clear left
+.hw-projects-content
+  padding 0 1em
 
-  .hw-projects-aside h6:not(:first-child)
-    padding-left 0
+.hw-projects-content > .hw-projects-center,
+.hw-projects-aside-container
+  width auto
+
+.hw-projects-aside h6 ~ h6
+  clear left
+
+
+.hw-projects-aside h6:not(:first-child)
+  padding-left 0
+media-query-end()

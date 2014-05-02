@@ -1,0 +1,246 @@
+// —————————————
+// @media Tablet
+// —————————————
+media-tablet()
+
+.hw-services h6
+  font-size 1.25em
+  letter-spacing 0em
+
+media-query-end()
+
+// —————————————————
+// @media Big Mobile
+// —————————————————
+media-big-mobile()
+
+.hw-services-item
+  &:nth-child(2n + 1),
+  &:nth-child(2n)
+    .hw-sub-left, .hw-sub-right
+      services-big-out()
+
+    .hw-sub-left
+      transform rotateY(90deg)
+      transform-origin 100% 50%
+
+    .hw-sub-right
+      transform-origin 0% 50%
+      transform rotateY(-90deg)
+
+.hw-services-item,
+.hw-services-item.{activeClass}
+  width 50%
+
+  // cover don't change on this size
+  &:nth-child(2n + 1)
+    perspective 10000
+    perspective-origin center right
+
+    .hw-services-cover
+      iso-left()
+      background white
+
+      .hicon
+        iso-right()
+
+  &:nth-child(2n)
+    perspective 10000
+    perspective-origin center left
+
+    .hw-services-cover
+      iso-right()
+      background $grey
+
+      .hicon
+        iso-left()
+
+  &:nth-child(2n + 1),
+  &:nth-child(2n)
+    .hw-services-cover
+      color $black
+      transition none
+
+    .hw-sub-right
+      background $dark-grey
+
+    .hicon
+      color $pink
+      font-size 6em
+
+.hw-services-item.{activeClass}
+  height px2em($panel-height)
+  top 0
+  margin-bottom 0
+
+  &:nth-child(2n + 1),
+  &:nth-child(2n)
+    .hw-services-cover
+      top 0
+
+    .hw-sub-left, .hw-sub-right
+      services-big-in()
+      height px2em($panel-height*1.5)
+      transform rotateY(0deg)
+
+    .hw-sub-left, .hw-sub-right, .hw-sub-close
+      top -1 * (px2em($panel-height) * 0.25)
+
+  &:nth-child(2n + 1)
+    .hw-services-cover, .hw-sub-left
+      left 0
+    .hw-sub-right
+      left 100%
+    .hw-sub-close
+      left 200%
+
+  &:nth-child(2n)
+    .hw-sub-left
+      left -100%
+    .hw-sub-right
+      left 0
+    .hw-sub-close
+      left 100%
+
+media-query-end()
+
+// ———————————————————
+// @media Small Mobile
+// ———————————————————
+media-small-mobile()
+
+.hw-services-item
+  display block
+  width auto
+
+  .hw-sub.hw-services-cover,
+  .hw-sub.hw-services-cover .hicon
+    iso-reset()
+
+.hw-services-title p
+    margin 0
+
+.hw-services .hw-services-title
+  padding 0
+
+// panels animation
+.hw-sub-close
+  top .5em
+  right .5em
+  z-index 3
+
+$$height = px2em($mobile-cover-height)
+
+.hw-services-item
+  height $$height
+
+  h3, h3 + h3, p
+    margin 0
+
+  .hw-sub,
+  .hw-sub-close
+    visibility hidden
+
+  .hw-services-cover,
+  .hw-sub-left,
+  .hw-sub-right
+    absolute top left
+    height $$height
+
+  .hw-services-cover
+    visibility visible
+    transform-origin center top
+    default-out()
+
+    .hicon
+      icon-out()
+      opacity 1
+
+    &::after
+      mobile-stem-out()
+      $$stem-size = 1em
+      stem("top", $darkest-grey, $$stem-size)
+      absolute bottom 0 left 50%
+      margin-left -($$stem-size/2)
+      visibility hidden
+
+  .hw-sub-left,
+  .hw-sub-right
+    transform rotateX(90deg)
+    transform-origin top center
+
+  .hw-sub-left
+    mobile-left-out()
+
+  .hw-sub-right
+    mobile-right-out()
+
+  // description in services
+  .hw-services & h6
+    font-size 2em
+    letter-spacing 0.15em
+
+  .hw-services & h6
+  .hw-services-cover img
+    transform scaleY(1) translateY(0)
+    mobile-title-out()
+
+  .hw-sub-links
+    padding-top .75em
+
+    .hw-sub-panel
+      padding-top 0
+    a
+      margin .25em 0 .5em
+
+  // description in work
+  .hw-sub-description-points
+    flex-row()
+    width 100%
+
+  .hw-sub-description-group
+    flex 1
+
+  &.{activeClass}
+    .hw-services-cover
+      default-in()
+      transform scaleY(.5)
+
+      h6, img
+        mobile-title-in()
+        transform scaleY(2)
+
+      h6
+        transform scaleY(2) translateY(1em)
+
+      .hicon
+        icon-in()
+        transform scale(0.01)
+        opacity 0
+
+      &::after
+        mobile-stem-in()
+        visibility visible
+
+    .hw-sub-close,
+    .hw-sub-left,
+    .hw-sub-right
+      z-index 10
+      visibility visible
+      transform rotateX(0)
+
+    .hw-sub-left
+      top ($$height / 2)
+      mobile-left-in()
+
+      .hw-services &
+        height $$height
+
+    .hw-sub-right
+      top ($$height * 1.5)
+      height ($$height * 2)
+      mobile-right-in()
+
+      .hw-services &
+        height $$height
+media-query-end()

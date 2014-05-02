@@ -22,6 +22,11 @@ class Controller
   delay: (func, timeout) ->
     setTimeout(@proxy(func), timeout || 1)
 
+  wait: (timeout) ->
+    dfd = new jQuery.Deferred();
+    setTimeout(dfd.resolve, timeout)
+    dfd.promise()
+
   proxy: (func) ->
     => func.apply(this, arguments)
 

@@ -91,3 +91,43 @@ textarea
     margin-bottom: 0
   }
 }
+// —————————————
+// @media tablet
+// —————————————
+media-tablet()
+.hw-contact
+  aside, .hw-contact-form
+    float none
+    min-height 0
+    margin 0 auto
+    width auto
+    padding 0 1em
+
+  aside
+    background none
+    margin-top .5em
+
+    p
+     line-height auto
+     padding 1em 0 0; margin 0
+
+    span
+      display inline
+media-query-end()
+// ———————————————————
+// @media Small Mobile
+// ———————————————————
+media-small-mobile()
+
+.hw-contact
+  aside p
+    line-height 1em
+    padding-top 0
+
+  .hw-submit
+    width 100%
+
+  .hw-reset
+    display none
+
+media-query-end()
