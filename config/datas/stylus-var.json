@@ -1,5 +1,7 @@
 {
   "activeClass"             : "hw-panel-active",
+  "witness"                 : "hw-witness",
+  "activeWitness"           : "hw-witness-active",
   "activeBody"              : "hw-body-active",
   "carrouselClass"          : "hw-carrousel",
   "desktopWidth"            : 1080,

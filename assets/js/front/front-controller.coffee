@@ -9,13 +9,13 @@ class Controller
 
   log: (args...) ->
     return unless @trace
-    if @logPrefix then args.unshift("#{@logPrefix} – #{@uid}")
+    if @logPrefix then args.unshift("[#{@logPrefix} – #{@uid}]")
     console?.log?(args...)
     this
 
   warn: (args...) ->
     return unless @trace
-    if @logPrefix then args.unshift("#{@logPrefix} – #{@uid}")
+    if @logPrefix then args.unshift("[#{@logPrefix} – #{@uid}]")
     console?.warn?(args...)
     this
 

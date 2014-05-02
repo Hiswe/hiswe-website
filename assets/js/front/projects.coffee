@@ -3,8 +3,8 @@ Carrousel   = require './projects-carrousel.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Projects extends Controller
-  trace:      false
-  logPrefix:  '[PROJECTS]'
+  trace:      true
+  logPrefix:  'PROJECTS'
   opened:     false
 
   elements: {
@@ -16,13 +16,14 @@ class Projects extends Controller
   events: {
     'tap .hw-projects-item'             : 'open'
     'tap .hw-projects-close'            : 'close'
-    'transitionend .hw-projects-item'   : 'transitionend'
+    'transitionend .hw-witness'         : 'witness'
   }
 
   constructor: ->
     super
     return unless @el.length
     @log 'Init'
+    @all.append('<dd class="' + options.witness + '"></dd>')
     @loadCovers()
     this
 
@@ -30,7 +31,10 @@ class Projects extends Controller
     return @all.filter(".#{options.activeClass}")
 
   clean: ->
-    @currentPanel().heventRemoveClass(options.activeClass)
+    @currentPanel()
+      .removeClass(options.activeClass)
+      .find(".#{options.witness}")
+      .heventRemoveClass(options.activeWitness)
     this
 
   loadCovers: ->
@@ -50,39 +54,26 @@ class Projects extends Controller
             )
         )
 
-  transitionend: (event) ->
-    e = event.originalEvent
-    @log 'transitionend', e.type
-    return unless event.originalEvent?
-
-    # No support of transitionend
-    if e.type is 'hevent'
-      if @opened is on
-        @closeTransitionEnd()
-      else
-        @openTransitionEnd()
-      return
-
-    propertyName = e.propertyName
-    return unless /^top|opacity$/.test propertyName
-    return unless /content|cover/.test event.target.className
-    # the last transition of closing
-    if @opened is on and propertyName is 'top'
-      @closeTransitionEnd()
-    # the last transition of opening
-    else if @opened is off and propertyName is 'opacity'
-      @openTransitionEnd()
-
+  # The witness object is a dirty hack
+  # But it keeps me from filtering between all transitionend events
+  # that are bubbling everywhere :)
+  witness: (event) ->
+    if @opened is on
+      @log 'witness :: close'
+      @closingTransitionEnd()
+    else
+      @log 'witness :: open'
+      @openingTransitionEnd()
     this
 
-  openTransitionEnd: ->
+  openingTransitionEnd: ->
     return this if @opened is on
     @log 'transition end ::','open'
     $currentPanel = @currentPanel()
     @initCarrousel($currentPanel) unless $currentPanel.data('carrousel')
     @opened = on
 
-  closeTransitionEnd: ->
+  closingTransitionEnd: ->
     return this if @opened is off
     @log 'transition end::', 'close'
     @el.css('z-index', 1)
@@ -108,7 +99,11 @@ class Projects extends Controller
     e.preventDefault()
     @clean()
     @el.css('z-index', 2)
-    $target.heventAddClass options.activeClass
+
+    $target
+      .addClass(options.activeClass)
+      .find(".#{options.witness}")
+      .heventAddClass(options.activeWitness)
     @e.trigger 'open'
     this
 

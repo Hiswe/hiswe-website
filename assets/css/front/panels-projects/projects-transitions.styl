@@ -68,13 +68,18 @@ projects-close-button-out()
               right       0s            ease    t-content,
               opacity     t-content     ease    0s
 
+// transition witness
+projects-witness-in()
+  transition  visibility  0.1s          ease    d-content-in
+
+projects-witness-out()
+  transition  visibility  0.1s          ease    d-content-out
+
 // Loading spinner
-
 @keyframes spinner {
-  0% {  clip: rect(0, 30px, 2px, 0); }
-  25% { clip: rect(0, 30px, 30px, 28px); }
-  50% { clip: rect(28px, 30px, 30px, 0); }
-  75% { clip: rect(0, 2px, 30px, 0); }
-  100% { clip:rect(0, 30px, 2px, 0); }
+  0% {    clip: rect(0, 30px, 2px, 0); }
+  25% {   clip: rect(0, 30px, 30px, 28px); }
+  50% {   clip: rect(28px, 30px, 30px, 0); }
+  75% {   clip: rect(0, 2px, 30px, 0); }
+  100% {  clip: rect(0, 30px, 2px, 0); }
 }
-

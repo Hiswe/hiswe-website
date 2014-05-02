@@ -3,7 +3,7 @@ options     = require '../../../config/datas/stylus-var.json'
 
 class ServicesCarrousel extends Controller
   trace: false
-  logPrefix: '[CARROUSEL]'
+  logPrefix: 'CARROUSEL'
   count: 0
   total: 0
   galleryWidth: null

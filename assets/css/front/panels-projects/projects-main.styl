@@ -155,6 +155,17 @@
     visibility visible
     projects-close-button-in()
 
+
+.{witness}
+  absolute top left
+  width 0; height @width
+  visibility hidden
+  projects-witness-out()
+
+  &.{activeWitness}
+    visibility visible
+    projects-witness-in()
+
 // ———————————————————
 // @media Big Mobile
 // ———————————————————

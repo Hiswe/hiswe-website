@@ -12989,7 +12989,7 @@ window.PointerEventsPolyfill.external = {
 
 /**
  * hevent - Css animations & transitions events for all browsers
- * @version v0.4.5
+ * @version v0.4.6
  * @link http://hiswe.github.io/hevent/
  * @license WTFPL
  */
@@ -13130,7 +13130,7 @@ var __slice = [].slice;
         target: origTarget
       });
       triggerCustomEvent(thisObject, 'heventend', ev);
-      if (isAnimated(thisObject)) {
+      if (isAnimated(origTarget)) {
         return true;
       }
       return $.event.special.heventend.fireEvent(thisObject, event, eventName);
@@ -13178,7 +13178,9 @@ var __slice = [].slice;
   _results = [];
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     eventName = _ref[_i];
-    _results.push(aliasesEvent(eventName));
+    _results.push((function(eventName) {
+      return aliasesEvent(eventName);
+    })(eventName));
   }
   return _results;
 })(jQuery, Modernizr, document, window);

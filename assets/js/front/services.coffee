@@ -3,7 +3,7 @@ options     = require '../../../config/datas/stylus-var.json'
 
 class Services extends Controller
   trace: false
-  logPrefix: '[SERVICES]'
+  logPrefix: 'SERVICES'
   opened: false
 
   elements: {

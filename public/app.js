@@ -16,9 +16,9 @@ options = require('../../../config/datas/stylus-var.json');
 App = (function(_super) {
   __extends(App, _super);
 
-  App.prototype.trace = true;
+  App.prototype.trace = false;
 
-  App.prototype.logPrefix = '[APP]';
+  App.prototype.logPrefix = 'APP';
 
   App.prototype.elements = {
     'body': 'body'
@@ -115,7 +115,7 @@ Contact = (function(_super) {
 
   Contact.prototype.trace = false;
 
-  Contact.prototype.logPrefix = '[CONTACT]';
+  Contact.prototype.logPrefix = 'CONTACT';
 
   Contact.prototype.removeDelay = 5000;
 
@@ -226,7 +226,7 @@ Controller = (function() {
       return;
     }
     if (this.logPrefix) {
-      args.unshift("" + this.logPrefix + " – " + this.uid);
+      args.unshift("[" + this.logPrefix + " – " + this.uid + "]");
     }
     if (typeof console !== "undefined" && console !== null) {
       if (typeof console.log === "function") {
@@ -243,7 +243,7 @@ Controller = (function() {
       return;
     }
     if (this.logPrefix) {
-      args.unshift("" + this.logPrefix + " – " + this.uid);
+      args.unshift("[" + this.logPrefix + " – " + this.uid + "]");
     }
     if (typeof console !== "undefined" && console !== null) {
       if (typeof console.warn === "function") {
@@ -379,7 +379,7 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.trace = false;
 
-  ServicesCarrousel.prototype.logPrefix = '[CARROUSEL]';
+  ServicesCarrousel.prototype.logPrefix = 'CARROUSEL';
 
   ServicesCarrousel.prototype.count = 0;
 
@@ -541,9 +541,9 @@ options = require('../../../config/datas/stylus-var.json');
 Projects = (function(_super) {
   __extends(Projects, _super);
 
-  Projects.prototype.trace = false;
+  Projects.prototype.trace = true;
 
-  Projects.prototype.logPrefix = '[PROJECTS]';
+  Projects.prototype.logPrefix = 'PROJECTS';
 
   Projects.prototype.opened = false;
 
@@ -556,7 +556,7 @@ Projects = (function(_super) {
   Projects.prototype.events = {
     'tap .hw-projects-item': 'open',
     'tap .hw-projects-close': 'close',
-    'transitionend .hw-projects-item': 'transitionend'
+    'transitionend .hw-witness': 'witness'
   };
 
   function Projects() {
@@ -565,6 +565,7 @@ Projects = (function(_super) {
       return;
     }
     this.log('Init');
+    this.all.append('<dd class="' + options.witness + '"></dd>');
     this.loadCovers();
     this;
   }
@@ -574,7 +575,7 @@ Projects = (function(_super) {
   };
 
   Projects.prototype.clean = function() {
-    this.currentPanel().heventRemoveClass(options.activeClass);
+    this.currentPanel().removeClass(options.activeClass).find("." + options.witness).heventRemoveClass(options.activeWitness);
     return this;
   };
 
@@ -595,37 +596,18 @@ Projects = (function(_super) {
     })(this));
   };
 
-  Projects.prototype.transitionend = function(event) {
-    var e, propertyName;
-    e = event.originalEvent;
-    this.log('transitionend', e.type);
-    if (event.originalEvent == null) {
-      return;
-    }
-    if (e.type === 'hevent') {
-      if (this.opened === true) {
-        this.closeTransitionEnd();
-      } else {
-        this.openTransitionEnd();
-      }
-      return;
-    }
-    propertyName = e.propertyName;
-    if (!/^top|opacity$/.test(propertyName)) {
-      return;
-    }
-    if (!/content|cover/.test(event.target.className)) {
-      return;
-    }
-    if (this.opened === true && propertyName === 'top') {
-      this.closeTransitionEnd();
-    } else if (this.opened === false && propertyName === 'opacity') {
-      this.openTransitionEnd();
+  Projects.prototype.witness = function(event) {
+    if (this.opened === true) {
+      this.log('witness :: close');
+      this.closingTransitionEnd();
+    } else {
+      this.log('witness :: open');
+      this.openingTransitionEnd();
     }
     return this;
   };
 
-  Projects.prototype.openTransitionEnd = function() {
+  Projects.prototype.openingTransitionEnd = function() {
     var $currentPanel;
     if (this.opened === true) {
       return this;
@@ -638,7 +620,7 @@ Projects = (function(_super) {
     return this.opened = true;
   };
 
-  Projects.prototype.closeTransitionEnd = function() {
+  Projects.prototype.closingTransitionEnd = function() {
     if (this.opened === false) {
       return this;
     }
@@ -670,7 +652,7 @@ Projects = (function(_super) {
     e.preventDefault();
     this.clean();
     this.el.css('z-index', 2);
-    $target.heventAddClass(options.activeClass);
+    $target.addClass(options.activeClass).find("." + options.witness).heventAddClass(options.activeWitness);
     this.e.trigger('open');
     return this;
   };
@@ -706,7 +688,7 @@ Services = (function(_super) {
 
   Services.prototype.trace = false;
 
-  Services.prototype.logPrefix = '[SERVICES]';
+  Services.prototype.logPrefix = 'SERVICES';
 
   Services.prototype.opened = false;
 
@@ -801,6 +783,8 @@ module.exports = Services;
 },{"../../../config/datas/stylus-var.json":8,"./front-controller.coffee":4}],8:[function(require,module,exports){
 module.exports={
   "activeClass"             : "hw-panel-active",
+  "witness"                 : "hw-witness",
+  "activeWitness"           : "hw-witness-active",
   "activeBody"              : "hw-body-active",
   "carrouselClass"          : "hw-carrousel",
   "desktopWidth"            : 1080,

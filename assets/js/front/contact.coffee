@@ -2,7 +2,7 @@ Controller  = require './front-controller.coffee'
 
 class Contact extends Controller
   trace: false
-  logPrefix: '[CONTACT]'
+  logPrefix: 'CONTACT'
   removeDelay: 5000
 
   elements: {
