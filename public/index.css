@@ -560,26 +560,11 @@ body {
   top: 0;
   z-index: 1;
   margin-bottom: 0;
-  -webkit-transition-property: height, top, margin-bottom, z-index;
-  -moz-transition-property: height, top, margin-bottom, z-index;
-  -o-transition-property: height, top, margin-bottom, z-index;
-  -ms-transition-property: height, top, margin-bottom, z-index;
-  transition-property: height, top, margin-bottom, z-index;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.1s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 2s;
-  -moz-transition-delay: 1s, 1s, 1s, 2s;
-  -o-transition-delay: 1s, 1s, 1s, 2s;
-  -ms-transition-delay: 1s, 1s, 1s, 2s;
-  transition-delay: 1s, 1s, 1s, 2s;
+  -webkit-transition: height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, top 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, margin-bottom 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, z-index 0.1s ease 2s;
+  -moz-transition: height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, top 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, margin-bottom 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, z-index 0.1s ease 2s;
+  -o-transition: height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, top 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, margin-bottom 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, z-index 0.1s ease 2s;
+  -ms-transition: height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, top 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, margin-bottom 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, z-index 0.1s ease 2s;
+  transition: height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, top 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, margin-bottom 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, z-index 0.1s ease 2s;
 }
 .hw-services-item .hicon {
   -webkit-transform: matrix(1, 0.5, 0, 1, 0, 0);
@@ -588,26 +573,11 @@ body {
   -ms-transform: matrix(1, 0.5, 0, 1, 0, 0);
   transform: matrix(1, 0.5, 0, 1, 0, 0);
   -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0.5, M22=1, SizingMethod='auto expand');
-  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-  -moz-transition-property: -moz-transform, opacity, color, font-size;
-  -o-transition-property: -o-transform, opacity, color, font-size;
-  -ms-transition-property: -ms-transform, opacity, color, font-size;
-  transition-property: transform, opacity, color, font-size;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 1s, 1s, 1s, 1s;
-  -o-transition-delay: 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 1s, 1s, 1s, 1s;
-  transition-delay: 1s, 1s, 1s, 1s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
 }
 .hw-services-item .hw-sub-close {
   opacity: 0;
@@ -619,49 +589,19 @@ body {
 }
 .hw-services-item .hw-sub {
   visibility: hidden;
-  -webkit-transition-property: left, visibility;
-  -moz-transition-property: left, visibility;
-  -o-transition-property: left, visibility;
-  -ms-transition-property: left, visibility;
-  transition-property: left, visibility;
-  -webkit-transition-duration: 0.5s, 0s;
-  -moz-transition-duration: 0.5s, 0s;
-  -o-transition-duration: 0.5s, 0s;
-  -ms-transition-duration: 0.5s, 0s;
-  transition-duration: 0.5s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0.5s, 1s;
-  -moz-transition-delay: 0.5s, 1s;
-  -o-transition-delay: 0.5s, 1s;
-  -ms-transition-delay: 0.5s, 1s;
-  transition-delay: 0.5s, 1s;
+  -webkit-transition: left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s;
+  -moz-transition: left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s;
+  -o-transition: left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s;
+  -ms-transition: left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s;
+  transition: left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s;
 }
 .hw-services-item .hw-services-cover {
   visibility: visible;
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
 }
 .hw-services-item:nth-child(3n+1) .hw-services-cover,
 .hw-services-item:nth-child(3n+3) .hw-services-cover {
@@ -719,100 +659,40 @@ body {
 .hw-services-item:nth-child(3n+2) .hw-sub-right,
 .hw-services-item:nth-child(3n+3) .hw-sub-left,
 .hw-services-item:nth-child(3n+1) .hw-sub-right {
-  -webkit-transition-property: left, visibility, -webkit-transform;
-  -moz-transition-property: left, visibility, -moz-transform;
-  -o-transition-property: left, visibility, -o-transform;
-  -ms-transition-property: left, visibility, -ms-transform;
-  transition-property: left, visibility, transform;
-  -webkit-transition-duration: 0s, 0s, 0.5s;
-  -moz-transition-duration: 0s, 0s, 0.5s;
-  -o-transition-duration: 0s, 0s, 0.5s;
-  -ms-transition-duration: 0s, 0s, 0.5s;
-  transition-duration: 0s, 0s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -webkit-transition-delay: 0.5s, 0.5s, 0s;
-  -moz-transition-delay: 0.5s, 0.5s, 0s;
-  -o-transition-delay: 0.5s, 0.5s, 0s;
-  -ms-transition-delay: 0.5s, 0.5s, 0s;
-  transition-delay: 0.5s, 0.5s, 0s;
+  -webkit-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -webkit-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0s;
+  -moz-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -moz-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0s;
+  -o-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -o-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0s;
+  -ms-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -ms-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0s;
+  transition: left 0s ease 0.5s, visibility 0s ease 0.5s, transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0s;
 }
 .hw-services-item:nth-child(3n+2) .hw-sub-left {
-  -webkit-transition-property: left, visibility, -webkit-transform;
-  -moz-transition-property: left, visibility, -moz-transform;
-  -o-transition-property: left, visibility, -o-transform;
-  -ms-transition-property: left, visibility, -ms-transform;
-  transition-property: left, visibility, transform;
-  -webkit-transition-duration: 0s, 0s, 0.5s;
-  -moz-transition-duration: 0s, 0s, 0.5s;
-  -o-transition-duration: 0s, 0s, 0.5s;
-  -ms-transition-duration: 0s, 0s, 0.5s;
-  transition-duration: 0s, 0s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -webkit-transition-delay: 1s, 1s, 0.5s;
-  -moz-transition-delay: 1s, 1s, 0.5s;
-  -o-transition-delay: 1s, 1s, 0.5s;
-  -ms-transition-delay: 1s, 1s, 0.5s;
-  transition-delay: 1s, 1s, 0.5s;
+  -webkit-transition: left 0s ease 1s, visibility 0s ease 1s, -webkit-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  -moz-transition: left 0s ease 1s, visibility 0s ease 1s, -moz-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  -o-transition: left 0s ease 1s, visibility 0s ease 1s, -o-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  -ms-transition: left 0s ease 1s, visibility 0s ease 1s, -ms-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  transition: left 0s ease 1s, visibility 0s ease 1s, transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
 }
 .hw-services-item.hw-panel-active {
   height: 29.25em;
   top: -4.875em;
   margin-bottom: -9.75em;
   z-index: 10;
-  -webkit-transition-property: height, top, margin-bottom, z-index;
-  -moz-transition-property: height, top, margin-bottom, z-index;
-  -o-transition-property: height, top, margin-bottom, z-index;
-  -ms-transition-property: height, top, margin-bottom, z-index;
-  transition-property: height, top, margin-bottom, z-index;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0s;
-  transition-delay: 0s, 0s, 0s, 0s;
+  -webkit-transition: height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, top 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, margin-bottom 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, z-index 0s ease 0s;
+  -moz-transition: height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, top 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, margin-bottom 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, z-index 0s ease 0s;
+  -o-transition: height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, top 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, margin-bottom 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, z-index 0s ease 0s;
+  -ms-transition: height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, top 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, margin-bottom 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, z-index 0s ease 0s;
+  transition: height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, top 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, margin-bottom 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, z-index 0s ease 0s;
 }
 .hw-services-item.hw-panel-active .hw-services-cover {
   color: #fff;
   background: #576176;
 }
 .hw-services-item.hw-panel-active .hicon {
-  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-  -moz-transition-property: -moz-transform, opacity, color, font-size;
-  -o-transition-property: -o-transform, opacity, color, font-size;
-  -ms-transition-property: -ms-transform, opacity, color, font-size;
-  transition-property: transform, opacity, color, font-size;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0s;
-  transition-delay: 0s, 0s, 0s, 0s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
   -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
   -moz-transform: matrix(1, 0, 0, 1, 0, 0);
   -o-transform: matrix(1, 0, 0, 1, 0, 0);
@@ -823,26 +703,11 @@ body {
   color: #454a5d;
 }
 .hw-services-item.hw-panel-active .hw-sub-close {
-  -webkit-transition-property: left, opacity, color;
-  -moz-transition-property: left, opacity, color;
-  -o-transition-property: left, opacity, color;
-  -ms-transition-property: left, opacity, color;
-  transition-property: left, opacity, color;
-  -webkit-transition-duration: 0s, 0.5s, 0.5s;
-  -moz-transition-duration: 0s, 0.5s, 0.5s;
-  -o-transition-duration: 0s, 0.5s, 0.5s;
-  -ms-transition-duration: 0s, 0.5s, 0.5s;
-  transition-duration: 0s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease;
-  transition-timing-function: ease, ease, ease;
-  -webkit-transition-delay: 1.5s, 1.5s, 0s;
-  -moz-transition-delay: 1.5s, 1.5s, 0s;
-  -o-transition-delay: 1.5s, 1.5s, 0s;
-  -ms-transition-delay: 1.5s, 1.5s, 0s;
-  transition-delay: 1.5s, 1.5s, 0s;
+  -webkit-transition: left 0s ease 1.5s, opacity 0.5s ease 1.5s, color 0.5s ease 0s;
+  -moz-transition: left 0s ease 1.5s, opacity 0.5s ease 1.5s, color 0.5s ease 0s;
+  -o-transition: left 0s ease 1.5s, opacity 0.5s ease 1.5s, color 0.5s ease 0s;
+  -ms-transition: left 0s ease 1.5s, opacity 0.5s ease 1.5s, color 0.5s ease 0s;
+  transition: left 0s ease 1.5s, opacity 0.5s ease 1.5s, color 0.5s ease 0s;
   opacity: 1;
 }
 .hw-services-item.hw-panel-active .hw-sub {
@@ -852,94 +717,34 @@ body {
   -o-transform: rotateY(0);
   -ms-transform: rotateY(0);
   transform: rotateY(0);
-  -webkit-transition-property: left, visibility;
-  -moz-transition-property: left, visibility;
-  -o-transition-property: left, visibility;
-  -ms-transition-property: left, visibility;
-  transition-property: left, visibility;
-  -webkit-transition-duration: 0.5s, 0s;
-  -moz-transition-duration: 0.5s, 0s;
-  -o-transition-duration: 0.5s, 0s;
-  -ms-transition-duration: 0.5s, 0s;
-  transition-duration: 0.5s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 0.5s, 0.5s;
-  -moz-transition-delay: 0.5s, 0.5s;
-  -o-transition-delay: 0.5s, 0.5s;
-  -ms-transition-delay: 0.5s, 0.5s;
-  transition-delay: 0.5s, 0.5s;
+  -webkit-transition: left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s;
+  -moz-transition: left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s;
+  -o-transition: left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s;
+  -ms-transition: left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s;
+  transition: left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s;
 }
 .hw-services-item.hw-panel-active .hw-services-cover {
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
 }
 .hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-left,
 .hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-right,
 .hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-right {
-  -webkit-transition-property: left, visibility, -webkit-transform;
-  -moz-transition-property: left, visibility, -moz-transform;
-  -o-transition-property: left, visibility, -o-transform;
-  -ms-transition-property: left, visibility, -ms-transform;
-  transition-property: left, visibility, transform;
-  -webkit-transition-duration: 0s, 0s, 0.5s;
-  -moz-transition-duration: 0s, 0s, 0.5s;
-  -o-transition-duration: 0s, 0s, 0.5s;
-  -ms-transition-duration: 0s, 0s, 0.5s;
-  transition-duration: 0s, 0s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -webkit-transition-delay: 1s, 1s, 1s;
-  -moz-transition-delay: 1s, 1s, 1s;
-  -o-transition-delay: 1s, 1s, 1s;
-  -ms-transition-delay: 1s, 1s, 1s;
-  transition-delay: 1s, 1s, 1s;
+  -webkit-transition: left 0s ease 1s, visibility 0s ease 1s, -webkit-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 1s;
+  -moz-transition: left 0s ease 1s, visibility 0s ease 1s, -moz-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 1s;
+  -o-transition: left 0s ease 1s, visibility 0s ease 1s, -o-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 1s;
+  -ms-transition: left 0s ease 1s, visibility 0s ease 1s, -ms-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 1s;
+  transition: left 0s ease 1s, visibility 0s ease 1s, transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 1s;
 }
 .hw-services-item.hw-panel-active:nth-child(3n+2) .hw-sub-left {
-  -webkit-transition-property: left, visibility, -webkit-transform;
-  -moz-transition-property: left, visibility, -moz-transform;
-  -o-transition-property: left, visibility, -o-transform;
-  -ms-transition-property: left, visibility, -ms-transform;
-  transition-property: left, visibility, transform;
-  -webkit-transition-duration: 0s, 0s, 0.5s;
-  -moz-transition-duration: 0s, 0s, 0.5s;
-  -o-transition-duration: 0s, 0s, 0.5s;
-  -ms-transition-duration: 0s, 0s, 0.5s;
-  transition-duration: 0s, 0s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -moz-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -o-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -ms-transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  transition-timing-function: ease, ease, cubic-bezier(0.250, 0.100, 0.250, 1.000);
-  -webkit-transition-delay: 0.5s, 0.5s, 0.5s;
-  -moz-transition-delay: 0.5s, 0.5s, 0.5s;
-  -o-transition-delay: 0.5s, 0.5s, 0.5s;
-  -ms-transition-delay: 0.5s, 0.5s, 0.5s;
-  transition-delay: 0.5s, 0.5s, 0.5s;
+  -webkit-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -webkit-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  -moz-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -moz-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  -o-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -o-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  -ms-transition: left 0s ease 0.5s, visibility 0s ease 0.5s, -ms-transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
+  transition: left 0s ease 0.5s, visibility 0s ease 0.5s, transform 0.5s cubic-bezier(0.250, 0.100, 0.250, 1.000) 0.5s;
 }
 .hw-services-item.hw-panel-active:nth-child(3n+1) .hw-sub-close {
   left: 300%;
@@ -1212,48 +1017,18 @@ body {
   -o-transform-origin: center top;
   -ms-transform-origin: center top;
   transform-origin: center top;
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -moz-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -o-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  -ms-transition-delay: 1s, 1s, 1s, 0.5s, 0s;
-  transition-delay: 1s, 1s, 1s, 0.5s, 0s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, background 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, box-shadow 0.25s ease 0s;
 }
 .hw-services-item:nth-child(1n) .hw-services-cover .hicon {
-  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-  -moz-transition-property: -moz-transform, opacity, color, font-size;
-  -o-transition-property: -o-transform, opacity, color, font-size;
-  -ms-transition-property: -ms-transform, opacity, color, font-size;
-  transition-property: transform, opacity, color, font-size;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), cubic-bezier(0.215, 0.610, 0.355, 1.000), ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 1s, 1s, 1s, 1s;
-  -o-transition-delay: 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 1s, 1s, 1s, 1s;
-  transition-delay: 1s, 1s, 1s, 1s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, color 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s, font-size 0.5s ease 1s;
   opacity: 1;
 }
 .hw-services-item:nth-child(1n) .hw-services-cover::after {
@@ -1289,48 +1064,18 @@ body {
   transform-origin: top center;
 }
 .hw-services-item:nth-child(1n) .hw-sub-left {
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), ease, ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  -o-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 0.5s, 1s, 1s, 1s, 1s;
-  transition-delay: 0.5s, 1s, 1s, 1s, 1s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
 }
 .hw-services-item:nth-child(1n) .hw-sub-right {
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease, ease;
-  -webkit-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-delay: 0s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition: -webkit-transform 0.5s ease 0s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  -moz-transition: -moz-transform 0.5s ease 0s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  -o-transition: -o-transform 0.5s ease 0s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  -ms-transition: -ms-transform 0.5s ease 0s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  transition: transform 0.5s ease 0s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
 }
 .hw-services .hw-services-item:nth-child(1n) h6 {
   font-size: 2em;
@@ -1389,26 +1134,11 @@ body {
   z-index: 2;
 }
 .hw-services-item.hw-panel-active:nth-child(1n) .hw-services-cover {
-  -webkit-transition-property: -webkit-transform, height, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, background, left, box-shadow;
-  transition-property: transform, height, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0.5s, 0s;
-  transition-delay: 0s, 0s, 0s, 0.5s, 0s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, height 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, background 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, left 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0.5s, box-shadow 0.25s ease 0s;
   -webkit-transform: scaleY(0.51);
   -moz-transform: scaleY(0.51);
   -o-transform: scaleY(0.51);
@@ -1437,26 +1167,11 @@ body {
   transform: scaleY(2) translateY(1em);
 }
 .hw-services-item.hw-panel-active:nth-child(1n) .hw-services-cover .hicon {
-  -webkit-transition-property: -webkit-transform, opacity, color, font-size;
-  -moz-transition-property: -moz-transform, opacity, color, font-size;
-  -o-transition-property: -o-transform, opacity, color, font-size;
-  -ms-transition-property: -ms-transform, opacity, color, font-size;
-  transition-property: transform, opacity, color, font-size;
-  -webkit-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -moz-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -o-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -ms-transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  transition-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), cubic-bezier(0.550, 0.055, 0.675, 0.190), ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0s;
-  transition-delay: 0s, 0s, 0s, 0s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
+  transition: transform 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, opacity 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, color 0.5s cubic-bezier(0.550, 0.055, 0.675, 0.190) 0s, font-size 0.5s ease 0s;
   -webkit-transform: scale(0.01);
   -moz-transform: scale(0.01);
   -o-transform: scale(0.01);
@@ -1492,50 +1207,20 @@ body {
 .hw-services-item.hw-panel-active:nth-child(1n) .hw-sub-left {
   top: 6.875em;
   height: 13.75em;
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000), ease, ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -o-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
-  transition-delay: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  -moz-transition: -moz-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  -o-transition: -o-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  -ms-transition: -ms-transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
+  transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s, visibility 0s ease 0.5s, height 0s ease 0.5s, z-index 0s ease 0.5s, top 0s ease 0.5s;
 }
 .hw-services-item.hw-panel-active:nth-child(1n) .hw-sub-right {
   top: 20.625em;
   height: 13.75em;
-  -webkit-transition-property: -webkit-transform, visibility, height, z-index, top;
-  -moz-transition-property: -moz-transform, visibility, height, z-index, top;
-  -o-transition-property: -o-transform, visibility, height, z-index, top;
-  -ms-transition-property: -ms-transform, visibility, height, z-index, top;
-  transition-property: transform, visibility, height, z-index, top;
-  -webkit-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -moz-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -o-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -ms-transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  transition-duration: 0.5s, 0s, 0s, 0s, 0s;
-  -webkit-transition-timing-function: ease, ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease, ease;
-  -webkit-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  -moz-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  -o-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  -ms-transition-delay: 1s, 1s, 1s, 1s, 1s;
-  transition-delay: 1s, 1s, 1s, 1s, 1s;
+  -webkit-transition: -webkit-transform 0.5s ease 1s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  -moz-transition: -moz-transform 0.5s ease 1s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  -o-transition: -o-transform 0.5s ease 1s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  -ms-transition: -ms-transform 0.5s ease 1s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
+  transition: transform 0.5s ease 1s, visibility 0s ease 1s, height 0s ease 1s, z-index 0s ease 1s, top 0s ease 1s;
 }
 }
 @-moz-keyframes spinner {
