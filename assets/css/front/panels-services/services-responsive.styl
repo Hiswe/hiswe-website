@@ -123,12 +123,6 @@ media-small-mobile()
 .hw-services .hw-services-title
   padding 0
 
-// panels animation
-.hw-sub-close
-  top .5em
-  right .5em
-  z-index 3
-
 $$height = px2em($mobile-cover-height)
 
 .hw-services-item:nth-child(1n)
@@ -215,7 +209,8 @@ $$height = px2em($mobile-cover-height)
 
   .hw-services-cover
     default-in()
-    transform scaleY(.5)
+    // .51 is for rounding issue X(
+    transform scaleY(.51)
     background $dark-grey
 
     h6, img
@@ -234,13 +229,18 @@ $$height = px2em($mobile-cover-height)
       mobile-stem-in()
       visibility visible
 
-  .hw-sub-close,
   .hw-sub-left,
   .hw-sub-right
     z-index 10
     left 0
     visibility visible
     transform rotateX(0)
+
+  .hw-sub-close
+    top .5em
+    left 100%
+    z-index 10
+    visibility visible
 
   .hw-sub-left
     top ($$height / 2)
