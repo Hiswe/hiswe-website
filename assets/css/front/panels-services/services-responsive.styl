@@ -73,8 +73,7 @@ media-big-mobile()
   top 0
   margin-bottom 0
 
-  &:nth-child(2n + 1),
-  &:nth-child(2n)
+  &:nth-child(1n)
     .hw-services-cover
       top 0
 
@@ -109,7 +108,8 @@ media-query-end()
 // ———————————————————
 media-small-mobile()
 
-.hw-services-item
+.hw-services-item,
+.hw-services-item.{activeClass}
   display block
   width auto
 
@@ -131,8 +131,16 @@ media-small-mobile()
 
 $$height = px2em($mobile-cover-height)
 
-.hw-services-item
+.hw-services-item:nth-child(1n)
   height $$height
+  position relative
+
+  .hw-services-cover
+    background white
+    box-shadow inset 0 1px 0 0 noir(.1)
+
+  .hw-sub-panel
+    font-size 1em
 
   h3, h3 + h3, p
     margin 0
@@ -146,6 +154,7 @@ $$height = px2em($mobile-cover-height)
   .hw-sub-right
     absolute top left
     height $$height
+    width 100%
 
   .hw-services-cover
     visibility visible
@@ -201,46 +210,46 @@ $$height = px2em($mobile-cover-height)
   .hw-sub-description-group
     flex 1
 
-  &.{activeClass}
-    .hw-services-cover
-      default-in()
-      transform scaleY(.5)
+.hw-services-item.{activeClass}:nth-child(1n)
+  z-index 2
 
-      h6, img
-        mobile-title-in()
-        transform scaleY(2)
+  .hw-services-cover
+    default-in()
+    transform scaleY(.5)
+    background $dark-grey
 
-      h6
-        transform scaleY(2) translateY(1em)
+    h6, img
+      mobile-title-in()
+      transform scaleY(2)
 
-      .hicon
-        icon-in()
-        transform scale(0.01)
-        opacity 0
+    h6
+      transform scaleY(2) translateY(1em)
 
-      &::after
-        mobile-stem-in()
-        visibility visible
+    .hicon
+      icon-in()
+      transform scale(0.01)
+      opacity 0
 
-    .hw-sub-close,
-    .hw-sub-left,
-    .hw-sub-right
-      z-index 10
+    &::after
+      mobile-stem-in()
       visibility visible
-      transform rotateX(0)
 
-    .hw-sub-left
-      top ($$height / 2)
-      mobile-left-in()
+  .hw-sub-close,
+  .hw-sub-left,
+  .hw-sub-right
+    z-index 10
+    left 0
+    visibility visible
+    transform rotateX(0)
 
-      .hw-services &
-        height $$height
+  .hw-sub-left
+    top ($$height / 2)
+    height $$height
+    mobile-left-in()
 
-    .hw-sub-right
-      top ($$height * 1.5)
-      height ($$height * 2)
-      mobile-right-in()
+  .hw-sub-right
+    top ($$height * 1.5)
+    height $$height
+    mobile-right-in()
 
-      .hw-services &
-        height $$height
 media-query-end()
