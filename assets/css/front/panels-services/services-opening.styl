@@ -67,8 +67,8 @@
 
 .hw-services-item.{activeClass}
   height px2em($panel-height*1.5)
-  top (px2em($panel-height) - @height) * 1.5
-  margin-bottom (px2em($panel-height) - @height) * 2
+  top  -1 * (px2em($panel-height) * 0.25)
+  margin-bottom @top * 2
   z-index 10
   panel-in()
 

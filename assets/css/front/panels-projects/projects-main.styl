@@ -100,7 +100,6 @@
     backface-visibility hidden
     projects-content-out()
 
-  // Here
   .hw-projects-content
     overflow hidden
     transform scale3d(.1, .1, .1) rotateY(180deg)
@@ -173,6 +172,9 @@ media-big-mobile()
 
 .hw-projects-item
   width 50%
+
+.hw-projects-item:nth-child(3) .hw-projects-cover
+  box-shadow inset 0 1px 0 0 noir(.1)
 
 .hw-projects-item:nth-child(2n)
   &.{activeClass} .hw-projects-cover

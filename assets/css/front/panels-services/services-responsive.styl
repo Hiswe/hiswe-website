@@ -1,18 +1,12 @@
-// —————————————
-// @media Tablet
-// —————————————
-media-tablet()
-
-.hw-services h6
-  font-size 1.25em
-  letter-spacing 0em
-
-media-query-end()
-
 // —————————————————
 // @media Big Mobile
 // —————————————————
 media-big-mobile()
+
+
+.hw-services h6
+  // font-size 1.25em
+  letter-spacing 0em
 
 .hw-services-item
   &:nth-child(2n + 1),
@@ -110,8 +104,8 @@ media-small-mobile()
 
 .hw-services-item,
 .hw-services-item.{activeClass}
-  display block
   width auto
+  float none
 
   .hw-sub.hw-services-cover,
   .hw-sub.hw-services-cover .hicon

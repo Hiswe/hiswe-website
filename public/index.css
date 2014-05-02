@@ -348,7 +348,7 @@ body {
   position: relative;
   z-index: 1;
 }
-.hw-services .hw-services-list {
+.hw-services-list {
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   -ms-perspective: 1000px;
@@ -361,11 +361,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.hw-services .hw-services-list h3:first-child {
+.hw-services-list:before,
+.hw-services-list:after {
+  content: "";
+  display: table;
+}
+.hw-services-list:after {
+  clear: both;
+}
+.hw-services-list h3:first-child {
   margin-top: 0;
 }
-.hw-services .hw-services-list .hw-sub-left,
-.hw-services .hw-services-list .hw-sub-right {
+.hw-services-list .hw-sub-left,
+.hw-services-list .hw-sub-right {
   background: #454a5d;
 }
 .hw-highlight {
@@ -373,7 +381,7 @@ body {
 }
 .hw-services-item {
   position: relative;
-  display: inline-block;
+  float: left;
   width: 33.333333333333336%;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
@@ -756,8 +764,8 @@ body {
 }
 .hw-services-item.hw-panel-active {
   height: 29.25em;
-  top: -14.625em;
-  margin-bottom: -19.5em;
+  top: -4.875em;
+  margin-bottom: -9.75em;
   z-index: 10;
   -webkit-transition-property: height, top, margin-bottom, z-index;
   -moz-transition-property: height, top, margin-bottom, z-index;
@@ -969,13 +977,10 @@ body {
 .hw-services-item.hw-panel-active:nth-child(3n+3) .hw-sub-right {
   left: 0%;
 }
-@media screen and (max-width: 1121px) {
+@media screen and (max-width: 800px) {
 .hw-services h6 {
-  font-size: 1.25em;
   letter-spacing: 0em;
 }
-}
-@media screen and (max-width: 800px) {
 .hw-services-item:nth-child(2n + 1) .hw-sub-left,
 .hw-services-item:nth-child(2n) .hw-sub-left,
 .hw-services-item:nth-child(2n + 1) .hw-sub-right,
@@ -1150,8 +1155,8 @@ body {
 @media screen and (max-width: 479px) {
 .hw-services-item,
 .hw-services-item.hw-panel-active {
-  display: block;
   width: auto;
+  float: none;
 }
 .hw-services-item .hw-sub.hw-services-cover,
 .hw-services-item.hw-panel-active .hw-sub.hw-services-cover,
@@ -1971,6 +1976,10 @@ body {
 @media screen and (max-width: 800px) {
 .hw-projects-item {
   width: 50%;
+}
+.hw-projects-item:nth-child(3) .hw-projects-cover {
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.1);
 }
 .hw-projects-item:nth-child(2n).hw-panel-active .hw-projects-cover {
   left: -50%;

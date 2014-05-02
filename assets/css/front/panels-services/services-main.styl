@@ -2,25 +2,27 @@
   position relative
   z-index 1
 
-  .hw-services-list
-    perspective 1000px
-    perspective-origin center center
-    color blanc(.9)
-    crisp-font-smoothing()
 
-    h3:first-child
-      margin-top 0
+.hw-services-list
+  perspective 1000px
+  perspective-origin center center
+  color blanc(.9)
+  crisp-font-smoothing()
+  clearfix()
 
-    .hw-sub-left,
-    .hw-sub-right
-      background $darkest-grey
+  h3:first-child
+    margin-top 0
+
+  .hw-sub-left,
+  .hw-sub-right
+    background $darkest-grey
 
 .hw-highlight
   z-index 2
 
 .hw-services-item
   position relative
-  display inline-block
+  float left
   width third()
   transform-style preserve-3d
 
