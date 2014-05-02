@@ -14,11 +14,14 @@ class App extends Controller
   constructor: ->
     super
     @log 'init'
-    @body.removeClass('preload')
+    @body.removeClass('prevent-transition')
     @getPixelRatio()
     @instanciate()
     @bodyEvents()
     this
+
+    Controller.e.on 'resizeStart', => @body.addClass 'prevent-transition'
+    Controller.e.on 'resizeEnd', => @body.removeClass 'prevent-transition'
 
   instanciate: ->
     @services = new Services({el: $('section.hw-services')})

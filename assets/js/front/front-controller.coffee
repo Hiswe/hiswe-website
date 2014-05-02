@@ -1,4 +1,4 @@
-id = 0
+uid         = 0
 
 class Controller
   eventSplitter: /^(\S+)\s*(.*)$/
@@ -9,13 +9,13 @@ class Controller
 
   log: (args...) ->
     return unless @trace
-    if @logPrefix then args.unshift("#{@logPrefix} – #{@id}")
+    if @logPrefix then args.unshift("#{@logPrefix} – #{@uid}")
     console?.log?(args...)
     this
 
   warn: (args...) ->
     return unless @trace
-    if @logPrefix then args.unshift("#{@logPrefix} – #{@id}")
+    if @logPrefix then args.unshift("#{@logPrefix} – #{@uid}")
     console?.warn?(args...)
     this
 
@@ -31,8 +31,8 @@ class Controller
     => func.apply(this, arguments)
 
   constructor: (options) ->
-    id = id + 1
-    @id = id
+    uid = uid + 1
+    @uid = uid
     @options = options or {}
 
     for key, value of @options
@@ -74,5 +74,19 @@ class Controller
         @el.on(eventName, method)
       else
         @el.on(eventName, selector, method)
+
+# Global resize timer
+
+resizeTimer = null
+
+$(window).on 'resize', ->
+  Controller.e.trigger('resizeStart') unless resizeTimer
+  # console.log 'resize start' unless resizeTimer
+  window.clearTimeout(resizeTimer)
+  resizeTimer = window.setTimeout ->
+    Controller.e.trigger('resizeEnd')
+    resizeTimer = null
+    # console.log 'resize end'
+  , 300
 
 module.exports = Controller

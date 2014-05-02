@@ -27,11 +27,21 @@ App = (function(_super) {
   function App() {
     App.__super__.constructor.apply(this, arguments);
     this.log('init');
-    this.body.removeClass('preload');
+    this.body.removeClass('prevent-transition');
     this.getPixelRatio();
     this.instanciate();
     this.bodyEvents();
     this;
+    Controller.e.on('resizeStart', (function(_this) {
+      return function() {
+        return _this.body.addClass('prevent-transition');
+      };
+    })(this));
+    Controller.e.on('resizeEnd', (function(_this) {
+      return function() {
+        return _this.body.removeClass('prevent-transition');
+      };
+    })(this));
   }
 
   App.prototype.instanciate = function() {
@@ -195,10 +205,10 @@ module.exports = Contact;
 
 
 },{"./front-controller.coffee":4}],4:[function(require,module,exports){
-var Controller, id,
+var Controller, resizeTimer, uid,
   __slice = [].slice;
 
-id = 0;
+uid = 0;
 
 Controller = (function() {
   Controller.prototype.eventSplitter = /^(\S+)\s*(.*)$/;
@@ -216,7 +226,7 @@ Controller = (function() {
       return;
     }
     if (this.logPrefix) {
-      args.unshift("" + this.logPrefix + " – " + this.id);
+      args.unshift("" + this.logPrefix + " – " + this.uid);
     }
     if (typeof console !== "undefined" && console !== null) {
       if (typeof console.log === "function") {
@@ -233,7 +243,7 @@ Controller = (function() {
       return;
     }
     if (this.logPrefix) {
-      args.unshift("" + this.logPrefix + " – " + this.id);
+      args.unshift("" + this.logPrefix + " – " + this.uid);
     }
     if (typeof console !== "undefined" && console !== null) {
       if (typeof console.warn === "function") {
@@ -264,8 +274,8 @@ Controller = (function() {
 
   function Controller(options) {
     var key, value, _ref;
-    id = id + 1;
-    this.id = id;
+    uid = uid + 1;
+    this.uid = uid;
     this.options = options || {};
     _ref = this.options;
     for (key in _ref) {
@@ -341,6 +351,19 @@ Controller = (function() {
   return Controller;
 
 })();
+
+resizeTimer = null;
+
+$(window).on('resize', function() {
+  if (!resizeTimer) {
+    Controller.e.trigger('resizeStart');
+  }
+  window.clearTimeout(resizeTimer);
+  return resizeTimer = window.setTimeout(function() {
+    Controller.e.trigger('resizeEnd');
+    return resizeTimer = null;
+  }, 300);
+});
 
 module.exports = Controller;
 
