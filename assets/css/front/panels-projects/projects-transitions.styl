@@ -10,62 +10,63 @@ d-content-out = (t-content + t-between) * 2
 
 d-full        = d-cover-in + d-content-out + t-between
 
-// Easing
-e-cover-in    = "easeInCubic"
-e-cover-out   = "easeOutCubic"
-
 // Cover panel
 projects-cover-in()
-  transition-property         transform,      height,         z-index,      top,            background,     left,           box-shadow
-  transition-duration         t-cover,        t-cover,        0s,           t-cover,        t-cover,        t-cover,        $hover-transition
-  transition-timing-function  ease,           ease,           ease,         ease,           ease,           ease,           ease
-  transition-delay            0s,             0s,             0s,           0s,             0s,             0s,             0s
+  transition  transform   t-cover       ease    0s,
+              height      t-cover       ease    0s,
+              z-index     0s            ease    0s,
+              top         t-cover       ease    0s,
+              background  t-cover       ease    0s,
+              left        t-cover       ease    0s,
+              box-shadow  $hover-transition ease 0s
 
 projects-cover-out()
-  transition-property         transform,      height,         z-index,      top,            background,     left,           box-shadow
-  transition-duration         t-cover,        t-cover,        0s,           t-cover,        t-cover,        t-cover,        $hover-transition
-  transition-timing-function  ease,           ease,           ease,         ease,           ease,           ease,           ease
-  transition-delay            d-content-out,  d-content-out,  d-full,       d-content-out,  d-content-out,  d-content-out,  0s
+  transition  transform   t-cover       ease    d-content-out,
+              height      t-cover       ease    d-content-out,
+              z-index     0s            ease    d-full,
+              top         t-cover       ease    d-content-out,
+              background  t-cover       ease    d-content-out,
+              left        t-cover       ease    d-content-out,
+              box-shadow  $hover-transition ease 0s
 
 // Container panel
 projects-container-in()
-  transition all 0s ease d-cover-in
+  transition  all         0s            ease    d-cover-in
 
 projects-container-out()
-  transition all 0s ease d-content-out
+  transition  all         0s            ease    d-content-out
 
 // Content panel
 projects-content-in()
-  transition-property         transform,    border,       opacity
-  transition-duration         t-content*2,  t-content,    t-content
-  transition-timing-function  ease,         ease,         ease
-  transition-delay            d-cover-in,   d-content-in, d-cover-in
+  transition  transform   t-content*2   ease    d-cover-in,
+              border      t-content     ease    d-content-in,
+              opacity     t-content     ease    d-cover-in
 
 projects-content-out()
-  transition-property         transform,    border,       opacity
-  transition-duration         t-content*2,  t-content*2,  t-content
-  transition-timing-function  ease,         ease,         ease
-  transition-delay            0s,           0s,           t-content
+  transition  transform   t-content*2   ease    0s,
+              border      t-content*2   ease    0s,
+              opacity     t-content     ease    t-content
 
 // gallery
 projects-gallery-in()
-  transition visibility 0s ease d-cover-in
+  transition  visibility  0s            ease    d-cover-in
 
 projects-gallery-out()
-  transition visibility 0s ease 0s
+  transition  visibility  0s            ease    0s
 
 // Close button
 projects-close-button-in()
-  transition-property         visibility,   top,          right,        opacity
-  transition-duration         0s,           0s,           0s,           t-content
-  transition-timing-function  ease,         ease,         ease,         ease
-  transition-delay            d-content-in*2, d-content-in*2, d-content-in*2, d-content-in*2
+  transition  visibility  0s            ease    d-content-in*2,
+              top         0s            ease    d-content-in*2,
+              right       0s            ease    d-content-in*2,
+              opacity     t-content     ease    d-content-in*2
+
 
 projects-close-button-out()
-  transition-property         visibility,   top,          right,        opacity
-  transition-duration         0s,           0s,           0s,           t-content
-  transition-timing-function  ease,         ease,         ease,         ease
-  transition-delay            t-content,    t-content,    t-content,    0s
+  transition  visibility  0s            ease    t-content,
+              top         0s            ease    t-content,
+              right       0s            ease    t-content,
+              opacity     t-content     ease    0s
 
 // Loading spinner
 

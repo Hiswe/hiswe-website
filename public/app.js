@@ -16,7 +16,7 @@ options = require('../../../config/datas/stylus-var.json');
 App = (function(_super) {
   __extends(App, _super);
 
-  App.prototype.trace = false;
+  App.prototype.trace = true;
 
   App.prototype.logPrefix = '[APP]';
 
@@ -253,14 +253,10 @@ Controller = (function() {
     return this;
   };
 
-  Controller.prototype.delay = function(func, timeout) {
-    return setTimeout(this.proxy(func), timeout || 1);
-  };
-
   Controller.prototype.wait = function(timeout) {
     var dfd;
     dfd = new jQuery.Deferred();
-    setTimeout(dfd.resolve, timeout);
+    setTimeout(dfd.resolve, timeout || 1);
     return dfd.promise();
   };
 
@@ -381,7 +377,7 @@ options = require('../../../config/datas/stylus-var.json');
 ServicesCarrousel = (function(_super) {
   __extends(ServicesCarrousel, _super);
 
-  ServicesCarrousel.prototype.trace = true;
+  ServicesCarrousel.prototype.trace = false;
 
   ServicesCarrousel.prototype.logPrefix = '[CARROUSEL]';
 

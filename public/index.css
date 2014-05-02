@@ -1664,26 +1664,11 @@ body {
   transform: matrix(1, -0.5, 0, 1, 0, 0);
   -ms-filter: progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=-0.5, M22=1, SizingMethod='auto expand');
   background: #fff;
-  -webkit-transition-property: -webkit-transform, height, z-index, top, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, z-index, top, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, z-index, top, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, z-index, top, background, left, box-shadow;
-  transition-property: transform, height, z-index, top, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -webkit-transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
-  -moz-transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
-  -o-transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
-  -ms-transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
-  transition-delay: 1s, 1s, 1.5s, 1s, 1s, 1s, 0s;
+  -webkit-transition: -webkit-transform 0.5s ease 1s, height 0.5s ease 1s, z-index 0s ease 1.5s, top 0.5s ease 1s, background 0.5s ease 1s, left 0.5s ease 1s, box-shadow 0.25s ease 0s;
+  -moz-transition: -moz-transform 0.5s ease 1s, height 0.5s ease 1s, z-index 0s ease 1.5s, top 0.5s ease 1s, background 0.5s ease 1s, left 0.5s ease 1s, box-shadow 0.25s ease 0s;
+  -o-transition: -o-transform 0.5s ease 1s, height 0.5s ease 1s, z-index 0s ease 1.5s, top 0.5s ease 1s, background 0.5s ease 1s, left 0.5s ease 1s, box-shadow 0.25s ease 0s;
+  -ms-transition: -ms-transform 0.5s ease 1s, height 0.5s ease 1s, z-index 0s ease 1.5s, top 0.5s ease 1s, background 0.5s ease 1s, left 0.5s ease 1s, box-shadow 0.25s ease 0s;
+  transition: transform 0.5s ease 1s, height 0.5s ease 1s, z-index 0s ease 1.5s, top 0.5s ease 1s, background 0.5s ease 1s, left 0.5s ease 1s, box-shadow 0.25s ease 0s;
   -webkit-box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.1);
   box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.1);
   text-align: center;
@@ -1788,26 +1773,11 @@ body {
 }
 .hw-projects-item:nth-child(3n + 2).hw-panel-active .hw-projects-cover,
 .hw-panel-active .hw-projects-cover {
-  -webkit-transition-property: -webkit-transform, height, z-index, top, background, left, box-shadow;
-  -moz-transition-property: -moz-transform, height, z-index, top, background, left, box-shadow;
-  -o-transition-property: -o-transform, height, z-index, top, background, left, box-shadow;
-  -ms-transition-property: -ms-transform, height, z-index, top, background, left, box-shadow;
-  transition-property: transform, height, z-index, top, background, left, box-shadow;
-  -webkit-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -moz-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -o-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -ms-transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  transition-duration: 0.5s, 0.5s, 0s, 0.5s, 0.5s, 0.5s, 0.25s;
-  -webkit-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease, ease, ease, ease;
-  -webkit-transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s;
-  -moz-transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s;
-  -o-transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s;
-  -ms-transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s;
-  transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s;
+  -webkit-transition: -webkit-transform 0.5s ease 0s, height 0.5s ease 0s, z-index 0s ease 0s, top 0.5s ease 0s, background 0.5s ease 0s, left 0.5s ease 0s, box-shadow 0.25s ease 0s;
+  -moz-transition: -moz-transform 0.5s ease 0s, height 0.5s ease 0s, z-index 0s ease 0s, top 0.5s ease 0s, background 0.5s ease 0s, left 0.5s ease 0s, box-shadow 0.25s ease 0s;
+  -o-transition: -o-transform 0.5s ease 0s, height 0.5s ease 0s, z-index 0s ease 0s, top 0.5s ease 0s, background 0.5s ease 0s, left 0.5s ease 0s, box-shadow 0.25s ease 0s;
+  -ms-transition: -ms-transform 0.5s ease 0s, height 0.5s ease 0s, z-index 0s ease 0s, top 0.5s ease 0s, background 0.5s ease 0s, left 0.5s ease 0s, box-shadow 0.25s ease 0s;
+  transition: transform 0.5s ease 0s, height 0.5s ease 0s, z-index 0s ease 0s, top 0.5s ease 0s, background 0.5s ease 0s, left 0.5s ease 0s, box-shadow 0.25s ease 0s;
   -webkit-box-shadow: inset 0 0 0 0 #ff0078;
   box-shadow: inset 0 0 0 0 #ff0078;
   background: #576176;
@@ -1865,26 +1835,11 @@ body {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transition-property: -webkit-transform, border, opacity;
-  -moz-transition-property: -moz-transform, border, opacity;
-  -o-transition-property: -o-transform, border, opacity;
-  -ms-transition-property: -ms-transform, border, opacity;
-  transition-property: transform, border, opacity;
-  -webkit-transition-duration: 1s, 1s, 0.5s;
-  -moz-transition-duration: 1s, 1s, 0.5s;
-  -o-transition-duration: 1s, 1s, 0.5s;
-  -ms-transition-duration: 1s, 1s, 0.5s;
-  transition-duration: 1s, 1s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease;
-  transition-timing-function: ease, ease, ease;
-  -webkit-transition-delay: 0s, 0s, 0.5s;
-  -moz-transition-delay: 0s, 0s, 0.5s;
-  -o-transition-delay: 0s, 0s, 0.5s;
-  -ms-transition-delay: 0s, 0s, 0.5s;
-  transition-delay: 0s, 0s, 0.5s;
+  -webkit-transition: -webkit-transform 1s ease 0s, border 1s ease 0s, opacity 0.5s ease 0.5s;
+  -moz-transition: -moz-transform 1s ease 0s, border 1s ease 0s, opacity 0.5s ease 0.5s;
+  -o-transition: -o-transform 1s ease 0s, border 1s ease 0s, opacity 0.5s ease 0.5s;
+  -ms-transition: -ms-transform 1s ease 0s, border 1s ease 0s, opacity 0.5s ease 0.5s;
+  transition: transform 1s ease 0s, border 1s ease 0s, opacity 0.5s ease 0.5s;
 }
 .hw-projects-content-container .hw-projects-content {
   overflow: hidden;
@@ -1922,26 +1877,11 @@ body {
 }
 .hw-panel-active .hw-projects-content-container::after,
 .hw-panel-active .hw-projects-content-container .hw-projects-content {
-  -webkit-transition-property: -webkit-transform, border, opacity;
-  -moz-transition-property: -moz-transform, border, opacity;
-  -o-transition-property: -o-transform, border, opacity;
-  -ms-transition-property: -ms-transform, border, opacity;
-  transition-property: transform, border, opacity;
-  -webkit-transition-duration: 1s, 0.5s, 0.5s;
-  -moz-transition-duration: 1s, 0.5s, 0.5s;
-  -o-transition-duration: 1s, 0.5s, 0.5s;
-  -ms-transition-duration: 1s, 0.5s, 0.5s;
-  transition-duration: 1s, 0.5s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease;
-  transition-timing-function: ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 1s, 0.5s;
-  -moz-transition-delay: 0.5s, 1s, 0.5s;
-  -o-transition-delay: 0.5s, 1s, 0.5s;
-  -ms-transition-delay: 0.5s, 1s, 0.5s;
-  transition-delay: 0.5s, 1s, 0.5s;
+  -webkit-transition: -webkit-transform 1s ease 0.5s, border 0.5s ease 1s, opacity 0.5s ease 0.5s;
+  -moz-transition: -moz-transform 1s ease 0.5s, border 0.5s ease 1s, opacity 0.5s ease 0.5s;
+  -o-transition: -o-transform 1s ease 0.5s, border 0.5s ease 1s, opacity 0.5s ease 0.5s;
+  -ms-transition: -ms-transform 1s ease 0.5s, border 0.5s ease 1s, opacity 0.5s ease 0.5s;
+  transition: transform 1s ease 0.5s, border 0.5s ease 1s, opacity 0.5s ease 0.5s;
 }
 .hw-panel-active .hw-projects-content-container .hw-projects-content {
   overflow: auto;
@@ -1960,26 +1900,11 @@ body {
   height: 2em;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition-property: visibility, top, right, opacity;
-  -moz-transition-property: visibility, top, right, opacity;
-  -o-transition-property: visibility, top, right, opacity;
-  -ms-transition-property: visibility, top, right, opacity;
-  transition-property: visibility, top, right, opacity;
-  -webkit-transition-duration: 0s, 0s, 0s, 0.5s;
-  -moz-transition-duration: 0s, 0s, 0s, 0.5s;
-  -o-transition-duration: 0s, 0s, 0s, 0.5s;
-  -ms-transition-duration: 0s, 0s, 0s, 0.5s;
-  transition-duration: 0s, 0s, 0s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease;
-  -webkit-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
-  -moz-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
-  -o-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
-  -ms-transition-delay: 0.5s, 0.5s, 0.5s, 0s;
-  transition-delay: 0.5s, 0.5s, 0.5s, 0s;
+  -webkit-transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
+  -moz-transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
+  -o-transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
+  -ms-transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
+  transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
   background: #ecf4f8;
   text-indent: -1000em;
   overflow: hidden;
@@ -2009,26 +1934,11 @@ body {
   top: 1em;
   right: 1em;
   visibility: visible;
-  -webkit-transition-property: visibility, top, right, opacity;
-  -moz-transition-property: visibility, top, right, opacity;
-  -o-transition-property: visibility, top, right, opacity;
-  -ms-transition-property: visibility, top, right, opacity;
-  transition-property: visibility, top, right, opacity;
-  -webkit-transition-duration: 0s, 0s, 0s, 0.5s;
-  -moz-transition-duration: 0s, 0s, 0s, 0.5s;
-  -o-transition-duration: 0s, 0s, 0s, 0.5s;
-  -ms-transition-duration: 0s, 0s, 0s, 0.5s;
-  transition-duration: 0s, 0s, 0s, 0.5s;
-  -webkit-transition-timing-function: ease, ease, ease, ease;
-  -moz-transition-timing-function: ease, ease, ease, ease;
-  -o-transition-timing-function: ease, ease, ease, ease;
-  -ms-transition-timing-function: ease, ease, ease, ease;
-  transition-timing-function: ease, ease, ease, ease;
-  -webkit-transition-delay: 2s, 2s, 2s, 2s;
-  -moz-transition-delay: 2s, 2s, 2s, 2s;
-  -o-transition-delay: 2s, 2s, 2s, 2s;
-  -ms-transition-delay: 2s, 2s, 2s, 2s;
-  transition-delay: 2s, 2s, 2s, 2s;
+  -webkit-transition: visibility 0s ease 2s, top 0s ease 2s, right 0s ease 2s, opacity 0.5s ease 2s;
+  -moz-transition: visibility 0s ease 2s, top 0s ease 2s, right 0s ease 2s, opacity 0.5s ease 2s;
+  -o-transition: visibility 0s ease 2s, top 0s ease 2s, right 0s ease 2s, opacity 0.5s ease 2s;
+  -ms-transition: visibility 0s ease 2s, top 0s ease 2s, right 0s ease 2s, opacity 0.5s ease 2s;
+  transition: visibility 0s ease 2s, top 0s ease 2s, right 0s ease 2s, opacity 0.5s ease 2s;
 }
 @media screen and (max-width: 800px) {
 .hw-projects-item {

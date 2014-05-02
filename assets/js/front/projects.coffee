@@ -116,7 +116,7 @@ class Projects extends Controller
     @log 'Projects close'
     e.preventDefault()
     e.stopImmediatePropagation()
-    # Force scroll to top
+    # Reset scroll to top
     # So the backface of the project appear on the animation
     @container.scrollTop(0)
     @clean()

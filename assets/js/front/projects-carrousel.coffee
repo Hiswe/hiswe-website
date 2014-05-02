@@ -2,7 +2,7 @@ Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class ServicesCarrousel extends Controller
-  trace: true
+  trace: false
   logPrefix: '[CARROUSEL]'
   count: 0
   total: 0

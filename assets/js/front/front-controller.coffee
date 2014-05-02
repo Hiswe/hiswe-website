@@ -19,12 +19,9 @@ class Controller
     console?.warn?(args...)
     this
 
-  delay: (func, timeout) ->
-    setTimeout(@proxy(func), timeout || 1)
-
   wait: (timeout) ->
     dfd = new jQuery.Deferred();
-    setTimeout(dfd.resolve, timeout)
+    setTimeout(dfd.resolve, timeout || 1)
     dfd.promise()
 
   proxy: (func) ->
@@ -76,17 +73,14 @@ class Controller
         @el.on(eventName, selector, method)
 
 # Global resize timer
-
 resizeTimer = null
 
 $(window).on 'resize', ->
   Controller.e.trigger('resizeStart') unless resizeTimer
-  # console.log 'resize start' unless resizeTimer
   window.clearTimeout(resizeTimer)
   resizeTimer = window.setTimeout ->
     Controller.e.trigger('resizeEnd')
     resizeTimer = null
-    # console.log 'resize end'
   , 300
 
 module.exports = Controller
