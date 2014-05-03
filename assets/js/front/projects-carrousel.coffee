@@ -26,6 +26,7 @@ class ServicesCarrousel extends Controller
 
     @initCarrousel()
     @loadImages()
+    Controller.e.on 'resizeEnd', @resizeEnd
     this
 
   initCarrousel: ->
@@ -94,6 +95,11 @@ class ServicesCarrousel extends Controller
     @progressBar.remove() if @progressCurrent is @total
 
   # Carrousel
+  resizeEnd: =>
+    @galleryWidth = @gallery.width()
+    @moveTo @li.eq(@count)
+    this
+
   getNodes: (event) ->
     $current      = @li.eq(@count)
     $next         = $(event.currentTarget)
@@ -108,6 +114,24 @@ class ServicesCarrousel extends Controller
       $next: $next
     }
 
+  moveTo: (selectedImage) ->
+    currentTransform = selectedImage.position().left * - 1
+
+    if @count is 0
+      # First goes to the carrousel's left
+      adjustedTransform = currentTransform
+    else if @count is @total - 1
+      # Last goes to the carrousel's right
+      adjustedTransform = currentTransform + @galleryWidth - selectedImage.width()
+    else
+      # 5% margin for controls
+      adjustedTransform = currentTransform + (@galleryWidth * 0.05)
+
+    @list.css({
+      transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"
+    })
+    this
+
   circle: (event) ->
     @log 'circle'
     event.preventDefault()
@@ -120,21 +144,8 @@ class ServicesCarrousel extends Controller
     el.$current.removeClass(options.carrouselClassSelected)
     el.$next.addClass(options.carrouselClassSelected)
 
-    currentTransform = el.$next.position().left * - 1
+    @moveTo(el.$next)
 
-    if @count is 0
-      # First goes to the carrousel's left
-      adjustedTransform = currentTransform
-    else if @count is @total - 1
-      # Last goes to the carrousel's right
-      adjustedTransform = currentTransform + @galleryWidth - el.$next.width()
-    else
-      # 5% margin for controls
-      adjustedTransform = currentTransform + (@galleryWidth * 0.05)
-
-    @list.css({
-      transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"
-    })
     this
 
 

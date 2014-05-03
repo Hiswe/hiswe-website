@@ -32,8 +32,7 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Fix carrousel when resizing browser
-- Add links on home to static pages
+1. Add links on home to static pages
 - Load project description in async
 - Change top menu
 - Update Content

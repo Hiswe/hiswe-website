@@ -399,6 +399,7 @@ ServicesCarrousel = (function(_super) {
   };
 
   function ServicesCarrousel() {
+    this.resizeEnd = __bind(this.resizeEnd, this);
     this.updateProgress = __bind(this.updateProgress, this);
     this.loadImage = __bind(this.loadImage, this);
     this.onProgress = __bind(this.onProgress, this);
@@ -411,6 +412,7 @@ ServicesCarrousel = (function(_super) {
     }
     this.initCarrousel();
     this.loadImages();
+    Controller.e.on('resizeEnd', this.resizeEnd);
     this;
   }
 
@@ -482,6 +484,12 @@ ServicesCarrousel = (function(_super) {
     }
   };
 
+  ServicesCarrousel.prototype.resizeEnd = function() {
+    this.galleryWidth = this.gallery.width();
+    this.moveTo(this.li.eq(this.count));
+    return this;
+  };
+
   ServicesCarrousel.prototype.getNodes = function(event) {
     var $current, $next, nextNodeIndex;
     $current = this.li.eq(this.count);
@@ -495,8 +503,24 @@ ServicesCarrousel = (function(_super) {
     };
   };
 
+  ServicesCarrousel.prototype.moveTo = function(selectedImage) {
+    var adjustedTransform, currentTransform;
+    currentTransform = selectedImage.position().left * -1;
+    if (this.count === 0) {
+      adjustedTransform = currentTransform;
+    } else if (this.count === this.total - 1) {
+      adjustedTransform = currentTransform + this.galleryWidth - selectedImage.width();
+    } else {
+      adjustedTransform = currentTransform + (this.galleryWidth * 0.05);
+    }
+    this.list.css({
+      transform: "translate3d(" + adjustedTransform + "px, 0px, 0px)"
+    });
+    return this;
+  };
+
   ServicesCarrousel.prototype.circle = function(event) {
-    var adjustedTransform, currentTransform, el;
+    var el;
     this.log('circle');
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -506,17 +530,7 @@ ServicesCarrousel = (function(_super) {
     }
     el.$current.removeClass(options.carrouselClassSelected);
     el.$next.addClass(options.carrouselClassSelected);
-    currentTransform = el.$next.position().left * -1;
-    if (this.count === 0) {
-      adjustedTransform = currentTransform;
-    } else if (this.count === this.total - 1) {
-      adjustedTransform = currentTransform + this.galleryWidth - el.$next.width();
-    } else {
-      adjustedTransform = currentTransform + (this.galleryWidth * 0.05);
-    }
-    this.list.css({
-      transform: "translate3d(" + adjustedTransform + "px, 0px, 0px)"
-    });
+    this.moveTo(el.$next);
     return this;
   };
 
