@@ -32,20 +32,21 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Responsive Website
+1. Fix carrousel when resizing browser
 - Add links on home to static pages
+- Load project description in async
 - Change top menu
 - Update Content
-- Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
 - Add a robot.txt
-- No change of page for contact
 - Retina images
+- Responsive images 
+- No change of page for contact
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 - JS front lib in requireJs
-
+- Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
 
 ### Inspiration
 

@@ -135,7 +135,7 @@ var buildFigure = function (image, text) {
 // I don't think that marked support async rendering functions
 var homeImage = function homeImage(href, title, text) {
   var image       = buildImage(href, title);
-  var nodeData = ' data-original="' + href + '"' + ' class="hw-projects-lazyload"';
+  var nodeData = ' data-original="' + href.replace(/(\.jpg|\.jpeg|\.svg)$/, '-preview$1') + '"' + ' class="hw-projects-lazyload"';
 
   image.markup.splice(image.markup.length - 1, 0, nodeData);
   image.markup[2] = blankGif;
