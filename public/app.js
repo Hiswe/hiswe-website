@@ -21,7 +21,8 @@ App = (function(_super) {
   App.prototype.logPrefix = 'APP';
 
   App.prototype.elements = {
-    'body': 'body'
+    'body': 'body',
+    'section.hw-services': 'servicesContainer'
   };
 
   function App() {
@@ -46,7 +47,7 @@ App = (function(_super) {
 
   App.prototype.instanciate = function() {
     this.services = new Services({
-      el: $('section.hw-services')
+      el: this.servicesContainer
     });
     this.projects = new Projects({
       el: $('section.hw-projects')
@@ -63,13 +64,13 @@ App = (function(_super) {
         return _this.services.e.trigger('clean');
       };
     })(this));
-    this.projects.e.on('open', (function(_this) {
+    this.projects.e.on('openStart', (function(_this) {
       return function() {
         _this.log('projects open');
         return _this.body.css('overflow', 'hidden');
       };
     })(this));
-    return this.projects.e.on('close', (function(_this) {
+    return this.projects.e.on('closeEnd', (function(_this) {
       return function() {
         _this.log('projects close');
         return _this.body.css('overflow', 'auto');
@@ -453,12 +454,12 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.onProgress = function(instance, image) {
     this.log('on progress');
-    return $(image.img).addClass(options.carrouselImageLoaded).parent().removeClass('hw-projects-lazyload-loading');
+    return $(image.img).addClass(options.carrouselImageLoaded).css('opacity', '').parent().removeClass('hw-projects-lazyload-loading');
   };
 
   ServicesCarrousel.prototype.loadImage = function(index, image) {
     var $img, $parent, imgSrc;
-    $img = $(image);
+    $img = $(image).css('opacity', 0);
     $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
     $img.attr('src', imgSrc);
@@ -656,6 +657,7 @@ Projects = (function(_super) {
     this.log('transition end ::', 'open');
     $currentPanel = this.currentPanel();
     this.loadBody($currentPanel);
+    this.e.trigger('openEnd');
     return this.opened = true;
   };
 
@@ -665,7 +667,7 @@ Projects = (function(_super) {
     }
     this.log('transition end::', 'close');
     this.el.css('z-index', 1);
-    this.e.trigger('close');
+    this.e.trigger('closeEnd');
     return this.opened = false;
   };
 
@@ -691,8 +693,11 @@ Projects = (function(_super) {
     e.preventDefault();
     this.clean();
     this.el.css('z-index', 2);
-    $target.addClass(options.activeClass).find("." + options.witness).heventAddClass(options.activeWitness);
-    this.e.trigger('open');
+    this.wait(1).then(function() {
+      return $target.addClass(options.activeClass);
+    });
+    $target.find("." + options.witness).heventAddClass(options.activeWitness);
+    this.e.trigger('openStart');
     return this;
   };
 
@@ -700,6 +705,7 @@ Projects = (function(_super) {
     this.log('Projects close');
     e.preventDefault();
     e.stopImmediatePropagation();
+    this.e.trigger('closeStart');
     this.container.scrollTop(0);
     this.clean();
     return this;

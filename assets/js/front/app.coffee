@@ -8,7 +8,8 @@ class App extends Controller
   trace: false
   logPrefix: 'APP'
   elements: {
-    'body' : 'body'
+    'body'                : 'body'
+    'section.hw-services' : 'servicesContainer'
   }
 
   constructor: ->
@@ -24,7 +25,7 @@ class App extends Controller
     Controller.e.on 'resizeEnd', => @body.removeClass 'prevent-transition'
 
   instanciate: ->
-    @services = new Services({el: $('section.hw-services')})
+    @services = new Services({el: @servicesContainer})
     @projects = new Projects({el: $('section.hw-projects')})
     @contact  = new Contact({el: $('form.hw-contact-form')})
 
@@ -33,11 +34,11 @@ class App extends Controller
       @log 'body click'
       @services.e.trigger 'clean'
 
-    @projects.e.on('open', =>
+    @projects.e.on('openStart', =>
       @log('projects open')
       @body.css('overflow', 'hidden')
     )
-    @projects.e.on('close', =>
+    @projects.e.on('closeEnd', =>
       @log('projects close')
       @body.css('overflow', 'auto')
     )

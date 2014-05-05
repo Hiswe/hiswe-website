@@ -336,7 +336,7 @@ body {
   display: block;
   width: auto;
   height: auto;
-  min-height: auto;
+  min-height: 0;
   padding-bottom: 1em;
   line-height: 140%;
 }
@@ -828,10 +828,10 @@ body {
 }
 .hw-services-item:nth-child(2n + 1),
 .hw-services-item.hw-panel-active:nth-child(2n + 1) {
-  -webkit-perspective: 10000;
-  -moz-perspective: 10000;
-  -ms-perspective: 10000;
-  perspective: 10000;
+  -webkit-perspective: 10000px;
+  -moz-perspective: 10000px;
+  -ms-perspective: 10000px;
+  perspective: 10000px;
   -webkit-perspective-origin: center right;
   -moz-perspective-origin: center right;
   -ms-perspective-origin: center right;
@@ -858,10 +858,10 @@ body {
 }
 .hw-services-item:nth-child(2n),
 .hw-services-item.hw-panel-active:nth-child(2n) {
-  -webkit-perspective: 10000;
-  -moz-perspective: 10000;
-  -ms-perspective: 10000;
-  perspective: 10000;
+  -webkit-perspective: 10000px;
+  -moz-perspective: 10000px;
+  -ms-perspective: 10000px;
+  perspective: 10000px;
   -webkit-perspective-origin: center left;
   -moz-perspective-origin: center left;
   -ms-perspective-origin: center left;
@@ -1548,11 +1548,11 @@ body {
 }
 .hw-projects-content-container .hw-projects-content {
   overflow: hidden;
-  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg) translateZ(0);
-  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg) translateZ(0);
-  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg) translateZ(0);
-  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg) translateZ(0);
-  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg) translateZ(0);
+  -webkit-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -moz-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -o-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  -ms-transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
+  transform: scale3d(0.1, 0.1, 0.1) rotateY(180deg);
 }
 .hw-projects-content-container::after {
   content: '';
@@ -1589,11 +1589,11 @@ body {
 }
 .hw-panel-active .hw-projects-content-container .hw-projects-content {
   overflow: auto;
-  -webkit-transform: scale3d(1, 1, 1) rotateY(0deg) translateZ(0);
-  -moz-transform: scale3d(1, 1, 1) rotateY(0deg) translateZ(0);
-  -o-transform: scale3d(1, 1, 1) rotateY(0deg) translateZ(0);
-  -ms-transform: scale3d(1, 1, 1) rotateY(0deg) translateZ(0);
-  transform: scale3d(1, 1, 1) rotateY(0deg) translateZ(0);
+  -webkit-transform: scale3d(1, 1, 1) rotateY(0deg);
+  -moz-transform: scale3d(1, 1, 1) rotateY(0deg);
+  -o-transform: scale3d(1, 1, 1) rotateY(0deg);
+  -ms-transform: scale3d(1, 1, 1) rotateY(0deg);
+  transform: scale3d(1, 1, 1) rotateY(0deg);
 }
 .hw-projects-close {
   position: fixed;
@@ -1647,14 +1647,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
-  height: 0;
   visibility: hidden;
   -webkit-transition: visibility 0.1s ease 1s;
   -moz-transition: visibility 0.1s ease 1s;
   -o-transition: visibility 0.1s ease 1s;
   -ms-transition: visibility 0.1s ease 1s;
   transition: visibility 0.1s ease 1s;
+  width: 0em;
+  height: 0em;
 }
 .hw-witness.hw-witness-active {
   visibility: visible;
@@ -2056,10 +2056,9 @@ h3 + .hw-projects-gallery-container {
   -o-transition: background 0.5s;
   -ms-transition: background 0.5s;
   transition: background 0.5s;
-  background: rgba(0,0,0,0.75);
 }
 .hw-carrousel li:hover::after {
-  background: rgba(0,0,0,0.5);
+  background: rgba(255,0,120,0.5);
 }
 .hw-carrousel figure.hw-projects-lazyload-loading::after {
   content: '';
@@ -2115,6 +2114,16 @@ h3 + .hw-projects-gallery-container {
   -o-transition: opacity 0.75s ease 0.75s;
   -ms-transition: opacity 0.75s ease 0.75s;
   transition: opacity 0.75s ease 0.75s;
+  opacity: 0.5;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .hw-carrousel figcaption {
   -webkit-transform: translate3d(0, 100%, 0);
@@ -2133,6 +2142,9 @@ h3 + .hw-projects-gallery-container {
 }
 .hw-carrousel .hw-carrousel-selected a {
   display: block;
+}
+.hw-carrousel .hw-carrousel-selected img {
+  opacity: 1;
 }
 .hw-carrousel .hw-carrousel-selected figcaption {
   -webkit-transform: translate3d(0, 0, 0);
@@ -2616,7 +2628,7 @@ textarea:disabled {
   margin-top: 0.5em;
 }
 .hw-contact aside p {
-  line-height: auto;
+  line-height: normal;
   padding: 1em 0 0;
   margin: 0;
 }

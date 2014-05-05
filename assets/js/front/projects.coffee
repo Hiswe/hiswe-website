@@ -90,13 +90,14 @@ class Projects extends Controller
     @log 'transition end ::','open'
     $currentPanel = @currentPanel()
     @loadBody($currentPanel)
+    @e.trigger 'openEnd'
     @opened = on
 
   closingTransitionEnd: ->
     return this if @opened is off
     @log 'transition end::', 'close'
     @el.css('z-index', 1)
-    @e.trigger 'close'
+    @e.trigger 'closeEnd'
     @opened = off
 
   initCarrousel: ($currentPanel) ->
@@ -118,18 +119,19 @@ class Projects extends Controller
     e.preventDefault()
     @clean()
     @el.css('z-index', 2)
+    # wait for firefox…
+    @wait(1).then -> $target.addClass(options.activeClass)
 
-    $target
-      .addClass(options.activeClass)
-      .find(".#{options.witness}")
+    $target.find(".#{options.witness}")
       .heventAddClass(options.activeWitness)
-    @e.trigger 'open'
+    @e.trigger 'openStart'
     this
 
   close: (e) ->
     @log 'Projects close'
     e.preventDefault()
     e.stopImmediatePropagation()
+    @e.trigger 'closeStart'
     # Reset scroll to top
     # So the backface of the project appear on the animation
     @container.scrollTop(0)

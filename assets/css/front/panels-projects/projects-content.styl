@@ -1,3 +1,10 @@
+smooth-chrome-scroll()
+  // http://help.dimsemenov.com/discussions/problems/1153-chrome-scrolling-choppylags-when-a-lot-of-images-in-slideshow-plus-position-fixed
+  // Fix choppy lag on chrome
+  transform translateZ(0)
+  backface-visibility hidden
+
+
 .hw-projects-content-body,
 .hw-projects-content
   > .hw-projects-center
@@ -231,10 +238,10 @@
       absolute top left
       right 0; bottom 0
       transition background .5s
-      background noir(.75)
+      // background noir(.75)
 
     &:hover::after
-      background noir(.5)
+      background rgba($pink, .5)
 
   figure.hw-projects-lazyload-loading::after
     content ''
@@ -262,7 +269,8 @@
 
   img
     transition opacity .75s ease .75s
-    // Don't play on opacity for performance reason
+    opacity .5
+    smooth-chrome-scroll()
 
   figcaption
     transform translate3d(0,100%,0)
@@ -273,6 +281,9 @@
 
     a
       display block
+
+    img
+      opacity 1
 
     figcaption
       transform translate3d(0,0,0)

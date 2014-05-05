@@ -63,7 +63,7 @@
     box-shadow inset 0 0 0 px2em($hover-width) $hover-color
 
   &:hover,
-  &.{projectCoverLoad}
+  &.{projectCoverLoad},
   &:hover.{projectCoverLoad}
     img
       transform translate(-50%, -50%) rotateY(180deg)
@@ -109,7 +109,7 @@
 
   .hw-projects-content
     overflow hidden
-    transform scale3d(.1, .1, .1) rotateY(180deg) translateZ(0)
+    transform scale3d(.1, .1, .1) rotateY(180deg)
 
   &::after
     content ''
@@ -129,7 +129,7 @@
 
   .hw-projects-content
     overflow auto
-    transform scale3d(1, 1, 1) rotateY(0deg) translateZ(0)
+    transform scale3d(1, 1, 1) rotateY(0deg)
 
 .hw-projects-close
   fixed top -9em right -9em
@@ -162,9 +162,12 @@
 
 .{witness}
   absolute top left
-  width 0; height @width
   visibility hidden
   projects-witness-out()
+  width 0em; height @width
+  // position fixed
+  // background red
+  // z-index 10
 
   &.{activeWitness}
     visibility visible
