@@ -1,7 +1,8 @@
 'use strict';
 
 var marked                = require('marked');
-var homeRenderer          = new marked.Renderer();
+var titleRenderer         = new marked.Renderer();
+var bodyRenderer          = new marked.Renderer();
 var projectsRenderer      = new marked.Renderer();
 var fs                    = require('fs');
 var sizeOf                = require('image-size');
@@ -14,8 +15,15 @@ var pathToTransparentGif  = __dirname + '/public/media/blank.gif';
 var blankGif = new Buffer(fs.readFileSync(pathToTransparentGif)).toString('base64');
 blankGif = 'data:image/gif;base64,' + blankGif;
 
+var noop = function noop () {
+  return ''
+}
+
 // All the join are made with '' instead of '\n'
 // We don't need to preserve source formating
+
+
+// Titles
 var heading = function heading (text, level) {
   var escapedText = text.replace(/-/gi, ' ');
   if (level === 4) {
@@ -27,6 +35,28 @@ var heading = function heading (text, level) {
     '<h' + level + '>' + escapedText + '</h' + level + '>',
   ].join('')
 };
+
+var titleHeading = function titleHeading (text, level) {
+  if (level > 2) { return ''; }
+  var escapedText = text.replace(/-/gi, ' ');
+  return [
+    '<h' + level + '>' + escapedText + '</h' + level + '>',
+  ].join('')
+}
+
+var bodyHeading = function bodyHeading (text, level) {
+  if (level < 3) { return ''; }
+  var escapedText = text.replace(/-/gi, ' ');
+  if (level === 4) {
+    return [
+      '<h' + level + ' class="hw-projects-center">' + escapedText + '</h' + level + '>'
+    ].join('')
+  }
+  return [
+    '<h' + level + '>' + escapedText + '</h' + level + '>',
+  ].join('')
+};
+
 
 var list = function list(body, ordered) {
   if (ordered) {
@@ -148,11 +178,18 @@ var projectsImage = function projectsImage(href, title, text) {
   return buildFigure(image, text);
 };
 
-homeRenderer.heading        = heading;
-homeRenderer.list           = list;
-homeRenderer.blockquote     = blockquote;
-homeRenderer.paragraph      = paragraph;
-homeRenderer.image          = homeImage;
+['code','blockquote','html','heading','hr','list','listitem','paragraph',
+'table','tablerow','tablecell','strong','em','codespan',
+'br','del','link','image'].forEach( function (name) {
+  titleRenderer[name] = noop;
+});
+titleRenderer.heading        = titleHeading;
+
+bodyRenderer.heading        = bodyHeading;
+bodyRenderer.list           = list;
+bodyRenderer.blockquote     = blockquote;
+bodyRenderer.paragraph      = paragraph;
+bodyRenderer.image          = homeImage;
 
 projectsRenderer.heading    = heading;
 projectsRenderer.list       = list;
@@ -160,5 +197,6 @@ projectsRenderer.blockquote = blockquote;
 projectsRenderer.paragraph  = paragraph;
 projectsRenderer.image      = projectsImage;
 
-exports.homeRenderer        = homeRenderer;
+exports.titleRenderer       = titleRenderer;
+exports.bodyRenderer        = bodyRenderer;
 exports.projectsRenderer    = projectsRenderer;

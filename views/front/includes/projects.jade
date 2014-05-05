@@ -7,10 +7,11 @@ section.hw-projects
     each project in projects
       dl(id="#{project.id}").hw-projects-item
         dt.hw-projects-cover.hw-projects-cover-lazyload
-          span(
+          a.hw-projects-name(
             data-original="#{project.cover.path}"
             data-retina="#{project.cover.path}"
             data-alt="#{project.name} cover"
+            href="#{project.path}"
           )= project.name
         dd.hw-projects-content-container
           article.hw-projects-content!= project.markup

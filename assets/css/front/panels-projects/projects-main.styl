@@ -24,11 +24,11 @@
   perspective 1000px
   perspective-origin center center
 
-  span, img
+  .hw-projects-name, img
     backface-visibility hidden
     transition all .5s
 
-  span
+  .hw-projects-name
     display inline-block
     percentCenter()
     font-size 2em
@@ -38,6 +38,10 @@
     font-size 1.75em; text-transform uppercase
     letter-spacing .2em
     font-weight normal
+    color $black
+
+    &:hover
+      color $black
 
   img
     percentCenter()
@@ -64,7 +68,7 @@
     img
       transform translate(-50%, -50%) rotateY(180deg)
 
-    span
+    .hw-projects-name
       transform translate(-50%, -50%) rotateY(0deg)
 
   .hw-projects-item:nth-child(3n + 2).{activeClass} &,

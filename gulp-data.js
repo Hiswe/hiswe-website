@@ -8,6 +8,7 @@ var renderer      = require('./marked-renderer.js');
 var marked        = require('marked');
 var homeDb        = [];
 var projectsDb    = {};
+var projectsXhrDb = {};
 var openFile      = Q.denodeify(fs.open);
 var readFile      = Q.denodeify(fs.readFile);
 
@@ -47,12 +48,13 @@ var setCover = function setCover(fileName) {
 
 var saveforHome = function saveforHome(fileName, data, coverImage) {
   marked.setOptions({
-    renderer: renderer.homeRenderer,
+    renderer: renderer.titleRenderer,
     smartypants: true
   });
 
   homeDb.push({
     order: ~~fileName[1],
+    path: '/projects/' + fileName[2],
     id: 'project-' + fileName[2],
     name: fileName[2].replace(/-/gi, ' '),
     cover: coverImage,
@@ -67,6 +69,18 @@ var saveForProject = function saveForProject(fileName, data, coverImage) {
   });
 
   projectsDb[fileName[2]] = marked(data, {sanitize: true});
+
+
+  // For xhr projects
+  marked.setOptions({
+    renderer: renderer.bodyRenderer,
+    smartypants: true
+  });
+  var bodyContent = marked(data, {sanitize: true});
+  // Wrap in a div for DOM performance reason
+  bodyContent = '<div class="hw-projects-content-body">' + bodyContent + '</div>'
+  projectsXhrDb[fileName[2]] = bodyContent;
+
 };
 
 var processMarkdownFile = function processMarkdownFile(fileName, data, deferred) {
@@ -109,6 +123,7 @@ var bundleData = function bundleData(){
     .done(function(){
       homeDb.sort(function(a, b){ return  a.order < b.order});
       fs.writeFileSync(conf.db.homeDst, JSON.stringify(homeDb, null, 2));
+      fs.writeFileSync(conf.db.projectsXhrDst, JSON.stringify(projectsXhrDb, null, 2));
       fs.writeFileSync(conf.db.projectsDst, JSON.stringify(projectsDb, null, 2));
       return deferred.resolve();
     }, function(err){

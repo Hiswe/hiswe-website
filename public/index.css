@@ -1379,7 +1379,7 @@ body {
   -ms-perspective-origin: center center;
   perspective-origin: center center;
 }
-.hw-projects-cover span,
+.hw-projects-cover .hw-projects-name,
 .hw-projects-cover img {
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -1391,7 +1391,7 @@ body {
   -ms-transition: all 0.5s;
   transition: all 0.5s;
 }
-.hw-projects-cover span {
+.hw-projects-cover .hw-projects-name {
   display: inline-block;
   position: absolute;
   left: 50%;
@@ -1413,6 +1413,10 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-weight: normal;
+  color: #445;
+}
+.hw-projects-cover .hw-projects-name:hover {
+  color: #445;
 }
 .hw-projects-cover img {
   position: absolute;
@@ -1459,9 +1463,9 @@ body {
   -ms-transform: translate(-50%, -50%) rotateY(180deg);
   transform: translate(-50%, -50%) rotateY(180deg);
 }
-.hw-projects-cover:hover span,
-.hw-projects-cover.hw-projects-cover-lazyload span,
-.hw-projects-cover:hover.hw-projects-cover-lazyload span {
+.hw-projects-cover:hover .hw-projects-name,
+.hw-projects-cover.hw-projects-cover-lazyload .hw-projects-name,
+.hw-projects-cover:hover.hw-projects-cover-lazyload .hw-projects-name {
   -webkit-transform: translate(-50%, -50%) rotateY(0deg);
   -moz-transform: translate(-50%, -50%) rotateY(0deg);
   -o-transform: translate(-50%, -50%) rotateY(0deg);
@@ -1730,11 +1734,11 @@ body {
   left: 0;
 }
 }
-.hw-projects-content > .hw-projects-center {
+.hw-projects-content-body > .hw-projects-center {
   width: 700px;
   margin: 0 auto;
 }
-.hw-projects-content > .hw-projects-center a[href^='http://']::after {
+.hw-projects-content-body > .hw-projects-center a[href^='http://']::after {
   font-size: 0.75em;
   padding-left: 0.5em;
   font-family: FontAwesome;

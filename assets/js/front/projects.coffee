@@ -15,6 +15,8 @@ class Projects extends Controller
 
   events: {
     'tap .hw-projects-item'             : 'open'
+    'tap .hw-projects-name'             : 'prevent'
+    'click .hw-projects-name'             : 'prevent'
     'tap .hw-projects-close'            : 'close'
     'transitionend .hw-witness'         : 'witness'
   }
@@ -27,6 +29,12 @@ class Projects extends Controller
     @loadCovers()
     this
 
+  # Don't go on project page
+  prevent: (event) ->
+    @log 'prevent', event
+    event.preventDefault()
+    false
+
   currentPanel: ->
     return @all.filter(".#{options.activeClass}")
 
@@ -37,13 +45,14 @@ class Projects extends Controller
       .heventRemoveClass(options.activeWitness)
     this
 
+  # Cover images
   loadCovers: ->
     @wait(1000).then =>
       @log 'init load cover'
       @$(".#{options.projectCoverLoad}")
         .each( ->
           $cover = $(this)
-          $title = $cover.find('span')
+          $title = $cover.find('.hw-projects-name')
           imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
 
           $(imgMarkup)
@@ -53,6 +62,16 @@ class Projects extends Controller
               $cover.removeClass(options.projectCoverLoad)
             )
         )
+
+  loadBody: ($currentPanel) ->
+    @wait(100).then =>
+      href = $currentPanel.find('a.hw-projects-name').attr('href')
+      @log 'load body', href
+      $.get(href).success (body) =>
+        $currentPanel.data('bodyLoaded', true)
+        $currentPanel.find('.hw-projects-content').append(body)
+
+        @wait(100).then => @initCarrousel($currentPanel)
 
   # The witness object is a dirty hack
   # But it keeps me from filtering between all transitionend events
@@ -70,7 +89,7 @@ class Projects extends Controller
     return this if @opened is on
     @log 'transition end ::','open'
     $currentPanel = @currentPanel()
-    @initCarrousel($currentPanel) unless $currentPanel.data('carrousel')
+    @loadBody($currentPanel)
     @opened = on
 
   closingTransitionEnd: ->

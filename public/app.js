@@ -569,6 +569,8 @@ Projects = (function(_super) {
 
   Projects.prototype.events = {
     'tap .hw-projects-item': 'open',
+    'tap .hw-projects-name': 'prevent',
+    'click .hw-projects-name': 'prevent',
     'tap .hw-projects-close': 'close',
     'transitionend .hw-witness': 'witness'
   };
@@ -583,6 +585,12 @@ Projects = (function(_super) {
     this.loadCovers();
     this;
   }
+
+  Projects.prototype.prevent = function(event) {
+    this.log('prevent', event);
+    event.preventDefault();
+    return false;
+  };
 
   Projects.prototype.currentPanel = function() {
     return this.all.filter("." + options.activeClass);
@@ -600,10 +608,27 @@ Projects = (function(_super) {
         return _this.$("." + options.projectCoverLoad).each(function() {
           var $cover, $title, imgMarkup;
           $cover = $(this);
-          $title = $cover.find('span');
+          $title = $cover.find('.hw-projects-name');
           imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />';
           return $(imgMarkup).appendTo($cover).imagesLoaded().done(function() {
             return $cover.removeClass(options.projectCoverLoad);
+          });
+        });
+      };
+    })(this));
+  };
+
+  Projects.prototype.loadBody = function($currentPanel) {
+    return this.wait(100).then((function(_this) {
+      return function() {
+        var href;
+        href = $currentPanel.find('a.hw-projects-name').attr('href');
+        _this.log('load body', href);
+        return $.get(href).success(function(body) {
+          $currentPanel.data('bodyLoaded', true);
+          $currentPanel.find('.hw-projects-content').append(body);
+          return _this.wait(100).then(function() {
+            return _this.initCarrousel($currentPanel);
           });
         });
       };
@@ -628,9 +653,7 @@ Projects = (function(_super) {
     }
     this.log('transition end ::', 'open');
     $currentPanel = this.currentPanel();
-    if (!$currentPanel.data('carrousel')) {
-      this.initCarrousel($currentPanel);
-    }
+    this.loadBody($currentPanel);
     return this.opened = true;
   };
 

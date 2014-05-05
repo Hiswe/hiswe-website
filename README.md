@@ -32,20 +32,20 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Add links on home to static pages
-- Load project description in async
+1. Load project description in async
 - Change top menu
 - Update Content
 - Add a robot.txt
 - Retina images
 - Responsive images 
-- No change of page for contact
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 - JS front lib in requireJs
+- No change of page for contact
 - Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
+- Is improvments can be made with [velocity](http://julian.com/research/velocity/) ?
 
 ### Inspiration
 

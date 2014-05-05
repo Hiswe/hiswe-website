@@ -7,8 +7,9 @@ var uslug           = require('uslug');
 var dbDst = __dirname + '/config/datas/'
 exports.db = {
   src: 'config/datas',
-  homeDst: dbDst     + 'db-home.json',
-  projectsDst: dbDst + 'db-projects.json'
+  homeDst:        dbDst + 'db-home.json',
+  projectsXhrDst: dbDst + 'db-projects-xhr.json',
+  projectsDst:    dbDst + 'db-projects.json'
 }
 
 exports.revFiles = [
