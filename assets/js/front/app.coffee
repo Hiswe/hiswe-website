@@ -35,11 +35,11 @@ class App extends Controller
 
     @projects.e.on('open', =>
       @log('projects open')
-      @body.addClass options.activeBody
+      @body.css('overflow', 'hidden')
     )
     @projects.e.on('close', =>
       @log('projects close')
-      @body.removeClass options.activeBody
+      @body.css('overflow', 'auto')
     )
 
   getPixelRatio: ->

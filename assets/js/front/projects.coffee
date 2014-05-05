@@ -3,7 +3,7 @@ Carrousel   = require './projects-carrousel.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class Projects extends Controller
-  trace:      true
+  trace:      false
   logPrefix:  'PROJECTS'
   opened:     false
 
@@ -14,11 +14,10 @@ class Projects extends Controller
   }
 
   events: {
-    'tap .hw-projects-item'             : 'open'
-    'tap .hw-projects-name'             : 'prevent'
-    'click .hw-projects-name'             : 'prevent'
-    'tap .hw-projects-close'            : 'close'
-    'transitionend .hw-witness'         : 'witness'
+    'tap .hw-projects-item'         : 'open'
+    'click .hw-projects-name'       : 'prevent'
+    'tap .hw-projects-close'        : 'close'
+    'transitionend .hw-witness'     : 'witness'
   }
 
   constructor: ->

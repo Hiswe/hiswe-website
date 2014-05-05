@@ -89,6 +89,9 @@
 
 .hw-projects-content-container
   fixed top left
+  // This is for some performance issues…
+  // http://benfrain.com/easy-css-fix-fixed-positioning-android-2-2-2-3/
+  backface-visibility hidden
   right 100%; bottom 100%
   perspective 1000px
   z-index 9
@@ -106,8 +109,7 @@
 
   .hw-projects-content
     overflow hidden
-    transform scale3d(.1, .1, .1) rotateY(180deg)
-    opacity .5
+    transform scale3d(.1, .1, .1) rotateY(180deg) translateZ(0)
 
   &::after
     content ''
@@ -127,8 +129,7 @@
 
   .hw-projects-content
     overflow auto
-    opacity 1
-    transform scale3d(1, 1, 1) rotateY(0deg)
+    transform scale3d(1, 1, 1) rotateY(0deg) translateZ(0)
 
 .hw-projects-close
   fixed top -9em right -9em

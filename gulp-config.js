@@ -24,13 +24,15 @@ exports.pack = [
 
 exports.lib = {
   src: [
+    // 'bower_components/60fps-scroll/dist/60fps-scroll.js',
     'bower_components/modernizr/modernizr.js', // used by js
     'bower_components/modernizr/feature-detects/elem-progress-meter.js',
-    'bower_components/pointerevents-polyfill/pointerevents.dev.js',
-    'bower_components/PointerGestures/pointergestures.min.js',
+    // 'bower_components/pointerevents-polyfill/pointerevents.dev.js',
+    // 'bower_components/PointerGestures/pointergestures.min.js',
     // jQuery
     'bower_components/jquery/dist/jquery.js',
     // Plugin depending on jQuery
+    'public/jquery.mobile.custom.js',
     'bower_components/imagesloaded/imagesloaded.pkgd.js',
     'bower_components/jquery-pointer-events/src/pointer.js',
     'bower_components/hevent/build/jquery.hevent.js'

@@ -163,6 +163,7 @@
 
     figure
       padding 0; margin 0
+      max-height 100%
 
     a
       absolute top 1em right 1em
@@ -194,13 +195,11 @@
       max-width 100%
       max-height 100%
 
-    &::after
-      content ' '
-      absolute top left
-      right 0; bottom 0
+
 
 .{carrouselClass}
   position relative
+  transform translateZ(0)
 
   .hw-projects-gallery
     overflow hidden
@@ -227,8 +226,15 @@
     &:first-child
       border-left 0
 
+    &::after
+      content ' '
+      absolute top left
+      right 0; bottom 0
+      transition background .5s
+      background noir(.75)
+
     &:hover::after
-      background rgba($pink, .25)
+      background noir(.5)
 
   figure.hw-projects-lazyload-loading::after
     content ''
@@ -255,8 +261,8 @@
       background $pink
 
   img
-    opacity .15
     transition opacity .75s ease .75s
+    // Don't play on opacity for performance reason
 
   figcaption
     transform translate3d(0,100%,0)
@@ -267,9 +273,6 @@
 
     a
       display block
-
-    img
-      opacity 1
 
     figcaption
       transform translate3d(0,0,0)

@@ -33,8 +33,7 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Load project description in async
-- Change top menu
+1. Change top menu
 - Update Content
 - Add a robot.txt
 - Retina images

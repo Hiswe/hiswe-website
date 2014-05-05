@@ -66,13 +66,13 @@ App = (function(_super) {
     this.projects.e.on('open', (function(_this) {
       return function() {
         _this.log('projects open');
-        return _this.body.addClass(options.activeBody);
+        return _this.body.css('overflow', 'hidden');
       };
     })(this));
     return this.projects.e.on('close', (function(_this) {
       return function() {
         _this.log('projects close');
-        return _this.body.removeClass(options.activeBody);
+        return _this.body.css('overflow', 'auto');
       };
     })(this));
   };
@@ -453,12 +453,12 @@ ServicesCarrousel = (function(_super) {
 
   ServicesCarrousel.prototype.onProgress = function(instance, image) {
     this.log('on progress');
-    return $(image.img).addClass(options.carrouselImageLoaded).css('opacity', '').parent().removeClass('hw-projects-lazyload-loading');
+    return $(image.img).addClass(options.carrouselImageLoaded).parent().removeClass('hw-projects-lazyload-loading');
   };
 
   ServicesCarrousel.prototype.loadImage = function(index, image) {
     var $img, $parent, imgSrc;
-    $img = $(image).css('opacity', 0);
+    $img = $(image);
     $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
     $img.attr('src', imgSrc);
@@ -555,7 +555,7 @@ options = require('../../../config/datas/stylus-var.json');
 Projects = (function(_super) {
   __extends(Projects, _super);
 
-  Projects.prototype.trace = true;
+  Projects.prototype.trace = false;
 
   Projects.prototype.logPrefix = 'PROJECTS';
 
@@ -569,7 +569,6 @@ Projects = (function(_super) {
 
   Projects.prototype.events = {
     'tap .hw-projects-item': 'open',
-    'tap .hw-projects-name': 'prevent',
     'click .hw-projects-name': 'prevent',
     'tap .hw-projects-close': 'close',
     'transitionend .hw-witness': 'witness'
