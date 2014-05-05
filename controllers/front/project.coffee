@@ -1,6 +1,7 @@
 log   = '[PROJECT]'
 db    = require('../../config/datas/db-projects.json')
 dbXhr = require('../../config/datas/db-projects-xhr.json')
+conf  = require('rc')('HISWE')
 
 show = (req, res, next) ->
   console.log log.prompt, req.params.project
@@ -13,7 +14,12 @@ show = (req, res, next) ->
   next()
 
 showXhr = (req, res, next) ->
+  console.log conf.NODE_ENV
   if dbXhr[req.params.project]?
+    if conf.NODE_ENV is 'development'
+      return setTimeout( ->
+        res.send(dbXhr[req.params.project])
+      , 750 + Math.round(750 * Math.random()))
     return res.send(dbXhr[req.params.project])
   return res.send 404
 

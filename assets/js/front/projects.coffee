@@ -64,6 +64,7 @@ class Projects extends Controller
         )
 
   loadBody: ($currentPanel) ->
+    return if $currentPanel.data('bodyLoaded')
     @wait(100).then =>
       href = $currentPanel.find('a.hw-projects-name').attr('href')
       @log 'load body', href

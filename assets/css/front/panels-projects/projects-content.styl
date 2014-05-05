@@ -1,12 +1,18 @@
-.hw-projects-content-body > .hw-projects-center
-  width unit($project-width, 'px')
-  margin 0 auto
+.hw-projects-content-body,
+.hw-projects-content
+  > .hw-projects-center
+    width unit($project-width, 'px')
+    margin 0 auto
 
-  a[href^='http://']::after
-    font-size .75em
-    padding-left .5em
-    font-family FontAwesome
-    content '\f08e'
+    a[href^='http://']::after
+      font-size .75em
+      padding-left .5em
+      font-family FontAwesome
+      content '\f08e'
+
+.hw-projects-content-body
+  animation bodyIn .75s
+  animatio-fill-mode both
 
 .hw-projects-content
   h1, h2, h3, h4, h5, h6, ol, p
@@ -348,3 +354,8 @@ media-big-mobile()
 .hw-projects-aside h6:not(:first-child)
   padding-left 0
 media-query-end()
+
+@keyframes bodyIn {
+  from {  opacity: 0  }
+  to {    opacity: 1  }
+}

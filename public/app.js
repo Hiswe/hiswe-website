@@ -619,6 +619,9 @@ Projects = (function(_super) {
   };
 
   Projects.prototype.loadBody = function($currentPanel) {
+    if ($currentPanel.data('bodyLoaded')) {
+      return;
+    }
     return this.wait(100).then((function(_this) {
       return function() {
         var href;
