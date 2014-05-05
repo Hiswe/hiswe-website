@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "scripts": {
     "start": "node server.js"
   },

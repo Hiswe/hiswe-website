@@ -20,6 +20,7 @@ Design a portfolio for myself
 
 ### Release History
 
+- **3.4.3** — Async load of projects content 
 - **3.4.2** — Static page for projects + direct link to originals
 - **3.4.1** — Lazy load of projects cover 
 - **3.4.0** — Assets on a CDN

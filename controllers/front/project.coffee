@@ -14,7 +14,6 @@ show = (req, res, next) ->
   next()
 
 showXhr = (req, res, next) ->
-  console.log conf.NODE_ENV
   if dbXhr[req.params.project]?
     if conf.NODE_ENV is 'development'
       return setTimeout( ->
