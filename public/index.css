@@ -260,37 +260,44 @@ body {
   color: #009ae1;
 }
 .hw-splash {
-  position: relative;
-  z-index: 1;
+  padding: 3em 0 0;
 }
-.hw-splash h2 {
-  font-weight: normal;
-  font-size: 2.5em;
-  text-align: center;
-  color: #445;
-  margin: 1em 0;
+.hw-splash:before,
+.hw-splash:after {
+  content: "";
+  display: table;
 }
-.hw-splash h2 strong {
-  font-weight: 300;
+.hw-splash:after {
+  clear: both;
 }
+.hw-splash h2,
 .hw-splash .hw-splah-description {
-  position: relative;
+  float: left;
+  width: 50%;
 }
+.hw-splash h2,
 .hw-splash p {
+  margin: 0;
+  text-align: left;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  display: inline-block;
-  font-size: 1.3125em;
-  vertical-align: top;
-  width: 50%;
-  height: 3em;
-  padding: 0 1em;
-  padding-left: 0;
-  line-height: 1.25em;
 }
-.hw-splash p + p {
-  padding-right: 0;
+.hw-splash h2 {
+  font-weight: 300;
+  font-size: 2.5em;
+  color: #445;
+  padding-right: 0.25em;
+}
+.hw-splash h2 strong {
+  font-weight: 300;
+  white-space: nowrap;
+}
+.hw-splash p {
+  font-size: 1.3125em;
+  padding-left: 0.47619047619047616em;
+  margin-bottom: 1em;
+  line-height: 1.25em;
 }
 @media screen and (max-width: 1121px) {
 .main-content {
@@ -308,29 +315,51 @@ body {
 .hw-main-navigation {
   width: 66.66666666666667%;
 }
-.hw-splash .hw-splah-description {
-  padding: 0;
-  margin: 0;
+.hw-splash {
+  padding: 1em 1em 0;
 }
 .hw-splah-description {
   z-index: 1;
 }
-.hw-splah-description p,
-.hw-splah-description p + p {
+.hw-splah-description p {
   background: none;
   height: auto;
-}
-.hw-splah-description p {
   line-height: 130%;
   padding-bottom: 1em;
 }
-.hw-splah-description p + p {
-  text-align: right;
+}
+@media screen and (max-width: 800px) {
+.hw-splash {
+  padding-bottom: 1em;
+}
+.hw-splash h2 {
+  font-size: 1.875em;
+  padding-bottom: 0.75em;
+}
+.hw-splash .hw-splah-description,
+.hw-splash h2,
+.hw-splash p {
+  float: none;
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+.hw-splash p {
+  line-height: 140%;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 }
 @media screen and (max-width: 479px) {
-.hw-splash h2 {
-  font-size: 1.5em;
+.hw-splash h2,
+.hw-splash strong {
+  font-weight: 400;
+}
+.hw-splash h2,
+.hw-splash .hw-splah-description,
+.hw-splash p {
+  text-align: left;
 }
 .hw-splah-description p {
   display: block;
@@ -339,9 +368,6 @@ body {
   min-height: 0;
   padding-bottom: 1em;
   line-height: 140%;
-}
-.hw-splah-description p + p {
-  text-align: left;
 }
 }
 .hw-services {
