@@ -134,8 +134,9 @@ class ServicesCarrousel extends Controller
 
   circle: (event) ->
     @log 'circle'
-    event.preventDefault()
-    event.stopImmediatePropagation()
+    # Don't prevent things, as the zoom link would be disabled
+    # event.preventDefault()
+    # event.stopImmediatePropagation()
 
     el = @getNodes(event)
 

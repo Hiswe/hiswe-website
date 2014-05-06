@@ -219,6 +219,10 @@ body {
   padding: 0;
 }
 }
+.hw-menu-input,
+.hw-menu-input-label {
+  display: none;
+}
 .hw-main-title {
   font-family: "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -260,7 +264,7 @@ body {
 }
 .hw-main-navigation ul {
   position: absolute;
-  top: 1em;
+  top: 2em;
   right: 0;
   overflow: hidden;
   text-align: right;
@@ -333,7 +337,7 @@ body {
   text-align: center;
 }
 .hw-main-navigation {
-  width: 66.66666666666667%;
+  right: 1em;
 }
 .hw-splash {
   padding: 1em 1em 0;
@@ -1786,13 +1790,6 @@ body {
 .hw-projects-content > .hw-projects-center {
   width: 700px;
   margin: 0 auto;
-}
-.hw-projects-content-body > .hw-projects-center a[href^='http://']::after,
-.hw-projects-content > .hw-projects-center a[href^='http://']::after {
-  font-size: 0.75em;
-  padding-left: 0.5em;
-  font-family: FontAwesome;
-  content: '\f08e';
 }
 .hw-projects-content-body {
   -webkit-animation: bodyIn 0.75s;

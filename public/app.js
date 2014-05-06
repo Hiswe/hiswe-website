@@ -523,8 +523,6 @@ ServicesCarrousel = (function(_super) {
   ServicesCarrousel.prototype.circle = function(event) {
     var el;
     this.log('circle');
-    event.preventDefault();
-    event.stopImmediatePropagation();
     el = this.getNodes(event);
     if (el.$next.hasClass(options.carrouselClassSelected)) {
       return;
@@ -570,7 +568,7 @@ Projects = (function(_super) {
 
   Projects.prototype.events = {
     'tap .hw-projects-item': 'open',
-    'click .hw-projects-name': 'prevent',
+    'tap .hw-projects-name': 'prevent',
     'tap .hw-projects-close': 'close',
     'transitionend .hw-witness': 'witness'
   };

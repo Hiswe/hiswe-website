@@ -5,6 +5,11 @@ html
 
   body.prevent-transition
     include includes/hiswe-icons.svg
+
+    input.hw-menu-input#menu(type="checkbox")
+    label.hw-menu-input-label(for="menu", onclick)
+      +icon('menu')
+
     .main-content
       include includes/navigation
       block content

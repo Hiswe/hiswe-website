@@ -15,7 +15,7 @@ class Projects extends Controller
 
   events: {
     'tap .hw-projects-item'         : 'open'
-    'click .hw-projects-name'       : 'prevent'
+    'tap .hw-projects-name'         : 'prevent'
     'tap .hw-projects-close'        : 'close'
     'transitionend .hw-witness'     : 'witness'
   }
