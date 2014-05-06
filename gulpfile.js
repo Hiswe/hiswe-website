@@ -23,6 +23,9 @@ var source      = require('vinyl-source-stream');
 var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
+// icons
+var svgSprites  = require('gulp-svg-sprites');
+var svg         = svgSprites.svg;
 // images
 var svgmin      = require('gulp-svgmin');
 var resize      = require('gulp-image-resize');
@@ -177,6 +180,30 @@ gulp.task('font', ['clean-font'], function() {
     .pipe(gulp.dest(conf.font.dst));
 });
 
+/////////
+// ICONS
+/////////
+
+gulp.task('clean-icons', function() {
+  return gulp.src(conf.icons.dst, {read: false}).pipe(clean());
+});
+
+gulp.task('build-icons', ['clean-icons'], function () {
+  return gulp.src(conf.icons.src)
+    .pipe(rename(conf.icons.rename))
+    .pipe(svg({
+      defs: true,
+      className: ".svgicon-%f",
+      cssFile: "hiswe-icons.css",
+      svg: { defs: "hiswe-icons.svg" }
+    }))
+    .pipe(gulp.dest(conf.icons.dst));
+});
+
+gulp.task('icons', ['build-icons'], function () {
+  return gulp.src(conf.icons.finalSrc)
+    .pipe(gulp.dest(conf.icons.finalDst));
+});
 
 /////////
 // IMAGES
@@ -239,7 +266,6 @@ gulp.task('list', function(cb) {
 gulp.task('image', ['pixel', 'splash', 'svg']);
 gulp.task('resize', ['image']); // Aliase because I just often mess around
 
-
 // Upload to Amazon S3
 gulp.task('upload', function () {
   var publisher = awspublish.create({
@@ -263,7 +289,7 @@ gulp.task('json', require('./gulp-data.js'));
 // BUILD ALL
 /////////
 
-gulp.task('build', ['frontend-app', 'lib', 'stylus', 'json'], function() {
+gulp.task('build', ['icons', 'frontend-app', 'lib', 'stylus', 'json'], function() {
   return gulp.src(conf.revFiles)
   .pipe(rev())
   .pipe(gulp.dest('public'))

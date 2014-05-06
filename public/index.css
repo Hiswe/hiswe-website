@@ -156,10 +156,6 @@ a:hover {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.hicon {
-  font-weight: normal;
-  font-style: normal;
-}
 .hw-hiso-left {
   -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0);
   -moz-transform: matrix(1, -0.5, 0, 1, 0, 0);
@@ -183,6 +179,30 @@ a:hover {
   -o-transition: none !important;
   -ms-transition: none !important;
   transition: none !important;
+}
+.hicon {
+  font-weight: normal;
+  font-style: normal;
+}
+.svgicon {
+  width: 36px;
+  height: 24px;
+  fill: #cddce4;
+}
+.svgicon:hover {
+  fill: #576176;
+}
+.svgicon:active {
+  fill: #009ae1;
+}
+.svgicon-mail {
+  fill: #ff0078;
+}
+.svgicon-mail:hover {
+  fill: #ff74b9;
+}
+.svgicon-mail:active {
+  fill: #009ae1;
 }
 @media screen and (max-width: 1121px) {
 body {

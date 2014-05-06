@@ -1,7 +1,14 @@
 nav.hw-main-navigation: ul
-  li: a(href="/contact") Contact
-//-   li: a(href="#") Portfolio
-//-   li: a(href="#") Blog
+  li: a(href="http://github.com/hiswe")
+    +icon('github')
+  li: a(href="http://codepen.io/Hiswe")
+    +icon('codepen')
+  li: a(href="http://hiswe.tumblr.com")
+    +icon('tumblr')
+  li: a(href="http://hiswe.deviantart.com")
+    +icon('deviantart')
+  li: a(href="/contact")
+    +icon('mail')
 
 h1.hw-main-title: a(href="/")
   each letter in 'Hiswe'.split('')

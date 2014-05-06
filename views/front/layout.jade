@@ -1,8 +1,10 @@
 doctype html
+include mixins
 html
   include layout/head
 
   body.prevent-transition
+    include includes/hiswe-icons.svg
     .main-content
       include includes/navigation
       block content

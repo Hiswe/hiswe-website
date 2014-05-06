@@ -51,6 +51,7 @@ exports.css = {
   src: [
     'bower_components/hiso-font/font/hiso-font.css',
     'bower_components/hiso-font/font/hicon.css',
+    // 'public/media/icons/hiswe-icons.css',
     // 'bower_components/fontawesome/css/font-awesome.css',
     'assets/css/front/index.styl'
   ],
@@ -72,7 +73,19 @@ exports.font = {
   dst: 'public/media/font'
 };
 
-var imgSrc = rc.GULP_SRC; // don't want a local path in my code :P
+exports.icons = {
+  src: rc.GULP_SRC + '/icons/*.svg',
+  clean: rc.GULP_SRC + '/icons/def',
+  dst: 'public/media/icons',
+  finalSrc: 'public/media/icons/*.svg',
+  finalDst: 'views/front/includes',
+  rename: function rename(path) {
+    path.basename = path.basename.replace(/(hiswe-icons_)/, '');
+    path.basename = uslug(path.basename, uslugOptions);
+  }
+};
+
+var imgSrc = rc.GULP_SRC + '/media'; // don't want a local path in my code :P
 var imgDst = 'public/media/images/';
 var uslugOptions = {
   lower: true,

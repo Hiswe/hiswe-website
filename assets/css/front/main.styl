@@ -30,6 +30,8 @@ body
   &.{activeBody}
     overflow hidden
 
+
+// Single project page
 .projects-page,
 .projects-page body
   border none
@@ -46,6 +48,8 @@ a
 
 .main-content
   padding 0 0 7em
+
+
 
 .hw-main-navigation,
 .hw-splash,
@@ -79,9 +83,6 @@ a
       font-family "hiso-plain", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
       crisp-font-smoothing()
 
-.hicon
-  font-weight normal; font-style: normal;
-
 .hw-hiso-left
   iso-left()
 
@@ -93,6 +94,29 @@ a
 .preload *,
 .prevent-transition *
   transition: none !important
+
+.hicon
+  font-weight normal; font-style: normal;
+
+.svgicon
+  width 36px
+  height 24px
+  fill $grey
+
+  &:hover
+    fill $dark-grey
+
+  &:active
+    fill $blue
+
+.svgicon-mail
+  fill $pink
+
+  &:hover
+    fill $light-pink
+
+  &:active
+    fill $blue
 
 // —————————————
 // @media Tablet

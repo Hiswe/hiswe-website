@@ -33,7 +33,7 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Change top menu
+1. Change top menu with [icons](http://css-tricks.com/svg-sprites-use-better-icon-fonts/)
 - Update Content
 - Add a robot.txt
 - Retina images

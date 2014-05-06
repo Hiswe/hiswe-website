@@ -9,6 +9,7 @@ node_modules
 /bower_components
 public/media/source
 public/media/images
+public/media/icons
 public/index.min.css
 public/app.min.js
 public/lib.js
