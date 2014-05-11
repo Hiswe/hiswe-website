@@ -34,11 +34,11 @@ Design a portfolio for myself
 ### TODO
 
 
-1.
-  - Responsive top menu
-  - Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
-- Update Content
-- Add a robot.txt
+1. Update Content
+- Add a *robot.txt*
+- *js* and *css* files shouldn't be in the repo.  
+ They should be on AWS.
+- Prod here 
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Retina images
 - Responsive images 
@@ -51,7 +51,7 @@ Design a portfolio for myself
 
 ### Inspiration
 
-- icons use from [css-tricks](http://css-tricks.com/svg-sprites-use-better-icon-fonts/)
+- icons use from [css-tricks](http://css-tricks.com/svg-sprites-use-better-icon-fonts/) and also [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/)
 - social icons from [perfecticons.com](http://perfecticons.com/)
 - [polygon](http://www.polygon.com/2014/4/7/5582644/mlb-14-the-show-review)
 - [medium](https://medium.com/gulp-js-build/23812e4c9ec1)

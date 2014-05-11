@@ -123,11 +123,11 @@ gulp.task('lib', ['clean-js', 'source-map'], function() {
 });
 
 gulp.task('clean-js', function() {
-  var message =  [
-    'Don\'t forget to build ./bower_components/PointerGestures',
-    'cd ./bower_components/PointerGestures && npm install && grunt'
-  ].join('\n');
-  gutil.log(gutil.colors.yellow(message));
+  // var message =  [
+  //   'Don\'t forget to build ./bower_components/PointerGestures',
+  //   'cd ./bower_components/PointerGestures && npm install && grunt'
+  // ].join('\n');
+  // gutil.log(gutil.colors.yellow(message));
   return gulp.src(conf.lib.clean, {read: false}).pipe(clean());
 });
 
@@ -191,9 +191,10 @@ gulp.task('build-icons', ['clean-icons'], function () {
   return gulp.src(conf.icons.src)
     .pipe(rename(conf.icons.rename))
     .pipe(svg({
-      defs: true,
-      className: ".svgicon-%f",
-      cssFile: "hiswe-icons.css",
+      defs:         true,
+      svgId:        "icon-%f",
+      className:    ".svgicon-%f",
+      cssFile:     "hiswe-icons.css",
       svg: { defs: "hiswe-icons.svg" }
     }))
     .pipe(gulp.dest(conf.icons.dst));

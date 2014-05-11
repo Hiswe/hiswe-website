@@ -41,15 +41,8 @@
     display inline-block
 
   a
-    font-size 1.25em
     display block
     text-align center
-    color $black
-    text-transform uppercase
-    letter-spacing 0.1em
-
-    &:hover
-      color $blue
 
 .hw-splash
   padding 3em 0 0
@@ -101,6 +94,7 @@ media-tablet()
   text-align center
 
 .hw-main-navigation
+  width auto
   right 1em
 
 // Splash
@@ -146,6 +140,45 @@ media-big-mobile()
     padding-bottom 0
     margin-bottom 0
 
+// menu
+.hw-menu-input-label
+  display block
+  absolute top .75em left .3em
+  z-index 9
+  cursor pointer
+
+.hw-main-navigation
+  right auto
+  z-index 5
+
+  ul
+    padding 3.5em 0 0
+    top 0
+    left 0
+    right auto
+    background $dark-grey
+    width 3em
+    transform translate3d(-100%, 0, 0)
+    transition transform .25s
+
+  li
+    display block
+    padding .25em 0
+
+  a:hover .svgicon
+    fill white
+
+.hw-menu-input:checked ~
+  .hw-menu-input-label
+    .svgicon
+      fill $darkest-grey
+
+    &:hover .svgicon
+      fill $light-grey
+
+  .main-content .hw-main-navigation ul
+    transform translate3d(0, 0, 0)
+
 
 media-query-end()
 // ———————————————————
@@ -168,6 +201,5 @@ media-small-mobile()
   width auto; height auto; min-height 0
   padding-bottom 1em
   line-height 140%
-
 
 media-query-end()

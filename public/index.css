@@ -201,7 +201,6 @@ a:hover {
 body {
   border: 0;
 }
-.hw-main-navigation,
 .hw-splash {
   width: auto;
   padding: 0 1em;
@@ -266,15 +265,8 @@ body {
   display: inline-block;
 }
 .hw-main-navigation a {
-  font-size: 1.25em;
   display: block;
   text-align: center;
-  color: #445;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.hw-main-navigation a:hover {
-  color: #009ae1;
 }
 .hw-splash {
   padding: 3em 0 0;
@@ -330,6 +322,7 @@ body {
   text-align: center;
 }
 .hw-main-navigation {
+  width: auto;
   right: 1em;
 }
 .hw-splash {
@@ -366,6 +359,56 @@ body {
   line-height: 140%;
   padding-bottom: 0;
   margin-bottom: 0;
+}
+.hw-menu-input-label {
+  display: block;
+  position: absolute;
+  top: 0.75em;
+  left: 0.3em;
+  z-index: 9;
+  cursor: pointer;
+}
+.hw-main-navigation {
+  right: auto;
+  z-index: 5;
+}
+.hw-main-navigation ul {
+  padding: 3.5em 0 0;
+  top: 0;
+  left: 0;
+  right: auto;
+  background: #576176;
+  width: 3em;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.25s;
+  -moz-transition: -moz-transform 0.25s;
+  -o-transition: -o-transform 0.25s;
+  -ms-transition: -ms-transform 0.25s;
+  transition: transform 0.25s;
+}
+.hw-main-navigation li {
+  display: block;
+  padding: 0.25em 0;
+}
+.hw-main-navigation a:hover .svgicon {
+  fill: #fff;
+}
+.hw-menu-input:checked ~ .hw-menu-input-label .svgicon {
+  fill: #454a5d;
+}
+.hw-menu-input:checked ~ .hw-menu-input-label:hover .svgicon {
+  fill: #ecf4f8;
+}
+.hw-menu-input:checked ~ .main-content .hw-main-navigation ul {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 }
 @media screen and (max-width: 479px) {
@@ -1994,10 +2037,10 @@ h3 + .hw-projects-gallery-container {
   z-index: 2;
   background: none;
 }
-.hw-projects-gallery li a svg {
+.hw-projects-gallery li a .svgicon {
   fill: #ff0078;
 }
-.hw-projects-gallery li a:hover svg {
+.hw-projects-gallery li a:hover .svgicon {
   fill: #009ae1;
 }
 .hw-projects-gallery li figcaption {
@@ -2310,15 +2353,15 @@ h3 + .hw-projects-gallery-container {
     opacity: 1;
   }
 }
-label {
+.hw-contact label {
   display: block;
   padding: 0.75em 0 0.25em;
   font-weight: bold;
   height: 0;
   visibility: hidden;
 }
-input,
-textarea {
+.hw-contact input,
+.hw-contact textarea {
   background-color: #fff;
   display: block;
   font-size: 1em;
@@ -2339,82 +2382,82 @@ textarea {
   box-sizing: border-box;
   outline: 0;
 }
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
+.hw-contact input:-ms-input-placeholder,
+.hw-contact textarea:-ms-input-placeholder {
   color: #aaa;
 }
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
+.hw-contact input::-webkit-input-placeholder,
+.hw-contact textarea::-webkit-input-placeholder {
   color: #aaa;
 }
-input:-moz-placeholder,
-textarea:-moz-placeholder {
+.hw-contact input:-moz-placeholder,
+.hw-contact textarea:-moz-placeholder {
   color: #aaa;
 }
-input::-moz-placeholder,
-textarea::-moz-placeholder {
+.hw-contact input::-moz-placeholder,
+.hw-contact textarea::-moz-placeholder {
   color: #aaa;
 }
-input:hover,
-textarea:hover,
-input:focus,
-textarea:focus {
+.hw-contact input:hover,
+.hw-contact textarea:hover,
+.hw-contact input:focus,
+.hw-contact textarea:focus {
   border-color: #00b7e0;
   -webkit-box-shadow: inset 2px 2px 0 rgba(0,183,224,0.3);
   box-shadow: inset 2px 2px 0 rgba(0,183,224,0.3);
   outline: 0;
 }
-input.ng-invalid,
-textarea.ng-invalid,
-input.invalid,
-textarea.invalid,
-input:focus:invalid,
-textarea:focus:invalid {
+.hw-contact input.ng-invalid,
+.hw-contact textarea.ng-invalid,
+.hw-contact input.invalid,
+.hw-contact textarea.invalid,
+.hw-contact input:focus:invalid,
+.hw-contact textarea:focus:invalid {
   color: #96002b;
   border-color: #df006f;
   -webkit-box-shadow: inset 2px 2px 0 rgba(223,0,111,0.3);
   box-shadow: inset 2px 2px 0 rgba(223,0,111,0.3);
 }
-input.ng-invalid:-ms-input-placeholder,
-textarea.ng-invalid:-ms-input-placeholder,
-input.invalid:-ms-input-placeholder,
-textarea.invalid:-ms-input-placeholder,
-input:focus:invalid:-ms-input-placeholder,
-textarea:focus:invalid:-ms-input-placeholder {
+.hw-contact input.ng-invalid:-ms-input-placeholder,
+.hw-contact textarea.ng-invalid:-ms-input-placeholder,
+.hw-contact input.invalid:-ms-input-placeholder,
+.hw-contact textarea.invalid:-ms-input-placeholder,
+.hw-contact input:focus:invalid:-ms-input-placeholder,
+.hw-contact textarea:focus:invalid:-ms-input-placeholder {
   color: #ff4b7f;
 }
-input.ng-invalid::-webkit-input-placeholder,
-textarea.ng-invalid::-webkit-input-placeholder,
-input.invalid::-webkit-input-placeholder,
-textarea.invalid::-webkit-input-placeholder,
-input:focus:invalid::-webkit-input-placeholder,
-textarea:focus:invalid::-webkit-input-placeholder {
+.hw-contact input.ng-invalid::-webkit-input-placeholder,
+.hw-contact textarea.ng-invalid::-webkit-input-placeholder,
+.hw-contact input.invalid::-webkit-input-placeholder,
+.hw-contact textarea.invalid::-webkit-input-placeholder,
+.hw-contact input:focus:invalid::-webkit-input-placeholder,
+.hw-contact textarea:focus:invalid::-webkit-input-placeholder {
   color: #ff4b7f;
 }
-input.ng-invalid:-moz-placeholder,
-textarea.ng-invalid:-moz-placeholder,
-input.invalid:-moz-placeholder,
-textarea.invalid:-moz-placeholder,
-input:focus:invalid:-moz-placeholder,
-textarea:focus:invalid:-moz-placeholder {
+.hw-contact input.ng-invalid:-moz-placeholder,
+.hw-contact textarea.ng-invalid:-moz-placeholder,
+.hw-contact input.invalid:-moz-placeholder,
+.hw-contact textarea.invalid:-moz-placeholder,
+.hw-contact input:focus:invalid:-moz-placeholder,
+.hw-contact textarea:focus:invalid:-moz-placeholder {
   color: #ff4b7f;
 }
-input.ng-invalid::-moz-placeholder,
-textarea.ng-invalid::-moz-placeholder,
-input.invalid::-moz-placeholder,
-textarea.invalid::-moz-placeholder,
-input:focus:invalid::-moz-placeholder,
-textarea:focus:invalid::-moz-placeholder {
+.hw-contact input.ng-invalid::-moz-placeholder,
+.hw-contact textarea.ng-invalid::-moz-placeholder,
+.hw-contact input.invalid::-moz-placeholder,
+.hw-contact textarea.invalid::-moz-placeholder,
+.hw-contact input:focus:invalid::-moz-placeholder,
+.hw-contact textarea:focus:invalid::-moz-placeholder {
   color: #ff4b7f;
 }
-input.disabled,
-textarea.disabled,
-input.disabled:hover,
-textarea.disabled:hover,
-input:disabled,
-textarea:disabled,
-input:disabled:hover,
-textarea:disabled:hover {
+.hw-contact input.disabled,
+.hw-contact textarea.disabled,
+.hw-contact input.disabled:hover,
+.hw-contact textarea.disabled:hover,
+.hw-contact input:disabled,
+.hw-contact textarea:disabled,
+.hw-contact input:disabled:hover,
+.hw-contact textarea:disabled:hover {
   cursor: not-allowed;
   background-color: #eee;
   color: #999;
@@ -2422,54 +2465,54 @@ textarea:disabled:hover {
   box-shadow: inset 2px 2px 0 rgba(0,0,0,0.07);
   border: 1px solid #c2c2c2;
 }
-input.disabled:-ms-input-placeholder,
-textarea.disabled:-ms-input-placeholder,
-input.disabled:hover:-ms-input-placeholder,
-textarea.disabled:hover:-ms-input-placeholder,
-input:disabled:-ms-input-placeholder,
-textarea:disabled:-ms-input-placeholder,
-input:disabled:hover:-ms-input-placeholder,
-textarea:disabled:hover:-ms-input-placeholder {
+.hw-contact input.disabled:-ms-input-placeholder,
+.hw-contact textarea.disabled:-ms-input-placeholder,
+.hw-contact input.disabled:hover:-ms-input-placeholder,
+.hw-contact textarea.disabled:hover:-ms-input-placeholder,
+.hw-contact input:disabled:-ms-input-placeholder,
+.hw-contact textarea:disabled:-ms-input-placeholder,
+.hw-contact input:disabled:hover:-ms-input-placeholder,
+.hw-contact textarea:disabled:hover:-ms-input-placeholder {
   color: #ccc;
 }
-input.disabled::-webkit-input-placeholder,
-textarea.disabled::-webkit-input-placeholder,
-input.disabled:hover::-webkit-input-placeholder,
-textarea.disabled:hover::-webkit-input-placeholder,
-input:disabled::-webkit-input-placeholder,
-textarea:disabled::-webkit-input-placeholder,
-input:disabled:hover::-webkit-input-placeholder,
-textarea:disabled:hover::-webkit-input-placeholder {
+.hw-contact input.disabled::-webkit-input-placeholder,
+.hw-contact textarea.disabled::-webkit-input-placeholder,
+.hw-contact input.disabled:hover::-webkit-input-placeholder,
+.hw-contact textarea.disabled:hover::-webkit-input-placeholder,
+.hw-contact input:disabled::-webkit-input-placeholder,
+.hw-contact textarea:disabled::-webkit-input-placeholder,
+.hw-contact input:disabled:hover::-webkit-input-placeholder,
+.hw-contact textarea:disabled:hover::-webkit-input-placeholder {
   color: #ccc;
 }
-input.disabled:-moz-placeholder,
-textarea.disabled:-moz-placeholder,
-input.disabled:hover:-moz-placeholder,
-textarea.disabled:hover:-moz-placeholder,
-input:disabled:-moz-placeholder,
-textarea:disabled:-moz-placeholder,
-input:disabled:hover:-moz-placeholder,
-textarea:disabled:hover:-moz-placeholder {
+.hw-contact input.disabled:-moz-placeholder,
+.hw-contact textarea.disabled:-moz-placeholder,
+.hw-contact input.disabled:hover:-moz-placeholder,
+.hw-contact textarea.disabled:hover:-moz-placeholder,
+.hw-contact input:disabled:-moz-placeholder,
+.hw-contact textarea:disabled:-moz-placeholder,
+.hw-contact input:disabled:hover:-moz-placeholder,
+.hw-contact textarea:disabled:hover:-moz-placeholder {
   color: #ccc;
 }
-input.disabled::-moz-placeholder,
-textarea.disabled::-moz-placeholder,
-input.disabled:hover::-moz-placeholder,
-textarea.disabled:hover::-moz-placeholder,
-input:disabled::-moz-placeholder,
-textarea:disabled::-moz-placeholder,
-input:disabled:hover::-moz-placeholder,
-textarea:disabled:hover::-moz-placeholder {
+.hw-contact input.disabled::-moz-placeholder,
+.hw-contact textarea.disabled::-moz-placeholder,
+.hw-contact input.disabled:hover::-moz-placeholder,
+.hw-contact textarea.disabled:hover::-moz-placeholder,
+.hw-contact input:disabled::-moz-placeholder,
+.hw-contact textarea:disabled::-moz-placeholder,
+.hw-contact input:disabled:hover::-moz-placeholder,
+.hw-contact textarea:disabled:hover::-moz-placeholder {
   color: #ccc;
 }
-textarea {
+.hw-contact textarea {
   min-height: 5em;
   resize: vertical;
   line-height: 1.25em;
   font-family: inherit;
 }
-textarea.disabled,
-textarea:disabled {
+.hw-contact textarea.disabled,
+.hw-contact textarea:disabled {
   resize: none;
 }
 .hw-contact aside {
@@ -2882,33 +2925,6 @@ body {
   font-size: 2.75em;
   display: block;
   padding: 1em 0 0.25em;
-}
-.hw-main-navigation {
-  width: auto;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  top: auto;
-  padding-bottom: 0;
-}
-.hw-main-navigation ul {
-  margin-top: 0;
-}
-.hw-main-navigation ul:before,
-.hw-main-navigation ul:after {
-  content: "";
-  display: table;
-}
-.hw-main-navigation ul:after {
-  clear: both;
-}
-.hw-main-navigation li {
-  width: 33.333333333333336%;
-  float: left;
-  background: rgba(0,0,0,0.75) !important;
-}
-.hw-main-navigation li a {
-  padding: 0.5em 0;
 }
 .hw-main-title,
 .hw-main-title span,
