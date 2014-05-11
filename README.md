@@ -35,7 +35,6 @@ Design a portfolio for myself
 
 
 1. Update Content
-- Add a *robot.txt*
 - *js* and *css* files shouldn't be in the repo.  
  They should be on AWS.
 - Prod here 
