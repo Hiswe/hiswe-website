@@ -150,7 +150,11 @@ var buildFigure = function (image, text) {
   var figureMarkup =  [
     '<figure class="' + image.type + '">',
       image.markup.join(''),
-      '<a href="' + image.href + '" target="_blank">' + image.title + '</a>',
+      '<a href="' + image.href + '" target="_blank">',
+        '<svg viewBox="0 0 36 24" class="svgicon svgicon-expand">',
+          '<use xlink:href="#expand" />',
+        '</svg>',
+      '</a>',
     '</figure>'
   ];
 

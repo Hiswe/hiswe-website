@@ -33,22 +33,25 @@ Design a portfolio for myself
 
 ### TODO
 
-1. Change top menu with [icons](http://css-tricks.com/svg-sprites-use-better-icon-fonts/)
+
+1.
+  - Responsive top menu
+  - Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
 - Update Content
 - Add a robot.txt
+- Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - Retina images
 - Responsive images 
-- Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 - JS front lib in requireJs
 - No change of page for contact
-- Change icons to SVG (see [CSS-trick](http://css-tricks.com/icon-fonts-vs-svg/))
-- Is improvments can be made with [velocity](http://julian.com/research/velocity/) ?
+- Are improvements can be made with [velocity](http://julian.com/research/velocity/) ?
 
 ### Inspiration
 
+- icons use from [css-tricks](http://css-tricks.com/svg-sprites-use-better-icon-fonts/)
 - social icons from [perfecticons.com](http://perfecticons.com/)
 - [polygon](http://www.polygon.com/2014/4/7/5582644/mlb-14-the-show-review)
 - [medium](https://medium.com/gulp-js-build/23812e4c9ec1)

@@ -45,14 +45,12 @@ exports.lib = {
 exports.css = {
   externalFiles: '',
   replace: {
-    hisoFont: /(url\(')(hiso)/gi,
-    fontawesome: /(url\('..\/fonts\/)(fontawesome)/gi
+    hisoFont: /(url\(')(hiso)/gi
   },
   src: [
     'bower_components/hiso-font/font/hiso-font.css',
     'bower_components/hiso-font/font/hicon.css',
     // 'public/media/icons/hiswe-icons.css',
-    // 'bower_components/fontawesome/css/font-awesome.css',
     'assets/css/front/index.styl'
   ],
   dst: 'public'
@@ -67,8 +65,7 @@ exports.front = {
 exports.font = {
   src: [
     'bower_components/hiso-font/font/*',
-    '!bower_components/hiso-font/font/*.css',
-    'bower_components/fontawesome/fonts/*'
+    '!bower_components/hiso-font/font/*.css'
   ],
   dst: 'public/media/font'
 };

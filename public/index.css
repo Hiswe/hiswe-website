@@ -57,13 +57,6 @@ dd {
   border: 0;
   outline: 0;
 }
-@font-face {
-  font-family: 'FontAwesome';
-  src: url("./media/font/fontawesome-webfont.eot?v=4.0.3");
-  src: url("./media/font/fontawesome-webfont.eot?#iefix&v=4.0.3") format('embedded-opentype'), url("./media/font/fontawesome-webfont.woff?v=4.0.3") format('woff'), url("./media/font/fontawesome-webfont.ttf?v=4.0.3") format('truetype'), url("./media/font/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 html,
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -1993,25 +1986,19 @@ h3 + .hw-projects-gallery-container {
   margin: 0;
   max-height: 100%;
 }
-.hw-projects-gallery li a {
+.hw-projects-gallery li a,
+.hw-projects-gallery li a:hover {
   position: absolute;
   top: 1em;
   right: 1em;
   z-index: 2;
-  text-indent: -666em;
+  background: none;
 }
-.hw-projects-gallery li a::after {
-  font-size: 1.5em;
-  font-family: FontAwesome;
-  content: '\f065';
-  text-indent: 0;
-  color: #ff0078;
-  position: absolute;
-  top: 0;
-  right: 0;
+.hw-projects-gallery li a svg {
+  fill: #ff0078;
 }
-.hw-projects-gallery li a:hover::after {
-  color: #009ae1;
+.hw-projects-gallery li a:hover svg {
+  fill: #009ae1;
 }
 .hw-projects-gallery li figcaption {
   position: absolute;

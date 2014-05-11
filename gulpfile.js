@@ -82,7 +82,6 @@ gulp.task('stylus', ['clean-css'], function () {
     })))
     .pipe(concat('index.css'))
     .pipe(replace(conf.css.replace.hisoFont, '$1./media/font/$2'))
-    .pipe(replace(conf.css.replace.fontawesome, 'url(\'./media/font/$2'))
     .pipe(gulp.dest('./public'))
     .pipe(rename('index.min.css'))
     .pipe(minifyCSS({keepSpecialComments: 0}))

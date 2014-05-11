@@ -166,21 +166,17 @@ smooth-chrome-scroll()
       padding 0; margin 0
       max-height 100%
 
-    a
+    a, a:hover
       absolute top 1em right 1em
       z-index 2
-      text-indent -666em
+      background none
 
-      &::after
-        font-size 1.5em
-        font-family FontAwesome
-        content '\f065'
-        text-indent 0
-        color $pink
-        absolute top right
+    a
+      svg
+        fill $pink
 
-      &:hover::after
-        color $blue
+      &:hover svg
+        fill $blue
 
     figcaption
       absolute bottom left
