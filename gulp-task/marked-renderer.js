@@ -11,7 +11,7 @@ var parseString           = require('xml2js').parseString;
 
 // Create a base64 transparent gif
 // This prevent image src to be empty…
-var pathToTransparentGif  = __dirname + '/public/media/blank.gif';
+var pathToTransparentGif  = __dirname + '/../public/media/blank.gif';
 var blankGif = new Buffer(fs.readFileSync(pathToTransparentGif)).toString('base64');
 blankGif = 'data:image/gif;base64,' + blankGif;
 
@@ -89,7 +89,7 @@ var paragraph = function paragraph(text) {
 
 var getImageInfo = function getImageInfo(href) {
   var type                = '';
-  var realImagePath       = 'public/' + href;
+  var realImagePath       = 'public' + href;
   var dimensions          = {};
 
   if (/\.svg$/.test(href)) {
@@ -118,7 +118,13 @@ var buildImage = function buildImage(href, title) {
   // fix leading slash
   href = /^\//.test(href) ? href : "/" + href;
   // make preview href
-  var previewHref = href.replace(/(.*)\.(jpg|png|svg|jpeg)$/, '$1-preview.$2');
+  var previewHref = '';
+  if (/\.png$/.test(href)) { // No preview images for svg
+    previewHref = href;
+  } else {
+    previewHref = href.replace(/(.*)\.(jpg|png|jpeg)$/, '$1-preview.$2');
+  }
+
 
   var imageInformations = getImageInfo(previewHref);
   var imageMarkup = [
@@ -201,6 +207,6 @@ projectsRenderer.blockquote = blockquote;
 projectsRenderer.paragraph  = paragraph;
 projectsRenderer.image      = projectsImage;
 
-exports.titleRenderer       = titleRenderer;
-exports.bodyRenderer        = bodyRenderer;
-exports.projectsRenderer    = projectsRenderer;
+exports.home                = titleRenderer;
+exports.xhr                 = bodyRenderer;
+exports.project             = projectsRenderer;

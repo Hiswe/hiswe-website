@@ -42,5 +42,5 @@ for fixing their integration like this [table header](http://cdpn.io/FEiAK) (*wh
 
 ### layout
 
-- ![](media/images/taelys-vitrine-v2d.jpg)
-- ![](media/images/taelys-vitrine-v3f-recrutement.jpg)
+- ![](media/images/taelys-vitrine-v2-d.jpg)
+- ![](media/images/taelys-vitrine-v3-f-recrutement.jpg)

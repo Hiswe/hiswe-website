@@ -15,9 +15,9 @@ This company needs help for doing all the **webdesign** in a way that will be **
 
 They also need some **integration help** for some specific component like a [selectbox](http://dabblet.com/gist/11043337) or a [colored image](http://dabblet.com/gist/11045609)
 
-- ![Bare Map](media/images/agantio-carte-v12a.jpg)
-- ![Map with Stepover](media/images/agantio-carte-v12c.jpg)
-- ![Map with Friend search](media/images/agantio-carte-v12e.jpg)
-- ![Map with Hostel search](media/images/agantio-carte-v12k.jpg)
-- ![Gestion](media/images/agantio-gestion-v3a.jpg)
-- ![Profile](media/images/agantio-profile-v3c.jpg)
+- ![Bare Map](media/images/agantio-carte-v12-a.jpg)
+- ![Map with Stepover](media/images/agantio-carte-v12-c.jpg)
+- ![Map with Friend search](media/images/agantio-carte-v12-e.jpg)
+- ![Map with Hostel search](media/images/agantio-carte-v12-k.jpg)
+- ![Gestion](media/images/agantio-gestion-v3-a.jpg)
+- ![Profile](media/images/agantio-profile-v3-c.jpg)

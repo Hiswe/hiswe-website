@@ -35,18 +35,20 @@ Design a portfolio for myself
 
 
 1. Update Content
+2. Prod here
 - *js* and *css* files shouldn't be in the repo.  
- They should be on AWS.
-- Prod here 
+  They should be on AWS.
+- Migrate to Express 4
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
+- Are improvements can be made with [velocity](http://julian.com/research/velocity/)?
 - Retina images
 - Responsive images 
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
+- JS front lib in requireJs
+  - As jQuery mobile can't be require maybe look at [jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
 - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
-- JS front lib in requireJs
 - No change of page for contact
-- Are improvements can be made with [velocity](http://julian.com/research/velocity/) ?
 
 ### Inspiration
 

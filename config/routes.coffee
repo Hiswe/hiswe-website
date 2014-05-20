@@ -13,7 +13,6 @@ module.exports = (app) ->
 
   app.resource controller('home')
 
-  # buildRoutes(app)
   # 404 Page
   app.use (req, res, next) ->
     res.status(404).render('404', { url: req.originalUrl })

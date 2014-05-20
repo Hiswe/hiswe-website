@@ -2,14 +2,13 @@
 
 var sharedVar       = require('./config/datas/stylus-var.json');
 var rc = exports.rc = require('rc')('HISWE');
-var uslug           = require('uslug');
+var slug            = require('slug');
 
-var dbDst = __dirname + '/config/datas/'
+slug.charmap['_'] = '-'
+
 exports.db = {
-  src: 'config/datas',
-  homeDst:        dbDst + 'db-home.json',
-  projectsXhrDst: dbDst + 'db-projects-xhr.json',
-  projectsDst:    dbDst + 'db-projects.json'
+  src: 'config/datas/*.md',
+  dst: 'config/datas'
 }
 
 exports.revFiles = [
@@ -78,32 +77,32 @@ exports.icons = {
   finalDst: 'views/front/includes',
   rename: function rename(path) {
     path.basename = path.basename.replace(/(hiswe-icons_)/, '');
-    path.basename = uslug(path.basename, uslugOptions);
+    path.basename = slug(path.basename).toLowerCase();
   }
 };
 
 var imgSrc = rc.GULP_SRC + '/media'; // don't want a local path in my code :P
 var imgDst = 'public/media/images/';
-var uslugOptions = {
-  lower: true,
-  allowedChars: '-'
-};
 exports.img = {
-  pixel:      [imgSrc + '*.{jpg,jpeg,png}', '!' + imgSrc + 'splash*.{jpg,jpeg,png}'],
+  pixel:      [imgSrc + '/**/*.{jpg,jpeg,png}', '!' + imgSrc + 'splash*.{jpg,jpeg,png}'],
   cleanPixel: [imgDst + '*.{jpg,jpeg,png}', '!' + imgDst + 'splash*.{jpg,jpeg,png}'],
-  splash:     imgSrc + 'splash*.{jpg,jpeg,png}',
+  splash:     imgSrc + '/**/splash*.{jpg,jpeg,png}',
   cleanSplash:imgDst + 'splash*.{jpg,jpeg,png}',
-  svg:        imgSrc + '*.svg',
+  svg:        imgSrc + '/**/*.svg',
   cleanSvg:   imgDst + '*.svg',
   dst:        imgDst,
   height:     sharedVar.carrouselHeight,
   width:      sharedVar.desktopWidth - ( sharedVar.desktopWidth * 0.1 ),
   fullDst:    __dirname + '/' + imgDst,
   formatOriginal: function formatOriginal(path) {
-    path.basename = uslug(path.basename, uslugOptions);
+    if (path.dirname !== '.') {
+      path.basename = path.dirname + '-' + path.basename
+      path.dirname  = '.'
+    }
+    path.basename = slug(path.basename).toLowerCase();
   },
   formatPreview: function formatPreview (path) {
-    path.basename = uslug(path.basename, uslugOptions) + '-preview';
+    path.basename = slug(path.basename).toLowerCase() + '-preview';
   }
 };
 

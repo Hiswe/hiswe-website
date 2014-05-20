@@ -2,67 +2,67 @@
   {
     "order": 6,
     "path": "/projects/agantio",
-    "id": "project-agantio",
-    "name": "agantio",
     "cover": {
       "path": "/media/images/cover-agantio.svg",
       "extension": "svg"
     },
+    "id": "project-agantio",
+    "name": "agantio",
     "markup": "<h1>Agantio</h1><h2>Let your friends be your travel agents!</h2>"
   },
   {
     "order": 5,
     "path": "/projects/taelys",
-    "id": "project-taelys",
-    "name": "taelys",
     "cover": {
       "path": "/media/images/cover-taelys.svg",
       "extension": "svg"
     },
+    "id": "project-taelys",
+    "name": "taelys",
     "markup": "<h1>Taelys</h1><h2>La Finance proche de vous</h2>"
   },
   {
     "order": 4,
     "path": "/projects/blog-copte",
-    "id": "project-blog-copte",
-    "name": "blog copte",
     "cover": {
       "path": "/media/images/cover-blog-copte.svg",
       "extension": "svg"
     },
+    "id": "project-blog-copte",
+    "name": "blog copte",
     "markup": "<h1>Blog Copte</h1><h2>The french portal dedicated to Coptic news</h2>"
   },
   {
     "order": 3,
     "path": "/projects/dolidhi",
-    "id": "project-dolidhi",
-    "name": "dolidhi",
     "cover": {
       "path": "/media/images/cover-dolidhi.svg",
       "extension": "svg"
     },
+    "id": "project-dolidhi",
+    "name": "dolidhi",
     "markup": "<h1>Dolidhi</h1><h2>Dolgan, Identity, History</h2>"
   },
   {
     "order": 2,
     "path": "/projects/nori",
-    "id": "project-nori",
-    "name": "nori",
     "cover": {
       "path": "/media/images/cover-nori.png",
       "extension": "png"
     },
+    "id": "project-nori",
+    "name": "nori",
     "markup": "<h1>Nori Home</h1><h2>Christmas tree sack</h2>"
   },
   {
     "order": 1,
     "path": "/projects/banjai-garden",
-    "id": "project-banjai-garden",
-    "name": "banjai garden",
     "cover": {
       "path": "/media/images/cover-banjai-garden.svg",
       "extension": "svg"
     },
+    "id": "project-banjai-garden",
+    "name": "banjai garden",
     "markup": "<h1>Banjai Garden</h1><h2>The small five small stars guesthouse</h2>"
   }
 ]

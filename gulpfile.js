@@ -36,6 +36,8 @@ var wait        = require('gulp-wait');
 var open        = require('gulp-open');
 var nodemon     = require('gulp-nodemon');
 var livereload  = require('gulp-livereload');
+// misc
+var bundleData  = require('./gulp-task/hiswe-bundle-data');
 
 /////////
 // CONF
@@ -55,17 +57,10 @@ var onError = function onError(err) {
 // VERSIONS
 /////////
 
-// TODO: should be done with arguments
-gulp.task('patch', function () {
+gulp.task('bump', function () {
+  if (args.minor) return gulp.src(conf.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
+  if (args.major) return gulp.src(conf.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
   return gulp.src(conf.pack).pipe(bump()).pipe(gulp.dest('./'));
-});
-
-gulp.task('minor', function() {
-  return gulp.src(conf.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
-});
-
-gulp.task('major', function() {
-  return gulp.src(conf.pack).pipe(bump({type:'major'})).pipe(gulp.dest('./'));
 });
 
 /////////
@@ -95,7 +90,7 @@ gulp.task('css', ['stylus'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest(conf.db.src))
+    .pipe(gulp.dest(conf.db.dst))
     .pipe(livereload(server));
 });
 
@@ -162,7 +157,7 @@ gulp.task('js', ['lib', 'frontend-app'], function() {
     .pipe(rev())
     .pipe(gulp.dest('public'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest(conf.db.src))
+    .pipe(gulp.dest(conf.db.dst))
     .pipe(livereload(server));
 });
 
@@ -194,8 +189,8 @@ gulp.task('build-icons', ['clean-icons'], function () {
       defs:         true,
       svgId:        "icon-%f",
       className:    ".svgicon-%f",
-      cssFile:     "hiswe-icons.css",
-      svg: { defs: "hiswe-icons.svg" }
+      cssFile:      "hiswe-icons.css",
+      svg: { defs:  "hiswe-icons.svg" }
     }))
     .pipe(gulp.dest(conf.icons.dst));
 });
@@ -245,8 +240,6 @@ gulp.task('svg', ['clean-svg'], function() {
   return gulp.src(conf.img.svg)
     .pipe(svgmin())
     .pipe(rename(conf.img.formatOriginal))
-    .pipe(gulp.dest(conf.img.dst))
-    .pipe(rename(conf.img.formatPreview))
     .pipe(gulp.dest(conf.img.dst));
 });
 
@@ -254,8 +247,12 @@ gulp.task('list', function(cb) {
   var projectName = args.project;
   if (projectName != null) {
     var fileList = fs.readdirSync(conf.img.fullDst)
-      .filter(function (item) { return item.indexOf(projectName) > -1 })
-      .map(function (item) { return '- ![](media/images/' + item + ' "" )'; });
+      .filter(function (item) {
+        if (item.indexOf(projectName) === -1 ) return false;
+        if (/preview/.test(item)) return false;
+        return true
+      });
+      // .map(function (item) { return '- ![](media/images/' + item + ' "" )'; });
     console.log(fileList.join('\n'));
   } else {
     gutil.log('You shoul call ', gutil.colors.yellow('gulp list --project NAME'));
@@ -283,7 +280,11 @@ gulp.task('upload', function () {
 });
 
 // JSON
-gulp.task('json', require('./gulp-data.js'));
+gulp.task('json', function() {
+  return gulp.src(conf.db.src)
+    .pipe(bundleData())
+    .pipe(gulp.dest(conf.db.dst));
+});
 
 /////////
 // BUILD ALL
@@ -294,7 +295,7 @@ gulp.task('build', ['icons', 'frontend-app', 'lib', 'stylus', 'json'], function(
   .pipe(rev())
   .pipe(gulp.dest('public'))
   .pipe(rev.manifest())
-  .pipe(gulp.dest(conf.db.src))
+  .pipe(gulp.dest(conf.db.dst))
   .pipe(livereload(server));
 });
 
@@ -348,17 +349,20 @@ gulp.task("start", ['server'], function(){
 /////////
 
 gulp.task('default', function() {
-  console.log(gutil.colors.red('patch'), '              ', 'patch version of json');
-  console.log(gutil.colors.red('minor'), '              ', 'minor version of json');
-  console.log(gutil.colors.red('major'), '              ', 'major version of json');
-  console.log(gutil.colors.red('font'), '               ', 'Copy fonts to the right folder');
-  console.log(gutil.colors.red('js'), '                 ', 'Concat & uglify + rev');
-  console.log(gutil.colors.red('css'), '                ', 'Compile stylus + uglify + rev');
-  console.log(gutil.colors.red('json'), '               ', 'Package all datas to json');
-  console.log(gutil.colors.red('build'), '              ', 'js + css + rev');
-  console.log(gutil.colors.red('pixel'), '              ', 'Resize pixel images');
-  console.log(gutil.colors.red('svg'), '                ', 'clean svg images');
-  console.log(gutil.colors.red('image'), '              ', 'pixel + svg');
-  console.log(gutil.colors.red('list --project name'), '', 'list image of a current project');
-  console.log(gutil.colors.red('start'), '              ', 'Watch + server');
+  var m = gutil.colors.magenta
+  var g = gutil.colors.grey
+  console.log(m('bump'), g('..............'), 'patch version of json');
+  console.log(m('  --minor'), g('.........'), 'minor version of json');
+  console.log(m('  --major'), g('.........'), 'major version of json');
+  console.log(m('font'), g('..............'), 'Copy fonts to the right folder');
+  console.log(m('js'), g('................'), 'Concat & uglify + rev');
+  console.log(m('css'), g('...............'), 'Compile stylus + uglify + rev');
+  console.log(m('json'), g('..............'), 'Package all datas to json');
+  console.log(m('build'), g('.............'), 'js + css + rev');
+  console.log(m('pixel'), g('.............'), 'Resize pixel images');
+  console.log(m('svg'), g('...............'), 'clean svg images');
+  console.log(m('image'), g('.............'), 'pixel + svg');
+  console.log(m('list'), g('..............'), 'list image');
+  console.log(m('  --project name'), g('..'), 'of a specific project');
+  console.log(m('start'), g('.............'), 'Watch + server');
 });
