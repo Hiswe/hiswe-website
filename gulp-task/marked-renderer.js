@@ -57,7 +57,7 @@ function list(body, ordered) {
 };
 
 function blockquote(quote) {
-  return render('gallery', {quote: quote});
+  return render('aside', {quote: quote});
 };
 
 function paragraph(text) {
