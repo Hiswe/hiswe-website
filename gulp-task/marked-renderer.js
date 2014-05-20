@@ -1,6 +1,7 @@
 'use strict';
 
 var marked                = require('marked');
+var jade                  = require('jade');
 var titleRenderer         = new marked.Renderer();
 var bodyRenderer          = new marked.Renderer();
 var projectsRenderer      = new marked.Renderer();
@@ -8,6 +9,10 @@ var fs                    = require('fs');
 var sizeOf                = require('image-size');
 var parseString           = require('xml2js').parseString;
 
+var render = function render(template, data) {
+  var templatePath = __dirname + '/' + template + '.jade';
+  return jade.renderFile(templatePath, data);
+};
 
 // Create a base64 transparent gif
 // This prevent image src to be empty…
@@ -19,173 +24,96 @@ var noop = function noop () {
   return ''
 }
 
-// All the join are made with '' instead of '\n'
-// We don't need to preserve source formating
+function bareTitle (text, level) {
+  var escapedText = text.replace(/-/gi, ' ');
+  return '<h' + level + '>' + escapedText + '</h' + level + '>'
+};
 
+function centeredTitle (text, level) {
+  var escapedText = text.replace(/-/gi, ' ');
+  return '<h' + level + ' class="hw-projects-center">' + escapedText + '</h' + level + '>'
+};
 
 // Titles
-var heading = function heading (text, level) {
-  var escapedText = text.replace(/-/gi, ' ');
-  if (level === 4) {
-    return [
-      '<h' + level + ' class="hw-projects-center">' + escapedText + '</h' + level + '>'
-    ].join('')
-  }
-  return [
-    '<h' + level + '>' + escapedText + '</h' + level + '>',
-  ].join('')
+function heading (text, level) {
+  if (level === 4) return centeredTitle(text, level);
+  return bareTitle(text, level)
 };
 
-var titleHeading = function titleHeading (text, level) {
+function titleHeading (text, level) {
   if (level > 2) { return ''; }
-  var escapedText = text.replace(/-/gi, ' ');
-  return [
-    '<h' + level + '>' + escapedText + '</h' + level + '>',
-  ].join('')
-}
+  return bareTitle(text, level)
+};
 
-var bodyHeading = function bodyHeading (text, level) {
+function bodyHeading (text, level) {
   if (level < 3) { return ''; }
-  var escapedText = text.replace(/-/gi, ' ');
-  if (level === 4) {
-    return [
-      '<h' + level + ' class="hw-projects-center">' + escapedText + '</h' + level + '>'
-    ].join('')
-  }
-  return [
-    '<h' + level + '>' + escapedText + '</h' + level + '>',
-  ].join('')
+  if (level === 4) return centeredTitle(text, level);
+  return bareTitle(text, level)
 };
 
-
-var list = function list(body, ordered) {
-  if (ordered) {
-    return [
-      '<ol>' + body + '</ol>'
-    ].join('');
-  }
-  return [
-    '<div class="hw-projects-gallery-container">',
-      '<div class="hw-projects-gallery">',
-        '<ul>' + body  + '</ul>',
-      '</div>',
-    '</div>'
-  ].join('');
+function list(body, ordered) {
+  if (ordered) return '<ol>' + body + '</ol>';
+  return render('gallery', {body: body});
 };
 
-var blockquote = function blockquote(quote) {
-  return [
-    '<aside class="hw-projects-aside-container">',
-      '<div class="hw-projects-aside">' + quote + '</div>',
-    '</aside>'
-  ].join('');
+function blockquote(quote) {
+  return render('gallery', {quote: quote});
 };
 
-var paragraph = function paragraph(text) {
-  return [
-    '<p class="hw-projects-center">' + text + '</p>'
-  ].join('');
+function paragraph(text) {
+  return jade.render('p.hw-projects-center!= text', {text: text});
 };
 
-var getImageInfo = function getImageInfo(href) {
+// Format image data && add size
+function getImageInfo(href, title, text) {
+  href = /^\//.test(href) ? href : "/" + href;   // fix leading slash
   var type                = '';
-  var realImagePath       = 'public' + href;
+  var previewHref         = href
   var dimensions          = {};
 
   if (/\.svg$/.test(href)) {
     type = 'hw-projects-image-vector';
     parseString(
-      fs.readFileSync(realImagePath),
+      fs.readFileSync('public' + previewHref),
       {aync: false},
       function (err, result) {
         if (err) { return console.log(err);}
         dimensions = result.svg.$;
     });
   } else {
+    previewHref = href.replace(/(.*)\.(jpg|png|jpeg)$/, '$1-preview.$2')
     type = 'hw-projects-image-pixel';
-    dimensions = sizeOf(realImagePath);
+    dimensions = sizeOf('public' + previewHref);
   }
 
   return {
+    href: previewHref,
+    text: text,
+    title: title,
     type: type,
     width: dimensions.width,
     height: dimensions.height
   };
-
 };
 
-var buildImage = function buildImage(href, title) {
-  // fix leading slash
-  href = /^\//.test(href) ? href : "/" + href;
-  // make preview href
-  var previewHref = '';
-  if (/\.png$/.test(href)) { // No preview images for svg
-    previewHref = href;
-  } else {
-    previewHref = href.replace(/(.*)\.(jpg|png|jpeg)$/, '$1-preview.$2');
-  }
-
-
-  var imageInformations = getImageInfo(previewHref);
-  var imageMarkup = [
-    '<img',
-    ' src="',
-    previewHref,
-    '"',
-    ' height="' + imageInformations.height + '"',
-    ' width="' + imageInformations.width + '"',
-    ' />'];
-  var index = imageMarkup.length - 1;
-
-  if (typeof title !== "undefined" && title !== null && title !== null) {
-    imageMarkup.splice(index, 0, ' alt="' + title + '"');
-  } else {
-    // need this for the link in figure
-    title = href;
-  }
-
-  return {
-    title: title,
-    markup: imageMarkup,
-    href: href,
-    type: imageInformations.type
-  };
-};
-
-var buildFigure = function (image, text) {
-  var figureMarkup =  [
-    '<figure class="' + image.type + '">',
-      image.markup.join(''),
-      '<a href="' + image.href + '" target="_blank">',
-        '<svg viewBox="0 0 36 24" class="svgicon svgicon-expand" role="img" title="expand">',
-          '<use xlink:href="#icon-expand" />',
-        '</svg>',
-      '</a>',
-    '</figure>'
-  ];
-
-  if (typeof text !== "undefined" && text !== null && text !== '') {
-    figureMarkup.splice(figureMarkup.length - 1, 0,'<figcaption>' + text + '</figcaption>');
-  }
-
-  return figureMarkup.join('')
+function buildFigure(imageInformations) {
+  var body = render('image', {image: imageInformations});
+  return render('figure', {image: imageInformations, body: body})
 }
 
-// All operations are done sync
-// I don't think that marked support async rendering functions
 var homeImage = function homeImage(href, title, text) {
-  var image       = buildImage(href, title);
-  var nodeData = ' data-original="' + href.replace(/(\.jpg|\.jpeg|\.svg)$/, '-preview$1') + '"' + ' class="hw-projects-lazyload"';
+  var imageInformations = getImageInfo(href, title, text);
 
-  image.markup.splice(image.markup.length - 1, 0, nodeData);
-  image.markup[2] = blankGif;
+  imageInformations.original    = imageInformations.href;
+  imageInformations.href = blankGif;
+  imageInformations.className   = "hw-projects-lazyload";
 
-  return buildFigure(image, text);
+  return buildFigure(imageInformations);
 };
 
 var projectsImage = function projectsImage(href, title, text) {
-  var image       = buildImage(href, title);
-  return buildFigure(image, text);
+  var imageInformations = getImageInfo(href, title, text);
+  return buildFigure(imageInformations);
 };
 
 ['code','blockquote','html','heading','hr','list','listitem','paragraph',
@@ -193,7 +121,7 @@ var projectsImage = function projectsImage(href, title, text) {
 'br','del','link','image'].forEach( function (name) {
   titleRenderer[name] = noop;
 });
-titleRenderer.heading        = titleHeading;
+titleRenderer.heading       = titleHeading;
 
 bodyRenderer.heading        = bodyHeading;
 bodyRenderer.list           = list;
