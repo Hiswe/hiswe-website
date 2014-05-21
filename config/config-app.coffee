@@ -3,7 +3,7 @@ path    = require 'path'
 flash   = require 'connect-flash'
 rev     = require './datas/rev-manifest.json'
 
-conf    = require('rc')('HISWE')
+conf    = require('rc')('hiswe')
 
 module.exports = (app) ->
   # Configure expressjs

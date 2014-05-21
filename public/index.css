@@ -304,7 +304,7 @@ body {
 }
 .hw-splash p {
   font-size: 1.3125em;
-  padding-left: 0.47619047619047616em;
+  padding-left: 0.476190476190476em;
   margin-bottom: 1em;
   line-height: 1.25em;
 }
@@ -550,7 +550,7 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 1.0476190476190477em 1.0476190476190477em 0;
+  padding: 1.047619047619048em 1.047619047619048em 0;
 }
 .hw-sub-links .hw-sub-panel,
 .hw-sub-description .hw-sub-panel {

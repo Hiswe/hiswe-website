@@ -21,12 +21,19 @@ colors.setTheme({
   err:    'red'
 });
 
-var conf    = require('rc')('HISWE', {
+var conf    = require('rc')('hiswe', {
   VERSION: pack.version,
   PATH: __dirname
 });
 
-// console.log(conf);
+// check conf
+['MAIL_ADMIN', 'MAIL_API_KEY', 'MAIL_PROJECT_ID',
+  'AWS_ACCESS_KEY_ID', 'AWS_SECRET_KEY', 'AWS_BUCKET'].forEach(function(key){
+    if (conf[key] == null) {
+      var message = 'necessary config for ' + key + ' is not defined'
+      throw new Error(message);
+    }
+});
 
 //  Load boot file and fire away!
 var app     = require('./config/app.coffee')();

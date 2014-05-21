@@ -3,6 +3,7 @@
 var fs          = require('fs');
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
+var exec        = require('child_process').exec;
 var args        = require('yargs').argv;
 var conf        = require('./gulp-config.js');
 var bump        = require('gulp-bump');
@@ -41,11 +42,10 @@ var livereload  = require('gulp-livereload');
 var bundleData  = require('./gulp-task/hiswe-bundle-data');
 
 /////////
-// CONF
+// CONF & MISC
 /////////
 
 var server = lr();
-
 var stylusVar   = require('./config/datas/stylus-var.json');
 
 // Plumber error callback
@@ -53,10 +53,6 @@ var onError = function onError(err) {
   gutil.beep();
   console.log(err);
 };
-
-/////////
-// VERSIONS
-/////////
 
 gulp.task('bump', function () {
   if (args.minor) return gulp.src(conf.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
@@ -73,6 +69,13 @@ gulp.task('rev', function () {
     .pipe(livereload(server));
 });
 
+gulp.task('get-config', function(cb){
+  // heroku config:set GITHUB_USERNAME=joesmith --app APPNAME
+  exec('heroku config:pull --app hiswe', function(err, stdout, stderr) {
+    cb(err);
+  });
+});
+
 /////////
 // CSS
 /////////
@@ -81,7 +84,7 @@ gulp.task('stylus', ['clean-css'], function () {
   return gulp.src(conf.css.src)
     .pipe(plumber({errorHandler: onError}))
     .pipe(gulpif(/[.]styl$/, stylus({
-      use: ['nib', 'hstrap'],
+      use: [require('nib')(), require('hstrap')()],
       define: stylusVar,
       set:['resolve url']
     })))
@@ -338,7 +341,7 @@ gulp.task('express', function () {
   var env = args.prod? 'production' : 'development';
   nodemon({
     script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-home.json'],
-    env: { 'NODE_ENV': env}
+    env: { 'NODE_ENV': env, 'hiswe_pouic': 'clapou'}
   })
   .on('restart', ['notify-restart'])
   .on('crash', onError);
@@ -361,6 +364,7 @@ gulp.task('doc', function(callback) {
   console.log(m('bump'), g('..............'), 'patch version of json');
   console.log(m('  --minor'), g('.........'), 'minor version of json');
   console.log(m('  --major'), g('.........'), 'major version of json');
+  console.log(m('get-config'), g('........'), 'get heroku current conf');
   console.log(m('font'), g('..............'), 'Copy fonts to the right folder');
   console.log(m('js'), g('................'), 'Concat & uglify + rev');
   console.log(m('css'), g('...............'), 'Compile stylus + uglify + rev');
