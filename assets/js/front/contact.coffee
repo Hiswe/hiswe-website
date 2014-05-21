@@ -23,14 +23,11 @@ class Contact extends Controller
     @log 'discard'
     $target = $(e.currentTarget)
     window.clearTimeout @timer
-    $target.on('transitionend', ->$(this).remove()).addClass('remove')
+    $target.on('animationend', ->$(this).remove()).addClass('remove')
 
   addMessage: (type = 'success', text = 'send') ->
     msg = ['<p class="hw-message-', type, '">', text, '</p>']
     $msg = $(msg.join('')).prependTo(@el)
-    @timer = window.setTimeout(
-      => @discardMessage({currentTarget: $msg})
-    , @removeDelay)
     this
 
   submit: (e) ->

@@ -135,7 +135,7 @@ gulp.task('clean-app', function() {
   return gulp.src(conf.front.clean, {read: false}).pipe(clean());
 });
 
-gulp.task('frontend-app', ['clean-app'],function() {
+gulp.task('bundle-front', ['clean-app'],function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
       entries: conf.front.basedir + '/boot.coffee',
@@ -156,8 +156,12 @@ gulp.task('frontend-app', ['clean-app'],function() {
     .pipe(livereload(server));
 });
 
+gulp.task('front-app', function(callback) {
+  return runsequence('bundle-front', 'rev', callback);
+});
+
 gulp.task('js', function(callback) {
-  return runsequence(['lib', 'frontend-app'], 'rev', callback);
+  return runsequence(['lib', 'bundle-front'], 'rev', callback);
 });
 
 /////////
@@ -265,7 +269,7 @@ gulp.task('list', function(cb) {
       // .map(function (item) { return '- ![](media/images/' + item + ' "" )'; });
     console.log(fileList.join('\n'));
   } else {
-    gutil.log('You shoul call ', gutil.colors.yellow('gulp list --project NAME'));
+    gutil.log('You should call ', gutil.colors.yellow('gulp list --project NAME'));
   }
   cb(null);
 });
@@ -304,7 +308,11 @@ gulp.task('json', function() {
 /////////
 
 gulp.task('build', function(callback) {
-  return runsequence(['icons', 'frontend-app', 'lib', 'stylus', 'resize'], ['rev', 'json'], callback);
+  if (args.js != null)      return runsequence(['lib', 'bundle-front'], 'rev', callback);
+  if (args.css != null)     return runsequence('stylus', 'rev', callback);
+  if (args.front != null)   return runsequence('bundle-front', 'rev', callback);
+  if (args.image === false) return runsequence(['bundle-front', 'lib', 'stylus'], 'rev', callback);
+  return runsequence(['icons', 'bundle-front', 'lib', 'stylus', 'resize'], ['rev', 'json'], callback);
 });
 
 /////////
@@ -328,7 +336,7 @@ gulp.task('notify-restart', function () {
 gulp.task('watch', function() {
   server.listen(35729, function (err) { if (err) { return console.log(err) }});
   gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
-  gulp.watch(['./assets/js/front/**/*.coffee'], ['frontend-app']);
+  gulp.watch(['./assets/js/front/**/*.coffee'], ['front-app']);
   gulp.watch(['./config/datas/*.md'], ['json']);
   gulp.watch('./views/**/*.jade').on('change', function() {
     gulp.src('').pipe(notify({title: 'HISWE', message: 'reload html'}));
@@ -338,9 +346,10 @@ gulp.task('watch', function() {
 
 // Nodemon server
 gulp.task('express', function () {
-  var env = args.prod? 'production' : 'development';
+  var env   = args.prod ? 'production' : 'development';
+  var glob  = ['controllers/**/*', 'config/*.coffee', 'config/datas/*.json'];
   nodemon({
-    script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-home.json'],
+    script: 'server.js', ext: 'coffee json', watch: glob,
     env: { 'NODE_ENV': env, 'hiswe_pouic': 'clapou'}
   })
   .on('restart', ['notify-restart'])
@@ -366,10 +375,12 @@ gulp.task('doc', function(callback) {
   console.log(m('  --major'), g('.........'), 'major version of json');
   console.log(m('get-config'), g('........'), 'get heroku current conf');
   console.log(m('font'), g('..............'), 'Copy fonts to the right folder');
-  console.log(m('js'), g('................'), 'Concat & uglify + rev');
-  console.log(m('css'), g('...............'), 'Compile stylus + uglify + rev');
   console.log(m('json'), g('..............'), 'Package all datas to json');
   console.log(m('build'), g('.............'), 'js + css + rev');
+  console.log(m('  --js'), g('............'), 'Concat & uglify  all js + rev');
+  console.log(m('  --css'), g('...........'), 'Compile stylus + uglify + rev');
+  console.log(m('  --front'), g('.........'), 'Concat & uglify front-end app + rev');
+  console.log(m('  --no-image'), g('......'), 'build everything except images');
   console.log(m('pixel'), g('.............'), 'Resize pixel images');
   console.log(m('svg'), g('...............'), 'clean svg images');
   console.log(m('image'), g('.............'), 'pixel + svg');

@@ -1,6 +1,7 @@
 Controller  = require './front-controller.coffee'
 Carrousel   = require './projects-carrousel.coffee'
 options     = require '../../../config/datas/stylus-var.json'
+pubsub      = require './pubsub.coffee'
 
 class Projects extends Controller
   trace:      false
@@ -96,14 +97,14 @@ class Projects extends Controller
     @log 'transition end ::','open'
     $currentPanel = @currentPanel()
     @loadBody($currentPanel)
-    @e.trigger 'openEnd'
+    pubsub('projects').publish('openEnd')
     @opened = on
 
   closingTransitionEnd: ->
     return this if @opened is off
     @log 'transition end::', 'close'
     @el.css('z-index', 1)
-    @e.trigger 'closeEnd'
+    pubsub('projects').publish('closeEnd')
     @opened = off
 
   initCarrousel: ($currentPanel) ->
@@ -130,14 +131,15 @@ class Projects extends Controller
 
     $target.find(".#{options.witness}")
       .heventAddClass(options.activeWitness)
-    @e.trigger 'openStart'
+
+    pubsub('projects').publish('openStart')
     this
 
   close: (e) ->
     @log 'Projects close'
     e.preventDefault()
     e.stopImmediatePropagation()
-    @e.trigger 'closeStart'
+    pubsub('projects').publish('closeStart')
     # Reset scroll to top
     # So the backface of the project appear on the animation
     @container.scrollTop(0)

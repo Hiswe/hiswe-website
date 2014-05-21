@@ -1,5 +1,6 @@
 Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
+pubsub      = require './pubsub.coffee'
 
 class ServicesCarrousel extends Controller
   trace: false
@@ -26,7 +27,7 @@ class ServicesCarrousel extends Controller
 
     @initCarrousel()
     @loadImages()
-    Controller.e.on 'resizeEnd', @resizeEnd
+    pubsub('resizeEnd').subscribe @resizeEnd
     this
 
   initCarrousel: ->

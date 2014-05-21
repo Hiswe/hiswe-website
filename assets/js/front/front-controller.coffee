@@ -5,8 +5,6 @@ class Controller
   trace: false
   logPrefix: '(App)'
 
-  @e: $({})
-
   log: (args...) ->
     return unless @trace
     if @logPrefix then args.unshift("[#{@logPrefix} – #{@uid}]")
@@ -36,8 +34,6 @@ class Controller
       @[key] = value
 
     return @warn('initialization aborted') unless @el? and @el.length
-    # Use jQuery for events
-    @e = $({})
 
     @refreshElements() if @elements
     @delegateEvents(@events) if @events
@@ -71,16 +67,5 @@ class Controller
         @el.on(eventName, method)
       else
         @el.on(eventName, selector, method)
-
-# Global resize timer
-resizeTimer = null
-
-$(window).on 'resize', ->
-  Controller.e.trigger('resizeStart') unless resizeTimer
-  window.clearTimeout(resizeTimer)
-  resizeTimer = window.setTimeout ->
-    Controller.e.trigger('resizeEnd')
-    resizeTimer = null
-  , 300
 
 module.exports = Controller

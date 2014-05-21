@@ -2,6 +2,7 @@ Controller  = require './front-controller.coffee'
 Services    = require './services.coffee'
 Projects    = require './projects.coffee'
 Contact     = require './contact.coffee'
+pubsub      = require './pubsub.coffee'
 options     = require '../../../config/datas/stylus-var.json'
 
 class App extends Controller
@@ -21,8 +22,8 @@ class App extends Controller
     @bodyEvents()
     this
 
-    Controller.e.on 'resizeStart', => @body.addClass 'prevent-transition'
-    Controller.e.on 'resizeEnd', => @body.removeClass 'prevent-transition'
+    pubsub('resizeStart').subscribe => @body.addClass('prevent-transition')
+    pubsub('resizeEnd').subscribe => @body.removeClass('prevent-transition')
 
   instanciate: ->
     @services = new Services({el: @servicesContainer})
@@ -32,16 +33,16 @@ class App extends Controller
   bodyEvents: ->
     @body.on 'tap', =>
       @log 'body click'
-      @services.e.trigger 'clean'
+      @services.e?.trigger 'clean'
 
-    @projects.e.on('openStart', =>
-      @log('projects open')
-      @body.css('overflow', 'hidden')
-    )
-    @projects.e.on('closeEnd', =>
-      @log('projects close')
-      @body.css('overflow', 'auto')
-    )
+    pubsub('projects').subscribe (event) =>
+      if event is 'openStart'
+        @log('projects open')
+        @body.css('overflow', 'hidden')
+
+      if event is 'closeEnd'
+        @log('projects close')
+        @body.css('overflow', 'auto')
 
   getPixelRatio: ->
     pixelRatio = if window.devicePixelRatio? then window.devicePixelRatio else 1

@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var App, Contact, Controller, Projects, Services, options,
+var App, Contact, Controller, Projects, Services, options, pubsub,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -10,6 +10,8 @@ Services = require('./services.coffee');
 Projects = require('./projects.coffee');
 
 Contact = require('./contact.coffee');
+
+pubsub = require('./pubsub.coffee');
 
 options = require('../../../config/datas/stylus-var.json');
 
@@ -33,12 +35,12 @@ App = (function(_super) {
     this.instanciate();
     this.bodyEvents();
     this;
-    Controller.e.on('resizeStart', (function(_this) {
+    pubsub('resizeStart').subscribe((function(_this) {
       return function() {
         return _this.body.addClass('prevent-transition');
       };
     })(this));
-    Controller.e.on('resizeEnd', (function(_this) {
+    pubsub('resizeEnd').subscribe((function(_this) {
       return function() {
         return _this.body.removeClass('prevent-transition');
       };
@@ -60,20 +62,21 @@ App = (function(_super) {
   App.prototype.bodyEvents = function() {
     this.body.on('tap', (function(_this) {
       return function() {
+        var _ref;
         _this.log('body click');
-        return _this.services.e.trigger('clean');
+        return (_ref = _this.services.e) != null ? _ref.trigger('clean') : void 0;
       };
     })(this));
-    this.projects.e.on('openStart', (function(_this) {
-      return function() {
-        _this.log('projects open');
-        return _this.body.css('overflow', 'hidden');
-      };
-    })(this));
-    return this.projects.e.on('closeEnd', (function(_this) {
-      return function() {
-        _this.log('projects close');
-        return _this.body.css('overflow', 'auto');
+    return pubsub('projects').subscribe((function(_this) {
+      return function(event) {
+        if (event === 'openStart') {
+          _this.log('projects open');
+          _this.body.css('overflow', 'hidden');
+        }
+        if (event === 'closeEnd') {
+          _this.log('projects close');
+          return _this.body.css('overflow', 'auto');
+        }
       };
     })(this));
   };
@@ -91,19 +94,36 @@ App = (function(_super) {
 module.exports = App;
 
 
-},{"../../../config/datas/stylus-var.json":8,"./contact.coffee":3,"./front-controller.coffee":4,"./projects.coffee":6,"./services.coffee":7}],2:[function(require,module,exports){
-var App;
+},{"../../../config/datas/stylus-var.json":9,"./contact.coffee":3,"./front-controller.coffee":4,"./projects.coffee":6,"./pubsub.coffee":7,"./services.coffee":8}],2:[function(require,module,exports){
+var App, pubsub;
 
 App = require('./app.coffee');
 
+pubsub = require('./pubsub.coffee');
+
 jQuery(function() {
-  return window.app = new App({
+  var resizeTimer;
+  window.app = new App({
     el: $('html')
+  });
+  resizeTimer = null;
+  $(window).on('resize', function() {
+    if (!resizeTimer) {
+      pubsub('resizeStart').publish();
+    }
+    window.clearTimeout(resizeTimer);
+    return resizeTimer = window.setTimeout(function() {
+      pubsub('resizeEnd').publish();
+      return resizeTimer = null;
+    }, 300);
+  });
+  return $('body').on('tap', function() {
+    return pubsub('body').publish('tap');
   });
 });
 
 
-},{"./app.coffee":1}],3:[function(require,module,exports){
+},{"./app.coffee":1,"./pubsub.coffee":7}],3:[function(require,module,exports){
 var Contact, Controller,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
@@ -145,7 +165,7 @@ Contact = (function(_super) {
     this.log('discard');
     $target = $(e.currentTarget);
     window.clearTimeout(this.timer);
-    return $target.on('transitionend', function() {
+    return $target.on('animationend', function() {
       return $(this).remove();
     }).addClass('remove');
   };
@@ -160,13 +180,6 @@ Contact = (function(_super) {
     }
     msg = ['<p class="hw-message-', type, '">', text, '</p>'];
     $msg = $(msg.join('')).prependTo(this.el);
-    this.timer = window.setTimeout((function(_this) {
-      return function() {
-        return _this.discardMessage({
-          currentTarget: $msg
-        });
-      };
-    })(this), this.removeDelay);
     return this;
   };
 
@@ -206,7 +219,7 @@ module.exports = Contact;
 
 
 },{"./front-controller.coffee":4}],4:[function(require,module,exports){
-var Controller, resizeTimer, uid,
+var Controller, uid,
   __slice = [].slice;
 
 uid = 0;
@@ -217,8 +230,6 @@ Controller = (function() {
   Controller.prototype.trace = false;
 
   Controller.prototype.logPrefix = '(App)';
-
-  Controller.e = $({});
 
   Controller.prototype.log = function() {
     var args;
@@ -282,7 +293,6 @@ Controller = (function() {
     if (!((this.el != null) && this.el.length)) {
       return this.warn('initialization aborted');
     }
-    this.e = $({});
     if (this.elements) {
       this.refreshElements();
     }
@@ -349,24 +359,11 @@ Controller = (function() {
 
 })();
 
-resizeTimer = null;
-
-$(window).on('resize', function() {
-  if (!resizeTimer) {
-    Controller.e.trigger('resizeStart');
-  }
-  window.clearTimeout(resizeTimer);
-  return resizeTimer = window.setTimeout(function() {
-    Controller.e.trigger('resizeEnd');
-    return resizeTimer = null;
-  }, 300);
-});
-
 module.exports = Controller;
 
 
 },{}],5:[function(require,module,exports){
-var Controller, ServicesCarrousel, options,
+var Controller, ServicesCarrousel, options, pubsub,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -374,6 +371,8 @@ var Controller, ServicesCarrousel, options,
 Controller = require('./front-controller.coffee');
 
 options = require('../../../config/datas/stylus-var.json');
+
+pubsub = require('./pubsub.coffee');
 
 ServicesCarrousel = (function(_super) {
   __extends(ServicesCarrousel, _super);
@@ -413,7 +412,7 @@ ServicesCarrousel = (function(_super) {
     }
     this.initCarrousel();
     this.loadImages();
-    Controller.e.on('resizeEnd', this.resizeEnd);
+    pubsub('resizeEnd').subscribe(this.resizeEnd);
     this;
   }
 
@@ -543,8 +542,8 @@ ServicesCarrousel = (function(_super) {
 module.exports = ServicesCarrousel;
 
 
-},{"../../../config/datas/stylus-var.json":8,"./front-controller.coffee":4}],6:[function(require,module,exports){
-var Carrousel, Controller, Projects, options,
+},{"../../../config/datas/stylus-var.json":9,"./front-controller.coffee":4,"./pubsub.coffee":7}],6:[function(require,module,exports){
+var Carrousel, Controller, Projects, options, pubsub,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -553,6 +552,8 @@ Controller = require('./front-controller.coffee');
 Carrousel = require('./projects-carrousel.coffee');
 
 options = require('../../../config/datas/stylus-var.json');
+
+pubsub = require('./pubsub.coffee');
 
 Projects = (function(_super) {
   __extends(Projects, _super);
@@ -661,7 +662,7 @@ Projects = (function(_super) {
     this.log('transition end ::', 'open');
     $currentPanel = this.currentPanel();
     this.loadBody($currentPanel);
-    this.e.trigger('openEnd');
+    pubsub('projects').publish('openEnd');
     return this.opened = true;
   };
 
@@ -671,7 +672,7 @@ Projects = (function(_super) {
     }
     this.log('transition end::', 'close');
     this.el.css('z-index', 1);
-    this.e.trigger('closeEnd');
+    pubsub('projects').publish('closeEnd');
     return this.opened = false;
   };
 
@@ -701,7 +702,7 @@ Projects = (function(_super) {
       return $target.addClass(options.activeClass);
     });
     $target.find("." + options.witness).heventAddClass(options.activeWitness);
-    this.e.trigger('openStart');
+    pubsub('projects').publish('openStart');
     return this;
   };
 
@@ -709,7 +710,7 @@ Projects = (function(_super) {
     this.log('Projects close');
     e.preventDefault();
     e.stopImmediatePropagation();
-    this.e.trigger('closeStart');
+    pubsub('projects').publish('closeStart');
     this.container.scrollTop(0);
     this.clean();
     return this;
@@ -722,8 +723,35 @@ Projects = (function(_super) {
 module.exports = Projects;
 
 
-},{"../../../config/datas/stylus-var.json":8,"./front-controller.coffee":4,"./projects-carrousel.coffee":5}],7:[function(require,module,exports){
-var Controller, Services, options,
+},{"../../../config/datas/stylus-var.json":9,"./front-controller.coffee":4,"./projects-carrousel.coffee":5,"./pubsub.coffee":7}],7:[function(require,module,exports){
+var pubsub, topics;
+
+topics = {};
+
+pubsub = function(id) {
+  var callbacks, topic;
+  if (id == null) {
+    throw new Error('pubsub need an  id');
+  }
+  topic = topics[id];
+  if (topic == null) {
+    callbacks = jQuery.Callbacks();
+    topic = {
+      publish: callbacks.fire,
+      subscribe: callbacks.add,
+      unsubscribe: callbacks.remove
+    };
+    topics[id] = topic;
+    return topic;
+  }
+  return topic;
+};
+
+module.exports = pubsub;
+
+
+},{}],8:[function(require,module,exports){
+var Controller, Services, options, pubsub,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -731,6 +759,8 @@ var Controller, Services, options,
 Controller = require('./front-controller.coffee');
 
 options = require('../../../config/datas/stylus-var.json');
+
+pubsub = require('./pubsub.coffee');
 
 Services = (function(_super) {
   __extends(Services, _super);
@@ -759,9 +789,11 @@ Services = (function(_super) {
       return;
     }
     this.log('Init');
-    this.e.on('clean', (function(_this) {
-      return function() {
-        return _this.clean();
+    pubsub('body').subscribe((function(_this) {
+      return function(event) {
+        if (event === 'tap') {
+          return _this.clean();
+        }
       };
     })(this));
     this;
@@ -790,7 +822,7 @@ Services = (function(_super) {
     if (this.opened === true) {
       this.log('transition end::', 'close');
       this.el.css('z-index', 1);
-      this.e.trigger('close');
+      pubsub('services').publish('close');
       return this.opened = false;
     } else {
       this.log('transition end ::', 'open');
@@ -810,7 +842,7 @@ Services = (function(_super) {
     this.clean();
     this.el.css('z-index', 2);
     $target.heventAddClass(options.activeClass);
-    this.e.trigger('open');
+    pubsub('services').publish('open');
     return this;
   };
 
@@ -829,7 +861,7 @@ Services = (function(_super) {
 module.exports = Services;
 
 
-},{"../../../config/datas/stylus-var.json":8,"./front-controller.coffee":4}],8:[function(require,module,exports){
+},{"../../../config/datas/stylus-var.json":9,"./front-controller.coffee":4,"./pubsub.coffee":7}],9:[function(require,module,exports){
 module.exports={
   "activeClass"             : "hw-panel-active",
   "witness"                 : "hw-witness",

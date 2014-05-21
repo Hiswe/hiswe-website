@@ -1,5 +1,6 @@
 Controller  = require './front-controller.coffee'
 options     = require '../../../config/datas/stylus-var.json'
+pubsub      = require './pubsub.coffee'
 
 class Services extends Controller
   trace: false
@@ -21,7 +22,8 @@ class Services extends Controller
     super
     return unless @el.length
     @log 'Init'
-    @e.on 'clean', => @clean()
+    pubsub('body').subscribe (event) =>
+      @clean() if event is 'tap'
     this
 
   clean: =>
@@ -38,7 +40,7 @@ class Services extends Controller
     if @opened is on
       @log 'transition end::', 'close'
       @el.css('z-index', 1)
-      @e.trigger 'close'
+      pubsub('services').publish('close')
       @opened = false
     else
       @log 'transition end ::','open'
@@ -53,7 +55,7 @@ class Services extends Controller
     @clean()
     @el.css('z-index', 2)
     $target.heventAddClass(options.activeClass)
-    @e.trigger 'open'
+    pubsub('services').publish('open')
     this
 
   close: (e) ->

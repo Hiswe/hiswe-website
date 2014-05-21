@@ -2719,7 +2719,6 @@ h3 + .hw-projects-gallery-container {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  cursor: pointer;
   -webkit-animation: fadeIn 1s;
   -moz-animation: fadeIn 1s;
   -o-animation: fadeIn 1s;
@@ -2735,6 +2734,10 @@ h3 + .hw-projects-gallery-container {
   -o-animation-fill-mode: both;
   -ms-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+.js .hw-contact .hw-message-success,
+.js .hw-contact .hw-message-error {
+  cursor: pointer;
 }
 .hw-contact .hw-message-success.remove,
 .hw-contact .hw-message-error.remove {

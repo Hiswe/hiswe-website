@@ -16,7 +16,6 @@ index = (req, res, next) ->
 
 create = (req, res, next) ->
   console.log req.body
-  form = req.body
   return createXhr(req, res, next) if req.xhr
   console.log log.debug, 'POST'
   form = req.body
@@ -28,7 +27,7 @@ create = (req, res, next) ->
     if err
       console.log log.error, 'Mail has not been send'
       console.log err
-      req.flash 'errors', 'Message not send'
+      req.flash 'errors', 'Message not send. Please try yannick.aivayan@hiswe.net'
     else
       console.log log.debug, 'Mail has been send'
       req.flash 'success', 'Message send'
@@ -47,7 +46,7 @@ createXhr = (req, res, next) ->
     if err
       console.log log.error, 'Mail has not been send'
       console.log err
-      return res.send(500, 'Message not send')
+      return res.send(500, 'Message not send. Please try yannick.aivayan@hiswe.net')
     console.log log.debug, 'Mail has been send'
     res.json {ok:true, message: 'Mail has been send'}
 
@@ -56,7 +55,7 @@ sendMail = (data, callback) ->
   console.log alog.debug, data
 
   payload = new alphamail.EmailMessagePayload()
-    .setProjectId(mailProjectId) # ID of "Banjai Garden" project
+    .setProjectId(mailProjectId) # ID of "hiswe" project
     .setSender(new alphamail.EmailContact( data.email, data.email))
     .setReceiver(new alphamail.EmailContact( adminMail, adminMail))
     .setBodyObject(data)

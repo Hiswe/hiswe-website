@@ -11,6 +11,7 @@ block content
       if errors.length
         each message in errors
           p.hw-message-error= message
+
       label(for="name") Name
       input#name(type="text", name="name", required, placeholder="Name")
       label(for="email") Email
