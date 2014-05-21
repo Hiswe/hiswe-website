@@ -69,11 +69,14 @@ gulp.task('rev', function () {
     .pipe(livereload(server));
 });
 
-gulp.task('get-config', function(cb){
+gulp.task('heroku', function(cb){
+  function execCb(err, stdout, stderr) {
+    console.log(stdout);
+    return cb(err);
+  }
   // heroku config:set GITHUB_USERNAME=joesmith --app APPNAME
-  exec('heroku config:pull --app hiswe', function(err, stdout, stderr) {
-    cb(err);
-  });
+  if (args.config)  exec('heroku config:pull --app hiswe', execCb);
+  if (args.log)     exec('heroku logs -n 1000 --app hiswe', execCb);
 });
 
 /////////
