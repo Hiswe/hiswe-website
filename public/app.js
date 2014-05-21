@@ -460,8 +460,8 @@ ServicesCarrousel = (function(_super) {
   ServicesCarrousel.prototype.loadImage = function(index, image) {
     var $img, $original, $parent, imgSrc;
     $original = $(image).css('opacity', 0);
+    $parent = $original.parent().addClass('hw-projects-lazyload-loading');
     $img = $original.clone();
-    $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
     $img.attr('src', imgSrc);
     $original.replaceWith($img);

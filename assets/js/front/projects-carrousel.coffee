@@ -75,8 +75,8 @@ class ServicesCarrousel extends Controller
 
   loadImage: (index, image) =>
     $original = $(image).css('opacity', 0)
+    $parent   = $original.parent().addClass('hw-projects-lazyload-loading')
     $img      = $original.clone()
-    $parent   = $img.parent().addClass('hw-projects-lazyload-loading')
     # imgSrc = if @pixelRatio is 1 then img.data('original') else img.data('retina')
     imgSrc = $img.data('original')
     $img.attr 'src', imgSrc
