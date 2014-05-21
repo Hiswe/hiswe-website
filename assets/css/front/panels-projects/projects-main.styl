@@ -138,12 +138,16 @@
   opacity 0
   projects-close-button-out()
   background $light-grey
+  color $dark-grey
   text-indent -1000em
   overflow hidden
 
+  &:hover
+    background $blue
+    color white
+
   &::after
     percentCenter()
-    color $dark-grey
     font-size 2em
     content '×'
     font-weight bold

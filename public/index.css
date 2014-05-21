@@ -1761,8 +1761,13 @@ body {
   -ms-transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
   transition: visibility 0s ease 0.5s, top 0s ease 0.5s, right 0s ease 0.5s, opacity 0.5s ease 0s;
   background: #ecf4f8;
+  color: #576176;
   text-indent: -1000em;
   overflow: hidden;
+}
+.hw-projects-close:hover {
+  background: #009ae1;
+  color: #fff;
 }
 .hw-projects-close::after {
   position: absolute;
@@ -1773,7 +1778,6 @@ body {
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  color: #576176;
   font-size: 2em;
   content: '×';
   font-weight: bold;
