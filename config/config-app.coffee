@@ -27,7 +27,10 @@ module.exports = (app) ->
 
     # flash messages
     app.use express.cookieParser('hiswe rocks')
-    app.use express.session({ cookie: { maxAge: 60000 }})
+    if app.get('env') is 'development'
+      app.use express.session({ cookie: { maxAge: 60000 }, secret: 'The best color is pink'})
+    else
+      app.use express.cookieSession({ cookie: { maxAge: 60000 }, secret: 'The best color is pink'})
     app.use flash()
 
     # static

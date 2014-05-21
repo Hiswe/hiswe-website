@@ -71,23 +71,33 @@ function getImageInfo(href, title, text) {
   var previewHref         = href
   var dimensions          = {};
 
-  if (/\.svg$/.test(href)) {
-    type = 'hw-projects-image-vector';
-    parseString(
-      fs.readFileSync('public' + previewHref),
-      {aync: false},
-      function (err, result) {
-        if (err) { return console.log(err);}
-        dimensions = result.svg.$;
-    });
-  } else {
-    previewHref = href.replace(/(.*)\.(jpg|png|jpeg)$/, '$1-preview.$2')
-    type = 'hw-projects-image-pixel';
-    dimensions = sizeOf('public' + previewHref);
+  try {
+    if (/\.svg$/.test(href)) {
+      type = 'hw-projects-image-vector';
+      parseString(
+        fs.readFileSync('public' + previewHref),
+        {aync: false},
+        function (err, result) {
+          if (err) { return console.log(err);}
+          dimensions = result.svg.$;
+      });
+    } else {
+      previewHref = href.replace(/(.*)\.(jpg|png|jpeg)$/, '$1-preview.$2')
+      type = 'hw-projects-image-pixel';
+      dimensions = sizeOf('public' + previewHref);
+    }
+  } catch (e) {
+    // Take care of exceptions
+    // -> bad image path as an example
+    console.log('No such image :', previewHref)
+    dimensions = {width: '', height: ''};
+    type = '';
   }
+
 
   return {
     href: previewHref,
+    link: href,
     text: text,
     title: title,
     type: type,

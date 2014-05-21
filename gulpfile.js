@@ -301,7 +301,7 @@ gulp.task('json', function() {
 /////////
 
 gulp.task('build', function(callback) {
-  return runsequence(['icons', 'frontend-app', 'lib', 'stylus', 'json', 'resize'], 'rev', callback);
+  return runsequence(['icons', 'frontend-app', 'lib', 'stylus', 'resize'], ['rev', 'json'], callback);
 });
 
 /////////
@@ -334,17 +334,18 @@ gulp.task('watch', function() {
 });
 
 // Nodemon server
-gulp.task('express', ['build'], function () {
+gulp.task('express', function () {
+  var env = args.prod? 'production' : 'development';
   nodemon({
     script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-home.json'],
-    env: { 'NODE_ENV': 'development', HISWE_LIVERELOAD: true}
+    env: { 'NODE_ENV': env}
   })
   .on('restart', ['notify-restart'])
   .on('crash', onError);
 });
 
 gulp.task('server', function (callback){
-  if (args.build != null && args.build === false) {
+  if (args.build != null) {
     return runsequence(['watch', 'express'], 'open-browser', callback);
   }
   return runsequence('build', ['watch', 'express'], 'open-browser', callback);
@@ -354,7 +355,7 @@ gulp.task('server', function (callback){
 // DOC
 /////////
 
-gulp.task('default', function() {
+gulp.task('doc', function(callback) {
   var m = gutil.colors.magenta
   var g = gutil.colors.grey
   console.log(m('bump'), g('..............'), 'patch version of json');
@@ -368,8 +369,13 @@ gulp.task('default', function() {
   console.log(m('pixel'), g('.............'), 'Resize pixel images');
   console.log(m('svg'), g('...............'), 'clean svg images');
   console.log(m('image'), g('.............'), 'pixel + svg');
+  console.log(m('upload'), g('............'), 'upload assets to AWS');
   console.log(m('list'), g('..............'), 'list image');
   console.log(m('  --project name'), g('..'), 'of a specific project');
   console.log(m('server'), g('............'), 'Watch + server');
   console.log(m('  --no-build'), g('......'), 'Skip the build');
+  console.log(m('  --prod'), g('..........'), 'Set environment to production');
+  callback()
 });
+
+gulp.task('default', ['doc']);

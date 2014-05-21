@@ -40,8 +40,7 @@ module.exports = (app) ->
   if app.get('env') is 'development'
     console.log awsLog.warn, 'use local images'
     app.use(slowAssets)
-
-  if app.get('env') is 'production'
+  else
     console.log awsLog.prompt, 'use AWS CDN'
     # Amazon S3 support
     app.get '/media/images/:id', streamAws
