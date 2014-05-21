@@ -37,7 +37,7 @@ var conf    = require('rc')('hiswe', {
 
 //  Load boot file and fire away!
 var app     = require('./config/app.coffee')();
-var port    = conf.PORT || 5000;
+var port    = conf.PORT || process.env.PORT || 5000;
 
 var server  = http.createServer(app)
 

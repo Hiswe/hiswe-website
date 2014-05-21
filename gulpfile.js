@@ -70,10 +70,19 @@ gulp.task('rev', function () {
 });
 
 gulp.task('heroku', function(cb){
+  function formatStdout (stdout) {
+    if (args.log) {
+      var regexp = /^(\d{4}(?:-\d\d){2})T((?:\d\d:){2}\d\d).*(app|heroku).*\]:\s(.*)$/mg
+      return stdout.replace(regexp, '$1 $2 $3 : $4');
+    }
+    return stdout;
+  }
+
   function execCb(err, stdout, stderr) {
-    console.log(stdout);
+    console.log(formatStdout(stdout));
     return cb(err);
   }
+
   // heroku config:set GITHUB_USERNAME=joesmith --app APPNAME
   if (args.config)  exec('heroku config:pull --app hiswe', execCb);
   if (args.log)     exec('heroku logs -n 1000 --app hiswe', execCb);
