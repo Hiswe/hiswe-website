@@ -65,7 +65,8 @@
   &:nth-child(3n+2) .hw-sub-left
     rotate-out-big-delay()
 
-.hw-services-item.{activeClass}
+.hw-services-item.{activeClass},
+.hw-services-item:target
   height px2em($panel-height*1.5)
   top  -1 * (px2em($panel-height) * 0.25)
   margin-bottom @top * 2
@@ -103,11 +104,13 @@
     rotate-in-no-delay()
 
 for num in 1 2 3
-  .hw-services-item.{activeClass}:nth-child(3n+{num}) .hw-sub-close
+  .hw-services-item.{activeClass}:nth-child(3n+{num}) .hw-sub-close,
+  .hw-services-item:target:nth-child(3n+{num}) .hw-sub-close
     left unit((4 - num) * 100, '%')
 
   // active positioning
-  .hw-services-item.{activeClass}:nth-child(3n+{num})
+  .hw-services-item.{activeClass}:nth-child(3n+{num}),
+  .hw-services-item:target:nth-child(3n+{num})
     .hw-sub-left
       left unit((1 - num) * 100, '%')
 

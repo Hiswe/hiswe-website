@@ -3,7 +3,6 @@
 // —————————————————
 media-big-mobile()
 
-
 .hw-services h6
   // font-size 1.25em
   letter-spacing 0em
@@ -23,7 +22,8 @@ media-big-mobile()
       transform rotateY(-90deg)
 
 .hw-services-item,
-.hw-services-item.{activeClass}
+.hw-services-item.{activeClass},
+.hw-services-item:target
   width 50%
 
   // cover don't change on this size
@@ -62,7 +62,8 @@ media-big-mobile()
       color $pink
       font-size 6em
 
-.hw-services-item.{activeClass}
+.hw-services-item.{activeClass},
+.hw-services-item:target
   height px2em($panel-height)
   top 0
   margin-bottom 0
@@ -103,7 +104,8 @@ media-query-end()
 media-small-mobile()
 
 .hw-services-item,
-.hw-services-item.{activeClass}
+.hw-services-item.{activeClass},
+.hw-services-item:target
   width auto
   float none
 
@@ -198,7 +200,8 @@ $$height = px2em($mobile-cover-height)
   .hw-sub-description-group
     flex 1
 
-.hw-services-item.{activeClass}:nth-child(1n)
+.hw-services-item.{activeClass}:nth-child(1n),
+.hw-services-item:target:nth-child(1n)
   z-index 2
 
   .hw-services-cover

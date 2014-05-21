@@ -4,10 +4,11 @@ section.hw-services
       span(data-text="#{letter}")= letter
 
   .hw-services-list
-    dl.hw-services-item
+    dl#hw-service-design.hw-services-item
       dt.hw-sub.hw-services-cover: .hw-container
         h6 Design
         p: i.hicon.penBottom
+        a(href="#hw-service-integration") more details
       dd.hw-sub.hw-sub-left.hw-sub-description: .hw-sub-panel
         h3 I like it that way:
         ul
@@ -28,12 +29,13 @@ section.hw-services
           li
             span.hw-responsive-linebreak Sketches
             span.hw-responsive-linebreak: a(href="http://hiswe.tumblr.com/") &nbsp;watch on Tumblr
-      dd.hw-sub-close
+      dd.hw-sub-close: a(href="#") close
 
-    dl.hw-services-item
+    dl#hw-service-integration.hw-services-item
       dt.hw-sub.hw-services-cover: .hw-container
         h6 Integration
         p: i.hicon.website-reversed
+        a(href="#hw-service-integration") more details
       dd.hw-sub.hw-sub-left.hw-sub-description: .hw-sub-panel
         h3 From webdesign to webpage:
         ul
@@ -56,12 +58,13 @@ section.hw-services
           li <a href="http://learnboost.github.io/stylus/">Stylus</a> &amp; <a href="https://github.com/visionmedia/nib">Nib</a>
           li <a href="http://coffeescript.org/">CoffeeScript</a>
           li <a href="http://gulpjs.com/">Gulp</a>
-      dd.hw-sub-close
+      dd.hw-sub-close: a(href="#") close
 
-    dl.hw-services-item
+    dl#hw-service-development.hw-services-item
       dt.hw-sub.hw-services-cover: .hw-container
         h6 Development
         p: i.hicon.factory
+        a(href="#hw-service-integration") more details
       dd.hw-sub.hw-sub-left.hw-sub-description: .hw-sub-panel
         h3 Sometimes you need more than a simple website, <br /> what you want is a real web application.
         ul
@@ -78,4 +81,4 @@ section.hw-services
           li <a href="http://nodejs.org/">NodeJS</a>
           li <a href="http://expressjs.com/">ExpressJS framework</a>
           li <a href="http://couchdb.apache.org/">CouchDB</a>
-      dd.hw-sub-close
+      dd.hw-sub-close: a(href="#") close

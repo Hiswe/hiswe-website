@@ -10,15 +10,7 @@ module.exports = (app) ->
   app.configure ->
     app.set 'appName', conf.APP_NAME
 
-    if conf.LIVERELOAD? and typeof conf.LIVERELOAD is 'string'
-      livereload = conf.LIVERELOAD is 'true'
-    else if conf.LIVERELOAD? and typeof conf.LIVERELOAD is 'boolean'
-      livereload = conf.LIVERELOAD
-    else
-      livereload = false
-
     # Set some locals
-    app.locals.LIVERELOAD   = livereload
     app.locals.env          = app.get('env')
     app.locals.appName      = conf.APP_NAME
     app.locals.assets       = rev

@@ -3,7 +3,7 @@ include mixins
 html
   include layout/head
 
-  body.prevent-transition
+  body.prevent-transition.no-js
     include includes/hiswe-icons.svg
 
     input.hw-menu-input#menu(type="checkbox", name="menu")
@@ -16,8 +16,8 @@ html
 
     //- jQuery + plugins
     if env == 'production'
-      script(src="lib.min.js")
-      script(src="app.min.js")
+      script(src="/#{assets['lib.min.js']}")
+      script(src="/#{assets['app.min.js']}")
     else
       script(src="/lib.js")
       script(src="/app.js")
