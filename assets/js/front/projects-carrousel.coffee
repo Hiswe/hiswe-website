@@ -45,7 +45,6 @@ class ServicesCarrousel extends Controller
     @log 'with', @total, 'image(s)'
     this
 
-
   # Images Lazy load
   loadImages: ->
     loadedImages = @initLoading().imagesLoaded()
@@ -62,6 +61,7 @@ class ServicesCarrousel extends Controller
   initLoading: ->
     @log 'Init loading'
     @images.each @loadImage
+    @refreshElements()
     return @images
 
   onProgress: (instance, image) =>
@@ -73,11 +73,13 @@ class ServicesCarrousel extends Controller
       .removeClass('hw-projects-lazyload-loading')
 
   loadImage: (index, image) =>
-    $img = $(image).css('opacity', 0)
-    $parent = $img.parent().addClass('hw-projects-lazyload-loading')
+    $original = $(image).css('opacity', 0)
+    $img      = $original.clone()
+    $parent   = $img.parent().addClass('hw-projects-lazyload-loading')
     # imgSrc = if @pixelRatio is 1 then img.data('original') else img.data('retina')
     imgSrc = $img.data('original')
     $img.attr 'src', imgSrc
+    $original.replaceWith($img)
     this
 
   initProgress: ->

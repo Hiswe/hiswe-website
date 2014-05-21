@@ -13,10 +13,16 @@
 
 Nori home is a company wiching to make christmas-related accessories.
 
-For the logo design, Nori Home requires to include a heart shape and write “home” in a smaller font.  
-It should reflect charity & festivity.
+#### Logo
+
+For the logo design, Nori Home requires to include a **heart shape** and write “home” in a smaller font.  
+It should reflect **charity & festivity**.
 
 As the logo should be printed everywhere, it needed a lot of variations, including a very simple design fitting to cut adhesive.
+
+#### Illustrations
+
+Nori Home also have a nedd for some illustrations. The main keyword was to be **cute**.
 
 ### Logo
 

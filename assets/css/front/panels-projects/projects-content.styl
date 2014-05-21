@@ -6,7 +6,8 @@ smooth-chrome-scroll()
 
 
 .hw-projects-content-body,
-.hw-projects-content
+.hw-projects-content,
+.hw-projects-content-xhr
   > .hw-projects-center
     width unit($project-width, 'px')
     margin 0 auto
@@ -14,6 +15,9 @@ smooth-chrome-scroll()
 .hw-projects-content-body
   animation bodyIn .75s
   animatio-fill-mode both
+
+.hw-projects-content-xhr
+  transition opacity 1s
 
 .hw-projects-content
   h1, h2, h3, h4, h5, h6, ol, p

@@ -46,6 +46,7 @@ Design a portfolio for myself
 - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - JS front lib in requireJs
   - As jQuery mobile can't be require maybe look at [jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
+  - for imagesloaded look at this [issue](https://github.com/desandro/imagesloaded/issues/119)
 - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 - No change of page for contact

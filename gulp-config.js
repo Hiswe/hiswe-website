@@ -7,7 +7,8 @@ var slug            = require('slug');
 slug.charmap['_'] = '-'
 
 exports.db = {
-  src: 'config/datas/*.md',
+  // ~ is for Mou temp files
+  src: ['!config/datas/*~.md', 'config/datas/*.md'],
   dst: 'config/datas'
 }
 
@@ -88,6 +89,9 @@ exports.img = {
   cleanPixel: [imgDst + '*.{jpg,jpeg,png}', '!' + imgDst + 'splash*.{jpg,jpeg,png}'],
   splash:     imgSrc + '/**/splash*.{jpg,jpeg,png}',
   cleanSplash:imgDst + 'splash*.{jpg,jpeg,png}',
+  cover:      imgSrc + '/cover*.{jpg,jpeg,png}',
+  cleanCover: imgDst + 'cover*.{jpg,jpeg,png}',
+  coverWidth: 288,
   svg:        imgSrc + '/**/*.svg',
   cleanSvg:   imgDst + '*.svg',
   dst:        imgDst,

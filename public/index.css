@@ -502,7 +502,7 @@ body {
   -webkit-box-shadow: inset 0 0 0 0.5em #ff0078;
   box-shadow: inset 0 0 0 0.5em #ff0078;
 }
-.hw-services-cover {
+.hw-services-item .hw-services-cover {
   z-index: 3;
   color: #445;
   background: #fff;
@@ -512,17 +512,17 @@ body {
   padding: 3em 0 0;
   text-align: center;
 }
-.hw-services-cover:before,
-.hw-services-cover > * {
+.hw-services-item .hw-services-cover:before,
+.hw-services-item .hw-services-cover > * {
   display: inline-block;
   vertical-align: middle;
 }
-.hw-services-cover:before {
+.hw-services-item .hw-services-cover:before {
   content: ' ';
   width: 0;
   height: 100%;
 }
-.hw-services-cover h6 {
+.hw-services-item .hw-services-cover h6 {
   font-size: 1.75em;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -585,6 +585,9 @@ body {
   font-size: 2em;
   content: '×';
   font-weight: bold;
+}
+.hw-sub-close:hover {
+  background: #cddce4;
 }
 .hw-sub-close:hover::after {
   color: #009ae1;
@@ -1823,7 +1826,8 @@ body {
 }
 }
 .hw-projects-content-body > .hw-projects-center,
-.hw-projects-content > .hw-projects-center {
+.hw-projects-content > .hw-projects-center,
+.hw-projects-content-xhr > .hw-projects-center {
   width: 700px;
   margin: 0 auto;
 }
@@ -1834,6 +1838,13 @@ body {
   -ms-animation: bodyIn 0.75s;
   animation: bodyIn 0.75s;
   animatio-fill-mode: both;
+}
+.hw-projects-content-xhr {
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  -ms-transition: opacity 1s;
+  transition: opacity 1s;
 }
 .hw-projects-content h1,
 .hw-projects-content h2,

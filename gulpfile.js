@@ -15,6 +15,7 @@ var gulpif      = require('gulp-if');
 var concat      = require('gulp-concat');
 var replace     = require('gulp-replace');
 var plumber     = require('gulp-plumber');
+var runsequence = require('run-sequence');
 // css
 var stylus      = require('gulp-stylus');
 var minifyCSS   = require('gulp-minify-css');
@@ -63,6 +64,15 @@ gulp.task('bump', function () {
   return gulp.src(conf.pack).pipe(bump()).pipe(gulp.dest('./'));
 });
 
+gulp.task('rev', function () {
+  gulp.src(conf.revFiles)
+    .pipe(rev())
+    .pipe(gulp.dest('public'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(conf.db.dst))
+    .pipe(livereload(server));
+});
+
 /////////
 // CSS
 /////////
@@ -85,13 +95,8 @@ gulp.task('stylus', ['clean-css'], function () {
     .pipe(notify({title: 'HISWE', message: 'CSS build done'}));
 });
 
-gulp.task('css', ['stylus'], function() {
-  gulp.src(conf.revFiles)
-    .pipe(rev())
-    .pipe(gulp.dest('public'))
-    .pipe(rev.manifest())
-    .pipe(gulp.dest(conf.db.dst))
-    .pipe(livereload(server));
+gulp.task('css', function(callback) {
+  return runsequence('stylus', 'rev', callback);
 });
 
 gulp.task('clean-css', function() {
@@ -118,10 +123,6 @@ gulp.task('lib', ['clean-js', 'source-map'], function() {
 });
 
 gulp.task('clean-js', function() {
-  // var message =  [
-  //   'Don\'t forget to build ./bower_components/PointerGestures',
-  //   'cd ./bower_components/PointerGestures && npm install && grunt'
-  // ].join('\n');
   // gutil.log(gutil.colors.yellow(message));
   return gulp.src(conf.lib.clean, {read: false}).pipe(clean());
 });
@@ -152,13 +153,8 @@ gulp.task('frontend-app', ['clean-app'],function() {
     .pipe(livereload(server));
 });
 
-gulp.task('js', ['lib', 'frontend-app'], function() {
-  gulp.src(conf.revFiles)
-    .pipe(rev())
-    .pipe(gulp.dest('public'))
-    .pipe(rev.manifest())
-    .pipe(gulp.dest(conf.db.dst))
-    .pipe(livereload(server));
+gulp.task('js', function(callback) {
+  return runsequence(['lib', 'frontend-app'], 'rev', callback);
 });
 
 /////////
@@ -205,7 +201,7 @@ gulp.task('icons', ['build-icons'], function () {
 /////////
 
 // Can't use gulp-if because gulp-resize don't rely on stream
-//TODO: May have a workaround with gulp-streamify
+// TODO: May have a workaround with gulp-streamify
 gulp.task('clean-pixel', function() {
   return gulp.src(conf.img.cleanPixel, {read: false}).pipe(clean());
 });
@@ -215,8 +211,19 @@ gulp.task('pixel', ['clean-pixel'], function() {
     .pipe(rename(conf.img.formatOriginal))
     .pipe(gulp.dest(conf.img.dst))
     .pipe(resize({height: conf.img.height, quality: 1}))
-    .pipe(resize({width: conf.img.width, quality: 0.8}))
+    .pipe(resize({width: conf.img.width, quality: 1}))
     .pipe(rename(conf.img.formatPreview))
+    .pipe(gulp.dest(conf.img.dst))
+});
+
+gulp.task('clean-cover', function() {
+  return gulp.src(conf.img.cleanCover, {read: false}).pipe(clean());
+});
+
+gulp.task('cover', ['clean-cover'], function() {
+  return gulp.src(conf.img.cover)
+    .pipe(rename(conf.img.formatOriginal))
+    .pipe(resize({width: conf.img.coverWidth, quality: 1}))
     .pipe(gulp.dest(conf.img.dst))
 });
 
@@ -260,7 +267,7 @@ gulp.task('list', function(cb) {
   cb(null);
 });
 
-gulp.task('image', ['pixel', 'splash', 'svg']);
+gulp.task('image', ['pixel', 'splash', 'svg', 'cover']);
 gulp.task('resize', ['image']); // Aliase because I just often mess around
 
 // Upload to Amazon S3
@@ -279,7 +286,10 @@ gulp.task('upload', function () {
     // .pipe(notify({title: 'HISWE', message: 'UPLOAD done'}));
 });
 
+/////////
 // JSON
+/////////
+
 gulp.task('json', function() {
   return gulp.src(conf.db.src)
     .pipe(bundleData())
@@ -290,36 +300,19 @@ gulp.task('json', function() {
 // BUILD ALL
 /////////
 
-gulp.task('build', ['icons', 'frontend-app', 'lib', 'stylus', 'json'], function() {
-  return gulp.src(conf.revFiles)
-  .pipe(rev())
-  .pipe(gulp.dest('public'))
-  .pipe(rev.manifest())
-  .pipe(gulp.dest(conf.db.dst))
-  .pipe(livereload(server));
+gulp.task('build', function(callback) {
+  return runsequence(['icons', 'frontend-app', 'lib', 'stylus', 'json', 'resize'], 'rev', callback);
 });
 
 /////////
 // SERVER
 /////////
 
-// Watch
-gulp.task('watch', function() {
-  server.listen(35729, function (err) { if (err) { return console.log(err) }});
-
-  gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
-
-  gulp.watch(['./assets/js/front/**/*.coffee'], ['frontend-app']);
-
-  gulp.watch(['./config/datas/*.md'], ['json']);
-
-  gulp.watch('./views/**/*.jade').on('change', function() {
-    gulp.src('').pipe(notify({title: 'HISWE', message: 'reload html'}));
-    server.changed({body: {files: ['index.html']}});
-  });
+gulp.task('open-browser', function (){
+  // Has to be a file in order to proceed…
+  return gulp.src('./README.md').pipe(wait(1000)).pipe(open('', {url: "http://localhost:5000"}));
 });
 
-// Nodemon server
 gulp.task('notify-restart', function () {
   // wait server to properly restart
   setTimeout(function() {
@@ -328,6 +321,19 @@ gulp.task('notify-restart', function () {
   }, 1000);
 });
 
+// Watch
+gulp.task('watch', function() {
+  server.listen(35729, function (err) { if (err) { return console.log(err) }});
+  gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
+  gulp.watch(['./assets/js/front/**/*.coffee'], ['frontend-app']);
+  gulp.watch(['./config/datas/*.md'], ['json']);
+  gulp.watch('./views/**/*.jade').on('change', function() {
+    gulp.src('').pipe(notify({title: 'HISWE', message: 'reload html'}));
+    server.changed({body: {files: ['index.html']}});
+  });
+});
+
+// Nodemon server
 gulp.task('express', ['build'], function () {
   nodemon({
     script: 'server.js', ext: 'coffee json', watch: ['controllers/**/*', 'config/*.coffee', 'config/datas/db-home.json'],
@@ -337,11 +343,11 @@ gulp.task('express', ['build'], function () {
   .on('crash', onError);
 });
 
-gulp.task('server', ['watch', 'express']);
-
-gulp.task("start", ['server'], function(){
-  // Has to be a file in order to proceed
-  gulp.src('./README.md').pipe(wait(1000)).pipe(open('', {url: "http://localhost:5000"}));
+gulp.task('server', function (callback){
+  if (args.build != null && args.build === false) {
+    return runsequence(['watch', 'express'], 'open-browser', callback);
+  }
+  return runsequence('build', ['watch', 'express'], 'open-browser', callback);
 });
 
 /////////
@@ -364,5 +370,6 @@ gulp.task('default', function() {
   console.log(m('image'), g('.............'), 'pixel + svg');
   console.log(m('list'), g('..............'), 'list image');
   console.log(m('  --project name'), g('..'), 'of a specific project');
-  console.log(m('start'), g('.............'), 'Watch + server');
+  console.log(m('server'), g('............'), 'Watch + server');
+  console.log(m('  --no-build'), g('......'), 'Skip the build');
 });

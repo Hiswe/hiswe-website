@@ -12,9 +12,7 @@
     "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",
     "imagesloaded": "~3.1.5",
     "jquery": "~2.1.1",
-    "fontawesome": "~4.0.3",
-    "jquery-mobile": "~1.4.2",
-    "60fps-scroll": "~0.1.0"
+    "jquery-mobile": "~1.4.2"
   },
   "resolutions": {
     "jquery": "~2.1.1",

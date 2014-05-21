@@ -449,6 +449,7 @@ ServicesCarrousel = (function(_super) {
   ServicesCarrousel.prototype.initLoading = function() {
     this.log('Init loading');
     this.images.each(this.loadImage);
+    this.refreshElements();
     return this.images;
   };
 
@@ -458,11 +459,13 @@ ServicesCarrousel = (function(_super) {
   };
 
   ServicesCarrousel.prototype.loadImage = function(index, image) {
-    var $img, $parent, imgSrc;
-    $img = $(image).css('opacity', 0);
+    var $img, $original, $parent, imgSrc;
+    $original = $(image).css('opacity', 0);
+    $img = $original.clone();
     $parent = $img.parent().addClass('hw-projects-lazyload-loading');
     imgSrc = $img.data('original');
     $img.attr('src', imgSrc);
+    $original.replaceWith($img);
     return this;
   };
 
@@ -626,9 +629,12 @@ Projects = (function(_super) {
         href = $currentPanel.find('a.hw-projects-name').attr('href');
         _this.log('load body', href);
         return $.get(href).success(function(body) {
+          var $body;
           $currentPanel.data('bodyLoaded', true);
-          $currentPanel.find('.hw-projects-content').append(body);
+          $body = $('<div class="hw-projects-content-xhr"></div>').css('opacity', 0).append(body);
+          $currentPanel.find('.hw-projects-content').append($body);
           return _this.wait(100).then(function() {
+            $body.css('opacity', 1);
             return _this.initCarrousel($currentPanel);
           });
         });
@@ -691,7 +697,7 @@ Projects = (function(_super) {
     e.preventDefault();
     this.clean();
     this.el.css('z-index', 2);
-    this.wait(1).then(function() {
+    this.wait(50).then(function() {
       return $target.addClass(options.activeClass);
     });
     $target.find("." + options.witness).heventAddClass(options.activeWitness);

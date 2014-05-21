@@ -105,7 +105,7 @@ var homeImage = function homeImage(href, title, text) {
   var imageInformations = getImageInfo(href, title, text);
 
   imageInformations.original    = imageInformations.href;
-  imageInformations.href = blankGif;
+  imageInformations.href        = blankGif;
   imageInformations.className   = "hw-projects-lazyload";
 
   return buildFigure(imageInformations);

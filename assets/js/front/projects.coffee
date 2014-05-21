@@ -69,9 +69,15 @@ class Projects extends Controller
       @log 'load body', href
       $.get(href).success (body) =>
         $currentPanel.data('bodyLoaded', true)
-        $currentPanel.find('.hw-projects-content').append(body)
+        $body = $('<div class="hw-projects-content-xhr"></div>')
+          .css('opacity', 0)
+          .append(body)
 
-        @wait(100).then => @initCarrousel($currentPanel)
+        $currentPanel.find('.hw-projects-content').append($body)
+
+        @wait(100).then =>
+          $body.css('opacity', 1)
+          @initCarrousel($currentPanel)
 
   # The witness object is a dirty hack
   # But it keeps me from filtering between all transitionend events
@@ -120,7 +126,7 @@ class Projects extends Controller
     @clean()
     @el.css('z-index', 2)
     # wait for firefox…
-    @wait(1).then -> $target.addClass(options.activeClass)
+    @wait(50).then -> $target.addClass(options.activeClass)
 
     $target.find(".#{options.witness}")
       .heventAddClass(options.activeWitness)

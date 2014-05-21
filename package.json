@@ -66,6 +66,7 @@
     "gulp-flatten": "0.0.2",
     "slug": "^0.5.0",
     "through": "^2.3.4",
-    "extend": "^1.2.1"
+    "extend": "^1.2.1",
+    "run-sequence": "^0.3.6"
   }
 }
