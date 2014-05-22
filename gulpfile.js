@@ -299,8 +299,10 @@ gulp.task('upload', function () {
 
   return gulp.src(conf.img.dst + '*')
     .pipe(publisher.publish())
-    .pipe(publisher.sync())
+    .pipe(publisher.sync()) // delete not-in-folder files
     .pipe(awspublish.reporter());
+    // .on('end' , function (callback){
+    // });
     // Don't notify has it run for every images…
     // .pipe(notify({title: 'HISWE', message: 'UPLOAD done'}));
 });
@@ -385,7 +387,10 @@ gulp.task('doc', function(callback) {
   console.log(m('bump'), g('..............'), 'patch version of json');
   console.log(m('  --minor'), g('.........'), 'minor version of json');
   console.log(m('  --major'), g('.........'), 'major version of json');
-  console.log(m('get-config'), g('........'), 'get heroku current conf');
+  console.log(m('heroku'), g('............'), 'Heroku related tasj');
+  console.log(m('  --config'), g('........'), 'get heroku current conf');
+  console.log(m('  --log'), g('...........'), 'get last 1000 log');
+  console.log(m('rev'), g('...............'), 'Generate rev files');
   console.log(m('font'), g('..............'), 'Copy fonts to the right folder');
   console.log(m('json'), g('..............'), 'Package all datas to json');
   console.log(m('build'), g('.............'), 'js + css + rev');

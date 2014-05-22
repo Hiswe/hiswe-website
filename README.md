@@ -47,8 +47,8 @@ heroku config:set hiswe_KEY=value --app APPNAME
 1. **version 3.5** *aka* “clean server”
    - *js* and *css* files shouldn't be in the repo.  
      They should be on AWS.
-   - Migrate to Express 4
-   - Update other dependencies
+   - ~~Migrate to Express 4~~
+   - ~~Update other dependencies~~
    - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
 - **version 3.6** *aka* “clean front”
    - JS front lib in requireJs

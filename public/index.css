@@ -1379,19 +1379,15 @@ body {
   0% {
     clip: rect(0, 30px, 2px, 0);
   }
-
   25% {
     clip: rect(0, 30px, 30px, 28px);
   }
-
   50% {
     clip: rect(28px, 30px, 30px, 0);
   }
-
   75% {
     clip: rect(0, 2px, 30px, 0);
   }
-
   100% {
     clip: rect(0, 30px, 2px, 0);
   }
@@ -1400,19 +1396,15 @@ body {
   0% {
     clip: rect(0, 30px, 2px, 0);
   }
-
   25% {
     clip: rect(0, 30px, 30px, 28px);
   }
-
   50% {
     clip: rect(28px, 30px, 30px, 0);
   }
-
   75% {
     clip: rect(0, 2px, 30px, 0);
   }
-
   100% {
     clip: rect(0, 30px, 2px, 0);
   }
@@ -1421,40 +1413,15 @@ body {
   0% {
     clip: rect(0, 30px, 2px, 0);
   }
-
   25% {
     clip: rect(0, 30px, 30px, 28px);
   }
-
   50% {
     clip: rect(28px, 30px, 30px, 0);
   }
-
   75% {
     clip: rect(0, 2px, 30px, 0);
   }
-
-  100% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-}
-@-ms-keyframes spinner {
-  0% {
-    clip: rect(0, 30px, 2px, 0);
-  }
-
-  25% {
-    clip: rect(0, 30px, 30px, 28px);
-  }
-
-  50% {
-    clip: rect(28px, 30px, 30px, 0);
-  }
-
-  75% {
-    clip: rect(0, 2px, 30px, 0);
-  }
-
   100% {
     clip: rect(0, 30px, 2px, 0);
   }
@@ -1463,19 +1430,15 @@ body {
   0% {
     clip: rect(0, 30px, 2px, 0);
   }
-
   25% {
     clip: rect(0, 30px, 30px, 28px);
   }
-
   50% {
     clip: rect(28px, 30px, 30px, 0);
   }
-
   75% {
     clip: rect(0, 2px, 30px, 0);
   }
-
   100% {
     clip: rect(0, 30px, 2px, 0);
   }
@@ -2387,47 +2350,34 @@ h3 + .hw-projects-gallery-container {
 }
 }
 @-moz-keyframes bodyIn {
-  0% {
+  from {
     opacity: 0;
   }
-
-  100% {
+  to {
     opacity: 1;
   }
 }
 @-webkit-keyframes bodyIn {
-  0% {
+  from {
     opacity: 0;
   }
-
-  100% {
+  to {
     opacity: 1;
   }
 }
 @-o-keyframes bodyIn {
-  0% {
+  from {
     opacity: 0;
   }
-
-  100% {
-    opacity: 1;
-  }
-}
-@-ms-keyframes bodyIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
+  to {
     opacity: 1;
   }
 }
 @keyframes bodyIn {
-  0% {
+  from {
     opacity: 0;
   }
-
-  100% {
+  to {
     opacity: 1;
   }
 }
@@ -2803,15 +2753,14 @@ h3 + .hw-projects-gallery-container {
 }
 }
 @-moz-keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 0;
     max-height: 0;
   }
-
-  100% {
+  to {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -2820,15 +2769,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @-webkit-keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 0;
     max-height: 0;
   }
-
-  100% {
+  to {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -2837,32 +2785,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @-o-keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 0;
     max-height: 0;
   }
-
-  100% {
-    opacity: 1;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    margin-bottom: 0.5em;
-    max-height: 68px;
-  }
-}
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    max-height: 0;
-  }
-
-  100% {
+  to {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -2871,15 +2801,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 0;
     max-height: 0;
   }
-
-  100% {
+  to {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -2888,15 +2817,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @-moz-keyframes fadeOut {
-  0% {
+  from {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
     margin-bottom: 0.5em;
     max-height: 68px;
   }
-
-  100% {
+  to {
     opacity: 0;
     max-height: 0;
     padding-top: 0;
@@ -2905,15 +2833,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @-webkit-keyframes fadeOut {
-  0% {
+  from {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
     margin-bottom: 0.5em;
     max-height: 68px;
   }
-
-  100% {
+  to {
     opacity: 0;
     max-height: 0;
     padding-top: 0;
@@ -2922,32 +2849,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @-o-keyframes fadeOut {
-  0% {
+  from {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
     margin-bottom: 0.5em;
     max-height: 68px;
   }
-
-  100% {
-    opacity: 0;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-}
-@-ms-keyframes fadeOut {
-  0% {
-    opacity: 1;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    margin-bottom: 0.5em;
-    max-height: 68px;
-  }
-
-  100% {
+  to {
     opacity: 0;
     max-height: 0;
     padding-top: 0;
@@ -2956,15 +2865,14 @@ h3 + .hw-projects-gallery-container {
   }
 }
 @keyframes fadeOut {
-  0% {
+  from {
     opacity: 1;
     padding-top: 16px;
     padding-bottom: 16px;
     margin-bottom: 0.5em;
     max-height: 68px;
   }
-
-  100% {
+  to {
     opacity: 0;
     max-height: 0;
     padding-top: 0;
