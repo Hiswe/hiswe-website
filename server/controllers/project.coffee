@@ -1,6 +1,6 @@
 log   = '[PROJECT]'
-db    = require('../../config/datas/db-projects.json')
-dbXhr = require('../../config/datas/db-projects-xhr.json')
+db    = require('../datas/db-projects.json')
+dbXhr = require('../datas/db-projects-xhr.json')
 conf  = require('rc')('HISWE')
 
 show = (req, res, next) ->
@@ -8,7 +8,7 @@ show = (req, res, next) ->
   return showXhr(req, res, next) if req.xhr
 
   if db[req.params.project]?
-    return res.render('front/projects', {project: db[req.params.project]})
+    return res.render('projects', {project: db[req.params.project]})
 
   console.warn log.error, req.params.project, "don't exist"
   next()

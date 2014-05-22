@@ -1,6 +1,6 @@
 'use strict';
 
-var sharedVar       = require('./config/datas/stylus-var.json');
+var sharedVar       = require('./shared/stylus-var.json');
 var rc = exports.rc = require('rc')('HISWE');
 var slug            = require('slug');
 
@@ -8,8 +8,8 @@ slug.charmap['_'] = '-'
 
 exports.db = {
   // ~ is for Mou temp files
-  src: ['!config/datas/*~.md', 'config/datas/*.md'],
-  dst: 'config/datas'
+  src: ['!server/datas/*~.md', 'server/datas/*.md'],
+  dst: 'server/datas'
 }
 
 exports.revFiles = [
@@ -51,13 +51,13 @@ exports.css = {
     'bower_components/hiso-font/font/hiso-font.css',
     'bower_components/hiso-font/font/hicon.css',
     // 'public/media/icons/hiswe-icons.css',
-    'assets/css/front/index.styl'
+    'front/css/index.styl'
   ],
   dst: 'public'
 };
 
 exports.front = {
-  basedir: __dirname + '/assets/js/front',
+  basedir: __dirname + '/front/js',
   clean: 'public/app*js',
   dst: 'public'
 };

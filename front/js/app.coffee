@@ -3,7 +3,7 @@ Services    = require './services.coffee'
 Projects    = require './projects.coffee'
 Contact     = require './contact.coffee'
 pubsub      = require './pubsub.coffee'
-options     = require '../../../config/datas/stylus-var.json'
+options     = require '../../shared/stylus-var.json'
 
 class App extends Controller
   trace: false

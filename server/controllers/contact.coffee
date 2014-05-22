@@ -9,7 +9,7 @@ log           = '[CONTACT]'
 
 index = (req, res, next) ->
   # console.log log.debug, 'GET'
-  res.render 'front/contact', {
+  res.render 'contact', {
     errors: req.flash('errors')
     success: req.flash('success')
   }

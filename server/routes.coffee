@@ -3,7 +3,7 @@ nodePath  = require 'path'
 
 log       = '[ROUTES]'
 
-controller = (name) -> require("../controllers/front/#{name}")
+controller = (name) -> require("./controllers/#{name}")
 
 module.exports = (app) ->
   console.log log.debug, 'setup front'

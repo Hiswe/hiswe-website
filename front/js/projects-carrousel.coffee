@@ -1,5 +1,5 @@
 Controller  = require './front-controller.coffee'
-options     = require '../../../config/datas/stylus-var.json'
+options     = require '../../shared/stylus-var.json'
 pubsub      = require './pubsub.coffee'
 
 class ServicesCarrousel extends Controller

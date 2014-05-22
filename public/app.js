@@ -13,7 +13,7 @@ Contact = require('./contact.coffee');
 
 pubsub = require('./pubsub.coffee');
 
-options = require('../../../config/datas/stylus-var.json');
+options = require('../../shared/stylus-var.json');
 
 App = (function(_super) {
   __extends(App, _super);
@@ -94,7 +94,7 @@ App = (function(_super) {
 module.exports = App;
 
 
-},{"../../../config/datas/stylus-var.json":9,"./contact.coffee":3,"./front-controller.coffee":4,"./projects.coffee":6,"./pubsub.coffee":7,"./services.coffee":8}],2:[function(require,module,exports){
+},{"../../shared/stylus-var.json":9,"./contact.coffee":3,"./front-controller.coffee":4,"./projects.coffee":6,"./pubsub.coffee":7,"./services.coffee":8}],2:[function(require,module,exports){
 var App, pubsub;
 
 App = require('./app.coffee');
@@ -370,7 +370,7 @@ var Controller, ServicesCarrousel, options, pubsub,
 
 Controller = require('./front-controller.coffee');
 
-options = require('../../../config/datas/stylus-var.json');
+options = require('../../shared/stylus-var.json');
 
 pubsub = require('./pubsub.coffee');
 
@@ -542,7 +542,7 @@ ServicesCarrousel = (function(_super) {
 module.exports = ServicesCarrousel;
 
 
-},{"../../../config/datas/stylus-var.json":9,"./front-controller.coffee":4,"./pubsub.coffee":7}],6:[function(require,module,exports){
+},{"../../shared/stylus-var.json":9,"./front-controller.coffee":4,"./pubsub.coffee":7}],6:[function(require,module,exports){
 var Carrousel, Controller, Projects, options, pubsub,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -551,7 +551,7 @@ Controller = require('./front-controller.coffee');
 
 Carrousel = require('./projects-carrousel.coffee');
 
-options = require('../../../config/datas/stylus-var.json');
+options = require('../../shared/stylus-var.json');
 
 pubsub = require('./pubsub.coffee');
 
@@ -723,7 +723,7 @@ Projects = (function(_super) {
 module.exports = Projects;
 
 
-},{"../../../config/datas/stylus-var.json":9,"./front-controller.coffee":4,"./projects-carrousel.coffee":5,"./pubsub.coffee":7}],7:[function(require,module,exports){
+},{"../../shared/stylus-var.json":9,"./front-controller.coffee":4,"./projects-carrousel.coffee":5,"./pubsub.coffee":7}],7:[function(require,module,exports){
 var pubsub, topics;
 
 topics = {};
@@ -758,7 +758,7 @@ var Controller, Services, options, pubsub,
 
 Controller = require('./front-controller.coffee');
 
-options = require('../../../config/datas/stylus-var.json');
+options = require('../../shared/stylus-var.json');
 
 pubsub = require('./pubsub.coffee');
 
@@ -861,7 +861,7 @@ Services = (function(_super) {
 module.exports = Services;
 
 
-},{"../../../config/datas/stylus-var.json":9,"./front-controller.coffee":4,"./pubsub.coffee":7}],9:[function(require,module,exports){
+},{"../../shared/stylus-var.json":9,"./front-controller.coffee":4,"./pubsub.coffee":7}],9:[function(require,module,exports){
 module.exports={
   "activeClass"             : "hw-panel-active",
   "witness"                 : "hw-witness",

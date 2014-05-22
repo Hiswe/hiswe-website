@@ -1,6 +1,6 @@
 Controller  = require './front-controller.coffee'
 Carrousel   = require './projects-carrousel.coffee'
-options     = require '../../../config/datas/stylus-var.json'
+options     = require '../../shared/stylus-var.json'
 pubsub      = require './pubsub.coffee'
 
 class Projects extends Controller

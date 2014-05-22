@@ -46,7 +46,7 @@ var bundleData  = require('./gulp-task/hiswe-bundle-data');
 /////////
 
 var server = lr();
-var stylusVar   = require('./config/datas/stylus-var.json');
+var stylusVar   = require('./shared/stylus-var.json');
 
 // Plumber error callback
 var onError = function onError(err) {
