@@ -55,9 +55,25 @@ exports.css = {
   ],
   dst: 'public'
 };
+exports.server = {
+  src: 'server/**/*.coffee',
+  lint: {
+    cyclomatic_complexity: {level: 'warn'},
+    max_line_length: {level: 'ignore'},
+    missing_fat_arrows: {level: 'warn'},
+    newlines_after_classes: {level: 'warn'},
+    no_empty_functions: {level: 'warn'},
+    no_empty_param_list: {level: 'warn'},
+    no_implicit_braces: {level: 'error'},
+    no_interpolation_in_single_quotes: {level: 'error'},
+    no_stand_alone_at: {level: 'error'},
+    no_unnecessary_double_quotes: {level: 'warn'}
+  }
+};
 
 exports.front = {
   basedir: __dirname + '/front/js',
+  src: 'front/js/*.coffee',
   clean: 'public/app*js',
   dst: 'public'
 };

@@ -37,6 +37,7 @@ var lr          = require('tiny-lr'); // livereload depend on tiny-lr
 var wait        = require('gulp-wait');
 var open        = require('gulp-open');
 var nodemon     = require('gulp-nodemon');
+var coffeelint  = require('gulp-coffeelint');
 var livereload  = require('gulp-livereload');
 // misc
 var bundleData  = require('./gulp-task/hiswe-bundle-data');
@@ -332,6 +333,12 @@ gulp.task('build', function(callback) {
 /////////
 // SERVER
 /////////
+gulp.task('lint', function(){
+  return gulp.src(conf.server.src)
+    .pipe(coffeelint(conf.server.lint))
+    .pipe(coffeelint.reporter())
+    .pipe(coffeelint.reporter('fail'));
+});
 
 gulp.task('open-browser', function (){
   // Has to be a file in order to proceed…
@@ -359,7 +366,7 @@ gulp.task('watch', function() {
 });
 
 // Nodemon server
-gulp.task('express', function () {
+gulp.task('express', ['lint'], function () {
   var env   = args.prod ? 'production' : 'development';
   var glob  = ['server/**/*.coffee', 'server/datas/*.json'];
   nodemon({
