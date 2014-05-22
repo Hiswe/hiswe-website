@@ -21,12 +21,8 @@ colors.setTheme({
   err:    'red'
 });
 
-var conf    = require('rc')('hiswe', {
-  VERSION: pack.version,
-  PATH: __dirname
-});
-
 // check conf
+var conf    = require('rc')('hiswe');
 ['MAIL_ADMIN', 'MAIL_API_KEY', 'MAIL_PROJECT_ID',
   'AWS_ACCESS_KEY_ID', 'AWS_SECRET_KEY', 'AWS_BUCKET'].forEach(function(key){
     if (conf[key] == null) {
@@ -49,4 +45,4 @@ if (!port) {
 
 server.listen(port);
 
-console.log(log.info, 'Express server listening on port', port);
+console.log(log.info, 'Express server', pack.version, 'listening on port', port);

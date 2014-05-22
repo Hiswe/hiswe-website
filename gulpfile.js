@@ -347,9 +347,9 @@ gulp.task('notify-restart', function () {
 // Watch
 gulp.task('watch', function() {
   server.listen(35729, function (err) { if (err) { return console.log(err) }});
-  gulp.watch(['./assets/css/front/**/*.styl'], ['css']);
-  gulp.watch(['./assets/js/front/**/*.coffee'], ['front-app']);
-  gulp.watch(['./config/datas/*.md'], ['json']);
+  gulp.watch(['./front/css/**/*.styl'], ['css']);
+  gulp.watch(['./front/js/**/*.coffee'], ['front-app']);
+  gulp.watch(['./server/datas/*.md'], ['json']);
   gulp.watch('./views/**/*.jade').on('change', function() {
     gulp.src('').pipe(notify({title: 'HISWE', message: 'reload html'}));
     server.changed({body: {files: ['index.html']}});
@@ -359,7 +359,7 @@ gulp.task('watch', function() {
 // Nodemon server
 gulp.task('express', function () {
   var env   = args.prod ? 'production' : 'development';
-  var glob  = ['controllers/**/*', 'config/*.coffee', 'config/datas/*.json'];
+  var glob  = ['server/**/*.coffee', 'server/datas/*.json'];
   nodemon({
     script: 'server.js', ext: 'coffee json', watch: glob,
     env: { 'NODE_ENV': env, 'hiswe_pouic': 'clapou'}

@@ -1,4 +1,3 @@
-fs        = require 'fs'
 nodePath  = require 'path'
 
 log       = '[ROUTES]'
@@ -7,11 +6,10 @@ controller = (name) -> require("./controllers/#{name}")
 
 module.exports = (app) ->
   console.log log.debug, 'setup front'
-
-  app.resource 'contact',   controller('contact')
-  app.resource 'projects',  controller('project')
-
-  app.resource controller('home')
+  app.get   '/contact', controller('contact').index
+  app.post  '/contact', controller('contact').create
+  app.get   '/projects/:project',  controller('project').show
+  app.get   '/', controller('home').index
 
   # 404 Page
   app.use (req, res, next) ->
