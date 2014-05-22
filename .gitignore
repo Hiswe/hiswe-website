@@ -3,6 +3,7 @@
 .dev_env
 .env
 .hiswerc
+.awspublish-hiswe
 .settings/
 node_modules
 /components
@@ -11,9 +12,9 @@ public/media/source
 public/media/images
 public/media/icons
 public/index.min.css
-public/app.min.js
-public/lib.js
-public/lib.min.js
+public/app*.js
+public/lib*.js
+public/index*.css
 tmp
 *.ai
 sources

@@ -62,9 +62,13 @@ gulp.task('bump', function () {
 });
 
 gulp.task('rev', function () {
-  gulp.src(conf.revFiles)
+  gulp.src(conf.rev.src)
+    .pipe(gulpif( /[.]css$/, minifyCSS({keepSpecialComments: 0})))
+    // streamify is for handling browserify stream
+    .pipe(gulpif( /[.]js$/, streamify(uglify({mangle: false}))))
+    // no rename as the hash do this
     .pipe(rev())
-    .pipe(gulp.dest('public'))
+    .pipe(gulp.dest(conf.rev.dst))
     .pipe(rev.manifest())
     .pipe(gulp.dest(conf.db.dst))
     .pipe(livereload(server));
@@ -87,6 +91,26 @@ gulp.task('heroku', function(cb){
   // heroku config:set GITHUB_USERNAME=joesmith --app APPNAME
   if (args.config)  exec('heroku config:pull --app hiswe', execCb);
   if (args.log)     exec('heroku logs -n 1000 --app hiswe', execCb);
+  // heroku maintenance:on
+});
+
+// Upload to Amazon S3
+gulp.task('upload', function () {
+  var publisher = awspublish.create({
+    key:    conf.rc.AWS_ACCESS_KEY_ID,
+    secret: conf.rc.AWS_SECRET_KEY,
+    bucket: conf.rc.AWS_BUCKET
+  });
+  // .pipe(rename(function(path){ console.log(path); }));
+  return gulp.src( ['public/app-*.js', 'public/lib-*.js', 'public/index-*.css', '!public/media/font/*','!public/media/icons/*', 'public/*/*/*'])
+    .pipe(publisher.publish())
+    .pipe(publisher.cache())
+    .pipe(publisher.sync()) // delete not-in-folder files
+    .pipe(awspublish.reporter());
+    // .on('end' , function (callback){
+    // });
+    // Don't notify has it run for every images…
+    // .pipe(notify({title: 'HISWE', message: 'UPLOAD done'}));
 });
 
 /////////
@@ -101,12 +125,9 @@ gulp.task('stylus', ['clean-css'], function () {
       define: stylusVar,
       set:['resolve url']
     })))
+    .pipe(plumber.stop())
     .pipe(concat('index.css'))
     .pipe(replace(conf.css.replace.hisoFont, '$1./media/font/$2'))
-    .pipe(gulp.dest('./public'))
-    .pipe(rename('index.min.css'))
-    .pipe(minifyCSS({keepSpecialComments: 0}))
-    .pipe(plumber.stop())
     .pipe(gulp.dest(conf.css.dst))
     .pipe(notify({title: 'HISWE', message: 'CSS build done'}));
 });
@@ -124,12 +145,9 @@ gulp.task('clean-css', function() {
 /////////
 
 // LIBRARY
-gulp.task('lib', 'clean-js', function() {
+gulp.task('lib', ['clean-js'], function() {
   return gulp.src(conf.lib.src)
     .pipe(concat('lib.js'))
-    .pipe(gulp.dest('public'))
-    .pipe(rename('lib.min.js'))
-    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest(conf.lib.dst))
     .pipe(notify({title: 'HISWE', message: 'LIB build done'}));
 });
@@ -144,7 +162,7 @@ gulp.task('clean-app', function() {
   return gulp.src(conf.front.clean, {read: false}).pipe(clean());
 });
 
-gulp.task('bundle-front', ['clean-app'],function() {
+gulp.task('bundle-front', ['clean-app'], function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
       entries: conf.front.basedir + '/boot.coffee',
@@ -157,9 +175,6 @@ gulp.task('bundle-front', ['clean-app'],function() {
     .pipe(plumber({errorHandler: onError}))
     .pipe(source(conf.front.basedir + '/boot.coffee'))
     .pipe(rename('app.js'))
-    .pipe(gulp.dest(conf.front.dst))
-    .pipe(rename('app.min.js'))
-    .pipe(streamify(uglify({mangle: false})))
     .pipe(gulp.dest(conf.front.dst))
     .pipe(notify({title: 'HISWE', message: 'FRONTEND APP build done'}))
     .pipe(livereload(server));
@@ -285,24 +300,6 @@ gulp.task('list', function(cb) {
 
 gulp.task('image', ['pixel', 'splash', 'svg', 'cover']);
 gulp.task('resize', ['image']); // Aliase because I just often mess around
-
-// Upload to Amazon S3
-gulp.task('upload', function () {
-  var publisher = awspublish.create({
-    key:    conf.rc.AWS_ACCESS_KEY_ID,
-    secret: conf.rc.AWS_SECRET_KEY,
-    bucket: conf.rc.AWS_BUCKET
-  });
-
-  return gulp.src(conf.img.dst + '*')
-    .pipe(publisher.publish())
-    .pipe(publisher.sync()) // delete not-in-folder files
-    .pipe(awspublish.reporter());
-    // .on('end' , function (callback){
-    // });
-    // Don't notify has it run for every images…
-    // .pipe(notify({title: 'HISWE', message: 'UPLOAD done'}));
-});
 
 /////////
 // JSON

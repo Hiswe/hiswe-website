@@ -14,14 +14,16 @@ aws       = require('knox').createClient({
 
 # Other examples on http://stackoverflow.com/questions/17516820/serving-files-stored-in-s3-in-express-nodejs-app
 streamAws = (req, res, next)  ->
-  aws.getFile "/#{req.params.id}", (err, resp) ->
+  url     = req.params[0]
+  # console.log url
+  aws.getFile "/#{url}", (err, resp) ->
+    # console.log awsLog.prompt, 'get asset'.prompt, url
     if err
-      console.log awsLog.error, req.params.id, err
+      console.log awsLog.error, url, err
       return next(err)
 
     res.setHeader('Content-Length', resp.headers['content-length'])
     res.setHeader('Content-Type', resp.headers['content-type'])
-    # console.log awsLog.prompt, req.params.id
     return resp.pipe(res)
 
 slowAssets = (req, res, next) ->
@@ -43,7 +45,11 @@ module.exports = (app) ->
   else
     console.log awsLog.prompt, 'use AWS CDN'
     # Amazon S3 support
-    app.get '/media/images/:id', streamAws
+    reg = ///^\/(
+    (?:[\w-]*\.(?:js|css))| # JS & CSS
+    (?:media\/images\/[\w-]*\.(?:jpg|jpeg|svg|png)) # Images
+    )$///
+    app.get(reg, streamAws)
     # Statics
     maxAge = 2629800000 # 1 month
 

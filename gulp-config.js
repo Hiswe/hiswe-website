@@ -12,15 +12,18 @@ exports.db = {
   dst: 'server/datas'
 }
 
-exports.revFiles = [
-  'public/*min.js',
-  'public/*min.css'
-];
-
 exports.pack = [
   './package.json',
   './bower.json'
 ];
+
+exports.rev = {
+  src: ['public/app.js', 'public/lib.js', 'public/index.css'],
+  dst: 'public',
+  formatName: function formatOriginal(path) {
+    path.basename = path.basename + '.min';
+  }
+}
 
 exports.lib = {
   src: [
@@ -32,7 +35,7 @@ exports.lib = {
     // jQuery
     'bower_components/jquery/dist/jquery.js',
     // Plugin depending on jQuery
-    'public/jquery.mobile.custom.js',
+    'shared/jquery.mobile.custom.js',
     'bower_components/imagesloaded/imagesloaded.pkgd.js',
     'bower_components/jquery-pointer-events/src/pointer.js',
     'bower_components/hevent/build/jquery.hevent.js'
@@ -55,6 +58,7 @@ exports.css = {
   ],
   dst: 'public'
 };
+
 exports.server = {
   src: 'server/**/*.coffee',
   lint: {
