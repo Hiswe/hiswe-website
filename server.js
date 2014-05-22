@@ -31,12 +31,14 @@ var conf    = require('rc')('hiswe', {
   'AWS_ACCESS_KEY_ID', 'AWS_SECRET_KEY', 'AWS_BUCKET'].forEach(function(key){
     if (conf[key] == null) {
       var message = 'necessary config for ' + key + ' is not defined'
+      console.log(conf);
       throw new Error(message);
     }
 });
 
-//  Load boot file and fire away!
+// Load boot file and fire away!
 var app     = require('./config/app.coffee')();
+// process.env.PORT is for Heroku
 var port    = conf.PORT || process.env.PORT || 5000;
 
 var server  = http.createServer(app)

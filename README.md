@@ -33,10 +33,7 @@ Design a portfolio for myself
 
 ### TODO
 
-
-1. Update Content
-2. Prod here
-- *js* and *css* files shouldn't be in the repo.  
+1. *js* and *css* files shouldn't be in the repo.  
   They should be on AWS.
 - Migrate to Express 4
 - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
