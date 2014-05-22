@@ -31,6 +31,9 @@ heroku config:set hiswe_KEY=value --app APPNAME
 
 ## Release History
 
+- **3.5.0**
+   - *JS* and *CSS* on AWS
+   - Express 4
 - **3.4.3** — Async load of projects content 
 - **3.4.2** — Static page for projects + direct link to originals
 - **3.4.1** — Lazy load of projects cover 
@@ -44,13 +47,7 @@ heroku config:set hiswe_KEY=value --app APPNAME
 
 ## Roadmap
 
-1. **version 3.5** *aka* “clean server”
-   - *js* and *css* files shouldn't be in the repo.  
-     They should be on AWS.
-   - ~~Migrate to Express 4~~
-   - ~~Update other dependencies~~
-   - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
-- **version 3.6** *aka* “clean front”
+1. **version 3.6** *aka* “clean front”
    - JS front lib in requireJs
       - As jQuery mobile can't be require maybe look at [jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
       - for imagesloaded look at this [issue](https://github.com/desandro/imagesloaded/issues/119)
