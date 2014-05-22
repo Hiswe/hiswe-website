@@ -124,11 +124,7 @@ gulp.task('clean-css', function() {
 /////////
 
 // LIBRARY
-gulp.task('source-map', function(){
-  return gulp.src(conf.lib.srcMap).pipe(gulp.dest(conf.lib.dst));
-})
-
-gulp.task('lib', ['clean-js', 'source-map'], function() {
+gulp.task('lib', 'clean-js', function() {
   return gulp.src(conf.lib.src)
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('public'))
