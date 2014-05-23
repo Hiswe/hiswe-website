@@ -96,7 +96,7 @@ exports.icons = {
   clean: rc.GULP_SRC + '/icons/def',
   dst: 'public/media/icons',
   finalSrc: 'public/media/icons/*.svg',
-  finalDst: 'views/front/includes',
+  finalDst: 'views/includes',
   rename: function rename(path) {
     path.basename = path.basename.replace(/(hiswe-icons_)/, '');
     path.basename = slug(path.basename).toLowerCase();
