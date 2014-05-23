@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "dependencies": {},
   "devDependencies": {
     "pointerevents-polyfill": "~0.2.0",

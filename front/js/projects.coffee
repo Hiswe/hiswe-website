@@ -4,7 +4,7 @@ options     = require '../../shared/stylus-var.json'
 pubsub      = require './pubsub.coffee'
 
 class Projects extends Controller
-  trace:      false
+  trace:      true
   logPrefix:  'PROJECTS'
   opened:     false
 
@@ -39,6 +39,7 @@ class Projects extends Controller
     return @all.filter(".#{options.activeClass}")
 
   clean: ->
+    @log 'clean'
     @currentPanel()
       .removeClass(options.activeClass)
       .find(".#{options.witness}")
@@ -66,6 +67,7 @@ class Projects extends Controller
   loadBody: ($currentPanel) ->
     return if $currentPanel.data('bodyLoaded')
     @wait(100).then =>
+      @log $currentPanel
       href = $currentPanel.find('a.hw-projects-name').attr('href')
       @log 'load body', href
       $.get(href).success (body) =>
@@ -84,6 +86,7 @@ class Projects extends Controller
   # But it keeps me from filtering between all transitionend events
   # that are bubbling everywhere :)
   witness: (event) ->
+    @log 'witness event'
     if @opened is on
       @log 'witness :: close'
       @closingTransitionEnd()
@@ -127,10 +130,10 @@ class Projects extends Controller
     @clean()
     @el.css('z-index', 2)
     # wait for firefox…
-    @wait(50).then -> $target.addClass(options.activeClass)
-
-    $target.find(".#{options.witness}")
-      .heventAddClass(options.activeWitness)
+    @wait(50).then ->
+      $target.addClass(options.activeClass)
+      $target.find(".#{options.witness}")
+        .heventAddClass(options.activeWitness)
 
     pubsub('projects').publish('openStart')
     this
