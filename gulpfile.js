@@ -317,6 +317,7 @@ gulp.task('json', function() {
 
 gulp.task('build', function(callback) {
   if (args.js != null)      return runsequence(['lib', 'bundle-front'], 'rev', callback);
+  if (args.lib != null)     return runsequence('lib', 'rev', callback);
   if (args.css != null)     return runsequence('stylus', 'rev', callback);
   if (args.front != null)   return runsequence('bundle-front', 'rev', callback);
   if (args.image === false) return runsequence(['bundle-front', 'lib', 'stylus'], 'rev', callback);
@@ -394,7 +395,8 @@ gulp.task('doc', function(callback) {
   console.log(m('font'), g('..............'), 'Copy fonts to the right folder');
   console.log(m('json'), g('..............'), 'Package all datas to json');
   console.log(m('build'), g('.............'), 'js + css + rev');
-  console.log(m('  --js'), g('............'), 'Concat & uglify  all js + rev');
+  console.log(m('  --js'), g('............'), 'Concat & uglify all js + rev');
+  console.log(m('  --lib'), g('...........'), 'Concat & uglify lib + rev');
   console.log(m('  --css'), g('...........'), 'Compile stylus + uglify + rev');
   console.log(m('  --front'), g('.........'), 'Concat & uglify front-end app + rev');
   console.log(m('  --no-image'), g('......'), 'build everything except images');

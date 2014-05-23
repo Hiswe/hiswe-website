@@ -4,7 +4,7 @@ options     = require '../../shared/stylus-var.json'
 pubsub      = require './pubsub.coffee'
 
 class Projects extends Controller
-  trace:      true
+  trace:      false
   logPrefix:  'PROJECTS'
   opened:     false
 
