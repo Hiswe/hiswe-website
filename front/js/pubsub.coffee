@@ -1,3 +1,5 @@
+jQuery = require('./setup')()
+
 topics = {}
 
 pubsub = ( id ) ->

@@ -1,4 +1,5 @@
-Controller  = require './front-controller.coffee'
+$           = require 'jquery'
+Controller  = require './front-controller'
 
 class Contact extends Controller
   trace: false

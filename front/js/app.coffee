@@ -1,9 +1,10 @@
-Controller  = require './front-controller.coffee'
-Services    = require './services.coffee'
-Projects    = require './projects.coffee'
-Contact     = require './contact.coffee'
-pubsub      = require './pubsub.coffee'
-options     = require '../../shared/stylus-var.json'
+$           = require 'jquery'
+Controller  = require './front-controller'
+Services    = require './services'
+Projects    = require './projects'
+Contact     = require './contact'
+pubsub      = require './pubsub'
+options     = require '../../shared/stylus-var'
 
 class App extends Controller
   trace: false

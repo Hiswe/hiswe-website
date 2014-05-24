@@ -3,16 +3,8 @@
   "version": "3.5.2",
   "dependencies": {},
   "devDependencies": {
-    "pointerevents-polyfill": "~0.2.0",
-    "PointerGestures": "Polymer/PointerGestures#~0.2.2",
-    "jquery-pointer-events": "git://github.com/jquery/jquery-pointer-events.git",
     "hevent": "~0.4.7",
-    "hiso-font": "~0.2.2",
-    "modernizr": "~2.7.2",
-    "jquery.transit": "git://github.com/rstacruz/jquery.transit.git#~0.9.9",
-    "imagesloaded": "~3.1.5",
-    "jquery": "~2.1.1",
-    "jquery-mobile": "~1.4.2"
+    "hiso-font": "~0.2.2"
   },
   "resolutions": {
     "jquery": "~2.1.1",

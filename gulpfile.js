@@ -24,6 +24,7 @@ var minifyCSS   = require('gulp-minify-css');
 var source      = require('vinyl-source-stream');
 var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
+var modernizr   = require('gulp-modernizr');
 var browserify  = require('browserify');
 // icons
 var svgSprites  = require('gulp-svg-sprites');
@@ -75,23 +76,12 @@ gulp.task('rev', function () {
 });
 
 gulp.task('heroku', function(cb){
-  function formatStdout (stdout) {
-    if (args.log) {
-      var regexp = /^(\d{4}(?:-\d\d){2})T((?:\d\d:){2}\d\d).*(app|heroku).*\]:\s(.*)$/mg
-      return stdout.replace(regexp, '$1 $2 $3 : $4');
-    }
-    return stdout;
-  }
-
   function execCb(err, stdout, stderr) {
-    console.log(formatStdout(stdout));
+    console.log(conf.heroku.format(stdout, args));
     return cb(err);
   }
-
-  // heroku config:set GITHUB_USERNAME=joesmith --app APPNAME
   if (args.config)  exec('heroku config:pull --app hiswe', execCb);
   if (args.log)     exec('heroku logs -n 1000 --app hiswe', execCb);
-  // heroku maintenance:on
 });
 
 // Upload to Amazon S3
@@ -101,8 +91,8 @@ gulp.task('upload', function () {
     secret: conf.rc.AWS_SECRET_KEY,
     bucket: conf.rc.AWS_BUCKET
   });
-  // .pipe(rename(function(path){ console.log(path); }));
-  return gulp.src( ['public/app-*.js', 'public/lib-*.js', 'public/index-*.css', '!public/media/font/*','!public/media/icons/*', 'public/*/*/*'])
+
+  return gulp.src( ['public/app-*.js', 'public/vendor-*.js', 'public/index-*.css', '!public/media/font/*','!public/media/icons/*', 'public/*/*/*'])
     .pipe(publisher.publish())
     .pipe(publisher.cache())
     .pipe(publisher.sync()) // delete not-in-folder files
@@ -129,7 +119,7 @@ gulp.task('stylus', ['clean-css'], function () {
     .pipe(concat('index.css'))
     .pipe(replace(conf.css.replace.hisoFont, '$1./media/font/$2'))
     .pipe(gulp.dest(conf.css.dst))
-    .pipe(notify({title: 'HISWE', message: 'CSS build done'}));
+    .pipe(notify(conf.msg('CSS build done')));
 });
 
 gulp.task('css', function(callback) {
@@ -144,36 +134,62 @@ gulp.task('clean-css', function() {
 // JS
 /////////
 
-// LIBRARY
-gulp.task('lib', ['clean-js'], function() {
-  return gulp.src(conf.lib.src)
-    .pipe(concat('lib.js'))
-    .pipe(gulp.dest(conf.lib.dst))
-    .pipe(notify({title: 'HISWE', message: 'LIB build done'}));
+gulp.task('modernizr', function () {
+  gulp.src(conf.js.modernizr.src)
+    .pipe(modernizr('modernizr.js', {
+      "options" : [
+        "setClasses",
+        "addTest",
+        "html5printshiv",
+        "testProp",
+        "fnBind",
+        "prefixed"
+      ]
+    }))
+    .pipe(gulp.dest(conf.public))
+    .pipe(notify(conf.msg('modernizr build done')))
+    .pipe(livereload(server));
 });
 
-gulp.task('clean-js', function() {
-  // gutil.log(gutil.colors.yellow(message));
-  return gulp.src(conf.lib.clean, {read: false}).pipe(clean());
+// LIBRARY
+gulp.task('vendor', ['clean-vendor'], function () {
+  var bundleStream = browserify({
+      basedir: __dirname,
+      noParse: conf.js.vendor.noParse
+    })
+    .require('wolfy87-eventemitter', {expose: 'eventEmitter'})
+    .require(conf.js.vendor.require)
+    .transform('deglobalify')
+    .bundle({
+      detectGlobals: false
+    }).on('error', onError);
+
+  return bundleStream
+    .pipe(source('vendor.js'))
+    .pipe(gulp.dest(conf.public))
+    .pipe(livereload(server))
+    .pipe(notify(conf.msg('Vendor build done')));
 });
+
+gulp.task('clean-vendor', function() { return gulp.src(conf.js.vendor.clean, {read: false}).pipe(clean()); });
 
 // FRONT-END APP
-gulp.task('clean-app', function() {
-  return gulp.src(conf.front.clean, {read: false}).pipe(clean());
-});
+gulp.task('clean-app', function() { return gulp.src(conf.front.clean, {read: false}).pipe(clean());});
 
 gulp.task('bundle-front', ['clean-app'], function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
-      entries: conf.front.basedir + '/boot.coffee',
-      basedir: conf.front.basedir
+      entries: conf.js.front.src,
+      basedir: conf.basedir,
+      extensions: ['.js', '.json', '.coffee']
     })
     .transform(coffeeify)
+    .external(conf.js.front.external)
     .bundle();
 
   return bundleStream
     .pipe(plumber({errorHandler: onError}))
-    .pipe(source(conf.front.basedir + '/boot.coffee'))
+    .pipe(source(conf.basedir + '/boot.coffee'))
     .pipe(rename('app.js'))
     .pipe(gulp.dest(conf.front.dst))
     .pipe(notify({title: 'HISWE', message: 'FRONTEND APP build done'}))
@@ -185,29 +201,24 @@ gulp.task('front-app', function(callback) {
 });
 
 gulp.task('js', function(callback) {
-  return runsequence(['lib', 'bundle-front'], 'rev', callback);
+  return runsequence(['vendor', 'bundle-front'], 'rev', callback);
 });
 
 /////////
+// ASSETS
+/////////
+
 // FONT
-/////////
-
-gulp.task('clean-font', function() {
-  return gulp.src(conf.font.dst, {read: false}).pipe(clean());
-});
+gulp.task('clean-font', function() { return gulp.src(conf.font.dst, {read: false}).pipe(clean()); });
 
 gulp.task('font', ['clean-font'], function() {
   gulp.src(conf.font.src)
     .pipe(gulp.dest(conf.font.dst));
 });
 
-/////////
 // ICONS
-/////////
 
-gulp.task('clean-icons', function() {
-  return gulp.src(conf.icons.dst, {read: false}).pipe(clean());
-});
+gulp.task('clean-icons', function() { return gulp.src(conf.icons.dst, {read: false}).pipe(clean());});
 
 gulp.task('build-icons', ['clean-icons'], function () {
   return gulp.src(conf.icons.src)
@@ -316,17 +327,18 @@ gulp.task('json', function() {
 /////////
 
 gulp.task('build', function(callback) {
-  if (args.js != null)      return runsequence(['lib', 'bundle-front'], 'rev', callback);
-  if (args.lib != null)     return runsequence('lib', 'rev', callback);
+  if (args.js != null)      return runsequence(['vendor', 'bundle-front'], 'rev', callback);
+  if (args.lib != null)     return runsequence('vendor', 'rev', callback);
   if (args.css != null)     return runsequence('stylus', 'rev', callback);
   if (args.front != null)   return runsequence('bundle-front', 'rev', callback);
-  if (args.image === false) return runsequence(['bundle-front', 'lib', 'stylus'], 'rev', callback);
-  return runsequence(['icons', 'bundle-front', 'lib', 'stylus', 'resize'], ['rev', 'json'], callback);
+  if (args.image === false) return runsequence(['bundle-front', 'vendor', 'stylus'], 'rev', callback);
+  return runsequence(['icons', 'bundle-front', 'vendor', 'stylus', 'resize'], ['rev', 'json'], callback);
 });
 
 /////////
 // SERVER
 /////////
+
 gulp.task('lint', function(){
   return gulp.src(conf.server.src)
     .pipe(coffeelint(conf.server.lint))

@@ -11,10 +11,8 @@ node_modules
 public/media/source
 public/media/images
 public/media/icons
-public/index.min.css
-public/app*.js
-public/lib*.js
-public/index*.css
+public/*.js
+public/*.css
 tmp
 *.ai
 sources

@@ -1,6 +1,7 @@
-Controller  = require './front-controller.coffee'
-options     = require '../../shared/stylus-var.json'
-pubsub      = require './pubsub.coffee'
+$           = require('./setup')()
+Controller  = require './front-controller'
+options     = require '../../shared/stylus-var'
+pubsub      = require './pubsub'
 
 class ServicesCarrousel extends Controller
   trace: false

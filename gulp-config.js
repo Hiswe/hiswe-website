@@ -6,44 +6,44 @@ var slug            = require('slug');
 
 slug.charmap['_'] = '-'
 
-exports.db = {
-  // ~ is for Mou temp files
-  src: ['!server/datas/*~.md', 'server/datas/*.md'],
-  dst: 'server/datas'
-}
+/////////
+// CONF & MISC
+/////////
+
+var publicFolder = exports.public = 'public';
+var mediaFolder = exports.media   = publicFolder + '/media';
+var basedir = exports.basedir   = __dirname;
+
+exports.msg = function (message) { 
+  return {title: 'HISWE', message: message} 
+};
+
+exports.rev = {
+  src: ['/app.js', '/vendor.js', '/index.css'].map( function(item){ return publicFolder + item}),
+  dst: publicFolder,
+  formatName: function formatOriginal(path) {
+    path.basename = path.basename + '.min';
+  }
+};
+
+exports.heroku = {
+  format: function format(stdout, args) {
+    if (args.log) {
+      var regexp = /^(\d{4}(?:-\d\d){2})T((?:\d\d:){2}\d\d).*(app|heroku).*\]:\s(.*)$/mg
+      return stdout.replace(regexp, '$1 $2 $3 : $4');
+    }
+    return stdout;
+  }
+};
 
 exports.pack = [
   './package.json',
   './bower.json'
 ];
 
-exports.rev = {
-  src: ['public/app.js', 'public/lib.js', 'public/index.css'],
-  dst: 'public',
-  formatName: function formatOriginal(path) {
-    path.basename = path.basename + '.min';
-  }
-}
-
-exports.lib = {
-  src: [
-    // 'bower_components/60fps-scroll/dist/60fps-scroll.js',
-    'bower_components/modernizr/modernizr.js', // used by js
-    'bower_components/modernizr/feature-detects/elem-progress-meter.js',
-    // 'bower_components/pointerevents-polyfill/pointerevents.dev.js',
-    // 'bower_components/PointerGestures/pointergestures.min.js',
-    // jQuery
-    'bower_components/jquery/dist/jquery.js',
-    // Plugin depending on jQuery
-    'shared/jquery.mobile.custom.js',
-    'bower_components/imagesloaded/imagesloaded.pkgd.js',
-    'bower_components/jquery-pointer-events/src/pointer.js',
-    'bower_components/hevent/build/jquery.hevent.js'
-  ],
-  dst: 'public',
-  srcMap: 'bower_components/PointerGestures/pointergestures.js.map',
-  clean: 'public/lib*.js'
-};
+/////////
+// CSS
+/////////
 
 exports.css = {
   externalFiles: '',
@@ -56,46 +56,86 @@ exports.css = {
     // 'public/media/icons/hiswe-icons.css',
     'front/css/index.styl'
   ],
-  dst: 'public'
+  dst: publicFolder
 };
 
-exports.server = {
-  src: 'server/**/*.coffee',
-  lint: {
-    cyclomatic_complexity: {level: 'warn'},
-    empty_constructor_needs_parens: {level: 'warn'},
-    max_line_length: {level: 'ignore'},
-    missing_fat_arrows: {level: 'warn'},
-    newlines_after_classes: {level: 'warn'},
-    no_empty_functions: {level: 'warn'},
-    no_empty_param_list: {level: 'warn'},
-    no_implicit_braces: {level: 'error'},
-    no_interpolation_in_single_quotes: {level: 'error'},
-    no_stand_alone_at: {level: 'error'},
-    no_unnecessary_double_quotes: {level: 'warn'}
-  }
-};
+/////////
+// JS
+/////////
 
 exports.front = {
-  basedir: __dirname + '/front/js',
   src: 'front/js/*.coffee',
-  clean: 'public/app*js',
-  dst: 'public'
+  clean: publicFolder + '/app*js',
+  dst: publicFolder
 };
+
+// var browsernizr = ['browsernizr',
+//   'browsernizr/test/elem/progress-meter',
+//   'browsernizr/test/css/transforms',
+//   'browsernizr/test/css/target',
+//   'browsernizr/test/json'
+// ];
+
+// TODO browsernizr in vendor
+var browsernizr = [];
+
+var vendor = {
+  clean: publicFolder + '/vendor*js',
+  noParse: ['hammerjs', 'jquery'],
+  require: browsernizr.concat(['hammerjs', 'jquery', 'eventie', 'imagesloaded', 'jquery-hammerjs', 'hevent'])
+};
+
+var eventEmitter = {
+  src: 'wolfy87-eventemitter',
+  expose: 'eventEmitter'
+};
+
+var modernizr = {
+  src: ['front/js/*.coffee', 'public/css/.styl', 'node_modules/hevent/build/jquery.hevent.js']
+};
+
+var front = {
+  src: basedir + '/front/js/boot.coffee',
+  external: function(){
+    var external = vendor.require.slice();
+    // external.push(imagesloaded.expose)
+    return external;
+  }()
+};
+
+exports.js = {
+  front: front,
+  vendor: vendor,
+  modernizr: modernizr
+};
+
+/////////
+// JSON
+/////////
+
+exports.db = {
+  // ~ is for Mou temp files
+  src: ['!server/datas/*~.md', 'server/datas/*.md'],
+  dst: 'server/datas'
+}
+
+/////////
+// ASSETS
+/////////
 
 exports.font = {
   src: [
     'bower_components/hiso-font/font/*',
     '!bower_components/hiso-font/font/*.css'
   ],
-  dst: 'public/media/font'
+  dst: mediaFolder + '/font'
 };
 
 exports.icons = {
   src: rc.GULP_SRC + '/icons/*.svg',
   clean: rc.GULP_SRC + '/icons/def',
-  dst: 'public/media/icons',
-  finalSrc: 'public/media/icons/*.svg',
+  dst: mediaFolder + '/icons',
+  finalSrc: mediaFolder + '/icons/*.svg',
   finalDst: 'views/includes',
   rename: function rename(path) {
     path.basename = path.basename.replace(/(hiswe-icons_)/, '');
@@ -103,8 +143,12 @@ exports.icons = {
   }
 };
 
+/////////
+// IMAGES
+/////////
+
 var imgSrc = rc.GULP_SRC + '/media'; // don't want a local path in my code :P
-var imgDst = 'public/media/images/';
+var imgDst = mediaFolder + '/images/';
 exports.img = {
   pixel:      [imgSrc + '/**/*.{jpg,jpeg,png}', '!' + imgSrc + 'splash*.{jpg,jpeg,png}'],
   cleanPixel: [imgDst + '*.{jpg,jpeg,png}', '!' + imgDst + 'splash*.{jpg,jpeg,png}'],
@@ -131,4 +175,23 @@ exports.img = {
   }
 };
 
-exports.serverSrc = 'media/images/';
+/////////
+// SERVER
+/////////
+
+exports.server = {
+  src: 'server/**/*.coffee',
+  lint: {
+    cyclomatic_complexity: {level: 'warn'},
+    empty_constructor_needs_parens: {level: 'warn'},
+    max_line_length: {level: 'ignore'},
+    missing_fat_arrows: {level: 'warn'},
+    newlines_after_classes: {level: 'warn'},
+    no_empty_functions: {level: 'warn'},
+    no_empty_param_list: {level: 'warn'},
+    no_implicit_braces: {level: 'error'},
+    no_interpolation_in_single_quotes: {level: 'error'},
+    no_stand_alone_at: {level: 'error'},
+    no_unnecessary_double_quotes: {level: 'warn'}
+  }
+};

@@ -52,16 +52,21 @@ heroku config:set hiswe_KEY=value --app APPNAME
       - As jQuery mobile can't be require maybe look at [jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
       - for imagesloaded look at this [issue](https://github.com/desandro/imagesloaded/issues/119)
    - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
-- **version 3.7** *aka* “speedup render”
+- **version 3.7** *aka* “you can (not) send mail”
+   - Change mail provider as [amail.io](http://amail.io) is down…
+   - Loader on project
+- **version 3.8** *aka* “speedup render”
    - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
    - Are improvements can be made with [velocity](http://julian.com/research/velocity/)?
-- **version 3.8** *aka* “mobile beauty”
+- **version 3.9** *aka* “mobile beauty”
    - Retina images
    - Responsive images 
 - **more improvements**
    - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
    - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
    - No change of page for contact
+   - A maintenance page
+   - Custom jQuery build
 
 ## Inspiration
 

@@ -1,4 +1,9 @@
+$        = require('./setup')()
+Hammer   = require('hammerjs')
+gestures = (gesture.name for key, gesture of Hammer.gestures)
+
 uid         = 0
+
 
 class Controller
   eventSplitter: /^(\S+)\s*(.*)$/
@@ -18,7 +23,7 @@ class Controller
     this
 
   wait: (timeout) ->
-    dfd = new jQuery.Deferred();
+    dfd = new $.Deferred();
     setTimeout(dfd.resolve, timeout || 1)
     dfd.promise()
 
@@ -63,9 +68,16 @@ class Controller
       eventName  = match[1]
       selector   = match[2]
 
-      if selector is ''
-        @el.on(eventName, method)
+      # Hammer js events
+      if gestures.indexOf(eventName) isnt -1
+        if selector is ''
+          @el.hammer().on(eventName, method)
+        else
+           @el.hammer().on(eventName, selector, method)
       else
-        @el.on(eventName, selector, method)
+        if selector is ''
+          @el.on(eventName, method)
+        else
+           @el.on(eventName, selector, method)
 
 module.exports = Controller

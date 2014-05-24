@@ -16,10 +16,10 @@ html.no-js
 
     //- jQuery + plugins
     if env == 'production'
-      script(src="/#{assets['lib.js']}")
+      script(src="/#{assets['vendor.js']}")
       script(src="/#{assets['app.js']}")
     else
-      script(src="/lib.js")
+      script(src="/vendor.js")
       script(src="/app.js")
 
     block script

@@ -1,7 +1,8 @@
-Controller  = require './front-controller.coffee'
-Carrousel   = require './projects-carrousel.coffee'
-options     = require '../../shared/stylus-var.json'
-pubsub      = require './pubsub.coffee'
+$           = require('./setup')()
+Controller  = require './front-controller'
+Carrousel   = require './projects-carrousel'
+options     = require '../../shared/stylus-var'
+pubsub      = require './pubsub'
 
 class Projects extends Controller
   trace:      false
@@ -122,6 +123,7 @@ class Projects extends Controller
     )
 
   open: (e) ->
+    @log('open', e)
     $target = $(e.currentTarget)
     e.stopPropagation()
     return if $target.hasClass(options.activeClass)
