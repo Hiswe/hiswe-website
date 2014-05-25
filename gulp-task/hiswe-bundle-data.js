@@ -28,10 +28,10 @@ function fileExist (absPath, ext) {
 
 function formatCover (fileName, ext) {
   return {
-    path: '/' + conf.serverSrc + fileName + '.' + ext,
+    path: conf.img.serverSrc + fileName + '.' + ext,
     extension: ext
   }
-}
+};
 
 function getCover (fileName) {
   fileName = 'cover-' + fileName;

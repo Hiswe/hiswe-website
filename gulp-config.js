@@ -157,6 +157,7 @@ exports.img = {
   svg:        imgSrc + '/**/*.svg',
   cleanSvg:   imgDst + '*.svg',
   dst:        imgDst,
+  serverSrc:  '/media/images/',
   height:     sharedVar.carrouselHeight,
   width:      sharedVar.desktopWidth - ( sharedVar.desktopWidth * 0.1 ),
   fullDst:    __dirname + '/' + imgDst,
