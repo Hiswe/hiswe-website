@@ -25,6 +25,9 @@ class Services extends Controller
     @log 'Init'
     pubsub('body').subscribe (event) =>
       @clean() if event is 'tap'
+
+    pubsub('projects').subscribe (event) =>
+      @clean() if event is 'openStart'
     this
 
   clean: =>

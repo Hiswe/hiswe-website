@@ -17,7 +17,7 @@ class Projects extends Controller
 
   events: {
     'tap .hw-projects-item'         : 'open'
-    'tap .hw-projects-name'         : 'prevent'
+    'click .hw-projects-name'       : 'prevent'
     'tap .hw-projects-close'        : 'close'
     'transitionend .hw-witness'     : 'witness'
   }
@@ -31,6 +31,8 @@ class Projects extends Controller
     this
 
   # Don't go on project page
+  # Has to be a click event since tap & click event aren't the same
+  # http://stackoverflow.com/questions/18225061/hammer-js-and-preventdefault
   prevent: (event) ->
     @log 'prevent', event
     event.preventDefault()
@@ -126,9 +128,11 @@ class Projects extends Controller
     @log('open', e)
     $target = $(e.currentTarget)
     e.stopPropagation()
+    # e.gesture.stopPropagation()
     return if $target.hasClass(options.activeClass)
     @log 'Projects open'
     e.preventDefault()
+    # e.gesture.preventDefault()
     @clean()
     @el.css('z-index', 2)
     # wait for firefox…
