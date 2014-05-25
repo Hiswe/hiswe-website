@@ -29,7 +29,8 @@
     "morgan": "^1.1.1",
     "errorhandler": "^1.0.1",
     "nodemailer": "^0.6.5",
-    "extend": "^1.2.1"
+    "extend": "^1.2.1",
+    "googleapis": "^0.7.0"
   },
   "devDependencies": {
     "gulp": "~3.x.x",

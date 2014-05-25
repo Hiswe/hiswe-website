@@ -7,6 +7,7 @@ jade          = require 'jade'
 conf          = require('rc')('HISWE')
 log           = '[CONTACT]'
 
+# Mail service
 smtpTransport = nodemailer.createTransport 'SMTP', {
   service: 'Gmail',
   auth: {
@@ -61,9 +62,12 @@ createXhr = (req, res, next) ->
     console.log log.debug, form
     console.log log.warn, 'validation fail' , req.body
     return res.send 400, "validation fail <br>#{validation.message}"
+
   sendMail form, (err, result) ->
     if err
-      console.log log.error, 'Mail has not been send'
+      # Generate an auth url in case of error coming from bad oauth configuration
+      require('./oauth').generateAuthUrl(req)
+      console.log log.error, 'XHR Mail has not been send'
       console.log err
       return res.send(500, 'Message not send. Please try yannick.aivayan@hiswe.net')
     console.log log.debug, 'Mail has been send'
@@ -73,12 +77,8 @@ sendMail = (data, callback) ->
   alog = "#{log}[SEND MAIL]"
   console.log alog.debug, data
 
-
   templatePath = path.join(__dirname, '../../views/mailing.jade')
   message = jade.render(fs.readFileSync(templatePath, 'utf8'), data)
-
-  console.log alog.debug, templatePath
-  console.log alog.debug, message
 
   mail = {
     from: "#{data.name} <#{data.email}>", # sender address
