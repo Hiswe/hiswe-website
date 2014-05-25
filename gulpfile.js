@@ -75,6 +75,17 @@ gulp.task('rev', function () {
     .pipe(livereload(server));
 });
 
+gulp.task('tag', function (callback) {
+  var pkg     = require('./package.json');
+  var v       = 'v' + pkg.version;
+  var message = (args.m == null)? 'Release ' + v : 'Release ' + v  + ' – ' + args.m;
+  console.log('git ci -am "'+message+'"');
+  console.log('git tag -a '+pkg.version+' -m "'+message+'"');
+  console.log('git push --tags');
+  callback();
+});
+
+
 gulp.task('heroku', function(cb){
   function execCb(err, stdout, stderr) {
     console.log(conf.heroku.format(stdout, args));

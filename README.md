@@ -31,7 +31,10 @@ heroku config:set hiswe_KEY=value --app APPNAME
 
 ## Release History
 
-- **3.5.0**
+- **3.6.0** *aka* “clean front”
+   - Front JS & lib in requireJs
+   - [Coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
+- **3.5.0** *aka* “clean server“”
    - *JS* and *CSS* on AWS
    - Express 4
 - **3.4.3** — Async load of projects content 
@@ -47,12 +50,7 @@ heroku config:set hiswe_KEY=value --app APPNAME
 
 ## Roadmap
 
-1. **version 3.6** *aka* “clean front”
-   - JS front lib in requireJs
-      - As jQuery mobile can't be require maybe look at [jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
-      - for imagesloaded look at this [issue](https://github.com/desandro/imagesloaded/issues/119)
-   - [coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
-- **version 3.7** *aka* “you can (not) send mail”
+1. **version 3.7** *aka* “you can (not) send mail”
    - Change mail provider as [amail.io](http://amail.io) is down…
    - Loader on project
 - **version 3.8** *aka* “speedup render”
