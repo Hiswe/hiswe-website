@@ -1,7 +1,7 @@
 log   = '[PROJECT]'
 db    = require('../datas/db-projects.json')
 dbXhr = require('../datas/db-projects-xhr.json')
-conf  = require('rc')('HISWE')
+conf  = require('rc')('hiswe')
 
 show = (req, res, next) ->
   console.log log.prompt, req.params.project

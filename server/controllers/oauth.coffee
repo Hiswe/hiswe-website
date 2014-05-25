@@ -1,6 +1,6 @@
 googleapis    = require 'googleapis'
 
-conf          = require('rc')('HISWE')
+conf          = require('rc')('hiswe')
 log           = '[OAUTH]'
 
 exports.generateAuthUrl = (req) ->

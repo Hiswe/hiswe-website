@@ -4,7 +4,7 @@ nodemailer    = require 'nodemailer'
 extend        = require 'extend'
 jade          = require 'jade'
 
-conf          = require('rc')('HISWE')
+conf          = require('rc')('hiswe')
 log           = '[CONTACT]'
 
 # Mail service
