@@ -3,7 +3,7 @@
     "order": 6,
     "path": "/projects/agantio",
     "cover": {
-      "path": "/media/images/cover-agantio.svg",
+      "path": "/undefinedcover-agantio.svg",
       "extension": "svg"
     },
     "id": "project-agantio",
@@ -14,7 +14,7 @@
     "order": 5,
     "path": "/projects/taelys",
     "cover": {
-      "path": "/media/images/cover-taelys.svg",
+      "path": "/undefinedcover-taelys.svg",
       "extension": "svg"
     },
     "id": "project-taelys",
@@ -25,7 +25,7 @@
     "order": 4,
     "path": "/projects/blog-copte",
     "cover": {
-      "path": "/media/images/cover-blog-copte.svg",
+      "path": "/undefinedcover-blog-copte.svg",
       "extension": "svg"
     },
     "id": "project-blog-copte",
@@ -36,7 +36,7 @@
     "order": 3,
     "path": "/projects/dolidhi",
     "cover": {
-      "path": "/media/images/cover-dolidhi.svg",
+      "path": "/undefinedcover-dolidhi.svg",
       "extension": "svg"
     },
     "id": "project-dolidhi",
@@ -47,7 +47,7 @@
     "order": 2,
     "path": "/projects/nori",
     "cover": {
-      "path": "/media/images/cover-nori.png",
+      "path": "/undefinedcover-nori.png",
       "extension": "png"
     },
     "id": "project-nori",
@@ -58,7 +58,7 @@
     "order": 1,
     "path": "/projects/banjai-garden",
     "cover": {
-      "path": "/media/images/cover-banjai-garden.svg",
+      "path": "/undefinedcover-banjai-garden.svg",
       "extension": "svg"
     },
     "id": "project-banjai-garden",

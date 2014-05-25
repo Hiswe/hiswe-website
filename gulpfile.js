@@ -158,6 +158,13 @@ gulp.task('clean-vendor', function() { return gulp.src(conf.js.vendor.clean, {re
 // FRONT-END APP
 gulp.task('clean-app', function() { return gulp.src(conf.js.front.clean, {read: false}).pipe(clean());});
 
+gulp.task('front-lint', function(){
+  return gulp.src(conf.js.front.src)
+    .pipe(coffeelint(conf.lint))
+    .pipe(coffeelint.reporter())
+    .pipe(coffeelint.reporter('fail'));
+});
+
 gulp.task('bundle-front', ['clean-app'], function() {
   // see https://github.com/hughsk/vinyl-source-stream example
   var bundleStream = browserify({
@@ -178,12 +185,14 @@ gulp.task('bundle-front', ['clean-app'], function() {
     .pipe(livereload(server));
 });
 
+
+
 gulp.task('front-app', function(callback) {
-  return runsequence('bundle-front', 'rev', callback);
+  return runsequence('front-lint', 'bundle-front', 'rev', callback);
 });
 
 gulp.task('js', function(callback) {
-  return runsequence(['vendor', 'bundle-front'], 'rev', callback);
+  return runsequence('front-lint', ['vendor', 'bundle-front'], 'rev', callback);
 });
 
 /////////
@@ -309,21 +318,21 @@ gulp.task('json', function() {
 /////////
 
 gulp.task('build', function(callback) {
-  if (args.js != null)      return runsequence(['vendor', 'bundle-front'], 'rev', callback);
+  if (args.js != null)      return runsequence('front-lint', ['vendor', 'bundle-front'], 'rev', callback);
   if (args.lib != null)     return runsequence('vendor', 'rev', callback);
   if (args.css != null)     return runsequence('stylus', 'rev', callback);
-  if (args.front != null)   return runsequence('bundle-front', 'rev', callback);
-  if (args.image === false) return runsequence(['bundle-front', 'vendor', 'stylus'], 'rev', callback);
-  return runsequence(['icons', 'bundle-front', 'vendor', 'stylus', 'resize'], ['rev', 'json'], callback);
+  if (args.front != null)   return runsequence('front-lint', 'bundle-front', 'rev', callback);
+  if (args.image === false) return runsequence('front-lint', ['bundle-front', 'vendor', 'stylus'], 'rev', callback);
+  return runsequence('front-lint', ['icons', 'bundle-front', 'vendor', 'stylus', 'resize'], ['rev', 'json'], callback);
 });
 
 /////////
 // SERVER
 /////////
 
-gulp.task('lint', function(){
+gulp.task('server-lint', function(){
   return gulp.src(conf.server.src)
-    .pipe(coffeelint(conf.server.lint))
+    .pipe(coffeelint(conf.lint))
     .pipe(coffeelint.reporter())
     .pipe(coffeelint.reporter('fail'));
 });
@@ -347,6 +356,7 @@ gulp.task('watch', function() {
   gulp.watch(['./front/css/**/*.styl'], ['css']);
   gulp.watch(['./front/js/**/*.coffee'], ['front-app']);
   gulp.watch(['./server/datas/*.md'], ['json']);
+  gulp.watch(['./server/**/*.coffee'], ['server-lint']);
   gulp.watch('./views/**/*.jade').on('change', function() {
     gulp.src('').pipe(notify(conf.msg('reload html')));
     server.changed({body: {files: ['index.html']}});
@@ -354,7 +364,7 @@ gulp.task('watch', function() {
 });
 
 // Nodemon server
-gulp.task('express', ['lint'], function () {
+gulp.task('express', ['server-lint'], function () {
   var env   = args.prod ? 'production' : 'development';
   var glob  = ['server/**/*.coffee', 'server/datas/db-*.json'];
   // ignore rev-manifest.json in dev mode
@@ -368,9 +378,7 @@ gulp.task('express', ['lint'], function () {
 });
 
 gulp.task('server', function (callback){
-  if (args.build != null) {
-    return runsequence(['watch', 'express'], 'open-browser', callback);
-  }
+  if (args.build != null) return runsequence(['watch', 'express'], 'open-browser', callback);
   return runsequence('build', ['watch', 'express'], 'open-browser', callback);
 });
 

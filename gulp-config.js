@@ -36,6 +36,20 @@ exports.heroku = {
   }
 };
 
+exports.lint = {
+  cyclomatic_complexity: {level: 'warn'},
+  empty_constructor_needs_parens: {level: 'warn'},
+  max_line_length: {level: 'ignore'},
+  missing_fat_arrows: {level: 'warn'},
+  newlines_after_classes: {level: 'warn'},
+  no_empty_functions: {level: 'warn'},
+  no_empty_param_list: {level: 'warn'},
+  no_implicit_braces: {level: 'error'},
+  no_interpolation_in_single_quotes: {level: 'error'},
+  no_stand_alone_at: {level: 'error'},
+  no_unnecessary_double_quotes: {level: 'warn'}
+};
+
 exports.pack = [
   './package.json',
   './bower.json'
@@ -163,18 +177,5 @@ exports.img = {
 /////////
 
 exports.server = {
-  src: 'server/**/*.coffee',
-  lint: {
-    cyclomatic_complexity: {level: 'warn'},
-    empty_constructor_needs_parens: {level: 'warn'},
-    max_line_length: {level: 'ignore'},
-    missing_fat_arrows: {level: 'warn'},
-    newlines_after_classes: {level: 'warn'},
-    no_empty_functions: {level: 'warn'},
-    no_empty_param_list: {level: 'warn'},
-    no_implicit_braces: {level: 'error'},
-    no_interpolation_in_single_quotes: {level: 'error'},
-    no_stand_alone_at: {level: 'error'},
-    no_unnecessary_double_quotes: {level: 'warn'}
-  }
+  src: 'server/**/*.coffee'
 };
