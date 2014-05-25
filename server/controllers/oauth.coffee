@@ -7,7 +7,7 @@ exports.generateAuthUrl = (req) ->
   redirectUrl = req.protocol + '://' + req.get('host') + '/oauth2callback'
   # Google Auth
   OAuth2        = googleapis.auth.OAuth2
-  console.log log.debg 'generate Auth Url'
+  console.log log.debug, 'generate Auth Url'
   console.log conf.AUTH_ID, conf.AUTH_SECRET
   oauth2Client  = new OAuth2(conf.AUTH_ID, conf.AUTH_SECRET, redirectUrl);
 
