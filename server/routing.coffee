@@ -6,7 +6,7 @@ controller = (name) -> require("./controllers/#{name}")
 
 module.exports = (app) ->
   console.log log.debug, 'setup front'
-  app.get   '/oauthcallback', controller('oauth').index
+  app.get   '/oauth2callback', controller('oauth').index
   app.get   '/contact', controller('contact').index
   app.post  '/contact', controller('contact').create
   app.get   '/projects/:project',  controller('project').show
