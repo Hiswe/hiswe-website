@@ -1,11 +1,26 @@
-alphamail = require 'alphamail'
+fs            = require 'fs'
+nodemailer    = require 'nodemailer'
+extend        = require 'extend'
+jade          = require 'jade'
 
 conf          = require('rc')('HISWE')
-adminMail     = conf.MAIL_ADMIN
-mailApiKey    = conf.MAIL_API_KEY
-mailProjectId = ~~conf.MAIL_PROJECT_ID # Cast into number
-emailService  = new alphamail.EmailService(mailApiKey)
 log           = '[CONTACT]'
+
+smtpTransport = nodemailer.createTransport 'SMTP', {
+  service: 'Gmail',
+  auth: {
+    XOAuth2: {
+      user:         conf.AUTH_USER
+      clientId:     conf.AUTH_ID
+      clientSecret: conf.AUTH_SECRET
+      refreshToken: conf.AUTH_TOKEN
+    }
+  }
+}
+
+mailOptions = {
+  to: conf.MAIL_TO # list of receivers
+}
 
 index = (req, res, next) ->
   # console.log log.debug, 'GET'
@@ -32,6 +47,9 @@ create = (req, res, next) ->
       console.log log.debug, 'Mail has been send'
       req.flash 'success', 'Message send'
 
+    # if you don't want to use this transport object anymore, uncomment following line
+    # smtpTransport.close(); # shut down the connection pool, no more messages
+
     res.redirect('/contact')
 
 createXhr = (req, res, next) ->
@@ -54,13 +72,18 @@ sendMail = (data, callback) ->
   alog = "#{log}[SEND MAIL]"
   console.log alog.debug, data
 
-  payload = new alphamail.EmailMessagePayload()
-    .setProjectId(mailProjectId) # ID of "hiswe" project
-    .setSender(new alphamail.EmailContact( data.email, data.email))
-    .setReceiver(new alphamail.EmailContact( adminMail, adminMail))
-    .setBodyObject(data)
+  message = jade.render(fs.readFileSync('./views/mailing.jade', 'utf8'), data)
 
-  emailService.queue payload, callback
+  mail = {
+    from: "#{data.name} <#{data.email}>", # sender address
+    subject: "[HISWE] contact demand from #{data.name}", # Subject line
+    html: message # html body
+  }
+
+  options = extend {}, mail, mailOptions
+
+  smtpTransport.sendMail options, callback
+
 
 isValid = (form) ->
   alog = "#{log}[VALIDATE]"

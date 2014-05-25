@@ -1,0 +1,24 @@
+div(style="background-color: #ECF4F8")
+  table(align="center", bgcolor="#FFFFFF", border="0", cellpadding="0", cellspacing="0", style="width: 635px;")
+    tr: td(colspan="3", height="30", bgcolor="#ECF4F8")
+    tr: td(colspan="3", align="center")
+      img(src="http://hiswe.net/public/media/mailing-logo.gif", width="216", height="89", alt="logo-hiswe")
+    tr: td(colspan="3", height="15")
+    tr
+      td(width="15")
+      td(style="line-height: 2")
+        b From:&nbsp;
+        a(href="mailto:#{email}" style="color:#FF0078")= name
+        &nbsp;
+        a(href="mailto:#{email}" style="color:#FF0078")= '<'+ email + '>'
+      td(width="15")
+    tr: td(colspan="3", height="15")
+    tr
+      td(width="15")
+      td: table(border="0", cellpadding="0", cellspacing="0"): tr
+        td(width="15")
+        td(style="line-height: 2")= message
+        td(width="15")
+      td(width="15")
+    tr: td(colspan="3", height="15")
+    tr: td(colspan="3", height="30", bgcolor="#ECF4F8")

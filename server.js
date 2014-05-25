@@ -23,8 +23,16 @@ colors.setTheme({
 
 // check conf
 var conf    = require('rc')('hiswe');
-['MAIL_ADMIN', 'MAIL_API_KEY', 'MAIL_PROJECT_ID',
-  'AWS_ACCESS_KEY_ID', 'AWS_SECRET_KEY', 'AWS_BUCKET'].forEach(function(key){
+
+['AUTH_USER',
+  'AUTH_ID',
+  'AUTH_SECRET',
+  'AUTH_TOKEN',
+  'MAIL_TO',
+  'AWS_ACCESS_KEY_ID',
+  'AWS_SECRET_KEY',
+  'AWS_BUCKET'
+].forEach(function(key){
     if (conf[key] == null) {
       var message = 'necessary config for ' + key + ' is not defined'
       console.log(conf);
