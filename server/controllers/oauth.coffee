@@ -30,6 +30,6 @@ exports.index = (req, res, next) ->
     if err
       console.log log.error, err
     else
-      console.log log.debug 'access tokens'
+      console.log log.debug, 'access tokens'
       console.log tokens
     res.redirect('/')
