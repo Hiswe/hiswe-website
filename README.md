@@ -52,10 +52,10 @@ heroku config:set hiswe_KEY=value --app APPNAME
 
 1. **version 3.7** *aka* “you can (not) send mail”
    - Change mail provider as [amail.io](http://amail.io) is down…
-   - Loader on project
 - **version 3.8** *aka* “speedup render”
    - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
    - Are improvements can be made with [velocity](http://julian.com/research/velocity/)?
+   - Loader on project
 - **version 3.9** *aka* “mobile beauty”
    - Retina images
    - Responsive images 

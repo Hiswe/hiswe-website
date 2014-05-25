@@ -3,9 +3,11 @@ NODE_ENV=development
 PORT=5000
 
 ; contact form
-MAIL_ADMIN=mail@mail.com
-MAIL_API_KEY=amail.io longstring
-MAIL_PROJECT_ID=amail.io smallnumber
+AUTH_USER=hiswehalya@gmail.com
+AUTH_ID=longkey
+AUTH_SECRET=longkey
+AUTH_TOKEN=longkey
+MAIL_TO=yannick.aivayan@hiswe.net
 
 ; AWS
 AWS_ACCESS_KEY_ID=amazon access key id

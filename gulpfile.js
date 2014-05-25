@@ -1,6 +1,7 @@
 'use strict';
 
 var fs          = require('fs');
+var ini         = require('ini');
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
 var path        = require('path');
@@ -93,6 +94,13 @@ gulp.task('heroku', function(cb){
   }
   if (args.config)  exec('heroku config:pull --app hiswe', execCb);
   if (args.log)     exec('heroku logs -n 1000 --app hiswe', execCb);
+});
+
+gulp.task('ini', function(cb){
+  var config = ini.parse(fs.readFileSync('./.hiswerc', 'utf-8'));
+  for (var key in config)
+    console.log('heroku config:set hiswe_'+key+'='+config[key]+' --app hiswe');
+  cb();
 });
 
 // Upload to Amazon S3
@@ -403,7 +411,8 @@ gulp.task('doc', function(callback) {
   console.log(m('bump'), g('..............'), 'patch version of json');
   console.log(m('  --minor'), g('.........'), 'minor version of json');
   console.log(m('  --major'), g('.........'), 'major version of json');
-  console.log(m('heroku'), g('............'), 'Heroku related tasj');
+  console.log(m('ini'), g('...............'), 'Parse .hiswerc to have the heroku commands to set the env vars');
+  console.log(m('heroku'), g('............'), 'Heroku related task');
   console.log(m('  --config'), g('........'), 'get heroku current conf');
   console.log(m('  --log'), g('...........'), 'get last 1000 log');
   console.log(m('rev'), g('...............'), 'Generate rev files');

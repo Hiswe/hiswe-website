@@ -79,6 +79,7 @@
     "browsernizr": "^1.0.2",
     "eventie": "git://github.com/desandro/eventie",
     "imagesloaded": "git://github.com/desandro/imagesloaded",
-    "wolfy87-eventemitter": "git://github.com/Wolfy87/EventEmitter"
+    "wolfy87-eventemitter": "git://github.com/Wolfy87/EventEmitter",
+    "ini": "^1.2.1"
   }
 }
