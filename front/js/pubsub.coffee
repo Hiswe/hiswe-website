@@ -1,4 +1,4 @@
-jQuery = require('./setup')()
+jQuery = require 'jquery'
 
 topics = {}
 

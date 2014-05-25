@@ -3,6 +3,7 @@
 var fs          = require('fs');
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
+var path        = require('path');
 var exec        = require('child_process').exec;
 var args        = require('yargs').argv;
 var conf        = require('./gulp-config.js');
@@ -24,7 +25,6 @@ var minifyCSS   = require('gulp-minify-css');
 var source      = require('vinyl-source-stream');
 var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
-var modernizr   = require('gulp-modernizr');
 var browserify  = require('browserify');
 // icons
 var svgSprites  = require('gulp-svg-sprites');
@@ -67,7 +67,7 @@ gulp.task('rev', function () {
     .pipe(gulpif( /[.]css$/, minifyCSS({keepSpecialComments: 0})))
     // streamify is for handling browserify stream
     .pipe(gulpif( /[.]js$/, streamify(uglify({mangle: false}))))
-    // no rename as the hash do this
+    // no rename as the rev hash do this
     .pipe(rev())
     .pipe(gulp.dest(conf.rev.dst))
     .pipe(rev.manifest())
@@ -96,11 +96,8 @@ gulp.task('upload', function () {
     .pipe(publisher.publish())
     .pipe(publisher.cache())
     .pipe(publisher.sync()) // delete not-in-folder files
-    .pipe(awspublish.reporter());
-    // .on('end' , function (callback){
-    // });
-    // Don't notify has it run for every images…
-    // .pipe(notify({title: 'HISWE', message: 'UPLOAD done'}));
+    .pipe(awspublish.reporter())
+    .pipe(notify({title: 'HISWE', message: 'UPLOAD done', onLast: true}));
 });
 
 /////////
@@ -134,30 +131,15 @@ gulp.task('clean-css', function() {
 // JS
 /////////
 
-gulp.task('modernizr', function () {
-  gulp.src(conf.js.modernizr.src)
-    .pipe(modernizr('modernizr.js', {
-      "options" : [
-        "setClasses",
-        "addTest",
-        "html5printshiv",
-        "testProp",
-        "fnBind",
-        "prefixed"
-      ]
-    }))
-    .pipe(gulp.dest(conf.public))
-    .pipe(notify(conf.msg('modernizr build done')))
-    .pipe(livereload(server));
-});
-
 // LIBRARY
+
 gulp.task('vendor', ['clean-vendor'], function () {
   var bundleStream = browserify({
       basedir: __dirname,
       noParse: conf.js.vendor.noParse
     })
     .require('wolfy87-eventemitter', {expose: 'eventEmitter'})
+    .require('./gulp-task/browsernizr-conf.js', {expose: 'conf'})
     .require(conf.js.vendor.require)
     .transform('deglobalify')
     .bundle({
@@ -174,7 +156,7 @@ gulp.task('vendor', ['clean-vendor'], function () {
 gulp.task('clean-vendor', function() { return gulp.src(conf.js.vendor.clean, {read: false}).pipe(clean()); });
 
 // FRONT-END APP
-gulp.task('clean-app', function() { return gulp.src(conf.front.clean, {read: false}).pipe(clean());});
+gulp.task('clean-app', function() { return gulp.src(conf.js.front.clean, {read: false}).pipe(clean());});
 
 gulp.task('bundle-front', ['clean-app'], function() {
   // see https://github.com/hughsk/vinyl-source-stream example
@@ -191,8 +173,8 @@ gulp.task('bundle-front', ['clean-app'], function() {
     .pipe(plumber({errorHandler: onError}))
     .pipe(source(conf.basedir + '/boot.coffee'))
     .pipe(rename('app.js'))
-    .pipe(gulp.dest(conf.front.dst))
-    .pipe(notify({title: 'HISWE', message: 'FRONTEND APP build done'}))
+    .pipe(gulp.dest(conf.public))
+    .pipe(notify(conf.msg('FRONTEND APP build done')))
     .pipe(livereload(server));
 });
 
@@ -354,7 +336,7 @@ gulp.task('open-browser', function (){
 gulp.task('notify-restart', function () {
   // wait server to properly restart
   setTimeout(function() {
-    gulp.src('').pipe(notify({title: 'HISWE', message: 'restart server'}));
+    gulp.src('').pipe(notify(conf.msg('restart server')));
     server.changed({body: {files: ['index.html']}});
   }, 1000);
 });
@@ -366,7 +348,7 @@ gulp.task('watch', function() {
   gulp.watch(['./front/js/**/*.coffee'], ['front-app']);
   gulp.watch(['./server/datas/*.md'], ['json']);
   gulp.watch('./views/**/*.jade').on('change', function() {
-    gulp.src('').pipe(notify({title: 'HISWE', message: 'reload html'}));
+    gulp.src('').pipe(notify(conf.msg('reload html')));
     server.changed({body: {files: ['index.html']}});
   });
 });
@@ -374,7 +356,9 @@ gulp.task('watch', function() {
 // Nodemon server
 gulp.task('express', ['lint'], function () {
   var env   = args.prod ? 'production' : 'development';
-  var glob  = ['server/**/*.coffee', 'server/datas/*.json'];
+  var glob  = ['server/**/*.coffee', 'server/datas/db-*.json'];
+  // ignore rev-manifest.json in dev mode
+  if (args.prod) glob.push('server/datas/rev-manifest.json')
   nodemon({
     script: 'server.js', ext: 'coffee json', watch: glob,
     env: { 'NODE_ENV': env, 'hiswe_pouic': 'clapou'}

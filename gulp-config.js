@@ -14,8 +14,8 @@ var publicFolder = exports.public = 'public';
 var mediaFolder = exports.media   = publicFolder + '/media';
 var basedir = exports.basedir   = __dirname;
 
-exports.msg = function (message) { 
-  return {title: 'HISWE', message: message} 
+exports.msg = function (message) {
+  return {title: 'HISWE', message: message}
 };
 
 exports.rev = {
@@ -63,26 +63,12 @@ exports.css = {
 // JS
 /////////
 
-exports.front = {
-  src: 'front/js/*.coffee',
-  clean: publicFolder + '/app*js',
-  dst: publicFolder
-};
-
-// var browsernizr = ['browsernizr',
-//   'browsernizr/test/elem/progress-meter',
-//   'browsernizr/test/css/transforms',
-//   'browsernizr/test/css/target',
-//   'browsernizr/test/json'
-// ];
-
-// TODO browsernizr in vendor
-var browsernizr = [];
+var modernizr = require('./gulp-task/browsernizr-conf.js').all
 
 var vendor = {
   clean: publicFolder + '/vendor*js',
   noParse: ['hammerjs', 'jquery'],
-  require: browsernizr.concat(['hammerjs', 'jquery', 'eventie', 'imagesloaded', 'jquery-hammerjs', 'hevent'])
+  require: modernizr.concat(['hammerjs', 'jquery', 'eventie', 'imagesloaded', 'jquery-hammerjs', 'hevent'])
 };
 
 var eventEmitter = {
@@ -90,15 +76,12 @@ var eventEmitter = {
   expose: 'eventEmitter'
 };
 
-var modernizr = {
-  src: ['front/js/*.coffee', 'public/css/.styl', 'node_modules/hevent/build/jquery.hevent.js']
-};
-
 var front = {
+  clean: publicFolder + '/app*js',
   src: basedir + '/front/js/boot.coffee',
   external: function(){
     var external = vendor.require.slice();
-    // external.push(imagesloaded.expose)
+    external = external.concat(['eventEmitter', 'conf']);
     return external;
   }()
 };

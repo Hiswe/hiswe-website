@@ -1,4 +1,4 @@
-$           = require('./setup')()
+$           = require 'jquery'
 Controller  = require './front-controller'
 options     = require '../../shared/stylus-var'
 pubsub      = require './pubsub'

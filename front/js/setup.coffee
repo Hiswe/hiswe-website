@@ -6,27 +6,25 @@ log = (args...) ->
   args.unshift("[SETUP]")
   return console?.log?(args...)
 
-# Setup a clean jQuery with all the plugins methods attached to it
-# So we don't have to require everything everythime 
+
 setup = ->
+  require test for test in require('conf').test
+  window.Modernizr  = require 'browsernizr'
+
+  window.Hammer     = require 'hammerjs'
+  # Setup jQuery with all the plugins methods attached to it
   $ = window.jQuery = require 'jquery'
-  window.Hammer     = require 'hammerjs' 
 
   require 'jquery-hammerjs'
   require 'hevent'
-  ImagesLoaded = require('imagesloaded')
-  # Fix imagesloaded bad behavior due to 
-  # https://github.com/desandro/imagesloaded/issues/148
-  $.fn.imagesLoaded  = ( options, callback )  ->
-    instance = new ImagesLoaded( this, options, callback )
-    instance.jqDeferred = new $.Deferred()
-    return instance.jqDeferred.promise( $(this) )
+  require 'imagesloaded'
 
   return $
 
 module.exports = ->
   if $?
-    log('Get jQuery instance') 
-    return $ 
-  log('Setup jQuery & other') 
-  return setup() 
+    log('Get jQuery instance')
+    return $
+  log('Setup jQuery & other')
+
+  return setup()
