@@ -1,8 +1,6 @@
-# Hiswe web site
+# Hiswe website
 
-## Purpose
-
-Design a portfolio for myself
+[hiswe.net](http://hiswe.net)
 
 ## launch
 
@@ -26,11 +24,27 @@ gulp server
 gulp build
 git commit + git push
 git push heroku master
-heroku config:set hiswe_KEY=value --app APPNAME
 ```
+
+## Roadmap
+
+1. **version 3.8** *aka* “speedup render”
+   - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
+   - Are improvements can be made with [velocity](http://julian.com/research/velocity/)?
+   - Loader on project
+- **version 3.9** *aka* “mobile beauty”
+   - Retina images
+   - Responsive images 
+- **more improvements**
+   - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
+   - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
+   - No change of page for contact
+   - A maintenance page
+   - Custom jQuery build
 
 ## Release History
 
+- **3.7.0** *aka* “you can (not) send mail” – Change mail provider
 - **3.6.0** *aka* “clean front”
    - Front JS & lib in requireJs
    - [Coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
@@ -48,23 +62,6 @@ heroku config:set hiswe_KEY=value --app APPNAME
 - **2.0.1** — Update content
 - **2.0.0** — Complete retake
 
-## Roadmap
-
-1. **version 3.7** *aka* “you can (not) send mail”
-   - Change mail provider as [amail.io](http://amail.io) is down…
-- **version 3.8** *aka* “speedup render”
-   - Replace matrix by [matrix3d](http://9elements.com/html5demos/matrix3d/)
-   - Are improvements can be made with [velocity](http://julian.com/research/velocity/)?
-   - Loader on project
-- **version 3.9** *aka* “mobile beauty”
-   - Retina images
-   - Responsive images 
-- **more improvements**
-   - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
-   - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
-   - No change of page for contact
-   - A maintenance page
-   - Custom jQuery build
 
 ## Inspiration
 
