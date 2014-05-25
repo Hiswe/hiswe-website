@@ -1,4 +1,5 @@
 fs            = require 'fs'
+path          = require 'path'
 nodemailer    = require 'nodemailer'
 extend        = require 'extend'
 jade          = require 'jade'
@@ -72,7 +73,8 @@ sendMail = (data, callback) ->
   alog = "#{log}[SEND MAIL]"
   console.log alog.debug, data
 
-  message = jade.render(fs.readFileSync('./views/mailing.jade', 'utf8'), data)
+  templatePath = path.join(__dirname, '../../views/mailing.jade')
+  message = jade.render(fs.readFileSync(templatePath, 'utf8'), data)
 
   mail = {
     from: "#{data.name} <#{data.email}>", # sender address
