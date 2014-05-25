@@ -73,8 +73,12 @@ sendMail = (data, callback) ->
   alog = "#{log}[SEND MAIL]"
   console.log alog.debug, data
 
+
   templatePath = path.join(__dirname, '../../views/mailing.jade')
   message = jade.render(fs.readFileSync(templatePath, 'utf8'), data)
+
+  console.log alog.debug, templatePath
+  console.log alog.debug, message
 
   mail = {
     from: "#{data.name} <#{data.email}>", # sender address
