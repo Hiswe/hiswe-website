@@ -1,7 +1,7 @@
 log   = '[PROJECT]'
-db    = require('../datas/db-projects.json')
-dbXhr = require('../datas/db-projects-xhr.json')
-conf  = require('rc')('hiswe')
+db    = require './../datas/db-projects.json'
+dbXhr = require './../datas/db-projects-xhr.json'
+conf  = require './../settings'
 
 show = (req, res, next) ->
   console.log log.prompt, req.params.project
@@ -15,7 +15,7 @@ show = (req, res, next) ->
 
 showXhr = (req, res, next) ->
   if dbXhr[req.params.project]?
-    if conf.NODE_ENV is 'development'
+    if conf.ENV is 'development'
       return setTimeout( ->
         res.send(dbXhr[req.params.project])
       , 750 + Math.round(750 * Math.random()))

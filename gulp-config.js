@@ -1,7 +1,7 @@
 'use strict';
 
 var sharedVar       = require('./shared/stylus-var.json');
-var rc = exports.rc = require('rc')('HISWE');
+var rc = exports.rc = require('./server/settings');
 var slug            = require('slug');
 
 slug.charmap['_'] = '-'

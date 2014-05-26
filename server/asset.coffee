@@ -1,6 +1,6 @@
 express   = require 'express'
 path      = require 'path'
-conf      = require('rc')('hiswe')
+conf      = require './settings'
 log       = '[ASSETS]'
 awsLog    = log + '[AWS]'
 

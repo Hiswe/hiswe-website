@@ -22,12 +22,11 @@ colors.setTheme({
 });
 
 // check conf
-var conf    = require('rc')('hiswe');
+var conf    = require('./server/settings');
 
 ['AUTH_USER',
   'AUTH_ID',
   'AUTH_SECRET',
-  'AUTH_TOKEN',
   'MAIL_TO',
   'AWS_ACCESS_KEY_ID',
   'AWS_SECRET_KEY',
@@ -40,10 +39,15 @@ var conf    = require('rc')('hiswe');
     }
 });
 
+if (conf.AUTH_TOKEN == null) {
+  console.warn('necessary config for AUTH_TOKEN is not defined');
+  console.log(conf);
+}
+
 // Load boot file and fire away!
 var app     = require('./server/app.coffee')();
 // process.env.PORT is for Heroku
-var port    = conf.PORT || process.env.PORT || 5000;
+var port    = conf.PORT;
 
 var server  = http.createServer(app)
 

@@ -1,5 +1,7 @@
 'use strict';
 
+require('coffee-script/register');
+
 var fs          = require('fs');
 var ini         = require('ini');
 var rev         = require('gulp-rev');

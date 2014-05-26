@@ -1,18 +1,9 @@
-; env
-NODE_ENV=development
-PORT=5000
-
 ; contact form
-AUTH_USER=hiswehalya@gmail.com
-AUTH_ID=longkey
-AUTH_SECRET=longkey
-AUTH_TOKEN=longkey
-MAIL_TO=yannick.aivayan@hiswe.net
+AUTH_SECRET= Google auth secret
+AUTH_REFRESH_TOKEN= Google auth refresh token
 
 ; AWS
-AWS_ACCESS_KEY_ID=amazon access key id
-AWS_SECRET_KEY=amazon secret key
-AWS_BUCKET=amazon bucket
+AWS_SECRET_KEY= Amazin secret key
 
 ; GULP (used in build system)
 GULP_SRC=path

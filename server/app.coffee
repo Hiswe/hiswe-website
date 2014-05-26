@@ -11,7 +11,7 @@ errorhandler  = require 'errorhandler'
 
 log           = '[BOOT]'
 rev           = require './datas/rev-manifest.json'
-conf          = require('rc')('hiswe')
+conf          = require './settings'
 secret        = 'The best color is pink'
 
 module.exports = ->

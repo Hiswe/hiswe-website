@@ -4,7 +4,7 @@ nodemailer    = require 'nodemailer'
 extend        = require 'extend'
 jade          = require 'jade'
 
-conf          = require('rc')('hiswe')
+conf          = require './../settings'
 log           = '[CONTACT]'
 
 # Mail service
@@ -15,7 +15,7 @@ smtpTransport = nodemailer.createTransport 'SMTP', {
       user:         conf.AUTH_USER
       clientId:     conf.AUTH_ID
       clientSecret: conf.AUTH_SECRET
-      refreshToken: conf.AUTH_TOKEN
+      refreshToken: conf.AUTH_REFRESH_TOKEN
     }
   }
 }
