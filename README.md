@@ -34,7 +34,9 @@ git push heroku master
    - Loader on project
 - **version 3.9** *aka* “mobile beauty”
    - Retina images
-   - Responsive images 
+   - Responsive images
+- **version 3.10** *aka* “clean mailing code”
+   - Refactor contact controller with Q
 - **more improvements**
    - See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
    - Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
