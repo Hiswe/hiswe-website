@@ -39,16 +39,14 @@ var conf    = require('./server/settings');
     }
 });
 
-if (conf.AUTH_TOKEN == null) {
+if (conf.AUTH_REFRESH_TOKEN == null) {
   console.warn('necessary config for AUTH_TOKEN is not defined');
   console.log(conf);
 }
 
 // Load boot file and fire away!
 var app     = require('./server/app.coffee')();
-// process.env.PORT is for Heroku
 var port    = conf.PORT;
-
 var server  = http.createServer(app)
 
 if (!port) {

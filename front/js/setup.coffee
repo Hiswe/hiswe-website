@@ -6,7 +6,6 @@ log = (args...) ->
   args.unshift("[SETUP]")
   return console?.log?(args...)
 
-
 setup = ->
   require test for test in require('conf').test
   window.Modernizr  = require 'browsernizr'
@@ -17,6 +16,7 @@ setup = ->
 
   require 'jquery-hammerjs'
   require 'hevent'
+  require 'velocity-animate'
   require 'imagesloaded'
 
   return $

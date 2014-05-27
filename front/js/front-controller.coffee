@@ -1,9 +1,8 @@
 $        = require 'jquery'
 Hammer   = require 'hammerjs'
+
 gestures = (gesture.name for key, gesture of Hammer.gestures)
-
-uid         = 0
-
+uid      = 0
 
 class Controller
   eventSplitter: /^(\S+)\s*(.*)$/

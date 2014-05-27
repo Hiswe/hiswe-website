@@ -3,11 +3,6 @@
   "version": "3.7.1",
   "dependencies": {},
   "devDependencies": {
-    "hevent": "~0.4.7",
     "hiso-font": "~0.2.2"
-  },
-  "resolutions": {
-    "jquery": "~2.1.1",
-    "WeakMap": "0.2.2"
   }
 }
