@@ -25,13 +25,18 @@ h-matrix(a, c, b, d)
   //                     0, 0, 0, 1)
 
 iso-left()
-  h-matrix(1, -0.5, 0, 1)
+  // transform skewY(-26deg)
+  transform skewY(-26.5deg)
+  // h-matrix(1, -0.5, 0, 1)
 
 iso-right()
-  h-matrix(1, 0.5, 0, 1)
+  // transform skewY(26deg)
+  transform skewY(26.5deg)
+  // h-matrix(1, 0.5, 0, 1)
 
 iso-reset()
-  h-matrix(1, 0, 0, 1)
+  transform skewY(0deg)
+  // h-matrix(1, 0, 0, 1)
 
 mirror-vertical()
   h-matrix(-1, 0, 0, 1)

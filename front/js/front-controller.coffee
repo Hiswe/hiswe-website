@@ -23,7 +23,9 @@ class Controller
 
   wait: (timeout) ->
     dfd = new $.Deferred();
-    setTimeout(dfd.resolve, timeout || 1)
+    setTimeout( =>
+      dfd.resolveWith(this)
+    , timeout || 1 )
     dfd.promise()
 
   proxy: (func) ->

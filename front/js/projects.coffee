@@ -5,12 +5,13 @@ options     = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
 class Projects extends Controller
-  trace:      false
+  trace:      true
   logPrefix:  'PROJECTS'
   opened:     false
 
   elements: {
     '.hw-projects-item'             : 'all'
+    '.hw-projects-close'            : 'allCover'
     '.hw-projects-content-container': 'content'
     '.hw-projects-content'          : 'container'
   }
@@ -19,14 +20,12 @@ class Projects extends Controller
     'tap .hw-projects-item'         : 'open'
     'click .hw-projects-name'       : 'prevent'
     'tap .hw-projects-close'        : 'close'
-    'transitionend .hw-witness'     : 'witness'
   }
 
   constructor: ->
     super
     return unless @el.length
     @log 'Init'
-    @all.append('<dd class="' + options.witness + '"></dd>')
     @loadCovers()
     this
 
@@ -34,7 +33,7 @@ class Projects extends Controller
   # Has to be a click event since tap & click event aren't the same
   # http://stackoverflow.com/questions/18225061/hammer-js-and-preventdefault
   prevent: (event) ->
-    @log 'prevent', event
+    @log 'prevent'
     event.preventDefault()
     false
 
@@ -43,10 +42,27 @@ class Projects extends Controller
 
   clean: ->
     @log 'clean'
-    @currentPanel()
-      .removeClass(options.activeClass)
-      .find(".#{options.witness}")
-      .heventRemoveClass(options.activeWitness)
+    $panel = @currentPanel()
+    return this unless $panel.length
+    $panel
+      .removeClass options.activeClass
+      .find '.hw-projects-content'
+      .velocity 'reverse'
+      .done (el) =>
+        $panel
+        .find('.hw-projects-cover')
+        .velocity 'reverse'
+        .done (el) =>
+          @log 'clean', el
+          $(el).velocity
+            properties:
+              height: '100%'
+              top: '0'
+              # skewY: [0, direction * 26.5]
+              backgroundColorRed:   options['$gray'].r
+              backgroundColorGreen: options['$gray'].g
+              backgroundColorBlue:  options['$gray'].b
+
     this
 
   # Cover images
@@ -85,19 +101,6 @@ class Projects extends Controller
           $body.css('opacity', 1)
           @initCarrousel($currentPanel)
 
-  # The witness object is a dirty hack
-  # But it keeps me from filtering between all transitionend events
-  # that are bubbling everywhere :)
-  witness: (event) ->
-    @log 'witness event'
-    if @opened is on
-      @log 'witness :: close'
-      @closingTransitionEnd()
-    else
-      @log 'witness :: open'
-      @openingTransitionEnd()
-    this
-
   openingTransitionEnd: ->
     return this if @opened is on
     @log 'transition end ::','open'
@@ -125,7 +128,7 @@ class Projects extends Controller
     )
 
   open: (e) ->
-    @log('open', e)
+    @log 'open'
     $target = $(e.currentTarget)
     e.stopPropagation()
     # e.gesture.stopPropagation()
@@ -134,15 +137,74 @@ class Projects extends Controller
     e.preventDefault()
     # e.gesture.preventDefault()
     @clean()
-    @el.css('z-index', 2)
+    # @el.css('z-index', 2)
     # wait for firefox…
     @wait(50).then ->
+      @openCover($target)
+        .done(@openPanel)
       $target.addClass(options.activeClass)
-      $target.find(".#{options.witness}")
-        .heventAddClass(options.activeWitness)
-
     pubsub('projects').publish('openStart')
     this
+
+  openCover: ($target) ->
+    # background $dark-grey
+    @log 'open Cover'
+    index = @all.index $target
+    direction = if index % 3 is 1 then 1 else -1
+    $target
+      .find '.hw-projects-cover'
+      .css 'z-index', 2
+      .velocity
+        properties:
+          height: '150%'
+          top: '-25%'
+          skewY: [0, direction * 26.5]
+          backgroundColorRed:   options['$dark-gray'].r
+          backgroundColorGreen: options['$dark-gray'].g
+          backgroundColorBlue:  options['$dark-gray'].b
+        options:
+          ease: 'ease'
+          duration: 500
+
+  openPanel: (cover) =>
+    @log 'open Panel'
+    $cover = $(cover)
+    $cover
+      .velocity
+        properties:
+          rotateY: [180, 0]
+        options:
+          ease: 'ease'
+          duration: 500
+
+    $window       = $(window)
+
+    coverOffset   = $cover.offset()
+    coverWidth    = $cover.width()
+    coverHeight   = $cover.height()
+
+    windowWidth   = $window.width()
+    windowHeight  = $window.height()
+
+    @log 'scaleX', coverWidth / windowWidth
+    @log 'scaleY', coverHeight / windowHeight
+
+    # current
+    $panel        = $cover.next()
+
+    $panel
+      .css {right: 0, bottom: 0, overflow: 'auto'}
+      .find '.hw-projects-content'
+      .velocity
+        properties:
+          top: [0, coverOffset.top - $window.scrollTop()]
+          left: [0, coverOffset.left - $window.scrollLeft()]
+          rotateY: [0, 180]
+          scaleX: [1, coverWidth / windowWidth]
+          scaleY: [1, coverHeight / windowHeight]
+        options:
+          ease: 'ease'
+          duration: 500
 
   close: (e) ->
     @log 'Projects close'

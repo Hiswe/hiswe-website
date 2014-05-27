@@ -22,14 +22,22 @@ setup = ->
   require 'imagesloaded'
   # Make a more coffee-friendly velocity function
   # https://github.com/julianshapiro/velocity/issues/76
-  jQuery.fn.velocity = ->
+  jQuery.fn.velocity = (args...) ->
+    dfd = new $.Deferred()
     _velocity = jQuery.velocity or Zepto.velocity or window.velocity
-    if arguments[0].properties?
-      propertiesMap = arguments[0].properties
-      options = arguments[0].options
+    if args[0].properties?
+      propertiesMap = args[0].properties
+      options = args[0].options or {}
+      options.complete = dfd.resolve
       _velocity.animate.call(this, propertiesMap, options)
     else
-      _velocity.animate.apply(this, arguments)
+      if args[1]?
+        args[1].complete = dfd.resolve
+      else
+        args.push {complete: dfd.resolve}
+
+      _velocity.animate.apply(this, args)
+    dfd.promise()
 
   return $
 

@@ -17,12 +17,12 @@
   z-index 1
   iso-left()
   background white
-  projects-cover-out()
   box-shadow inset 0 1px 0 0 noir(.1)
   text-align center
   cursor pointer
   perspective 1000px
   perspective-origin center center
+  backface-visibility hidden
 
   .hw-projects-name, img
     backface-visibility hidden
@@ -71,22 +71,6 @@
     .hw-projects-name
       transform translate(-50%, -50%) rotateY(0deg)
 
-  .hw-projects-item:nth-child(3n + 2).{activeClass} &,
-  .{activeClass} &
-    projects-cover-in()
-    box-shadow inset 0 0 0 0 $hover-color
-    background $dark-grey
-    iso-reset()
-    height 150%
-    top -25%
-    z-index 2
-
-  .hw-projects-item:nth-child(3n + 1).{activeClass} &
-    left 100%
-
-  .hw-projects-item:nth-child(3n + 3).{activeClass} &
-    left -100%
-
 .hw-projects-content-container
   fixed top left
   // This is for some performance issues…
@@ -97,39 +81,14 @@
   z-index 9
   overflow hidden
   perspective-origin center center
-  projects-container-out()
 
-  &::after,
   .hw-projects-content
     absolute top left
     bottom 0; right 0
     transform-style preserve-3d
     backface-visibility hidden
-    projects-content-out()
-
-  .hw-projects-content
     overflow hidden
-    transform scale3d(.1, .1, .1) rotateY(180deg)
-
-  &::after
-    content ''
-    background $darkest-grey
-    transform scale3d(.1, .1, .1)  rotateY(0deg)
-
-.{activeClass} .hw-projects-content-container
-  right 0%; bottom 0%
-  projects-container-in()
-
-  &::after
-    transform scale3d(1, 1, 1)  rotateY(180deg)
-
-  &::after,
-  .hw-projects-content
-    projects-content-in()
-
-  .hw-projects-content
-    overflow auto
-    transform scale3d(1, 1, 1) rotateY(0deg)
+    transform rotateY(180deg)
 
 .hw-projects-close
   fixed top -9em right -9em
@@ -162,20 +121,6 @@
     fixed top 1em right 1em
     visibility visible
     projects-close-button-in()
-
-
-.{witness}
-  absolute top left
-  visibility hidden
-  projects-witness-out()
-  width 0em; height @width
-  // position fixed
-  // background red
-  // z-index 10
-
-  &.{activeWitness}
-    visibility visible
-    projects-witness-in()
 
 // ———————————————————
 // @media Big Mobile

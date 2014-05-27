@@ -1,3 +1,5 @@
+parse   = require('color-parser')
+
 conf = {
   # classes
   'activeClass'             : 'hw-panel-active'
@@ -12,17 +14,17 @@ conf = {
   'desktopWidth'            : 1080
   'carrouselHeight'         : 552
   # colors
-  '$light-pink'             : '#ff74b9'
-  '$pink'                   : '#ff0078'
-  '$dark-pink'              : '#7a0037'
-  '$light-blue'             : '#2db6e9'
-  '$blue'                   : '#009ae1'
-  '$dark-blue'              : '#008edc'
-  '$light-gray'             : '#ecf4f8'
-  '$gray'                   : '#cddce4'
-  '$dark-gray'              : '#576176'
-  '$darkest-gray'           : '#454A5D'
-  '$black'                  : '#445'
+  '$light-pink'             : parse '#ff74b9'
+  '$pink'                   : parse '#ff0078'
+  '$dark-pink'              : parse '#7a0037'
+  '$light-blue'             : parse '#2db6e9'
+  '$blue'                   : parse '#009ae1'
+  '$dark-blue'              : parse '#008edc'
+  '$light-gray'             : parse '#ecf4f8'
+  '$gray'                   : parse '#cddce4'
+  '$dark-gray'              : parse '#576176'
+  '$darkest-gray'           : parse '#454A5D'
+  '$black'                  : parse '#445'
 }
 
 conf['$light-grey']         = conf['$light-gray']
