@@ -14,5 +14,5 @@ section.hw-projects
             href="#{project.path}"
           )= project.name
         dd.hw-projects-content-container
-          article.hw-projects-content!= project.markup
+          article.hw-projects-content(data-xhr=project.path)!= project.markup
           a(href="##{project.id}").hw-projects-close close

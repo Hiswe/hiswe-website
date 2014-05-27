@@ -7,7 +7,7 @@ pubsub      = require './pubsub'
 options     = require '../../shared/stylus-var'
 
 class App extends Controller
-  trace: false
+  trace: true
   logPrefix: 'APP'
   elements: {
     'body'                : 'body'
@@ -34,7 +34,6 @@ class App extends Controller
   bodyEvents: ->
     @body.on 'tap', =>
       @log 'body click'
-      @services.e?.trigger 'clean'
 
     pubsub('projects').subscribe (event) =>
       if event is 'openStart'
