@@ -1,6 +1,6 @@
 'use strict';
 
-var sharedVar       = require('./shared/stylus-var.json');
+var sharedVar       = require('./shared/stylus-var');
 var rc = exports.rc = require('./server/settings');
 var slug            = require('slug');
 
@@ -82,7 +82,7 @@ var modernizr = require('./gulp-task/browsernizr-conf.js').all
 var vendor = {
   clean: publicFolder + '/vendor*js',
   noParse: ['hammerjs', 'jquery'],
-  require: modernizr.concat(['hammerjs', 'jquery', 'eventie', 'imagesloaded', 'jquery-hammerjs', 'hevent'])
+  require: modernizr.concat(['hammerjs', 'jquery', 'eventie', 'velocity-animate', 'imagesloaded', 'jquery-hammerjs', 'hevent'])
 };
 
 var eventEmitter = {

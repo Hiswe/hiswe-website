@@ -58,7 +58,7 @@
     "gulp-image-resize": "~0.x.x",
     "tiny-lr": "0.x.x",
     "nib": "~1.x.x",
-    "stylus": "~0.x.x",
+    "stylus": "^0.45.1",
     "hstrap": "~1.x.x",
     "marked": "^0.3.2",
     "browserify": "^4.1.5",
@@ -82,6 +82,7 @@
     "imagesloaded": "git://github.com/desandro/imagesloaded",
     "wolfy87-eventemitter": "git://github.com/Wolfy87/EventEmitter",
     "ini": "^1.2.1",
-    "velocity-animate": "0.0.14"
+    "velocity-animate": "0.0.14",
+    "color-parser": "^0.1.0"
   }
 }

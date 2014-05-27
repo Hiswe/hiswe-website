@@ -51,7 +51,6 @@ var bundleData  = require('./gulp-task/hiswe-bundle-data');
 /////////
 
 var server = lr();
-var stylusVar   = require('./shared/stylus-var.json');
 
 // Plumber error callback
 var onError = function onError(err) {
@@ -87,7 +86,6 @@ gulp.task('tag', function (callback) {
   console.log('git push --tags');
   callback();
 });
-
 
 gulp.task('heroku', function(cb){
   function execCb(err, stdout, stderr) {
@@ -130,7 +128,7 @@ gulp.task('stylus', ['clean-css'], function () {
     .pipe(plumber({errorHandler: onError}))
     .pipe(gulpif(/[.]styl$/, stylus({
       use: [require('nib')(), require('hstrap')()],
-      define: stylusVar,
+      define: require('./shared/stylus-var-css'),
       set:['resolve url']
     })))
     .pipe(plumber.stop())
