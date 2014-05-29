@@ -39,6 +39,14 @@ setup = ->
       _velocity.animate.apply(this, args)
     dfd.promise()
 
+  # # https://github.com/julianshapiro/velocity/issues/41
+  # $.fn.velocityCSS = (property, value) ->
+  #   _velocity = jQuery.velocity or Zepto.velocity or window.velocity
+  #   obj = {};
+  #   obj[property] = value
+  #   _velocity.animate.call this, obj, 1
+  #   this
+
   return $
 
 module.exports = ->

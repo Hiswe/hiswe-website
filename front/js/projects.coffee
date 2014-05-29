@@ -16,6 +16,7 @@ class Projects extends Controller
     return unless @el.length
     @log 'Init'
 
+    # Cache window as we will access it's size later
     $window = $(window)
 
     @all.each (index) -> new ProjectController {
