@@ -12,6 +12,7 @@ conf = {
   'projectCoverLoad'        : 'hw-projects-cover-lazyload'
   # size
   'desktopWidth'            : 1080
+  'mobileWidth'             : 480
   'carrouselHeight'         : 552
   # colors
   '$light-pink'             : parse '#ff74b9'

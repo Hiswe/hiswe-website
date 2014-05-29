@@ -44,9 +44,9 @@ exports.lint = {
   newlines_after_classes: {level: 'warn'},
   no_empty_functions: {level: 'warn'},
   no_empty_param_list: {level: 'warn'},
-  no_implicit_braces: {level: 'error'},
-  no_interpolation_in_single_quotes: {level: 'error'},
-  no_stand_alone_at: {level: 'error'},
+  no_implicit_braces: {level: 'warn'},
+  no_interpolation_in_single_quotes: {level: 'warn'},
+  no_stand_alone_at: {level: 'warn'},
   no_unnecessary_double_quotes: {level: 'warn'}
 };
 

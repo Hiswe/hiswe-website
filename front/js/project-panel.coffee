@@ -25,16 +25,19 @@ class Project extends Controller
     return unless @el.length
     @log 'Init'
     @setup()
+    @setupPanelInfo()
     @wait(1000).then @loadCover
     this
 
+  ########
+  #  UTILITY
+  ########
+
   setup: ->
-    @direction  = if @index % 3 is 1 then 1 else -1
-    @skew       = 26.5 * @direction
-    @color      = if @direction > 0 then options['$gray'] else {r:255, g: 255, b:255}
     @href       = @cover.find('a').attr('href')
     @body       = $()
     @carrousel  = $()
+    pubsub('resizeEnd').subscribe @setupPanelInfo
 
   # Don't go on project page
   # Has to be a click event since tap & click event aren't the same
@@ -49,21 +52,33 @@ class Project extends Controller
     str.replace(/([A-Z])/g, (str,m1) -> '-' + m1.toLowerCase() )
       .replace(/^ms-/,'-ms-')
 
+  setupPanelInfo: =>
+    windowWidth = @window.width()
+
+    if windowWidth < options.mobileWidth
+      @skew       = 0
+      @color      = {r:255, g: 255, b:255}
+      return
+
+    modulo      = if windowWidth >= options.desktopWidth then 3 else 2
+    direction   = if @index % modulo is 1 then 1 else -1
+    @skew       = 26.5 * direction
+    @color      = if direction > 0 then options['$gray'] else {r:255, g: 255, b:255}
+
   ########
   #  COVER IMAGE
   ########
 
   loadCover: =>
-    @wait(1000).then =>
-      @log 'init load cover'
+    @log 'init load cover'
 
-      $title = @cover.find('.hw-projects-name')
-      imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
+    $title = @cover.find('.hw-projects-name')
+    imgMarkup = '<img src="' + $title.data('original') + '" alt="' + $title.data('alt') + '" />'
 
-      $(imgMarkup)
-        .appendTo(@cover)
-        .imagesLoaded()
-        .done => @cover.removeClass options.projectCoverLoad
+    $(imgMarkup)
+      .appendTo(@cover)
+      .imagesLoaded()
+      .done => @cover.removeClass options.projectCoverLoad
 
   ########
   #  OPEN
@@ -99,32 +114,6 @@ class Project extends Controller
   openPanel: (cover) =>
     @log 'open Panel'
     pubsub('projects').publish('openPanelStart')
-    # coverOffset       = @cover.offset()
-    # coverWidth        = @cover.width()
-    # coverHeight       = @cover.height()
-
-    # windowWidth       = @window.width()
-    # windowHeight      = @window.height()
-    # windowScrollTop   = @window.scrollTop()
-    # windowScrollLeft  = 0
-
-    # scaleX            = coverWidth / windowWidth
-    # scaleY            = coverHeight / windowHeight
-
-
-    # perspectiveLeft   = coverOffset.left - windowScrollLeft + coverWidth / 2
-    # perspectiveLeft   = Math.round ( perspectiveLeft / windowWidth ) * 100
-
-
-    # perspectiveTop    = coverOffset.top - windowScrollTop + coverHeight / 2
-    # perspectiveTop    = Math.round ( perspectiveTop / windowHeight ) * 100
-
-
-    # pouic = $('<span />').css({
-    #   width: '4px', height: '4px', margin: '-2px 0 0 -2px', position: 'fixed', 'z-index': 9999, background: 'red', display: 'block'
-    #   left: perspectiveLeft + '%', top: perspectiveTop + '%'
-    # }).appendTo($('body'))
-    # @log pouic
     # return
     @flipCover()
     @container.css {right: 0, bottom: 0}
@@ -154,27 +143,24 @@ class Project extends Controller
     scaleY            = coverHeight / windowHeight
 
     # Align transform center
-    perspectiveLeft   = coverOffset.left - windowScrollLeft + coverWidth / 2
-    perspectiveLeft   = Math.round ( perspectiveLeft / windowWidth ) * 100
-    # perspectiveLeft   = Math.round perspectiveLeft + perspectiveLeft * scaleX
+    originLeft   = Math.round coverOffset.left - windowScrollLeft + coverWidth / 2
+    originLeft   = Math.round ( originLeft / windowWidth ) * 100
 
-    perspectiveTop    = coverOffset.top - windowScrollTop + coverHeight / 2
-    perspectiveTop    = Math.round ( perspectiveTop / windowHeight ) * 100
-    # perspectiveTop    = Math.round perspectiveTop + perspectiveTop * scaleY
+    originTop    = Math.round coverOffset.top - windowScrollTop + coverHeight / 2
+    originTop    = Math.round ( originTop / windowHeight ) * 100
 
-    @log 'left', perspectiveLeft, 'top', perspectiveTop
-    # @container.css @prefix('perspectiveOrigin'), "#{perspectiveLeft}% #{perspectiveTop}%"
+    @log 'left', originLeft, 'top', originTop
 
     # flip content panel
     @content
-      .css @prefix('transformOrigin'), "#{perspectiveLeft}% #{perspectiveTop}%"
+      .css @prefix('transformOrigin'), "#{originLeft}% #{originTop}% 0"
       .velocity
         properties:
-          # top: [0, coverOffset.top - windowScrollTop]
-          # left: [0, coverOffset.left - windowScrollLeft]
           rotateY: [0, 180]
-          scaleX: [scaleX, scaleX]
-          scaleY: [scaleY, scaleY]
+          scaleX: [1, scaleX]
+          scaleY: [1, scaleY]
+          # Translate to fix perspective origin
+          translateX: ['0%', "#{originLeft - 50} %"]
         options:
           ease: 'ease'
           duration: 750
@@ -251,6 +237,9 @@ class Project extends Controller
   closeEnd: =>
     @log 'close end'
     @el.css('z-index', 1)
+    @content.removeAttr('style')
+    @cover.removeAttr('style')
+    @container.removeAttr('style')
     pubsub('projects').publish('closeEnd')
 
 module.exports = Project

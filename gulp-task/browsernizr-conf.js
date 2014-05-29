@@ -1,5 +1,6 @@
 var test = [
     'browsernizr/lib/prefixed',
+    // 'browsernizr/lib/mq',
     'browsernizr/test/elem/progress-meter',
     'browsernizr/test/css/animations',
     'browsernizr/test/css/transitions',

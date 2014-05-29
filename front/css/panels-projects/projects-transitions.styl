@@ -10,42 +10,6 @@ d-content-out = (t-content + t-between) * 2
 
 d-full        = d-cover-in + d-content-out + t-between
 
-// Cover panel
-projects-cover-in()
-  transition  transform   t-cover       ease    0s,
-              height      t-cover       ease    0s,
-              z-index     0s            ease    0s,
-              top         t-cover       ease    0s,
-              background  t-cover       ease    0s,
-              left        t-cover       ease    0s,
-              box-shadow  $hover-transition ease 0s
-
-projects-cover-out()
-  transition  transform   t-cover       ease    d-content-out,
-              height      t-cover       ease    d-content-out,
-              z-index     0s            ease    d-full,
-              top         t-cover       ease    d-content-out,
-              background  t-cover       ease    d-content-out,
-              left        t-cover       ease    d-content-out,
-              box-shadow  $hover-transition ease 0s
-
-// // Container panel
-// projects-container-in()
-//   transition  all         0s            ease    d-cover-in
-
-// projects-container-out()
-//   transition  all         0s            ease    d-content-out
-
-// // Content panel
-// projects-content-in()
-//   transition  transform   t-content*2   ease    d-cover-in,
-//               border      t-content     ease    d-content-in,
-//               opacity     t-content     ease    d-cover-in
-
-// projects-content-out()
-//   transition  transform   t-content*2   ease    0s,
-//               border      t-content*2   ease    0s,
-//               opacity     t-content     ease    t-content
 
 // gallery
 projects-gallery-in()
