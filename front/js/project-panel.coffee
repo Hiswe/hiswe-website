@@ -151,6 +151,7 @@ class Project extends Controller
 
     @log 'left', originLeft, 'top', originTop
 
+    @container.css @prefix('perspectiveOrigin'), "#{originLeft}% #{originTop}%"
     # flip content panel
     @content
       .css @prefix('transformOrigin'), "#{originLeft}% #{originTop}% 0"
