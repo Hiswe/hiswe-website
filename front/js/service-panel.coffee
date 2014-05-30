@@ -3,10 +3,14 @@ Controller  = require './front-controller'
 shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
-easings     = {
+easingDico = {
   easeInCubic: [0.550, 0.055, 0.675, 0.190]
   easeOutCubic: [0.215, 0.610, 0.355, 1.000]
 }
+
+getEase = (easingName) ->
+  return easingDico[easingName] if easingDico[easingName]?
+  easingName
 
 class Service extends Controller
   trace: true
@@ -30,6 +34,9 @@ class Service extends Controller
     super
     return unless @el.length
     @log 'Init'
+
+    # TODO Group all marker
+    # @all = @el.add(@icon).
     # pubsub('body').subscribe (event) =>
     #   @clean() if event is 'tap'
 
@@ -82,8 +89,7 @@ class Service extends Controller
       $.when.apply(this, dfdList).done =>
         @log 'finish', index, method
         index = index + 1
-        if index < sequence.length
-          run(index)
+        run(index) if index < sequence.length
 
     # launch the sequence !
     run(0)
@@ -108,20 +114,26 @@ class Service extends Controller
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = 'openCover translateCover-right rotatePanel-right-easeOutCubic'
-          when 1 then sequence = 'openCover rotatePanel-left&&rotatePanel-right'
-          when 2 then sequence = 'openCover translateCover-left rotatePanel-left-easeOutCubic'
+          when 0 then sequence = 'openSetup openCover translateCover-right rotatePanel-right-easeOutCubic'
+          when 1 then sequence = 'openSetup openCover rotatePanel-left&&rotatePanel-right'
+          when 2 then sequence = 'openSetup openCover translateCover-left rotatePanel-left-easeOutCubic'
       when 'tablet'
-        sequence = 'rotatePanel-left&&rotatePanel-right'
+        sequence = 'openSetup rotatePanel-left&&rotatePanel-right'
       when 'mobile'
-        sequence = 'translatePanel-left translatePanel-right'
+        sequence = 'openSetup translatePanel-left translatePanel-right'
 
     sequence + ' openEnd'
+
+  openSetup: ->
+    dfd = new $.Deferred()
+    @el.css 'z-index', 2
+    setTimeout dfd.resolve, 50
+    dfd.promise()
 
   openCover: ->
     dfd = new $.Deferred()
     # container
-    @el.css('z-index': 10).velocity
+    @el.velocity
       properties:
         height: ['150%', '100%']
         top: ['-25%', '0%']
@@ -129,7 +141,7 @@ class Service extends Controller
     # cover
     @cover.velocity
       properties:
-        skewY: [0, @skew]
+        skewY: ['0deg', @skew]
         translateZ: [0, 0] # fix some rendering issue
         backgroundColorRed:   shared['$dark-gray'].r
         backgroundColorGreen: shared['$dark-gray'].g
@@ -146,14 +158,11 @@ class Service extends Controller
     # icon
     @icon.velocity
       properties:
-        skewY: [0, @skew * - 1]
+        skewY: ['0deg', @skew * - 1]
         colorRed:   shared['$darkest-gray'].r
         colorGreen: shared['$darkest-gray'].g
         colorBlue:  shared['$darkest-gray'].b
         fontSize: ['12em', '6em']
-      options:
-        easing: 'ease'
-        duration: 500
     dfd.promise()
 
   translateCover: (direction) ->
@@ -162,9 +171,9 @@ class Service extends Controller
     dfd = new $.Deferred()
     @cover.css('z-index', 2).velocity
       properties:
-        translateX: [tx, 0]
+        translateX: [tx, '0%']
       options:
-        easing: easings['easeInCubic']
+        easing: getEase('easeInCubic')
         complete: dfd.resolve
     $underPanel.css({
       visibility: 'visible'
@@ -172,19 +181,20 @@ class Service extends Controller
     dfd.promise()
 
   rotatePanel: (direction, ease = 'ease') ->
-    @log ease
+    @log getEase(ease)
     dfd = new $.Deferred()
     ry = if direction is 'left' then '98.75deg' else '-98.75deg'
 
     @["#{direction}Panel"]
       .css({
         visibility: 'visible'
+        'z-index': 3
       })
       .velocity
         properties:
-          rotateY: [0, ry]
+          rotateY: ['0deg', ry]
         options:
-          easing: if ease is 'ease' then 'ease' else easings[ease]
+          easing: getEase(ease)
           complete: dfd.resolve
 
     dfd.promise()
@@ -224,11 +234,23 @@ class Service extends Controller
     sequence + ' closeEnd'
 
   resetRotation: (direction, ease = 'ease') ->
+    @log ease
     dfd = new $.Deferred()
-    # @log if ease is 'ease' then 'ease' else easings[ease]
-    @["#{direction}Panel"].velocity 'reverse', {
-      complete: dfd.resolve
-      # easing: if ease is 'ease' then 'ease' else easings[ease]
+    ry = if direction is 'left' then '98.75deg' else '-98.75deg'
+    # @["#{direction}Panel"].velocity 'reverse', {
+    #   complete: dfd.resolve
+    #   # https://github.com/julianshapiro/velocity/issues/90
+    #   # easing: getEase(ease)
+    # }
+
+    @["#{direction}Panel"].velocity
+      properties:
+        rotateY: [ry, '0deg']
+
+      options:
+        complete: dfd.resolve
+        # https://github.com/julianshapiro/velocity/issues/90
+        # easing: getEase(ease)
     }
     dfd.done => @["#{direction}Panel"].css 'visibility', 'hidden'
     dfd.promise()
@@ -238,7 +260,8 @@ class Service extends Controller
     $underPanel = if direction is 'left' then @rightPanel else @leftPanel
     @cover.velocity 'reverse', {
       complete: dfd.resolve
-      # easing: easings['easeOutCubic']
+      # https://github.com/julianshapiro/velocity/issues/90
+      # easing: getEase('easeOutCubic')
     }
     dfd.done ->
       $underPanel.css({visibility: 'hidden' })

@@ -10,9 +10,6 @@ media-big-mobile()
 .hw-services-item
   &:nth-child(2n + 1),
   &:nth-child(2n)
-    .hw-sub-left, .hw-sub-right
-      services-big-out()
-
     .hw-sub-left
       transform rotateY(90deg)
       transform-origin 100% 50%
@@ -149,14 +146,11 @@ $$height = px2em($mobile-cover-height)
   .hw-services-cover
     visibility visible
     transform-origin center top
-    default-out()
 
     .hicon
-      icon-out()
       opacity 1
 
     &::after
-      mobile-stem-out()
       $$stem-size = 1em
       stem("top", $darkest-grey, $$stem-size)
       absolute bottom 0 left 50%
@@ -168,12 +162,6 @@ $$height = px2em($mobile-cover-height)
     transform rotateX(90deg)
     transform-origin top center
 
-  .hw-sub-left
-    mobile-left-out()
-
-  .hw-sub-right
-    mobile-right-out()
-
   // description in services
   .hw-services & h6
     font-size 2em
@@ -182,7 +170,6 @@ $$height = px2em($mobile-cover-height)
   .hw-services & h6
   .hw-services-cover img
     transform scaleY(1) translateY(0)
-    mobile-title-out()
 
   .hw-sub-links
     padding-top .75em
@@ -205,25 +192,21 @@ $$height = px2em($mobile-cover-height)
   z-index 2
 
   .hw-services-cover
-    default-in()
     // .51 is for rounding issue X(
     transform scaleY(.51)
     background $dark-grey
 
     h6, img
-      mobile-title-in()
       transform scaleY(2)
 
     h6
       transform scaleY(2) translateY(1em)
 
     .hicon
-      icon-in()
       transform scale(0.01)
       opacity 0
 
     &::after
-      mobile-stem-in()
       visibility visible
 
   .hw-sub-left,
@@ -242,11 +225,9 @@ $$height = px2em($mobile-cover-height)
   .hw-sub-left
     top ($$height / 2)
     height $$height
-    mobile-left-in()
 
   .hw-sub-right
     top ($$height * 1.5)
     height $$height
-    mobile-right-in()
 
 media-query-end()
