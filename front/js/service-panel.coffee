@@ -62,6 +62,8 @@ class Service extends Controller
       when windowWidth < shared.mobileWidth then @md = 'mobile'
       else @md = 'tablet'
 
+    @rotation   = if @md is 'desktop' then '98.5deg' else '90deg'
+
   runSequence: (sequence) ->
     # this is to run methods on a specific order
     # the sequence is a string where where we have sequenceName-sequenceParam
@@ -183,7 +185,7 @@ class Service extends Controller
   rotatePanel: (direction, ease = 'ease') ->
     @log getEase(ease)
     dfd = new $.Deferred()
-    ry = if direction is 'left' then '98.75deg' else '-98.75deg'
+    ry = if direction is 'left' then @rotation else '-' + @rotation
 
     @["#{direction}Panel"]
       .css({
@@ -234,23 +236,11 @@ class Service extends Controller
     sequence + ' closeEnd'
 
   resetRotation: (direction, ease = 'ease') ->
-    @log ease
     dfd = new $.Deferred()
-    ry = if direction is 'left' then '98.75deg' else '-98.75deg'
-    # @["#{direction}Panel"].velocity 'reverse', {
-    #   complete: dfd.resolve
-    #   # https://github.com/julianshapiro/velocity/issues/90
-    #   # easing: getEase(ease)
-    # }
-
-    @["#{direction}Panel"].velocity
-      properties:
-        rotateY: [ry, '0deg']
-
-      options:
-        complete: dfd.resolve
-        # https://github.com/julianshapiro/velocity/issues/90
-        # easing: getEase(ease)
+    @["#{direction}Panel"].velocity 'reverse', {
+      complete: dfd.resolve
+      # https://github.com/julianshapiro/velocity/issues/90
+      # easing: getEase(ease)
     }
     dfd.done => @["#{direction}Panel"].css 'visibility', 'hidden'
     dfd.promise()

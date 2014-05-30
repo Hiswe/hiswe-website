@@ -81,7 +81,7 @@
     "imagesloaded": "git://github.com/desandro/imagesloaded",
     "wolfy87-eventemitter": "git://github.com/Wolfy87/EventEmitter",
     "ini": "^1.2.1",
-    "velocity-animate": "0.0.14",
+    "velocity-animate": "0.0.15",
     "color-parser": "^0.1.0"
   }
 }
