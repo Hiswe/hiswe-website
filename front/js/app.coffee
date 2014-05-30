@@ -7,7 +7,7 @@ pubsub      = require './pubsub'
 options     = require '../../shared/stylus-var'
 
 class App extends Controller
-  trace: true
+  trace: false
   logPrefix: 'APP'
   elements: {
     'body'                : 'body'

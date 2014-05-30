@@ -12,13 +12,8 @@
     iso-right()
 
   .hw-sub-close
-    opacity 0
-
-  .hw-sub
+  .hw-sub-description
     hide()
-
-  .hw-services-cover
-    show()
 
   &:nth-child(3n+1),
   &:nth-child(3n+3)
@@ -48,14 +43,15 @@
       transform-origin -1% 50%
       transform rotateY(-98.75deg)
 
+.hw-services-item.{activeClass},
 .hw-services-item:target
-  height px2em($panel-height*1.5)
-  top  -1 * (px2em($panel-height) * 0.25)
-  margin-bottom @top * 2
+  height 150%
+  top  -25%
+  margin-bottom -25%
   z-index 10
 
   .hw-services-cover
-    color white
+    color $grey
     background $dark-grey
 
   .hicon
@@ -63,26 +59,25 @@
     font-size 12em
     color $darkest-grey
 
-  .hw-sub-close
-    opacity 1
+  .hw-sub
+    transform rotateY(0)
 
+  .hw-sub-close,
   .hw-sub
     show()
-    transform rotateY(0)
 
 for num in 1 2 3
   // active positioning
   .hw-services-item.{activeClass}:nth-child(3n+{num}),
   .hw-services-item:target:nth-child(3n+{num})
-    .hw-sub-close
-      left unit((4 - num) * 100, '%')
-
     .hw-sub-left
       left unit((1 - num) * 100, '%')
+
+    .hw-services-cover
+      left unit((2 - num) * 100, '%')
 
     .hw-sub-right
       left unit((3 - num) * 100, '%')
 
-  .hw-services-item:target:nth-child(3n+{num})
-    .hw-services-cover
-      left unit((2 - num) * 100, '%')
+    .hw-sub-close
+      left unit((4 - num) * 100, '%')

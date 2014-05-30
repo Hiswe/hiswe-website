@@ -17,12 +17,14 @@ class Service extends Controller
   logPrefix: 'SERVICE'
 
   elements: {
-    '.hw-services-cover'    : 'cover'
-    '.hicon'                : 'icon'
-    '.hw-services-cover h6' : 'title'
-    '.hw-sub-left'          : 'leftPanel'
-    '.hw-sub-right'         : 'rightPanel'
-    '.hw-sub-close'         : 'closeButton'
+    '.hw-services-cover'                  : 'cover'
+    '.hicon'                              : 'icon'
+    '.hw-services-cover h6'               : 'title'
+    '.hw-sub-left'                        : 'leftPanel'
+    '.hw-sub-right'                       : 'rightPanel'
+    '.hw-sub-close'                       : 'closeButton'
+    '.hw-sub, .hicon,  h6'                : 'all'
+    '.hw-sub-description, .hw-sub-close'  : 'sidePanels'
   }
 
   events: {
@@ -34,9 +36,8 @@ class Service extends Controller
     super
     return unless @el.length
     @log 'Init'
+    # @all = @all.add(@el)
 
-    # TODO Group all marker
-    # @all = @el.add(@icon).
     # pubsub('body').subscribe (event) =>
     #   @clean() if event is 'tap'
 
@@ -62,7 +63,7 @@ class Service extends Controller
       when windowWidth < shared.mobileWidth then @md = 'mobile'
       else @md = 'tablet'
 
-    @rotation   = if @md is 'desktop' then '98.5deg' else '90deg'
+    @rotation   = if @md is 'desktop' then 98.5 else 90
 
   runSequence: (sequence) ->
     @log sequence
@@ -104,7 +105,6 @@ class Service extends Controller
     @log 'Service open'
     e.stopPropagation()
     return if @el.hasClass shared.activeClass
-    @el.addClass shared.activeClass
     @runSequence @openingSequence()
     e.preventDefault()
     pubsub('services').publish('open')
@@ -129,28 +129,56 @@ class Service extends Controller
 
   openSetup: ->
     dfd = new $.Deferred()
-    @el.css 'z-index', 2
-    setTimeout dfd.resolve, 50
+    # Prevent all what the addClass will do
+    # we will animate that
+    # Bu we still need the CSS code in case of resizing %)
+    @wait(50).then =>
+      @sidePanels.hide()
+      @cover
+        .css({
+          left: '0%'
+          height: '100%'
+          top: '0%'
+          marginBottom: '0%'
+        })
+        .css @prefix('transform'), "skewY(#{@skew}deg)"
+      @pristineElStyle =  @el.attr('style')
+      @log @pristineElStyle
+      @el.css {
+        'z-index': 2
+        height: '100%'
+        top: '0%'
+        marginBottom: '0%'
+      }
+      # Now that everything is overided
+      # We can launch the fun…
+      @el.addClass(shared.activeClass)
+      dfd.resolve()
     dfd.promise()
 
   openCover: ->
     dfd = new $.Deferred()
+
     # container
     @el.velocity
       properties:
-        height: ['150%', '100%']
-        top: ['-25%', '0%']
-        marginBottom: ['-25%', '0%']
+        height: '150%'
+        top: '-25%'
+        marginBottom: '-25%'
+
     # cover
     @cover.velocity
       properties:
-        skewY: ['0deg', @skew]
+        skewY: [0, @skew]
+        translateX: ['0%', '0%'] # force some weird cache to refresh...?
         translateZ: [0, 0] # fix some rendering issue
         backgroundColorRed:   shared['$dark-gray'].r
         backgroundColorGreen: shared['$dark-gray'].g
         backgroundColorBlue:  shared['$dark-gray'].b
       options:
         complete: dfd.resolve
+        # _cacheValue: false
+
     # title
     @title.velocity
       properties:
@@ -161,7 +189,7 @@ class Service extends Controller
     # icon
     @icon.velocity
       properties:
-        skewY: ['0deg', @skew * - 1]
+        skewY: [0, @skew * - 1]
         colorRed:   shared['$darkest-gray'].r
         colorGreen: shared['$darkest-gray'].g
         colorBlue:  shared['$darkest-gray'].b
@@ -182,42 +210,39 @@ class Service extends Controller
     dfd.promise()
 
   rotatePanel: (direction, ease = 'ease') ->
-    @log getEase(ease)
     dfd = new $.Deferred()
     ry = if direction is 'left' then @rotation else '-' + @rotation
 
-    @["#{direction}Panel"]
-      .css({
-        visibility: 'visible'
-        'z-index': 3
-      })
-      .velocity
-        properties:
-          rotateY: ['0deg', ry]
-        options:
-          display: 'block'
-          easing: getEase(ease)
-          complete: dfd.resolve
+    @["#{direction}Panel"].velocity {
+      properties:
+        rotateY: ['0deg', ry]
+      options:
+        display: 'block'
+        easing: getEase(ease)
+        complete: dfd.resolve
+    }
 
     dfd.promise()
 
   openEnd: =>
     dfd = new $.Deferred()
-    @closeButton.css 'opacity', 1
+    # Remove everything so during resize, the responsive rules still applies
+    @all.removeAttr('style').show()
+    @el.attr 'style', @pristineElStyle
+    @closeButton.velocity('fadeIn', {display: 'block'})
     setTimeout dfd.resolve, 250
     dfd.promise()
 
   # Mobile
   mobileRotate: (direction) =>
-
     dfd = new $.Deferred()
     @cover.velocity
       properties:
-        rotateX: ['-180deg', '0deg']
+        rotateX: [-180, 0]
 
     @leftPanel.velocity
       properties:
-        rotateX: ['0deg', '180deg']
+        rotateX: [0, 180]
       options:
         complete: dfd.resolve
         duration: 750
@@ -231,7 +256,7 @@ class Service extends Controller
     dfd = new $.Deferred()
     @rightPanel.velocity
       properties:
-        rotateX: ['0deg', '180deg']
+        rotateX: [0, 180]
       options:
         complete: dfd.resolve
         display: 'block'
@@ -245,7 +270,7 @@ class Service extends Controller
     @log 'Service close'
     e.preventDefault()
     e.stopImmediatePropagation()
-    @closeButton.css 'opacity', 0
+    @closeButton.hide()
     @runSequence @closingSequence()
     this
 
@@ -265,12 +290,19 @@ class Service extends Controller
 
     sequence.concat ['closeEnd']
 
+  # Reverse have to be handled very carefully
+  # as a resize may have occured during this time
   resetRotation: (direction, ease = 'ease') ->
     dfd = new $.Deferred()
-    @["#{direction}Panel"].velocity 'reverse', {
-      complete: dfd.resolve
-      # https://github.com/julianshapiro/velocity/issues/90
-      # easing: getEase(ease)
+    ry = if direction is 'left' then @rotation else '-' + @rotation
+
+    @["#{direction}Panel"].velocity {
+      properties:
+        rotateY: [ry, '0deg']
+      options:
+        display: 'block'
+        easing: getEase(ease)
+        complete: dfd.resolve
     }
     dfd.done => @["#{direction}Panel"].css 'visibility', 'hidden'
     dfd.promise()
@@ -278,18 +310,28 @@ class Service extends Controller
   resetTranslate: (direction) ->
     dfd = new $.Deferred()
     $underPanel = if direction is 'left' then @rightPanel else @leftPanel
-    @cover.velocity 'reverse', {
-      complete: dfd.resolve
-      # https://github.com/julianshapiro/velocity/issues/90
-      # easing: getEase('easeOutCubic')
-    }
+    @cover.velocity
+      properties:
+        translateX: ['0%', '0%']
+        left: '0%'
+      options:
+        # https://github.com/julianshapiro/velocity/issues/90
+        # easing: getEase('easeOutCubic')
+        complete: dfd.resolve
     dfd.done ->
-      $underPanel.css({visibility: 'hidden' })
+      $underPanel.hide()
     dfd.promise()
 
   closeCover: ->
     dfd = new $.Deferred()
-    @el.velocity 'reverse'
+    # container
+    @el.velocity
+      properties:
+        height: '100%'
+        top: '0%'
+        marginBottom: '0%'
+
+    # cover
     @cover.velocity
       properties:
         skewY: [@skew, 0]
@@ -299,21 +341,31 @@ class Service extends Controller
       options:
         complete: dfd.resolve
 
-    @title.velocity 'reverse'
-    @icon.velocity 'reverse'
+    @title.velocity
+      colorRed:   shared['$dark-gray'].r
+      colorGreen: shared['$dark-gray'].g
+      colorBlue:  shared['$dark-gray'].b
+
+    @icon.velocity
+      skewY: [@skew * - 1, 0]
+      colorRed:   shared['$pink'].r
+      colorGreen: shared['$pink'].g
+      colorBlue:  shared['$pink'].b
+      fontSize:   ['6em', '12em']
+
     dfd.promise()
 
   closeEnd: ->
     dfd = new $.Deferred()
-    @el.removeClass(shared.activeClass)
-    pubsub('services').publish('close')
-    @el.removeAttr 'style'
-    @cover.removeAttr 'style'
-    @icon.removeAttr 'style'
-    @rightPanel.removeAttr 'style'
-    @leftPanel.removeAttr 'style'
-    @title.removeAttr 'style'
-    setTimeout dfd.resolve, 250
+    @wait(50).then =>
+      @all.removeAttr 'style'
+      # remove only custom style
+      # HammerJS use some style too…
+      @el.attr 'style', @pristineElStyle
+      @el.removeClass(shared.activeClass)
+      pubsub('services').publish('close')
+
+      dfd.resolve()
     dfd.promise()
 
   # mobile

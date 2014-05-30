@@ -31,6 +31,12 @@ class Controller
   proxy: (func) ->
     => func.apply(this, arguments)
 
+  # Return a css prefix propertie
+  prefix: (propertie) ->
+    str = Modernizr.prefixed propertie
+    str.replace(/([A-Z])/g, (str,m1) -> '-' + m1.toLowerCase() )
+      .replace(/^ms-/,'-ms-')
+
   constructor: (options) ->
     uid = uid + 1
     @uid = uid

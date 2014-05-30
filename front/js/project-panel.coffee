@@ -47,11 +47,6 @@ class Project extends Controller
     event.preventDefault()
     false
 
-  prefix: (propertie) ->
-    str = Modernizr.prefixed propertie
-    str.replace(/([A-Z])/g, (str,m1) -> '-' + m1.toLowerCase() )
-      .replace(/^ms-/,'-ms-')
-
   setupPanelInfo: =>
     windowWidth = @window.width()
 
