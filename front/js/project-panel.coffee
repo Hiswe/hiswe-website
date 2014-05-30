@@ -1,11 +1,11 @@
 $           = require 'jquery'
 Controller  = require './front-controller'
 Carrousel   = require './projects-carrousel'
-options     = require '../../shared/stylus-var'
+shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
 class Project extends Controller
-  trace:      true
+  trace:      false
   logPrefix:  'PROJECT'
 
   elements: {
@@ -55,15 +55,15 @@ class Project extends Controller
   setupPanelInfo: =>
     windowWidth = @window.width()
 
-    if windowWidth < options.mobileWidth
+    if windowWidth < shared.mobileWidth
       @skew       = 0
       @color      = {r:255, g: 255, b:255}
       return
 
-    modulo      = if windowWidth >= options.desktopWidth then 3 else 2
+    modulo      = if windowWidth >= shared.desktopWidth then 3 else 2
     direction   = if @index % modulo is 1 then 1 else -1
     @skew       = 26.5 * direction
-    @color      = if direction > 0 then options['$gray'] else {r:255, g: 255, b:255}
+    @color      = if direction > 0 then shared['$gray'] else {r:255, g: 255, b:255}
 
   ########
   #  COVER IMAGE
@@ -78,7 +78,7 @@ class Project extends Controller
     $(imgMarkup)
       .appendTo(@cover)
       .imagesLoaded()
-      .done => @cover.removeClass options.projectCoverLoad
+      .done => @cover.removeClass shared.projectCoverLoad
 
   ########
   #  OPEN
@@ -87,29 +87,20 @@ class Project extends Controller
   openEvent: (e) ->
     @log 'open'
     # e.stopPropagation()
-    return if @el.hasClass(options.activeClass)
+    return if @el.hasClass(shared.activeClass)
     e.preventDefault()
     @log 'Projects open'
-    @el.addClass options.activeClass
+    @el.addClass shared.activeClass
     pubsub('projects').publish('openStart')
     @openCover().done @openPanel
     this
 
   openCover: =>
     @log 'open Cover'
+    dfd = new $.Deferred()
     @el.css 'z-index', 2
-    @cover
-      .velocity
-        properties:
-          height: '150%'
-          top: '-25%'
-          skewY: [0, @skew]
-          backgroundColorRed:   options['$dark-gray'].r
-          backgroundColorGreen: options['$dark-gray'].g
-          backgroundColorBlue:  options['$dark-gray'].b
-        options:
-          ease: 'ease'
-          duration: 500
+    @cover.velocity 'openCover', {skew: @skew, complete: dfd.resolve}
+    dfd.promise()
 
   openPanel: (cover) =>
     @log 'open Panel'
@@ -118,6 +109,7 @@ class Project extends Controller
     @flipCover()
     @container.css {right: 0, bottom: 0}
     @flipPanel().done @openEnd
+
 
   flipCover: ->
     @cover
@@ -129,6 +121,7 @@ class Project extends Controller
           duration: 750
 
   flipPanel: ->
+    dfd = new $.Deferred()
     # Compute size so we can position the content panel starting position
     coverOffset       = @cover.offset()
     coverWidth        = @cover.width()
@@ -165,6 +158,8 @@ class Project extends Controller
         options:
           ease: 'ease'
           duration: 750
+          complete: dfd.resolve
+    dfd.promise()
 
   openEnd: =>
     @log 'transition end ::','open'
@@ -218,11 +213,13 @@ class Project extends Controller
     this
 
   closePanel: ->
-    @el.removeClass options.activeClass
+    @el.removeClass shared.activeClass
     @content.velocity 'reverse'
-    @cover.velocity('reverse').done =>
-      @container.css {right: '100%', bottom: '100%', overflow: 'hidden'}
-      @closeCover()
+    @cover.velocity 'reverse', {
+      complete: =>
+        @container.css {right: '100%', bottom: '100%', overflow: 'hidden'}
+        @closeCover()
+    }
 
   closeCover: ->
     @cover.velocity
@@ -233,7 +230,8 @@ class Project extends Controller
         backgroundColorRed:   @color.r
         backgroundColorGreen: @color.g
         backgroundColorBlue:  @color.b
-    .done @closeEnd
+      options:
+        complete: @closeEnd
 
   closeEnd: =>
     @log 'close end'

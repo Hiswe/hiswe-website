@@ -9,11 +9,13 @@ $ ->
   # Global resize timer
   resizeTimer = null
 
-  $(window).on 'resize', ->
+  $window = $(window)
+
+  $window.on 'resize', ->
     pubsub('resizeStart').publish() unless resizeTimer
     window.clearTimeout(resizeTimer)
     resizeTimer = window.setTimeout ->
-      pubsub('resizeEnd').publish()
+      pubsub('resizeEnd').publish $window.width()
       resizeTimer = null
     , 300
 

@@ -71,11 +71,12 @@ image-center(selector = 'img')
       left 100%
       margin-left -200%
 
+// TODO use shared var for the sizes
 media-tablet()
   unquote("@media screen and (max-width: " + $tablet-width + ") {")
 
 media-big-mobile()
-  unquote("@media screen and (max-width: " + 800px + ") {")
+  unquote("@media screen and (max-width: " + 768px + ") {")
 
 media-small-mobile()
   unquote("@media screen and (max-width: " + $mobile-width + ") {")

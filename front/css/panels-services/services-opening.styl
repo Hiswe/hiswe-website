@@ -7,27 +7,18 @@
   transform translate3d(0,0,0)
 
 .hw-services-item
-  height px2em($panel-height)
-  top 0
-  z-index 1
-  margin-bottom 0
-  panel-out()
 
   .hicon
     iso-right()
-    icon-out()
 
   .hw-sub-close
     opacity 0
-    close-out()
 
   .hw-sub
     visibility hidden
-    slide-out()
 
   .hw-services-cover
     visibility visible
-    default-out()
 
   &:nth-child(3n+1),
   &:nth-child(3n+3)
@@ -57,65 +48,41 @@
       transform-origin -1% 50%
       transform rotateY(-98.75deg)
 
-  &:nth-child(3n+2) .hw-sub-right,
-  &:nth-child(3n+3) .hw-sub-left,
-  &:nth-child(3n+1) .hw-sub-right
-    rotate-out()
-
-  &:nth-child(3n+2) .hw-sub-left
-    rotate-out-big-delay()
-
-.hw-services-item.{activeClass},
 .hw-services-item:target
   height px2em($panel-height*1.5)
   top  -1 * (px2em($panel-height) * 0.25)
   margin-bottom @top * 2
   z-index 10
-  panel-in()
 
   .hw-services-cover
     color white
     background $dark-grey
 
   .hicon
-    icon-in()
     iso-reset()
     font-size 12em
     color $darkest-grey
 
   .hw-sub-close
-    close-in()
     opacity 1
 
   .hw-sub
     visibility visible
     transform rotateY(0)
-    slide-in()
-
-  .hw-services-cover
-    default-in()
-
-  &:nth-child(3n+3) .hw-sub-left,
-  &:nth-child(3n+1) .hw-sub-right,
-  &:nth-child(3n+2) .hw-sub-right
-    rotate-in()
-
-  &:nth-child(3n+2) .hw-sub-left
-    rotate-in-no-delay()
 
 for num in 1 2 3
-  .hw-services-item.{activeClass}:nth-child(3n+{num}) .hw-sub-close,
-  .hw-services-item:target:nth-child(3n+{num}) .hw-sub-close
-    left unit((4 - num) * 100, '%')
-
   // active positioning
   .hw-services-item.{activeClass}:nth-child(3n+{num}),
   .hw-services-item:target:nth-child(3n+{num})
+    .hw-sub-close
+      left unit((4 - num) * 100, '%')
+
     .hw-sub-left
       left unit((1 - num) * 100, '%')
 
-    .hw-services-cover
-      left unit((2 - num) * 100, '%')
-
     .hw-sub-right
       left unit((3 - num) * 100, '%')
+
+  .hw-services-item:target:nth-child(3n+{num})
+    .hw-services-cover
+      left unit((2 - num) * 100, '%')

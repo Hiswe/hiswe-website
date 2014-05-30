@@ -1,72 +1,34 @@
-$           = require 'jquery'
-Controller  = require './front-controller'
-options     = require '../../shared/stylus-var'
-pubsub      = require './pubsub'
+$                 = require 'jquery'
+pubsub            = require './pubsub'
+Controller        = require './front-controller'
+ServiceController = require './service-panel'
 
 class Services extends Controller
   trace: false
-  logPrefix: 'SERVICES'
+  logPrefix: 'SERVICES LIST'
   opened: false
+  list: []
 
   elements: {
-    '.hw-services-item' : 'servicePanels'
-    '.hw-sub-close'     : 'closeButton'
-  }
-
-  events: {
-    'tap .hw-services-item' : 'open'
-    'tap .hw-sub-close'     : 'close'
-    'transitionend .hw-services-item': 'transitionend'
+    '.hw-services-item' : 'all'
   }
 
   constructor: ->
     super
     return unless @el.length
     @log 'Init'
-    pubsub('body').subscribe (event) =>
-      @clean() if event is 'tap'
 
-    pubsub('projects').subscribe (event) =>
-      @clean() if event is 'openStart'
-    this
+    @all.each (index, element) =>
+      project = new ServiceController {
+        el: $(element)
+        index: index
+      }
+      @list.push project
 
-  clean: =>
-    @log 'clean'
-    $panel  = @servicePanels.filter(".#{options.activeClass}")
-    $panel.heventRemoveClass(options.activeClass)
-    this
+    pubsub('services').subscribe (event) =>
+      return @el.css('z-index', 1) if event is 'close'
+      return @el.css('z-index', 2) if event is 'open'
 
-  transitionend: (event) ->
-    e = event.originalEvent
-    return unless event.originalEvent?
-    return unless /cover/.test event.target.className
-    return unless /transform/.test e.propertyName
-    if @opened is on
-      @log 'transition end::', 'close'
-      @el.css('z-index', 1)
-      pubsub('services').publish('close')
-      @opened = false
-    else
-      @log 'transition end ::','open'
-      @opened = true
-
-  open: (e) ->
-    @log 'Service open'
-    $target = $(e.currentTarget)
-    e.stopPropagation()
-    return if $target.hasClass(options.activeClass)
-    e.preventDefault()
-    @clean()
-    @el.css('z-index', 2)
-    $target.heventAddClass(options.activeClass)
-    pubsub('services').publish('open')
-    this
-
-  close: (e) ->
-    @log 'Service close'
-    e.preventDefault()
-    e.stopImmediatePropagation()
-    @clean()
     this
 
 module.exports = Services

@@ -6,6 +6,7 @@ ProjectController = require './project-panel'
 class Projects extends Controller
   trace:      false
   logPrefix:  'PROJECTS LIST'
+  list: []
 
   elements: {
     '.hw-projects-item' : 'all'
@@ -19,11 +20,13 @@ class Projects extends Controller
     # Cache window as we will access it's size later
     $window = $(window)
 
-    @all.each (index) -> new ProjectController {
-      el: $(this)
-      index: index
-      window: $window
-    }
+    @all.each (index, element) =>
+      project = new ProjectController {
+        el: $(element)
+        index: index
+        window: $window
+      }
+      @list.push project
 
     this
 
