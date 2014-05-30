@@ -72,6 +72,7 @@ media-big-mobile()
     .hw-sub-left, .hw-sub-right
       height px2em($panel-height*1.5)
       transform rotateY(0deg)
+      z-index 3
 
     .hw-sub-left, .hw-sub-right, .hw-sub-close
       top -1 * (px2em($panel-height) * 0.25)
@@ -131,10 +132,6 @@ $$height = px2em($mobile-cover-height)
   h3, h3 + h3, p
     margin 0
 
-  .hw-sub,
-  .hw-sub-close
-    visibility hidden
-
   .hw-services-cover,
   .hw-sub-left,
   .hw-sub-right
@@ -142,15 +139,11 @@ $$height = px2em($mobile-cover-height)
     height $$height
     width 100%
 
-  .hw-services-cover
-    visibility visible
-
-    .hicon
-      opacity 1
+  .hw-services-cover .hicon
+    opacity 1
 
   .hw-sub-left,
   .hw-services-cover
-    backface-visibility hidden
     transform-origin center center
 
   .hw-sub-right
@@ -193,14 +186,12 @@ $$height = px2em($mobile-cover-height)
   .hw-sub-right
     z-index 10
     left 0
-    visibility visible
     transform rotateX(0)
 
   .hw-sub-close
     top .5em
     left 100%
     z-index 10
-    visibility visible
 
   .hw-sub-left
     height $$height
@@ -208,5 +199,14 @@ $$height = px2em($mobile-cover-height)
   .hw-sub-right
     top $$height
     height $$height
+
+.hw-services-item:target:nth-child(1n)
+  .hw-sub-left,
+  .hw-sub-right
+    show()
+    transform rotateX(0)
+
+  .hw-sub-close
+    show()
 
 media-query-end()

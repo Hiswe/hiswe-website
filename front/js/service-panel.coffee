@@ -178,9 +178,7 @@ class Service extends Controller
       options:
         easing: getEase('easeInCubic')
         complete: dfd.resolve
-    $underPanel.css({
-      visibility: 'visible'
-    })
+    $underPanel.show()
     dfd.promise()
 
   rotatePanel: (direction, ease = 'ease') ->
@@ -197,6 +195,7 @@ class Service extends Controller
         properties:
           rotateY: ['0deg', ry]
         options:
+          display: 'block'
           easing: getEase(ease)
           complete: dfd.resolve
 
@@ -222,6 +221,7 @@ class Service extends Controller
       options:
         complete: dfd.resolve
         duration: 750
+        display: 'block'
 
     @rightPanel.hide()
 

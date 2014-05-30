@@ -25,12 +25,10 @@ h-matrix(a, c, b, d)
   //                     0, 0, 0, 1)
 
 iso-left()
-  // transform skewY(-26deg)
   transform skewY(-26.5deg)
   // h-matrix(1, -0.5, 0, 1)
 
 iso-right()
-  // transform skewY(26deg)
   transform skewY(26.5deg)
   // h-matrix(1, 0.5, 0, 1)
 
@@ -38,8 +36,19 @@ iso-reset()
   transform skewY(0deg)
   // h-matrix(1, 0, 0, 1)
 
-mirror-vertical()
-  h-matrix(-1, 0, 0, 1)
+hide()
+  visibility hidden
+
+  .js &
+    visibility visible
+    display none
+
+show()
+  visibility visible
+
+  .js &
+    display inherit
+
 
 third(q = 1)
   (100%/3) * q
