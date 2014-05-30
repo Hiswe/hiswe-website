@@ -35,7 +35,8 @@ velocity = ($) ->
       return _velocity.animate.call(this, propertiesMap, options)
     _velocity.animate.apply(this, args)
 
-
+  $.Velocity.defaults.duration = 500
+  $.Velocity.defaults.easing = 'ease'
   # Setup some sequence
   $.Velocity.Sequences.openCover = (element, options) ->
     properties = {
@@ -47,8 +48,6 @@ velocity = ($) ->
       backgroundColorBlue:  shared['$dark-gray'].b
     }
     opts = {
-      duration: 500
-      easing: "ease"
       complete: options.complete
     }
 

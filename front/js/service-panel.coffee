@@ -142,9 +142,6 @@ class Service extends Controller
         colorRed:   shared['$gray'].r
         colorGreen: shared['$gray'].g
         colorBlue:  shared['$gray'].b
-      options:
-        easing: 'ease'
-        duration: 500
 
     # icon
     @icon.velocity

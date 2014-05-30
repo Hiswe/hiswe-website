@@ -117,7 +117,6 @@ class Project extends Controller
         properties:
           rotateY: [180, 0]
         options:
-          ease: 'ease'
           duration: 750
 
   flipPanel: ->
@@ -156,7 +155,6 @@ class Project extends Controller
           # Translate to fix perspective origin
           translateX: ['0%', "#{originLeft - 50} %"]
         options:
-          ease: 'ease'
           duration: 750
           complete: dfd.resolve
     dfd.promise()
