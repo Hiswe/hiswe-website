@@ -39,7 +39,7 @@
   &:nth-child(3n+2) .hw-services-cover
     background $grey
 
-  &:not(:target)
+  &:not(:target):not(.{activeClass})
     .hw-services-cover
       cursor pointer
 
@@ -60,6 +60,7 @@
   box-sizing border-box
   padding 3em 0 0
   text-align center
+  transition  box-shadow $hover-transition ease 0s
   v-align()
 
   h6

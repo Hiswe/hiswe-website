@@ -3,17 +3,22 @@ Controller  = require './front-controller'
 shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
+easings     = {
+  easeInCubic: [0.550, 0.055, 0.675, 0.190]
+  easeOutCubic: [0.215, 0.610, 0.355, 1.000]
+}
+
 class Service extends Controller
   trace: true
   logPrefix: 'SERVICE'
-  opened: false
 
   elements: {
-    '.hw-services-cover': 'cover'
-    '.hicon'            : 'icon'
-    '.hw-sub-left'      : 'leftPanel'
-    '.hw-sub-right'     : 'rightPanel'
-    '.hw-sub-close'     : 'closeButton'
+    '.hw-services-cover'    : 'cover'
+    '.hicon'                : 'icon'
+    '.hw-services-cover h6' : 'title'
+    '.hw-sub-left'          : 'leftPanel'
+    '.hw-sub-right'         : 'rightPanel'
+    '.hw-sub-close'         : 'closeButton'
   }
 
   events: {
@@ -25,11 +30,11 @@ class Service extends Controller
     super
     return unless @el.length
     @log 'Init'
-    pubsub('body').subscribe (event) =>
-      @clean() if event is 'tap'
+    # pubsub('body').subscribe (event) =>
+    #   @clean() if event is 'tap'
 
-    pubsub('projects').subscribe (event) =>
-      @clean() if event is 'openStart'
+    # pubsub('projects').subscribe (event) =>
+    #   @clean() if event is 'openStart'
 
     pubsub('resizeEnd').subscribe @setup
     @setup($(window).width())
@@ -60,15 +65,15 @@ class Service extends Controller
 
     # Format param names
     call = (index, method) =>
-      exec = /([^-]*)-([^-]*)/.exec(method)
+      exec = /^([^\-]*)-(.*)/.exec(method)
       if exec
         method = exec[1]
-        params = exec[2]
+        params = exec[2].split('-')
       else
         params = null
 
       @log 'run', index, method
-      @[method](params)
+      @[method].apply(this, params)
 
     # Make a small iterator
     run = (index) =>
@@ -83,20 +88,6 @@ class Service extends Controller
     # launch the sequence !
     run(0)
 
-  transitionend: (event) ->
-    e = event.originalEvent
-    return unless event.originalEvent?
-    return unless /cover/.test event.target.className
-    return unless /transform/.test e.propertyName
-    if @opened is on
-      @log 'transition end::', 'close'
-      @el.css('z-index', 1)
-      pubsub('services').publish('close')
-      @opened = false
-    else
-      @log 'transition end ::','open'
-      @opened = true
-
   ########
   #  OPEN
   ########
@@ -104,9 +95,9 @@ class Service extends Controller
   open: (e) ->
     @log 'Service open'
     e.stopPropagation()
+    return if @el.hasClass shared.activeClass
     @el.addClass shared.activeClass
     @runSequence @openingSequence()
-    # return if @el.hasClass shared.activeClass
     e.preventDefault()
     pubsub('services').publish('open')
     this
@@ -117,9 +108,9 @@ class Service extends Controller
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = 'openCover translateCover-right rotatePanel-right'
+          when 0 then sequence = 'openCover translateCover-right rotatePanel-right-easeOutCubic'
           when 1 then sequence = 'openCover rotatePanel-left&&rotatePanel-right'
-          when 2 then sequence = 'openCover translateCover-left rotatePanel-left'
+          when 2 then sequence = 'openCover translateCover-left rotatePanel-left-easeOutCubic'
       when 'tablet'
         sequence = 'rotatePanel-left&&rotatePanel-right'
       when 'mobile'
@@ -139,11 +130,22 @@ class Service extends Controller
     @cover.velocity
       properties:
         skewY: [0, @skew]
+        translateZ: [0, 0] # fix some rendering issue
         backgroundColorRed:   shared['$dark-gray'].r
         backgroundColorGreen: shared['$dark-gray'].g
         backgroundColorBlue:  shared['$dark-gray'].b
       options:
         complete: dfd.resolve
+    # title
+    @title.velocity
+      properties:
+        colorRed:   shared['$gray'].r
+        colorGreen: shared['$gray'].g
+        colorBlue:  shared['$gray'].b
+      options:
+        easing: 'ease'
+        duration: 500
+
     # icon
     @icon.velocity
       properties:
@@ -153,7 +155,7 @@ class Service extends Controller
         colorBlue:  shared['$darkest-gray'].b
         fontSize: ['12em', '6em']
       options:
-        ease: 'ease'
+        easing: 'ease'
         duration: 500
     dfd.promise()
 
@@ -165,13 +167,15 @@ class Service extends Controller
       properties:
         translateX: [tx, 0]
       options:
+        easing: easings['easeInCubic']
         complete: dfd.resolve
     $underPanel.css({
       visibility: 'visible'
     })
     dfd.promise()
 
-  rotatePanel: (direction) ->
+  rotatePanel: (direction, ease = 'ease') ->
+    @log ease
     dfd = new $.Deferred()
     ry = if direction is 'left' then '98.75deg' else '-98.75deg'
 
@@ -183,6 +187,7 @@ class Service extends Controller
         properties:
           rotateY: [0, ry]
         options:
+          easing: if ease is 'ease' then 'ease' else easings[ease]
           complete: dfd.resolve
 
     dfd.promise()
@@ -211,9 +216,9 @@ class Service extends Controller
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = 'resetRotation-right resetTranslate-right closeCover'
+          when 0 then sequence = 'resetRotation-right-easeInCubic resetTranslate-right closeCover'
           when 1 then sequence = 'resetRotation-left&&resetRotation-right closeCover'
-          when 2 then sequence = 'resetRotation-left resetTranslate-left closeCover'
+          when 2 then sequence = 'resetRotation-left-easeInCubic resetTranslate-left closeCover'
       when 'tablet'
         sequence = 'resetRotation-left&&resetRotation-right'
       when 'mobile'
@@ -221,16 +226,23 @@ class Service extends Controller
 
     sequence + ' closeEnd'
 
-  resetRotation: (direction) ->
+  resetRotation: (direction, ease = 'ease') ->
     dfd = new $.Deferred()
-    @["#{direction}Panel"].velocity 'reverse', {complete: dfd.resolve}
+    # @log if ease is 'ease' then 'ease' else easings[ease]
+    @["#{direction}Panel"].velocity 'reverse', {
+      complete: dfd.resolve
+      # easing: if ease is 'ease' then 'ease' else easings[ease]
+    }
     dfd.done => @["#{direction}Panel"].css 'visibility', 'hidden'
     dfd.promise()
 
   resetTranslate: (direction) ->
     dfd = new $.Deferred()
     $underPanel = if direction is 'left' then @rightPanel else @leftPanel
-    @cover.velocity 'reverse', {complete: dfd.resolve}
+    @cover.velocity 'reverse', {
+      complete: dfd.resolve
+      # easing: easings['easeOutCubic']
+    }
     dfd.done ->
       $underPanel.css({visibility: 'hidden' })
     dfd.promise()
@@ -247,6 +259,7 @@ class Service extends Controller
       options:
         complete: dfd.resolve
 
+    @title.velocity 'reverse'
     @icon.velocity 'reverse'
     dfd.promise()
 
@@ -259,6 +272,7 @@ class Service extends Controller
     @icon.removeAttr 'style'
     @rightPanel.removeAttr 'style'
     @leftPanel.removeAttr 'style'
+    @title.removeAttr 'style'
     setTimeout dfd.resolve, 250
     dfd.promise()
 

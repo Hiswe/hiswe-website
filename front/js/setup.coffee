@@ -18,7 +18,6 @@ setup = ->
   # Setup jQuery with all the plugins methods attached to it
   $ = window.jQuery = require 'jquery'
   require 'jquery-hammerjs'
-  require 'hevent'
   require 'imagesloaded'
   velocity($)
 
