@@ -65,10 +65,10 @@ class Service extends Controller
     @rotation   = if @md is 'desktop' then '98.5deg' else '90deg'
 
   runSequence: (sequence) ->
+    @log sequence
     # this is to run methods on a specific order
-    # the sequence is a string where where we have sequenceName-sequenceParam
+    # the sequence is an array where we have sequenceName-sequenceParam
     # && mean the animations should run in parallel
-    sequence = sequence.split(' ')
     for method, index in sequence
       sequence[index] = method.split('&&')
 
@@ -111,20 +111,20 @@ class Service extends Controller
     this
 
   openingSequence: ->
-    sequence = ''
+    sequence = []
     @log @md
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = 'openSetup openCover translateCover-right rotatePanel-right-easeOutCubic'
-          when 1 then sequence = 'openSetup openCover rotatePanel-left&&rotatePanel-right'
-          when 2 then sequence = 'openSetup openCover translateCover-left rotatePanel-left-easeOutCubic'
+          when 0 then sequence = ['openSetup', 'openCover', 'translateCover-right', 'rotatePanel-right-easeOutCubic']
+          when 1 then sequence = ['openSetup', 'openCover', 'rotatePanel-left&&rotatePanel-right']
+          when 2 then sequence = ['openSetup', 'openCover', 'translateCover-left', 'rotatePanel-left-easeOutCubic']
       when 'tablet'
-        sequence = 'openSetup rotatePanel-left&&rotatePanel-right'
+        sequence = ['openSetup', 'rotatePanel-left&&rotatePanel-right']
       when 'mobile'
-        sequence = 'openSetup translatePanel-left translatePanel-right'
+        sequence = ['openSetup', 'mobileRotate', 'mobileDeploy']
 
-    sequence + ' openEnd'
+    sequence.concat ['openEnd']
 
   openSetup: ->
     dfd = new $.Deferred()
@@ -207,6 +207,17 @@ class Service extends Controller
     setTimeout dfd.resolve, 250
     dfd.promise()
 
+  # Mobile
+  mobileRotate: (direction) =>
+    dfd = new $.Deferred()
+    setTimeout dfd.resolve, 250
+    dfd.promise()
+
+  mobileDeploy: (direction) =>
+    dfd = new $.Deferred()
+    setTimeout dfd.resolve, 250
+    dfd.promise()
+
   ########
   #  CLOSE
   ########
@@ -225,15 +236,15 @@ class Service extends Controller
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = 'resetRotation-right-easeInCubic resetTranslate-right closeCover'
-          when 1 then sequence = 'resetRotation-left&&resetRotation-right closeCover'
-          when 2 then sequence = 'resetRotation-left-easeInCubic resetTranslate-left closeCover'
+          when 0 then sequence = ['resetRotation-right-easeInCubic', 'resetTranslate-right', 'closeCover']
+          when 1 then sequence = ['resetRotation-left&&resetRotation-right', 'closeCover']
+          when 2 then sequence = ['resetRotation-left-easeInCubic', 'resetTranslate-left', 'closeCover']
       when 'tablet'
-        sequence = 'resetRotation-left&&resetRotation-right'
+        sequence = ['resetRotation-left&&resetRotation-right']
       when 'mobile'
-        sequence = 'translatePanel-left translatePanel-right'
+        sequence = ['translatePanel-left', 'translatePanel-right']
 
-    sequence + ' closeEnd'
+    sequence.contat ['closeEnd']
 
   resetRotation: (direction, ease = 'ease') ->
     dfd = new $.Deferred()
