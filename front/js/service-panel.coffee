@@ -116,15 +116,16 @@ class Service extends Controller
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = ['openSetup', 'openCover', 'translateCover-right', 'rotatePanel-right-easeOutCubic']
-          when 1 then sequence = ['openSetup', 'openCover', 'rotatePanel-left&&rotatePanel-right']
-          when 2 then sequence = ['openSetup', 'openCover', 'translateCover-left', 'rotatePanel-left-easeOutCubic']
+          when 0 then sequence = ['openCover', 'translateCover-right', 'rotatePanel-right-easeOutCubic']
+          when 1 then sequence = ['openCover', 'rotatePanel-left&&rotatePanel-right']
+          when 2 then sequence = ['openCover', 'translateCover-left', 'rotatePanel-left-easeOutCubic']
       when 'tablet'
-        sequence = ['openSetup', 'rotatePanel-left&&rotatePanel-right']
+        sequence = ['rotatePanel-left&&rotatePanel-right']
       when 'mobile'
-        sequence = ['openSetup', 'mobileRotate', 'mobileDeploy']
+        sequence = ['mobileRotate', 'mobileDeploy']
+        # sequence = ['openSetup', 'mobileRotate']
 
-    sequence.concat ['openEnd']
+    ['openSetup'].concat(sequence).concat ['openEnd']
 
   openSetup: ->
     dfd = new $.Deferred()
@@ -209,13 +210,31 @@ class Service extends Controller
 
   # Mobile
   mobileRotate: (direction) =>
+
     dfd = new $.Deferred()
-    setTimeout dfd.resolve, 250
+    @cover.velocity
+      properties:
+        rotateX: ['-180deg', '0deg']
+
+    @leftPanel.velocity
+      properties:
+        rotateX: ['0deg', '180deg']
+      options:
+        complete: dfd.resolve
+        duration: 750
+
+    @rightPanel.hide()
+
     dfd.promise()
 
   mobileDeploy: (direction) =>
     dfd = new $.Deferred()
-    setTimeout dfd.resolve, 250
+    @rightPanel.velocity
+      properties:
+        rotateX: ['0deg', '180deg']
+      options:
+        complete: dfd.resolve
+        display: 'block'
     dfd.promise()
 
   ########
@@ -242,9 +261,9 @@ class Service extends Controller
       when 'tablet'
         sequence = ['resetRotation-left&&resetRotation-right']
       when 'mobile'
-        sequence = ['translatePanel-left', 'translatePanel-right']
+        sequence = ['resetMobileDeploy', 'resetMobileRotate']
 
-    sequence.contat ['closeEnd']
+    sequence.concat ['closeEnd']
 
   resetRotation: (direction, ease = 'ease') ->
     dfd = new $.Deferred()
@@ -297,5 +316,16 @@ class Service extends Controller
     setTimeout dfd.resolve, 250
     dfd.promise()
 
+  # mobile
+  resetMobileDeploy: ->
+    dfd = new $.Deferred()
+    @rightPanel.velocity 'reverse', {complete: dfd.resolve}
+    dfd.promise()
+
+  resetMobileRotate: ->
+    dfd = new $.Deferred()
+    @leftPanel.velocity 'reverse'
+    @cover.velocity 'reverse', {complete: dfd.resolve}
+    dfd.promise()
 
 module.exports = Service
