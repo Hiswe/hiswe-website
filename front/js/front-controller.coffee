@@ -87,4 +87,40 @@ class Controller
         else
            @el.on(eventName, selector, method)
 
+  runSequence: (sequence) ->
+    @log sequence
+    # this is to run methods on a specific order
+    # the sequence is an array where we have sequenceName-sequenceParam
+    # && mean the animations should run in parallel
+    for method, index in sequence
+      sequence[index] = method.split('&&')
+
+    # Format param names & create the deferred object
+    call = (index, method) =>
+      exec = /^([^\-]*)-(.*)/.exec(method)
+      if exec
+        method = exec[1]
+        params = exec[2].split('-')
+      else
+        params = []
+
+      dfd = new $.Deferred()
+      params.unshift(dfd)
+
+      @log 'run', index, method
+      @[method].apply(this, params)
+      dfd.promise()
+
+    # Make a small iterator
+    run = (index) =>
+      method  = sequence[index]
+      dfdList = (call(index, methodName) for methodName in method)
+      $.when.apply(this, dfdList).done =>
+        @log 'finish', index, method
+        index = index + 1
+        run(index) if index < sequence.length
+
+    # launch the sequence !
+    run(0)
+
 module.exports = Controller

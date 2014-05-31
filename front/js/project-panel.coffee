@@ -5,7 +5,7 @@ shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
 class Project extends Controller
-  trace:      false
+  trace:      true
   logPrefix:  'PROJECT'
 
   elements: {
@@ -58,7 +58,7 @@ class Project extends Controller
     modulo      = if windowWidth >= shared.desktopWidth then 3 else 2
     direction   = if @index % modulo is 1 then 1 else -1
     @skew       = 26.5 * direction
-    @color      = if direction > 0 then shared['$gray'] else {r:255, g: 255, b:255}
+    @color      = if direction > 0 then '$gray' else '$white'
 
   ########
   #  COVER IMAGE
@@ -87,35 +87,37 @@ class Project extends Controller
     @log 'Projects open'
     @el.addClass shared.activeClass
     pubsub('projects').publish('openStart')
-    @openCover().done @openPanel
+    @runSequence ['openCover', 'openPanel', 'flipCover&&flipPanel', 'openEnd']
     this
 
-  openCover: =>
-    @log 'open Cover'
-    dfd = new $.Deferred()
+  openCover: (dfd) ->
+    @log dfd
     @el.css 'z-index', 2
-    @cover.velocity 'openCover', {skew: @skew, complete: dfd.resolve}
-    dfd.promise()
+    @cover.velocity
+      properties:
+        height: '150%'
+        top: '-25%'
+        skewY: [0, @skew]
+        backgroundColor: '$dark-gray'
+      options:
+        complete: dfd.resolve
 
-  openPanel: (cover) =>
+  openPanel: (dfd) ->
     @log 'open Panel'
     pubsub('projects').publish('openPanelStart')
-    # return
-    @flipCover()
     @container.css {right: 0, bottom: 0}
-    @flipPanel().done @openEnd
+    dfd.resolve()
 
-
-  flipCover: ->
+  flipCover: (dfd) ->
     @cover
       .velocity
         properties:
           rotateY: [180, 0]
         options:
           duration: 750
+          complete: dfd.resolve
 
-  flipPanel: ->
-    dfd = new $.Deferred()
+  flipPanel: (dfd) ->
     # Compute size so we can position the content panel starting position
     coverOffset       = @cover.offset()
     coverWidth        = @cover.width()
@@ -152,13 +154,13 @@ class Project extends Controller
         options:
           duration: 750
           complete: dfd.resolve
-    dfd.promise()
 
-  openEnd: =>
+  openEnd: (dfd) ->
     @log 'transition end ::','open'
     @content.css 'overflow', 'auto'
     @carrousel.css 'visibility', 'visible'
     @loadBody()
+    @wait(50).then dfd.resolve
     pubsub('projects').publish('openEnd')
 
   loadBody: ->
@@ -202,36 +204,35 @@ class Project extends Controller
     # So the backface of the project appear on the animation
     @content.scrollTop(0).css('overflow', 'hidden')
     @carrousel.css 'visibility', 'hidden'
-    @closePanel()
+    @runSequence ['closePanel', 'closeCover', 'closeEnd']
     this
 
-  closePanel: ->
+  closePanel: (dfd) ->
     @el.removeClass shared.activeClass
     @content.velocity 'reverse'
     @cover.velocity 'reverse', {
       complete: =>
         @container.css {right: '100%', bottom: '100%', overflow: 'hidden'}
-        @closeCover()
+        @wait(50).then dfd.resolve
     }
 
-  closeCover: ->
+  closeCover: (dfd) ->
     @cover.velocity
       properties:
         height: '100%'
         top: '0%'
         skewY: [@skew, 0]
-        backgroundColorRed:   @color.r
-        backgroundColorGreen: @color.g
-        backgroundColorBlue:  @color.b
+        backgroundColor: @color
       options:
-        complete: @closeEnd
+        complete: dfd.resolve
 
-  closeEnd: =>
+  closeEnd: (dfd) ->
     @log 'close end'
     @el.css('z-index', 1)
     @content.removeAttr('style')
     @cover.removeAttr('style')
     @container.removeAttr('style')
+    @wait(50).then dfd.resolve
     pubsub('projects').publish('closeEnd')
 
 module.exports = Project

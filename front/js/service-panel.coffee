@@ -13,7 +13,7 @@ getEase = (easingName) ->
   easingName
 
 class Service extends Controller
-  trace: true
+  trace: false
   logPrefix: 'SERVICE'
 
   elements: {
@@ -64,43 +64,6 @@ class Service extends Controller
 
     @log 'setup', @md
     @rotation   = if @md is 'desktop' then 98.5 else 90
-
-  runSequence: (sequence) ->
-    @log sequence
-    # this is to run methods on a specific order
-    # the sequence is an array where we have sequenceName-sequenceParam
-    # && mean the animations should run in parallel
-    for method, index in sequence
-      sequence[index] = method.split('&&')
-
-    # Format param names & create the deferred object
-    call = (index, method) =>
-      exec = /^([^\-]*)-(.*)/.exec(method)
-
-      if exec
-        method = exec[1]
-        params = exec[2].split('-')
-      else
-        params = []
-
-      dfd = new $.Deferred()
-      params.unshift(dfd)
-
-      @log 'run', index, method
-      @[method].apply(this, params)
-      dfd.promise()
-
-    # Make a small iterator
-    run = (index) =>
-      method  = sequence[index]
-      dfdList = (call(index, methodName) for methodName in method)
-      $.when.apply(this, dfdList).done =>
-        @log 'finish', index, method
-        index = index + 1
-        run(index) if index < sequence.length
-
-    # launch the sequence !
-    run(0)
 
   ########
   #  OPEN
@@ -209,7 +172,7 @@ class Service extends Controller
         complete: dfd.resolve
     }
 
-  openEnd: (dfd) =>
+  openEnd: (dfd) ->
     # Remove everything so during resize, the responsive rules still applies
     @all.removeAttr 'style'
     @all.removeData 'velocity'
@@ -219,7 +182,7 @@ class Service extends Controller
     }
 
   # Mobile
-  mobileRotate: (dfd, direction) =>
+  mobileRotate: (dfd, direction) ->
     @cover.velocity
       properties:
         rotateX:    [-180, 0]
@@ -234,7 +197,7 @@ class Service extends Controller
 
     @rightPanel.hide()
 
-  mobileDeploy: (dfd, direction) =>
+  mobileDeploy: (dfd, direction) ->
     @rightPanel.velocity
       properties:
         rotateX: [0, 180]

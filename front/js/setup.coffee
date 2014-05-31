@@ -52,21 +52,6 @@ velocity = ($) ->
   $.Velocity.defaults.duration  = 500
   $.Velocity.defaults.easing    = 'ease'
   $.Velocity.defaults.mobileHA  = false
-  # Setup some sequence
-  $.Velocity.Sequences.openCover = (element, options) ->
-    properties = {
-      height: '150%'
-      top: '-25%'
-      skewY: [0, options.skew]
-      backgroundColorRed:   shared['$dark-gray'].r
-      backgroundColorGreen: shared['$dark-gray'].g
-      backgroundColorBlue:  shared['$dark-gray'].b
-    }
-    opts = {
-      complete: options.complete
-    }
-
-    $.Velocity.animate element, properties, opts
 
 module.exports = ->
   if $?
