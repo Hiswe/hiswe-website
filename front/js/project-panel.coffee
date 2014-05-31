@@ -147,6 +147,8 @@ class Project extends Controller
       .velocity
         properties:
           rotateY: [0, 180]
+          # scaleX: [scaleX, scaleX]
+          # scaleY: [scaleY, scaleY]
           scaleX: [1, scaleX]
           scaleY: [1, scaleY]
           # Translate to fix perspective origin
@@ -154,6 +156,18 @@ class Project extends Controller
         options:
           duration: 750
           complete: dfd.resolve
+          queue: false
+
+    # TODO 2 step animation
+    # Have to remove 'reverse' animation…
+    # @content.velocity
+    #   properties:
+    #     scaleX: [1, scaleX]
+    #     scaleY: [1, scaleY]
+    #   options:
+    #     delay: 375
+    #     duration: 375
+    #     queue: false
 
   openEnd: (dfd) ->
     @log 'transition end ::','open'
@@ -213,7 +227,7 @@ class Project extends Controller
     @cover.velocity 'reverse', {
       complete: =>
         @container.css {right: '100%', bottom: '100%', overflow: 'hidden'}
-        @wait(50).then dfd.resolve
+        dfd.resolve()
     }
 
   closeCover: (dfd) ->
@@ -232,7 +246,7 @@ class Project extends Controller
     @content.removeAttr('style')
     @cover.removeAttr('style')
     @container.removeAttr('style')
-    @wait(50).then dfd.resolve
+    dfd.resolve()
     pubsub('projects').publish('closeEnd')
 
 module.exports = Project
