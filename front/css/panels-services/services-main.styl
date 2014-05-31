@@ -63,7 +63,6 @@
   &:nth-child(3n+3)
     .hw-sub-left
       left -100% // Reposition panel for scroll issues on firefox
-      transform rotateY(98.75deg)
       // 1% difference is for nice edge aliasis
       transform-origin 101% 50%
 
@@ -73,7 +72,6 @@
       left 100% // Reposition panel for scroll issues on firefox
       // 1% difference is for nice edge aliasis
       transform-origin -1% 50%
-      transform rotateY(-98.75deg)
 
 .hw-sub
   overflow hidden
@@ -121,7 +119,7 @@
   height 100%; width @height
   box-sizing border-box
   padding $panel-padding $panel-padding 0
-  transform translate3d(0,0,0) // Why this transform ?
+  // transform translate3d(0,0,0) // Why this transform ?
 
   .hw-sub-links &,
   .hw-sub-description &
@@ -200,7 +198,7 @@
     color $darkest-grey
 
   .hw-sub
-    transform rotateY(0)
+    iso-reset()
     height 150%
     top  -25%
 

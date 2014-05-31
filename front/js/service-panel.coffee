@@ -159,8 +159,9 @@ class Service extends Controller
     # cover
     @cover.velocity
       properties:
-        skewY: [0, @skew]
-        translateZ: [0, 0] # fix some rendering issue
+        skewY:      [0, @skew]
+        rotateX:    [0, 0]
+        # translateZ: [0, 0] # fix some rendering issue
         backgroundColor: '$dark-gray'
         height: '150%'
         top: '-25%'
@@ -220,6 +221,7 @@ class Service extends Controller
     @cover.velocity
       properties:
         rotateX: [-180, 0]
+        rotateY: [0, 0]
       options:
         _cacheValues: false
 
@@ -238,6 +240,7 @@ class Service extends Controller
     @rightPanel.velocity
       properties:
         rotateX: [0, 180]
+        rotateY: [0, 0]
       options:
         complete: dfd.resolve
         display: 'block'
@@ -277,6 +280,7 @@ class Service extends Controller
     ry = if direction is 'left' then @rotation else '-' + @rotation
     @["#{direction}Panel"].velocity {
       properties:
+        rotateX: [0, 0]
         rotateY: [ry, '0deg']
       options:
         display: 'block'
@@ -291,6 +295,7 @@ class Service extends Controller
     @cover.velocity
       properties:
         translateX: ['0%', '0%']
+        skewY: [0, 0]
         left: '0%'
       options:
         easing: getEase('easeOutCubic')
@@ -326,16 +331,17 @@ class Service extends Controller
         _cacheValues: false
 
   closeEnd: (dfd) ->
-    @wait(50).then =>
-      @all.removeAttr 'style'
-      @el.removeClass(shared.activeClass)
-      pubsub('services').publish('close')
-      dfd.resolve()
+    @all.removeAttr 'style'
+    @el.removeClass(shared.activeClass)
+    pubsub('services').publish('close')
+    dfd.resolve()
+    @wait(50).then dfd.resolve
 
   # mobile
   resetMobileDeploy: (dfd) ->
     @rightPanel.velocity
       properties:
+        rotateY: [0, 0]
         rotateX: [180, 0]
       options:
         complete: dfd.resolve
@@ -345,12 +351,14 @@ class Service extends Controller
     @leftPanel.velocity
       properties:
         rotateX: [180, 0]
+        rotateY: [0, 0]
       options:
         _cacheValues: false
 
     @cover.velocity
       properties:
         rotateX: [0, -180]
+        rotateY: [0, 0]
       options:
         complete: dfd.resolve
         _cacheValues: false
