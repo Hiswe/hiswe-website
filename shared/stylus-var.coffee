@@ -27,6 +27,7 @@ conf = {
   '$dark-gray'              : parse '#576176'
   '$darkest-gray'           : parse '#454A5D'
   '$black'                  : parse '#445'
+  '$white'                  : parse '#fff'
 }
 
 conf['$light-grey']         = conf['$light-gray']

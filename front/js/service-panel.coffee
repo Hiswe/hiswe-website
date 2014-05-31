@@ -36,7 +36,6 @@ class Service extends Controller
     super
     return unless @el.length
     @log 'Init'
-    # @all = @all.add(@el)
 
     # pubsub('body').subscribe (event) =>
     #   @clean() if event is 'tap'
@@ -57,7 +56,7 @@ class Service extends Controller
     modulo      = if windowWidth >= shared.desktopWidth then 3 else 2
     direction   = if @index % modulo is 1 then 1 else -1
     @skew       = 26.5 * direction
-    @color      = if direction > 0 then shared['$gray'] else {r:255, g: 255, b:255}
+    @color      = if direction > 0 then '$gray' else '$white'
     switch
       when windowWidth > shared.tabletWidth then @md = 'desktop'
       when windowWidth < shared.mobileWidth then @md = 'mobile'
@@ -73,7 +72,7 @@ class Service extends Controller
     for method, index in sequence
       sequence[index] = method.split('&&')
 
-    # Format param names
+    # Format param names & create the deferred object
     call = (index, method) =>
       exec = /^([^\-]*)-(.*)/.exec(method)
 
@@ -121,21 +120,21 @@ class Service extends Controller
     switch @md
       when 'desktop'
         switch @index
-          when 0 then sequence = ['openCover', 'translateCover-right', 'rotatePanel-right-easeOutCubic']
-          when 1 then sequence = ['openCover', 'rotatePanel-left&&rotatePanel-right']
-          when 2 then sequence = ['openCover', 'translateCover-left', 'rotatePanel-left-easeOutCubic']
+          when 0 then sequence = ['openSetup', 'openCover', 'translateCover-right', 'rotatePanel-right-easeOutCubic']
+          when 1 then sequence = ['openSetup', 'openCover', 'rotatePanel-left&&rotatePanel-right']
+          when 2 then sequence = ['openSetup', 'openCover', 'translateCover-left', 'rotatePanel-left-easeOutCubic']
       when 'tablet'
-        sequence = ['rotatePanel-left&&rotatePanel-right']
+        sequence = ['openSetup', 'rotatePanel-left&&rotatePanel-right']
       when 'mobile'
-        sequence = ['mobileRotate', 'mobileDeploy']
-        # sequence = ['openSetup', 'mobileRotate']
+        sequence = ['mobileOpenSetup', 'mobileRotate', 'mobileDeploy']
 
-    ['openSetup'].concat(sequence).concat ['openEnd']
+    sequence.concat ['openEnd']
 
   openSetup: (dfd) ->
-    # Prevent all what the addClass will do
+    # Prevent what the addClass will do
     # we will animate that
-    # Bu we still need the CSS code in case of resizing %)
+    # But we will also need the Stylesheet CSS on done
+    # As we wan't to be able to be responsive when panels are open
     @wait(50).then =>
       @sidePanels.hide()
       @cover
@@ -146,38 +145,25 @@ class Service extends Controller
           marginBottom: '0%'
         })
         .css @prefix('transform'), "skewY(#{@skew}deg)"
-      @pristineElStyle =  @el.attr('style')
-      @log @pristineElStyle
-      @el.css {
-        'z-index': 2
-        height: '100%'
-        top: '0%'
-        marginBottom: '0%'
-      }
       # Now that everything is overided
       # We can launch the fun…
       @el.addClass(shared.activeClass)
       dfd.resolve()
 
-  openCover: (dfd) ->
-    # container
-    @el.velocity
-      properties:
-        height: '150%'
-        top: '-25%'
-        marginBottom: '-25%'
-      options:
-        _cacheValues: false
+  mobileOpenSetup: (dfd) ->
+    @wait(50).then =>
+      @el.addClass(shared.activeClass)
+      dfd.resolve()
 
+  openCover: (dfd) ->
     # cover
     @cover.velocity
       properties:
         skewY: [0, @skew]
         translateZ: [0, 0] # fix some rendering issue
-        backgroundColor:   shared['$dark-gray'].r
-        backgroundColorGreen: shared['$dark-gray'].g
-        backgroundColorBlue:  shared['$dark-gray'].b
-        # backgroundColor: colors.darkGray
+        backgroundColor: '$dark-gray'
+        height: '150%'
+        top: '-25%'
       options:
         complete: dfd.resolve
         _cacheValues: false
@@ -185,9 +171,7 @@ class Service extends Controller
     # title
     @title.velocity
       properties:
-        colorRed:   shared['$gray'].r
-        colorGreen: shared['$gray'].g
-        colorBlue:  shared['$gray'].b
+        color:  '$gray'
       options:
         _cacheValues: false
 
@@ -195,9 +179,7 @@ class Service extends Controller
     @icon.velocity
       properties:
         skewY: [0, @skew * - 1]
-        colorRed:   shared['$darkest-gray'].r
-        colorGreen: shared['$darkest-gray'].g
-        colorBlue:  shared['$darkest-gray'].b
+        color:  '$darkest-gray'
         fontSize: ['12em', '6em']
       options:
         _cacheValues: false
@@ -230,7 +212,6 @@ class Service extends Controller
   openEnd: (dfd) =>
     # Remove everything so during resize, the responsive rules still applies
     @all.removeAttr('style').show()
-    @el.attr 'style', @pristineElStyle
     @closeButton.velocity('fadeIn', {display: 'block'})
     setTimeout dfd.resolve, 250
 
@@ -249,6 +230,7 @@ class Service extends Controller
         complete: dfd.resolve
         duration: 750
         display: 'block'
+        _cacheValues: false
 
     @rightPanel.hide()
 
@@ -289,19 +271,18 @@ class Service extends Controller
 
     sequence.concat ['closeEnd']
 
-  # Reverse have to be handled very carefully
-  # as a resize may have occured during this time
+  # Reverse can't be used
+  # as a resize may have occured during the open time
   resetRotation: (dfd, direction, ease = 'ease') ->
     ry = if direction is 'left' then @rotation else '-' + @rotation
-
     @["#{direction}Panel"].velocity {
       properties:
         rotateY: [ry, '0deg']
       options:
         display: 'block'
         easing: getEase(ease)
-        _cacheValues: false
         complete: dfd.resolve
+        _cacheValues: false
     }
     dfd.done => @["#{direction}Panel"].css 'visibility', 'hidden'
 
@@ -313,46 +294,33 @@ class Service extends Controller
         left: '0%'
       options:
         easing: getEase('easeOutCubic')
-        _cacheValues: false
         complete: dfd.resolve
+        _cacheValues: false
     dfd.done ->
       $underPanel.hide()
 
   closeCover: (dfd) ->
-    # container
-    @el.velocity
-      properties:
-        height: '100%'
-        top: '0%'
-        marginBottom: '0%'
-      options:
-        _cacheValues: false
-
     # cover
     @cover.velocity
       properties:
+        height: '100%'
+        top: '0%'
         skewY: [@skew, 0]
-        backgroundColorRed:   @color.r
-        backgroundColorGreen: @color.g
-        backgroundColorBlue:  @color.b
+        backgroundColor: @color
       options:
         complete: dfd.resolve
         _cacheValues: false
 
     @title.velocity
       properties:
-        colorRed:   shared['$dark-gray'].r
-        colorGreen: shared['$dark-gray'].g
-        colorBlue:  shared['$dark-gray'].b
+        color:  '$dark-gray'
       options:
         _cacheValues: false
 
     @icon.velocity
       properties:
         skewY: [@skew * - 1, 0]
-        colorRed:   shared['$pink'].r
-        colorGreen: shared['$pink'].g
-        colorBlue:  shared['$pink'].b
+        color:   '$pink'
         fontSize:   ['6em', '12em']
       options:
         _cacheValues: false
@@ -360,19 +328,31 @@ class Service extends Controller
   closeEnd: (dfd) ->
     @wait(50).then =>
       @all.removeAttr 'style'
-      # remove only custom style
-      # HammerJS use some style too…
-      @el.attr 'style', @pristineElStyle
       @el.removeClass(shared.activeClass)
       pubsub('services').publish('close')
       dfd.resolve()
 
   # mobile
   resetMobileDeploy: (dfd) ->
-    @rightPanel.velocity 'reverse', {complete: dfd.resolve}
+    @rightPanel.velocity
+      properties:
+        rotateX: [180, 0]
+      options:
+        complete: dfd.resolve
+        _cacheValues: false
 
   resetMobileRotate: (dfd) ->
-    @leftPanel.velocity 'reverse'
-    @cover.velocity 'reverse', {complete: dfd.resolve}
+    @leftPanel.velocity
+      properties:
+        rotateX: [180, 0]
+      options:
+        _cacheValues: false
+
+    @cover.velocity
+      properties:
+        rotateX: [0, -180]
+      options:
+        complete: dfd.resolve
+        _cacheValues: false
 
 module.exports = Service

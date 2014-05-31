@@ -1,11 +1,13 @@
+// Transform break position static
+// Problematic in mobile responsive design
 .hw-services
   position relative
   z-index 1
+  transform translateZ(0)  // Why this transform?
 
 .hw-services-list
   perspective 1000px
   perspective-origin center center
-  color blanc(.9)
   height px2em($panel-height)
   crisp-font-smoothing()
   clearfix()
@@ -35,9 +37,7 @@
     // Transform doesn't work on inline display
     display inline-block
     color $pink
-
-  &:nth-child(3n+2) .hw-services-cover
-    background $grey
+    iso-right()
 
   &:not(:target):not(.{activeClass})
     .hw-services-cover
@@ -45,6 +45,35 @@
 
       &:hover
         box-shadow inset 0 0 0 px2em($hover-width) $hover-color
+
+  &:nth-child(3n+1),
+  &:nth-child(3n+3)
+    .hw-services-cover
+      iso-left()
+
+  &:nth-child(3n+2)
+    .hw-services-cover
+      background $grey
+      iso-right()
+
+    .hicon
+      iso-left()
+
+  &:nth-child(3n+2),
+  &:nth-child(3n+3)
+    .hw-sub-left
+      left -100% // Reposition panel for scroll issues on firefox
+      transform rotateY(98.75deg)
+      // 1% difference is for nice edge aliasis
+      transform-origin 101% 50%
+
+  &:nth-child(3n+1),
+  &:nth-child(3n+2)
+    .hw-sub-right
+      left 100% // Reposition panel for scroll issues on firefox
+      // 1% difference is for nice edge aliasis
+      transform-origin -1% 50%
+      transform rotateY(-98.75deg)
 
 .hw-sub
   overflow hidden
@@ -81,10 +110,18 @@
     display none
 
 
+.hw-sub-description
+  color $grey
+
+.hw-sub-close
+.hw-sub-description
+  hide()
+
 .hw-sub-panel
   height 100%; width @height
   box-sizing border-box
   padding $panel-padding $panel-padding 0
+  transform translate3d(0,0,0) // Why this transform ?
 
   .hw-sub-links &,
   .hw-sub-description &
@@ -112,11 +149,12 @@
 // Close button
 .hw-sub-close
   width 2em; height @width
-  absolute top .5em left 100%; z-index 5
+  absolute top -25% left 100%; z-index 5
   text-align center; line-height 1.5em
   background $dark-gray; box-shadow 2px 2px 0 noir(.75)
   cursor pointer
   margin-left -2.5em
+  margin-top .5em
 
   &::after
     color $blue
@@ -143,3 +181,45 @@
     text-indent 100%
     white-space nowrap
     overflow hidden
+
+/////////////
+// Activate Panel
+/////////////
+
+.hw-services-item.{activeClass},
+.hw-services-item:target
+  z-index 10
+
+  .hw-services-cover
+    color $grey
+    background $dark-grey
+
+  .hicon
+    iso-reset()
+    font-size 12em
+    color $darkest-grey
+
+  .hw-sub
+    transform rotateY(0)
+    height 150%
+    top  -25%
+
+  .hw-sub-close,
+  .hw-sub
+    show()
+
+// active positioning
+for num in 1 2 3
+  .hw-services-item.{activeClass}:nth-child(3n+{num}),
+  .hw-services-item:target:nth-child(3n+{num})
+    .hw-sub-left
+      left unit((1 - num) * 100, '%')
+
+    .hw-services-cover
+      left unit((2 - num) * 100, '%')
+
+    .hw-sub-right
+      left unit((3 - num) * 100, '%')
+
+    .hw-sub-close
+      left unit((4 - num) * 100, '%')
