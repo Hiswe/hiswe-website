@@ -348,16 +348,29 @@ media-big-mobile()
 .hw-projects-content
   padding 0 1em
 
-.hw-projects-content > .hw-projects-center,
+  h1
+    font-size 2.5em
+
+  h2
+    font-size 1.25em
+
+  h3
+    font-size 2em
+
+  p
+    font-size 1em
+
+.hw-projects-content-body > .hw-projects-center,
+.hw-projects-content-xhr > .hw-projects-center,
 .hw-projects-aside-container
   width auto
 
 .hw-projects-aside h6 ~ h6
   clear left
 
-
 .hw-projects-aside h6:not(:first-child)
   padding-left 0
+
 media-query-end()
 
 @keyframes bodyIn {
