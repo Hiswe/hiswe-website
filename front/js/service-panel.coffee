@@ -62,6 +62,7 @@ class Service extends Controller
       when windowWidth < shared.mobileWidth then @md = 'mobile'
       else @md = 'tablet'
 
+    @log 'setup', @md
     @rotation   = if @md is 'desktop' then 98.5 else 90
 
   runSequence: (sequence) ->
@@ -116,7 +117,6 @@ class Service extends Controller
 
   openingSequence: ->
     sequence = []
-    @log @md
     switch @md
       when 'desktop'
         switch @index
@@ -152,6 +152,7 @@ class Service extends Controller
 
   mobileOpenSetup: (dfd) ->
     @wait(50).then =>
+      @sidePanels.hide()
       @el.addClass(shared.activeClass)
       dfd.resolve()
 
@@ -160,21 +161,20 @@ class Service extends Controller
     @cover.velocity
       properties:
         skewY:      [0, @skew]
-        rotateX:    [0, 0]
         # translateZ: [0, 0] # fix some rendering issue
         backgroundColor: '$dark-gray'
         height: '150%'
         top: '-25%'
       options:
         complete: dfd.resolve
-        _cacheValues: false
+        # _cacheValues: false
 
     # title
     @title.velocity
       properties:
         color:  '$gray'
-      options:
-        _cacheValues: false
+      # options:
+      #   _cacheValues: false
 
     # icon
     @icon.velocity
@@ -182,19 +182,19 @@ class Service extends Controller
         skewY: [0, @skew * - 1]
         color:  '$darkest-gray'
         fontSize: ['12em', '6em']
-      options:
-        _cacheValues: false
+      # options:
+      #   _cacheValues: false
 
   translateCover: (dfd, direction) ->
     tx = if direction is 'left' then '-100%' else '100%'
     $underPanel = if direction is 'left' then @rightPanel else @leftPanel
-    @cover.css('z-index', 2).velocity
+    @cover.velocity
       properties:
         translateX: [tx, '0%']
       options:
         easing: getEase('easeInCubic')
         complete: dfd.resolve
-        _cacheValues: false
+        # _cacheValues: false
     $underPanel.show()
 
   rotatePanel: (dfd, direction, ease = 'ease') ->
@@ -207,23 +207,22 @@ class Service extends Controller
         display: 'block'
         easing: getEase(ease)
         complete: dfd.resolve
-        _cacheValues: false
     }
 
   openEnd: (dfd) =>
     # Remove everything so during resize, the responsive rules still applies
-    @all.removeAttr('style').show()
-    @closeButton.velocity('fadeIn', {display: 'block'})
-    setTimeout dfd.resolve, 250
+    @all.removeAttr 'style'
+    @all.removeData 'velocity'
+    @closeButton.velocity 'fadeIn', {
+      display: 'block'
+      complete: dfd.resolve
+    }
 
   # Mobile
   mobileRotate: (dfd, direction) =>
     @cover.velocity
       properties:
-        rotateX: [-180, 0]
-        rotateY: [0, 0]
-      options:
-        _cacheValues: false
+        rotateX:    [-180, 0]
 
     @leftPanel.velocity
       properties:
@@ -232,7 +231,6 @@ class Service extends Controller
         complete: dfd.resolve
         duration: 750
         display: 'block'
-        _cacheValues: false
 
     @rightPanel.hide()
 
@@ -240,11 +238,9 @@ class Service extends Controller
     @rightPanel.velocity
       properties:
         rotateX: [0, 180]
-        rotateY: [0, 0]
       options:
         complete: dfd.resolve
         display: 'block'
-        _cacheValues: false
 
   ########
   #  CLOSE
@@ -260,7 +256,6 @@ class Service extends Controller
 
   closingSequence: ->
     sequence = ''
-    @log @md
     switch @md
       when 'desktop'
         switch @index
@@ -280,13 +275,11 @@ class Service extends Controller
     ry = if direction is 'left' then @rotation else '-' + @rotation
     @["#{direction}Panel"].velocity {
       properties:
-        rotateX: [0, 0]
         rotateY: [ry, '0deg']
       options:
         display: 'block'
         easing: getEase(ease)
         complete: dfd.resolve
-        _cacheValues: false
     }
     dfd.done => @["#{direction}Panel"].css 'visibility', 'hidden'
 
@@ -294,13 +287,10 @@ class Service extends Controller
     $underPanel = if direction is 'left' then @rightPanel else @leftPanel
     @cover.velocity
       properties:
-        translateX: ['0%', '0%']
-        skewY: [0, 0]
-        left: '0%'
+        left:       '0%'
       options:
         easing: getEase('easeOutCubic')
         complete: dfd.resolve
-        _cacheValues: false
     dfd.done ->
       $underPanel.hide()
 
@@ -314,53 +304,41 @@ class Service extends Controller
         backgroundColor: @color
       options:
         complete: dfd.resolve
-        _cacheValues: false
 
     @title.velocity
       properties:
         color:  '$dark-gray'
-      options:
-        _cacheValues: false
 
     @icon.velocity
       properties:
         skewY: [@skew * - 1, 0]
         color:   '$pink'
         fontSize:   ['6em', '12em']
-      options:
-        _cacheValues: false
 
   closeEnd: (dfd) ->
     @all.removeAttr 'style'
+    @all.removeData 'velocity'
     @el.removeClass(shared.activeClass)
     pubsub('services').publish('close')
-    dfd.resolve()
     @wait(50).then dfd.resolve
 
   # mobile
   resetMobileDeploy: (dfd) ->
     @rightPanel.velocity
       properties:
-        rotateY: [0, 0]
         rotateX: [180, 0]
       options:
         complete: dfd.resolve
-        _cacheValues: false
 
   resetMobileRotate: (dfd) ->
     @leftPanel.velocity
       properties:
         rotateX: [180, 0]
-        rotateY: [0, 0]
-      options:
-        _cacheValues: false
 
     @cover.velocity
       properties:
-        rotateX: [0, -180]
-        rotateY: [0, 0]
+        rotateX:  [0, -180]
       options:
         complete: dfd.resolve
-        _cacheValues: false
 
 module.exports = Service

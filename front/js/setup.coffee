@@ -49,8 +49,9 @@ velocity = ($) ->
     propertiesMap
 
   # Put some default
-  $.Velocity.defaults.duration = 500
-  $.Velocity.defaults.easing = 'ease'
+  $.Velocity.defaults.duration  = 500
+  $.Velocity.defaults.easing    = 'ease'
+  $.Velocity.defaults.mobileHA  = false
   # Setup some sequence
   $.Velocity.Sequences.openCover = (element, options) ->
     properties = {
