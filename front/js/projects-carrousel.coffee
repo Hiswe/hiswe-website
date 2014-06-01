@@ -13,6 +13,8 @@ class ServicesCarrousel extends Controller
   events: {
     'tap .hw-projects-gallery li': 'circle'
   }
+  # swipeleft
+  # swiperight
 
   elements: {
     '.hw-projects-gallery':     'gallery'

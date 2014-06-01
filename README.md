@@ -48,12 +48,8 @@ git push heroku master
 
 - **3.8.0** *aka* “speedup render” – Change from CSS transitions to [velocity](http://julian.com/research/velocity/)
 - **3.7.0** *aka* “you can (not) send mail” – Change mail provider
-- **3.6.0** *aka* “clean front”
-	- Front JS & lib in requireJs
-	- [Coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
-- **3.5.0** *aka* “clean server“”
-	- *JS* and *CSS* on AWS
-	- Express 4
+- **3.6.0** *aka* “clean front” – Front JS & lib in commonJs + [Coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
+- **3.5.0** *aka* “clean server“” – *JS* & *CSS* on AWS + Express 4
 - **3.4.3** — Async load of projects content 
 - **3.4.2** — Static page for projects + direct link to originals
 - **3.4.1** — Lazy load of projects cover 

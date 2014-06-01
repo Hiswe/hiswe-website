@@ -9,7 +9,7 @@
   perspective 1000px
   perspective-origin center center
   height px2em($panel-height)
-  crisp-font-smoothing()
+  -webkit-font-smoothing antialiased
   clearfix()
 
   h3:first-child
@@ -18,9 +18,6 @@
   .hw-sub-left,
   .hw-sub-right
     background $darkest-grey
-
-.hw-highlight
-  z-index 2
 
 .hw-services-item
   position relative
@@ -109,7 +106,7 @@
 
 
 .hw-sub-description
-  color $grey
+  color white
 
 .hw-sub-close
 .hw-sub-description
@@ -119,30 +116,27 @@
   height 100%; width @height
   box-sizing border-box
   padding $panel-padding $panel-padding 0
+  font-size px2em($panel-fs)
+  line-height 1.5em
   // transform translate3d(0,0,0) // Why this transform ?
 
-  .hw-sub-links &,
-  .hw-sub-description &
-    font-size px2em($panel-fs)
+.hw-sub-description
 
-  .hw-sub-description &
-    line-height 1.5em
+  p
+    margin-bottom 0
 
-    p
-      margin-bottom 0
+  ul, li
+    list-style none
+    reset-box-model()
 
-    ul, li
-      list-style none
-      reset-box-model()
+  li
+    padding-left 1em
+    position relative
 
-    li
-      padding-left 1em
-      position relative
-
-    li::before
-      content '\25A0'
-      color $dark-grey
-      absolute left
+  li::before
+    content '\25A0'
+    color $dark-grey
+    absolute left
 
 // Close button
 .hw-sub-close

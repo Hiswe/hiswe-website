@@ -52,15 +52,15 @@ media-big-mobile()
     .hw-sub-right
       background $dark-grey
 
+      li::before
+        color $darkest-grey
+
     .hicon
       color $pink
       font-size 6em
 
 .hw-services-item.{activeClass},
 .hw-services-item:target
-  // height px2em($panel-height)
-  // top 0
-  // margin-bottom 0
 
   &:nth-child(1n)
     .hw-services-cover
@@ -68,12 +68,8 @@ media-big-mobile()
       top 0
 
     .hw-sub-left, .hw-sub-right
-      // height px2em($panel-height*1.5)
       transform rotateY(0deg)
       z-index 3
-
-    // .hw-sub-left, .hw-sub-right, .hw-sub-close
-    //   top -1 * (px2em($panel-height) * 0.25)
 
   &:nth-child(2n + 1)
     .hw-services-cover, .hw-sub-left
@@ -158,22 +154,6 @@ media-small-mobile()
   .hw-services & h6,
   .hw-services-cover img
     transform scaleY(1) translateY(0)
-
-  .hw-sub-links
-    padding-top .75em
-
-    .hw-sub-panel
-      padding-top 0
-    a
-      margin .25em 0 .5em
-
-  // description in work
-  .hw-sub-description-points
-    flex-row()
-    width 100%
-
-  .hw-sub-description-group
-    flex 1
 
 .hw-services-item.{activeClass}:nth-child(1n),
 .hw-services-item:target:nth-child(1n)
