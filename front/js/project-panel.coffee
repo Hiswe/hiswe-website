@@ -5,7 +5,7 @@ shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
 class Project extends Controller
-  trace:      true
+  trace:      false
   logPrefix:  'PROJECT'
 
   elements: {
