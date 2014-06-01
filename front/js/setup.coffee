@@ -51,7 +51,6 @@ velocity = ($) ->
   # Put some default
   $.Velocity.defaults.duration  = 500
   $.Velocity.defaults.easing    = 'ease'
-  $.Velocity.defaults.mobileHA  = false
 
 module.exports = ->
   if $?

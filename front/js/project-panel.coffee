@@ -18,6 +18,7 @@ class Project extends Controller
     'tap'                           : 'openEvent'
     'tap .hw-projects-close'        : 'closeEvent'
     'click .hw-projects-name'       : 'prevent'
+    'click .hw-projects-close'      : 'prevent'
   }
 
   constructor: ->
@@ -38,6 +39,12 @@ class Project extends Controller
     @body       = $()
     @carrousel  = $()
     pubsub('resizeEnd').subscribe @setupPanelInfo
+    # This fix rendering issues on ios
+    pubsub('projects').subscribe (event, index) =>
+      if event is 'openPanelStart' and index isnt @index
+        @el.css @prefix('transform'), 'translate3d(0,0,0)'
+      if event is 'closeEnd' and index isnt @index
+        @el.css @prefix('transform'), ''
 
   # Don't go on project page
   # Has to be a click event since tap & click event aren't the same
@@ -93,6 +100,7 @@ class Project extends Controller
   openCover: (dfd) ->
     @log dfd
     @el.css 'z-index', 2
+    @cover.css 'z-index', 2
     @cover.velocity
       properties:
         height: '150%'
@@ -103,10 +111,10 @@ class Project extends Controller
         complete: dfd.resolve
 
   openPanel: (dfd) ->
-    @log 'open Panel'
-    pubsub('projects').publish('openPanelStart')
+    @log 'open Panel', @container.length
+    pubsub('projects').publish('openPanelStart', @index)
     @container.css {right: 0, bottom: 0}
-    dfd.resolve()
+    @wait(50).then dfd.resolve
 
   flipCover: (dfd) ->
     @cover
@@ -242,11 +250,12 @@ class Project extends Controller
 
   closeEnd: (dfd) ->
     @log 'close end'
-    @el.css('z-index', 1)
+    @el.css 'z-index', 1
+    @cover.css 'z-index', 1
     @content.removeAttr('style')
     @cover.removeAttr('style')
     @container.removeAttr('style')
     dfd.resolve()
-    pubsub('projects').publish('closeEnd')
+    pubsub('projects').publish 'closeEnd', @index
 
 module.exports = Project
