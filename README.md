@@ -31,13 +31,15 @@ git push heroku master
 1. **version 3.9** *aka* “we load content”
 	- Loader on project
 - **version 3.10** *aka* “Another Carrousel is possible”
-	- It can be better…    
+	- It can be better…
+	- use Swipe on mobile    
 - **version 3.11** *aka* “mobile beauty”
 	- Retina images
 	- Responsive images
 - **version 3.12** *aka* “clean mailing code”
 	- Refactor contact controller with Q
 - **more improvements**
+	- Disable `trace: true` in js on build
 	- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
 	- Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 	- No change of page for contact
@@ -49,7 +51,7 @@ git push heroku master
 - **3.8.0** *aka* “speedup render” – Change from CSS transitions to [velocity](http://julian.com/research/velocity/)
 - **3.7.0** *aka* “you can (not) send mail” – Change mail provider
 - **3.6.0** *aka* “clean front” – Front JS & lib in commonJs + [Coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
-- **3.5.0** *aka* “clean server“” – *JS* & *CSS* on AWS + Express 4
+- **3.5.0** *aka* “clean server” – *JS* & *CSS* on AWS + Express 4
 - **3.4.3** — Async load of projects content 
 - **3.4.2** — Static page for projects + direct link to originals
 - **3.4.1** — Lazy load of projects cover 
@@ -68,3 +70,4 @@ git push heroku master
 - Social icons from [perfecticons.com](http://perfecticons.com/)
 - [Polygon](http://www.polygon.com/2014/4/7/5582644/mlb-14-the-show-review)
 - [Medium](https://medium.com/gulp-js-build/23812e4c9ec1)
+- [Velocity](http://julian.com/research/velocity/) for animations
