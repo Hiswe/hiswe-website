@@ -1,6 +1,8 @@
+// Expose this here
+// As in the front-end app we need to access those properties
 var test = [
     'browsernizr/lib/prefixed',
-    // 'browsernizr/lib/mq',
+    // 'browsernizr/lib/hasEvent',
     'browsernizr/test/elem/progress-meter',
     'browsernizr/test/css/animations',
     'browsernizr/test/css/transitions',
