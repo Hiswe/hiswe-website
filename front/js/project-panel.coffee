@@ -187,6 +187,7 @@ class Project extends Controller
 
   loadBody: ->
     return if @body.length isnt 0
+    @content.addClass shared.projectContentLoading
     @log 'load body', @href
     $.get(@href).success (body) =>
       @content.data('bodyLoaded', true)
@@ -196,7 +197,9 @@ class Project extends Controller
 
       pubsub('projects').publish('loadContentEnd')
 
-      @content.append(@body)
+      @content
+        .removeClass shared.projectContentLoading
+        .append @body
 
       @wait(100).then =>
         @body.css('opacity', 1)

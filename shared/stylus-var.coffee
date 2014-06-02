@@ -10,6 +10,7 @@ conf = {
   'carrouselImageLoaded'    : 'hw-carrousel-image-loaded'
   'carrouselClassSelected'  : 'hw-carrousel-selected'
   'projectCoverLoad'        : 'hw-projects-cover-lazyload'
+  'projectContentLoading'   : 'hw-projects-content-loading'
   # size
   'desktopWidth'            : 1080
   'tabletWidth'             : 768
