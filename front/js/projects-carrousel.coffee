@@ -11,10 +11,10 @@ class ServicesCarrousel extends Controller
   galleryWidth: null
 
   events: {
-    'tap .hw-projects-gallery ul': 'next'
+    'tap ul': 'next'
+    'swiperight ul': 'next'
+    'swipeleft ul': 'prev'
   }
-  # swipeleft
-  # swiperight
 
   elements: {
     '.hw-projects-gallery':     'gallery'
@@ -30,7 +30,6 @@ class ServicesCarrousel extends Controller
 
     @initCarrousel()
     @loadImages()
-    pubsub('resizeEnd').subscribe @resizeEnd
     this
 
   initCarrousel: ->
@@ -52,6 +51,7 @@ class ServicesCarrousel extends Controller
   ###########
   # Lazy load
   ###########
+
   loadImages: ->
     loadedImages = @initLoading().imagesLoaded()
     loadedImages
@@ -106,11 +106,6 @@ class ServicesCarrousel extends Controller
   # Carrousel
   ###########
 
-  resizeEnd: =>
-    @galleryWidth = @gallery.width()
-    @moveTo @li.eq(@count)
-    this
-
   next: ->
     @moveTo 'left'
 
@@ -118,12 +113,15 @@ class ServicesCarrousel extends Controller
     @moveTo 'right'
 
   moveTo: (direction = 'left') ->
+    direction     = if direction is 'left' then 1 else -1
+
     $current      = @li.eq(@count)
     $currentImage = @images.eq(@count)
     currentEnd    = new $.Deferred()
 
-    nextIndex     = if direction is 'left' then @count + 1 else @count - 1
+    nextIndex     = @count + direction
     nextIndex     = if @total > nextIndex then nextIndex else 0
+    nextIndex     = if nextIndex < 0 then @total - 1 else nextIndex
     $next         = @li.eq(nextIndex)
     $nextImage    = @images.eq(nextIndex)
     @count        = nextIndex
@@ -139,7 +137,7 @@ class ServicesCarrousel extends Controller
     $currentImage.velocity
       properties:
         translateZ: [0, 0]
-        rotateY: [90, 0]
+        rotateY: [direction * 90, 0]
 
     # next
     $next.velocity
@@ -147,13 +145,15 @@ class ServicesCarrousel extends Controller
         opacity: [1, 0]
       options:
         display: 'block'
-        delay: 150
+        # delay: 150
         complete: nextEnd.resolve
 
+    $nextImage.css 'opacity', 0
     $nextImage.velocity
       properties:
         translateZ: [0, 0]
-        rotateY: [0, -90]
+        rotateY: [0, direction * -90]
+        opacity: [1, 0]
       options:
         delay: 150
 

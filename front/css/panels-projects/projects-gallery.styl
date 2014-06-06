@@ -1,4 +1,3 @@
-.hw-projects-aside-container,
 .hw-projects-gallery
   width unit($desktop-width, 'px')
   margin 0 auto
@@ -55,8 +54,8 @@
       fill $blue
 
   figure
-      padding 0; margin 0
-      max-height 100%
+    reset-box-model()
+    max-height 100%
 
   figcaption
     absolute bottom left
@@ -99,11 +98,11 @@
     text-align center
     cursor pointer
 
-    a
-      display none
+  figure
+    max-width 100%
 
-  figure.hw-projects-lazyload-loading::after
-    square-spinner()
+    .hw-projects-lazyload-loading::after
+      square-spinner()
 
   progress.bg-projects-progress
     absolute top -1px left
@@ -118,9 +117,6 @@
     &::-webkit-progress-value
       background $pink
 
-  // img
-  //   smooth-chrome-scroll()
-
   figcaption
     bottom auto
     top -2em
@@ -128,29 +124,39 @@
     color $black
 
   a
+    position absolute
     top -1.5em
 
   .{carrouselClassSelected}
     cursor inherit
     display block
 
-    a
-      display block
-
 // ———————————————————
 // @media Tablet
 // ———————————————————
 media-tablet()
 
-.hw-projects-gallery-container
-  margin-left -1em
-  margin-right -1em
-
-.hw-projects-gallery
+.hw-projects-gallery-container,
+.hw-projects-gallery,
+.hw-projects-gallery ul
   width 100%
 
-.{carrouselClass} img
-  width auto; height auto
-  max-width 100%; max-height 100%
+.{carrouselClass}
+  li
+    width 100%
+  img
+    width auto; height auto
+    max-width 100%; max-height 100%
 
 media-query-end()
+
+// ———————————————————
+// @media Big mobile
+// ———————————————————
+
+// media-big-mobile()
+
+// .hw-projects-gallery-container
+//   margin-left: -1em; margin-right @margin-left
+
+// media-query-end()

@@ -1,9 +1,3 @@
-smooth-chrome-scroll()
-  // http://help.dimsemenov.com/discussions/problems/1153-chrome-scrolling-choppylags-when-a-lot-of-images-in-slideshow-plus-position-fixed
-  // Fix choppy lag on chrome
-  transform translateZ(0)
-  backface-visibility hidden
-
 .hw-projects-content-body,
 .hw-projects-content,
 .hw-projects-content-xhr
@@ -87,6 +81,8 @@ smooth-chrome-scroll()
 // Summary
 .hw-projects-aside-container
   position relative
+  width unit($desktop-width, 'px')
+  margin 0 auto
 
   .hw-projects-aside
     absolute top left
@@ -136,7 +132,7 @@ smooth-chrome-scroll()
 media-tablet()
 
 .hw-projects-aside-container
-  width $project-width
+  width unit($project-width, px)
   position static
 
   .hw-projects-aside
@@ -186,7 +182,6 @@ media-query-end()
 media-big-mobile()
 
 .hw-projects-content
-  padding 0 1em
 
   h1
     font-size 2.5em
@@ -204,6 +199,8 @@ media-big-mobile()
 .hw-projects-content-xhr > .hw-projects-center,
 .hw-projects-aside-container
   width auto
+  margin-left 1em
+  margin-right 1em
 
 .hw-projects-aside h6 ~ h6
   clear left
