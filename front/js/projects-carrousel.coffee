@@ -1,6 +1,6 @@
 $           = require 'jquery'
 Controller  = require './front-controller'
-options     = require '../../shared/stylus-var'
+shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
 
 class ServicesCarrousel extends Controller
@@ -11,7 +11,7 @@ class ServicesCarrousel extends Controller
   galleryWidth: null
 
   events: {
-    'tap .hw-projects-gallery li': 'circle'
+    'tap .hw-projects-gallery ul': 'next'
   }
   # swipeleft
   # swiperight
@@ -26,7 +26,7 @@ class ServicesCarrousel extends Controller
   constructor: ->
     super
     return @warn 'No element defined' unless @el.length
-    return @warn 'Carrousel already intialized' if @el.hasClass(options.carrouselClass)
+    return @warn 'Carrousel already intialized' if @el.hasClass(shared.carrouselClass)
 
     @initCarrousel()
     @loadImages()
@@ -39,9 +39,9 @@ class ServicesCarrousel extends Controller
       return @warn 'No css transform available'
 
     @log 'Init'
-    @el.addClass(options.carrouselClass)
+    @el.addClass(shared.carrouselClass)
     @li.eq(0)
-      .addClass(options.carrouselClassSelected)
+      .addClass(shared.carrouselClassSelected)
 
     @total        = @li.length
     @galleryWidth = @gallery.width()
@@ -49,7 +49,9 @@ class ServicesCarrousel extends Controller
     @log 'with', @total, 'image(s)'
     this
 
-  # Images Lazy load
+  ###########
+  # Lazy load
+  ###########
   loadImages: ->
     loadedImages = @initLoading().imagesLoaded()
     loadedImages
@@ -71,7 +73,7 @@ class ServicesCarrousel extends Controller
   onProgress: (instance, image) =>
     @log 'on progress'
     $( image.img )
-      .addClass(options.carrouselImageLoaded)
+      .addClass(shared.carrouselImageLoaded)
       .css('opacity', '')
       .parent()
       .removeClass('hw-projects-lazyload-loading')
@@ -100,58 +102,69 @@ class ServicesCarrousel extends Controller
     @progressBar.attr('value', @progressCurrent)
     @progressBar.remove() if @progressCurrent is @total
 
+  ###########
   # Carrousel
+  ###########
+
   resizeEnd: =>
     @galleryWidth = @gallery.width()
     @moveTo @li.eq(@count)
     this
 
-  getNodes: (event) ->
+  next: ->
+    @moveTo 'left'
+
+  prev: ->
+    @moveTo 'right'
+
+  moveTo: (direction = 'left') ->
     $current      = @li.eq(@count)
-    $next         = $(event.currentTarget)
+    $currentImage = @images.eq(@count)
+    currentEnd    = new $.Deferred()
 
-    nextNodeIndex = @li.index($next)
+    nextIndex     = if direction is 'left' then @count + 1 else @count - 1
+    nextIndex     = if @total > nextIndex then nextIndex else 0
+    $next         = @li.eq(nextIndex)
+    $nextImage    = @images.eq(nextIndex)
+    @count        = nextIndex
+    nextEnd       = new $.Deferred()
 
-    @log 'move from', @count, 'to', nextNodeIndex
-    @count = nextNodeIndex
+    # current
+    $current.velocity
+      properties:
+        opacity: [0, 1]
+      options:
+        complete: currentEnd.resolve
 
-    return {
-      $current: $current
-      $next: $next
-    }
+    $currentImage.velocity
+      properties:
+        translateZ: [0, 0]
+        rotateY: [90, 0]
 
-  moveTo: (selectedImage) ->
-    currentTransform = selectedImage.position().left * - 1
+    # next
+    $next.velocity
+      properties:
+        opacity: [1, 0]
+      options:
+        display: 'block'
+        delay: 150
+        complete: nextEnd.resolve
 
-    if @count is 0
-      # First goes to the carrousel's left
-      adjustedTransform = currentTransform
-    else if @count is @total - 1
-      # Last goes to the carrousel's right
-      adjustedTransform = currentTransform + @galleryWidth - selectedImage.width()
-    else
-      # 5% margin for controls
-      adjustedTransform = currentTransform + (@galleryWidth * 0.05)
+    $nextImage.velocity
+      properties:
+        translateZ: [0, 0]
+        rotateY: [0, -90]
+      options:
+        delay: 150
 
-    @list.css({
-      transform: "translate3d(#{adjustedTransform}px, 0px, 0px)"
-    })
-    this
-
-  circle: (event) ->
-    @log 'circle'
-    # Don't prevent things, as the zoom link would be disabled
-    # event.preventDefault()
-    # event.stopImmediatePropagation()
-
-    el = @getNodes(event)
-
-    return if el.$next.hasClass(options.carrouselClassSelected)
-
-    el.$current.removeClass(options.carrouselClassSelected)
-    el.$next.addClass(options.carrouselClassSelected)
-
-    @moveTo(el.$next)
+    $.when currentEnd, nextEnd
+      .done =>
+        $current
+            .removeClass shared.carrouselClassSelected
+            .removeAttr 'style'
+        $next
+          .addClass shared.carrouselClassSelected
+          .removeAttr 'style'
 
     this
 

@@ -126,6 +126,10 @@ class Project extends Controller
           complete: dfd.resolve
 
   flipPanel: (dfd) ->
+    # TODO make the computation in a separate method
+    # this should be done only on resize event
+    # And it should be compute on close animation as well
+
     # Compute size so we can position the content panel starting position
     coverOffset       = @cover.offset()
     coverWidth        = @cover.width()

@@ -52,6 +52,9 @@ class Service extends Controller
   #  UTILITY
   ########
 
+  # TODO call setup only when necessary
+  # Setup should be called only before a sequence occur
+  # resizeEnd should just set a forceSetup value
   setup: (windowWidth) =>
     modulo      = if windowWidth >= shared.desktopWidth then 3 else 2
     direction   = if @index % modulo is 1 then 1 else -1
