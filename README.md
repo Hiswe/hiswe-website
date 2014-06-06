@@ -28,15 +28,10 @@ git push heroku master
 
 ## Roadmap
 
-1. **version 3.9** *aka* “we load content”
-	- Loader on project
-- **version 3.10** *aka* “Another Carrousel is possible”
-	- It can be better…
-	- use Swipe on mobile    
-- **version 3.11** *aka* “mobile beauty”
+1. **version 3.10** *aka* “mobile beauty”
 	- Retina images
 	- Responsive images
-- **version 3.12** *aka* “clean mailing code”
+- **version 3.11** *aka* “clean mailing code”
 	- Refactor contact controller with Q
 - **more improvements**
 	- Disable `trace: true` in js on build
@@ -48,6 +43,7 @@ git push heroku master
 
 ## Release History
 
+- **3.9.0** *aka* “Another Carrousel is possible” – Change carrousel and add loader on projects
 - **3.8.0** *aka* “speedup render” – Change from CSS transitions to [velocity](http://julian.com/research/velocity/)
 - **3.7.0** *aka* “you can (not) send mail” – Change mail provider
 - **3.6.0** *aka* “clean front” – Front JS & lib in commonJs + [Coffeelint](https://www.npmjs.org/package/gulp-coffeelint/)
