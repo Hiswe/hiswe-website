@@ -24,23 +24,6 @@ modernizr = ->
 hammerJs = ->
   # Hammerjs
   window.Hammer     = require 'hammerjs'
-  # Remove :hover effects on mobile
-  # Hammer JS rely on browser sniffing :( But I can't find an easier way
-  # https://github.com/mislav/movieapp/blob/master/app/assets/javascripts/touch_nohover.coffee
-
-  # TODO better handling of :hover rules
-  # if Hammer.IS_MOBILE
-  #   ignore = /:hover\b/
-  #   try
-  #     for stylesheet in document.styleSheets
-  #       idxs = []
-  #       # detect hover rules
-  #       for rule, idx in stylesheet.cssRules
-  #         if rule.type is CSSRule.STYLE_RULE and ignore.test(rule.selectorText)
-  #           idxs.unshift idx
-
-  #       # delete hover rules
-  #       stylesheet.deleteRule idx for idx in idxs
 
 jQuery = ->
   # Setup jQuery with all the plugins methods attached to it
@@ -48,6 +31,10 @@ jQuery = ->
   require 'jquery-hammerjs'
   require 'imagesloaded'
   velocity($)
+  # Remove :hover effects on mobile
+  # Hammer JS rely on browser sniffing :( But I can't find an easier way
+  # https://github.com/mislav/movieapp/blob/master/app/assets/javascripts/touch_nohover.coffee
+  $('body').removeClass('hover') if Hammer.IS_MOBILE
   $
 
 velocity = (jQuery) ->

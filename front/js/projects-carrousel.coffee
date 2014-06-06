@@ -8,19 +8,19 @@ class ServicesCarrousel extends Controller
   logPrefix: 'CARROUSEL'
   count: 0
   total: 0
-  galleryWidth: null
 
   events: {
-    'tap ul': 'next'
-    'swiperight ul': 'next'
-    'swipeleft ul': 'prev'
+    'tap':        'next'
+    'swiperight': 'next'
+    'swipeleft':  'prev'
+    'tap a':      'prevent'
   }
 
   elements: {
-    '.hw-projects-gallery':     'gallery'
-    'ul':                       'list'
-    '.hw-projects-gallery li':  'li'
-    '.hw-projects-gallery img': 'images'
+    '.hw-projects-gallery': 'gallery'
+    'ul':                   'list'
+    'li':                   'li'
+    'img':                  'images'
   }
 
   constructor: ->
@@ -42,11 +42,16 @@ class ServicesCarrousel extends Controller
     @li.eq(0)
       .addClass(shared.carrouselClassSelected)
 
-    @total        = @li.length
-    @galleryWidth = @gallery.width()
+    @total = @li.length
 
     @log 'with', @total, 'image(s)'
     this
+
+  prevent: (event) ->
+    @log 'prevent'
+    event.stopPropagation()
+    event.gesture.stopPropagation()
+    false
 
   ###########
   # Lazy load

@@ -41,16 +41,15 @@
     vertical-align text-top
     v-align()
 
-  a, a:hover
+  a
     absolute top 1em right 1em
     z-index 2
     background none
 
-  a
     .svgicon
       fill $pink
 
-    &:hover .svgicon
+    .hover &:hover .svgicon
       fill $blue
 
   figure
@@ -141,6 +140,10 @@ media-tablet()
 .hw-projects-gallery ul
   width 100%
 
+.hw-projects-gallery-container,
+.{carrouselClass} .hw-projects-gallery
+  height 22em
+
 .{carrouselClass}
   li
     width 100%
@@ -149,14 +152,3 @@ media-tablet()
     max-width 100%; max-height 100%
 
 media-query-end()
-
-// ———————————————————
-// @media Big mobile
-// ———————————————————
-
-// media-big-mobile()
-
-// .hw-projects-gallery-container
-//   margin-left: -1em; margin-right @margin-left
-
-// media-query-end()
