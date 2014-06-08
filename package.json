@@ -82,6 +82,7 @@
     "wolfy87-eventemitter": "git://github.com/Wolfy87/EventEmitter",
     "ini": "^1.2.1",
     "velocity-animate": "0.0.17",
-    "color-parser": "^0.1.0"
+    "color-parser": "^0.1.0",
+    "css-parse": "^1.7.0"
   }
 }

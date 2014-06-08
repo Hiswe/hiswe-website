@@ -45,6 +45,7 @@ var coffeelint  = require('gulp-coffeelint');
 var livereload  = require('gulp-livereload');
 // misc
 var bundleData  = require('./gulp-task/hiswe-bundle-data');
+var getSvgSize  = require('./gulp-task/hiswe-icons');
 
 /////////
 // CONF & MISC
@@ -230,7 +231,7 @@ gulp.task('font', ['clean-font'], function() {
 
 gulp.task('clean-icons', function() { return gulp.src(conf.icons.dst, {read: false}).pipe(clean());});
 
-gulp.task('build-icons', ['clean-icons'], function () {
+gulp.task('icons', ['clean-icons'], function () {
   return gulp.src(conf.icons.src)
     .pipe(rename(conf.icons.rename))
     .pipe(svg({
@@ -240,12 +241,10 @@ gulp.task('build-icons', ['clean-icons'], function () {
       cssFile:      "hiswe-icons.css",
       svg: { defs:  "hiswe-icons.svg" }
     }))
-    .pipe(gulp.dest(conf.icons.dst));
-});
-
-gulp.task('icons', ['build-icons'], function () {
-  return gulp.src(conf.icons.finalSrc)
-    .pipe(gulp.dest(conf.icons.finalDst));
+    .pipe(gulpif( /[.]css$/, getSvgSize()))
+    .pipe(gulp.dest(conf.icons.dst))
+    .pipe(gulpif( /[.]svg$/, gulp.dest(conf.icons.finalSvgDst)))
+    .pipe(gulpif( /[.]json$/, gulp.dest(conf.icons.finalJsonDst)));
 });
 
 /////////
@@ -424,6 +423,7 @@ gulp.task('doc', function(callback) {
   console.log(m('  --css'), g('...........'), 'Compile stylus + uglify + rev');
   console.log(m('  --front'), g('.........'), 'Concat & uglify front-end app + rev');
   console.log(m('  --no-image'), g('......'), 'build everything except images');
+  console.log(m('icons'), g('.............'), 'build icon svg files');
   console.log(m('pixel'), g('.............'), 'Resize pixel images');
   console.log(m('svg'), g('...............'), 'clean svg images');
   console.log(m('image'), g('.............'), 'pixel + svg');

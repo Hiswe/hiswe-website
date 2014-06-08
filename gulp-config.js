@@ -20,10 +20,7 @@ exports.msg = function (message) {
 
 exports.rev = {
   src: ['/app.js', '/vendor.js', '/index.css'].map( function(item){ return publicFolder + item}),
-  dst: publicFolder,
-  formatName: function formatOriginal(path) {
-    path.basename = path.basename + '.min';
-  }
+  dst: publicFolder
 };
 
 exports.heroku = {
@@ -67,7 +64,7 @@ exports.css = {
   src: [
     'bower_components/hiso-font/font/hiso-font.css',
     'bower_components/hiso-font/font/hicon.css',
-    // 'public/media/icons/hiswe-icons.css',
+    'public/media/icons/hiswe-icons.css',
     'front/css/index.styl'
   ],
   dst: publicFolder
@@ -132,8 +129,8 @@ exports.icons = {
   src: rc.GULP_SRC + '/icons/*.svg',
   clean: rc.GULP_SRC + '/icons/def',
   dst: mediaFolder + '/icons',
-  finalSrc: mediaFolder + '/icons/*.svg',
-  finalDst: 'views/includes',
+  finalSvgDst:  'views/includes',
+  finalJsonDst: 'server/datas',
   rename: function rename(path) {
     path.basename = path.basename.replace(/(hiswe-icons_)/, '');
     path.basename = slug(path.basename).toLowerCase();

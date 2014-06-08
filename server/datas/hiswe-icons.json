@@ -1,0 +1,46 @@
+{
+  "close": {
+    "width": 32,
+    "height": 32
+  },
+  "codepen": {
+    "width": 36,
+    "height": 24
+  },
+  "deviantart": {
+    "width": 36,
+    "height": 24
+  },
+  "expand": {
+    "width": 36,
+    "height": 24
+  },
+  "github": {
+    "width": 36,
+    "height": 24
+  },
+  "linkedin": {
+    "width": 36,
+    "height": 24
+  },
+  "mail": {
+    "width": 36,
+    "height": 24
+  },
+  "menu": {
+    "width": 36,
+    "height": 24
+  },
+  "next": {
+    "width": 31,
+    "height": 160
+  },
+  "prev": {
+    "width": 31,
+    "height": 160
+  },
+  "tumblr": {
+    "width": 36,
+    "height": 24
+  }
+}

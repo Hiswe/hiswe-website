@@ -99,24 +99,16 @@
   opacity 0
   projects-close-button-out()
   background $light-grey
-  color $dark-grey
-  text-indent -1000em
   overflow hidden
+
+  .svgicon
+    fill $dark-grey
 
   &:hover
     background $blue
-    color white
 
-  &::after
-    percentCenter()
-    font-size 2em
-    content '×'
-    font-weight bold
-    text-indent 0
-    width 1em
-    height 1em
-    text-align center
-    line-height .75em
+    .svgicon
+      fill white
 
   .{activeClass} &
     opacity 1

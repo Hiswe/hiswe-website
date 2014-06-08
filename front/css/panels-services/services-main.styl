@@ -148,29 +148,22 @@
   margin-left -2.5em
   margin-top .5em
 
-  &::after
-    color $blue
-    font-size 2em
-    content '×'
-    font-weight bold
+  .svgicon
+    fill $blue
 
   &:hover
     background $gray
 
-    &::after
-      color $blue
+    .svgicon
+      fill $blue
 
   &:active
     transform translate(2px, 2px)
     box-shadow none
 
-  .js & a
-    display none
-
-  .no-js & a
+  a
     absolute top left
     right 0; bottom 0
-    text-indent 100%
     white-space nowrap
     overflow hidden
 
