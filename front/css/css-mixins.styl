@@ -99,6 +99,14 @@ image-center(selector = 'img')
       left 100%
       margin-left -200%
 
+// Better handling of link with svg tag
+// http://css-tricks.com/links-inline-svg-staying-target-events/
+svg-link()
+  &::after
+    content ''
+    absolute top left
+    right 0; bottom 0
+
 // TODO use shared var for the sizes
 media-tablet()
   unquote("@media screen and (max-width: " + $tablet-width + ") {")

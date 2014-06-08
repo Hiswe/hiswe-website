@@ -30,6 +30,7 @@ class Service extends Controller
   events: {
     'tap .hw-services-cover'  : 'open'
     'tap .hw-sub-close'       : 'close'
+    'click .hw-sub-close a'   : 'prevent'
   }
 
   constructor: ->
@@ -67,6 +68,12 @@ class Service extends Controller
 
     @log 'setup', @md
     @rotation   = if @md is 'desktop' then 98.5 else 90
+
+  # Has to be a click event since tap & click event aren't the same
+  # http://stackoverflow.com/questions/18225061/hammer-js-and-preventdefault
+  prevent: (event) ->
+    @log 'prevent'
+    event.preventDefault()
 
   ########
   #  OPEN

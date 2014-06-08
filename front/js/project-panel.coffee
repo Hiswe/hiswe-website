@@ -52,7 +52,6 @@ class Project extends Controller
   prevent: (event) ->
     @log 'prevent'
     event.preventDefault()
-    false
 
   setupPanelInfo: =>
     windowWidth = @window.width()
