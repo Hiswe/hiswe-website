@@ -12,7 +12,6 @@ errorhandler  = require 'errorhandler'
 log           = '[BOOT]'
 rev           = require './datas/rev-manifest.json'
 conf          = require './settings'
-icons         = require './datas/hiswe-icons.json'
 secret        = 'The best color is pink'
 
 module.exports = ->
@@ -29,7 +28,6 @@ module.exports = ->
   app.locals.env          = app.get('env')
   app.locals.appName      = conf.APP_NAME
   app.locals.assets       = rev
-  app.locals.icons        = icons
 
   # Middleware
   app.use compress() # gzip

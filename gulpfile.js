@@ -29,9 +29,6 @@ var source      = require('vinyl-source-stream');
 var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
-// icons
-var svgSprites  = require('gulp-svg-sprites');
-var svg         = svgSprites.svg;
 // images
 var svgmin      = require('gulp-svgmin');
 var resize      = require('gulp-image-resize');
@@ -45,7 +42,7 @@ var coffeelint  = require('gulp-coffeelint');
 var livereload  = require('gulp-livereload');
 // misc
 var bundleData  = require('./gulp-task/hiswe-bundle-data');
-var getSvgSize  = require('./gulp-task/hiswe-icons');
+var svgSymbols  = require('./gulp-task/hiswe-svg-symbols')
 
 /////////
 // CONF & MISC
@@ -205,8 +202,6 @@ gulp.task('bundle-front', ['clean-app'], function() {
     .pipe(livereload(server));
 });
 
-
-
 gulp.task('front-app', function(callback) {
   return runsequence('front-lint', 'bundle-front', 'rev', callback);
 });
@@ -228,23 +223,16 @@ gulp.task('font', ['clean-font'], function() {
 });
 
 // ICONS
-
-gulp.task('clean-icons', function() { return gulp.src(conf.icons.dst, {read: false}).pipe(clean());});
-
-gulp.task('icons', ['clean-icons'], function () {
+gulp.task('icons', function() {
   return gulp.src(conf.icons.src)
     .pipe(rename(conf.icons.rename))
-    .pipe(svg({
-      defs:         true,
-      svgId:        "icon-%f",
-      className:    ".svgicon-%f",
-      cssFile:      "hiswe-icons.css",
-      svg: { defs:  "hiswe-icons.svg" }
+    .pipe(svgSymbols({
+      svgId:      'icon-%f',
+      className:  '.svgicon-%f'
     }))
-    .pipe(gulpif( /[.]css$/, getSvgSize()))
-    .pipe(gulp.dest(conf.icons.dst))
-    .pipe(gulpif( /[.]svg$/, gulp.dest(conf.icons.finalSvgDst)))
-    .pipe(gulpif( /[.]json$/, gulp.dest(conf.icons.finalJsonDst)));
+    .pipe(rename(conf.icons.renameDst))
+    .pipe(gulpif( /[.]svg$/, gulp.dest(conf.icons.svgDst)))
+    .pipe(gulpif( /[.]css$/, gulp.dest(conf.icons.cssDst)));
 });
 
 /////////

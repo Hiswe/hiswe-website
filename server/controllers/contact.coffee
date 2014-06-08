@@ -1,7 +1,7 @@
+_             = require 'lodash'
 fs            = require 'fs'
 path          = require 'path'
 nodemailer    = require 'nodemailer'
-extend        = require 'extend'
 jade          = require 'jade'
 
 conf          = require './../settings'
@@ -86,7 +86,7 @@ sendMail = (data, callback) ->
     html: message # html body
   }
 
-  options = extend {}, mail, mailOptions
+  options = _.extend {}, mail, mailOptions
 
   smtpTransport.sendMail options, callback
 

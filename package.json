@@ -29,8 +29,8 @@
     "morgan": "^1.1.1",
     "errorhandler": "^1.0.1",
     "nodemailer": "^0.6.5",
-    "extend": "^1.2.1",
-    "googleapis": "^0.7.0"
+    "googleapis": "^0.7.0",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "gulp": "~3.x.x",
@@ -54,7 +54,6 @@
     "gulp-minify-css": "~0.x.x",
     "gulp-livereload": "~1.x.x",
     "gulp-awspublish": "0.0.16",
-    "gulp-svg-sprites": "^0.1.0",
     "gulp-image-resize": "~0.x.x",
     "tiny-lr": "0.x.x",
     "nib": "~1.x.x",
@@ -69,7 +68,6 @@
     "xml2js": "^0.4.2",
     "slug": "^0.5.0",
     "through": "^2.3.4",
-    "extend": "^1.2.1",
     "run-sequence": "^0.3.6",
     "gulp-coffeelint": "^0.3.3",
     "jquery": "^2.1.1",
@@ -83,6 +81,8 @@
     "ini": "^1.2.1",
     "velocity-animate": "0.0.17",
     "color-parser": "^0.1.0",
-    "css-parse": "^1.7.0"
+    "through2": "^0.5.1",
+    "svgo": "^0.4.4",
+    "consolidate": "^0.10.0"
   }
 }

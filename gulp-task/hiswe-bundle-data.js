@@ -1,5 +1,6 @@
 'use strict';
 
+var _             = require('lodash')
 var gutil         = require('gulp-util');
 var File          = gutil.File;
 var PluginError   = gutil.PluginError;
@@ -7,7 +8,6 @@ var path          = require('path');
 var marked        = require('marked');
 var through       = require('through');
 var openFile      = require('fs').openSync;
-var extend        = require('extend');
 
 var conf          = require('../gulp-config.js');
 var renderer      = require('./marked-renderer.js');
@@ -99,19 +99,19 @@ function bundle () {
 
     // Home file
     homeBuffer.sort(function(a, b){ return  a.order < b.order});
-    var homeJson = new File(extend({}, base, {
+    var homeJson = new File(_.extend({}, base, {
       path: path.join(firstFile.base, 'db-home.json'),
       contents: new Buffer(JSON.stringify(homeBuffer, null, 2))
     }));
 
     // Project file
-    var projectJson = new File(extend({}, base, {
+    var projectJson = new File(_.extend({}, base, {
       path: path.join(firstFile.base, 'db-projects.json'),
       contents: new Buffer(JSON.stringify(projectBuffer, null, 2))
     }));
 
     // Xhr file
-    var xhrJson = new File(extend({}, base, {
+    var xhrJson = new File(_.extend({}, base, {
       path: path.join(firstFile.base, 'db-projects-xhr.json'),
       contents: new Buffer(JSON.stringify(xhrBuffer, null, 2))
     }));

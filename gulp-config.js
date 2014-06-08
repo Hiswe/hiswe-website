@@ -127,11 +127,13 @@ exports.font = {
 
 exports.icons = {
   src: rc.GULP_SRC + '/icons/*.svg',
-  clean: rc.GULP_SRC + '/icons/def',
-  dst: mediaFolder + '/icons',
-  finalSvgDst:  'views/includes',
-  finalJsonDst: 'server/datas',
-  rename: function rename(path) {
+  svgDst:   'views/includes',
+  // TODO should be elsewhere
+  cssDst:   'public/media/icons',
+  renameDst: function (path) {
+    path.basename = 'hiswe-icons';
+  },
+  rename: function (path) {
     path.basename = path.basename.replace(/(hiswe-icons_)/, '');
     path.basename = slug(path.basename).toLowerCase();
   }
