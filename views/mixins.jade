@@ -1,3 +1,7 @@
 mixin icon(name)
   svg(class="svgicon svgicon-#{name}" role="img")
     use(xlink:href="#icon-#{name}")
+
+mixin carrouselControl(direction)
+  a(href="##{direction}", class="hw-projects-gallery-control hw-projects-gallery-control-#{direction}")
+    +icon(direction)

@@ -2,9 +2,11 @@ $           = require 'jquery'
 Controller  = require './front-controller'
 shared      = require '../../shared/stylus-var'
 pubsub      = require './pubsub'
+prevTmpl    = require '../../views/includes/gallery-prev'
+nextTmpl    = require '../../views/includes/gallery-next'
 
 class ServicesCarrousel extends Controller
-  trace: false
+  trace: true
   logPrefix: 'CARROUSEL'
   count: 0
   total: 0
@@ -13,7 +15,9 @@ class ServicesCarrousel extends Controller
     'tap':        'next'
     'swiperight': 'next'
     'swipeleft':  'prev'
-    'tap a':      'prevent'
+    'tap hw-projects-gallery-control-next' : 'next'
+    'tap hw-projects-gallery-control-prev' : 'prev'
+    'tap li a':    'prevent'
   }
 
   elements: {
@@ -60,8 +64,8 @@ class ServicesCarrousel extends Controller
   loadImages: ->
     loadedImages = @initLoading().imagesLoaded()
     loadedImages
-      .progress(@onProgress)
-      .done( => @log 'all images loaded')
+      .progress @onProgress
+      .done @onEnd
 
     if Modernizr.progressbar
       @initProgress()
@@ -106,6 +110,11 @@ class ServicesCarrousel extends Controller
     @progressCurrent += 1
     @progressBar.attr('value', @progressCurrent)
     @progressBar.remove() if @progressCurrent is @total
+
+  onEnd: =>
+    @log 'all images loaded'
+    @gallery.prepend prevTmpl()
+      .append nextTmpl()
 
   ###########
   # Carrousel

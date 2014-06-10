@@ -3,6 +3,7 @@
 require('coffee-script/register');
 
 var fs          = require('fs');
+var gp          = require("gulp-load-plugins")();
 var ini         = require('ini');
 var rev         = require('gulp-rev');
 var gulp        = require('gulp');
@@ -10,7 +11,6 @@ var path        = require('path');
 var exec        = require('child_process').exec;
 var args        = require('yargs').argv;
 var conf        = require('./gulp-config.js');
-var bump        = require('gulp-bump');
 var gutil       = require('gulp-util');
 var clean       = require('gulp-clean');
 var uglify      = require('gulp-uglify');
@@ -26,7 +26,6 @@ var stylus      = require('gulp-stylus');
 var minifyCSS   = require('gulp-minify-css');
 // browserify js
 var source      = require('vinyl-source-stream');
-var coffeeify   = require('coffeeify');
 var streamify   = require('gulp-streamify');
 var browserify  = require('browserify');
 // images
@@ -57,9 +56,9 @@ var onError = function onError(err) {
 };
 
 gulp.task('bump', function () {
-  if (args.minor) return gulp.src(conf.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
-  if (args.major) return gulp.src(conf.pack).pipe(bump({type:'minor'})).pipe(gulp.dest('./'));
-  return gulp.src(conf.pack).pipe(bump()).pipe(gulp.dest('./'));
+  if (args.minor) return gulp.src(conf.pack).pipe(gp.bump({type:'minor'})).pipe(gulp.dest('./'));
+  if (args.major) return gulp.src(conf.pack).pipe(gp.bump({type:'minor'})).pipe(gulp.dest('./'));
+  return gulp.src(conf.pack).pipe(gp.bump()).pipe(gulp.dest('./'));
 });
 
 gulp.task('rev', function () {
@@ -187,9 +186,10 @@ gulp.task('bundle-front', ['clean-app'], function() {
   var bundleStream = browserify({
       entries: conf.js.front.src,
       basedir: conf.basedir,
-      extensions: ['.js', '.json', '.coffee']
+      extensions: ['.js', '.json', '.coffee', '.jade']
     })
-    .transform(coffeeify)
+    .transform(require('coffeeify'))
+    .transform(require('jadeify'))
     .external(conf.js.front.external)
     .bundle();
 
