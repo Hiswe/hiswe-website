@@ -1,7 +1,9 @@
 figure(class="#{image.type}")
   != body
-  a(href=image.link, target="_blank")
-    svg(viewBox="0 0 36 24" class="svgicon svgicon-expand" role="img" title="expand")
-      use(xlink:href="#icon-expand")
-  if image.text
-    figcaption!= image.text
+
+  figcaption
+    | #{image.text}
+    a(href=image.link, target="_blank")
+      svg(viewBox="0 0 36 24" class="svgicon svgicon-expand" role="img" title="expand")
+        use(xlink:href="#icon-expand")
+

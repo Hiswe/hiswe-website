@@ -41,7 +41,7 @@ module.exports = (app) ->
   # Slow assets on dev
   if app.get('env') is 'development'
     console.log awsLog.warn, 'use local images'
-    app.use(slowAssets)
+    # app.use(slowAssets)
   else
     console.log awsLog.prompt, 'use AWS CDN'
     # Amazon S3 support

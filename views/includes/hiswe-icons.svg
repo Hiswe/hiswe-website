@@ -34,11 +34,11 @@
   </symbol>
   <symbol id="icon-next" viewBox="0 0 30 160">
     <title>next icon</title> 
-    <path d="M.038 160l26.806-79.974-26.823-80.026h3.162l26.823 80.026-26.805 79.974z"/>
+    <path fill="none" d="M.038 160l27.806-79.974-27.823-80.026"/>
   </symbol>
   <symbol id="icon-prev" viewBox="0 0 30 160">
     <title>prev icon</title> 
-    <path d="M29.966 160l-26.806-79.974 26.823-80.026h-3.162l-26.823 80.026 26.805 79.974z"/>
+    <path fill="none" d="M29.966 160l-27.806-79.974 27.823-80.026"/>
   </symbol>
   <symbol id="icon-tumblr" viewBox="0 0 16 24">
     <title>tumblr icon</title> 
