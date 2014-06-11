@@ -31,10 +31,11 @@ git push heroku master
 1. **version 3.10** *aka* “mobile beauty”
 	- Retina images
 	- Responsive images
-- **version 3.11** *aka* “clean mailing code”
+- **version 3.11** *aka* “clean me that mess”
 	- Refactor contact controller with Q
+	- Do the TODOS
+	- replace npm *through* with *through2*	
 - **more improvements**
-	- replace npm *through* with *through2*
 	- [sitemap](https://www.npmjs.org/package/gulp-sitemap) is [better](http://anthony.nelz.in/labo/de-limportance-dune-site-map/)
 	- Disable `trace: true` in js on build
 	- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
@@ -45,6 +46,7 @@ git push heroku master
 
 ## Release History
 
+- **3.9.1** – Add control to carrousel
 - **3.9.0** *aka* “Another Carrousel is possible” – Change carrousel and add loader on projects
 - **3.8.0** *aka* “speedup render” – Change from CSS transitions to [velocity](http://julian.com/research/velocity/)
 - **3.7.0** *aka* “you can (not) send mail” – Change mail provider
@@ -55,6 +57,8 @@ git push heroku master
 - **3.4.1** — Lazy load of projects cover 
 - **3.4.0** — Assets on a CDN
 - **3.3.0** — Add carrousel
+- **3.2.0** — Split code of projects and services
+- **3.1.0** — Change projects content display 
 - **3.0.0** — Revamp
 - **2.0.3** — rc conf manager
 - **2.0.2** — Gulp build system
