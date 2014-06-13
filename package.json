@@ -84,6 +84,7 @@
     "svgo": "^0.4.4",
     "consolidate": "^0.10.0",
     "gulp-load-plugins": "^0.5.1",
-    "jadeify": "^2.3.0"
+    "jadeify": "^2.3.0",
+    "gulp-svg-symbols": "git://github.com/Hiswe/gulp-svg-symbols"
   }
 }

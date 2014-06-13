@@ -18,7 +18,6 @@ var browserify  = require('browserify');
 var lr          = require('tiny-lr'); // livereload depend on tiny-lr
 // misc
 var bundleData  = require('./gulp-task/hiswe-bundle-data');
-var svgSymbols  = require('./gulp-task/hiswe-svg-symbols');
 
 /////////
 // CONF & MISC
@@ -203,13 +202,12 @@ gulp.task('font', ['clean-font'], function() {
 gulp.task('icons', function() {
   return gulp.src(conf.icons.src)
     .pipe(gp.rename(conf.icons.rename))
-    .pipe(svgSymbols({
+    .pipe(gp.svgSymbols({
       svgId:      'icon-%f',
       className:  '.svgicon-%f'
     }))
     .pipe(gp.rename(conf.icons.renameDst))
-    .pipe(gp.if( /[.]svg$/, gulp.dest(conf.icons.svgDst)))
-    .pipe(gp.if( /[.]css$/, gulp.dest(conf.icons.cssDst)));
+    .pipe(gp.if( /[.]svg$/, gulp.dest(conf.icons.svgDst, gulp.dest(conf.icons.cssDst))));
 });
 
 /////////
