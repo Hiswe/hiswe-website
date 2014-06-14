@@ -46,6 +46,7 @@ git push heroku master
 
 ## Release History
 
+- **3.9.2** – Remove carrousel log
 - **3.9.1** – Add control to carrousel
 - **3.9.0** *aka* “Another Carrousel is possible” – Change carrousel and add loader on projects
 - **3.8.0** *aka* “speedup render” – Change from CSS transitions to [velocity](http://julian.com/research/velocity/)

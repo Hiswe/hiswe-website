@@ -6,7 +6,7 @@ prevTmpl    = require '../../views/includes/gallery-prev'
 nextTmpl    = require '../../views/includes/gallery-next'
 
 class ServicesCarrousel extends Controller
-  trace: true
+  trace: false
   logPrefix: 'CARROUSEL'
   count: 0
   total: 0
