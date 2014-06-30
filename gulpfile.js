@@ -106,7 +106,7 @@ gulp.task('stylus', ['clean-css'], function () {
     })))
     .pipe(gp.plumber.stop())
     .pipe(gp.concat('index.css'))
-    .pipe(gp.replace(conf.css.replace.hisoFont, '$1./media/font/$2'))
+    .pipe(gp.replace(conf.css.replace.hisoFont, "$1media/font/$2"))
     .pipe(gulp.dest(conf.css.dst))
     .pipe(gp.notify(conf.msg('CSS build done')));
 });

@@ -3,6 +3,9 @@
   "version": "3.9.2",
   "dependencies": {},
   "devDependencies": {
-    "hiso-font": "~0.2.2"
+    "hiso-font": "~0.3.0"
+  },
+  "resolutions": {
+    "hiso-font": "~0.3.0"
   }
 }

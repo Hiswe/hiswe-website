@@ -37,6 +37,11 @@ module.exports = ->
   app.use session({ maxAge: 60000, secret: secret})
   app.use flash()
 
+  # logs
+  if app.get('env') isnt 'production'
+    app.use errorhandler()
+    app.use morgan('tiny')
+
   # Static
   console.log log.debug, 'Setup assets'
   require('./asset')(app)
@@ -44,10 +49,5 @@ module.exports = ->
   # Routing after static…
   console.log log.debug, 'Setup routes'
   require('./routing')(app)
-
-  # logs
-  if app.get('env') isnt 'production'
-    app.use errorhandler()
-    app.use morgan('tiny')
 
   return app

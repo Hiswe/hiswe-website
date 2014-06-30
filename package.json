@@ -32,7 +32,7 @@
     "lodash": "^2.4.1"
   },
   "devDependencies": {
-    "gulp": "~3.x.x",
+    "gulp": "^3.8.5",
     "gulp-if": "^1.2.0",
     "gulp-rev": "^0.4.0",
     "gulp-util": "~2.2.1x",
@@ -53,6 +53,7 @@
     "gulp-minify-css": "~0.x.x",
     "gulp-livereload": "~1.x.x",
     "gulp-awspublish": "0.0.16",
+    "gulp-svg-symbols": "git://github.com/Hiswe/gulp-svg-symbols",
     "gulp-image-resize": "~0.x.x",
     "tiny-lr": "0.x.x",
     "nib": "~1.x.x",
@@ -84,7 +85,6 @@
     "svgo": "^0.4.4",
     "consolidate": "^0.10.0",
     "gulp-load-plugins": "^0.5.1",
-    "jadeify": "^2.3.0",
-    "gulp-svg-symbols": "git://github.com/Hiswe/gulp-svg-symbols"
+    "jadeify": "^2.3.0"
   }
 }

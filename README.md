@@ -32,14 +32,17 @@ git push heroku master
 	- Retina images
 	- Responsive images
 - **version 3.11** *aka* “clean me that mess”
-	- Refactor contact controller with Q
+	- Refactor contact controller with ~~Q or~~ [blueBird](https://github.com/petkaantonov/bluebird)
 	- Do the TODOS
 	- replace npm *through* with *through2*	
+	- Gulp: refactor to Coffeescript
+	- Clean custom gulp-tasks (put every task in folder)
+	- Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
+	- Change server logging color system.	
+	- Disable `trace: true` in js on build. Maybe use [envify](https://github.com/hughsk/envify) or use [gulp-strip-debug](https://www.npmjs.org/package/gulp-strip-debug/) 	
 - **more improvements**
 	- [sitemap](https://www.npmjs.org/package/gulp-sitemap) is [better](http://anthony.nelz.in/labo/de-limportance-dune-site-map/)
-	- Disable `trace: true` in js on build
 	- See if some performance improvement can be made with [pointer events](http://www.thecssninja.com/javascript/pointer-events-60fps)
-	- Images build may be improved with [gulp-streamify](https://github.com/nfroidure/gulp-streamify)
 	- No change of page for contact
 	- A maintenance page
 	- Custom jQuery build

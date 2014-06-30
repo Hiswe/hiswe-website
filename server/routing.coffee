@@ -1,5 +1,3 @@
-nodePath  = require 'path'
-
 log       = '[ROUTES]'
 
 controller = (name) -> require("./controllers/#{name}")

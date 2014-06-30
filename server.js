@@ -55,4 +55,4 @@ if (!port) {
 
 server.listen(port);
 
-console.log(log.info, 'Express server', pack.version, 'listening on port', port);
+console.log(log.info, 'Express server', pack.version, 'on port', port, 'in env', conf.ENV);

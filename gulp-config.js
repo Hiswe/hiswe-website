@@ -59,11 +59,10 @@ exports.pack = [
 exports.css = {
   externalFiles: '',
   replace: {
-    hisoFont: /(url\(')(hiso)/gi
+    hisoFont: /(url\('\.\/)(hiso)/gi
   },
   src: [
-    'bower_components/hiso-font/font/hiso-font.css',
-    'bower_components/hiso-font/font/hicon.css',
+    'bower_components/hiso-font/dst/*.css',
     'public/media/icons/hiswe-icons.css',
     'front/css/index.styl'
   ],
@@ -119,8 +118,8 @@ exports.db = {
 
 exports.font = {
   src: [
-    'bower_components/hiso-font/font/*',
-    '!bower_components/hiso-font/font/*.css'
+    'bower_components/hiso-font/dst/*',
+    '!bower_components/hiso-font/dst/*.css'
   ],
   dst: mediaFolder + '/font'
 };
