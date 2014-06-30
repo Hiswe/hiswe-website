@@ -90,7 +90,17 @@ a
   transition: none !important
 
 .hicon
+  font-family "hiso-dark", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
   font-weight normal; font-style: normal;
+
+  &.penBottom:before
+    content '\2710'
+
+  &.website-reversed:before
+    content '\25A7'
+
+  &.factory:before
+    content '\26ED'
 
 .svgicon
   fill $grey
