@@ -8,6 +8,7 @@
 node_modules
 /components
 /bower_components
+/server/datas/media
 public/media/source
 public/media/images
 public/media/icons

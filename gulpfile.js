@@ -224,8 +224,8 @@ gulp.task('pixel', ['clean-pixel'], function() {
   return gulp.src(conf.img.pixel)
     .pipe(gp.rename(conf.img.formatOriginal))
     .pipe(gulp.dest(conf.img.dst))
-    .pipe(gp.imageResize({height: conf.img.height, quality: 1}))
-    .pipe(gp.imageResize({width: conf.img.width, quality: 1}))
+    .pipe(gp.imageResize({height: conf.img.height, quality: 0.99}))
+    .pipe(gp.imageResize({width: conf.img.width, quality: 0.9}))
     .pipe(gp.rename(conf.img.formatPreview))
     .pipe(gulp.dest(conf.img.dst))
 });
@@ -281,7 +281,9 @@ gulp.task('list', function(cb) {
   cb(null);
 });
 
-gulp.task('image', ['pixel', 'splash', 'svg', 'cover']);
+gulp.task('image', function (callback){
+	return runsequence(['pixel', 'splash', 'svg'], 'cover', callback);
+});
 gulp.task('resize', ['image']); // Aliase because I just often mess around
 
 /////////

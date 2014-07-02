@@ -1,5 +1,16 @@
 [
   {
+    "order": 7,
+    "path": "/projects/pnensba",
+    "cover": {
+      "path": "/media/images/cover-pnensba.svg",
+      "extension": "svg"
+    },
+    "id": "project-pnensba",
+    "name": "pnensba",
+    "markup": "<h1>PNENSBA</h1><h2>Pôle numérique des Beaux Arts de Paris</h2>"
+  },
+  {
     "order": 6,
     "path": "/projects/agantio",
     "cover": {
