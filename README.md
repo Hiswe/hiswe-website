@@ -49,6 +49,7 @@ git push heroku master
 
 ## Release History
 
+- **3.9.4** – Update typo
 - **3.9.3** – Update typo & add pnensba content 
 - **3.9.2** – Remove carrousel log
 - **3.9.1** – Add control to carrousel

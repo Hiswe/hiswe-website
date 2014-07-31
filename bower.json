@@ -1,6 +1,6 @@
 {
   "name": "hiswe-website",
-  "version": "3.9.3",
+  "version": "3.9.4",
   "dependencies": {},
   "devDependencies": {
     "hiso-font": "~0.3.0"
