@@ -33,7 +33,7 @@ var onError = function onError(err) {
 
 gulp.task('bump', function () {
   if (args.minor) return gulp.src(conf.pack).pipe(gp.bump({type:'minor'})).pipe(gulp.dest('./'));
-  if (args.major) return gulp.src(conf.pack).pipe(gp.bump({type:'minor'})).pipe(gulp.dest('./'));
+  if (args.major) return gulp.src(conf.pack).pipe(gp.bump({type:'major'})).pipe(gulp.dest('./'));
   return gulp.src(conf.pack).pipe(gp.bump()).pipe(gulp.dest('./'));
 });
 
@@ -124,6 +124,11 @@ gulp.task('clean-css', function() {
 /////////
 
 // LIBRARY
+
+// Speed up build using watchify
+// https://gist.github.com/a-axton/6aed74c9a69668902ffd
+// or
+// https://github.com/webpack/webpack
 
 gulp.task('vendor', ['clean-vendor'], function () {
   var bundleStream = browserify({

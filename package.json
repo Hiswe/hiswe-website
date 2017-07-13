@@ -9,8 +9,7 @@
     "url": "git://github.com/Hiswe/HisweWebSite"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.4.x"
+    "node": "4.8.4"
   },
   "dependencies": {
     "express": "^4.3.0",
