@@ -8,18 +8,8 @@ log = (args...) ->
   return console?.log?(args...)
 
 setup = ->
-  modernizr()
   hammerJs()
   return jQuery()
-
-modernizr = ->
-  # Modernizr & test
-  # Test should be called before Modernizr
-  # https://github.com/jnordberg/browsernizr
-  require test for test in require('conf').test
-  window.Modernizr  = require 'browsernizr'
-  # Can't detect :hover support with Modernizr.hasEvent('mouseover')
-  # As iOs will tell yes…
 
 hammerJs = ->
   # Hammerjs

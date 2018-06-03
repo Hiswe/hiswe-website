@@ -37,9 +37,6 @@ class ServicesCarrousel extends Controller
     this
 
   initCarrousel: ->
-    unless Modernizr.csstransforms
-      @el.off('tap', '.hw-projects-gallery li')
-      return @warn 'No css transform available'
 
     @log 'Init'
     @el.addClass(shared.carrouselClass)
@@ -67,9 +64,9 @@ class ServicesCarrousel extends Controller
       .progress @onProgress
       .done @onEnd
 
-    if Modernizr.progressbar
-      @initProgress()
-      loadedImages.progress( @updateProgress )
+
+    @initProgress()
+    loadedImages.progress( @updateProgress )
 
     this
 

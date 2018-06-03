@@ -4,13 +4,13 @@ require('coffee-script/register');
 
 var fs          = require('fs');
 var gp          = require('gulp-load-plugins')();
-var ini         = require('ini');
 var gulp        = require('gulp');
 var path        = require('path');
 var exec        = require('child_process').exec;
 var args        = require('yargs').argv;
 var conf        = require('./gulp-config.js');
 var runsequence = require('run-sequence');
+const del = require('del');
 // browserify js
 var source      = require('vinyl-source-stream');
 var browserify  = require('browserify');
@@ -39,9 +39,10 @@ gulp.task('bump', function () {
 
 gulp.task('rev', function () {
   gulp.src(conf.rev.src)
-    .pipe(gp.if( /[.]css$/, gp.minifyCss({keepSpecialComments: 0})))
-    // streamify is for handling browserify stream
-    .pipe(gp.if( /[.]js$/, gp.streamify(gp.uglify({mangle: false}))))
+    // TODO: put back the minification
+    // .pipe(gp.if( /[.]css$/, gp.minifyCss({keepSpecialComments: 0})))
+    // // streamify is for handling browserify stream
+    // .pipe(gp.if( /[.]js$/, gp.streamify(gp.uglify({mangle: false}))))
     // no rename as the rev hash do this
     .pipe(gp.rev())
     .pipe(gulp.dest(conf.rev.dst))
@@ -67,13 +68,6 @@ gulp.task('heroku', function(cb){
   }
   if (args.config)  exec('heroku config:pull --app hiswe', execCb);
   if (args.log)     exec('heroku logs -n 1000 --app hiswe', execCb);
-});
-
-gulp.task('ini', function(cb){
-  var config = ini.parse(fs.readFileSync('./.hiswerc', 'utf-8'));
-  for (var key in config)
-    console.log('heroku config:set hiswe_'+key+'='+config[key]+' --app hiswe');
-  cb();
 });
 
 // Upload to Amazon S3
@@ -116,7 +110,7 @@ gulp.task('css', function(callback) {
 });
 
 gulp.task('clean-css', function() {
-  return gulp.src('public/*.css', {read: false}).pipe(gp.clean());
+  return del('public/*.css');
 });
 
 /////////
@@ -136,7 +130,6 @@ gulp.task('vendor', ['clean-vendor'], function () {
       noParse: conf.js.vendor.noParse
     })
     .require('wolfy87-eventemitter', {expose: 'eventEmitter'})
-    .require('./gulp-task/browsernizr-conf.js', {expose: 'conf'})
     .require(conf.js.vendor.require)
     .transform('deglobalify')
     .bundle({
@@ -150,10 +143,10 @@ gulp.task('vendor', ['clean-vendor'], function () {
     .pipe(gp.notify(conf.msg('Vendor build done')));
 });
 
-gulp.task('clean-vendor', function() { return gulp.src(conf.js.vendor.clean, {read: false}).pipe(gp.clean()); });
+gulp.task('clean-vendor', function() { return del(conf.js.vendor.clean)});
 
 // FRONT-END APP
-gulp.task('clean-app', function() { return gulp.src(conf.js.front.clean, {read: false}).pipe(gp.clean());});
+gulp.task('clean-app', function() { return del(conf.js.front.clean)});
 
 gulp.task('front-lint', function(){
   return gulp.src(conf.js.front.src)
@@ -196,7 +189,7 @@ gulp.task('js', function(callback) {
 /////////
 
 // FONT
-gulp.task('clean-font', function() { return gulp.src(conf.font.dst, {read: false}).pipe(gp.clean()); });
+gulp.task('clean-font', function() { return del(conf.font.dst) });
 
 gulp.task('font', ['clean-font'], function() {
   gulp.src(conf.font.src)
@@ -209,7 +202,7 @@ gulp.task('icons', function() {
     .pipe(gp.rename(conf.icons.rename))
     .pipe(gp.svgSymbols({
       svgId:      'icon-%f',
-      className:  '.svgicon-%f'
+      class:  '.svgicon-%f'
     }))
     .pipe(gp.rename(conf.icons.renameDst))
     .pipe(gp.if( /[.]svg$/, gulp.dest(conf.icons.svgDst, gulp.dest(conf.icons.cssDst))));
@@ -222,7 +215,7 @@ gulp.task('icons', function() {
 // Can't use gulp-if because gulp-resize don't rely on stream
 // TODO: May have a workaround with gulp-streamify
 gulp.task('clean-pixel', function() {
-  return gulp.src(conf.img.cleanPixel, {read: false}).pipe(gp.clean());
+  return del(conf.img.cleanPixel);
 });
 
 gulp.task('pixel', ['clean-pixel'], function() {
@@ -236,7 +229,7 @@ gulp.task('pixel', ['clean-pixel'], function() {
 });
 
 gulp.task('clean-cover', function() {
-  return gulp.src(conf.img.cleanCover, {read: false}).pipe(gp.clean());
+  return del(conf.img.cleanCover);
 });
 
 gulp.task('cover', ['clean-cover'], function() {
@@ -247,7 +240,7 @@ gulp.task('cover', ['clean-cover'], function() {
 });
 
 gulp.task('clean-splash', function() {
-  return gulp.src(conf.img.cleanPixel, {read: false}).pipe(gp.clean());
+  return del(conf.img.cleanPixel);
 });
 
 gulp.task('splash', ['clean-splash'], function() {
@@ -259,7 +252,7 @@ gulp.task('splash', ['clean-splash'], function() {
 });
 
 gulp.task('clean-svg', function() {
-  return gulp.src(conf.img.cleanSvg, {read: false}).pipe(gp.clean());
+  return del(conf.img.cleanSvg);
 });
 
 gulp.task('svg', ['clean-svg'], function() {
@@ -289,7 +282,7 @@ gulp.task('list', function(cb) {
 gulp.task('image', function (callback){
 	return runsequence(['pixel', 'splash', 'svg'], 'cover', callback);
 });
-gulp.task('resize', ['image']); // Aliase because I just often mess around
+gulp.task('resize', ['image']); // Alias because I just often mess around
 
 /////////
 // JSON
@@ -380,7 +373,6 @@ gulp.task('doc', function(callback) {
   console.log(m('bump'), g('..............'), 'patch version of json');
   console.log(m('  --minor'), g('.........'), 'minor version of json');
   console.log(m('  --major'), g('.........'), 'major version of json');
-  console.log(m('ini'), g('...............'), 'Parse .hiswerc to have the heroku commands to set the env vars');
   console.log(m('heroku'), g('............'), 'Heroku related task');
   console.log(m('  --config'), g('........'), 'get heroku current conf');
   console.log(m('  --log'), g('...........'), 'get last 1000 log');

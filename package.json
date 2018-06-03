@@ -3,7 +3,10 @@
   "version": "3.9.4",
   "scripts": {
     "start": "node server.js",
-    "build": "gulp build"
+    "build": "gulp build",
+    "build:css": "gulp css",
+    "build:js": "gulp js",
+    "build:image": "gulp image"
   },
   "repository": {
     "type": "git",
@@ -33,16 +36,15 @@
   },
   "devDependencies": {
     "browserify": "^4.1.5",
-    "browsernizr": "^1.0.2",
     "coffeeify": "^0.6.0",
     "color-parser": "^0.1.0",
     "consolidate": "^0.10.0",
     "deglobalify": "^0.2.0",
+    "del": "^3.0.0",
     "eventie": "git://github.com/desandro/eventie",
     "gulp": "^3.8.5",
     "gulp-awspublish": "0.0.16",
     "gulp-bump": "~0.x.x",
-    "gulp-clean": "~0.x.x",
     "gulp-coffeelint": "^0.3.3",
     "gulp-concat": "~2.x.x",
     "gulp-if": "^1.2.0",

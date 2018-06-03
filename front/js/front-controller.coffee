@@ -33,9 +33,7 @@ class Controller
 
   # Return a css prefix propertie
   prefix: (propertie) ->
-    str = Modernizr.prefixed propertie
-    str.replace(/([A-Z])/g, (str,m1) -> '-' + m1.toLowerCase() )
-      .replace(/^ms-/,'-ms-')
+    return propertie
 
   constructor: (options) ->
     uid = uid + 1
