@@ -10,6 +10,7 @@ const compress = require('koa-compress')
 const logger = require('koa-logger')
 const Router = require('koa-router')
 const helmet = require('koa-helmet')
+const views = require('koa-views')
 
 const config = require('./config')
 
@@ -24,6 +25,11 @@ app.use(bodyParser())
 app.use(compress())
 app.use(serveStatic(path.join(__dirname, `./public`)))
 app.use(logger())
+app.use(
+  views(path.join(__dirname, `./views`), {
+    extension: `pug`,
+  })
+)
 
 //////
 // ROUTING
@@ -49,7 +55,7 @@ app.use(async (ctx, next) => {
 //----- ROUTING
 
 router.get(`/`, async (ctx, next) => {
-  ctx.body = `bonjour le monde !`
+  await ctx.render(`home`)
 })
 
 //----- MOUNT ROUTER TO APPLICATION
