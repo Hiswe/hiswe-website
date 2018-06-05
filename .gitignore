@@ -9,6 +9,7 @@ node_modules
 /components
 /bower_components
 /server/datas/media
+/server/public/*.css
 public/media/source
 public/media/images
 public/media/icons
