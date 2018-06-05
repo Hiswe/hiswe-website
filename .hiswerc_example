@@ -1,9 +1,1 @@
-; contact form
-AUTH_SECRET= Google auth secret
-AUTH_REFRESH_TOKEN= Google auth refresh token
-
-; AWS
-AWS_SECRET_KEY= Amazin secret key
-
-; GULP (used in build system)
-GULP_SRC=path
+{}
