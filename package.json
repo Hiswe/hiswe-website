@@ -12,7 +12,7 @@
     "url": "git://github.com/Hiswe/HisweWebSite"
   },
   "engines": {
-    "node": "10.3.0"
+    "node": "8.11.2"
   },
   "dependencies": {
     "chalk": "^2.4.1",
