@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node server/index.js",
     "build:css": "gulp css",
-    "dev": "nodemon server/index.js --config nodemon.json"
+    "serve:dev": "nodemon server/index.js --config nodemon.json",
+    "dev": "gulp dev"
   },
   "repository": {
     "type": "git",
