@@ -1,7 +1,6 @@
 :root {
   --gutter: 1.5rem;
   --two-gutter: calc(var(--gutter) * 2);
-
   --c-primary-lightest: hsl(200, 46%, 95%);
   --c-primary-lighter: hsl(201, 30%, 85%);
   --c-primary-darker: hsl(221, 15%, 40%);
@@ -10,7 +9,6 @@
   --c-text: hsl(0, 0%, 20%);
   --c-text-lighter: hsl(0, 0%, 40%);
 }
-
 html,
 body {
   margin: 0;
@@ -19,4 +17,17 @@ body {
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 18px;
   color: var(--c-text);
+}
+body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--gutter) 0;
+}
+h1,
+h2 {
+  text-align: center;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
 }

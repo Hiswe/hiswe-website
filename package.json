@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^8.6.0",
+    "browser-sync": "^2.24.4",
     "coffeeify": "^0.6.0",
     "color-parser": "^0.1.0",
     "consolidate": "^0.10.0",
