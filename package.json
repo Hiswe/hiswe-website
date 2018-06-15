@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server/index.js",
     "build:css": "gulp css",
+    "build:icons": "gulp icons",
     "serve:dev": "nodemon server/index.js --config nodemon.json",
     "dev": "gulp dev"
   },
@@ -33,11 +34,13 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
+    "@sindresorhus/slugify": "^0.3.0",
     "autoprefixer": "^8.6.2",
     "browser-sync": "^2.24.4",
     "consolidate": "^0.15.1",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
+    "gulp-cheerio": "^0.6.3",
     "gulp-clean-css": "^3.9.4",
     "gulp-concat": "~2.x.x",
     "gulp-if": "^2.0.2",
