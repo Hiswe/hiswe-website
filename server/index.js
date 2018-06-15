@@ -11,8 +11,10 @@ const logger = require('koa-logger')
 const Router = require('koa-router')
 const helmet = require('koa-helmet')
 const views = require('koa-views')
+const formatJson = require('koa-json')
 
 const config = require('./config')
+const getLatestBlogPost = require('./latest-blog-post')
 
 //////
 // SERVER CONFIG
@@ -30,6 +32,7 @@ app.use(
     extension: `pug`,
   })
 )
+app.use(formatJson())
 
 //////
 // ROUTING
@@ -45,7 +48,8 @@ app.use(async (ctx, next) => {
   } catch (err) {
     console.log(util.inspect(err, { colors: true }))
     ctx.status = err.statusCode || err.status || 500
-    ctx.body = render.errorPage({
+    ctx.body = ctx.render(`error`, {
+      code: ctx.status,
       reason: err.message,
       stacktrace: err.stacktrace || err.stack || false,
     })
@@ -56,6 +60,11 @@ app.use(async (ctx, next) => {
 
 router.get(`/`, async (ctx, next) => {
   await ctx.render(`home`)
+})
+
+router.get(`/latest-blog-post`, async (ctx, next) => {
+  const blogEntries = await getLatestBlogPost()
+  ctx.body = blogEntries
 })
 
 //----- MOUNT ROUTER TO APPLICATION
