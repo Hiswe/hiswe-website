@@ -77,7 +77,14 @@ const icons = () => {
       )
       .pipe(
         $.svgSymbols({
+          id: `icon-%f`,
+          class: `.icon-%f`,
+          fontSize: 16,
           templates: [`default-sass`, `default-svg`, `default-demo`],
+          svgAttrs: {
+            class: `svg-icon-lib`,
+          },
+          slug: slugify,
         })
       )
       .pipe($.if(/[.]svg$/, gulp.dest(`server/views`)))

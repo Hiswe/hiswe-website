@@ -15,6 +15,7 @@ const formatJson = require('koa-json')
 
 const config = require('./config')
 const getLatestBlogPost = require('./latest-blog-post')
+const getMarkdown = require('./get-markdown')
 
 //////
 // SERVER CONFIG
@@ -58,11 +59,28 @@ app.use(async (ctx, next) => {
 
 //----- ROUTING
 
-router.get(`/`, async (ctx, next) => {
-  await ctx.render(`home`)
+router.get(`/`, async ctx => {
+  const content = await getMarkdown(`home`)
+  await ctx.render(`home`, { content })
 })
 
-router.get(`/latest-blog-post`, async (ctx, next) => {
+router.get(`/`, async ctx => {
+  const content = await getMarkdown(`home`)
+  await ctx.render(`page`, {
+    content,
+    pageClass: `home`,
+  })
+})
+
+router.get(`/open-source`, async ctx => {
+  const content = await getMarkdown(`open-source`)
+  await ctx.render(`page`, {
+    content,
+    pageClass: `open-source`,
+  })
+})
+
+router.get(`/latest-blog-post`, async ctx => {
   const blogEntries = await getLatestBlogPost()
   ctx.body = blogEntries
 })
