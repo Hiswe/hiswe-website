@@ -1,4 +1,4 @@
-# hiswe
+# full stack Javascript developer
 
 ## I make custom website for everyone's need
 
@@ -7,7 +7,6 @@ a developer specialized in web technologies
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [project handling](#project-handling)
   - [showcase website](#showcase-website)
@@ -56,4 +55,9 @@ needs
   - [React](https://reactjs.org/)
   - [Vue.js](https://vuejs.org/)
 - offline application
+
   - [workbox](https://developers.google.com/web/tools/workbox/)
+
+* <a href="https://github.com/hiswe"><img src="/assets/icons/©github.svg" width="100" /></a>
+* <a href="https://medium.com/@hiswehalya"><img src="/assets/icons/©medium.svg" width="100" /></a>
+* <a href="https://codepen.io/Hiswe"><img src="/assets/icons/©codepen.svg" width="100" /></a>

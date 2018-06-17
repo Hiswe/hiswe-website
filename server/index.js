@@ -61,22 +61,25 @@ app.use(async (ctx, next) => {
 
 router.get(`/`, async ctx => {
   const content = await getMarkdown(`home`)
-  await ctx.render(`home`, { content })
-})
-
-router.get(`/`, async ctx => {
-  const content = await getMarkdown(`home`)
   await ctx.render(`page`, {
     content,
     pageClass: `home`,
   })
 })
 
-router.get(`/open-source`, async ctx => {
-  const content = await getMarkdown(`open-source`)
+router.get(`/projects`, async ctx => {
+  const content = await getMarkdown(`projects`)
   await ctx.render(`page`, {
     content,
-    pageClass: `open-source`,
+    pageClass: `projects`,
+  })
+})
+
+router.get(`/tech`, async ctx => {
+  const content = await getMarkdown(`tech`)
+  await ctx.render(`page`, {
+    content,
+    pageClass: `tech`,
   })
 })
 
