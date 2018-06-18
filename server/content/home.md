@@ -1,4 +1,6 @@
-# full stack Javascript developer
+# Yannick Aïvayan _aka_ hiswe
+
+full stack Javascript developer
 
 ## I make custom website for everyone's need
 
@@ -7,6 +9,7 @@ a developer specialized in web technologies
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 
 - [project handling](#project-handling)
   - [showcase website](#showcase-website)

@@ -20,37 +20,18 @@ body {
   font-size: 18px;
   color: var(--c-text);
 }
+html {
+  background: var(--c-primary-lightest);
+}
 body {
-  max-width: 700px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: var(--gutter) 0;
-  background: radial-gradient(
-    ellipse at top,
-    var(--c-primary),
-    var(--c-primary-darker)
-  );
+  padding: var(--half-gutter) 0;
 }
 h1,
 h2 {
   text-align: center;
 }
-h1 {
-  font-weight: 300;
-  text-transform: uppercase;
-  margin: 0;
-  padding: var(--half-gutter);
-  color: white;
-
-  i {
-    text-transform: lowercase;
-    font-size: 1.2rem;
-  }
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
 .nav-pages {
   position: absolute;
   top: 0;
@@ -59,10 +40,12 @@ nav {
   padding: 0.5em;
 
   a {
-    color: white;
+    display: block;
+    color: var(--c-accent);
     text-decoration: none;
     padding: 0.5em;
     text-transform: uppercase;
+    text-align: right;
   }
 }
 .svg-icon-lib {

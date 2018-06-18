@@ -1,0 +1,38 @@
+.page {
+  &--projects,
+  &--tech {
+    h1 {
+      text-align: left;
+      text-transform: uppercase;
+      margin: 0;
+      color: var(--c-primary-darker);
+    }
+  }
+}
+
+.npm-module {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--gutter);
+
+  &__header {
+    grid-column: 1 / span 2;
+  }
+}
+
+.web-app {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: var(--gutter);
+
+  h2 {
+    grid-column: 1 / span 3;
+  }
+  h3 {
+    text-align: center;
+  }
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+}

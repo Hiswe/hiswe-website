@@ -7,6 +7,7 @@ const cheerio = require('cheerio')
 const slugify = require('@sindresorhus/slugify')
 const md = require('markdown-it')({
   html: true,
+  // breaks: true,
 })
 
 const tocRegex = /<!--\sSTART[\w\W\n]*\s<!--\sEND[\w\s]*-->/

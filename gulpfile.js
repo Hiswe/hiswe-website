@@ -97,6 +97,21 @@ css.description = `bundle all SVG icons`
 gulp.task(`icons`, icons)
 
 ////////
+// ToC MARKDOWN
+////////
+
+const tableOfContent = () => {
+  return gulp
+    .src(`server/content/*.md`)
+    .pipe($.cached(`toc`))
+    .pipe($.doctoc())
+    .pipe(gulp.dest(`server/content`))
+}
+tableOfContent.description = `build content md ToC`
+
+exports[`build:toc`] = tableOfContent
+
+////////
 // DEV
 ////////
 
@@ -108,7 +123,7 @@ const reload = done => {
 const nodemon = require('nodemon')
 const nodemonConfig = require('./nodemon.json')
 
-const build = gulp.series(icons, css)
+const build = gulp.parallel(tableOfContent, gulp.series(icons, css))
 
 gulp.task(`build`, build)
 
@@ -116,7 +131,7 @@ const watch = done => {
   gulp.watch(`front/scss/*.scss`, css)
   gulp.watch(`assets/icons/*.svg`, icons)
   gulp.watch(`server/views/*.pug`, reload)
-  gulp.watch(`server/content/*.md`, reload)
+  gulp.watch(`server/content/*.md`, tableOfContent)
   done()
 }
 

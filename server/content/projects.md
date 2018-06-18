@@ -1,31 +1,107 @@
+# Open Source
+
+Projects that I've created and maintain to give back to the open source community.
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Open Source](#open-source)
-  - [modules](#modules)
-  - [applications](#applications)
+
+- [NPM modules](#npm-modules)
+  - [gulp-svg-symbols](#gulp-svg-symbols)
+  - [vh-check](#vh-check)
+- [web applications](#web-applications)
+  - [A-Count](#a-count)
+  - [Thailpha](#thailpha)
+  - [Thaime](#thaime)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Open Source
+<section class="npm-module">
 
-I like to do stuff for fun too!
+<header class="npm-module__header">
 
-### modules
+## NPM modules
 
-Giving back to the open web community
+In [Node.js'](https://nodejs.org/en/) community, [NPM's](https://www.npmjs.com/) modules are the essential building blocks.
 
-- [gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols) bundle SVG files to make an optimized icon library
-- [vh-check](https://www.npmjs.com/package/vh-check) minimal utility fro mobile CSS vh computing
+Those are my contributions
 
-### applications
+</header>
 
-- A-Count – Universal application for simple account
-  <img src="/assets/icons/©a-count.svg" width="100" />
-  [website](https://github.com/Hiswe/a-count)
-- Thailpha – Thai alphabet offline dictionary
-  <img src="/assets/icons/©thailpha.svg" width="100" />
-  [website](https://github.com/Hiswe/thailpha)
-- Thaime – Thai time & date offline web-application
-  <img src="/assets/icons/©thaime.svg" width="100" />
-  [website](https://github.com/Hiswe/thaime)
+<div class="web-app__item">
+
+### gulp-svg-symbols
+
+[gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
+
+Help create an icon library by bundling SVG files together
+
+</div>
+
+<div class="web-app__item">
+
+### vh-check
+
+[vh-check](https://www.npmjs.com/package/vh-check)
+
+Help handling some sizes on mobile browser
+
+</div>
+
+</section>
+
+<section class="web-app">
+
+## web applications
+
+<div class="web-app__item">
+
+### A-Count
+
+[<img src="/assets/icons/©a-count.svg" width="100" />](https://github.com/Hiswe/a-count)
+
+[website](https://github.com/Hiswe/a-count)
+
+[Universal application](http://www.acuriousanimal.com/2016/08/10/universal-applications.html) for simple account
+
+- help to manage small structures quotations/invoice
+- print directly from the browser
+- powered by [React](https://reactjs.org/), [Koa](https://koajs.com/) & [PostgreSQL](https://www.postgresql.org/)
+
+</div>
+
+<div class="web-app__item">
+
+### Thailpha
+
+[<img src="/assets/icons/©thailpha.svg" width="100" />](https://github.com/Hiswe/thailpha)
+
+[website](https://github.com/Hiswe/thailpha)
+
+[Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_Web_Apps) of a Thai alphabet dictionary
+
+- keep a list of any Thai character at any time
+- can easily check similar-looking characters
+- can be installed on any phone home without having to go to the apple/play store
+- powered by [React](https://reactjs.org/)
+
+</div>
+
+<div class="web-app__item">
+
+### Thaime
+
+[<img src="/assets/icons/©thaime.svg" width="100" />](https://github.com/Hiswe/thaime)
+
+[website](https://github.com/Hiswe/thaime)
+
+[Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_Web_Apps) of a Thai clock & time converter
+
+- two ways conversion from [24 hour clock system](https://en.wikipedia.org/wiki/24-hour_clock) to [six hour clock system](https://en.wikipedia.org/wiki/Six-hour_clock)
+- days & months dictionary
+- two ways conversion from [Buddhist calendar](https://en.wikipedia.org/wiki/Buddhist_calendar) to [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
+- powered by [Vue](https://vuejs.org)
+
+</div>
+
+</section>
