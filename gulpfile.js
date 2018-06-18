@@ -116,6 +116,7 @@ const watch = done => {
   gulp.watch(`front/scss/*.scss`, css)
   gulp.watch(`assets/icons/*.svg`, icons)
   gulp.watch(`server/views/*.pug`, reload)
+  gulp.watch(`server/content/*.md`, reload)
   done()
 }
 

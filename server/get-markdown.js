@@ -1,5 +1,6 @@
 'use strict'
 
+const _ = require('lodash')
 const path = require('path')
 const fs = require('fs-extra')
 const cheerio = require('cheerio')
@@ -8,14 +9,16 @@ const md = require('markdown-it')({
   html: true,
 })
 
+const tocRegex = /<!--\sSTART[\w\W\n]*\s<!--\sEND[\w\s]*-->/
+function removeTableOfContent(markdown) {
+  return markdown.replace(tocRegex, ``)
+}
+
 const svgIcon = /^\/assets\/icons\/([^\.]*)\.svg$/
-const { html_inline } = md.renderer.rules
-// replace any assets/icons with a SVG symbol
-md.renderer.rules.html_inline = (tokens, idx, options, env, self) => {
-  const token = tokens[idx]
-  const $ = cheerio.load(token.content)
+function replaceSvgImageWithSymbols(html) {
+  const $ = cheerio.load(html)
   const $images = $(`img`)
-  if (!$images.length) return html_inline(tokens, idx, options, env, self)
+  if (!$images.length) return html
 
   $images.each((index, el) => {
     const $img = $(el)
@@ -23,7 +26,7 @@ md.renderer.rules.html_inline = (tokens, idx, options, env, self) => {
     if (!svgIcon.test(src)) return
 
     const svgName = `icon-${slugify(svgIcon.exec(src)[1])}`
-    $images.replaceWith(`
+    $img.replaceWith(`
       <svg role="img" class="${svgName}">
         <use xlink:href="#${svgName}"></use>
       </svg>
@@ -32,11 +35,15 @@ md.renderer.rules.html_inline = (tokens, idx, options, env, self) => {
   return $.html()
 }
 
-const tocRegex = /<!--\sSTART[\w\W\n]*\s<!--\sEND[\w\s]*-->/
+const renderMarkdown = _.flow(
+  removeTableOfContent,
+  md.render.bind(md),
+  replaceSvgImageWithSymbols
+)
+
 module.exports = async function getMarkdown(name) {
   const markdownPath = path.join(__dirname, `./content/${name}.md`)
   const markdownContent = await fs.readFile(markdownPath, `utf8`)
-  // remove TOC
-  const html = md.render(markdownContent.replace(tocRegex, ''))
+  const html = renderMarkdown(markdownContent)
   return html
 }
