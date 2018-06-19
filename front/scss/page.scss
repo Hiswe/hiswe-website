@@ -5,8 +5,26 @@
       text-align: left;
       text-transform: uppercase;
       margin: 0;
-      color: var(--c-primary-darker);
+      color: var(--c-primary-lightest);
+      background: var(--c-primary-darker);
+      padding: var(--half-gutter) var(--gutter) var(--half-gutter)
+        var(--half-gutter);
+      display: inline-block;
     }
+  }
+}
+
+.npm-module,
+.web-app {
+  max-width: 1024px;
+  margin: 0 auto;
+
+  header {
+    text-align: center;
+  }
+
+  h2 {
+    color: var(--c-primary-darker);
   }
 }
 
@@ -30,6 +48,9 @@
   }
   h3 {
     text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 1.25rem;
   }
   svg {
     display: block;
