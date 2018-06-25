@@ -7,5 +7,17 @@ module.exports = {
       // { hid: 'description', name: 'description', content: 'Meta description' }
     ],
   },
-  css: [`~/assets/css/css-vars.scss`],
+  css: [`@/assets/css/global.scss`],
+  build: {
+    postcss: {
+      plugins: {
+        'postcss-cssnext': {
+          features: {
+            // processing custom properties make them fail
+            customProperties: false,
+          },
+        },
+      },
+    },
+  },
 }

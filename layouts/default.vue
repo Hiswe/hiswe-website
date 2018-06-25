@@ -9,31 +9,6 @@
     nuxt
 </template>
 
-<style lang="scss">
-@import '@/assets/css/css-vars.scss';
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html {
-  // base font size
-  font-size: 112.5%;
-  // Prevent font scaling in landscape while allowing user zoom
-  -webkit-text-size-adjust: 100%;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  // http://markdotto.com/2018/02/07/github-system-fonts/
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-}
-</style>
-
 <style lang="scss" scoped>
 nav {
   position: absolute;
@@ -44,6 +19,7 @@ nav {
 
   a {
     display: block;
+
     color: var(--c-accent);
     text-decoration: none;
     padding: 0.5em;
