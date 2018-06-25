@@ -8,6 +8,7 @@
     "build:icons": "gulp icons",
     "serve:dev": "nodemon server/index.js --config nodemon.json",
     "dev": "gulp dev",
+    "dev:vue": "nuxt",
     "toc": "doctoc server/content/*.md --github"
   },
   "repository": {
@@ -34,7 +35,9 @@
     "koa-views": "^6.1.4",
     "lodash": "^4.17.10",
     "markdown-it": "^8.4.1",
+    "nuxt": "^1.4.1",
     "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
     "rc": "~1.2.8",
     "xml2js": "^0.4.19"
   },
@@ -64,7 +67,9 @@
     "gulp-uglify": "~3.0.0",
     "image-size": "^0.6.3",
     "marked": "^0.4.0",
+    "node-sass": "^4.9.0",
     "nodemon": "^1.17.5",
+    "sass-loader": "^7.0.3",
     "svgo": "^1.0.5",
     "yargs": "^11.0.0"
   }

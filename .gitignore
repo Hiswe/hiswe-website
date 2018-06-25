@@ -5,6 +5,7 @@
 .hiswerc
 .awspublish-hiswe
 .settings/
+.nuxt
 node_modules
 /components
 /bower_components

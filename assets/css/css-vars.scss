@@ -1,0 +1,20 @@
+:root {
+  // SIZES
+  --gutter: 1.5rem;
+  --half-gutter: calc(var(--gutter) * 0.5);
+  --two-gutter: calc(var(--gutter) * 2);
+
+  // COLORS
+  --c-primary-lightest: hsl(200, 46%, 95%);
+  --c-primary-lighter: hsl(201, 30%, 85%);
+  --c-primary: hsl(221, 30%, 60%);
+  --c-primary-darker: hsl(221, 35%, 50%);
+  --c-primary-contrast: white;
+  --c-accent: hsl(332, 100%, 50%);
+  --c-accent-lighter: hsl(332, 100%, 90%);
+  --c-accent-lightest: hsl(332, 100%, 95%);
+  --c-text: hsl(0, 0%, 20%);
+  --c-text-lighter: hsl(0, 0%, 40%);
+
+  --c-background: var(--c-primary-lightest);
+}
