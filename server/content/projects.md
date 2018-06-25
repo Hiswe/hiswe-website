@@ -28,7 +28,7 @@ Those are my contributions
 
 </header>
 
-<div class="web-app__item">
+<div class="npm-module__item">
 
 ### gulp-svg-symbols
 
@@ -38,7 +38,7 @@ Help create an icon library by bundling SVG files together
 
 </div>
 
-<div class="web-app__item">
+<div class="npm-module__item">
 
 ### vh-check
 
@@ -56,11 +56,15 @@ Help handling some sizes on mobile browser
 
 <div class="web-app__item">
 
+<header class="web-app__item_header">
+
 ### A-Count
 
 [<img src="/assets/icons/©a-count.svg" width="100" />](https://github.com/Hiswe/a-count)
 
 [website](https://github.com/Hiswe/a-count)
+
+</header>
 
 [Universal application](http://www.acuriousanimal.com/2016/08/10/universal-applications.html) for simple account
 
@@ -72,11 +76,15 @@ Help handling some sizes on mobile browser
 
 <div class="web-app__item">
 
+<header class="web-app__item_header">
+
 ### Thailpha
 
 [<img src="/assets/icons/©thailpha.svg" width="100" />](https://github.com/Hiswe/thailpha)
 
 [website](https://github.com/Hiswe/thailpha)
+
+</header>
 
 [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_Web_Apps) of a Thai alphabet dictionary
 
@@ -89,11 +97,15 @@ Help handling some sizes on mobile browser
 
 <div class="web-app__item">
 
+<header class="web-app__item_header">
+
 ### Thaime
 
 [<img src="/assets/icons/©thaime.svg" width="100" />](https://github.com/Hiswe/thaime)
 
 [website](https://github.com/Hiswe/thaime)
+
+</header>
 
 [Progressive Web Application](https://en.wikipedia.org/wiki/Progressive_Web_Apps) of a Thai clock & time converter
 

@@ -1,17 +1,13 @@
-# Yannick Aïvayan _aka_ hiswe
+# Hi,
 
-full stack Javascript developer
-
-## I make custom website for everyone's need
-
-Hi, I'm Yannick Aïvayan  
-a developer specialized in web technologies
+I'm Yannick Aïvayan  
+a full stack Javascript developer
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [project handling](#project-handling)
+- [I make custom website for everyone's need](#i-make-custom-website-for-everyones-need)
   - [showcase website](#showcase-website)
     - [tools](#tools)
   - [web-application](#web-application)
@@ -19,7 +15,7 @@ a developer specialized in web technologies
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## project handling
+## I make custom website for everyone's need
 
 depending on the project I will use the most appropriate set of tools
 **Different needs implies different tools**
