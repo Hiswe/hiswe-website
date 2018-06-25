@@ -6,37 +6,38 @@ div
 
   ul
     li
-      | [React](https://reactjs.org/)
-      | <img src="/assets/icons/©react.svg" width="100" />
+      a(href="https://reactjs.org/") React
+      img(src="~/assets/logos/©react.svg" width="100")
     li
-      | [Vue.js](https://vuejs.org/)
-      | <img src="/assets/icons/©vuejs.svg" width="100" />
+      a(href="https://vuejs.org/") Vue.js
+      img(src="~/assets/logos/©vuejs.svg" width="100")
 
   h2 build tools
 
   ul
     li
-      | [Gulp](https://gulpjs.com)
-      | <img src="/assets/icons/©gulp.svg" width="100" />
+      a(href="https://gulpjs.com") Gulp
+      img(src="~/assets/logos/©gulp.svg" width="100")
     li
-      | [Webpack](https://webpack.js.org)
-      | <img src="/assets/icons/©webpack.svg" width="100" />
+      a(href="https://webpack.js.org") Webpack
+      img(src="~/assets/logos/©webpack.svg" width="100")
     li
-      | [Parcel](https://parceljs.org)
-      | <img src="/assets/icons/©parcel.svg" width="100" />
+      a(href="https://parceljs.org") Parcel
+      img(src="~/assets/logos/©parcel.svg" width="100")
 
   h2 server & databases
 
   ul
-    li [Express](https://expressjs.com/)
     li
-      | [Koa](https://koajs.com/)
-      | <img src="/assets/icons/©koa.svg" width="100" />
+      a(href="https://expressjs.com/") Express
     li
-      | [PostgreSQL](https://www.postgresql.org/)
-      | <img src="/assets/icons/©postgresql.svg" width="100" />
+      a(href="https://koajs.com/") Koa
+      img(src="~/assets/logos/©koa.svg" width="100")
     li
-      | [MongoDB](https://www.mongodb.com/)
-      | <img src="/assets/icons/©mongodb.svg" width="100" />
+      a(href="https://www.postgresql.org/") PostgreSQL
+      img(src="~/assets/logos/©postgresql.svg" width="100")
+    li
+      a(href="https://www.mongodb.com/") MongoDB
+      img(src="~/assets/logos/©mongodb.svg" width="100")
 
 </template>

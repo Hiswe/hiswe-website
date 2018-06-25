@@ -64,6 +64,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-streamify": "1.0.2",
     "gulp-svg-symbols": "^3.1.1",
+    "gulp-svgmin": "^1.2.4",
     "gulp-uglify": "~3.0.0",
     "image-size": "^0.6.3",
     "marked": "^0.4.0",

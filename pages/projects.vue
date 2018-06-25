@@ -29,7 +29,7 @@ div
     article.web-app__item
       header.web-app__item_header
         h3 A-Count
-        // p [<img src="/assets/icons/©a-count.svg" width="100" />](https://github.com/Hiswe/a-count)
+        p: a(href="https://github.com/Hiswe/a-count"): img(src="~/assets/logos/©a-count.svg" width="100")
         p: a(href="https://github.com/Hiswe/a-count") website
       p <a href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html">Universal application</a> for simple account
       ul
@@ -43,7 +43,7 @@ div
     article.web-app__item
       header.web-app__item_header
         h3 Thailpha
-        // p [<img src="/assets/icons/©thailpha.svg" width="100" />](https://github.com/Hiswe/thailpha)
+        p: a(href="https://github.com/Hiswe/thailpha"): img(src="~/assets/logos/©thailpha.svg" width="100")
         p: a(href="https://github.com/Hiswe/thailpha") website
       p
         | <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">Progressive Web Application</a>
@@ -57,7 +57,7 @@ div
     article.web-app__item
       header.web-app__item_header
         h3 Thaime
-        // p [<img src="/assets/icons/©thaime.svg" width="100" />](https://github.com/Hiswe/thaime)
+        p: a(href="https://github.com/Hiswe/thaime"): img(src="~/assets/logos/©thaime.svg" width="100")
         p: a(href="https://github.com/Hiswe/thaime") website
       p
         | <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">Progressive Web Application</a>

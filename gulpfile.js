@@ -33,6 +33,61 @@ gulp.task(`css`, css)
 // ICONS
 ////////
 
+const cleanIcons = () => {
+  return (
+    gulp
+      .src(`assets/icons/*.svg`)
+      // We need to move <clipPath> and <Mask> to the defs…
+      // …in order for Firefox to render the SVG correctly
+      .pipe(
+        $.cheerio({
+          run: ($, file) => {
+            // console.log(Object.keys(file))
+            $(`rect[style="fill:none;"]`).remove()
+
+            const $clipPath = $(`clipPath`)
+            const hasClipPath = $clipPath.length > 0
+            if (!hasClipPath) return
+
+            let $defs = $(`defs`)
+            const hasDefs = $defs.length > 0
+            const fileName = slugify(file.basename.replace(file.extname, ``))
+            if (!hasDefs) {
+              $defs = $(`<defs></defs>`)
+              $defs.prependTo(`svg`)
+            }
+            function copyToDefs(i, el) {
+              const $el = $(el)
+              const $clone = $el.clone()
+              const oldId = $el.attr(`id`)
+              const id = `${fileName}-${oldId}`
+              $clone.attr(`id`, id)
+              $(`[clip-path="url(#${oldId})"]`).attr(`clip-path`, `url(#${id})`)
+              // const clip-path="url(#_clip1)"
+              $clone.appendTo($defs)
+              $el.remove()
+            }
+            $clipPath.each(copyToDefs)
+            // if (hasMask) $mask.each(copyToDefs)
+          },
+          parserOptions: {
+            xmlMode: true,
+          },
+        })
+      )
+      .pipe(
+        $.svgmin({
+          js2svg: {
+            pretty: true,
+          },
+        })
+      )
+      .pipe(gulp.dest(`assets/logos`))
+  )
+}
+cleanIcons.description = `just clean the logos…`
+exports[`build:logos`] = cleanIcons
+
 const icons = () => {
   return (
     gulp
@@ -92,7 +147,7 @@ const icons = () => {
       .pipe($.if(/[.]html$/, gulp.dest(`assets/icons`)))
   )
 }
-css.description = `bundle all SVG icons`
+icons.description = `bundle all SVG icons`
 
 gulp.task(`icons`, icons)
 
