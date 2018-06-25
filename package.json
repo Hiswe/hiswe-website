@@ -15,7 +15,7 @@
     "url": "git://github.com/Hiswe/HisweWebSite"
   },
   "engines": {
-    "node": "8.11.2"
+    "node": "8.11.3"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^0.3.0",
