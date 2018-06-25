@@ -1,79 +1,82 @@
 <template lang="pug">
-  div
+div
+  h1 Open Source
 
-    section.npm-module
+  p Projects that I've created and maintain to give back to the open source community.
 
-      header.npm-module__header
-        h2 NPM modules
-        p
-          | in <a href="https://nodejs.org/en/">Node.js'</a> community,
-          | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
-        p Those are my contributions
+  section.npm-module
 
-      article.npm-module__item
-        h3 gulp-svg-symbols
-        p: a(href="https://www.npmjs.com/package/gulp-svg-symbols") gulp-svg-symbols
-        p Help create an icon library by bundling SVG files together
+    header.npm-module__header
+      h2 NPM modules
+      p
+        | in <a href="https://nodejs.org/en/">Node.js'</a> community,
+        | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
+      p Those are my contributions
 
-      article.npm-module__item
-        h3 vh-check
-        p: a(href="https://www.npmjs.com/package/vh-check") vh-check
-        p Help handling some sizes on mobile browser
+    article.npm-module__item
+      h3 gulp-svg-symbols
+      p: a(href="https://www.npmjs.com/package/gulp-svg-symbols") gulp-svg-symbols
+      p Help create an icon library by bundling SVG files together
 
-    section.web-app
-      h2 web applications
+    article.npm-module__item
+      h3 vh-check
+      p: a(href="https://www.npmjs.com/package/vh-check") vh-check
+      p Help handling some sizes on mobile browser
 
-      article.web-app__item
-        header.web-app__item_header
-          h3 A-Count
-          // p [<img src="/assets/icons/©a-count.svg" width="100" />](https://github.com/Hiswe/a-count)
-          p: a(href="https://github.com/Hiswe/a-count") website
-        p <a href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html">Universal application</a> for simple account
-        ul
-          li help to manage small structures quotations/invoice
-          li print directly from the browser
-          li
-            | powered by <a href="https://reactjs.org/">React</a>,
-            | <a href="https://koajs.com/">Koa</a>
-            | & <a href="https://www.postgresql.org/">PostgreSQL</a>
+  section.web-app
+    h2 web applications
 
-      article.web-app__item
-        header.web-app__item_header
-          h3 Thailpha
-          // p [<img src="/assets/icons/©thailpha.svg" width="100" />](https://github.com/Hiswe/thailpha)
-          p: a(href="https://github.com/Hiswe/thailpha") website
-        p
-          | <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">Progressive Web Application</a>
-          | of a Thai alphabet dictionary
-        ul
-          li keep a list of any Thai character at any time
-          li can easily check similar-looking characters
-          li can be installed on any phone home without having to go to the apple/play store
-          li powered by <a href="https://reactjs.org/">React</a>
+    article.web-app__item
+      header.web-app__item_header
+        h3 A-Count
+        // p [<img src="/assets/icons/©a-count.svg" width="100" />](https://github.com/Hiswe/a-count)
+        p: a(href="https://github.com/Hiswe/a-count") website
+      p <a href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html">Universal application</a> for simple account
+      ul
+        li help to manage small structures quotations/invoice
+        li print directly from the browser
+        li
+          | powered by <a href="https://reactjs.org/">React</a>,
+          | <a href="https://koajs.com/">Koa</a>
+          | & <a href="https://www.postgresql.org/">PostgreSQL</a>
 
-      article.web-app__item
-        header.web-app__item_header
-          h3 Thaime
-          // p [<img src="/assets/icons/©thaime.svg" width="100" />](https://github.com/Hiswe/thaime)
-          p: a(href="https://github.com/Hiswe/thaime") website
-        p
-          | <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">Progressive Web Application</a>
-          | of a Thai clock & time converter
-        ul
-          li
-            | two ways conversion from
-            a(href="https://en.wikipedia.org/wiki/24-hour_clock") 24 hour clock system
-            | to
-            a(href="https://en.wikipedia.org/wiki/Six-hour_clock") six hour clock system
-          li days & months dictionary
-          li
-            | two ways conversion from
-            a(href="https://en.wikipedia.org/wiki/Buddhist_calendar") Buddhist calendar
-            | to
-            a(href="https://en.wikipedia.org/wiki/Gregorian_calendar") Gregorian calendar
-          li
-            | powered by
-            a(href="https://vuejs.org") Vue
+    article.web-app__item
+      header.web-app__item_header
+        h3 Thailpha
+        // p [<img src="/assets/icons/©thailpha.svg" width="100" />](https://github.com/Hiswe/thailpha)
+        p: a(href="https://github.com/Hiswe/thailpha") website
+      p
+        | <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">Progressive Web Application</a>
+        | of a Thai alphabet dictionary
+      ul
+        li keep a list of any Thai character at any time
+        li can easily check similar-looking characters
+        li can be installed on any phone home without having to go to the apple/play store
+        li powered by <a href="https://reactjs.org/">React</a>
+
+    article.web-app__item
+      header.web-app__item_header
+        h3 Thaime
+        // p [<img src="/assets/icons/©thaime.svg" width="100" />](https://github.com/Hiswe/thaime)
+        p: a(href="https://github.com/Hiswe/thaime") website
+      p
+        | <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">Progressive Web Application</a>
+        | of a Thai clock & time converter
+      ul
+        li
+          | two ways conversion from
+          a(href="https://en.wikipedia.org/wiki/24-hour_clock") 24 hour clock system
+          | to
+          a(href="https://en.wikipedia.org/wiki/Six-hour_clock") six hour clock system
+        li days & months dictionary
+        li
+          | two ways conversion from
+          a(href="https://en.wikipedia.org/wiki/Buddhist_calendar") Buddhist calendar
+          | to
+          a(href="https://en.wikipedia.org/wiki/Gregorian_calendar") Gregorian calendar
+        li
+          | powered by
+          a(href="https://vuejs.org") Vue
 
 </template>
 
