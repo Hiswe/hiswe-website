@@ -1,4 +1,8 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["Segoe", "hiswe"]
+  "cSpell.words": [
+    "NUXT",
+    "Segoe",
+    "hiswe"
+  ]
 }

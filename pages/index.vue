@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+.home
   h1 Hi,
 
   p I'm Yannick Aïvayan
@@ -52,10 +52,17 @@ div
       ul: li [workbox](https://developers.google.com/web/tools/workbox/)
 
   ul
-    li <a href="https://github.com/hiswe"><img src="/assets/icons/©github.svg" width="100" /></a>
-    li <a href="https://medium.com/@hiswehalya"><img src="/assets/icons/©medium.svg" width="100" /></a>
-    li <a href="https://codepen.io/Hiswe"><img src="/assets/icons/©codepen.svg" width="100" /></a>
+    li: a(href="https://github.com/hiswe"): img( src="~/assets/logos/©github.svg" width="100")
+    li: a(href="https://medium.com/@hiswehalya"): img( src="~/assets/logos/©medium.svg" width="100")
+    li: a(href="https://codepen.io/Hiswe"): img( src="~/assets/logos/©codepen.svg" width="100")
 
 </template>
 
+<style lang="scss" scoped>
+.home {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+</style>
 

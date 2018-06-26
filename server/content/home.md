@@ -6,7 +6,6 @@ a full stack Javascript developer
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [I make custom website for everyone's need](#i-make-custom-website-for-everyones-need)
   - [showcase website](#showcase-website)
     - [tools](#tools)
@@ -47,15 +46,6 @@ needs
 
 - maintain a complex application state
 - handle any complex user actions
-
-#### tools
-
-- handle application
-  - [React](https://reactjs.org/)
-  - [Vue.js](https://vuejs.org/)
-- offline application
-
-  - [workbox](https://developers.google.com/web/tools/workbox/)
 
 * <a href="https://github.com/hiswe"><img src="/assets/icons/©github.svg" width="100" /></a>
 * <a href="https://medium.com/@hiswehalya"><img src="/assets/icons/©medium.svg" width="100" /></a>

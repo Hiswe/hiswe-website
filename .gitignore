@@ -8,6 +8,7 @@
 .nuxt
 node_modules
 /components
+/build
 /bower_components
 /server/datas/media
 /server/public/*.css

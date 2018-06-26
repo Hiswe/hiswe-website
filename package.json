@@ -9,6 +9,7 @@
     "serve:dev": "nodemon server/index.js --config nodemon.json",
     "dev": "gulp dev",
     "dev:vue": "nuxt",
+    "dev:koa-vue": "backpack dev",
     "toc": "doctoc server/content/*.md --github"
   },
   "repository": {
@@ -39,10 +40,12 @@
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "rc": "~1.2.8",
+    "source-map-support": "^0.5.6",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "autoprefixer": "^8.6.2",
+    "backpack-core": "^0.7.0",
     "browser-sync": "^2.24.4",
     "consolidate": "^0.15.1",
     "del": "^3.0.0",
