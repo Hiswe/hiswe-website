@@ -37,38 +37,28 @@ body:not(.user-is-tabbing) {
 }
 
 main {
-  a {
-    --link-underline: var(--c-accent-lightest);
+  // a {
+  //   --link-underline: var(--c-accent-lightest);
+  //   text-decoration: none;
+  //   color: var(--c-accent);
 
-    // background: linear-gradient(
-    //     to bottom,
-    //     transparent 62%,
-    //     var(--link-underline) 0
-    //   )
-    //   center center/100% 100% no-repeat;
-    text-decoration: none;
-    color: var(--c-accent);
+  //   background-image: linear-gradient(
+  //       to bottom,
+  //       var(--c-background) 70%,
+  //       transparent 70%
+  //     ),
+  //     linear-gradient(
+  //       to right,
+  //       var(--c-accent-lighter) 50%,
+  //       var(--c-accent-lightest) 50%,
+  //       var(--c-accent-lightest) 0
+  //     );
+  //   background-size: 204% 100%;
+  //   background-position: 100% 0;
+  //   transition: 0.5s background-position;
 
-    background-image: linear-gradient(
-        to bottom,
-        var(--c-background) 70%,
-        transparent 70%
-      ),
-      linear-gradient(
-        to right,
-        var(--c-accent-lighter) 50%,
-        var(--c-accent-lightest) 50%,
-        var(--c-accent-lightest) 0
-      );
-    background-size: 204% 100%;
-    background-position: 100% 0;
-    transition: 0.5s background-position;
-
-    &:hover {
-      background-position: 0%;
-    }
-    // &:hover {
-    //   --link-underline: var(--c-accent-lighter);
-    // }
-  }
+  //   &:hover {
+  //     background-position: 0%;
+  //   }
+  // }
 }
