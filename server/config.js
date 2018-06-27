@@ -8,7 +8,8 @@ const config = rc(`hiswe`, {})
 
 config.VERSION = pkg.version
 
-config.PORT = config.PORT || process.env.PORT || 3456
+config.HOST = config.HOST || process.env.HOST || '127.0.0.1'
+config.PORT = config.PORT || process.env.PORT || 3000
 
 config.NODE_ENV = config.NODE_ENV || process.env.NODE_ENV || `development`
 config.isDev = config.NODE_ENV === `development`

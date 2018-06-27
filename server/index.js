@@ -1,107 +1,103 @@
-'use strict'
+import chalk from 'chalk'
+import Koa from 'koa'
+import helmet from 'koa-helmet'
+import compress from 'koa-compress'
+import logger from 'koa-logger'
+import formatJson from 'koa-json'
+import Router from 'koa-router'
+import { Nuxt, Builder } from 'nuxt'
 
-const path = require('path')
-const util = require('util')
-const Koa = require('koa')
-const chalk = require('chalk')
-const bodyParser = require('koa-body')
-const serveStatic = require('koa-static')
-const compress = require('koa-compress')
-const logger = require('koa-logger')
-const Router = require('koa-router')
-const helmet = require('koa-helmet')
-const views = require('koa-views')
-const formatJson = require('koa-json')
+import config from './config'
+import getLatestBlogPost from './latest-blog-post'
 
-const config = require('./config')
-const getLatestBlogPost = require('./latest-blog-post')
-const getMarkdown = require('./get-markdown')
+async function start() {
+  //////
+  // SERVER CONFIG
+  //////
 
-//////
-// SERVER CONFIG
-//////
+  const app = new Koa()
+  const host = process.env.HOST || '127.0.0.1'
+  const port = process.env.PORT || 3000
 
-const app = new Koa()
+  app.use(helmet())
+  app.use(compress())
+  app.use(logger())
+  app.use(formatJson())
 
-app.use(helmet())
-app.use(bodyParser())
-app.use(compress())
-app.use(serveStatic(path.join(__dirname, `./public`)))
-app.use(logger())
-app.use(
-  views(path.join(__dirname, `./views`), {
-    extension: `pug`,
+  //////
+  // API ROUTING
+  //////
+
+  //----- ERROR HANDLING
+
+  // app.use(async (ctx, next) => {
+  //   try {
+  //     await next()
+  //   } catch (err) {
+  //     console.log(util.inspect(err, { colors: true }))
+  //     ctx.status = err.statusCode || err.status || 500
+  //     ctx.body = ctx.render(`error`, {
+  //       code: ctx.status,
+  //       reason: err.message,
+  //       stacktrace: err.stacktrace || err.stack || false,
+  //     })
+  //   }
+  // })
+
+  const router = new Router({ prefix: `/api` })
+
+  router.get(`/latest-blog-post`, async ctx => {
+    const blogEntries = await getLatestBlogPost()
+    ctx.body = blogEntries
   })
-)
-app.use(formatJson())
 
-//////
-// ROUTING
-//////
+  //----- MOUNT ROUTER TO APPLICATION
 
-const router = new Router()
+  app.use(router.routes())
+  app.use(router.allowedMethods())
 
-//----- ERROR HANDLING
+  //////
+  // NUXT
+  //////
 
-app.use(async (ctx, next) => {
-  try {
-    await next()
-  } catch (err) {
-    console.log(util.inspect(err, { colors: true }))
-    ctx.status = err.statusCode || err.status || 500
-    ctx.body = ctx.render(`error`, {
-      code: ctx.status,
-      reason: err.message,
-      stacktrace: err.stacktrace || err.stack || false,
-    })
+  // Import and Set Nuxt.js options
+  const nuxtConfig = require('../nuxt.config.js')
+  nuxtConfig.dev = config.isDev
+
+  // Instantiate nuxt.js
+  const nuxt = new Nuxt(nuxtConfig)
+
+  // Build in development
+  if (config.isDev) {
+    const builder = new Builder(nuxt)
+    await builder.build()
   }
-})
 
-//----- ROUTING
-
-router.get(`/`, async ctx => {
-  const content = await getMarkdown(`home`)
-  await ctx.render(`page`, {
-    content,
-    pageClass: `home`,
+  app.use(async (ctx, next) => {
+    await next()
+    ctx.status = 200 // koa defaults to 404 when it sees that status is unset
+    return new Promise((resolve, reject) => {
+      ctx.res.on('close', resolve)
+      ctx.res.on('finish', resolve)
+      nuxt.render(ctx.req, ctx.res, promise => {
+        // nuxt.render passes a rejected promise into callback on error.
+        promise.then(resolve).catch(reject)
+      })
+    })
   })
-})
 
-router.get(`/projects`, async ctx => {
-  const content = await getMarkdown(`projects`)
-  await ctx.render(`page`, {
-    content,
-    pageClass: `projects`,
+  //////
+  // LAUNCHING
+  //////
+
+  app.listen(config.PORT, config.HOST, function endInit() {
+    console.log(
+      `APP Server is listening on`,
+      chalk.cyan(`${config.HOST}:${config.PORT}`),
+      `on mode`,
+      chalk.cyan(config.NODE_ENV)
+    )
   })
-})
+}
 
-router.get(`/tech`, async ctx => {
-  const content = await getMarkdown(`tech`)
-  await ctx.render(`page`, {
-    content,
-    pageClass: `tech`,
-  })
-})
-
-router.get(`/latest-blog-post`, async ctx => {
-  const blogEntries = await getLatestBlogPost()
-  ctx.body = blogEntries
-})
-
-//----- MOUNT ROUTER TO APPLICATION
-
-app.use(router.routes())
-app.use(router.allowedMethods())
-
-//////
-// LAUNCHING
-//////
-
-const server = app.listen(config.PORT, function endInit() {
-  console.log(
-    `APP Server is listening on port`,
-    chalk.cyan(server.address().port),
-    `on mode`,
-    chalk.cyan(config.NODE_ENV)
-  )
-})
+start()
