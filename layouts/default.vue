@@ -18,6 +18,9 @@ header {
   justify-content: space-between;
   padding: var(--half-gutter);
 }
+a {
+  color: var(--c-accent);
+}
 nav {
   --navigation-font-size: 0.85rem;
   // position: absolute;
@@ -27,7 +30,6 @@ nav {
   padding: 0.5em;
   a {
     display: block;
-    color: var(--c-accent);
     font-size: var(--navigation-font-size);
     text-decoration: none;
     text-transform: uppercase;

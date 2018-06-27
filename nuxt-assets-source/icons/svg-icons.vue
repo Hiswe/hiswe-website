@@ -13,6 +13,7 @@ const SVG_LIB = {
       width: `calc(<%= icon.width %> * var(--svg-icon-scale))`,
       height: `calc(<%= icon.height %> * var(--svg-icon-scale))`,
     },
+    viewBox: `<%= icon.svg.viewBox %>`,
     content: `<%= icon.svg.content %>`,
   },<% }); %>
 }
@@ -33,10 +34,6 @@ export default {
       if (!SVG_LIB[this.name]) return {}
       return SVG_LIB[this.name].style
     },
-    content() {
-      if (!SVG_LIB[this.name]) return ``
-      return SVG_LIB[this.name].content
-    },
     icon() {
       if (!SVG_LIB[this.name]) return {}
       return SVG_LIB[this.name]
@@ -49,8 +46,11 @@ export default {
       {
         class: this.icon.id,
         style: this.style,
+        attrs: {
+          viewBox: this.icon.viewBox,
+        },
         domProps: {
-          innerHTML: this.content
+          innerHTML: this.icon.content
         },
       }
     )
