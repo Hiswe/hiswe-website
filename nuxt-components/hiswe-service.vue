@@ -17,6 +17,7 @@ dl {
 }
 dt {
   font-size: 2rem;
+  padding-top: var(--gutter);
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;

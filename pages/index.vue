@@ -16,23 +16,25 @@
   hiswe-service(title="development" :style={'--servive-background': `var(--c-primary)`})
     h4 building web application
     ul
-      li Reactive applications
-      li Data persistence
-      li Fast rendering with Universal Application
+      li reactive applications
+      li data persistence
+      li fast rendering with universal application
 
   hiswe-service(title="integration" :style={'--servive-background': `var(--c-primary-darker)`})
     h4 from webdesign to webpage
     ul
-      li Optimized for fast loading &amp; rendering
-      li Bring your design to life with animations
-      li Clean JavaScript code
+      li optimized for fast loading &amp; rendering
+      li bring your design to life with animations
+      li clean javascript code
 
   hiswe-service(title="web-design"  :style={'--servive-background': `var(--c-accent)`})
     h4 I like it that way
     ul
-      li Fast delivery
-      li Efficient UX Design: what users wants it's a simple &amp; complete experience
-      li Responsive design: web is now from mobile to desktop. I design for every platform
+      li fast delivery
+      li efficient ux design: what users wants it's a simple &amp; complete experience
+      li responsive design: web is now from mobile to desktop. i design for every platform
+
+  no-ssr: hiswe-blog-posts
 
 </template>
 
@@ -74,11 +76,13 @@ aside {
 
 <script>
 import HisweService from '~/nuxt-components/hiswe-service.vue'
+import LatestBlogPosts from '~/nuxt-components/latest-blog-posts.vue'
 
 export default {
   name: `page-home`,
   components: {
     'hiswe-service': HisweService,
+    'hiswe-blog-posts': LatestBlogPosts,
   },
 }
 </script>
