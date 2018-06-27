@@ -1,19 +1,35 @@
 <template lang="pug">
 dl(:class="`service ${id}`")
-  dt
-    h3 {{title}}
+  dt {{title}}
+    // h3
     // p: i.hicon.penBottom
-    a(:href="`#${id}`") more details
-  dd.panel
+  dd
     slot
-  dd.panel.panel--left
-    slot(name="left")
-  dd.panel.panel--right
-    slot(name="right")
-  dd.close: a(href="#")
 </template>
 
 <style lang="scss" scoped>
+
+dl {
+  padding: var(--half-gutter);
+  margin: 0;
+  background: var(--servive-background, var(--c-primary));
+  color: var(--servive-color, white);
+}
+dt {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+dd {
+  margin: 0;
+
+  h4 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
 // .service {
 //   --panel-height: 300px;
 //   position: relative;
