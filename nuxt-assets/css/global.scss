@@ -6,19 +6,21 @@
   box-sizing: border-box;
 }
 html {
-  background: var(--c-background);
-  // base font size to 18px
-  font-size: 112.5%;
   // Prevent font scaling in landscape while allowing user zoom
   -webkit-text-size-adjust: 100%;
+  background: var(--c-background);
+  // // base font size to 18px
+  // font-size: 112.5%;
+  // http://markdotto.com/2018/02/07/github-system-fonts/
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  line-height: 1.5;
+  color: var(--c-text);
 }
 html,
 body {
   margin: 0;
   padding: 0;
-  // http://markdotto.com/2018/02/07/github-system-fonts/
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 // prevent zooming on double-tap
 // https://stackoverflow.com/questions/46167604/iphone-html-disable-double-tap-to-zoom

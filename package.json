@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server/index.js",
     "build:css": "gulp css",
-    "build:icons": "gulp icons",
+    "build:svg": "gulp build:svg",
     "serve:dev": "nodemon server/index.js --config nodemon.json",
     "dev": "gulp dev",
     "dev:vue": "nuxt",

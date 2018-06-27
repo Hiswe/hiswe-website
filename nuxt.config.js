@@ -7,7 +7,8 @@ module.exports = {
       // { hid: 'description', name: 'description', content: 'Meta description' }
     ],
   },
-  css: [`@/assets/css/global.scss`],
+  css: [`@/nuxt-assets/css/global.scss`],
+  plugins: [`@/nuxt-plugins/global-components.js`],
   build: {
     postcss: {
       plugins: {

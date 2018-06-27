@@ -1,30 +1,41 @@
 <template lang="pug">
   main(role="main")
-    nav
-      nuxt-link(to="/") about
-      nuxt-link(to="/projects") projects
-      nuxt-link(to="/work") work
-      nuxt-link(to="/tech") tech
-      a(href="https://hiswe.github.io/") blog
+    header
+      nuxt-link(to="/"): hiswe-icon(name="hiswe")
+
+      nav
+        nuxt-link(to="/projects") projects
+        nuxt-link(to="/work") work
+        nuxt-link(to="/skills") skills
+        a(href="https://hiswe.github.io/") blog
     nuxt
 </template>
 
 <style lang="scss" scoped>
+header {
+  --svg-icon-scale: .5;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--half-gutter);
+}
 nav {
-  position: absolute;
+  --navigation-font-size: 0.85rem;
+  // position: absolute;
   top: 0;
   right: 0;
   font-weight: 800;
   padding: 0.5em;
-
   a {
     display: block;
-
     color: var(--c-accent);
+    font-size: var(--navigation-font-size);
     text-decoration: none;
-    padding: 0.5em;
     text-transform: uppercase;
     text-align: right;
+
+    + a {
+      margin-top: var(--half-gutter);
+    }
   }
 }
 </style>

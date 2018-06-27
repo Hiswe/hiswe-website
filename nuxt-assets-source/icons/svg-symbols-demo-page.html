@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Symbols</title>
+  <meta name="viewport" content="width=device-width" />
+  <style>
+    html {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: black;
+      background: #e4e4e4;
+      text-align: center;
+    }
+    body {
+      margin: 0;
+      padding-top: 2.5rem;
+    }
+    main {
+      padding: 1rem .5rem;
+    }
+    button {
+      font: inherit;
+      background: transparent;
+      border: none;
+    }
+    button::-moz-focus-inner {
+      padding: 0;
+      border: none;
+    }
+    .symbols-dictionary {
+      border: 0 !important;
+      clip: rect(0 0 0 0) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      width: 1px !important;
+    }
+    .gss-toolbar {
+      position: absolute;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      border-bottom: solid 1px #c6c6c6;
+      text-align: left;
+      background: white;
+    }
+    .gss-toolbar--active {
+      position: fixed;
+    }
+    .gss-toolbar > * {
+      display: inline-block;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin: 0;
+      padding: .5rem 1rem;
+      line-height: 1.35;
+    }
+    .gss-toolbar h1 {
+      display: none;
+      font: inherit;
+    }
+    .gss-toolbar:not(.gss-toolbar--active) h1 {
+      display: inline-block;
+    }
+    .gss-toolbar:not(.gss-toolbar--active) h1 ~ * {
+      display: none !important;
+    }
+    .gss-toolbar.gss-toolbar > * + * {
+      border-left: solid 1px #c6c6c6;
+    }
+    .gss-toolbar > *:focus {
+      outline: none;
+      box-shadow: inset 0 0 0 1px #c71585;
+    }
+    .gss-toolbar [hidden] {
+      display: none;
+    }
+    .gss-toolbar-filter {
+      width: 15rem;
+      flex-grow: 10;
+      border: none;
+      font: inherit;
+    }
+    .gss-toolbar button {
+      position: relative;
+      z-index: 1;
+      font-size: 87.5%;
+      background-color: #f4f4f4;
+    }
+    .gss-toolbar-filter + button {
+      margin-left: auto;
+    }
+    .gss-toolbar button[aria-pressed="true"] {
+      z-index: 2;
+      color: #ddd;
+      background-color: #444;
+      outline-color: rgba(255,255,255,.6);
+    }
+    .gss-toolbar .gss-toolbar-list {
+      font-size: 100%;
+    }
+    .gss-toolbar button > svg {
+      fill: currentColor;
+      vertical-align: -2px;
+      margin: 0 4px 0 2px;
+    }
+    .gss-toolbar-list[aria-pressed="true"] ~ .gss-toolbar-orig {
+      display: none;
+    }
+    @media (max-width: 40em) {
+      .gss-toolbar-filter {
+        margin-left: 0 !important;
+      }
+      .gss-toolbar-filter ~ * {
+        display: none !important;
+      }
+    }
+
+    /* Grid of small icons */
+    .gss-iconlist ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      min-height: calc(100vh - 100px);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .gss-iconlist-item {
+      display: inline-block;
+      vertical-align: top;
+      margin: .5rem;
+    }
+    .gss-iconlist-item a {
+      display: block;
+      box-sizing: border-box;
+      min-height: 100%;
+      border-radius: .35em;
+      padding: .5rem;
+      color: inherit;
+      background-color: #fff;
+      transition: all 100ms;
+    }
+    .gss-iconlist-item a:hover,
+    .gss-iconlist-item a:focus {
+      outline: none;
+      color: #fff;
+      background-color: rgba(0,0,0,.8);
+    }
+    .gss-iconlist-item a > svg {
+      width: 2.75rem;
+      height: 2.75rem;
+      vertical-align: top;
+      fill: currentColor;
+    }
+    @media (min-width: 40em) {
+      .gss-iconlist-item a > svg {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+    }
+
+    /* Grid of big icons with lots of info */
+    .gss-iconboxes {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+    }
+    .gss-iconboxes[hidden] {
+      display: none;
+    }
+    .gss-iconboxes::after {
+      content: '';
+      flex-grow: 1000;
+    }
+    .gss-iconbox {
+      display: inline-block;
+      vertical-align: top;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      width: calc(100% - 1rem);
+      max-width: 40rem;
+      overflow: hidden;
+      margin: .5rem;
+      border-radius: .5rem;
+      background-color: #fff;
+    }
+    .gss-iconbox:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px #e960b2;
+    }
+    .gss-iconbox[data-state="info"] {
+      background: #f4f4f4;
+    }
+    @media (min-width:40em) {
+      .gss-iconbox { width: calc(50% - 1rem); }
+    }
+    @media (min-width:60em) {
+      .gss-iconbox { width: calc(33.33% - 1rem); }
+    }
+    @media (min-width:80em) {
+      .gss-iconbox { width: calc(25% - 1rem); }
+    }
+    @media (min-width:100em) {
+      main { width: 105rem; max-width: calc(100% - 1rem); margin: 0 auto; }
+      .gss-iconbox { width: calc(20% - 1rem); }
+    }
+    .gss-iconbox-header,
+    .gss-iconbox-head2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      padding: 0 .5rem;
+      font-size: 87.5%;
+      color: #444;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .gss-iconbox-header {
+      background-color: #fff;
+    }
+    .gss-iconbox[data-state="info"] .gss-iconbox-header,
+    .gss-iconbox:not([data-state="info"]) .gss-iconbox-head2 {
+      display: none;
+    }
+    .gss-iconbox-header > *,
+    .gss-iconbox-head2 > * {
+      display: inline-block;
+      white-space: nowrap;
+      padding: .75rem .5rem;
+    }
+    .gss-iconbox-head2 > :nth-child(1) {
+      margin-right: auto;
+      text-align: left;
+    }
+    .gss-iconbox-header h2 {
+      position: relative;
+      top: -1px;
+      overflow: hidden;
+      text-align: left;
+      text-overflow: ellipsis;
+      margin: 0;
+      font: inherit;
+      font-size: 115%;
+      line-height: 1;
+      color: black;
+    }
+    .gss-iconbox-header > span {
+      color: #777;
+    }
+    .gss-iconbox-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      position: relative;
+      overflow: hidden;
+      min-height: 8rem;
+    }
+    .gss-iconbox:not([data-state="info"]) .gss-iconbox-wrapper {
+      background-color: #fafafa;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="rgb(238,238,238)" width="100" height="100"><rect x="0" y="0" width="50" height="50"></rect><rect x="50" y="50" width="50" height="50"></rect></svg>');
+      background-size: 24px 24px;
+    }
+    @media (min-width:40em) {
+      .gss-iconbox-wrapper { min-height: 10rem; }
+    }
+    .gss-iconbox-icon {
+      padding: 1rem;
+    }
+    .gss-iconbox[data-state="info"] .gss-iconbox-icon {
+      display: none;
+    }
+    .gss-iconbox-icon > svg {
+      fill: currentColor;
+      vertical-align: middle;
+      width: 6rem;
+      height: 6rem;
+      max-width: 16rem;
+      max-height: 16rem;
+    }
+    @media (min-width:40em) {
+      .gss-iconbox-icon > svg {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
+    .gss-showColor svg[id^="gss-icon-"] {
+      color: red;
+      fill: red;
+    }
+    .gss-showOriginal .gss-iconbox-icon > svg {
+      margin-top: 1rem;
+      outline: solid 1px rgba(0,0,0,.5);
+      box-shadow: 0 0 0 250px rgba(255,255,255,.8);
+    }
+    @media (min-resolution: 2dppx) {
+      .gss-showOriginal .gss-iconbox-icon > svg {
+        outline-width: .5px;
+      }
+    }
+    .gss-showOriginal .gss-iconbox-icon::after {
+      content: attr(data-dimensions);
+      display: table;
+      margin: .5rem auto 0;
+      padding: 1px 3px;
+      font-size: 75%;
+      color: #444;
+    }
+    .gss-iconbox-code {
+      flex-grow: 1;
+      margin: 0;
+      padding: 1rem;
+      text-align: left;
+      font: inherit;
+      line-height: 1.35;
+      background-color: #f4f4f4;
+    }
+    .gss-iconbox-code code {
+      display: block;
+      white-space: pre-wrap;
+      font-family: monospace, monospace;
+      font-size: 80%;
+    }
+    /* can't display none: copy won't work */
+    .gss-iconbox[data-state="icon"] .gss-iconbox-code {
+      position: absolute;
+      top: -200px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .gss-iconbox-action {
+      display: none;
+      border-top: 1px solid #e6e6e6;
+    }
+    .gss-iconbox[data-state] .gss-iconbox-action {
+      display: block;
+      display: flex;
+    }
+    .gss-iconbox-action > * {
+      flex-grow: 1;
+      flex-basis: 33.3%;
+      padding: .8rem .5rem;
+      border: 0;
+      font: inherit;
+      font-size: 87.5%;
+      color: #444;
+      background: none;
+    }
+    .gss-iconbox-action > * + * {
+      border-left: 1px solid #e6e6e6;
+    }
+    .gss-iconbox-action button {
+      cursor: pointer;
+      outline: none;
+    }
+    .gss-iconbox-action button:hover,
+    .gss-iconbox-action button:focus {
+      color: #c71585;
+    }
+    .gss-iconbox-action button:focus {
+      outline: solid 1px;
+      outline-offset: -6px;
+    }
+    .gss-iconbox-action button:active {
+      color: black;
+    }
+  </style>
+  <style>
+    .gss-showOriginal .gss-iconbox #gss-icon-codepen {
+      width: 1.5em;
+      height: 1.5em;
+    }
+    
+    .gss-showOriginal .gss-iconbox #gss-icon-github {
+      width: 1.375em;
+      height: 1.375em;
+    }
+    
+    .gss-showOriginal .gss-iconbox #gss-icon-hiswe {
+      width: 4.375em;
+      height: 6.25em;
+    }
+    
+    .gss-showOriginal .gss-iconbox #gss-icon-medium {
+      width: 1.5em;
+      height: 1.5em;
+    }
+    
+    .gss-showOriginal .gss-iconbox #gss-icon-twitter {
+      width: 1.563em;
+      height: 1.563em;
+    }
+    
+    
+  </style>
+  <style class="gss-filter-css"></style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="symbols-dictionary">
+  <defs>
+    <clipPath id="hiswe-_clip1"><rect x="0" y="0" width="70" height="100"/></clipPath>
+  </defs>
+  
+  <symbol id="codepen" viewBox="0 0 24 24">
+     <path d="M23.982,8.164c-0.006-0.028-0.011-0.058-0.019-0.086c-0.005-0.018-0.011-0.034-0.016-0.051
+	c-0.009-0.025-0.017-0.05-0.027-0.074c-0.007-0.018-0.015-0.034-0.022-0.051c-0.011-0.023-0.022-0.046-0.035-0.068
+	c-0.009-0.017-0.02-0.032-0.029-0.048c-0.014-0.021-0.028-0.042-0.044-0.062c-0.011-0.015-0.022-0.029-0.035-0.044
+	c-0.017-0.02-0.033-0.038-0.051-0.057c-0.014-0.014-0.027-0.026-0.042-0.04c-0.019-0.018-0.038-0.033-0.059-0.049
+	c-0.015-0.012-0.03-0.024-0.047-0.035c-0.006-0.005-0.011-0.009-0.017-0.013L12.572,0.173c-0.347-0.23-0.798-0.23-1.145,0
+	L0.459,7.485C0.453,7.489,0.448,7.494,0.442,7.499C0.426,7.51,0.41,7.521,0.396,7.534C0.375,7.55,0.355,7.565,0.337,7.582
+	C0.322,7.596,0.309,7.608,0.296,7.623C0.277,7.641,0.261,7.659,0.244,7.679C0.231,7.693,0.221,7.708,0.209,7.724
+	c-0.016,0.021-0.03,0.041-0.044,0.062c-0.01,0.017-0.02,0.031-0.029,0.049C0.123,7.856,0.111,7.88,0.101,7.902
+	c-0.008,0.017-0.016,0.033-0.022,0.05c-0.01,0.024-0.019,0.05-0.027,0.075C0.046,8.044,0.04,8.061,0.035,8.076
+	C0.028,8.104,0.022,8.133,0.018,8.162c-0.003,0.016-0.007,0.03-0.009,0.045C0.003,8.252,0,8.296,0,8.342v7.314
+	c0,0.045,0.003,0.09,0.01,0.135c0.002,0.016,0.006,0.028,0.01,0.044c0.005,0.029,0.01,0.059,0.02,0.088
+	c0.004,0.016,0.01,0.032,0.016,0.05c0.008,0.025,0.017,0.052,0.025,0.075c0.007,0.016,0.017,0.032,0.023,0.048
+	c0.011,0.023,0.022,0.046,0.035,0.069c0.009,0.017,0.02,0.032,0.029,0.047c0.014,0.023,0.029,0.043,0.045,0.062
+	c0.012,0.016,0.022,0.028,0.036,0.044c0.017,0.02,0.032,0.039,0.052,0.056c0.013,0.013,0.025,0.029,0.042,0.039
+	c0.019,0.017,0.038,0.032,0.058,0.049c0.016,0.014,0.032,0.023,0.046,0.035c0.006,0.004,0.009,0.01,0.016,0.013l10.966,7.316
+	C11.602,23.942,11.8,24.001,12,24s0.398-0.058,0.572-0.174l10.969-7.312c0.006-0.004,0.011-0.008,0.017-0.013
+	c0.017-0.011,0.032-0.023,0.047-0.035c0.021-0.016,0.04-0.032,0.059-0.049c0.015-0.013,0.028-0.026,0.042-0.04
+	c0.018-0.019,0.034-0.036,0.051-0.057c0.013-0.014,0.023-0.028,0.035-0.044c0.016-0.021,0.029-0.041,0.044-0.062
+	c0.01-0.016,0.02-0.031,0.029-0.047c0.013-0.023,0.024-0.046,0.035-0.069c0.008-0.017,0.016-0.033,0.022-0.05
+	c0.011-0.025,0.019-0.05,0.027-0.075c0.005-0.017,0.011-0.033,0.016-0.05c0.008-0.028,0.013-0.058,0.019-0.087
+	c0.002-0.015,0.006-0.029,0.008-0.045C23.997,15.747,24,15.702,24,15.656V8.344c0-0.046-0.003-0.09-0.009-0.135
+	c-0.003-0.016-0.008-0.029-0.011-0.045H23.982z M12,14.439L8.353,12L12,9.561L15.647,12L12,14.439z M10.969,7.769L6.497,10.76
+	L2.889,8.345l8.08-5.387V7.769z M4.643,12l-2.58,1.725v-3.45L4.643,12z M6.497,13.241l4.472,2.99v4.812l-8.08-5.388L6.497,13.241
+	L6.497,13.241z M13.031,16.231l4.471-2.99l3.609,2.414l-8.08,5.387V16.231z M19.357,12l2.58-1.726v3.451L19.357,12L19.357,12z
+	 M17.502,10.76l-4.471-2.99V2.958l8.08,5.387L17.502,10.76z"/> 
+  </symbol>
+  <symbol id="github" viewBox="0 0 22 22">
+    <path d="M0,11c0,4.86 3.151,8.983 7.523,10.437c0.55,0.101 0.75,-0.239 0.75,-0.529c0,-0.262 -0.01,-1.129 -0.015,-2.047c-3.059,0.664 -3.705,-1.298 -3.705,-1.298c-0.501,-1.27 -1.222,-1.608 -1.222,-1.608c-1,-0.682 0.076,-0.669 0.076,-0.669c1.105,0.077 1.686,1.133 1.686,1.133c0.982,1.682 2.576,1.196 3.201,0.914c0.1,-0.71 0.385,-1.196 0.699,-1.47c-2.442,-0.277 -5.011,-1.221 -5.011,-5.436c0,-1.202 0.429,-2.182 1.131,-2.952c-0.112,-0.28 -0.49,-1.399 0.109,-2.913c0,0 0.923,-0.295 3.025,1.128c0.897,-0.245 1.823,-0.369 2.753,-0.37c0.93,0.001 1.857,0.126 2.754,0.371c2.099,-1.424 3.023,-1.128 3.023,-1.128c0.601,1.516 0.223,2.634 0.11,2.912c0.705,0.77 1.13,1.75 1.13,2.952c0,4.225 -2.572,5.156 -5.023,5.428c0.396,0.342 0.747,1.01 0.747,2.036c0,1.47 -0.015,2.656 -0.015,3.019c0,0.292 0.2,0.635 0.757,0.527c4.368,-1.457 7.517,-5.579 7.517,-10.437c0,-6.075 -4.925,-11 -11,-11c-6.075,0 -11,4.925 -11,11Z"/>
+  </symbol>
+  <symbol id="hiswe" viewBox="0 0 70 100">
+    <g clip-path="url(#hiswe-_clip1)"><path d="M32.142,32.929l-31.44,-15.005l0,65.717l34.298,16.429l0,-62.65l31.097,14.896l-31.097,14.896l34.298,16.429l0,-65.717l-37.156,-17.854l0,32.859Zm2.858,1.424l0,-29.792l31.44,15.005l0,29.792l-31.44,-15.005Zm-31.44,47.645l0,-59.693l28.582,13.691l0,59.693l-28.582,-13.691Z" style="fill-rule:nonzero;"/></g>
+  </symbol>
+  <symbol id="medium" viewBox="0 0 24 24">
+    <path id="Rectangle-path" d="M24,0l0,24l-24,0l0,-24l24,0Zm-4.092,18.215l0,-0.271l-1.257,-1.234c-0.111,-0.084 -0.166,-0.223 -0.143,-0.361l0,-9.067c-0.023,-0.138 0.032,-0.277 0.143,-0.362l1.287,-1.234l0,-0.271l-4.456,0l-3.176,7.924l-3.613,-7.924l-4.674,0l0,0.271l1.505,1.814c0.148,0.133 0.223,0.329 0.203,0.527l0,7.126c0.044,0.257 -0.037,0.519 -0.218,0.707l-1.694,2.054l0,0.271l4.803,0l0,-0.271l-1.694,-2.054c-0.182,-0.187 -0.268,-0.448 -0.233,-0.707l0,-6.163l4.215,9.195l0.489,0l3.621,-9.195l0,7.329c0,0.196 0,0.233 -0.128,0.361l-1.302,1.264l0,0.271l6.322,0Z"/>
+  </symbol>
+  <symbol id="twitter" viewBox="0 0 25 25">
+     <path d="M24,5.2126 C23.15383,5.58796 22.244295,5.841535 21.28991,5.955615 C22.264075,5.371645 23.01238,4.44693 23.364625,3.345 C22.45279,3.885845 21.442975,4.278455 20.36807,4.490055 C19.50741,3.57293 18.28105,3 16.92382,3 C14.31792,3 12.205025,5.112665 12.205025,7.718565 C12.205025,8.088405 12.24677,8.448585 12.327155,8.79393 C8.405425,8.597165 4.928515,6.718525 2.601145,3.86365 C2.194965,4.56055 1.962205,5.37107 1.962205,6.23587 C1.962205,7.87301 2.795265,9.317295 4.061415,10.163465 C3.287925,10.13897 2.56032,9.92668 1.92414,9.573285 C1.92368,9.59295 1.92368,9.61273 1.92368,9.632625 C1.92368,11.918825 3.55024,13.825985 5.708905,14.259535 C5.31296,14.367405 4.896085,14.42502 4.465755,14.42502 C4.161695,14.42502 3.866145,14.39535 3.577955,14.34038 C4.178485,16.214995 5.92108,17.579355 7.98602,17.617305 C6.371075,18.882995 4.336495,19.63728 2.12562,19.63728 C1.74474,19.63728 1.36915,19.61497 1,19.57127 C3.088285,20.910215 5.568605,21.691525 8.233385,21.691525 C16.91278,21.691525 21.659175,14.501265 21.659175,8.26562 C21.659175,8.061035 21.654575,7.8576 21.64549,7.655085 C22.567445,6.989925 23.367385,6.15882 24,5.2126 L24,5.2126 Z"/> 
+  </symbol>
+  <symbol id="gss-icon-list" viewBox="0 0 5 5">
+    <rect width="2" height="2" x="0" y="0"></rect>
+    <rect width="2" height="2" x="3" y="0"></rect>
+    <rect width="2" height="2" x="0" y="3"></rect>
+    <rect width="2" height="2" x="3" y="3"></rect>
+  </symbol>
+</svg>
+<header class="gss-toolbar">
+  <h1>5 Symbols</h1>
+  <button class="gss-toolbar-list">
+    <svg aria-label="Compact" width="15" height="15"><use xlink:href="#gss-icon-list"></use>
+    </svg> List
+  </button>
+  <input class="gss-toolbar-filter" type="search"
+         placeholder="Filter 5 symbols…"
+         aria-label="Filter by id" title="Filter by id">
+  <button class="gss-toolbar-orig" data-toggle-class="gss-showOriginal">Original Size</button>
+  <button class="gss-toolbar-outl" data-toggle-class="gss-showColor">Test Color</button>
+</header>
+<main>
+<nav class="gss-iconlist" hidden></nav>
+<div class="gss-iconboxes">
+  <div class="gss-iconbox gss-searchable"
+       id="gss-iconbox-codepen"
+       data-search="©codepen codepen 24x24 >1 >2 <3 <4 <5 <6 <7 <8 <9">
+    <div class="gss-iconbox-header">
+      <h2>codepen</h2>
+      <span>2.8&thinsp;kB</span>
+    </div>
+    <p class="gss-iconbox-head2">
+      <span>©codepen.svg</span>
+      <span>24&thinsp;×&thinsp;24</span>
+      <span>2818&thinsp;B</span>
+    </p>
+    <div class="gss-iconbox-wrapper">
+      <div class="gss-iconbox-icon" data-dimensions="24&thinsp;×&thinsp;24">
+        <svg role="img" id="gss-icon-codepen">
+          <use xlink:href="#codepen"></use>
+        </svg>
+      </div>
+      <div class="gss-iconbox-code">
+        <code>&lt;svg role=&quot;img&quot; class=&quot;codepen&quot;&gt;
+  &lt;use xlink:href=&quot;#codepen&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;</code>
+      </div>
+    </div>
+    <div class="gss-iconbox-action">
+      <button data-action="copy">Copy</button>
+      <button data-action="info">Show</button>
+    </div>
+  </div>
+  <div class="gss-iconbox gss-searchable"
+       id="gss-iconbox-github"
+       data-search="©github github 22x22 >1 <2 <3 <4 <5 <6 <7 <8 <9">
+    <div class="gss-iconbox-header">
+      <h2>github</h2>
+      <span>1&thinsp;kB</span>
+    </div>
+    <p class="gss-iconbox-head2">
+      <span>©github.svg</span>
+      <span>22&thinsp;×&thinsp;22</span>
+      <span>952&thinsp;B</span>
+    </p>
+    <div class="gss-iconbox-wrapper">
+      <div class="gss-iconbox-icon" data-dimensions="22&thinsp;×&thinsp;22">
+        <svg role="img" id="gss-icon-github">
+          <use xlink:href="#github"></use>
+        </svg>
+      </div>
+      <div class="gss-iconbox-code">
+        <code>&lt;svg role=&quot;img&quot; class=&quot;github&quot;&gt;
+  &lt;use xlink:href=&quot;#github&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;</code>
+      </div>
+    </div>
+    <div class="gss-iconbox-action">
+      <button data-action="copy">Copy</button>
+      <button data-action="info">Show</button>
+    </div>
+  </div>
+  <div class="gss-iconbox gss-searchable"
+       id="gss-iconbox-hiswe"
+       data-search="©hiswe hiswe 70x100 <1 <2 <3 <4 <5 <6 <7 <8 <9">
+    <div class="gss-iconbox-header">
+      <h2>hiswe</h2>
+      <span>0.4&thinsp;kB</span>
+    </div>
+    <p class="gss-iconbox-head2">
+      <span>©hiswe.svg</span>
+      <span>70&thinsp;×&thinsp;100</span>
+      <span>396&thinsp;B</span>
+    </p>
+    <div class="gss-iconbox-wrapper">
+      <div class="gss-iconbox-icon" data-dimensions="70&thinsp;×&thinsp;100">
+        <svg role="img" id="gss-icon-hiswe">
+          <use xlink:href="#hiswe"></use>
+        </svg>
+      </div>
+      <div class="gss-iconbox-code">
+        <code>&lt;svg role=&quot;img&quot; class=&quot;hiswe&quot;&gt;
+  &lt;use xlink:href=&quot;#hiswe&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;</code>
+      </div>
+    </div>
+    <div class="gss-iconbox-action">
+      <button data-action="copy">Copy</button>
+      <button data-action="info">Show</button>
+    </div>
+  </div>
+  <div class="gss-iconbox gss-searchable"
+       id="gss-iconbox-medium"
+       data-search="©medium medium 24x24 <1 <2 <3 <4 <5 <6 <7 <8 <9">
+    <div class="gss-iconbox-header">
+      <h2>medium</h2>
+      <span>0.6&thinsp;kB</span>
+    </div>
+    <p class="gss-iconbox-head2">
+      <span>©medium.svg</span>
+      <span>24&thinsp;×&thinsp;24</span>
+      <span>616&thinsp;B</span>
+    </p>
+    <div class="gss-iconbox-wrapper">
+      <div class="gss-iconbox-icon" data-dimensions="24&thinsp;×&thinsp;24">
+        <svg role="img" id="gss-icon-medium">
+          <use xlink:href="#medium"></use>
+        </svg>
+      </div>
+      <div class="gss-iconbox-code">
+        <code>&lt;svg role=&quot;img&quot; class=&quot;medium&quot;&gt;
+  &lt;use xlink:href=&quot;#medium&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;</code>
+      </div>
+    </div>
+    <div class="gss-iconbox-action">
+      <button data-action="copy">Copy</button>
+      <button data-action="info">Show</button>
+    </div>
+  </div>
+  <div class="gss-iconbox gss-searchable"
+       id="gss-iconbox-twitter"
+       data-search="©twitter twitter 25x25 >1 <2 <3 <4 <5 <6 <7 <8 <9">
+    <div class="gss-iconbox-header">
+      <h2>twitter</h2>
+      <span>1.2&thinsp;kB</span>
+    </div>
+    <p class="gss-iconbox-head2">
+      <span>©twitter.svg</span>
+      <span>25&thinsp;×&thinsp;25</span>
+      <span>1209&thinsp;B</span>
+    </p>
+    <div class="gss-iconbox-wrapper">
+      <div class="gss-iconbox-icon" data-dimensions="25&thinsp;×&thinsp;25">
+        <svg role="img" id="gss-icon-twitter">
+          <use xlink:href="#twitter"></use>
+        </svg>
+      </div>
+      <div class="gss-iconbox-code">
+        <code>&lt;svg role=&quot;img&quot; class=&quot;twitter&quot;&gt;
+  &lt;use xlink:href=&quot;#twitter&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;</code>
+      </div>
+    </div>
+    <div class="gss-iconbox-action">
+      <button data-action="copy">Copy</button>
+      <button data-action="info">Show</button>
+    </div>
+  </div>
+</div>
+</main>
+<script type="text/javascript">
+  (function () {
+    var header = document.querySelector('.gss-toolbar');
+    var boxes = document.querySelector('.gss-iconboxes');
+    var clist = document.querySelector('.gss-iconlist');
+    var main = document.querySelector('main');
+
+    // Show header
+    header.classList.add('gss-toolbar--active');
+
+    // Hide example code and show controls
+    [].forEach.call(
+      boxes.querySelectorAll('.gss-iconbox'),
+      toggleBoxContent
+    );
+
+    // Toggle list of smaller icons
+    var listToggle = header.querySelector('.gss-toolbar-list');
+    listToggle.hidden = false;
+    listToggle.addEventListener('click', function(event) {
+        toggleCompactList();
+    });
+    // Close list and navigate
+    clist.addEventListener('click', function(event) {
+      var link = closest(
+        event.target,
+        function(el){return el.hasAttribute('href')}
+      );
+      if (link) {
+        event.preventDefault();
+        var target = document.querySelector(link.getAttribute('href'));
+        if (target) toggleCompactList('big', target);
+      }
+    });
+
+    // Enable filter box
+    var filterInput = header.querySelector('.gss-toolbar-filter');
+    var filterStyle = document.querySelector('.gss-filter-css');
+    // filter once on page load, then on key presses
+    if (filterInput && filterStyle) {
+      filterIcons(filterInput.value, filterStyle);
+      filterInput.addEventListener('keypress', function(e) {
+        if (e.keyCode === 27) {
+          e.currentTarget.value = '';
+          filterIcons('', filterStyle);
+        }
+      });
+      filterInput.addEventListener('input', function(e) {
+        filterIcons(e.currentTarget.value, filterStyle);
+      });
+      filterInput.hidden = false;
+    }
+
+    // Icon actions (with event delegation)
+    boxes.addEventListener('click', function(event) {
+      var action = event.target.getAttribute('data-action');
+      if (!action) return;
+      var box = closest(event.target, function(el){
+        return el.classList.contains('gss-iconbox');
+      });
+      if (box && action === 'info') {
+        var state = toggleBoxContent(box);
+      }
+      if (box && action === 'copy') {
+        selectAndCopy(box.querySelector('code'));
+      }
+    });
+    // Remove JS-added tabindex from boxes, to avoid giving a focusring
+    // to a box by clicking it or its content.
+    boxes.addEventListener('blur', function(event) {
+      var t = event.target;
+      if (t.classList.contains('gss-iconbox') && t.hasAttribute('tabindex')) {
+        t.removeAttribute('tabindex');
+      }
+    }, true);
+
+    // Enable checkboxes
+    header.addEventListener('click', function(event) {
+      var attr = 'data-toggle-class';
+      var btn = closest(event.target, function(el) {
+        return el.hasAttribute(attr);
+      });
+      if (btn) {
+        var c = btn.getAttribute(attr);
+        if (main.classList.contains(c)) {
+          main.classList.remove(c);
+          btn.setAttribute('aria-pressed', 'false');
+        } else {
+          main.classList.add(c);
+          btn.setAttribute('aria-pressed', 'true');
+        }
+      }
+    });
+
+    /**
+     * Quick and dirty polyfill for element.closest
+     * @param {Element} self
+     * @param {Function} cb - must return true for a matching element
+     * @return {Element|null}
+     */
+    function closest(self, cb) {
+      if (cb(self)) return self;
+      var p = self.parentElement;
+      return p === null ? null : closest(p, cb);
+    }
+
+    /**
+     * Toggle code example visibility
+     */
+    function toggleBoxContent(box) {
+      var a = 'data-state', x = 'icon', y = 'info';
+      var s = box.getAttribute(a) === x ? y : x;
+      box.setAttribute(a, s);
+      return s;
+    }
+
+    /**
+     * Copy example code to clipboard
+     * https://developers.google.com/web/updates/2015/04/cut-and-copy-commands
+     */
+    function selectAndCopy(element) {
+      window.getSelection().removeAllRanges();
+      var range = document.createRange();
+      range.selectNode(element);
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+    }
+
+    /**
+     * Filter content by id, with multiple words possible (additive)
+     * Filtering is done by injecting CSS rules in a stylesheet
+     */
+    function filterIcons(query, stylesheet) {
+      // clean up input
+      var search = query.toLowerCase()
+        .replace(/["'\\\]){}]+/g, ' ')
+        .replace('/\s+/g', ' ')
+        .trim();
+      // undo filter
+      if (search === '') {
+        stylesheet.innerHTML = '';
+        return;
+      }
+      // add filter
+      var keywords = search.split(' ');
+      var css = '';
+      for (var i=0; i<keywords.length; i++) {
+        if (i>0) css += ',\n';
+        css += '.gss-searchable:not([data-search*="' + keywords[i] + '"])';
+      }
+      css += '\n{ display: none !important; }';
+      stylesheet.innerHTML = css;
+    }
+
+    /**
+     * Show the compact list
+     * @param {string} mode - 'small' or 'big'
+     * @param {Element|undefined} target - element to focus
+     */
+    function toggleCompactList(mode, target) {
+      if (clist.childElementCount === 0) {
+        clist.innerHTML = '<ul>' + getCompactList(boxes).join('\n') + '</ul>';
+      }
+      if (['small', 'big'].indexOf(mode) === -1) {
+        mode = clist.hidden ? 'small' : 'big';
+      }
+      // switch content
+      clist.hidden = (mode === 'big');
+      boxes.hidden = (mode === 'small');
+
+      // update button status
+      listToggle.setAttribute('aria-pressed', String(mode === 'small'));
+
+      // scroll to the top if showing the small list
+      if (mode === 'small' || (mode === 'big' && !target)) {
+        window.scrollTo(0, 0);
+      }
+      // scroll to element and give it focus if going to big mode
+      if (mode === 'big' && target) {
+        // focus element
+        target.setAttribute('tabindex', '-1');
+        target.focus();
+        // centering in viewport
+        var y = target.offsetTop - window.innerHeight / 2 + target.offsetHeight / 2;
+        window.scrollTo(0, Math.max(Math.round(y) - 20 /* adjust for header */, 0));
+      }
+    }
+
+    /**
+     * Make the list of smaller icons by copying from the big list
+     */
+    function getCompactList(source) {
+      var icons = source.querySelectorAll('.gss-iconbox');
+      return [].map.call(icons, function(el) {
+        var search = el.getAttribute('data-search');
+        var icon = el.querySelector('.gss-iconbox-icon > svg').outerHTML;
+        return '<li class="gss-iconlist-item gss-searchable" ' +
+          'data-search="' + search +'"><a href="#' + el.id + '">' +
+          icon + '</a></li>';
+      });
+    }
+
+  }());
+</script>
+</body>
+</html>
