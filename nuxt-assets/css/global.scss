@@ -38,6 +38,10 @@ body:not(.user-is-tabbing) {
   }
 }
 
+.icon {
+  fill: currentColor;
+}
+
 main {
   // a {
   //   --link-underline: var(--c-accent-lightest);

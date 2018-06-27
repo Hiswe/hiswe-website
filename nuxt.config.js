@@ -10,6 +10,9 @@ module.exports = {
   css: [`@/nuxt-assets/css/global.scss`],
   plugins: [`@/nuxt-plugins/global-components.js`],
   build: {
+    babel: {
+      plugins: [`transform-object-rest-spread`],
+    },
     postcss: {
       plugins: {
         'postcss-cssnext': {

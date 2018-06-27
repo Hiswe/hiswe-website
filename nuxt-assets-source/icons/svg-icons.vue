@@ -9,14 +9,19 @@ const SVG_LIB = {
   <% _.forEach( icons, ( icon ) => { %>
   "<%= icon.id %>": {
     id: `<%= icon.id %>`,
+    class: [
+      `<%= svgAttrs.class %>`,
+      `<%= icon.class.replace(/^\./, '') %>`,
+    ],
     style: {
       width: `calc(<%= icon.width %> * var(--svg-icon-scale))`,
       height: `calc(<%= icon.height %> * var(--svg-icon-scale))`,
     },
-    viewBox: `<%= icon.svg.viewBox %>`,
+    'viewBox': `<%= icon.svg.viewBox %>`,
     content: `<%= icon.svg.content %>`,
   },<% }); %>
 }
+const SVG_ATTRS = <%= JSON.stringify(_.omit(svgAttrs, `class`), null, 2)  %>
 
 export default {
   name: `svg-icon`,
@@ -27,12 +32,16 @@ export default {
     },
   },
   computed: {
-    iconName() {
-      <%= 'return `svg-icon--${this.name}`' %>
-    },
     style() {
       if (!SVG_LIB[this.name]) return {}
       return SVG_LIB[this.name].style
+    },
+    attrs() {
+      if (!SVG_LIB[this.name]) return {}
+      return {
+        viewBox: this.icon.viewBox,
+        ...SVG_ATTRS,
+      }
     },
     icon() {
       if (!SVG_LIB[this.name]) return {}
@@ -44,11 +53,9 @@ export default {
     return createElement(
       `svg`,
       {
-        class: this.icon.id,
+        class: this.icon.class,
         style: this.style,
-        attrs: {
-          viewBox: this.icon.viewBox,
-        },
+        attrs: this.attrs,
         domProps: {
           innerHTML: this.icon.content
         },

@@ -25,3 +25,4 @@ npm-debug.log
 assets/icons/svg-symbols-demo-page.html
 front/scss/svg-symbols.scss
 server/views/svg-symbols.svg
+yarn-error.log

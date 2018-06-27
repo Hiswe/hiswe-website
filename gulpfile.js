@@ -103,10 +103,13 @@ const vueIcons = () => {
     .pipe(
       $.svgSymbols({
         // id: `icon-%f`,
-        // class: `.icon-%f`,
+        class: `.icon--%f`,
         fontSize: 16,
         templates: [`default-demo`, templateVue],
         slug: slugify,
+        svgAttrs: {
+          class: `icon`,
+        },
       })
     )
     .pipe($.if(/[.]vue$/, gulp.dest(`nuxt-components`)))

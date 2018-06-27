@@ -13,7 +13,7 @@
 
 <style lang="scss" scoped>
 header {
-  --svg-icon-scale: .5;
+  --svg-icon-scale: .75;
   display: flex;
   justify-content: space-between;
   padding: var(--half-gutter);
@@ -23,11 +23,10 @@ a {
 }
 nav {
   --navigation-font-size: 0.85rem;
-  // position: absolute;
   top: 0;
   right: 0;
   font-weight: 800;
-  padding: 0.5em;
+
   a {
     display: block;
     font-size: var(--navigation-font-size);
