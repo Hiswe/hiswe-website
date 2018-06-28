@@ -8,21 +8,24 @@
         nuxt-link(to="/work") work
         nuxt-link(to="/skills") skills
         a(href="https://hiswe.github.io/") blog
+        nuxt-link(to="/contact") contact
     nuxt
 </template>
 
 <style lang="scss" scoped>
 header {
-  --svg-icon-scale: .75;
+  --svg-icon-scale: 0.75;
   display: flex;
   justify-content: space-between;
-  padding: var(--half-gutter);
+  padding: var(--gutter);
 }
 a {
   color: var(--c-accent);
 }
 nav {
   --navigation-font-size: 0.85rem;
+  --navigation-top-spacing: var(--gutter);
+
   top: 0;
   right: 0;
   font-weight: 800;
@@ -34,8 +37,13 @@ nav {
     text-transform: uppercase;
     text-align: right;
 
+    @media #{$mq-big} {
+      --navigation-font-size: 1rem;
+      --navigation-top-spacing: 0.25rem;
+    }
+
     + a {
-      margin-top: var(--half-gutter);
+      margin-top: var(--navigation-top-spacing);
     }
   }
 }

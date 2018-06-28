@@ -1,0 +1,3 @@
+$big-stop: 1024px;
+$mq-small: '(max-width: #{$big-stop - 1px})';
+$mq-big: '(min-width: #{$big-stop})';

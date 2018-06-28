@@ -1,8 +1,12 @@
 :root {
   // SIZES
-  --gutter: 1.5rem;
+  --gutter: 1rem;
   --half-gutter: calc(var(--gutter) * 0.5);
   --two-gutter: calc(var(--gutter) * 2);
+
+  @media #{$mq-big} {
+    --gutter: 1.5rem;
+  }
 
   // COLORS
   --c-primary-lightest: hsl(200, 46%, 95%);

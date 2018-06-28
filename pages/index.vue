@@ -28,11 +28,11 @@
       li clean javascript code
 
   hiswe-service(title="web-design"  :style={'--servive-background': `var(--c-accent)`})
-    h4 I like it that way
+    h4 make efficiant UX
     ul
       li fast delivery
-      li efficient ux design: what users wants it's a simple &amp; complete experience
-      li responsive design: web is now from mobile to desktop. i design for every platform
+      li simple &amp; nice experience for users
+      li design for every screen size with responsive design
 
   no-ssr: hiswe-blog-posts
 
@@ -63,9 +63,9 @@ aside {
 
   a {
     color: var(--c-accent);
-
   }
 }
+
 // .services {
 //   display: grid;
 //   grid-template-columns: repeat(3, 1fr);

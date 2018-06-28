@@ -1,4 +1,5 @@
 @import './css-vars.scss';
+@import './scss-vars.scss';
 
 *,
 *::before,
@@ -8,14 +9,20 @@
 html {
   // Prevent font scaling in landscape while allowing user zoom
   -webkit-text-size-adjust: 100%;
-  background: var(--c-background);
-  // // base font size to 18px
-  // font-size: 112.5%;
   // http://markdotto.com/2018/02/07/github-system-fonts/
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   line-height: 1.5;
+  font-size: 100%;
+  background: var(--c-background);
   color: var(--c-text);
+
+  @media #{$mq-big} {
+    // base font size to 18px
+    // • have to put in there and not in scss-vars
+    //   to avoid  compilation errors
+    font-size: 112.5%;
+  }
 }
 html,
 body {
