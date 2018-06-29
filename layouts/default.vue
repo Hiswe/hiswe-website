@@ -1,7 +1,7 @@
 <template lang="pug">
   main(role="main")
     header
-      nuxt-link(to="/"): hiswe-icon(name="hiswe")
+      nuxt-link(to="/" class="home-link"): hiswe-icon(name="hiswe")
 
       nav
         nuxt-link(to="/projects") projects
@@ -22,10 +22,10 @@ header {
 a {
   color: var(--c-accent);
 }
+
 nav {
   --navigation-font-size: 0.85rem;
   --navigation-top-spacing: var(--gutter);
-
   top: 0;
   right: 0;
   font-weight: 800;
@@ -45,6 +45,20 @@ nav {
     + a {
       margin-top: var(--navigation-top-spacing);
     }
+  }
+}
+
+@media #{$mq-big} {
+  .home-link,
+  nav {
+    position: absolute;
+    top: var(--gutter);
+  }
+  .home-link {
+    left: var(--gutter);
+  }
+  nav {
+    right: var(--gutter);
   }
 }
 </style>

@@ -14,9 +14,12 @@
   --c-primary: hsl(200, 46%, 66%);
   --c-primary-darker: hsl(200, 47%, 41%);
   --c-primary-darkest: hsl(240, 11%, 30%);
-  --c-primary-black: hsl(227, 15%, 32%);
+  --c-primary-black: hsl(240, 11%, 15%);
   --c-primary-contrast: white;
   --c-accent: hsl(332, 100%, 50%);
+  --c-accent-hue: 332;
+  --c-accent-saturation: 100%;
+  --c-accent-light: 50%;
   --c-accent-lighter: hsl(332, 100%, 90%);
   --c-accent-lightest: hsl(332, 100%, 95%);
   --c-text: hsl(240, 11%, 30%);
