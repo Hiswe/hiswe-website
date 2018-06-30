@@ -1,121 +1,79 @@
 <template lang="pug">
 dl(:class="`service ${id}`")
-  dt: hiswe-title(:text="title")
-  dd.description
+  dt.service__title: hiswe-title(:text="title")
+  dd.service__subtitle
     slot(name="description")
-  dd
+  dd.service__description
     slot
 </template>
 
 <style lang="scss" scoped>
-dl {
-  padding: var(--half-gutter);
-  margin: 0;
-  background: var(--servive-background, var(--c-primary));
-  color: var(--servive-color, white);
-}
-dt {
-  font-size: 2rem;
-  padding-top: var(--gutter);
-  text-align: center;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.description {
-  font-size: 1.25rem;
-  font-weight: 200;
-}
-dd {
-  margin: 0;
+.service {
+  $root: &;
+  --servive-background: var(--c-primary);
+  --service-title-color: currentColor;
+  --service-title-align: left;
+  --service-subtitle-align: right;
+  --service-description-color: currentColor;
+  --service-description-align: left;
+  --servive-description-pad-size: calc(var(--gutter) * 3);
+  --service-description-pad-left: var(--servive-description-pad-size);
+  --service-description-pad-right: 0;
 
-  h4 {
-    font-size: 1.5rem;
+  padding: var(--gutter);
+  margin: 0;
+  background: var(--servive-background);
+  color: var(--servive-color, white);
+  display: flex;
+  flex-direction: column;
+
+  &--development {
+    --servive-background: var(--c-primary-lighter);
+    --service-title-color: var(--c-primary-darkest);
+    color: var(--c-primary-darker);
+  }
+  &--integration {
+    --servive-background: var(--c-primary);
+    --service-title-align: right;
+    --service-subtitle-align: left;
+    --service-description-align: right;
+    --service-description-pad-left: 0;
+    --service-description-pad-right: var(--servive-description-pad-size);
+  }
+  &--webdesign {
+    --servive-background: var(--c-accent);
+    --service-description-color: white;
+    color: var(--c-accent-lightest);
+  }
+
+  &__title {
+    font-size: 2rem;
     text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: var(--service-title-align);
+  }
+  .two-line-title {
+    color: var(--service-title-color);
+  }
+  &__subtitle,
+  &__description {
+    margin: 0;
+  }
+  &__subtitle {
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-weight: 200;
+    order: -1;
+    text-align: var(--service-subtitle-align);
+  }
+  &__description {
+    color: var(--service-description-color);
+    text-align: var(--service-description-align);
+    padding-left: var(--service-description-pad-left);
+    padding-right: var(--service-description-pad-right);
   }
 }
-
-// .service {
-//   --panel-height: 300px;
-//   position: relative;
-
-//   &:nth-child(odd) {
-//     transform: skewY(-30deg);
-//   }
-//   &:nth-child(even) {
-//     transform: skewY(30deg);
-//   }
-
-//   &:target {
-//     transform: none;
-//   }
-// }
-
-// dt,
-// .panel {
-//   height: var(--panel-height);
-//   position: relative;
-// }
-
-// dt {
-//   $target: 'dl:target >';
-//   $center-panel: 'dl:nth-child(even) >';
-
-//   z-index: 3;
-//   background: white;
-//   padding: 0;
-//   text-align: center;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   transition: box-shadow 0.25s ease 0s;
-
-//   &:hover {
-//     box-shadow: inset 0 0 0 8px var(--c-accent);
-//   }
-
-//   #{$center-panel} & {
-//     background: var(--c-primary-lighter);
-//   }
-//   #{$target} & {
-//     background: var(--c-primary-darker);
-//   }
-
-//   h6 {
-//     font-size: 1.75rem;
-//     text-transform: uppercase;
-//     letter-spacing: 0.125em;
-//     font-weight: normal;
-//     margin: 0;
-//   }
-
-//   a {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     left: 0;
-//     bottom: 0;
-//     text-indent: 100%;
-//     white-space: nowrap;
-//     overflow: hidden;
-//   }
-// }
-// .panel {
-//   position: absolute;
-//   top: 0;
-//   width: 100%;
-//   z-index: 10;
-//   background: var(--c-primary-black);
-//   color: white;
-//   margin: 0;
-
-//   &--left {
-//     right: 100%;
-//   }
-
-//   &--right {
-//     left: 100%;
-//   }
-// }
 </style>
 
 
@@ -135,7 +93,8 @@ export default {
   computed: {
     id() {
       if (!this.title) return false
-      return `service-${this.title.replace(' ', '-').toLowerCase()}`
+      const name = this.title.replace(`-`, ``).replace(` `, `-`)
+      return `service--${name}`
     },
   },
 }

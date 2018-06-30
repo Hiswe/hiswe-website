@@ -2,29 +2,29 @@
 .home
   .header
     h2 I make custom website for everyone's need
-    dl
-      dt I'm<br> Yannick<br> “hiswe”<br> Aïvayan
-      dd
+    dl.presentation
+      dt.presentation__title I'm<br> Yannick<br> “hiswe”<br> Aïvayan
+      dd.presentation__description
         p a full stack Javascript web-developer
         p depending on the project I will use the most appropriate set of tools.
   section.services
-    hiswe-service(title="dev-elopment" :style={'--servive-background': `var(--c-primary)`})
+    hiswe-service(title="dev-elopment")
       template(slot="description")
-        p building web application
+        | building<br>web application
       ul
         li reactive applications
         li data persistence
         li fast rendering with universal application
-    hiswe-service(title="inte-gration" :style={'--servive-background': `var(--c-primary-darker)`})
+    hiswe-service(title="inte-gration")
       template(slot="description")
-        p from webdesign to webpage
+        | from webdesign<br>to webpage
       ul
         li optimized for fast loading &amp; rendering
         li bring your design to life with animations
         li clean javascript code
-    hiswe-service(title="web-design"  :style={'--servive-background': `var(--c-accent)`})
+    hiswe-service(title="web-design")
       template(slot="description")
-        p make efficiant UX
+        | make<br>efficiant UX
       ul
         li fast delivery
         li simple &amp; nice experience for users
@@ -47,38 +47,6 @@
     margin: 0 auto;
   }
 }
-dl {
-  display: flex;
-  margin: 0;
-}
-dt,
-dd {
-  width: 50%;
-  flex: 0 1 50%;
-  margin: 0;
-}
-dt {
-  padding-right: var(--gutter);
-  text-align: right;
-  color: var(--c-accent);
-  line-height: 1;
-  font-size: 2rem;
-  font-weight: 900;
-}
-dd {
-  padding-left: var(--gutter);
-  text-align: left;
-  color: var(--c-primary-darker);
-  font-size: 0.9rem;
-
-  p {
-    margin: 0;
-
-    + p {
-      margin-top: var(--gutter);
-    }
-  }
-}
 h2 {
   text-align: center;
   padding: 2.5em 0;
@@ -94,6 +62,39 @@ h2 {
     line-height: 1.5;
     width: 50%;
     flex: 0 1 50%;
+  }
+}
+.presentation {
+  display: flex;
+  margin: 0;
+
+  &__title,
+  &__description {
+    width: 50%;
+    flex: 0 1 50%;
+    margin: 0;
+  }
+  &__title {
+    padding-right: var(--gutter);
+    text-align: right;
+    color: var(--c-accent);
+    line-height: 1;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+  &__description {
+    padding-left: var(--gutter);
+    text-align: left;
+    color: var(--c-primary-darker);
+    font-size: 0.9rem;
+
+    p {
+      margin: 0;
+
+      + p {
+        margin-top: var(--gutter);
+      }
+    }
   }
 }
 .services {

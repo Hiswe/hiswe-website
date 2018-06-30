@@ -1,14 +1,13 @@
 <template lang="pug">
-  h3 <span :class="classNames">{{firstLine}}</span><span>{{secondLine}}</span>
+  h3.two-line-title <span :class="classNames">{{firstLine}}</span><span>{{secondLine}}</span>
 </template>
 
 <style lang="scss" scoped>
-h3 {
+.two-line-title {
   font-size: 3rem;
   line-height: 1;
   font-weight: 900;
   margin: 0;
-  text-align: left;
 }
 .has-dash::after {
   content: '-';
