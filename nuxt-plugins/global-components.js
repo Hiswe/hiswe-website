@@ -3,9 +3,14 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 
 import SvgIcons from '~/nuxt-components/svg-icons'
+import TwoLineTitle from '~/nuxt-components/two-line-title'
+import Contact from '~/nuxt-components/contact'
+
+Vue.use(VueAxios, axios)
 
 Vue.component(`hiswe-icon`, SvgIcons)
-Vue.use(VueAxios, axios)
+Vue.component(`hiswe-title`, TwoLineTitle)
+Vue.component(`hiswe-contact`, Contact)
 
 const DATE_FORMAT = {
   day: `2-digit`,

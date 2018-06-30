@@ -77,7 +77,6 @@ header {
 .cover {
   min-height: 130px;
   margin: 0 auto;
-  // background-color: var(--c-primary-darkest);
   background-position: center center;
   background-repeat: none;
   background-size: 240px;

@@ -2,19 +2,17 @@
   main(role="main")
     header
       nuxt-link(to="/" class="home-link"): hiswe-icon(name="hiswe")
-
       nav
+        nuxt-link(to="/") home
         nuxt-link(to="/projects") projects
         nuxt-link(to="/work") work
-        nuxt-link(to="/skills") skills
-        a(href="https://hiswe.github.io/") blog
-        nuxt-link(to="/contact") contact
+        nuxt-link(to="/blog") blog
     nuxt
 </template>
 
 <style lang="scss" scoped>
 header {
-  --svg-icon-scale: 0.75;
+  // --svg-icon-scale: 0.75;
   display: flex;
   justify-content: space-between;
   padding: var(--gutter);

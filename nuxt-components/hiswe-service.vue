@@ -1,14 +1,13 @@
 <template lang="pug">
 dl(:class="`service ${id}`")
-  dt {{title}}
-    // h3
-    // p: i.hicon.penBottom
+  dt: hiswe-title(:text="title")
+  dd.description
+    slot(name="description")
   dd
     slot
 </template>
 
 <style lang="scss" scoped>
-
 dl {
   padding: var(--half-gutter);
   margin: 0;
@@ -21,6 +20,10 @@ dt {
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
+}
+.description {
+  font-size: 1.25rem;
+  font-weight: 200;
 }
 dd {
   margin: 0;
