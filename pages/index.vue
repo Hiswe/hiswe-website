@@ -1,11 +1,12 @@
 <template lang="pug">
 .home
   .header
-    h1 I make custom website for everyone's need
-    .header__description
-      h2 I'm Yannick “hiswe” Aïvayan
-      p a full stack Javascript web-developer
-      p depending on the project I will use the most appropriate set of tools.
+    h2 I make custom website for everyone's need
+    dl
+      dt I'm<br> Yannick<br> “hiswe”<br> Aïvayan
+      dd
+        p a full stack Javascript web-developer
+        p depending on the project I will use the most appropriate set of tools.
   section.services
     hiswe-service(title="dev-elopment" :style={'--servive-background': `var(--c-primary)`})
       template(slot="description")
@@ -34,8 +35,9 @@
 
 <style lang="scss" scoped>
 .header {
-  padding: 0 var(--gutter);
+  padding: 0 var(--gutter) var(--two-gutter);
   text-align: center;
+  background: white;
 
   @media #{$mq-big} {
     display: flex;
@@ -43,17 +45,48 @@
     align-items: center;
     max-width: 800px;
     margin: 0 auto;
+  }
+}
+dl {
+  display: flex;
+  margin: 0;
+}
+dt,
+dd {
+  width: 50%;
+  flex: 0 1 50%;
+  margin: 0;
+}
+dt {
+  padding-right: var(--gutter);
+  text-align: right;
+  color: var(--c-accent);
+  line-height: 1;
+  font-size: 2rem;
+  font-weight: 900;
+}
+dd {
+  padding-left: var(--gutter);
+  text-align: left;
+  color: var(--c-primary-darker);
+  font-size: 0.9rem;
 
-    &__description {
-      width: 50%;
-      flex: 0 1 50%;
+  p {
+    margin: 0;
+
+    + p {
+      margin-top: var(--gutter);
     }
   }
 }
-h1 {
+h2 {
   text-align: center;
-  padding: 2rem var(--gutter);
+  padding: 2.5em 0;
   line-height: 1;
+  font-size: 1.85rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 0;
 
   @media #{$mq-big} {
     margin: 0;
@@ -62,10 +95,6 @@ h1 {
     width: 50%;
     flex: 0 1 50%;
   }
-}
-h2 {
-  color: var(--c-accent);
-  line-height: 1;
 }
 .services {
   @media #{$mq-big} {

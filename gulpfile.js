@@ -66,6 +66,7 @@ exports[`build:logos`] = cleanLogos
 
 //----- ICONS
 
+const MATERIAL_NAME = /(?:outline|baseline)-([^\d]*)-24px/
 const templateVue = path.join(
   __dirname,
   `./nuxt-assets-source/icons/svg-icons.vue`
@@ -73,12 +74,18 @@ const templateVue = path.join(
 const vueIcons = () => {
   return gulp
     .src(`nuxt-assets-source/icons/*.svg`)
+    .pipe(
+      $.rename(path => {
+        const { basename } = path
+        const isMaterialIcon = MATERIAL_NAME.test(basename)
+        if (!isMaterialIcon) return
+        path.basename = MATERIAL_NAME.exec(basename)[1].replace(/_/g, `-`)
+      })
+    )
     .pipe($.cheerio(cheerioOptions))
     .pipe(
       $.svgSymbols({
-        // id: `icon-%f`,
         class: `.icon--%f`,
-        fontSize: 16,
         templates: [`default-demo`, templateVue],
         slug: slugify,
         svgAttrs: {

@@ -12,7 +12,12 @@ module.exports = {
   // inject scss files in every module
   // • https://github.com/anteriovieira/nuxt-sass-resources-loader
   // • https://hackernoon.com/how-i-use-scss-variables-mixins-functions-globally-in-nuxt-js-projects-while-compiling-css-utilit-58bb6ff30438
-  modules: [[`nuxt-sass-resources-loader`, `@/nuxt-assets/css/scss-vars.scss`]],
+  modules: [
+    [
+      `nuxt-sass-resources-loader`,
+      [`@/nuxt-assets/css/scss-vars.scss`, `@/nuxt-assets/css/scss-mixin.scss`],
+    ],
+  ],
   plugins: [`@/nuxt-plugins/global-components.js`],
   build: {
     babel: {

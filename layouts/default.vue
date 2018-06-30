@@ -1,62 +1,31 @@
 <template lang="pug">
   main(role="main")
-    header
-      nuxt-link(to="/" class="home-link"): hiswe-icon(name="hiswe")
-      nav
-        nuxt-link(to="/") home
-        nuxt-link(to="/projects") projects
-        nuxt-link(to="/work") work
-        nuxt-link(to="/blog") blog
+    h1: nuxt-link(to="/" class="home-link"): hiswe-icon(name="hiswe")
+    hiswe-main-navigation
     nuxt
 </template>
 
 <style lang="scss" scoped>
-header {
-  // --svg-icon-scale: 0.75;
-  display: flex;
-  justify-content: space-between;
-  padding: var(--gutter);
+h1 {
+  background: white;
+  margin: 0;
+  text-align: center;
+  font-size: 1em;
+  padding: var(--gutter) 0;
 }
 a {
   color: var(--c-accent);
 }
-
-nav {
-  --navigation-font-size: 0.85rem;
-  --navigation-top-spacing: var(--gutter);
-  top: 0;
-  right: 0;
-  font-weight: 800;
-
-  a {
-    display: block;
-    font-size: var(--navigation-font-size);
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: right;
-
-    @media #{$mq-big} {
-      --navigation-font-size: 1rem;
-      --navigation-top-spacing: 0.25rem;
-    }
-
-    + a {
-      margin-top: var(--navigation-top-spacing);
-    }
-  }
-}
-
-@media #{$mq-big} {
-  .home-link,
-  nav {
-    position: absolute;
-    top: var(--gutter);
-  }
-  .home-link {
-    left: var(--gutter);
-  }
-  nav {
-    right: var(--gutter);
-  }
-}
 </style>
+
+<script>
+import MainNavigation from '~/nuxt-components/main-navigation.vue'
+
+export default {
+  name: `default-layout`,
+  components: {
+    'hiswe-main-navigation': MainNavigation,
+  },
+}
+</script>
+
