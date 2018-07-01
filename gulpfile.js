@@ -48,10 +48,14 @@ const cheerioOptions = {
 
 //----- LOGOS
 
-const cleanLogos = () => {
+const templateVue = path.join(
+  __dirname,
+  `./nuxt-assets-source/icons/svg-icons.vue`
+)
+
+const logos = () => {
   return gulp
-    .src(`nuxt-assets-source/logos/*.svg`)
-    .pipe($.cheerio(cheerioOptions))
+    .src(`nuxt-assets-source/logos-tech/*.svg`)
     .pipe(
       $.svgmin({
         js2svg: {
@@ -59,18 +63,60 @@ const cleanLogos = () => {
         },
       })
     )
-    .pipe(gulp.dest(`nuxt-assets/logos`))
+    .pipe(
+      $.cheerio({
+        run: ($, file) => {
+          $(`defs`).remove()
+          $(`clipPath`).remove()
+          $(`path[fill=#999]`).remove()
+          const $group = $(`g`)
+          const $content = $group.html()
+          $group.replaceWith($content)
+          $(`path[fill="#fff"]`)
+            .attr(`fill`, ``)
+            .addClass(`logo-path-white`)
+          $(`path[fill="#ccc"]`)
+            .attr(`fill`, ``)
+            .addClass(`logo-path-light`)
+          $(`svg`).attr({
+            'fill-rule': ``,
+            'clip-rule': ``,
+            'stroke-linejoin': ``,
+            'stroke-miterlimit': ``,
+          })
+        },
+        parserOptions: {
+          xmlMode: true,
+        },
+      })
+    )
+    .pipe(
+      $.svgmin({
+        js2svg: {
+          pretty: true,
+        },
+      })
+    )
+    .pipe(
+      $.svgSymbols({
+        class: `.logo--%f`,
+        templates: [`default-demo`, templateVue],
+        slug: slugify,
+        svgAttrs: {
+          class: `logo`,
+        },
+      })
+    )
+    .pipe($.rename({ basename: `svg-tech-logos` }))
+    .pipe($.if(/[.]vue$/, gulp.dest(`nuxt-components`)))
+    .pipe($.if(/[.]html$/, gulp.dest(`nuxt-assets-source/logos-tech`)))
 }
-cleanLogos.description = `just clean the logos…`
-exports[`build:logos`] = cleanLogos
+logos.description = `bundle svg logos`
+exports[`build:logos`] = logos
 
 //----- ICONS
 
 const MATERIAL_NAME = /(?:outline|baseline)-([^\d]*)-24px/
-const templateVue = path.join(
-  __dirname,
-  `./nuxt-assets-source/icons/svg-icons.vue`
-)
 const vueIcons = () => {
   return gulp
     .src(`nuxt-assets-source/icons/*.svg`)
@@ -101,7 +147,7 @@ exports[`build:icons`] = vueIcons
 
 //----- ALL
 
-const buildSvg = gulp.parallel(cleanLogos, vueIcons)
+const buildSvg = gulp.parallel(logos, vueIcons)
 gulp.task(`build:svg`, buildSvg)
 
 ////////

@@ -56,6 +56,18 @@ body:not(.user-is-tabbing) {
   fill: currentColor;
 }
 
+.logo {
+  background: var(--c-primary);
+  fill: var(--c-primary-darker);
+
+  &-path-light {
+    fill: var(--c-primary-lighter);
+  }
+  &-path-white {
+    fill: var(--c-primary-lightest);
+  }
+}
+
 main {
   // a {
   //   --link-underline: var(--c-accent-lightest);

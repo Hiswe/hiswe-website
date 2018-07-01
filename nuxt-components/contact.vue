@@ -23,6 +23,13 @@ section {
   background: var(--c-primary-darkest);
   color: var(--c-primary-lighter);
 }
+.two-line-title {
+  padding: var(--gutter);
+  text-align: center;
+}
+form {
+  padding: var(--gutter);
+}
 fieldset {
   border: 0;
   padding: 0;
@@ -38,6 +45,7 @@ textarea {
   background: none;
   border: 4px solid var(--c-primary-darker);
   display: block;
+  width: 100%;
 }
 aside {
   margin: var(--gutter) auto;

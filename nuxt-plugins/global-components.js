@@ -3,12 +3,14 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 
 import SvgIcons from '~/nuxt-components/svg-icons'
+import TechLogs from '~/nuxt-components/svg-tech-logos'
 import TwoLineTitle from '~/nuxt-components/two-line-title'
 import Contact from '~/nuxt-components/contact'
 
 Vue.use(VueAxios, axios)
 
 Vue.component(`hiswe-icon`, SvgIcons)
+Vue.component(`hiswe-tech-logo`, TechLogs)
 Vue.component(`hiswe-title`, TwoLineTitle)
 Vue.component(`hiswe-contact`, Contact)
 

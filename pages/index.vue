@@ -30,6 +30,49 @@
         li simple &amp; nice experience for users
         li design for every screen size with responsive design
 
+  section.tools
+    .tool.tool--server
+      hiswe-title(text="ser-ver" class="tool__title tool__title--server")
+      .tools__list.tools__list--server
+        a(href="https://nodejs.org/en/")
+          hiswe-tech-logo(name="node")
+          span node
+        a(href="https://koajs.com/")
+          hiswe-tech-logo(name="koa")
+          span Koa
+        a(href="https://expressjs.com/")
+          hiswe-tech-logo(name="express")
+          span Express
+        a(href="https://www.postgresql.org/")
+          hiswe-tech-logo(name="postgre")
+          span PostgreSQL
+        a(href="https://www.mongodb.com/")
+          hiswe-tech-logo(name="mongo")
+          span MongoDB
+
+    .tool.tool--framework
+      hiswe-title(text="frame-work" class="tool__title tool__title--framework")
+      .tools__list.tools__list--framework
+        a(href="https://reactjs.org/")
+          hiswe-tech-logo(name="react")
+          span React
+        a(href="https://vuejs.org/")
+          hiswe-tech-logo(name="vue")
+          span Vue.js
+
+    .tool.tool--build
+      hiswe-title(text="bui-ild" class="tool__title tool__title--build")
+      .tools__list.tools__list--build
+        a(href="https://webpack.js.org")
+          hiswe-tech-logo(name="webpack")
+          span Webpack
+        a(href="https://parceljs.org")
+          hiswe-tech-logo(name="parcel")
+          span Parcel
+        a(href="https://gulpjs.com")
+          hiswe-tech-logo(name="gulp")
+          span Gulp
+
   hiswe-contact
 </template>
 
@@ -112,6 +155,55 @@ h2 {
     flex-basis: percentage(1/3);
   }
   //
+}
+
+.tools {
+  background: var(--c-primary-darker);
+
+  svg {
+    display: block;
+  }
+  a {
+    text-decoration: none;
+    text-align: center;
+    color: var(--c-primary-lightest);
+    display: block;
+  }
+  span {
+    display: block;
+    padding-bottom: 0.5em;
+    font-size: 0.8rem;
+  }
+}
+.tool {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  &__title {
+    padding: var(--two-gutter) var(--gutter) var(--gutter);
+
+    &--framework {
+      text-align: right;
+    }
+  }
+}
+.tool--server {
+  padding-right: var(--gutter);
+  a {
+    float: right;
+    margin-left: var(--gutter);
+  }
+}
+.tool--framework,
+.tool--build {
+  padding-left: var(--gutter);
+  a {
+    float: left;
+    margin-right: var(--gutter);
+  }
 }
 
 // @supports $full-grid-support {

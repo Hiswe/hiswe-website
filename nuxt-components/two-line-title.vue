@@ -1,18 +1,21 @@
 <template lang="pug">
-  h3.two-line-title <span :class="classNames">{{firstLine}}</span><span>{{secondLine}}</span>
+  h3.two-line-title <span :class="classNames">{{firstLine}}</span><span class="second-line">{{secondLine}}</span>
 </template>
 
 <style lang="scss" scoped>
 .two-line-title {
-  font-size: 3rem;
   line-height: 1;
-  font-weight: 900;
   margin: 0;
+}
+.first-line {
+  font-weight: 900;
+  font-size: 3rem;
+  text-transform: uppercase;
 }
 .has-dash::after {
   content: '-';
 }
-span:last-child {
+.second-line {
   display: block;
   font-size: 2rem;
   font-weight: 200;
@@ -36,6 +39,7 @@ export default {
     classNames() {
       const hasSpace = TITLE_WITH_SPACE_REGEX.test(this.text)
       return {
+        'first-line': true,
         'has-space': hasSpace,
         'has-dash': !hasSpace,
       }

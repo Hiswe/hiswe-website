@@ -72,6 +72,16 @@ dl(:class="`service ${id}`")
     text-align: var(--service-description-align);
     padding-left: var(--service-description-pad-left);
     padding-right: var(--service-description-pad-right);
+
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 0.8rem;
+    }
+
+    li + li {
+      padding-top: 0.5rem;
+    }
   }
 }
 </style>
