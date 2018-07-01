@@ -66,6 +66,9 @@ body:not(.user-is-tabbing) {
   &-path-white {
     fill: var(--c-primary-lightest);
   }
+  &-path-background {
+    fill: var(--c-primary);
+  }
 }
 
 main {

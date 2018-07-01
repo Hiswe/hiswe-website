@@ -68,7 +68,8 @@ const logos = () => {
         run: ($, file) => {
           $(`defs`).remove()
           $(`clipPath`).remove()
-          $(`path[fill=#999]`).remove()
+          $(`path[d="M0 0h105v70H0z"]`).remove()
+          $(`path[d="M0 0h70v70H0z"]`).remove()
           const $group = $(`g`)
           const $content = $group.html()
           $group.replaceWith($content)
@@ -78,6 +79,9 @@ const logos = () => {
           $(`path[fill="#ccc"]`)
             .attr(`fill`, ``)
             .addClass(`logo-path-light`)
+          $(`path[fill="#999"]`)
+            .attr(`fill`, ``)
+            .addClass(`logo-path-background`)
           $(`svg`).attr({
             'fill-rule': ``,
             'clip-rule': ``,
