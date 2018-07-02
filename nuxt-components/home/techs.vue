@@ -54,18 +54,8 @@ section.techs
 <style lang="scss" scoped>
 .techs {
   background: var(--c-primary-darker);
-  clear: both;
+  padding-bottom: calc(var(--grid-size) * 2);
 
-  &::before,
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  @supports (display: grid) {
-    padding-bottom: calc(var(--grid-size) * 2);
-  }
   @media #{$mq-medium} {
     width: grid-size(18);
   }
@@ -73,10 +63,7 @@ section.techs
     display: block;
     margin: 0;
     background: var(--c-primary-lighter);
-
-    @supports (display: grid) {
-      height: calc(var(--grid-size) * 3);
-    }
+    height: calc(var(--grid-size) * 3);
   }
 
   svg {
@@ -108,21 +95,7 @@ section.techs
   @media #{$mq-medium} {
     --grid-size: #{(100 / 22) / 2 * 1vw};
   }
-
-  &::before,
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-  @supports (display: grid) {
-    @include grid;
-
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
+  @include grid;
 
   @media #{$mq-medium} {
     width: 50%;
@@ -130,11 +103,7 @@ section.techs
   }
 
   &__title {
-    padding: var(--two-gutter) var(--gutter) var(--gutter);
-
-    @supports (display: grid) {
-      padding: 0;
-    }
+    padding: 0;
 
     &--server,
     &--build {
@@ -195,17 +164,15 @@ section.techs
   }
 }
 .tech {
-  @supports (display: grid) {
-    padding: calc(var(--grid-size) * 3) 0 0;
+  padding: calc(var(--grid-size) * 3) 0 0;
 
-    a {
-      margin: 0;
-    }
-    svg {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: contain;
-    }
+  a {
+    margin: 0;
+  }
+  svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
   }
 }
 </style>

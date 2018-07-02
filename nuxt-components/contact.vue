@@ -142,7 +142,6 @@ aside {
 }
 </style>
 
-
 <script>
 export default {
   name: `section-contact`,
