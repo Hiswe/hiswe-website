@@ -11,6 +11,7 @@
       fieldset
         label(for="message") message
         textarea(id="message")
+      button(type="submit") send
     aside
       a(href="https://github.com/hiswe"): hiswe-icon(name="github")
       a(href="https://twitter.com/hiswehalya"): hiswe-icon(name="twitter")
@@ -47,6 +48,12 @@ textarea {
   display: block;
   width: 100%;
 }
+button {
+  background: var(--c-primary);
+  border: 0;
+  margin-top: var(--gutter);
+  padding: var(--half-gutter) var(--gutter);
+}
 aside {
   margin: var(--gutter) auto;
   display: flex;
@@ -63,7 +70,7 @@ aside {
 
 <script>
 export default {
-  name: `contact`,
+  name: `section-contact`,
 }
 </script>
 

@@ -22,7 +22,6 @@
 }
 </style>
 
-
 <script>
 const TITLE_REGEX = /^(\w+)[\s-](\w+)$/
 const TITLE_WITH_SPACE_REGEX = /^\w+\s\w+$/
