@@ -1,14 +1,14 @@
 <template lang="pug">
   section.contact
-    hiswe-title(text="contact me")
-    form
-      fieldset
+    form.contact__form
+      hiswe-title(text="contact me" class="form__title")
+      fieldset.field.field--name
         label(for="name") name
         input(id="name" type="text")
-      fieldset
+      fieldset.field.field--email
         label(for="email") email
         input(id="email" type="email")
-      fieldset
+      fieldset.field.field--message
         label(for="message") message
         textarea(id="message")
       button(type="submit") send
@@ -32,12 +32,35 @@
   padding: var(--gutter);
   text-align: center;
 }
-form {
+.contact__form {
   padding: var(--gutter);
+
+  @media #{$mq-medium} {
+    padding: var(--grid-size) 0;
+    display: grid;
+    grid-template-columns:
+      var(--grid-size) [left-start] repeat(6, var(--grid-size))
+      [left-end] var(--grid-size) [right-start] repeat(9, var(--grid-size)) [right-end] var(
+        --grid-size
+      );
+    grid-auto-rows: var(--grid-size);
+  }
 }
 fieldset {
   border: 0;
   padding: 0;
+
+  @media #{$mq-medium} {
+    display: flex;
+    flex-direction: column;
+  }
+}
+label {
+  @media #{$mq-medium} {
+    flex: 0 0 var(--grid-size);
+    height: var(--grid-size);
+    padding-top: 0.5rem;
+  }
 }
 label,
 input,
@@ -51,12 +74,19 @@ textarea {
   border: 4px solid var(--c-primary-darker);
   display: block;
   width: 100%;
+  flex-grow: 1;
 }
 button {
   background: var(--c-primary);
   border: 0;
   margin-top: var(--gutter);
   padding: var(--half-gutter) var(--gutter);
+
+  @media #{$mq-medium} {
+    margin-top: 0;
+    grid-area: 9 / left-start / 10 / left-end;
+    padding: var(--quarter-gutter);
+  }
 }
 aside {
   margin: var(--gutter) auto;
@@ -69,6 +99,22 @@ aside {
   a {
     color: var(--c-primary);
   }
+}
+.form__title {
+  @media #{$mq-medium} {
+    grid-area: 1 / right-start / 3 / right-end;
+    text-align: left;
+    padding: 0;
+  }
+}
+.field--name {
+  grid-area: 4 / left-start / 6 / left-end;
+}
+.field--email {
+  grid-area: 6 / left-start / 8 / left-end;
+}
+.field--message {
+  grid-area: 4 / right-start / 10 / right-end;
 }
 </style>
 
