@@ -12,11 +12,19 @@
         label(for="message") message
         textarea(id="message")
       button(type="submit") send
-    aside
-      a(href="https://github.com/hiswe"): hiswe-icon(name="github")
-      a(href="https://twitter.com/hiswehalya"): hiswe-icon(name="twitter")
-      a(href="https://medium.com/@hiswehalya"): hiswe-icon(name="medium")
-      a(href="https://codepen.io/Hiswe"): hiswe-icon(name="codepen")
+    aside: div
+      a(href="https://github.com/hiswe")
+        hiswe-icon(name="github")
+        span github
+      a(href="https://twitter.com/hiswehalya")
+        hiswe-icon(name="twitter")
+        span twitter
+      a(href="https://medium.com/@hiswehalya")
+        hiswe-icon(name="medium")
+        span medium
+      a(href="https://codepen.io/Hiswe")
+        hiswe-icon(name="codepen")
+        span codepen
 </template>
 
 <style lang="scss" scoped>
@@ -90,14 +98,30 @@ button {
 }
 aside {
   margin: var(--gutter) auto;
-  display: flex;
-  justify-content: space-between;
   background: rgba(255, 255, 255, 0.1);
   padding: var(--gutter);
   margin: 0;
+  --svg-icon-scale: 1.5;
 
+  div {
+    display: flex;
+    justify-content: space-between;
+    max-width: 350px;
+    margin: 0 auto;
+  }
   a {
     color: var(--c-primary);
+    text-decoration: none;
+    text-align: center;
+  }
+  span,
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+  span {
+    padding: 0.5em 0 0;
+    font-size: 0.6rem;
   }
 }
 .form__title {
