@@ -1,9 +1,9 @@
 <template lang="pug">
-  h1: nuxt-link(to="/" class="home-link"): hiswe-icon(name="hiswe")
+  h1.main-title: nuxt-link(to="/" class="home-link"): hiswe-icon(name="hiswe")
 </template>
 
 <style lang="scss" scoped>
-h1 {
+.main-title {
   background: white;
   margin: 0;
   text-align: center;

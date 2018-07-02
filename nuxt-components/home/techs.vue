@@ -56,6 +56,13 @@ section.techs
   background: var(--c-primary-darker);
   clear: both;
 
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
   @supports (display: grid) {
     padding-bottom: calc(var(--grid-size) * 2);
   }
@@ -98,6 +105,9 @@ section.techs
 }
 .tech {
   max-width: 100%;
+  @media #{$mq-medium} {
+    --grid-size: #{(100 / 22) / 2 * 1vw};
+  }
 
   &::before,
   &::after {
@@ -112,6 +122,11 @@ section.techs
     &::after {
       display: none;
     }
+  }
+
+  @media #{$mq-medium} {
+    width: 50%;
+    float: left;
   }
 
   &__title {

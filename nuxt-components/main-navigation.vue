@@ -1,5 +1,5 @@
 <template lang="pug">
-nav
+nav.main-navigation
   input(type="checkbox" id="menu-toggle")
   label(for="menu-toggle"): hiswe-icon(name="menu")
   div
@@ -10,7 +10,7 @@ nav
 </template>
 
 <style lang="scss" scoped>
-nav {
+.main-navigation {
   --navigation-font-size: 0.85rem;
   --navigation-top-spacing: var(--gutter);
   font-weight: 800;

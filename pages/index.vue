@@ -1,5 +1,5 @@
 <template lang="pug">
-.home
+.main-content.home
   hiswe-home-header
   hiswe-service(title="dev-elopment")
     template(slot="description")
@@ -27,6 +27,42 @@
 </template>
 
 <style lang="scss" scoped>
+.home {
+  grid-area: main-content;
+
+  @media #{$mq-medium} {
+    --grid-size: #{(100 * (18/22) / 18) * 1vw};
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-template-areas:
+      'header header integration'
+      'development development integration'
+      'webdesign webdesign webdesign'
+      'contact contact contact'
+      'techs techs techs';
+
+    .header {
+      width: auto;
+      grid-area: header;
+    }
+    .service--development {
+      grid-area: development;
+    }
+    .service--integration {
+      grid-area: integration;
+    }
+    .service--webdesign {
+      grid-area: webdesign;
+    }
+    .contact {
+      grid-area: contact;
+    }
+    .techs {
+      grid-area: techs;
+    }
+  }
+}
 </style>
 
 <script>

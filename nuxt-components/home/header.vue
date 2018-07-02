@@ -15,7 +15,6 @@
   background: white;
 
   @media #{$mq-medium} {
-    // width: grid-size(12);
     width: grid-size(18);
     padding: 0;
   }
@@ -69,11 +68,9 @@ h2 {
     line-height: 1;
     font-size: 2rem;
     font-weight: 900;
+    padding: 0;
+    grid-area: 1 / 1 / 1 / 8;
 
-    @supports (display: grid) {
-      padding: 0;
-      grid-area: 1 / 1 / 1 / 8;
-    }
     @media #{$mq-medium} {
       font-size: 1.2rem;
       text-align: center;
@@ -89,11 +86,9 @@ h2 {
     text-align: left;
     color: var(--c-primary-darker);
     font-size: 0.9rem;
+    grid-area: 1 / 9 / 1 / 16;
+    padding: 0;
 
-    @supports (display: grid) {
-      grid-area: 1 / 9 / 1 / 16;
-      padding: 0;
-    }
     @media #{$mq-medium} {
       text-align: center;
       padding: var(--half-gutter) var(--gutter);
