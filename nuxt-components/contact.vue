@@ -20,9 +20,13 @@
 </template>
 
 <style lang="scss" scoped>
-section {
+.contact {
   background: var(--c-primary-darkest);
   color: var(--c-primary-lighter);
+
+  @media #{$mq-medium} {
+    width: grid-size(18);
+  }
 }
 .two-line-title {
   padding: var(--gutter);

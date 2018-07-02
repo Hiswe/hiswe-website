@@ -14,3 +14,7 @@
   grid-template-columns: repeat(16, var(--grid-size));
   grid-auto-rows: var(--grid-size);
 }
+
+@function grid-size($size) {
+  @return calc(var(--grid-size) * #{$size});
+}

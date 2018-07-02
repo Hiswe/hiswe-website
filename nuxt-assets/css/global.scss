@@ -17,11 +17,11 @@ html {
   background: var(--c-background);
   color: var(--c-text);
 
-  @media #{$mq-big} {
+  @media #{$mq-medium} {
     // base font size to 18px
     // • have to put in there and not in scss-vars
     //   to avoid  compilation errors
-    font-size: 112.5%;
+    font-size: percent(18/16);
   }
 }
 html,

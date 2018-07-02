@@ -54,9 +54,13 @@ section.techs
 <style lang="scss" scoped>
 .techs {
   background: var(--c-primary-darker);
+  clear: both;
 
   @supports (display: grid) {
     padding-bottom: calc(var(--grid-size) * 2);
+  }
+  @media #{$mq-medium} {
+    width: grid-size(18);
   }
   figure {
     display: block;

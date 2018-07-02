@@ -27,12 +27,18 @@ label {
   top: 0;
   left: 0;
   z-index: 2;
+
+  @media #{$mq-medium} {
+    display: none;
+  }
 }
 input {
   @include hidden-accessible;
 
-  &:not(:checked) ~ div {
-    @include hidden-accessible;
+  @media #{$mq-small} {
+    &:not(:checked) ~ div {
+      @include hidden-accessible;
+    }
   }
 }
 svg {
@@ -48,30 +54,47 @@ div {
   bottom: 0;
   left: 0;
   background: white;
-  // display: flex;
-  // display: none;
+
+  @media #{$mq-medium} {
+    left: auto;
+    background: none;
+    width: grid-size(4);
+  }
 }
 a {
   color: var(--c-accent);
   display: block;
-  // font-size: var(--navigation-font-size);
   text-decoration: none;
   text-transform: uppercase;
-  text-align: right;
-  width: 50%;
-  height: 50vh;
-  float: left;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  @media #{$mq-small} {
+    width: 50%;
+    height: 50vh;
+    float: left;
+  }
+
+  @media #{$mq-medium} {
+    height: grid-size(2);
+    text-align: center;
+    position: relative;
+
+    &.nuxt-link-exact-active::before {
+      content: '';
+      width: 10px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--c-accent);
+    }
+  }
+
   @media #{$mq-big} {
     --navigation-font-size: 1rem;
     --navigation-top-spacing: 0.25rem;
-  }
-
-  + a {
-    // margin-top: var(--navigation-top-spacing);
   }
 }
 </style>

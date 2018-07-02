@@ -1,9 +1,6 @@
-$big-stop: 1024px;
-$mq-small: '(max-width: #{$big-stop - 1px})';
-$mq-big: '(min-width: #{$big-stop})';
+$stop-medium: 768px;
+$stop-big: 1024px;
 
-$grid: '(display: grid)';
-$contents: '(display: contents)';
-
-$full-grid-support: '#{$grid} and #{$contents}';
-$partial-grid-support: '#{$grid}';
+$mq-small: '(max-width: #{$stop-medium - 1px})';
+$mq-medium: '(min-width: #{$stop-medium})';
+$mq-big: '(min-width: #{$stop-big})';
