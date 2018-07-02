@@ -70,6 +70,7 @@ dl(:class="`service ${id}`")
   &__description {
     color: var(--service-description-color);
     text-align: var(--service-description-align);
+    padding-top: var(--gutter);
     padding-left: var(--service-description-pad-left);
     padding-right: var(--service-description-pad-right);
 

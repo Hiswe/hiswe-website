@@ -8,3 +8,9 @@
   position: absolute;
   width: 1px;
 }
+
+@mixin grid {
+  display: grid;
+  grid-template-columns: repeat(16, var(--grid-size));
+  grid-auto-rows: var(--grid-size);
+}

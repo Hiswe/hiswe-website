@@ -60,6 +60,7 @@ aside {
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.1);
   padding: var(--gutter);
+  margin: 0;
 
   a {
     color: var(--c-primary);

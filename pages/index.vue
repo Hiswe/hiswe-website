@@ -36,7 +36,7 @@
 
 <style lang="scss" scoped>
 .header {
-  padding: 0 var(--gutter) var(--two-gutter);
+  padding: 0 0 var(--two-gutter);
   text-align: center;
   background: white;
 
@@ -69,11 +69,19 @@ h2 {
   display: flex;
   margin: 0;
 
+  @supports (display: grid) {
+    @include grid;
+    grid-auto-rows: auto;
+  }
+
   &__title,
   &__description {
     width: 50%;
     flex: 0 1 50%;
     margin: 0;
+    @supports (display: grid) {
+      width: auto;
+    }
   }
   &__title {
     padding-right: var(--gutter);
@@ -82,12 +90,20 @@ h2 {
     line-height: 1;
     font-size: 2rem;
     font-weight: 900;
+    @supports (display: grid) {
+      padding: 0;
+      grid-area: 1 / 1 / 1 / 8;
+    }
   }
   &__description {
     padding-left: var(--gutter);
     text-align: left;
     color: var(--c-primary-darker);
     font-size: 0.9rem;
+    @supports (display: grid) {
+      grid-area: 1 / 9 / 1 / 16;
+      padding: 0;
+    }
 
     p {
       margin: 0;

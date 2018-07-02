@@ -3,6 +3,11 @@
   --gutter: 1rem;
   --half-gutter: calc(var(--gutter) * 0.5);
   --two-gutter: calc(var(--gutter) * 2);
+  --grid-size: 6.25vw;
+
+  @supports (display: grid) {
+    --gutter: var(--grid-size);
+  }
 
   @media #{$mq-big} {
     --gutter: 1.5rem;

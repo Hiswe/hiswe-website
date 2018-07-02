@@ -54,7 +54,6 @@ section.techs
 <style lang="scss" scoped>
 .techs {
   background: var(--c-primary-darker);
-  --grid-size: 6.25vw;
 
   @supports (display: grid) {
     padding-bottom: calc(var(--grid-size) * 2);
@@ -82,6 +81,15 @@ section.techs
     display: block;
     padding-bottom: 0.5em;
     font-size: 0.8rem;
+
+    @supports (display: grid) {
+      font-size: 0.65rem;
+      height: var(--grid-size);
+      display: block;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
   }
 }
 .tech {
@@ -94,9 +102,7 @@ section.techs
     clear: both;
   }
   @supports (display: grid) {
-    display: grid;
-    grid-template-columns: repeat(16, var(--grid-size));
-    grid-auto-rows: var(--grid-size);
+    @include grid;
 
     &::before,
     &::after {
@@ -159,9 +165,6 @@ section.techs
   a {
     float: right;
     margin-left: var(--gutter);
-  }
-
-  @supports (display: grid) {
   }
 }
 .tech--framework,
