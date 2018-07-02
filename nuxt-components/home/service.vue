@@ -29,6 +29,12 @@ dl(:class="`service ${id}`")
     [sub] auto [sub-end title] auto [title-end desc] auto
     [desc-end];
 
+  @media #{$mq-medium} {
+    padding: 0;
+    grid-template-rows: none;
+    grid-auto-rows: var(--grid-size);
+  }
+
   &--development {
     --servive-background: var(--c-primary-lighter);
     --service-title-color: var(--c-primary-darkest);
@@ -36,6 +42,17 @@ dl(:class="`service ${id}`")
 
     @media #{$mq-medium} {
       --service-columns: 12;
+      --service-subtitle-align: left;
+
+      #{$root}__title {
+        grid-area: 4 / 2 / 7 / 6;
+      }
+      #{$root}__subtitle {
+        grid-area: 2 / 2 / 4 / 6;
+      }
+      #{$root}__description {
+        grid-area: 2 / 7 / 4 / 12;
+      }
     }
   }
   &--integration {
@@ -47,15 +64,37 @@ dl(:class="`service ${id}`")
 
     @media #{$mq-medium} {
       --service-columns: 6;
+      --service-description-align: left;
+      --service-title-align: left;
+
+      #{$root}__title {
+        grid-area: 12 / 2 / 15 / 6;
+      }
+      #{$root}__subtitle {
+        grid-area: 10 / 2 / 12 / 6;
+      }
+      #{$root}__description {
+        grid-area: 6 / 2 / 10 / 6;
+      }
     }
   }
   &--webdesign {
     --servive-background: var(--c-accent);
     --service-description-color: white;
+    --service-subtitle-align: left;
     color: var(--c-accent-lightest);
 
     @media #{$mq-medium} {
       --service-columns: 18;
+      #{$root}__title {
+        grid-area: 4 / 9 / 6 / 18;
+      }
+      #{$root}__subtitle {
+        grid-area: 2 / 9 / 3 / 18;
+      }
+      #{$root}__description {
+        grid-area: 2 / 4 / 7 / 8;
+      }
     }
   }
 
@@ -90,14 +129,19 @@ dl(:class="`service ${id}`")
     grid-row: desc / desc-end;
     grid-column: var(--service-description-columns);
 
+    @media #{$mq-medium} {
+      padding-top: 0;
+    }
+
     ul {
       list-style: none;
       padding: 0;
       font-size: 0.8rem;
     }
-
-    li + li {
-      padding-top: 0.5rem;
+    @media #{$mq-small} {
+      li + li {
+        padding-top: 0.5rem;
+      }
     }
   }
 }
