@@ -20,19 +20,20 @@ dl(:class="`service ${id}`")
   --service-columns: 16;
 
   margin: 0;
-  padding: var(--gutter) 0;
+  padding: var(--gutter);
   background: var(--servive-background);
   color: var(--servive-color, white);
   display: grid;
   grid-template-columns: repeat(var(--service-columns), 1fr);
   grid-template-rows:
-    [sub] auto [sub-end title] auto [title-end desc] auto
+    [sub] auto
+    [sub-end title] auto
+    [title-end desc] auto
     [desc-end];
 
   @media #{$mq-medium} {
-    padding: 0;
     grid-template-rows: none;
-    grid-auto-rows: var(--grid-size);
+    grid-gap: var(--half-gutter) 0;
   }
 
   &--development {
@@ -41,18 +42,13 @@ dl(:class="`service ${id}`")
     color: var(--c-primary-darker);
 
     @media #{$mq-medium} {
-      --service-columns: 12;
       --service-subtitle-align: left;
-
-      #{$root}__title {
-        grid-area: 4 / 2 / 7 / 6;
-      }
-      #{$root}__subtitle {
-        grid-area: 2 / 2 / 4 / 6;
-      }
-      #{$root}__description {
-        grid-area: 2 / 7 / 4 / 12;
-      }
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr repeat(2, auto);
+      grid-template-areas:
+        '.        .'
+        'subtitle description'
+        'title    description';
     }
   }
   &--integration {
@@ -63,19 +59,16 @@ dl(:class="`service ${id}`")
     --service-description-columns: 2 / 14;
 
     @media #{$mq-medium} {
-      --service-columns: 6;
       --service-description-align: left;
       --service-title-align: left;
-
-      #{$root}__title {
-        grid-area: 12 / 2 / 15 / 6;
-      }
-      #{$root}__subtitle {
-        grid-area: 10 / 2 / 12 / 6;
-      }
-      #{$root}__description {
-        grid-area: 6 / 2 / 10 / 6;
-      }
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto var(--gutter) repeat(2, auto);
+      grid-template-areas:
+        '.'
+        'description'
+        '.'
+        'subtitle'
+        'title';
     }
   }
   &--webdesign {
@@ -86,15 +79,11 @@ dl(:class="`service ${id}`")
 
     @media #{$mq-medium} {
       --service-columns: 18;
-      #{$root}__title {
-        grid-area: 4 / 9 / 6 / 18;
-      }
-      #{$root}__subtitle {
-        grid-area: 2 / 9 / 3 / 18;
-      }
-      #{$root}__description {
-        grid-area: 2 / 4 / 7 / 8;
-      }
+      grid-template-columns: 2fr 4fr 1fr 9fr;
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas:
+        '. description . subtitle'
+        '. description . title';
     }
   }
 
@@ -106,6 +95,7 @@ dl(:class="`service ${id}`")
     text-align: var(--service-title-align);
     grid-row: title / title-end;
     grid-column: 2 / 16;
+    grid-area: title;
   }
   .two-line-title {
     color: var(--service-title-color);
@@ -121,6 +111,7 @@ dl(:class="`service ${id}`")
     text-align: var(--service-subtitle-align);
     grid-row: sub / sub-end;
     grid-column: 3 / 15;
+    grid-area: subtitle;
   }
   &__description {
     color: var(--service-description-color);
@@ -129,6 +120,7 @@ dl(:class="`service ${id}`")
     grid-row: desc / desc-end;
     grid-column: var(--service-description-columns);
     font-size: 0.8rem;
+    grid-area: description;
 
     @media #{$mq-medium} {
       padding-top: 0;
