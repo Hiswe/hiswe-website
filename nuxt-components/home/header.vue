@@ -10,68 +10,57 @@
 
 <style lang="scss" scoped>
 .header {
-  padding: 0 0 var(--two-gutter);
   text-align: center;
   background: white;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 70vh;
 
   @media #{$mq-medium} {
-    width: grid-size(18);
-    padding: 0;
-  }
-}
-@media #{$mq-small} {
-  br {
-    display: none;
+    height: auto;
   }
 }
 h2 {
   text-align: center;
-  padding: 2.5em 0;
+  padding: 0;
   line-height: 1;
   font-size: 1.85rem;
   text-transform: uppercase;
   font-weight: 900;
   margin: 0;
 
-  @media #{$mq-medium} {
+  @media #{$mq-small} {
+    br {
+      display: none;
+    }
+  }
+  @media #{$mq-medium-only} {
     font-size: 2rem;
-    padding: var(--grid-size);
   }
 }
 .presentation {
-  display: flex;
+  display: grid;
+  grid-gap: var(--gutter);
+  grid-template-columns: repeat(2, 1fr);
   margin: 0;
+  padding: 0 var(--gutter);
+  grid-auto-rows: auto;
 
-  @supports (display: grid) {
-    @include grid;
-    grid-auto-rows: auto;
-  }
-
-  @media #{$mq-medium} {
+  @media #{$mq-medium-only} {
     display: block;
   }
 
-  &__title,
-  &__description {
-    width: 50%;
-    flex: 0 1 50%;
-    margin: 0;
-
-    @supports (display: grid) {
-      width: auto;
-    }
-  }
   &__title {
-    padding-right: var(--gutter);
     text-align: right;
     color: var(--c-accent);
     line-height: 1;
     font-size: 2rem;
     font-weight: 900;
     padding: 0;
-    grid-area: 1 / 1 / 1 / 8;
 
-    @media #{$mq-medium} {
+    @media #{$mq-medium-only} {
       font-size: 1.2rem;
       text-align: center;
       padding: 0;
@@ -82,14 +71,13 @@ h2 {
     }
   }
   &__description {
-    padding-left: var(--gutter);
     text-align: left;
     color: var(--c-primary-darker);
     font-size: 0.9rem;
-    grid-area: 1 / 9 / 1 / 16;
     padding: 0;
+    margin: 0;
 
-    @media #{$mq-medium} {
+    @media #{$mq-medium-only} {
       text-align: center;
       padding: var(--half-gutter) var(--gutter);
     }
@@ -98,7 +86,7 @@ h2 {
 
       + p {
         margin-top: var(--gutter);
-        @media #{$mq-medium} {
+        @media #{$mq-medium-only} {
           margin-top: 0;
         }
       }

@@ -79,7 +79,6 @@ section.techs
       height: calc(var(--grid-size) * 2);
     }
   }
-
   svg {
     display: block;
     width: 100% !important;
@@ -107,6 +106,10 @@ section.techs
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-auto-rows: var(--grid-size);
+
+  @media #{$mq-small} {
+    padding-top: calc(var(--grid-size) * 2);
+  }
 
   @media #{$mq-medium} {
     grid-template-rows:
