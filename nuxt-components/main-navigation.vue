@@ -3,10 +3,10 @@ nav.main-navigation
   input(type="checkbox" id="menu-toggle")
   label(for="menu-toggle"): hiswe-icon(name="menu")
   div
-    nuxt-link(to="/") home
-    nuxt-link(to="/projects") projects
-    nuxt-link(to="/work") work
-    nuxt-link(to="/blog") blog
+    nuxt-link(to="/" exact-active-class="active" data-name="home") home
+    nuxt-link(to="/projects" active-class="active" data-name="projects") projects
+    nuxt-link(to="/work" active-class="active" data-name="work") work
+    nuxt-link(to="/blog" active-class="active" data-name="blog") blog
 </template>
 
 <style lang="scss" scoped>
@@ -74,19 +74,46 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
+  &::after {
+    content: attr(data-name);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-background);
+    background: var(--c-accent);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transition: clip-path 0.25s;
+
+    @media #{$mq-big} {
+      background: var(--c-primary-darker);
+      clip-path: polygon(0 100%, 0 100%, 100% 100%, 100% 100%);
+    }
+  }
   @media #{$mq-small} {
     width: 50%;
     height: 50vh;
     float: left;
   }
-
   @media #{$mq-medium} {
     height: grid-size(2);
     text-align: center;
     position: relative;
 
-    &.nuxt-link-exact-active::before {
+    &:not(.active):hover::after {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+      @media #{$mq-big} {
+        clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
+      }
+    }
+    &.active::before {
       content: '';
       width: 10px;
       position: absolute;
@@ -99,9 +126,9 @@ a {
   @media #{$mq-big} {
     --navigation-font-size: 1rem;
     --navigation-top-spacing: 0.25rem;
-    margin-right: var(--gutter);
+    padding: var(--gutter);
 
-    &.nuxt-link-exact-active::before {
+    &.active::before {
       bottom: auto;
       right: 0;
       width: auto;
