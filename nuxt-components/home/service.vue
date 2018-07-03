@@ -16,22 +16,16 @@ dl(:class="`service ${id}`")
   --service-subtitle-align: right;
   --service-description-color: currentColor;
   --service-description-align: left;
-  --service-description-columns: 4 / 16;
-  --service-columns: 16;
 
   margin: 0;
   padding: var(--gutter);
   background: var(--servive-background);
   color: var(--servive-color, white);
-  display: grid;
-  grid-template-columns: repeat(var(--service-columns), 1fr);
-  grid-template-rows:
-    [sub] auto
-    [sub-end title] auto
-    [title-end desc] auto
-    [desc-end];
+  display: flex;
+  flex-direction: column;
 
   @media #{$mq-medium} {
+    display: grid;
     grid-template-rows: none;
     grid-gap: var(--half-gutter) 0;
   }
@@ -41,6 +35,11 @@ dl(:class="`service ${id}`")
     --service-title-color: var(--c-primary-darkest);
     color: var(--c-primary-darker);
 
+    @media #{$mq-small} {
+      #{$root}__description {
+        padding-left: var(--two-gutter);
+      }
+    }
     @media #{$mq-medium} {
       --service-subtitle-align: left;
       grid-template-columns: repeat(2, 1fr);
@@ -58,6 +57,11 @@ dl(:class="`service ${id}`")
     --service-description-align: right;
     --service-description-columns: 2 / 14;
 
+    @media #{$mq-small} {
+      #{$root}__description {
+        padding-right: var(--two-gutter);
+      }
+    }
     @media #{$mq-medium} {
       --service-description-align: left;
       --service-title-align: left;
@@ -74,11 +78,16 @@ dl(:class="`service ${id}`")
   &--webdesign {
     --servive-background: var(--c-accent);
     --service-description-color: white;
-    --service-subtitle-align: left;
+    --service-subtitle-align: right;
     color: var(--c-accent-lightest);
 
+    @media #{$mq-small} {
+      #{$root}__description {
+        padding-left: var(--two-gutter);
+      }
+    }
     @media #{$mq-medium} {
-      --service-columns: 18;
+      --service-subtitle-align: left;
       grid-template-columns: 2fr 4fr 1fr 9fr;
       grid-template-rows: repeat(2, auto);
       grid-template-areas:
@@ -112,6 +121,7 @@ dl(:class="`service ${id}`")
     grid-row: sub / sub-end;
     grid-column: 3 / 15;
     grid-area: subtitle;
+    order: -1;
   }
   &__description {
     color: var(--service-description-color);
