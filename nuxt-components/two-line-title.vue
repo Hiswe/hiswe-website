@@ -6,6 +6,10 @@
 .two-line-title {
   line-height: 1;
   margin: 0;
+
+  @media #{$mq-medium} {
+    line-height: 0.85;
+  }
 }
 .first-line {
   font-weight: 900;

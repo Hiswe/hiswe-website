@@ -128,15 +128,21 @@ dl(:class="`service ${id}`")
     padding-top: var(--gutter);
     grid-row: desc / desc-end;
     grid-column: var(--service-description-columns);
+    font-size: 0.8rem;
 
     @media #{$mq-medium} {
       padding-top: 0;
     }
 
+    @media #{$mq-big} {
+      padding-top: 0;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
     ul {
       list-style: none;
       padding: 0;
-      font-size: 0.8rem;
     }
     @media #{$mq-small} {
       li + li {

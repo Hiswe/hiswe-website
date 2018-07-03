@@ -102,10 +102,10 @@ a {
     margin-right: var(--gutter);
 
     &.nuxt-link-exact-active::before {
-      top: auto;
+      bottom: auto;
       right: 0;
       width: auto;
-      height: 10px;
+      height: 20px;
     }
   }
 }

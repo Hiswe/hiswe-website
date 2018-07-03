@@ -70,6 +70,7 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas:
       'header      header      integration  webdesign webdesign webdesign'
+      'header      header      integration  contact   contact   contact'
       'development development integration  contact   contact   contact'
       'techs      techs        techs        techs     techs     social';
   }

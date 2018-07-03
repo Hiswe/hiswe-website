@@ -73,7 +73,7 @@ button {
 
   @media #{$mq-medium} {
     margin-top: 0;
-    grid-area: 9 / left-start / 10 / left-end;
+
     padding: var(--quarter-gutter);
   }
 }
@@ -85,13 +85,16 @@ button {
   }
 }
 .field--name {
-  grid-area: 4 / left-start / 6 / left-end;
+  grid-area: 3 / left-start / 5 / left-end;
 }
 .field--email {
-  grid-area: 6 / left-start / 8 / left-end;
+  grid-area: 5 / left-start / 7 / left-end;
 }
 .field--message {
-  grid-area: 4 / right-start / 10 / right-end;
+  grid-area: 3 / right-start / 9 / right-end;
+}
+button {
+  grid-area: 8 / left-start / 9 / left-end;
 }
 </style>
 
