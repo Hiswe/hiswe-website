@@ -35,7 +35,7 @@ section.techs
       span Vue.js
 
   .tech.tech--build
-    hiswe-title(text="bui-ild" class="tech__title tech__title--build")
+    hiswe-title(text="bu-ild" class="tech__title tech__title--build")
     a.tech__item.tech__item--webpack(href="https://webpack.js.org")
       figure
         hiswe-tech-logo(name="webpack")
@@ -57,51 +57,75 @@ section.techs
   padding-bottom: calc(var(--grid-size) * 2);
 
   @media #{$mq-medium} {
-    width: grid-size(18);
+    display: grid;
+    grid-template-columns: 1fr 7fr 9fr 1fr;
+    padding: var(--grid-size) 0;
+    grid-auto-rows: auto;
+    grid-template-areas:
+      'left framework server right'
+      'left build nothing right';
   }
   figure {
     display: block;
     margin: 0;
     background: var(--c-primary-lighter);
     height: calc(var(--grid-size) * 3);
+
+    @media #{$mq-medium} {
+      height: calc(var(--grid-size) * 2);
+    }
   }
 
   svg {
     display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
   }
   a {
     text-decoration: none;
     text-align: center;
     color: var(--c-primary-lightest);
     display: block;
+    margin: 0;
   }
   span {
     display: block;
-    padding-bottom: 0.5em;
-    font-size: 0.8rem;
-
-    @supports (display: grid) {
-      font-size: 0.65rem;
-      height: var(--grid-size);
-      display: block;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-    }
+    padding: 0;
+    font-size: 0.65rem;
+    height: var(--grid-size);
+    display: block;
+    align-items: center;
+    justify-content: center;
   }
 }
 .tech {
-  max-width: 100%;
-  @media #{$mq-medium} {
-    --grid-size: #{(100 / 22) / 2 * 1vw};
-  }
   @include grid;
 
   @media #{$mq-medium} {
-    width: 50%;
-    float: left;
+    grid-template-rows:
+      [first-line-start] repeat(3, var(--grid-size))
+      [first-line-end second-line-start] repeat(3, var(--grid-size))
+      [second-line-end] var(--grid-size);
   }
-
+  &--framework {
+    grid-area: framework;
+  }
+  &--server {
+    grid-area: server;
+    @media #{$mq-medium} {
+      grid-template-columns: repeat(9, var(--grid-size));
+    }
+  }
+  &--build {
+    grid-area: build;
+  }
+  &--framework,
+  &--build {
+    @media #{$mq-medium} {
+      grid-template-columns: repeat(7, var(--grid-size));
+    }
+  }
   &__title {
     padding: 0;
 
@@ -113,68 +137,88 @@ section.techs
       text-align: right;
       grid-area: 1 / 1 / 6 / 16;
     }
-  }
 
+    @media #{$mq-medium} {
+      grid-area: first-line-start / 1 / first-line-end / 6;
+      text-align: left;
+    }
+  }
   &__item {
-    &--node {
-      grid-area: 2 / 9 / 6 / 12;
-    }
-    &--koa {
-      grid-area: 2 / 13 / 6 / 16;
-    }
-    &--express {
-      grid-area: 6 / 3 / 10 / 8;
-    }
-    &--postgre {
-      grid-area: 6 / 9 / 10 / 12;
-    }
-    &--mongo {
-      grid-area: 6 / 13 / 10 / 16;
-    }
+    // FRAMEWORK
     &--vue {
       grid-area: 4 / 3 / 8 / 6;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 1 / second-line-end / 3;
+      }
     }
     &--react {
       grid-area: 4 / 7 / 8 / 10;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 4 / second-line-end / 6;
+      }
     }
+    // SERVER
+    &--node {
+      grid-area: 2 / 9 / 6 / 12;
+      @media #{$mq-medium} {
+        grid-area: first-line-start / 5 / first-line-end / 7;
+      }
+    }
+    &--koa {
+      grid-area: 2 / 13 / 6 / 16;
+      @media #{$mq-medium} {
+        grid-area: first-line-start / 8 / first-line-end / 10;
+      }
+    }
+    &--express {
+      grid-area: 6 / 3 / 10 / 8;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 1 / second-line-end / 4;
+      }
+    }
+    &--postgre {
+      grid-area: 6 / 9 / 10 / 12;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 5 / second-line-end / 7;
+      }
+    }
+    &--mongo {
+      grid-area: 6 / 13 / 10 / 16;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 8 / second-line-end / 10;
+      }
+    }
+    // BUILD
     &--webpack {
       grid-area: 1 / 8 / 4 / 12;
+      @media #{$mq-medium} {
+        grid-area: first-line-start / 4 / first-line-end / 7;
+      }
     }
     &--parcel {
       grid-area: 5 / 8 / 9 / 12;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 4 / second-line-end / 7;
+      }
     }
     &--gulp {
       grid-area: 5 / 13 / 9 / 16;
+      @media #{$mq-medium} {
+        grid-area: second-line-start / 1 / second-line-end / 3;
+      }
     }
   }
 }
-.tech--server {
-  padding-right: var(--gutter);
-  a {
-    float: right;
-    margin-left: var(--gutter);
-  }
-}
-.tech--framework,
-.tech--build {
-  padding-left: var(--gutter);
-  a {
-    float: left;
-    margin-right: var(--gutter);
-  }
-}
-.tech {
-  padding: calc(var(--grid-size) * 3) 0 0;
-
-  a {
-    margin: 0;
-  }
-  svg {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-  }
-}
+// .tech--server {
+//   padding-right: var(--gutter);
+// }
+// .tech--framework,
+// .tech--build {
+//   padding-left: var(--gutter);
+// }
+// .tech {
+//   padding: calc(var(--grid-size) * 3) 0 0;
+// }
 </style>
 
 <script>

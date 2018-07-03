@@ -4,8 +4,8 @@
     dl.presentation
       dt.presentation__title I'm<br> Yannick<br> “hiswe”<br> Aïvayan
       dd.presentation__description
-        p a full stack Javascript web-developer
-        p depending on the project I will use the most appropriate set of tools.
+        p A full stack Javascript web-developer.
+        p Depending on the project I will use the most appropriate set of tools.
 </template>
 
 <style lang="scss" scoped>
