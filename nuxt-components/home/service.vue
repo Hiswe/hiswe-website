@@ -145,7 +145,6 @@ dl(:class="`service ${id}`")
 }
 </style>
 
-
 <script>
 export default {
   name: `hiswe-service`,

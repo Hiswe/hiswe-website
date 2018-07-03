@@ -17,11 +17,7 @@
 <style lang="scss" scoped>
 .social {
   margin: var(--gutter) auto;
-  background: hsl(
-    var(--c-primary-darkest-hue),
-    var(--c-primary-darkest-saturation),
-    35%
-  );
+  background: var(--c-primary-darkest-highlight);
   padding: var(--gutter);
   margin: 0;
   --svg-icon-scale: 1.5;
@@ -46,6 +42,11 @@ a {
   color: var(--c-primary);
   text-decoration: none;
   text-align: center;
+  transition: color 0.25s;
+
+  &:hover {
+    color: var(--c-accent-lighter);
+  }
   @media #{$mq-big} {
     display: flex;
     align-items: center;

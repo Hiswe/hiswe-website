@@ -64,6 +64,19 @@ textarea {
   display: block;
   width: 100%;
   flex-grow: 1;
+  padding: 0 0.5em;
+  transition: border 0.25s, background 0.25s;
+
+  &:focus {
+    background: var(--c-primary-darkest-highlight);
+    border-color: var(--c-primary);
+  }
+}
+input {
+  padding: 0 0.5em;
+}
+textarea {
+  padding: 0.5em;
 }
 button {
   background: var(--c-primary);
@@ -73,7 +86,6 @@ button {
 
   @media #{$mq-medium} {
     margin-top: 0;
-
     padding: var(--quarter-gutter);
   }
 }

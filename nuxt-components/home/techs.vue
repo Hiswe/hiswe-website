@@ -91,6 +91,9 @@ section.techs
     color: var(--c-primary-lightest);
     display: block;
     margin: 0;
+    &:hover {
+      color: var(--c-accent-lighter);
+    }
   }
   span {
     display: block;
@@ -218,16 +221,6 @@ section.techs
     }
   }
 }
-// .tech--server {
-//   padding-right: var(--gutter);
-// }
-// .tech--framework,
-// .tech--build {
-//   padding-left: var(--gutter);
-// }
-// .tech {
-//   padding: calc(var(--grid-size) * 3) 0 0;
-// }
 </style>
 
 <script>

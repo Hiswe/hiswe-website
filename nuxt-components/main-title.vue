@@ -24,6 +24,11 @@
 }
 a {
   color: var(--c-accent);
+  transition: color 0.25s;
+
+  &:hover {
+    color: var(--c-primary-darker);
+  }
 }
 </style>
 
