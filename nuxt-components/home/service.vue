@@ -24,7 +24,7 @@ dl(:class="`service ${id}`")
   background: var(--servive-background);
   color: var(--servive-color, white);
   display: grid;
-  grid-template-columns: repeat(var(--service-columns), var(--grid-size));
+  grid-template-columns: repeat(var(--service-columns), 1fr);
   grid-template-rows:
     [sub] auto [sub-end title] auto [title-end desc] auto
     [desc-end];

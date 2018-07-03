@@ -60,6 +60,11 @@ div {
     background: none;
     width: grid-size(4);
   }
+
+  @media #{$mq-big} {
+    position: static;
+    display: flex;
+  }
 }
 a {
   color: var(--c-accent);
@@ -91,10 +96,17 @@ a {
       background: var(--c-accent);
     }
   }
-
   @media #{$mq-big} {
     --navigation-font-size: 1rem;
     --navigation-top-spacing: 0.25rem;
+    margin-right: var(--gutter);
+
+    &.nuxt-link-exact-active::before {
+      top: auto;
+      right: 0;
+      width: auto;
+      height: 10px;
+    }
   }
 }
 </style>

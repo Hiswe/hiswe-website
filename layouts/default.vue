@@ -6,8 +6,8 @@
 </template>
 
 <style lang="scss" scoped>
-@media #{$mq-medium} {
-  main {
+main {
+  @media #{$mq-medium} {
     display: grid;
     grid-template-columns: 9fr 2fr;
     grid-auto-rows: auto;
@@ -15,18 +15,23 @@
       'main-title main-nav'
       'main-content main-nav';
   }
-  .main-title {
-    grid-area: main-title;
-  }
-  .main-navigation {
-    grid-area: main-nav;
-  }
-  .main-content {
-    grid-area: main-content;
+  @media #{$mq-big} {
+    grid-template-columns: 2fr 1fr 3fr;
+    grid-template-areas:
+      'main-title empty main-nav'
+      'main-content main-content main-content';
   }
 }
+.main-title {
+  grid-area: main-title;
+}
+.main-navigation {
+  grid-area: main-nav;
+}
+.main-content {
+  grid-area: main-content;
+}
 </style>
-
 
 <script>
 import MainTitle from '~/nuxt-components/main-title.vue'
