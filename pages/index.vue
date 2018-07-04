@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-content.home
+hiswe-main-content.home
   hiswe-home-header
   hiswe-service(title="dev-elopment")
     template(slot="description")

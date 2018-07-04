@@ -1,13 +1,14 @@
 <template lang="pug">
-div
-  h1 Open Source
+hiswe-main-content
 
-  p Projects that I've created and maintain to give back to the open source community.
+  header
+    hiswe-title(text="Open Source")
+    p Projects that I've created and maintain to give back to the open source community.
 
   section.npm-module
 
     header.npm-module__header
-      h2 NPM modules
+      hiswe-title(text="NPM modules")
       p
         | in <a href="https://nodejs.org/en/">Node.js'</a> community,
         | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
@@ -24,7 +25,7 @@ div
       p Help handling some sizes on mobile browser
 
   section.web-app
-    h2 web applications
+    hiswe-title(text="web applications")
 
     article.web-app__item
       header.web-app__item_header

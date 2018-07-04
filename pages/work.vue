@@ -1,3 +1,5 @@
 <template lang="pug">
-  h1 work
+  hiswe-main-content
+    header
+      hiswe-title(text="wo-rk")
 </template>

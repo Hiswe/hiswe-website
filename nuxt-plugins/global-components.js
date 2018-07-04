@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import SvgIcons from '~/nuxt-components/svg-icons'
 import TechLogs from '~/nuxt-components/svg-tech-logos'
+import MainContent from '~/nuxt-components/main-content'
 import TwoLineTitle from '~/nuxt-components/two-line-title'
 import Contact from '~/nuxt-components/contact'
 import Social from '~/nuxt-components/social'
@@ -15,6 +16,7 @@ Vue.component(`hiswe-tech-logo`, TechLogs)
 Vue.component(`hiswe-title`, TwoLineTitle)
 Vue.component(`hiswe-contact`, Contact)
 Vue.component(`hiswe-social`, Social)
+Vue.component(`hiswe-main-content`, MainContent)
 
 const DATE_FORMAT = {
   day: `2-digit`,

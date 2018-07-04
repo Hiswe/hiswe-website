@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  hiswe-main-content
     h3 blog
     h4: a(href="https://hiswe.github.io/") see full blog
     no-ssr: hiswe-blog-posts
