@@ -18,7 +18,10 @@ module.exports = {
       [`@/nuxt-assets/css/scss-vars.scss`, `@/nuxt-assets/css/scss-mixin.scss`],
     ],
   ],
-  plugins: [`@/nuxt-plugins/global-components.js`],
+  plugins: [
+    `@/nuxt-plugins/global-components.js`,
+    { src: `@/nuxt-plugins/browser.js`, ssr: false },
+  ],
   build: {
     babel: {
       plugins: [`transform-object-rest-spread`],
