@@ -58,12 +58,12 @@ section.techs
 
   @media #{$mq-medium} {
     display: grid;
-    grid-template-columns: 1fr 7fr 9fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr 1fr 9fr 1fr;
     padding: var(--grid-size) 0 0;
     grid-auto-rows: auto;
     grid-template-areas:
-      '. framework server .'
-      '. build     .      .';
+      '. framework .     . server .'
+      '. build     build . .      .';
   }
   @media #{$mq-big} {
     grid-template-columns: 1fr 5fr 3fr 9fr 3fr 6fr 4fr;
@@ -122,6 +122,9 @@ section.techs
   }
   &--framework {
     grid-area: framework;
+    @media #{$mq-medium} {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
   &--server {
     grid-area: server;
@@ -131,11 +134,8 @@ section.techs
   }
   &--build {
     grid-area: build;
-  }
-  &--framework,
-  &--build {
     @media #{$mq-medium} {
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(6, 1fr);
     }
   }
   &__title {

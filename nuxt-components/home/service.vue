@@ -26,8 +26,9 @@ dl(:class="`service ${id}`")
 
   @media #{$mq-medium} {
     display: grid;
+    padding: var(--gutter) 0;
     grid-template-rows: none;
-    grid-gap: var(--half-gutter) 0;
+    grid-row-gap: var(--half-gutter);
   }
 
   &--development {
@@ -42,12 +43,12 @@ dl(:class="`service ${id}`")
     }
     @media #{$mq-medium} {
       --service-subtitle-align: left;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr repeat(2, 5fr) 1fr;
       grid-template-rows: 1fr repeat(2, auto);
       grid-template-areas:
-        '.        .'
-        'subtitle description'
-        'title    description';
+        '. .        .           .'
+        '. subtitle description .'
+        '. title    description .';
     }
   }
   &--integration {
@@ -65,14 +66,14 @@ dl(:class="`service ${id}`")
     @media #{$mq-medium} {
       --service-description-align: left;
       --service-title-align: left;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 5fr;
       grid-template-rows: 1fr auto var(--gutter) repeat(2, auto);
       grid-template-areas:
-        '.'
-        'description'
-        '.'
-        'subtitle'
-        'title';
+        '. .'
+        '. description'
+        '. .'
+        '. subtitle'
+        '. title';
     }
   }
   &--webdesign {
@@ -88,7 +89,7 @@ dl(:class="`service ${id}`")
     }
     @media #{$mq-medium} {
       --service-subtitle-align: left;
-      grid-template-columns: 2fr 4fr 1fr 9fr;
+      grid-template-columns: 3fr 4fr 1fr 10fr;
       grid-template-rows: repeat(2, auto);
       grid-template-areas:
         '. description . subtitle'

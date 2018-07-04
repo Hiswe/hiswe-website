@@ -42,10 +42,10 @@ h2 {
 }
 .presentation {
   display: grid;
-  grid-gap: var(--gutter);
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 4fr 1fr 5fr 1fr;
+  grid-template-areas: '. title . description .';
   margin: 0;
-  padding: 0 var(--gutter);
+  padding: 0;
   grid-auto-rows: auto;
 
   @media #{$mq-medium-only} {
@@ -59,6 +59,7 @@ h2 {
     font-size: 2rem;
     font-weight: 900;
     padding: 0;
+    grid-area: title;
 
     @media #{$mq-medium-only} {
       font-size: 1.2rem;
@@ -73,6 +74,7 @@ h2 {
   &__description {
     text-align: left;
     color: var(--c-primary-darker);
+    grid-area: description;
     font-size: 0.9rem;
     padding: 0;
     margin: 0;
