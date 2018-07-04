@@ -5,6 +5,7 @@ import compress from 'koa-compress'
 import logger from 'koa-logger'
 import formatJson from 'koa-json'
 import Router from 'koa-router'
+import koaBody from 'koa-body'
 import { Nuxt, Builder } from 'nuxt'
 
 import config from './config'
@@ -47,6 +48,11 @@ async function start() {
   router.get(`/latest-blog-post`, async ctx => {
     const blogEntries = await getLatestBlogPost()
     ctx.body = blogEntries
+  })
+
+  router.post(`/contact`, koaBody(), async ctx => {
+    console.log(ctx.request.body)
+    ctx.redirect(`/`)
   })
 
   //----- MOUNT ROUTER TO APPLICATION

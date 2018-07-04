@@ -1,15 +1,15 @@
 <template lang="pug">
-  form.contact
+  form.contact(action="/api/contact" method="post")
     hiswe-title(text="contact me" class="form__title")
     fieldset.field.field--name
       label(for="name") name
-      input(id="name" type="text")
+      input(id="name" name="name" type="text")
     fieldset.field.field--email
       label(for="email") email
-      input(id="email" type="email")
+      input(id="email" name="email" type="email" required)
     fieldset.field.field--message
       label(for="message") message
-      textarea(id="message")
+      textarea(id="message" name="message" required)
     button(type="submit") send
 </template>
 
@@ -77,13 +77,19 @@ input {
 }
 textarea {
   padding: 0.5em;
+  resize: vertical;
 }
 button {
   background: var(--c-primary);
   border: 0;
   margin-top: var(--gutter);
   padding: var(--half-gutter) var(--gutter);
+  transition: color 0.25s, background-color 0.25s;
 
+  &:hover {
+    background-color: var(--c-accent);
+    color: white;
+  }
   @media #{$mq-medium} {
     margin-top: 0;
     padding: var(--quarter-gutter);
