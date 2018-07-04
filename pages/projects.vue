@@ -1,32 +1,23 @@
 <template lang="pug">
-hiswe-main-content
+hiswe-main-content.page-projects
 
-  header
-    hiswe-title(text="Open Source")
-    p Projects that I've created and maintain to give back to the open source community.
+  hiswe-project-header
 
-  section.npm-module
+  hiswe-title(text="NPM modules" class="npm-title")
+  .npm-description
+    p
+      | in <a href="https://nodejs.org/en/">Node.js'</a> community,
+      | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
+    p Those are my contributions
+  .npm-modules
+    hiswe-npm-module(name="gulp-svg-symbols")
+      | Help create an icon library by bundling SVG files together
+    hiswe-npm-module(name="vh-check")
+      | Help handling some sizes on mobile browser
 
-    header.npm-module__header
-      hiswe-title(text="NPM modules")
-      p
-        | in <a href="https://nodejs.org/en/">Node.js'</a> community,
-        | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
-      p Those are my contributions
-
-    article.npm-module__item
-      h3 gulp-svg-symbols
-      p: a(href="https://www.npmjs.com/package/gulp-svg-symbols") gulp-svg-symbols
-      p Help create an icon library by bundling SVG files together
-
-    article.npm-module__item
-      h3 vh-check
-      p: a(href="https://www.npmjs.com/package/vh-check") vh-check
-      p Help handling some sizes on mobile browser
+  hiswe-title(text="web applications" class="webapp-title")
 
   section.web-app
-    hiswe-title(text="web applications")
-
     article.web-app__item
       header.web-app__item_header
         h3 A-Count
@@ -79,50 +70,53 @@ hiswe-main-content
           | powered by
           a(href="https://vuejs.org") Vue
 
+  hiswe-contact
+  hiswe-social
+
 </template>
 
 <style lang="scss" scoped>
-.npm-module,
-.web-app {
-  max-width: 1024px;
-  margin: 0 auto;
-
-  header {
-    text-align: center;
-  }
-
-  h2 {
-    color: var(--c-primary-darker);
-  }
+.page-projects {
+  // display: grid;
+  // grid-template-columns: 2fr 12fr 2fr;
+  // grid-template-areas: 'header header header'
 }
 
-.npm-module {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: var(--gutter);
-
-  &__header {
-    grid-column: 1 / span 2;
-  }
+.npm-title,
+.npm-description,
+.npm-modules {
+  background: var(--c-primary);
 }
-
-.web-app {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: var(--gutter);
-
-  h2 {
-    grid-column: 1 / span 3;
-  }
-  h3 {
-    text-align: center;
-    font-weight: 300;
-    text-transform: uppercase;
-    font-size: 1.25rem;
-  }
-  svg {
-    display: block;
-    margin: 0 auto;
-  }
+.npm-title,
+.npm-description {
+  color: white;
+  padding: var(--grid-size) grid-size(2) 0;
+}
+.npm-description p {
+  margin: 0;
+}
+.npm-modules {
+  background: var(--c-primary);
+  padding: var(--grid-size) grid-size(2) 0;
+}
+.webapp-title {
+  background: white;
+  text-align: center;
+  color: var(--c-primary-darkest);
+  padding: grid-size(4) grid-size(1);
 }
 </style>
+
+<script>
+import HisweProjectHeader from '~/nuxt-components/projects/header.vue'
+import HisweNpmModule from '~/nuxt-components/projects/npm-module.vue'
+
+export default {
+  name: `page-projects`,
+  components: {
+    'hiswe-project-header': HisweProjectHeader,
+    'hiswe-npm-module': HisweNpmModule,
+  },
+}
+</script>
+

@@ -1,7 +1,3 @@
-<template lang="pug">
-  h3.two-line-title <span :class="classNames">{{firstLine}}</span><span class="second-line">{{secondLine}}</span>
-</template>
-
 <style lang="scss" scoped>
 .two-line-title {
   line-height: 1;
@@ -37,6 +33,10 @@ export default {
       type: String,
       required: true,
     },
+    level: {
+      type: Number,
+      default: 3,
+    },
   },
   computed: {
     classNames() {
@@ -53,6 +53,22 @@ export default {
     secondLine() {
       return TITLE_REGEX.exec(this.text)[2]
     },
+  },
+  render(createElement) {
+    return createElement(
+      `h${this.level}`, // tag name
+      {
+        class: `two-line-title`,
+      },
+      [
+        createElement(`span`, { class: this.classNames }, [
+          this._v(this.firstLine),
+        ]),
+        createElement(`span`, { class: `second-line` }, [
+          this._v(this.secondLine),
+        ]),
+      ]
+    )
   },
 }
 </script>

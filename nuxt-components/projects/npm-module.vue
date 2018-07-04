@@ -1,0 +1,66 @@
+<template lang="pug">
+dl(:class="`npm-module npm-module--${name}`")
+  dt.npm-module__title {{name}}
+  dd.npm-module__description
+    slot
+  dd.npm-module__link
+    a(:href="`https://www.npmjs.com/package/${name}`") see on npm
+</template>
+
+<style lang="scss" scoped>
+.npm-module {
+  background: var(--c-primary-lighter);
+  color: var(--c-primary-darker);
+  margin: 0;
+
+  &--vh-check {
+    @media #{$mq-small} {
+      margin-bottom: grid-size(-2);
+      position: relative;
+    }
+  }
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: var(--grid-size);
+  }
+  &__description,
+  &__link {
+    margin: 0;
+  }
+  &__description {
+    padding: 0 var(--grid-size);
+  }
+  &__link {
+    padding: var(--grid-size);
+
+    a {
+      display: block;
+      text-align: center;
+      max-width: 150px;
+      margin: 0 auto;
+      background: white;
+      color: var(--c-accent);
+      padding: 0.75em 1em;
+      text-decoration: none;
+    }
+  }
+}
+</style>
+
+
+<script>
+export default {
+  name: `hiswe-npm-module`,
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+}
+</script>
+
