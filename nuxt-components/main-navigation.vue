@@ -56,14 +56,12 @@ div {
   background: white;
 
   @media #{$mq-medium} {
-    left: auto;
-    background: none;
-    width: grid-size(4);
-  }
-
-  @media #{$mq-big} {
     position: static;
     display: flex;
+    width: 100%;
+  }
+  @media #{$mq-big} {
+    height: auto;
   }
 }
 a {
@@ -76,6 +74,57 @@ a {
   justify-content: center;
   position: relative;
 
+  @media #{$mq-small} {
+    width: 50%;
+    height: 50vh;
+    float: left;
+  }
+  @media #{$mq-medium} {
+    height: var(--nav-height);
+    text-align: center;
+    position: relative;
+    flex-grow: 1;
+
+    &:not(.active):hover::after {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+      @media #{$mq-medium} {
+        clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
+      }
+    }
+    &.active::before {
+      content: '';
+      width: 10px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--c-accent);
+    }
+  }
+  @media #{$mq-medium} {
+    &.active::before {
+      bottom: 0;
+      top: auto;
+      right: 0;
+      width: auto;
+      height: 0.5rem;
+    }
+  }
+
+  @media #{$mq-big} {
+    --navigation-font-size: 1rem;
+    --navigation-top-spacing: 0.25rem;
+    padding: var(--gutter);
+
+    &.active::before {
+      bottom: auto;
+      top: 0;
+      right: 0;
+      width: auto;
+      height: 20px;
+    }
+  }
   &::after {
     content: attr(data-name);
     position: absolute;
@@ -91,48 +140,9 @@ a {
     clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
     transition: clip-path 0.25s;
 
-    @media #{$mq-big} {
+    @media #{$mq-medium} {
       background: var(--c-primary-darker);
       clip-path: polygon(0 100%, 0 100%, 100% 100%, 100% 100%);
-    }
-  }
-  @media #{$mq-small} {
-    width: 50%;
-    height: 50vh;
-    float: left;
-  }
-  @media #{$mq-medium} {
-    height: grid-size(2);
-    text-align: center;
-    position: relative;
-
-    &:not(.active):hover::after {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-
-      @media #{$mq-big} {
-        clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
-      }
-    }
-    &.active::before {
-      content: '';
-      width: 10px;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      background: var(--c-accent);
-    }
-  }
-  @media #{$mq-big} {
-    --navigation-font-size: 1rem;
-    --navigation-top-spacing: 0.25rem;
-    padding: var(--gutter);
-
-    &.active::before {
-      bottom: auto;
-      right: 0;
-      width: auto;
-      height: 20px;
     }
   }
 }

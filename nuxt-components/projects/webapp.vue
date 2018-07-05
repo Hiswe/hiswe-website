@@ -30,12 +30,19 @@ article(:class="`webapp webapp--${name}`")
 
   @media #{$mq-medium-only} {
     display: grid;
-    grid-template-columns: 3fr 6fr 1fr 6fr;
-    grid-template-rows: auto 2rem auto;
+    grid-template-columns: 1fr 5fr;
+    width: percentage(2/3);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
     grid-template-areas:
-      'logo title .    description'
-      'logo .     .    .'
-      '.    list  list list';
+      'logo .'
+      'logo title'
+      'logo description'
+      'list    list';
+
+    &:nth-child(even) {
+      margin-left: percentage(1/3);
+    }
   }
 
   &__logo-block {
@@ -81,9 +88,9 @@ article(:class="`webapp webapp--${name}`")
       text-align: center;
       text-decoration: none;
 
-      @media #{$mq-medium-only} {
-        height: 2rem;
-      }
+      // @media #{$mq-medium-only} {
+      //   height: 2rem;
+      // }
     }
   }
   &__title {
@@ -92,7 +99,7 @@ article(:class="`webapp webapp--${name}`")
     grid-area: title;
 
     @media #{$mq-medium-only} {
-      text-align: right;
+      // text-align: left;
       align-self: end;
       margin: 0;
       line-height: 1;
@@ -114,7 +121,6 @@ article(:class="`webapp webapp--${name}`")
     align-self: end;
 
     @media #{$mq-medium-only} {
-      text-align: left;
       padding: 0 1rem 0 0;
       margin: 0;
     }
@@ -127,30 +133,40 @@ article(:class="`webapp webapp--${name}`")
     @media #{$mq-medium-only} {
       display: grid;
       grid-template-columns: 6fr 1fr 6fr;
-      grid-template-rows: auto 0.5rem auto;
+      grid-template-rows: auto auto;
       grid-template-areas:
         'first . second'
-        '.     . .'
         'third . fourth';
       list-style: none;
       padding: 0;
       margin: 0;
 
+      li:nth-child(odd) {
+        text-align: right;
+        padding-left: 1rem;
+      }
+      li:nth-child(even) {
+        padding-right: 1rem;
+      }
+      li:nth-child(2) ~ li {
+        padding-top: 0.75rem;
+      }
+
       li:nth-child(1) {
         grid-area: first;
-        text-align: right;
       }
       li:nth-child(2) {
         grid-area: second;
       }
       li:nth-child(3) {
         grid-area: third;
-        text-align: right;
       }
       li:nth-child(3):last-child,
       li:nth-child(4) {
         grid-area: fourth;
         text-align: left;
+        padding-left: 0;
+        padding-right: 1rem;
       }
     }
   }

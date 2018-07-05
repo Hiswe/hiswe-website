@@ -35,7 +35,6 @@ dl(:class="`npm-module npm-module--${name}`")
 
     @media #{$mq-medium} {
       font-size: 1.75rem;
-      height: 3em;
     }
   }
   &__description,

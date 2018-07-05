@@ -29,7 +29,7 @@
       [left-end] 1fr
       [right-start] repeat(9, 1fr)
       [right-end] 1fr;
-    grid-auto-rows: var(--grid-size);
+    grid-auto-rows: minmax(2rem, auto);
   }
 }
 .two-line-title {
@@ -78,6 +78,7 @@ input {
 }
 textarea {
   padding: 0.5em;
+  min-height: 8em;
   resize: vertical;
 }
 button {

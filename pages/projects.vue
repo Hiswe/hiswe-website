@@ -16,7 +16,6 @@ hiswe-main-content(page="projects")
       | Help handling some sizes on mobile browser
 
   hiswe-title(text="web applications" class="webapp-title")
-
   hiswe-webapp-listing
 
   hiswe-contact
@@ -30,16 +29,16 @@ hiswe-main-content(page="projects")
 
   @media #{$mq-medium} {
     display: grid;
-    grid-template-columns: 1fr 2fr 3fr 2fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: auto;
     grid-template-areas:
-      'header        header       header       npm-description npm-description'
-      'npm-title     npm-title    npm-title    npm-description npm-description'
-      'npm-modules   npm-modules  npm-modules  npm-modules     npm-modules'
-      '.             webapp-title webapp-title webapp-title    webapp-title'
-      'webapps       webapps      webapps      webapps         .'
-      'contact       contact      contact      contact         contact'
-      'social        social       social       social          social';
+      'header        header       npm-description'
+      'npm-title     npm-title    npm-description'
+      'npm-modules   npm-modules  npm-modules'
+      'webapp-title  webapp-title webapp-title'
+      'webapps       webapps      webapps'
+      'contact       contact      contact'
+      'social        social       social';
   }
   @media #{$mq-big} {
     grid-template-columns: repeat(4, 3fr) 3.5fr 2.5fr;
@@ -123,6 +122,9 @@ hiswe-main-content(page="projects")
   @media #{$mq-medium} {
     padding: 4rem 0 2rem;
     text-align: left;
+  }
+  @media #{$mq-medium-only} {
+    padding-left: percentage(1/3);
   }
   @media #{$mq-big} {
     display: flex;

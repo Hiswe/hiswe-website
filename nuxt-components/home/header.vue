@@ -24,7 +24,7 @@
 }
 h2 {
   text-align: center;
-  padding: 0;
+  padding: 2rem 0 1rem;
   line-height: 1;
   font-size: 1.85rem;
   text-transform: uppercase;

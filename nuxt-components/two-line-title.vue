@@ -3,21 +3,32 @@
   line-height: 1;
   margin: 0;
 
+  @media #{$mq-small} {
+    font-size: 6vw;
+  }
+
   @media #{$mq-medium} {
     line-height: 0.85;
+    font-size: calc(2.5vw + 0.5rem);
+  }
+  @media #{$mq-big} {
+    font-size: 1.4rem;
   }
 }
 .first-line {
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2em;
   text-transform: uppercase;
+
+  @media #{$mq-medium} {
+  }
 }
 .has-dash::after {
   content: '-';
 }
 .second-line {
   display: block;
-  font-size: 2rem;
+  font-size: 1.5em;
   font-weight: 200;
 }
 </style>

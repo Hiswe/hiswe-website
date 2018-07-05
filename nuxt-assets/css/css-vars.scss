@@ -6,6 +6,8 @@
   --grid-size: #{100 / 16 * 1vw};
   // font-size is defined in global.scss
   --gutter: var(--grid-size);
+  //
+  --nav-height: 70px;
 
   @media #{$mq-medium} {
     --grid-size: #{100 / 22 * 1vw};

@@ -9,14 +9,16 @@
 main {
   @media #{$mq-medium} {
     display: grid;
-    grid-template-columns: 9fr 2fr;
+    grid-template-columns: 1fr;
     grid-auto-rows: auto;
     grid-template-areas:
-      'main-title main-nav'
-      'main-content main-nav';
+      'main-title '
+      'main-nav'
+      'main-content';
   }
   @media #{$mq-big} {
     grid-template-columns: 2fr 1fr 3fr;
+    grid-template-rows: 70px auto;
     grid-template-areas:
       'main-title empty main-nav'
       'main-content main-content main-content';
