@@ -20,6 +20,7 @@
   background: var(--c-primary-darkest-highlight);
   padding: var(--gutter);
   margin: 0;
+  grid-area: social;
   --svg-icon-scale: 1.5;
 
   @media #{$mq-big} {

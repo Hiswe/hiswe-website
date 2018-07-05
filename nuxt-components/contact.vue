@@ -18,6 +18,7 @@
   background: var(--c-primary-darkest);
   color: var(--c-primary-lighter);
   padding: var(--gutter);
+  grid-area: contact;
 
   @media #{$mq-medium} {
     padding: var(--grid-size) 0;

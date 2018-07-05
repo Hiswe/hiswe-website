@@ -7,6 +7,7 @@
 <style lang="scss" scoped>
 header {
   display: grid;
+  grid-area: header;
   grid-template-columns: 1fr 4fr 1fr 5fr 1fr;
   grid-template-areas: '. title . description .';
   margin: 0;

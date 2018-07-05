@@ -62,6 +62,8 @@ export default {
       },
       [
         createElement(`span`, { class: this.classNames }, [
+          // this._v === text node
+          // https://stackoverflow.com/questions/42414627/create-text-node-with-custom-render-function-in-vue-js
           this._v(this.firstLine),
         ]),
         createElement(`span`, { class: `second-line` }, [

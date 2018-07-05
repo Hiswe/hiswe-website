@@ -1,5 +1,5 @@
 <template lang="pug">
-hiswe-main-content.home
+hiswe-main-content(page="home")
   hiswe-home-header
   hiswe-service(title="dev-elopment")
     template(slot="description")
@@ -28,9 +28,7 @@ hiswe-main-content.home
 </template>
 
 <style lang="scss" scoped>
-.home {
-  grid-area: main-content;
-
+.page-home {
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -55,12 +53,6 @@ hiswe-main-content.home
     }
     .service--webdesign {
       grid-area: webdesign;
-    }
-    .contact {
-      grid-area: contact;
-    }
-    .social {
-      grid-area: social;
     }
     .techs {
       grid-area: techs;

@@ -25,17 +25,17 @@ dl(:class="`npm-module npm-module--${name}`")
     line-height: 1;
     font-weight: 900;
     text-transform: uppercase;
-    padding: var(--grid-size);
+    padding: var(--half-gutter);
   }
   &__description,
   &__link {
     margin: 0;
   }
   &__description {
-    padding: 0 var(--grid-size);
+    padding: 0 var(--gutter);
   }
   &__link {
-    padding: var(--grid-size);
+    padding: var(--gutter);
 
     a {
       display: block;

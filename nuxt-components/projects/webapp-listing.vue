@@ -9,10 +9,10 @@
       ul
         li help to manage small structures quotations/invoice
         li print directly from the browser
-        li
-          | powered by <a href="https://reactjs.org/">React</a>,
-          | <a href="https://koajs.com/">Koa</a>
-          | & <a href="https://www.postgresql.org/">PostgreSQL</a>
+        li.
+          powered by #[a(href="https://reactjs.org/") React],
+          #[a(href="https://koajs.com/") Koa]
+          & #[a(href="https://www.postgresql.org/") PostgreSQL]
 
     hiswe-webapp(name="thailpha")
       template(slot="logo")
@@ -30,24 +30,29 @@
       template(slot="logo")
         img(src="@/nuxt-assets/logos/©thaime.svg" width="100")
       template(slot="description")
-        a(href="https://en.wikipedia.org/wiki/Progressive_Web_Apps") Progressive Web Application
-        |  of a Thai clock & time converter
+        .
+          #[a(href="https://en.wikipedia.org/wiki/Progressive_Web_Apps") Progressive Web Application]
+          of a Thai clock & time converter
       ul
-        li
-          | two ways conversion from
-          a(href="https://en.wikipedia.org/wiki/Six-hour_clock") 24 to 6 hour clock system
+        li.
+          two ways conversion from 24 to
+          #[a(href="https://en.wikipedia.org/wiki/Six-hour_clock") 6 hour clock system]
         li days & months dictionary
-        li
-          | two ways conversion from
-          a(href="https://en.wikipedia.org/wiki/Buddhist_calendar") Buddhist
-          |  to
-          a(href="https://en.wikipedia.org/wiki/Gregorian_calendar") Gregorian
-          | calendar
-        li
-          | powered by
-          a(href="https://vuejs.org") Vue
-
+        li.
+          two ways conversion from
+          #[a(href="https://en.wikipedia.org/wiki/Buddhist_calendar") Buddhist]
+          to
+          #[a(href="https://en.wikipedia.org/wiki/Gregorian_calendar") Gregorian]
+          calendar
+        li.
+          powered by #[a(href="https://vuejs.org") Vue]
 </template>
+
+<style lang="scss" scoped>
+.web-apps {
+  background: white;
+}
+</style>
 
 <script>
 import HisweWebapp from '~/nuxt-components/projects/webapp.vue'

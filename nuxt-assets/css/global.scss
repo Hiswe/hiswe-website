@@ -52,6 +52,15 @@ body:not(.user-is-tabbing) {
   }
 }
 
+a {
+  color: currentColor;
+  text-decoration-color: var(--c-accent);
+
+  &:hover {
+    color: var(--c-accent);
+  }
+}
+
 ////////
 // ICONS
 ////////
