@@ -122,7 +122,7 @@ a {
       top: 0;
       right: 0;
       width: auto;
-      height: 20px;
+      height: 10px;
     }
   }
   &::after {

@@ -1,6 +1,10 @@
 <template lang="pug">
   header
-    hiswe-title(text="Open Source" level="2" class="project-header-title")
+    hiswe-title(
+      text="Open Source"
+      :level="2"
+      class="project-header-title"
+    )
     p Projects that I've created and maintain to give back to the open source community.
 </template>
 

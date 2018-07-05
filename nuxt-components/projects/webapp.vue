@@ -87,10 +87,15 @@ article(:class="`webapp webapp--${name}`")
       color: var(--c-accent);
       text-align: center;
       text-decoration: none;
+      transition: color 0.25s, background-color 0.25s;
 
-      // @media #{$mq-medium-only} {
-      //   height: 2rem;
-      // }
+      @media #{$mq-medium} {
+        height: 2rem;
+      }
+      &:hover {
+        color: white;
+        background-color: var(--c-accent);
+      }
     }
   }
   &__title {
@@ -99,7 +104,6 @@ article(:class="`webapp webapp--${name}`")
     grid-area: title;
 
     @media #{$mq-medium-only} {
-      // text-align: left;
       align-self: end;
       margin: 0;
       line-height: 1;
@@ -110,6 +114,11 @@ article(:class="`webapp webapp--${name}`")
       text-decoration: none;
       text-transform: uppercase;
       font-size: 2.5rem;
+      transition: color 0.25s;
+
+      &:hover {
+        color: var(--c-primary-darker);
+      }
     }
   }
   &__description {

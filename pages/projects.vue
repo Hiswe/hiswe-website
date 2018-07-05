@@ -1,6 +1,7 @@
 <template lang="pug">
 hiswe-main-content(page="projects")
 
+  hiswe-contact
   hiswe-project-header
 
   hiswe-title(text="NPM modules" class="npm-title")
@@ -18,7 +19,6 @@ hiswe-main-content(page="projects")
   hiswe-title(text="web applications" class="webapp-title")
   hiswe-webapp-listing
 
-  hiswe-contact
   hiswe-social
 
 </template>

@@ -62,6 +62,12 @@ dl(:class="`npm-module npm-module--${name}`")
       color: var(--c-accent);
       padding: 0.75em 1em;
       text-decoration: none;
+      transition: color 0.25s, background-color 0.25s;
+
+      &:hover {
+        color: white;
+        background-color: var(--c-accent);
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template lang="pug">
-  hiswe-main-content
+  hiswe-main-content(page="work")
     header
       hiswe-title(text="wo-rk")
 </template>
