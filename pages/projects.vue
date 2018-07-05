@@ -41,6 +41,14 @@ hiswe-main-content(page="projects")
       'contact       contact      contact      contact         contact'
       'social        social       social       social          social';
   }
+  @media #{$mq-big} {
+    grid-template-columns: repeat(4, 3fr) 3.5fr 2.5fr;
+    grid-template-areas:
+      'header      header      npm-description  contact       contact       contact'
+      'npm-title   npm-title   npm-description  contact       contact       contact'
+      'npm-modules npm-modules npm-modules      webapp-title  webapp-title  social'
+      'webapps      webapps    webapps          webapps       webapps       social';
+  }
 }
 
 .npm-title,
@@ -98,10 +106,10 @@ hiswe-main-content(page="projects")
     grid-template-columns: repeat(3, 1fr);
     padding: 0;
 
+    // fill blank NPM module
     &::before {
       content: '';
       background: var(--c-primary);
-      // display: block;
     }
   }
 }
@@ -116,9 +124,20 @@ hiswe-main-content(page="projects")
     padding: 4rem 0 2rem;
     text-align: left;
   }
+  @media #{$mq-big} {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: percentage(1 / 13);
+  }
 }
 .web-apps {
   grid-area: webapps;
+}
+.social {
+  @media #{$mq-big} {
+    align-items: start;
+  }
 }
 </style>
 

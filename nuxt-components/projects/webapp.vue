@@ -22,6 +22,10 @@ article(:class="`webapp webapp--${name}`")
   @media #{$mq-small} {
     padding-bottom: 2rem;
     margin-bottom: 3rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   @media #{$mq-medium-only} {
@@ -36,7 +40,7 @@ article(:class="`webapp webapp--${name}`")
 
   &__logo-block {
     margin: 0 auto;
-    width: grid-size(4);
+    width: percentage(1 / 4);
     grid-area: logo;
     position: relative;
     top: grid-size(-1);
@@ -44,6 +48,10 @@ article(:class="`webapp webapp--${name}`")
     @media #{$mq-medium-only} {
       position: static;
       width: 100%;
+    }
+
+    @media #{$mq-big} {
+      width: percentage(1 / 3);
     }
   }
   &__logo {
@@ -101,25 +109,25 @@ article(:class="`webapp webapp--${name}`")
     text-align: center;
     font-size: 1.2rem;
     color: var(--c-primary-darkest);
-    padding: 0 grid-size(2);
+    padding: 0 percentage(1 / 9);
     grid-area: description;
     align-self: end;
 
     @media #{$mq-medium-only} {
       text-align: left;
-      padding: 0;
+      padding: 0 1rem 0 0;
       margin: 0;
     }
   }
   ul {
     color: var(--c-primary-darker);
-    padding: 0 grid-size(2);
+    padding: 0 percentage(1 / 9);
     grid-area: list;
 
     @media #{$mq-medium-only} {
       display: grid;
       grid-template-columns: 6fr 1fr 6fr;
-      grid-template-rows: auto 1rem auto;
+      grid-template-rows: auto 0.5rem auto;
       grid-template-areas:
         'first . second'
         '.     . .'

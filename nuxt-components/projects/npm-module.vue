@@ -13,6 +13,11 @@ dl(:class="`npm-module npm-module--${name}`")
   color: var(--c-primary-darker);
   margin: 0;
 
+  @media #{$mq-medium} {
+    display: flex;
+    flex-direction: column;
+  }
+
   &--vh-check {
     @media #{$mq-small} {
       margin-bottom: grid-size(-2);
@@ -26,6 +31,12 @@ dl(:class="`npm-module npm-module--${name}`")
     font-weight: 900;
     text-transform: uppercase;
     padding: var(--half-gutter);
+    flex: 0 0 auto;
+
+    @media #{$mq-medium} {
+      font-size: 1.75rem;
+      height: 3em;
+    }
   }
   &__description,
   &__link {
@@ -33,9 +44,15 @@ dl(:class="`npm-module npm-module--${name}`")
   }
   &__description {
     padding: 0 var(--gutter);
+    flex: 1 0 auto;
+
+    @media #{$mq-medium} {
+      text-align: center;
+    }
   }
   &__link {
     padding: var(--gutter);
+    flex: 0 0 auto;
 
     a {
       display: block;

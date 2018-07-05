@@ -51,6 +51,24 @@
 <style lang="scss" scoped>
 .web-apps {
   background: white;
+
+  @media #{$mq-big} {
+    display: grid;
+    padding: 4rem 0 2rem;
+    grid-template-columns: 1fr 9fr 1fr 9fr 1fr 9fr 1fr;
+    grid-template-areas: '. first . second . third .';
+  }
+}
+.webapp {
+  &:nth-child(1) {
+    grid-area: first;
+  }
+  &:nth-child(2) {
+    grid-area: second;
+  }
+  &:nth-child(3) {
+    grid-area: third;
+  }
 }
 </style>
 
