@@ -1,102 +1,132 @@
 <template lang="pug">
-  article
-    a.post-link(:href="post.link")
-      header
-        .cover(:style="{'background-image': `url(${post.cover})`}")
-        h3.title {{post.title}}
-        time(:datetime="post.published") {{post.published | localDate}}
-      .summary(v-html="post.summary")
+  article.post: a.post__link(:href="post.link")
+    .post__cover(:style="{'background-image': `url(${post.cover})`}")
+    .post__content
+      time.post__date(:datetime="post.published") {{post.published | localDate}}
+      h3.post__title {{post.title}}
+      .post__summary(v-html="post.summary")
 </template>
 
 <style lang="scss" scoped>
-article {
-  margin-top: var(--gutter);
-  margin-left: var(--half-gutter);
-  margin-right: var(--half-gutter);
-
-  @media #{$mq-big} {
-    --post-width: calc(#{percentage(1 / 4)} - var(--gutter));
-    width: var(--post-width);
-    flex: 0 1 var(--post-width);
-  }
-}
-.post-link {
-  color: white;
-  display: block;
-  text-decoration: none;
+.post {
+  $root: &;
+  background: var(--c-primary-lightest);
   height: 100%;
 
-  background: rgba(255, 255, 255, 0.1);
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    transition: 0.5s box-shadow;
-    pointer-events: none;
-    z-index: 2;
+  @media #{$mq-medium} {
+    background: white;
   }
+  @media #{$mq-medium-only} {
+    &:nth-child(3n + 1) {
+      grid-column: span 2;
 
-  &:hover::before {
-    box-shadow: inset 0 0 0 10px var(--c-accent);
+      a {
+        display: flex;
+      }
+
+      #{$root}__cover {
+        width: 130px;
+        flex: 0 0 auto;
+      }
+    }
   }
-}
-header {
-  height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: var(--c-primary-black);
-}
-.cover {
-  min-height: 130px;
-  margin: 0 auto;
-  background-position: center center;
-  background-repeat: none;
-  background-size: 240px;
-  opacity: 0.35;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  transition: background-size 0.5s;
-
-  .post-link:hover & {
-    background-size: 400px;
-  }
-}
-.title {
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.1;
-  text-transform: uppercase;
-  margin: 0;
-  padding: var(--half-gutter) var(--half-gutter) 0;
-  position: relative;
-
   @media #{$mq-big} {
-    font-size: 1.25rem;
-  }
-}
-time {
-  display: block;
-  text-align: center;
-  color: var(--c-primary);
-  margin: 0;
-  position: relative;
-}
-.summary {
-  margin: var(--half-gutter) 0 0;
-  padding: var(--half-gutter);
+    &:nth-child(8n + 3),
+    &:nth-child(8n + 4),
+    &:nth-child(8n + 5),
+    &:nth-child(8n + 8) {
+      grid-column: span 2;
+      a {
+        display: flex;
+      }
 
-  @media #{$mq-big} {
+      #{$root}__cover {
+        width: 130px;
+        flex: 0 0 auto;
+      }
+    }
+    &:nth-child(8n + 1),
+    &:nth-child(8n + 2),
+    &:nth-child(8n + 6),
+    &:nth-child(8n + 7) {
+      grid-row: span 2;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    position: relative;
+    display: block;
+    height: 100%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      transition: 0.5s box-shadow;
+      pointer-events: none;
+      z-index: 2;
+    }
+    &:hover {
+      color: currentColor;
+
+      &::before {
+        box-shadow: inset 0 0 0 10px var(--c-accent);
+      }
+    }
+  }
+  &__content {
+    flex-grow: 1;
+  }
+  &__cover {
+    min-height: 130px;
+    display: block;
+    margin: 0 auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: var(--c-primary);
+    background-size: 240px;
+    transition: background-size 0.5s;
+  }
+  &__date {
+    display: block;
     text-align: center;
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--c-primary-darker);
+    padding: 1rem 0 0;
+    @media #{$mq-medium} {
+      font-size: 2vw;
+    }
+    @media #{$mq-medium} {
+      font-size: 1rem;
+    }
+  }
+  &__title {
+    padding: 1rem 1rem 0;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    color: var(--c-accent);
+
+    @media #{$mq-medium-only} {
+      font-size: calc(2.5vw + 0.5rem);
+    }
+    @media #{$mq-big} {
+      font-size: 1.5rem;
+    }
+  }
+  &__summary {
+    text-align: center;
+    padding: 1rem 1rem 2rem;
+
+    @media #{$mq-medium-only} {
+      font-size: calc(1vw + 0.5rem);
+    }
   }
 }
 </style>

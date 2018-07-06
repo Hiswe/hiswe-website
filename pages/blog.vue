@@ -1,10 +1,52 @@
 <template lang="pug">
   hiswe-main-content(page="blog")
-    h2 latest blog posts
+    hiswe-blog-header
+    hiswe-title.blog-latest-title(text="latest blog posts")
     no-ssr: hiswe-blog-posts
     hiswe-contact
     hiswe-social
 </template>
+
+<style lang="scss" scoped>
+.page-blog {
+  @media #{$mq-medium} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-template-areas:
+      'header header latest-title'
+      'posts posts posts'
+      'contact contact contact'
+      'social social social';
+  }
+  @media #{$mq-big} {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+      'header       header       contact contact contact social'
+      'latest-title latest-title contact contact contact social'
+      'posts        posts        posts   posts   posts   posts';
+  }
+  .blog-latest-title {
+    padding: 3rem 2rem 1rem;
+    text-align: center;
+    color: var(--c-primary-darker);
+    grid-area: latest-title;
+
+    @media #{$mq-medium} {
+      font-size: calc(1.5vw + 0.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 2rem;
+    }
+    @media #{$mq-big} {
+      padding-top: 3rem;
+      padding-left: 1rem;
+      text-align: left;
+    }
+  }
+}
+</style>
 
 <script>
 import Header from '~/nuxt-components/blog/header.vue'

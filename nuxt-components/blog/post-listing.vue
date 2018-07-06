@@ -4,6 +4,21 @@
 </template>
 
 <style lang="scss" scoped>
+.posts {
+  grid-area: posts;
+  background: var(--c-primary-lightest);
+
+  @media #{$mq-medium} {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+  }
+  @media #{$mq-big} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 </style>
 
 <script>

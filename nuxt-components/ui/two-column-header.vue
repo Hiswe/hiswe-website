@@ -15,6 +15,7 @@
   }
   &__right {
     grid-area: right;
+    text-align: left;
     margin: 0;
     color: var(--c-primary-darker);
   }
