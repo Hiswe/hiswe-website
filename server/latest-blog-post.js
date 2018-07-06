@@ -16,7 +16,9 @@ function cleanSummary(summary) {
     const content = $link.html()
     $link.replaceWith(`<span>${content}</span>`)
   })
-  return $.html()
+  return $(`body`)
+    .html()
+    .trim()
 }
 
 module.exports = async function getLatestBlogPost() {
