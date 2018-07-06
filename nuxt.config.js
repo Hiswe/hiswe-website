@@ -8,6 +8,10 @@ module.exports = {
       // { hid: 'description', name: 'description', content: 'Meta description' }
     ],
   },
+  loading: {
+    color: `hsl(332, 100%, 50%)`,
+    height: `5px`,
+  },
   css: [`@/nuxt-assets/css/global.scss`],
   // inject scss files in every module
   // • https://github.com/anteriovieira/nuxt-sass-resources-loader

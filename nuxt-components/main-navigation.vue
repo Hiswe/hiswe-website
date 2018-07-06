@@ -5,7 +5,7 @@ nav.main-navigation
   div
     nuxt-link(to="/" exact-active-class="active" data-name="home") home
     nuxt-link(to="/projects" active-class="active" data-name="projects") projects
-    nuxt-link(to="/work" active-class="active" data-name="work") work
+    // nuxt-link(to="/work" active-class="active" data-name="work") work
     nuxt-link(to="/blog" active-class="active" data-name="blog") blog
 </template>
 

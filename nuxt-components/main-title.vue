@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: var(--nav-height);
   }
   @media #{$mq-big} {
     justify-content: flex-start;
