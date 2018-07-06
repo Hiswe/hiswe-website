@@ -9,7 +9,7 @@ import Contact from '~/nuxt-components/contact'
 import Social from '~/nuxt-components/social'
 
 import TwoLineTitle from '~/nuxt-components/ui/two-line-title'
-import TwoLineHeader from '~/nuxt-components/ui/two-line-header'
+import TwoLineHeader from '~/nuxt-components/ui/two-column-header'
 
 Vue.use(VueAxios, axios)
 

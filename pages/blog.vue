@@ -1,24 +1,20 @@
 <template lang="pug">
   hiswe-main-content(page="blog")
-
-    header
-      hiswe-header(tag="div")
-        template(slot="left"): h3 blog
-        template(slot="right")
-          | Documenting ad passing knowledge because it's what the web is
-      a(href="https://hiswe.github.io/") see full blog
-
+    h2 latest blog posts
     no-ssr: hiswe-blog-posts
     hiswe-contact
     hiswe-social
 </template>
 
 <script>
-import LatestBlogPosts from '~/nuxt-components/latest-blog-posts.vue'
+import Header from '~/nuxt-components/blog/header.vue'
+import Posts from '~/nuxt-components/blog/post-listing.vue'
+
 export default {
   name: `page-blog`,
   components: {
-    'hiswe-blog-posts': LatestBlogPosts,
+    'hiswe-blog-header': Header,
+    'hiswe-blog-posts': Posts,
   },
 }
 </script>
