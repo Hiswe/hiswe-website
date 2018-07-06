@@ -61,6 +61,7 @@
     "gulp-svgmin": "^1.2.4",
     "gulp-uglify": "~3.0.0",
     "image-size": "^0.6.3",
+    "maildev": "^1.0.0-rc3",
     "marked": "^0.4.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3",
