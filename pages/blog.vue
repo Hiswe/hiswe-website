@@ -1,8 +1,16 @@
 <template lang="pug">
   hiswe-main-content(page="blog")
-    h3 blog
-    h4: a(href="https://hiswe.github.io/") see full blog
+
+    header
+      hiswe-header(tag="div")
+        template(slot="left"): h3 blog
+        template(slot="right")
+          | Documenting ad passing knowledge because it's what the web is
+      a(href="https://hiswe.github.io/") see full blog
+
     no-ssr: hiswe-blog-posts
+    hiswe-contact
+    hiswe-social
 </template>
 
 <script>
