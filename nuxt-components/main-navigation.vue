@@ -62,6 +62,7 @@ div {
   }
   @media #{$mq-big} {
     height: auto;
+    background: var(--c-background);
   }
 }
 a {
