@@ -9,7 +9,9 @@ import koaBody from 'koa-body'
 import { Nuxt, Builder } from 'nuxt'
 
 import config from './config'
+import { servicesReady } from './services'
 import getLatestBlogPost from './latest-blog-post'
+import sendContactMail from './send-contact-mail'
 
 async function start() {
   //////
@@ -52,6 +54,8 @@ async function start() {
 
   router.post(`/contact`, koaBody(), async ctx => {
     console.log(ctx.request.body)
+    const response = await sendContactMail(ctx.request.body)
+    console.log(response)
     ctx.redirect(`/`)
   })
 
@@ -81,8 +85,8 @@ async function start() {
     await next()
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
     return new Promise((resolve, reject) => {
-      ctx.res.on('close', resolve)
-      ctx.res.on('finish', resolve)
+      ctx.res.on(`close`, resolve)
+      ctx.res.on(`finish`, resolve)
       nuxt.render(ctx.req, ctx.res, promise => {
         // nuxt.render passes a rejected promise into callback on error.
         promise.then(resolve).catch(reject)
@@ -94,14 +98,20 @@ async function start() {
   // LAUNCHING
   //////
 
-  app.listen(config.PORT, config.HOST, function endInit() {
-    console.log(
-      `APP Server is listening on`,
-      chalk.cyan(`${config.HOST}:${config.PORT}`),
-      `on mode`,
-      chalk.cyan(config.NODE_ENV)
-    )
-  })
+  try {
+    await servicesReady
+    app.listen(config.PORT, config.HOST, function endInit() {
+      console.log(
+        `APP Server is listening on`,
+        chalk.cyan(`${config.HOST}:${config.PORT}`),
+        `on mode`,
+        chalk.cyan(config.NODE_ENV)
+      )
+    })
+  } catch (error) {
+    console.log(chalk.red(`[APP] not launched – needed services errored`))
+    console.log(error)
+  }
 }
 
 start()

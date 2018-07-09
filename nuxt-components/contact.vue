@@ -1,13 +1,13 @@
 <template lang="pug">
   form.contact(action="/api/contact" method="post")
     hiswe-title(text="contact me" class="form__title")
-    fieldset.field.field--name
+    .field.field--name
       label(for="name") name
       input(id="name" name="name" type="text")
-    fieldset.field.field--email
+    .field.field--email
       label(for="email") email
       input(id="email" name="email" type="email" required)
-    fieldset.field.field--message
+    .field.field--message
       label(for="message") message
       textarea(id="message" name="message" required)
     button(type="submit") send
@@ -36,7 +36,7 @@
   padding: var(--gutter);
   text-align: center;
 }
-fieldset {
+.field {
   border: 0;
   padding: 0;
 

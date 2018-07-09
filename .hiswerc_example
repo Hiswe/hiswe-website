@@ -1,1 +1,19 @@
-{}
+{
+  "email": {
+    "transport": {
+      "host": "localhost",
+      "port": 1025
+    },
+    // OR use a service provider
+    // "provider": {
+    //   "service": "GandiMail",
+    //   "auth": {
+    //     "user": "####",
+    //     "pass": "####",
+    //   }
+    // },
+    "options": {
+      "from": "your name <contact@society.net>"
+    }
+  }
+}
