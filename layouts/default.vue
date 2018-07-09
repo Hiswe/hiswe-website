@@ -3,6 +3,7 @@
     hiswe-main-title
     hiswe-main-navigation
     nuxt
+    hiswe-notifications
 </template>
 
 <style lang="scss" scoped>
@@ -38,12 +39,14 @@ main {
 <script>
 import MainTitle from '~/nuxt-components/main-title.vue'
 import MainNavigation from '~/nuxt-components/main-navigation.vue'
+import Notifications from '~/nuxt-components/notifications.vue'
 
 export default {
   name: `default-layout`,
   components: {
     'hiswe-main-title': MainTitle,
     'hiswe-main-navigation': MainNavigation,
+    'hiswe-notifications': Notifications,
   },
 }
 </script>

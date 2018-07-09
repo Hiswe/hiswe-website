@@ -6,6 +6,7 @@ import logger from 'koa-logger'
 import formatJson from 'koa-json'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
+import session from 'koa-session'
 import { Nuxt, Builder } from 'nuxt'
 
 import config from './config'
@@ -20,30 +21,46 @@ async function start() {
 
   const app = new Koa()
 
+  // for signed cookies
+  app.keys = [
+    `e05fa6f6e4c078ad997ec324e6d69f59829b2e2237c5e1d9e3610fea291793f4`,
+    `64241b9838c5d0d5f94f7e83c71d83af4674f8c84e406a138263a8803a3b1e6f`,
+  ]
+
   app.use(helmet())
   app.use(compress())
   app.use(logger())
   app.use(formatJson())
+  app.use(
+    session(
+      {
+        key: 'hiswe-website',
+      },
+      app
+    )
+  )
+
+  //----- ERROR HANDLING
+
+  app.use(async (ctx, next) => {
+    try {
+      await next()
+    } catch (err) {
+      console.log(util.inspect(err, { colors: true }))
+      ctx.status = err.statusCode || err.status || 500
+      ctx.body = ctx.render(`error`, {
+        code: ctx.status,
+        reason: err.message,
+        stacktrace: err.stacktrace || err.stack || false,
+      })
+    }
+  })
 
   //////
   // API ROUTING
   //////
 
-  //----- ERROR HANDLING
-
-  // app.use(async (ctx, next) => {
-  //   try {
-  //     await next()
-  //   } catch (err) {
-  //     console.log(util.inspect(err, { colors: true }))
-  //     ctx.status = err.statusCode || err.status || 500
-  //     ctx.body = ctx.render(`error`, {
-  //       code: ctx.status,
-  //       reason: err.message,
-  //       stacktrace: err.stacktrace || err.stack || false,
-  //     })
-  //   }
-  // })
+  //----- API
 
   const router = new Router({ prefix: `/api` })
 
@@ -53,9 +70,8 @@ async function start() {
   })
 
   router.post(`/contact`, koaBody(), async ctx => {
-    console.log(ctx.request.body)
-    const response = await sendContactMail(ctx.request.body)
-    console.log(response)
+    const state = await sendContactMail(ctx.request.body)
+    ctx.session = state
     ctx.redirect(`/`)
   })
 
@@ -81,17 +97,19 @@ async function start() {
     await builder.build()
   }
 
-  app.use(async (ctx, next) => {
-    await next()
-    ctx.status = 200 // koa defaults to 404 when it sees that status is unset
-    return new Promise((resolve, reject) => {
-      ctx.res.on(`close`, resolve)
-      ctx.res.on(`finish`, resolve)
-      nuxt.render(ctx.req, ctx.res, promise => {
-        // nuxt.render passes a rejected promise into callback on error.
-        promise.then(resolve).catch(reject)
-      })
-    })
+  // Nuxt middleware
+  // • take a different take from the one in examples
+  //   to fix error “Error: Can’t set headers after they are sent”
+  // • see this ticket
+  //   https://github.com/nuxt/nuxt.js/issues/1206#issuecomment-319271260
+  //   https://github.com/nuxt-community/koa-template/pull/39/commits/f478d18dcd613490da8271193bb2f16199360f8c
+  app.use(function nuxtMiddleware(ctx) {
+    ctx.status = 200
+    ctx.respond = false // Mark request as handled for Koa
+    // useful for nuxtServerInit
+    ctx.req.session = ctx.session
+    ctx.session = {}
+    nuxt.render(ctx.req, ctx.res)
   })
 
   //////
