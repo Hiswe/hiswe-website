@@ -1,6 +1,8 @@
 <template lang="pug">
 hiswe-main-content(page="home")
   hiswe-home-header
+  hiswe-contact
+  hiswe-social
   hiswe-service(title="dev-elopment")
     template(slot="description")
       | building<br>web application
@@ -23,12 +25,20 @@ hiswe-main-content(page="home")
       li Simple &amp; nice experience for users
       li Design for every screen size with responsive design
   hiswe-techs
-  hiswe-contact
-  hiswe-social
 </template>
 
 <style lang="scss" scoped>
 .page-home {
+  display: flex;
+  flex-direction: column;
+
+  .contact {
+    order: 2;
+  }
+  .social {
+    order: 3;
+  }
+
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
