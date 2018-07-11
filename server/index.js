@@ -99,8 +99,8 @@ async function start() {
 
   // Nuxt middleware
   // • take a different take from the one in examples
-  //   to fix error “Error: Can’t set headers after they are sent”
-  // • see this ticket
+  //   to fix the error “Error: Can’t set headers after they are sent”
+  // • see this ticket:
   //   https://github.com/nuxt/nuxt.js/issues/1206#issuecomment-319271260
   //   https://github.com/nuxt-community/koa-template/pull/39/commits/f478d18dcd613490da8271193bb2f16199360f8c
   app.use(function nuxtMiddleware(ctx) {
@@ -108,6 +108,7 @@ async function start() {
     ctx.respond = false // Mark request as handled for Koa
     // useful for nuxtServerInit
     ctx.req.session = ctx.session
+    // make session act like flash messages
     ctx.session = {}
     nuxt.render(ctx.req, ctx.res)
   })

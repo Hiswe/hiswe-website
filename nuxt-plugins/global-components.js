@@ -10,6 +10,7 @@ import Social from '~/nuxt-components/social'
 
 import TwoLineTitle from '~/nuxt-components/ui/two-line-title'
 import TwoLineHeader from '~/nuxt-components/ui/two-column-header'
+import Field from '~/nuxt-components/ui/field'
 
 Vue.use(VueAxios, axios)
 
@@ -17,6 +18,7 @@ Vue.component(`hiswe-icon`, SvgIcons)
 Vue.component(`hiswe-tech-logo`, TechLogs)
 Vue.component(`hiswe-title`, TwoLineTitle)
 Vue.component(`hiswe-header`, TwoLineHeader)
+Vue.component(`hiswe-field`, Field)
 
 Vue.component(`hiswe-contact`, Contact)
 Vue.component(`hiswe-social`, Social)

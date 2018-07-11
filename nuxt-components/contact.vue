@@ -1,15 +1,9 @@
 <template lang="pug">
   form.contact(action="/api/contact" method="post")
     hiswe-title(text="contact me" class="form__title")
-    .field.field--name
-      label(for="name") name
-      input(id="name" name="name" type="text")
-    .field.field--email
-      label(for="email") email
-      input(id="email" name="email" type="email" required)
-    .field.field--message
-      label(for="message") message
-      textarea(id="message" name="message" required)
+    hiswe-field(name="name"  type="text")
+    hiswe-field(name="email" type="email" required)
+    hiswe-field(name="message" tag="textarea" required)
     button(type="submit") send
 </template>
 
@@ -36,51 +30,51 @@
   padding: var(--gutter);
   text-align: center;
 }
-.field {
-  border: 0;
-  padding: 0;
+// .field {
+//   border: 0;
+//   padding: 0;
 
-  @media #{$mq-medium} {
-    display: flex;
-    flex-direction: column;
-  }
-}
-label {
-  @media #{$mq-medium} {
-    flex: 0 0 var(--grid-size);
-    height: var(--grid-size);
-    padding-top: 0.5rem;
-  }
-}
-label,
-input,
-textarea {
-  display: block;
-  color: white;
-}
-input,
-textarea {
-  background: none;
-  border: 4px solid var(--c-primary-darker);
-  display: block;
-  width: 100%;
-  flex-grow: 1;
-  padding: 0 0.5em;
-  transition: border 0.25s, background 0.25s;
+//   @media #{$mq-medium} {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
+// label {
+//   @media #{$mq-medium} {
+//     flex: 0 0 var(--grid-size);
+//     height: var(--grid-size);
+//     padding-top: 0.5rem;
+//   }
+// }
+// label,
+// input,
+// textarea {
+//   display: block;
+//   color: white;
+// }
+// input,
+// textarea {
+//   background: none;
+//   border: 4px solid var(--c-primary-darker);
+//   display: block;
+//   width: 100%;
+//   flex-grow: 1;
+//   padding: 0 0.5em;
+//   transition: border 0.25s, background 0.25s;
 
-  &:focus {
-    background: var(--c-primary-darkest-highlight);
-    border-color: var(--c-primary);
-  }
-}
-input {
-  padding: 0 0.5em;
-}
-textarea {
-  padding: 0.5em;
-  min-height: 8em;
-  resize: vertical;
-}
+//   &:focus {
+//     background: var(--c-primary-darkest-highlight);
+//     border-color: var(--c-primary);
+//   }
+// }
+// input {
+//   padding: 0 0.5em;
+// }
+// textarea {
+//   padding: 0.5em;
+//   min-height: 8em;
+//   resize: vertical;
+// }
 button {
   background: var(--c-primary);
   border: 0;
@@ -121,6 +115,27 @@ button {
 <script>
 export default {
   name: `section-contact`,
+  computed: {
+    validation() {
+      return this.$store.state.validation.fields
+    },
+    emailClassNames() {
+      const emailValidation = this.$store.state.validation.fields.email
+      return {
+        field: true,
+        'field--email': true,
+        'field--error': emailValidation && !emailValidation.valid,
+      }
+    },
+    emailClassNames() {
+      const emailValidation = this.$store.state.validation.fields.email
+      return {
+        field: true,
+        'field--email': true,
+        'field--error': emailValidation && !emailValidation.valid,
+      }
+    },
+  },
 }
 </script>
 

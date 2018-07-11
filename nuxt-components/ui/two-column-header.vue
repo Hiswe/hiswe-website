@@ -32,23 +32,15 @@ export default {
       default: `header`,
     },
   },
-  render(createElement) {
-    return createElement(
+  render(h) {
+    return h(
       this.tag,
       {
         class: `two-column-header`,
       },
       [
-        createElement(
-          `div`,
-          { class: `two-column-header__left` },
-          this.$slots.left
-        ),
-        createElement(
-          `div`,
-          { class: `two-column-header__right` },
-          this.$slots.right
-        ),
+        h(`div`, { class: `two-column-header__left` }, this.$slots.left),
+        h(`div`, { class: `two-column-header__right` }, this.$slots.right),
       ]
     )
   },

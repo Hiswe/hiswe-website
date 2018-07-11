@@ -1,7 +1,9 @@
-export const state = () => ({})
+export const state = () => ({
+  fields: {},
+})
 
 export const mutations = {
   SET(state, payload) {
-    state = payload
+    state.fields = payload
   },
 }

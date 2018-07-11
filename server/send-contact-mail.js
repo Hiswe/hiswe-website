@@ -1,5 +1,6 @@
 import c from 'chalk'
-import { isEmail, isEmpty } from 'validator'
+import isEmail from 'validator/lib/isEmail'
+import isEmpty from 'validator/lib/isEmpty'
 
 import config from './config'
 import { sendMail } from './services'
@@ -10,10 +11,18 @@ async function contactMail(formData) {
   const { email, message } = formData
 
   const validation = {
-    email: isEmail(email),
-    message: !isEmpty(message),
+    email: {
+      valid: isEmail(email),
+      value: email,
+    },
+    message: {
+      valid: !isEmpty(message),
+      value: message,
+    },
   }
-  const hasError = Object.values(validation).includes(false)
+  const hasError = Object.values(validation)
+    .map(field => field.valid)
+    .includes(false)
   if (hasError) {
     console.log(c.red(PREFIX), `validation error`)
     return {

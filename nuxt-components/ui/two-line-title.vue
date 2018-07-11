@@ -65,21 +65,19 @@ export default {
       return TITLE_REGEX.exec(this.text)[2]
     },
   },
-  render(createElement) {
-    return createElement(
+  render(h) {
+    return h(
       `h${this.level}`, // tag name
       {
         class: `two-line-title`,
       },
       [
-        createElement(`span`, { class: this.classNames }, [
+        h(`span`, { class: this.classNames }, [
           // this._v === text node
           // https://stackoverflow.com/questions/42414627/create-text-node-with-custom-render-function-in-vue-js
           this._v(this.firstLine),
         ]),
-        createElement(`span`, { class: `second-line` }, [
-          this._v(this.secondLine),
-        ]),
+        h(`span`, { class: `second-line` }, [this._v(this.secondLine)]),
       ]
     )
   },
