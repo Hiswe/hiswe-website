@@ -42,7 +42,7 @@ async function contactMail(formData) {
     })
   } catch (error) {
     return {
-      validation: {},
+      validation,
       notification: {
         content: `an error as occurred while sending the mail. Please try again`,
         type: `error`,
@@ -50,7 +50,7 @@ async function contactMail(formData) {
     }
   }
   return {
-    validation: {},
+    validation,
     notification: { content: `message send`, type: `info` },
   }
 }

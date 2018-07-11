@@ -13,7 +13,7 @@ export const mutations = {
   },
   REMOVE(state, id) {
     const messageIndex = state.messages.findIndex(message => message.id === id)
-    state.messages = state.messages.splice(messageIndex, 1)
+    state.messages.splice(messageIndex, 1)
   },
   REMOVE_ALL(state, payload) {
     state.messages = []

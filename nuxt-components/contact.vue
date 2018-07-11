@@ -1,10 +1,34 @@
 <template lang="pug">
-  form.contact(action="/api/contact" method="post")
-    hiswe-title(text="contact me" class="form__title")
+  form.contact(
+    :action="action"
+    method="post"
+    novalidate
+    @submit.prevent="handleSubmit"
+  )
+    hiswe-title(
+      text="contact me"
+      class="form__title"
+      :disabled="loading"
+    )
     hiswe-field(name="name"  type="text")
-    hiswe-field(name="email" type="email" required)
-    hiswe-field(name="message" tag="textarea" required)
-    button(type="submit") send
+    hiswe-field(
+      name="email"
+      type="email"
+      required
+      :disabled="loading"
+      :valid="validation.email.valid"
+    )
+    hiswe-field(
+      name="message"
+      tag="textarea"
+      required
+      :disabled="loading"
+      :valid="validation.message.valid"
+    )
+    button(
+      type="submit"
+      :disabled="loading"
+    ) send
 </template>
 
 <style lang="scss" scoped>
@@ -15,7 +39,7 @@
   grid-area: contact;
 
   @media #{$mq-medium} {
-    padding: var(--grid-size) 0;
+    padding: var(--gutter) 0;
     display: grid;
     grid-template-columns:
       1fr
@@ -30,51 +54,6 @@
   padding: var(--gutter);
   text-align: center;
 }
-// .field {
-//   border: 0;
-//   padding: 0;
-
-//   @media #{$mq-medium} {
-//     display: flex;
-//     flex-direction: column;
-//   }
-// }
-// label {
-//   @media #{$mq-medium} {
-//     flex: 0 0 var(--grid-size);
-//     height: var(--grid-size);
-//     padding-top: 0.5rem;
-//   }
-// }
-// label,
-// input,
-// textarea {
-//   display: block;
-//   color: white;
-// }
-// input,
-// textarea {
-//   background: none;
-//   border: 4px solid var(--c-primary-darker);
-//   display: block;
-//   width: 100%;
-//   flex-grow: 1;
-//   padding: 0 0.5em;
-//   transition: border 0.25s, background 0.25s;
-
-//   &:focus {
-//     background: var(--c-primary-darkest-highlight);
-//     border-color: var(--c-primary);
-//   }
-// }
-// input {
-//   padding: 0 0.5em;
-// }
-// textarea {
-//   padding: 0.5em;
-//   min-height: 8em;
-//   resize: vertical;
-// }
 button {
   background: var(--c-primary);
   border: 0;
@@ -113,27 +92,44 @@ button {
 </style>
 
 <script>
+import serialize from 'form-serialize'
+
 export default {
   name: `section-contact`,
+  data() {
+    return {
+      action: `/api/contact`,
+      loading: false,
+    }
+  },
   computed: {
     validation() {
       return this.$store.state.validation.fields
     },
-    emailClassNames() {
-      const emailValidation = this.$store.state.validation.fields.email
-      return {
-        field: true,
-        'field--email': true,
-        'field--error': emailValidation && !emailValidation.valid,
-      }
-    },
-    emailClassNames() {
-      const emailValidation = this.$store.state.validation.fields.email
-      return {
-        field: true,
-        'field--email': true,
-        'field--error': emailValidation && !emailValidation.valid,
-      }
+  },
+  methods: {
+    handleSubmit(event) {
+      const body = serialize(event.target, { hash: true, empty: true })
+      this.loading = true
+      this.$http
+        .post(this.action, body)
+        .then(response => {
+          const { data } = response
+          if (data.notification) {
+            this.$store.commit(`notification/ADD`, data.notification)
+          }
+          if (data.validation) {
+            this.$store.commit(`validation/SET`, data.validation)
+          }
+          this.loading = false
+        })
+        .catch(error => {
+          this.loading = false
+          commit(`notification/ADD`, {
+            content: `An error as occured, please try later`,
+            type: `error`,
+          })
+        })
     },
   },
 }

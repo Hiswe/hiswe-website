@@ -1,5 +1,12 @@
 export const state = () => ({
-  fields: {},
+  fields: {
+    email: {
+      valid: true,
+    },
+    message: {
+      valid: true,
+    },
+  },
 })
 
 export const mutations = {

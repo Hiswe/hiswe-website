@@ -19,6 +19,7 @@
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
+    "form-serialize": "^0.7.2",
     "fs-extra": "^6.0.1",
     "koa": "^2.5.1",
     "koa-body": "^4.0.4",
