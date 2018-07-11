@@ -13,6 +13,7 @@
     padding-left: 0.5em;
     font-size: 0.9em;
     color: red;
+    display: inline-block;
   }
 }
 label {
@@ -55,6 +56,17 @@ textarea {
   min-height: 8em;
   resize: vertical;
 }
+.error-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.75s, transform 0.5s;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+}
 </style>
 
 <script>
@@ -95,35 +107,25 @@ export default {
     },
   },
   render(h) {
-    return h(
-      `div`,
-      {
-        class: [
+    return (
+      <div
+        class={[
           `field`,
           `field--${this.name}`,
-          {
-            'field--invalid': this.showError,
-          },
-        ],
-      },
-      [
-        h(
-          `label`,
-          {
-            attrs: { for: this.name },
-          },
-          [
-            this.name,
-            this.showError
-              ? h(
-                  `span`,
-                  { class: `field__error-message` },
-                  `${this.name} is invalid`
-                )
-              : null,
-          ]
-        ),
-        h(this.tag, {
+          { 'field--invalid': this.showError },
+        ]}
+      >
+        <label for={this.name}>
+          {this.name}
+          <transition name="error-fade">
+            {!this.showError ? null : (
+              <span class="field__error-message">{`${
+                this.name
+              } is invalid`}</span>
+            )}
+          </transition>
+        </label>
+        {h(this.tag, {
           attrs: {
             id: this.name,
             name: this.name,
@@ -133,8 +135,8 @@ export default {
             // https://vuejs.org/v2/guide/render-function.html#Event-amp-Key-Modifiers
             '&blur': this.handleBlur,
           },
-        }),
-      ]
+        })}
+      </div>
     )
   },
 }
