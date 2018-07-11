@@ -18,7 +18,7 @@
 .social {
   margin: var(--gutter) auto;
   background: var(--c-primary-darkest-highlight);
-  padding: var(--gutter);
+  padding: var(--vertical-space) var(--gutter);
   margin: 0;
   grid-area: social;
   --svg-icon-scale: 1.5;

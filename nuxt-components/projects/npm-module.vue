@@ -34,6 +34,7 @@ dl(:class="`npm-module npm-module--${name}`")
     flex: 0 0 auto;
 
     @media #{$mq-medium} {
+      padding-top: var(--vertical-space);
       font-size: 1.75rem;
     }
   }
@@ -50,7 +51,7 @@ dl(:class="`npm-module npm-module--${name}`")
     }
   }
   &__link {
-    padding: var(--gutter);
+    padding: var(--gutter) var(--gutter) var(--vertical-space);
     flex: 0 0 auto;
 
     a {

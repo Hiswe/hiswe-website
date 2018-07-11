@@ -59,7 +59,7 @@ section.techs
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr 1fr 9fr 1fr;
-    padding: var(--grid-size) 0 0;
+    padding: var(--vertical-space) 0 0;
     grid-auto-rows: auto;
     grid-template-areas:
       '. framework .     . server .'

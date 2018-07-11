@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 4fr 1fr 5fr 1fr;
   grid-template-areas: '. left . right .';
   margin: 0;
-  padding: var(--two-gutter) 0;
+  padding: var(--vertical-space) 0;
   background: white;
 
   &__left {
@@ -28,7 +28,6 @@ export default {
   props: {
     tag: {
       type: String,
-      required: true,
       default: `header`,
     },
   },

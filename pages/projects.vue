@@ -62,9 +62,10 @@ hiswe-main-content(page="projects")
 }
 .npm-title {
   grid-area: npm-title;
+  align-self: end;
 
   @media #{$mq-medium} {
-    padding: 3rem 50% 0 0;
+    padding: 3rem percentage(21/36) 0 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -74,7 +75,7 @@ hiswe-main-content(page="projects")
   grid-area: npm-description;
 
   @media #{$mq-medium} {
-    padding: 0;
+    padding: 0 0 var(--vertical-space);
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 1fr repeat(2, auto);
@@ -90,7 +91,7 @@ hiswe-main-content(page="projects")
       grid-area: first-paragraph;
     }
     &:last-child {
-      padding: 1rem 0;
+      padding: 1rem 0 0;
       grid-area: second-paragraph;
     }
   }
@@ -102,7 +103,7 @@ hiswe-main-content(page="projects")
 
   @media #{$mq-medium} {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 5fr repeat(2, 6.5fr);
     padding: 0;
 
     // fill blank NPM module

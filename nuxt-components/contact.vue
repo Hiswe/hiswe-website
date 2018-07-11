@@ -35,11 +35,11 @@
 .contact {
   background: var(--c-primary-darkest);
   color: var(--c-primary-lighter);
-  padding: var(--gutter);
+  padding: var(--vertical-space) var(--gutter);
   grid-area: contact;
 
   @media #{$mq-medium} {
-    padding: var(--gutter) 0;
+    padding: var(--vertical-space) 0;
     display: grid;
     grid-template-columns:
       1fr

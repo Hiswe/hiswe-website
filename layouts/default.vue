@@ -1,6 +1,5 @@
 <template lang="pug">
   main(role="main")
-    hiswe-main-title
     hiswe-main-navigation
     nuxt
     hiswe-notifications
@@ -24,9 +23,12 @@ main {
       'main-title empty main-nav'
       'main-content main-content main-content';
   }
-}
-.main-title {
-  grid-area: main-title;
+
+  &::before {
+    content: '';
+    background: white;
+    grid-area: main-title;
+  }
 }
 .main-navigation {
   grid-area: main-nav;
@@ -37,14 +39,12 @@ main {
 </style>
 
 <script>
-import MainTitle from '~/nuxt-components/main-title.vue'
 import MainNavigation from '~/nuxt-components/main-navigation.vue'
 import Notifications from '~/nuxt-components/notifications.vue'
 
 export default {
   name: `default-layout`,
   components: {
-    'hiswe-main-title': MainTitle,
     'hiswe-main-navigation': MainNavigation,
     'hiswe-notifications': Notifications,
   },
