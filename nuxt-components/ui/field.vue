@@ -75,11 +75,6 @@ import isEmpty from 'validator/lib/isEmpty'
 
 export default {
   name: `hiswe-field`,
-  data() {
-    return {
-      pristine: true,
-    }
-  },
   props: {
     tag: {
       type: String,
@@ -92,6 +87,22 @@ export default {
     valid: {
       type: Boolean,
       default: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      pristine: true,
+    }
+  },
+  watch: {
+    disabled(newVal, oldVal) {
+      // disabled mean it has been submited
+      // • reset pristine state for validation showing
+      if (newVal === true) this.pristine = true
     },
   },
   computed: {
@@ -129,6 +140,7 @@ export default {
           attrs: {
             id: this.name,
             name: this.name,
+            disabled: this.disabled,
             ...this.$attrs,
           },
           on: {
