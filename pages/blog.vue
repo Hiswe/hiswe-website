@@ -44,6 +44,7 @@
     @media #{$mq-big} {
       padding-top: 3rem;
       padding-left: 1rem;
+      font-size: 1.5rem;
       text-align: left;
     }
   }

@@ -98,9 +98,6 @@
     color: var(--c-primary-darker);
     padding: 1rem 0 0;
     @media #{$mq-medium} {
-      font-size: 2vw;
-    }
-    @media #{$mq-medium} {
       font-size: 1rem;
     }
   }
@@ -113,7 +110,7 @@
     line-height: 1.2;
     color: var(--c-accent);
 
-    @media #{$mq-medium-only} {
+    @media #{$mq-medium} {
       font-size: calc(2.5vw + 0.5rem);
     }
     @media #{$mq-big} {
