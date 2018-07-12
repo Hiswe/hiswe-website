@@ -62,9 +62,13 @@ hiswe-main-content(page="projects")
 }
 .npm-title {
   grid-area: npm-title;
-  align-self: end;
+
+  @media #{$mq-small} {
+    text-align: center;
+  }
 
   @media #{$mq-medium} {
+    align-self: end;
     padding: 3rem percentage(21/36) 0 0;
     display: flex;
     flex-direction: column;
