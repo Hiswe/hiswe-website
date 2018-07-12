@@ -42,6 +42,7 @@ hiswe-main-content(page="home")
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    // grid-template-rows: repeate(5, auto) 1fr;
     grid-auto-rows: auto;
     grid-template-areas:
       'header      header      integration'
@@ -70,11 +71,24 @@ hiswe-main-content(page="home")
   }
   @media #{$mq-big} {
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, auto) minmax(0vh, 0.5fr);
+
+    &::after {
+      content: '';
+      background: var(--c-primary-darker);
+      background: linear-gradient(
+        to right,
+        var(--c-primary-darker) percentage(5/6),
+        var(--c-primary-darkest-highlight) percentage(5/6)
+      );
+      grid-area: footer;
+    }
     grid-template-areas:
       'header      header      integration  webdesign webdesign webdesign'
       'header      header      integration  contact   contact   contact'
       'development development integration  contact   contact   contact'
-      'techs      techs        techs        techs     techs     social';
+      'techs      techs        techs        techs     techs     social'
+      'footer      footer        footer        footer     footer     footer';
   }
 }
 </style>

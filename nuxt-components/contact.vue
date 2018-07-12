@@ -41,18 +41,35 @@
   @media #{$mq-medium} {
     padding: var(--vertical-space) 0;
     display: grid;
-    grid-template-columns:
-      1fr
-      [left-start] repeat(6, 1fr)
-      [left-end] 1fr
-      [right-start] repeat(9, 1fr)
-      [right-end] 1fr;
-    grid-auto-rows: minmax(2rem, auto);
+    grid-template-columns: 1fr 6fr 1fr 9fr 1fr;
+    grid-template-rows: auto 5rem 5rem minmax(2rem, auto) 3rem;
+    grid-template-areas:
+      '. .      . title   .'
+      '. name   . message .'
+      '. email  . message .'
+      '. .      . message .'
+      '. button . message .';
   }
 }
-.two-line-title {
+.form__title {
   padding: var(--gutter);
   text-align: center;
+  grid-area: title;
+  align-self: center;
+
+  @media #{$mq-medium} {
+    text-align: left;
+    padding: 0;
+  }
+}
+.field--name {
+  grid-area: name;
+}
+.field--email {
+  grid-area: email;
+}
+.field--message {
+  grid-area: message;
 }
 button {
   background: var(--c-primary);
@@ -60,6 +77,7 @@ button {
   margin-top: var(--gutter);
   padding: var(--half-gutter) var(--gutter);
   transition: color 0.25s, background-color 0.25s;
+  grid-area: button;
 
   &:hover {
     background-color: var(--c-accent);
@@ -69,25 +87,6 @@ button {
     margin-top: 0;
     padding: var(--quarter-gutter);
   }
-}
-.form__title {
-  @media #{$mq-medium} {
-    grid-area: 1 / right-start / 3 / right-end;
-    text-align: left;
-    padding: 0;
-  }
-}
-.field--name {
-  grid-area: 3 / left-start / 5 / left-end;
-}
-.field--email {
-  grid-area: 5 / left-start / 7 / left-end;
-}
-.field--message {
-  grid-area: 3 / right-start / 9 / right-end;
-}
-button {
-  grid-area: 8 / left-start / 9 / left-end;
 }
 </style>
 
