@@ -1,35 +1,35 @@
 <template lang="pug">
-  form.contact(
-    :action="action"
-    method="post"
-    novalidate
-    @submit.prevent="handleSubmit"
+form.contact(
+  :action="action"
+  method="post"
+  novalidate
+  @submit.prevent="handleSubmit"
+)
+  hiswe-title(
+    text="contact me"
+    class="form__title"
+    :level="2"
+    :disabled="loading"
   )
-    hiswe-title(
-      text="contact me"
-      class="form__title"
-      :level="2"
-      :disabled="loading"
-    )
-    hiswe-field(name="name"  type="text")
-    hiswe-field(
-      name="email"
-      type="email"
-      required
-      :disabled="loading"
-      :valid="validation.email.valid"
-    )
-    hiswe-field(
-      name="message"
-      tag="textarea"
-      required
-      :disabled="loading"
-      :valid="validation.message.valid"
-    )
-    button(
-      type="submit"
-      :disabled="loading"
-    ) send
+  hiswe-field(name="name"  type="text")
+  hiswe-field(
+    name="email"
+    type="email"
+    required
+    :disabled="loading"
+    :valid="validation.email.valid"
+  )
+  hiswe-field(
+    name="message"
+    tag="textarea"
+    required
+    :disabled="loading"
+    :valid="validation.message.valid"
+  )
+  button(
+    type="submit"
+    :disabled="loading"
+  ) send
 </template>
 
 <style lang="scss" scoped>
@@ -74,15 +74,19 @@
 }
 button {
   background: var(--c-primary);
+  color: black;
   border: 0;
   margin-top: var(--gutter);
   padding: var(--half-gutter) var(--gutter);
-  transition: color 0.25s, background-color 0.25s;
+  transition: color 0.25s, background-color 0.25s, transform 0.15s;
   grid-area: button;
 
   &:hover {
     background-color: var(--c-accent);
     color: white;
+  }
+  &:active {
+    transform: translateY(3px);
   }
   @media #{$mq-medium} {
     margin-top: 0;

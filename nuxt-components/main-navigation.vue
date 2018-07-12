@@ -26,7 +26,7 @@ label {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 105;
 
   @media #{$mq-medium} {
     display: none;
@@ -38,6 +38,9 @@ input {
   @media #{$mq-small} {
     &:not(:checked) ~ div {
       @include hidden-accessible;
+    }
+    &:checked + label {
+      position: fixed;
     }
   }
 }
@@ -54,6 +57,7 @@ div {
   bottom: 0;
   left: 0;
   background: white;
+  z-index: 100;
 
   @media #{$mq-medium} {
     position: static;

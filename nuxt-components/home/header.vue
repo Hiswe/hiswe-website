@@ -32,6 +32,9 @@ h1 {
   margin: 0;
 
   @media #{$mq-small} {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
     br {
       display: none;
     }
