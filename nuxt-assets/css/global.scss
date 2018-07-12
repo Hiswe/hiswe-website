@@ -26,8 +26,11 @@ html {
 }
 html,
 body {
-  margin: 0;
   padding: 0;
+}
+body {
+  max-width: 1600px;
+  margin: 0 auto;
 }
 // prevent zooming on double-tap
 // https://stackoverflow.com/questions/46167604/iphone-html-disable-double-tap-to-zoom

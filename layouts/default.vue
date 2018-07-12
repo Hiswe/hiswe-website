@@ -7,6 +7,8 @@
 
 <style lang="scss" scoped>
 main {
+  min-height: 100vh;
+
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: 1fr;

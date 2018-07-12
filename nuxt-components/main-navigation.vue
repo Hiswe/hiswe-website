@@ -62,7 +62,7 @@ div {
   }
   @media #{$mq-big} {
     height: auto;
-    background: var(--c-background);
+    background: var(--c-primary-lightest);
   }
 }
 a {

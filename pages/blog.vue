@@ -31,6 +31,7 @@
     text-align: center;
     color: var(--c-primary-darker);
     grid-area: latest-title;
+    background: var(--c-primary-lightest);
 
     @media #{$mq-medium} {
       font-size: calc(1.5vw + 0.5rem);
