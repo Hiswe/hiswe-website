@@ -13,6 +13,8 @@ const SVG_LIB = {
       `<%= svgAttrs.class %>`,
       `<%= icon.class.replace(/^\./, '') %>`,
     ],
+    width: `<%= icon.width %>`,
+    height: `<%= icon.height %>`,
     style: {
       width: `calc(<%= icon.width %> * var(--svg-icon-scale))`,
       height: `calc(<%= icon.height %> * var(--svg-icon-scale))`,
@@ -40,6 +42,8 @@ export default {
       if (!SVG_LIB[this.name]) return {}
       return {
         viewBox: this.icon.viewBox,
+        width: this.icon.width,
+        height: this.icon.height,
         ...SVG_ATTRS,
       }
     },

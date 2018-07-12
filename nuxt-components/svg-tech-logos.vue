@@ -13,6 +13,8 @@ const SVG_LIB = {
       `logo`,
       `logo--express`,
     ],
+    width: `105px`,
+    height: `70px`,
     style: {
       width: `calc(105px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -26,6 +28,8 @@ const SVG_LIB = {
       `logo`,
       `logo--gulp`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -39,6 +43,8 @@ const SVG_LIB = {
       `logo`,
       `logo--koa`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -52,6 +58,8 @@ const SVG_LIB = {
       `logo`,
       `logo--mongo`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -65,6 +73,8 @@ const SVG_LIB = {
       `logo`,
       `logo--node`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -78,6 +88,8 @@ const SVG_LIB = {
       `logo`,
       `logo--parcel`,
     ],
+    width: `105px`,
+    height: `70px`,
     style: {
       width: `calc(105px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -91,6 +103,8 @@ const SVG_LIB = {
       `logo`,
       `logo--postgre`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -104,6 +118,8 @@ const SVG_LIB = {
       `logo`,
       `logo--react`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -117,6 +133,8 @@ const SVG_LIB = {
       `logo`,
       `logo--vue`,
     ],
+    width: `70px`,
+    height: `70px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -130,6 +148,8 @@ const SVG_LIB = {
       `logo`,
       `logo--webpack`,
     ],
+    width: `105px`,
+    height: `70px`,
     style: {
       width: `calc(105px * var(--svg-icon-scale))`,
       height: `calc(70px * var(--svg-icon-scale))`,
@@ -159,6 +179,8 @@ export default {
       if (!SVG_LIB[this.name]) return {}
       return {
         viewBox: this.icon.viewBox,
+        width: this.icon.width,
+        height: this.icon.height,
         ...SVG_ATTRS,
       }
     },

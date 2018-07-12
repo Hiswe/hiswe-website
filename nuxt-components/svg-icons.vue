@@ -13,6 +13,8 @@ const SVG_LIB = {
       `icon`,
       `icon--menu`,
     ],
+    width: `24px`,
+    height: `24px`,
     style: {
       width: `calc(24px * var(--svg-icon-scale))`,
       height: `calc(24px * var(--svg-icon-scale))`,
@@ -26,6 +28,8 @@ const SVG_LIB = {
       `icon`,
       `icon--codepen`,
     ],
+    width: `24px`,
+    height: `24px`,
     style: {
       width: `calc(24px * var(--svg-icon-scale))`,
       height: `calc(24px * var(--svg-icon-scale))`,
@@ -63,6 +67,8 @@ const SVG_LIB = {
       `icon`,
       `icon--github`,
     ],
+    width: `22px`,
+    height: `22px`,
     style: {
       width: `calc(22px * var(--svg-icon-scale))`,
       height: `calc(22px * var(--svg-icon-scale))`,
@@ -76,6 +82,8 @@ const SVG_LIB = {
       `icon`,
       `icon--hiswe-small`,
     ],
+    width: `70px`,
+    height: `100px`,
     style: {
       width: `calc(70px * var(--svg-icon-scale))`,
       height: `calc(100px * var(--svg-icon-scale))`,
@@ -89,6 +97,8 @@ const SVG_LIB = {
       `icon`,
       `icon--hiswe`,
     ],
+    width: `140px`,
+    height: `40px`,
     style: {
       width: `calc(140px * var(--svg-icon-scale))`,
       height: `calc(40px * var(--svg-icon-scale))`,
@@ -102,6 +112,8 @@ const SVG_LIB = {
       `icon`,
       `icon--medium`,
     ],
+    width: `24px`,
+    height: `24px`,
     style: {
       width: `calc(24px * var(--svg-icon-scale))`,
       height: `calc(24px * var(--svg-icon-scale))`,
@@ -109,12 +121,29 @@ const SVG_LIB = {
     'viewBox': `0 0 24 24`,
     content: `<path id="Rectangle-path" d="M24,0l0,24l-24,0l0,-24l24,0Zm-4.092,18.215l0,-0.271l-1.257,-1.234c-0.111,-0.084 -0.166,-0.223 -0.143,-0.361l0,-9.067c-0.023,-0.138 0.032,-0.277 0.143,-0.362l1.287,-1.234l0,-0.271l-4.456,0l-3.176,7.924l-3.613,-7.924l-4.674,0l0,0.271l1.505,1.814c0.148,0.133 0.223,0.329 0.203,0.527l0,7.126c0.044,0.257 -0.037,0.519 -0.218,0.707l-1.694,2.054l0,0.271l4.803,0l0,-0.271l-1.694,-2.054c-0.182,-0.187 -0.268,-0.448 -0.233,-0.707l0,-6.163l4.215,9.195l0.489,0l3.621,-9.195l0,7.329c0,0.196 0,0.233 -0.128,0.361l-1.302,1.264l0,0.271l6.322,0Z"/>`,
   },
+  "npm": {
+    id: `npm`,
+    class: [
+      `icon`,
+      `icon--npm`,
+    ],
+    width: `18px`,
+    height: `7px`,
+    style: {
+      width: `calc(18px * var(--svg-icon-scale))`,
+      height: `calc(7px * var(--svg-icon-scale))`,
+    },
+    'viewBox': `0 0 18 7`,
+    content: ` <path fill="#CB3837" d="M0 0v6h5v1h4V6h9V0"/> <path fill="#FFF" d="M1 1v4h2V2h1v3h1V1h1v5h2V2h1v2H8v1h2V1h1v4h2V2h1v3h1V2h1v3h1V1"/> `,
+  },
   "twitter": {
     id: `twitter`,
     class: [
       `icon`,
       `icon--twitter`,
     ],
+    width: `25px`,
+    height: `25px`,
     style: {
       width: `calc(25px * var(--svg-icon-scale))`,
       height: `calc(25px * var(--svg-icon-scale))`,
@@ -144,6 +173,8 @@ export default {
       if (!SVG_LIB[this.name]) return {}
       return {
         viewBox: this.icon.viewBox,
+        width: this.icon.width,
+        height: this.icon.height,
         ...SVG_ATTRS,
       }
     },
