@@ -1,7 +1,7 @@
 <template lang="pug">
 header.blog-header
   hiswe-header.blog-header-text(tag="div")
-    template(slot="left"): h3.header-title blog
+    template(slot="left"): h1.header-title blog
     template(slot="right")
       | Documenting and passing knowledge to help as I've being helped
   a.full-post-link(href="https://hiswe.github.io/") see full blog

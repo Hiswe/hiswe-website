@@ -4,7 +4,7 @@ hiswe-main-content(page="projects")
   hiswe-contact
   hiswe-project-header
 
-  hiswe-title(text="NPM modules" class="npm-title")
+  hiswe-title(text="NPM modules" class="npm-title" level="2")
   .npm-description
     p
       | in <a href="https://nodejs.org/en/">Node.js'</a> community,
@@ -16,7 +16,7 @@ hiswe-main-content(page="projects")
     hiswe-npm-module(name="vh-check")
       | Help handling some sizes on mobile browser
 
-  hiswe-title(text="web applications" class="webapp-title")
+  hiswe-title(text="web applications" class="webapp-title" level="2")
   hiswe-webapp-listing
 
   hiswe-social
