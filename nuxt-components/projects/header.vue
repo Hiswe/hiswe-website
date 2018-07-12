@@ -1,5 +1,5 @@
 <template lang="pug">
-  header
+  .project-header
     hiswe-title(
       text="Open Source"
       :level="2"
@@ -9,7 +9,7 @@
 </template>
 
 <style lang="scss" scoped>
-header {
+.project-header {
   display: grid;
   grid-area: header;
   grid-template-columns: 1fr 4fr 1fr 5fr 1fr;

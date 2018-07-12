@@ -1,8 +1,7 @@
 <template lang="pug">
 hiswe-main-content(page="home")
-  hiswe-home-header
-  hiswe-contact
-  hiswe-social
+  template(slot="header")
+    hiswe-home-header
   hiswe-service(title="dev-elopment")
     template(slot="description")
       | building<br>web application

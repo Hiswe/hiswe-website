@@ -1,3 +1,10 @@
+<template lang="pug">
+.two-column-header
+  .two-column-header__left:  slot(name="left")
+  .two-column-header__right: slot(name="right")
+</template>
+
+
 <style lang="scss" scoped>
 .two-column-header {
   display: grid;
@@ -24,25 +31,7 @@
 
 <script>
 export default {
-  name: `hiswe-two-column-header`,
-  props: {
-    tag: {
-      type: String,
-      default: `header`,
-    },
-  },
-  render(h) {
-    return h(
-      this.tag,
-      {
-        class: `two-column-header`,
-      },
-      [
-        h(`div`, { class: `two-column-header__left` }, this.$slots.left),
-        h(`div`, { class: `two-column-header__right` }, this.$slots.right),
-      ]
-    )
-  },
+  name: `hiswe-header-content`,
 }
 </script>
 

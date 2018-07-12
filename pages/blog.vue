@@ -1,8 +1,7 @@
 <template lang="pug">
   hiswe-main-content(page="blog")
-    hiswe-blog-header
-    hiswe-contact
-    hiswe-social
+    template(slot="header")
+      hiswe-blog-header
     hiswe-title.blog-latest-title(
       text="latest blog posts"
       :level="2"

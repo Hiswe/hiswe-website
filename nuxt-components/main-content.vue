@@ -1,5 +1,9 @@
 <template lang="pug">
   div(:class="`main-content page-${page}`")
+    header.main-header
+      slot(name="header")
+    hiswe-contact
+    hiswe-social
     slot
 </template>
 
@@ -16,6 +20,10 @@
   .social {
     order: 667;
   }
+}
+.main-header {
+  background: white;
+  grid-area: header;
 }
 </style>
 

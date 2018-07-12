@@ -1,6 +1,6 @@
 <template lang="pug">
-header.blog-header
-  hiswe-header.blog-header-text(tag="div")
+.blog-header
+  hiswe-header-content.blog-header-text
     template(slot="left"): h1.header-title blog
     template(slot="right")
       | Documenting and passing knowledge to help as I've being helped

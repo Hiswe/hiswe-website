@@ -1,15 +1,15 @@
 <template lang="pug">
-  header.header
-    h1 I make custom<br> website for<br> everyone's need
-    hiswe-header(tag="div")
-      template(slot="left"): h2.name I'm<br> Yannick<br> “hiswe”<br> Aïvayan
-      template(slot="right")
-        p A full stack Javascript web-developer.
-        p Depending on the project I will use the most appropriate set of tools.
+.home-header
+  h1 I make custom<br> website for<br> everyone's need
+  hiswe-header-content
+    template(slot="left"): h2.name I'm<br> Yannick<br> “hiswe”<br> Aïvayan
+    template(slot="right")
+      p A full stack Javascript web-developer.
+      p Depending on the project I will use the most appropriate set of tools.
 </template>
 
 <style lang="scss" scoped>
-.header {
+.home-header {
   text-align: center;
   background: white;
   padding: 0;
