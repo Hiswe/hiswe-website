@@ -1,8 +1,8 @@
 <template lang="pug">
 nav.main-navigation
-  input(type="checkbox" id="menu-toggle")
+  input(type="checkbox" id="menu-toggle" v-model="open")
   label(for="menu-toggle"): hiswe-icon(name="menu")
-  div
+  div(@click="close")
     nuxt-link(to="/" exact-active-class="active" data-name="home") home
     nuxt-link(to="/projects" active-class="active" data-name="projects") projects
     // nuxt-link(to="/work" active-class="active" data-name="work") work
@@ -157,6 +157,16 @@ a {
 <script>
 export default {
   name: `main-navigation`,
+  data() {
+    return {
+      open: false,
+    }
+  },
+  methods: {
+    close() {
+      this.open = false
+    },
+  },
 }
 </script>
 
