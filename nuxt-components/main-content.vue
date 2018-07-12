@@ -24,9 +24,22 @@
 .main-header {
   background: white;
   grid-area: header;
+  position: relative;
+
+  &::before {
+    background: white;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+
+    @media #{$mq-big} {
+      content: '';
+    }
+  }
 }
 </style>
-
 
 <script>
 export default {
