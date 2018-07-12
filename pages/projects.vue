@@ -19,7 +19,11 @@ hiswe-main-content(page="projects")
     hiswe-npm-module(name="vh-check")
       | Help handling some sizes on mobile browser
 
-  hiswe-title(text="web applications" class="webapp-title" level="2")
+  hiswe-title(
+    text="web applications"
+    class="webapp-title"
+    :level="2"
+  )
   hiswe-webapp-listing
 </template>
 

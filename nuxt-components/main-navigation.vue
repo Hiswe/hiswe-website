@@ -61,8 +61,9 @@ div {
 
   @media #{$mq-medium} {
     position: static;
-    display: flex;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    // width: 100%;
   }
   @media #{$mq-big} {
     height: auto;
