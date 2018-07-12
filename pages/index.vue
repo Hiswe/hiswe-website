@@ -29,16 +29,6 @@ hiswe-main-content(page="home")
 
 <style lang="scss" scoped>
 .page-home {
-  display: flex;
-  flex-direction: column;
-
-  .contact {
-    order: 2;
-  }
-  .social {
-    order: 3;
-  }
-
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

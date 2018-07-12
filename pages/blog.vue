@@ -12,17 +12,6 @@
 
 <style lang="scss" scoped>
 .page-blog {
-  @media #{$mq-small} {
-    display: flex;
-    flex-direction: column;
-
-    .contact {
-      order: 10;
-    }
-    .social {
-      order: 11;
-    }
-  }
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
