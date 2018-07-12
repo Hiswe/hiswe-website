@@ -1,6 +1,11 @@
 <template lang="pug" v-if="loadingDone">
-  .posts
-    hiswe-post-preview(v-for="post in posts" :key="post.published" :post="post")
+  // .posts
+  transition-group(class="posts" name="list" tag="div")
+    hiswe-post-preview(
+      v-for="post in posts"
+      :key="post.published"
+      :post="post"
+    )
 </template>
 
 <style lang="scss" scoped>
@@ -18,6 +23,25 @@
   @media #{$mq-big} {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+
+  @for $i from 0 through 19 {
+    &:nth-child(#{$i}) {
+      transition-delay: $i * 0.075s;
+    }
+  }
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
 

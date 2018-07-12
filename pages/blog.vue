@@ -21,6 +21,7 @@
   }
   @media #{$mq-big} {
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
     grid-template-areas:
       'header       header       contact contact contact social'
       'latest-title latest-title contact contact contact social'
