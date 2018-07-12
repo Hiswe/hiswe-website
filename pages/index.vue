@@ -100,6 +100,7 @@ import TechSection from '~/nuxt-components/home/techs.vue'
 
 export default {
   name: `page-home`,
+  transition: `page`,
   components: {
     'hiswe-home-header': HisweHeader,
     'hiswe-service': HisweService,

@@ -57,6 +57,7 @@ import Posts from '~/nuxt-components/blog/post-listing.vue'
 
 export default {
   name: `page-blog`,
+  transition: `page`,
   components: {
     'hiswe-blog-header': Header,
     'hiswe-blog-posts': Posts,

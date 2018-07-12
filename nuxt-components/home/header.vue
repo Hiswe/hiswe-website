@@ -1,5 +1,5 @@
 <template lang="pug">
-  .header
+  header.header
     h1 I make custom<br> website for<br> everyone's need
     hiswe-header(tag="div")
       template(slot="left"): h2.name I'm<br> Yannick<br> “hiswe”<br> Aïvayan

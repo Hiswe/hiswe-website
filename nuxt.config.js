@@ -12,7 +12,10 @@ module.exports = {
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
   },
-  css: [`@/nuxt-assets/css/global.scss`],
+  css: [
+    `@/nuxt-assets/css/global.scss`,
+    `@/nuxt-assets/css/page-transitions.scss`,
+  ],
   // inject scss files in every module
   // • https://github.com/anteriovieira/nuxt-sass-resources-loader
   // • https://hackernoon.com/how-i-use-scss-variables-mixins-functions-globally-in-nuxt-js-projects-while-compiling-css-utilit-58bb6ff30438
