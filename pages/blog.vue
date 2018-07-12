@@ -3,7 +3,10 @@
     hiswe-blog-header
     hiswe-contact
     hiswe-social
-    hiswe-title.blog-latest-title(text="latest blog posts" level="2")
+    hiswe-title.blog-latest-title(
+      text="latest blog posts"
+      :level="2"
+    )
     no-ssr: hiswe-blog-posts
 </template>
 

@@ -8,7 +8,7 @@
     hiswe-title(
       text="contact me"
       class="form__title"
-      level="2"
+      :level="2"
       :disabled="loading"
     )
     hiswe-field(name="name"  type="text")
