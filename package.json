@@ -6,8 +6,11 @@
   "version": "4.0.0",
   "license": "MIT",
   "scripts": {
+    "build": "yarn build:svg && yarn build:app",
+    "build:app": "nuxt build",
     "build:svg": "gulp build:svg",
     "dev": "maildev & backpack dev",
+    "prod": "yarn build && nuxt start",
     "toc": "doctoc server/content/*.md --github"
   },
   "repository": {
