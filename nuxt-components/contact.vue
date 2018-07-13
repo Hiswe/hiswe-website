@@ -4,31 +4,35 @@ form.contact(
   method="post"
   novalidate
   @submit.prevent="handleSubmit"
+  @click="enable"
 )
   hiswe-title(
     text="contact me"
     class="form__title"
     :level="2"
-    :disabled="loading"
   )
-  hiswe-field(name="name"  type="text")
+  hiswe-field(
+    name="name"
+    type="text"
+    :disabled="disabled"
+  )
   hiswe-field(
     name="email"
     type="email"
     required
-    :disabled="loading"
+    :disabled="disabled"
     :valid="validation.email.valid"
   )
   hiswe-field(
     name="message"
     tag="textarea"
     required
-    :disabled="loading"
+    :disabled="disabled"
     :valid="validation.message.valid"
   )
   button(
     type="submit"
-    :disabled="loading"
+    :disabled="disabled"
   ) send
 </template>
 
@@ -88,6 +92,10 @@ button {
   &:active {
     transform: translateY(3px);
   }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
   @media #{$mq-medium} {
     margin-top: 0;
     padding: var(--quarter-gutter);
@@ -103,7 +111,7 @@ export default {
   data() {
     return {
       action: `/api/contact`,
-      loading: false,
+      disabled: false,
     }
   },
   computed: {
@@ -112,9 +120,12 @@ export default {
     },
   },
   methods: {
+    enable(event) {
+      this.disabled = false
+    },
     handleSubmit(event) {
       const body = serialize(event.target, { hash: true, empty: true })
-      this.loading = true
+      this.disabled = true
       this.$http
         .post(this.action, body)
         .then(response => {
@@ -123,12 +134,16 @@ export default {
             this.$store.commit(`notification/ADD`, data.notification)
           }
           if (data.validation) {
+            const isInvalid = Object.values(data.validation)
+              .map(field => field.valid)
+              .includes(false)
+            // let the user automatically fix his errors
+            if (isInvalid) this.disabled = false
             this.$store.commit(`validation/SET`, data.validation)
           }
-          this.loading = false
         })
         .catch(error => {
-          this.loading = false
+          this.disabled = false
           commit(`notification/ADD`, {
             content: `An error as occured, please try later`,
             type: `error`,

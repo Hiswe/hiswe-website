@@ -3,6 +3,11 @@
   border: 0;
   padding: 0;
 
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   @media #{$mq-medium} {
     display: flex;
     flex-direction: column;
@@ -123,7 +128,10 @@ export default {
         class={[
           `field`,
           `field--${this.name}`,
-          { 'field--invalid': this.showError },
+          {
+            'field--invalid': this.showError,
+            'field--disabled': this.disabled,
+          },
         ]}
       >
         <label for={this.name}>
