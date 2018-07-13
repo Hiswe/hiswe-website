@@ -1,4 +1,7 @@
 module.exports = {
+  router: {
+    middleware: `reset-form`,
+  },
   head: {
     // titleTemplate: '%s - Nuxt.js',
     meta: [
