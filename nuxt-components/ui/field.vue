@@ -75,9 +75,6 @@ textarea {
 </style>
 
 <script>
-import isEmail from 'validator/lib/isEmail'
-import isEmpty from 'validator/lib/isEmpty'
-
 export default {
   name: `hiswe-field`,
   props: {
@@ -114,12 +111,30 @@ export default {
     showError() {
       return !this.valid && this.pristine
     },
+    isTextarea() {
+      return this.tag === `textarea`
+    },
+  },
+  mounted() {
+    if (this.isTextarea) this.autoresize()
   },
   methods: {
     handleBlur(event) {
       // ignore if event is a window blur
       if (document.activeElement === this.controlEl) return
       this.pristine = false
+    },
+    autoresize(event) {
+      const { input } = this.$refs
+      const originalRows = input.getAttribute(`rows`)
+      // force a one-liner by default
+      // • this make it easy to calculate the right height
+      input.setAttribute(`rows`, `1`)
+      input.style.minHeight = `auto`
+      const { scrollHeight } = input
+      input.style.minHeight = `${scrollHeight}px`
+      input.scrollTop = scrollHeight
+      input.setAttribute(`rows`, originalRows)
     },
   },
   render(h) {
@@ -145,16 +160,20 @@ export default {
           </transition>
         </label>
         {h(this.tag, {
+          ref: `input`,
           attrs: {
             id: this.name,
             name: this.name,
             disabled: this.disabled,
             ...this.$attrs,
           },
-          on: {
-            // https://vuejs.org/v2/guide/render-function.html#Event-amp-Key-Modifiers
-            '&blur': this.handleBlur,
-          },
+          on: this.isTextarea
+            ? {
+                // https://vuejs.org/v2/guide/render-function.html#Event-amp-Key-Modifiers
+                '&blur': this.handleBlur,
+                '&input': this.autoresize,
+              }
+            : { '&blur': this.handleBlur },
         })}
       </div>
     )
