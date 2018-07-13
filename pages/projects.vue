@@ -161,6 +161,9 @@ import HisweWebappListing from '~/nuxt-components/projects/webapp-listing.vue'
 export default {
   name: `page-projects`,
   transition: `page`,
+  head: {
+    title: `projects`,
+  },
   components: {
     'hiswe-project-header': HisweProjectHeader,
     'hiswe-npm-module': HisweNpmModule,

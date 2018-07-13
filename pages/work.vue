@@ -11,5 +11,8 @@
 export default {
   name: `page-work`,
   transition: `page`,
+  head: {
+    title: `work`,
+  },
 }
 </script>
