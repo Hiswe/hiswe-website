@@ -1,3 +1,7 @@
+const pkg = require(`./package.json`)
+
+const NAME = `hiswe website`
+
 module.exports = {
   router: {
     middleware: `reset-form`,
@@ -8,7 +12,25 @@ module.exports = {
       { charset: `utf-8` },
       { name: `viewport`, content: `width=device-width, initial-scale=1` },
       { 'http-equiv': `X-UA-Compatible`, content: `IE=edge` },
-      // { hid: 'description', name: 'description', content: 'Meta description' }
+      { hid: `author`, name: `author`, content: pkg.author },
+      { hid: `description`, name: `description`, content: pkg.description },
+      // open graph
+      { hid: `og:title`, name: `og:title`, content: NAME },
+      { hid: `og:type`, name: `og:type`, content: `website` },
+      {
+        hid: `og:description`,
+        name: `og:description`,
+        content: pkg.description,
+      },
+      { hid: `og:url`, name: `og:url`, content: pkg.homepage },
+      // twitter
+      { hid: `twitter:card`, name: `twitter:card`, content: `summary` },
+      { hid: `twitter:site`, name: `twitter:site`, content: `@hiswehalya` },
+      {
+        hid: `twitter:creator`,
+        name: `twitter:creator`,
+        content: `@hiswehalya`,
+      },
     ],
   },
   loading: {

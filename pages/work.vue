@@ -1,10 +1,7 @@
 <template lang="pug">
   hiswe-main-content(page="work")
-    hiswe-contact
-
-    header
+    template(slot="header")
       hiswe-title(text="wo-rk")
-    hiswe-social
 </template>
 
 <script>

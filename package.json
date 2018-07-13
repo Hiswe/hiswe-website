@@ -1,5 +1,8 @@
 {
   "name": "hiswe-website",
+  "author": "Yannick “Hiswe” Aïvayan <yannick.aivayan@hiswe.net>",
+  "description": "hiswe's personnal website",
+  "homepage": "https://hiswe.net/",
   "version": "4.0.0",
   "license": "MIT",
   "scripts": {
