@@ -64,6 +64,15 @@ copy `.hiswerc-example` to `.hiswerc` and modify this file
 
 set Config Vars
 
+**global**
+
+see [nuxt config for heroku](https://nuxtjs.org/faq/heroku-deployment)
+
+| key      | value      |
+| -------- | ---------- |
+| NODE_ENV | production |
+| HOST     | 0.0.0.0    |
+
 **email**
 
 ```
