@@ -4,6 +4,24 @@ const path = require('path')
 const gulp = require('gulp')
 const $ = require('gulp-load-plugins')()
 const slugify = require('@sindresorhus/slugify')
+const args = require('yargs').argv
+
+////////
+// BUMP
+////////
+
+const bump = done => {
+  if (!args.to) {
+    console.log(chalk.red(`bump task needs the --to argument`))
+    return done()
+  }
+  return gulp
+    .src([`package.json`])
+    .pipe($.jsonEditor({ version: args.to }))
+    .pipe(gulp.dest(`.`))
+}
+bump.description = `bump to the --to=`
+exports[`bump`] = bump
 
 ////////
 // ICONS

@@ -12,7 +12,8 @@
     "dev": "maildev & backpack dev",
     "serve:mail": "maildev",
     "serve:prod": "yarn build && cross-env NODE_ENV=production node build/main.js",
-    "toc": "doctoc server/content/*.md --github"
+    "toc": "doctoc server/content/*.md --github",
+    "release": "node ./bin/release.js"
   },
   "repository": {
     "type": "git",
@@ -57,6 +58,7 @@
     "del": "^3.0.0",
     "doctoc": "^1.3.1",
     "gulp": "^4.0.0",
+    "gulp-bump": "^3.1.1",
     "gulp-cached": "^1.1.1",
     "gulp-cheerio": "^0.6.3",
     "gulp-doctoc": "^0.1.4",
@@ -74,10 +76,12 @@
     "gulp-svgmin": "^1.2.4",
     "gulp-uglify": "~3.0.0",
     "image-size": "^0.6.3",
+    "inquirer": "^6.0.0",
     "maildev": "^1.0.0-rc3",
     "marked": "^0.4.0",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3",
+    "shelljs": "^0.8.2",
     "svgo": "^1.0.5",
     "yargs": "^12.0.1"
   }
