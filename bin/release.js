@@ -59,6 +59,8 @@ async function initRelease() {
     shell.echo(`…bumping done!`)
   }
 
+  const VERSION = bumping.version ? bumping.version : pkg.version
+
   ////////
   // BUILD
   ////////
@@ -116,12 +118,9 @@ async function initRelease() {
   shell.echo(`…copy end`)
   shell.cd(copyDir)
 
-  // teardown()
-  shell.exit(0)
-
   //----- SETTING A NEW BRANCH
 
-  const tmpBranchName = `${BRANCH}-${bumping.version}`
+  const tmpBranchName = `${BRANCH}-${VERSION}`
   shell.echo(`checking out “${tmpBranchName}” branch`)
 
   // orphan branch for having a clean new branch
@@ -138,7 +137,7 @@ async function initRelease() {
   //----- ADDING THE FILES
 
   shell.exec(`git add .`, { silent: true })
-  shell.exec(`git commit -m "RELEASE – version ${bumping.version}"`, {
+  shell.exec(`git commit -m "RELEASE – version ${VERSION}"`, {
     silent: true,
   })
 
