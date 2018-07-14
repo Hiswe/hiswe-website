@@ -103,15 +103,16 @@ async function initRelease() {
 
   shell.echo(`…git files…`)
   shell.cp(`-r`, `./.git/.`, path.join(copyDirPath, `/.git`))
-
+  shell.echo(`…config files…`)
+  shell.cp(`-r`, [`./package.json`, `./Procfile`, `./yarn.lock`], copyDirPath)
   shell.echo(`…static files…`)
   shell.cp(`-r`, `./static/.`, path.join(copyDirPath, `/static`))
-  shell.echo(`…server build files…`)
+  shell.echo(`…server files…`)
   shell.cp(`-r`, `./build/.`, path.join(copyDirPath, `/build`))
-  shell.echo(`…shared build files…`)
+  shell.echo(`…shared files…`)
   shell.mkdir(`-p`, path.join(copyDirPath, `/.nuxt/dist`))
   shell.cp(`-r`, `./.nuxt/dist/.`, path.join(copyDirPath, `/.nuxt/dist`))
-  shell.cp(`-r`, `./node_modules/.`, path.join(copyDirPath, `/node_modules`))
+  // shell.cp(`-r`, `./node_modules/.`, path.join(copyDirPath, `/node_modules`))
   shell.echo(`…copy end`)
   shell.cd(copyDir)
 

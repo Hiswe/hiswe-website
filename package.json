@@ -12,12 +12,13 @@
     "dev": "maildev & backpack dev",
     "serve:mail": "maildev",
     "serve:prod": "yarn build && cross-env NODE_ENV=production node build/main.js",
+    "start": "node build/main.js",
     "toc": "doctoc server/content/*.md --github",
     "release": "node ./bin/release.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Hiswe/HisweWebSite"
+    "url": "git://github.com/Hiswe/hiswe-website"
   },
   "engines": {
     "node": "8.11.3"
