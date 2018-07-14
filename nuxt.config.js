@@ -32,6 +32,7 @@ module.exports = {
         content: `@hiswehalya`,
       },
     ],
+    link: [{ rel: `icon`, type: `image/png`, href: `/favicon.png` }],
   },
   loading: {
     color: `hsl(332, 100%, 50%)`,
