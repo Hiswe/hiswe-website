@@ -42,6 +42,13 @@ hiswe-main-content(page="projects")
       'webapps       webapps      webapps'
       'contact       contact      contact'
       'social        social       social';
+
+    // make a solid blue background for better animations
+    &::before {
+      content: '';
+      background: var(--c-primary);
+      grid-area: 1 /1 /4 /4;
+    }
   }
   @media #{$mq-big} {
     grid-template-columns: repeat(4, 3fr) 3.5fr 2.5fr;
@@ -116,7 +123,6 @@ hiswe-main-content(page="projects")
     // fill blank NPM module
     &::before {
       content: '';
-      background: var(--c-primary);
     }
   }
 }
