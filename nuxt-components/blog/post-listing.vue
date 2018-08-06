@@ -1,11 +1,20 @@
-<template lang="pug" v-if="loadingDone">
-  // .posts
-  transition-group(class="posts" name="list" tag="div")
-    hiswe-post-preview(
-      v-for="post in posts"
-      :key="post.published"
-      :post="post"
-    )
+<template lang="pug">
+  transition-group(
+    class="posts"
+    name="list"
+    tag="div"
+  )
+    template(v-if="loadingDone")
+      hiswe-post-preview(
+        v-for="post in posts"
+        :key="post.published"
+        :post="post"
+      )
+    template(v-else)
+      hiswe-post-placeholder(
+        v-for="placeholder in placeholders"
+        :key="placeholder.id"
+      )
 </template>
 
 <style lang="scss" scoped>
@@ -47,16 +56,21 @@
 
 <script>
 import PostPreview from './post'
+import PostPlaceholder from './placeholder'
 
 export default {
   name: `hiswe-latest-blog-post`,
   components: {
     'hiswe-post-preview': PostPreview,
+    'hiswe-post-placeholder': PostPlaceholder,
   },
   data() {
     return {
       loadingDone: false,
       posts: [],
+      placeholders: Array.from({ length: 4 }).map((v, i) => ({
+        id: `placeholder-${i}`,
+      })),
     }
   },
   created() {
