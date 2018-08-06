@@ -43,6 +43,10 @@ article(:class="`webapp webapp--${name}`")
     &:nth-child(even) {
       margin-left: percentage(1/3);
     }
+
+    + .webapp {
+      margin-top: 2rem;
+    }
   }
 
   &__logo-block {
