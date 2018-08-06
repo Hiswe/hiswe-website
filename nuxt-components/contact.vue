@@ -144,7 +144,7 @@ export default {
         })
         .catch(error => {
           this.disabled = false
-          commit(`notification/ADD`, {
+          this.$store.commit(`notification/ADD`, {
             content: `An error as occured, please try later`,
             type: `error`,
           })
