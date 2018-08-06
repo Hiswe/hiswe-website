@@ -1,20 +1,30 @@
 <template lang="pug">
+transition(
+  name="placholder"
+  appear
+  mode="out-in"
+)
   transition-group(
     class="posts"
     name="list"
     tag="div"
+    v-if="loadingDone"
+    key="posts"
+    appear
   )
-    template(v-if="loadingDone")
-      hiswe-post-preview(
-        v-for="post in posts"
-        :key="post.published"
-        :post="post"
-      )
-    template(v-else)
-      hiswe-post-placeholder(
-        v-for="placeholder in placeholders"
-        :key="placeholder.id"
-      )
+    hiswe-post-preview(
+      v-for="post in posts"
+      :key="post.published"
+      :post="post"
+    )
+  .posts(
+    v-else
+    key="placeholders"
+  )
+    hiswe-post-placeholder(
+      v-for="placeholder in placeholders"
+      :key="placeholder.id"
+    )
 </template>
 
 <style lang="scss" scoped>
@@ -37,6 +47,15 @@
   display: inline-block;
   margin-right: 10px;
 }
+.placholder-enter-active,
+.placholder-leave-active {
+  transition: opacity 0.5s;
+}
+.placholder-enter,
+.placholder-leave-to {
+  opacity: 0;
+}
+
 .list-enter-active,
 .list-leave-active {
   transition: all 1s;
@@ -86,7 +105,6 @@ export default {
           this.loadingDone = true
         })
         .catch(error => {
-          // this.emptyText = `can't get category`
           console.log(error)
         })
     },
