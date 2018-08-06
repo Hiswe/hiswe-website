@@ -144,7 +144,7 @@ hiswe-main-content(page="projects")
 .web-apps {
   grid-area: webapps;
 }
-.page-projects .social {
+.page-projects /deep/ .social {
   @media #{$mq-big} {
     align-items: start;
     padding-left: 0.5rem;
