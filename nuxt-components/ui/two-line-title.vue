@@ -9,19 +9,16 @@
 
   @media #{$mq-medium} {
     line-height: 0.85;
-    font-size: calc(2.5vw + 0.5rem);
+    font-size: calc(2vw + 0.5rem);
   }
   @media #{$mq-big} {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 }
 .first-line {
   font-weight: 900;
   font-size: 2em;
   text-transform: uppercase;
-
-  @media #{$mq-medium} {
-  }
 }
 .has-dash::after {
   content: '-';

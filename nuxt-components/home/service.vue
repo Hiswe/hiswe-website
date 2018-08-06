@@ -101,7 +101,6 @@ dl(:class="`service ${id}`")
     font-size: 2rem;
     text-align: center;
     font-weight: 700;
-    text-transform: uppercase;
     text-align: var(--service-title-align);
     grid-row: title / title-end;
     grid-column: 2 / 16;
