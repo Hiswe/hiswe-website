@@ -19,8 +19,8 @@
 
 ## prerequisite
 
-- [Node.js](https://nodejs.org/en/) >=8.11.3
-- [yarn](https://yarnpkg.com/lang/en/) >= 1.7.0
+- [Node.js](https://nodejs.org/en/) >=10.12.0
+- [yarn](https://yarnpkg.com/lang/en/) >= 1.10.1
 
 ## commands
 
