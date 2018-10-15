@@ -1,4 +1,6 @@
 <style lang="scss" scoped>
+@import '~/nuxt-assets/css/scss-vars.scss';
+
 .field {
   border: 0;
   padding: 0;

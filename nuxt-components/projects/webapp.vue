@@ -15,6 +15,8 @@ article(:class="`webapp webapp--${name}`")
 </template>
 
 <style lang="scss" scoped>
+@import '~/nuxt-assets/css/scss-vars.scss';
+
 .webapp {
   padding: 0 0 grid-size(1);
   background: var(--c-primary-lightest);

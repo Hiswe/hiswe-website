@@ -37,6 +37,8 @@ form.contact(
 </template>
 
 <style lang="scss" scoped>
+@import '~/nuxt-assets/css/scss-vars.scss';
+
 .contact {
   background: var(--c-primary-darkest);
   color: var(--c-primary-lighter);

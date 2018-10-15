@@ -43,7 +43,6 @@
     "lodash": "^4.17.11",
     "nodemailer": "^4.6.8",
     "nuxt": "^2.2.0",
-    "nuxt-sass-resources-loader": "^2.0.5",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "rc": "~1.2.8",
@@ -51,11 +50,21 @@
     "source-map-support": "^0.5.9",
     "validator": "^10.8.0",
     "vue-axios": "^2.1.4",
+    "vue-recaptcha": "^1.1.1",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "backpack-core": "^0.7.0",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "@babel/plugin-transform-parameters": "^7.1.0",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/runtime": "^7.1.2",
+    "babel-preset-backpack": "^0.8.0-0",
+    "backpack-core": "^0.8.0-0",
     "consolidate": "^0.15.1",
     "cross-env": "^5.2.0",
     "del": "^3.0.0",
@@ -85,8 +94,6 @@
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.2",
     "svgo": "^1.1.1",
-    "vue": "^2.5.17",
-    "webpack": "^4.20.2",
     "yargs": "^12.0.2"
   }
 }

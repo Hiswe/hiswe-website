@@ -1,4 +1,6 @@
 <style lang="scss" scoped>
+@import '~/nuxt-assets/css/scss-vars.scss';
+
 .two-line-title {
   line-height: 1;
   margin: 0;

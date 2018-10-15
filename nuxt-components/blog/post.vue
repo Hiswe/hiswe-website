@@ -8,6 +8,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import '~/nuxt-assets/css/scss-vars.scss';
+
 .post {
   $root: &;
   background: var(--c-primary-lightest);

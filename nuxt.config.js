@@ -1,8 +1,10 @@
-const pkg = require(`./package.json`)
+import path from 'path'
+
+import pkg from './package.json'
 
 const NAME = `hiswe website`
 
-module.exports = {
+export default {
   router: {
     middleware: `reset-form`,
   },
@@ -42,18 +44,14 @@ module.exports = {
     `@/nuxt-assets/css/global.scss`,
     `@/nuxt-assets/css/page-transitions.scss`,
   ],
-  modules: [
-    // inject scss files in every module
-    // • https://github.com/anteriovieira/nuxt-sass-resources-loader
-    // • https://hackernoon.com/how-i-use-scss-variables-mixins-functions-globally-in-nuxt-js-projects-while-compiling-css-utilit-58bb6ff30438
-    [
-      `nuxt-sass-resources-loader`,
-      [`@/nuxt-assets/css/scss-vars.scss`, `@/nuxt-assets/css/scss-mixin.scss`],
-    ],
-  ],
+  modules: [],
   plugins: [
     `@/nuxt-plugins/global-components.js`,
     { src: `@/nuxt-plugins/browser.js`, ssr: false },
   ],
-  build: {},
+  build: {
+    extend(config, { isDev, isClient }) {
+      console.log(config)
+    },
+  },
 }
