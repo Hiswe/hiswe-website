@@ -15,8 +15,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
-
 .social {
   margin: var(--gutter) auto;
   background: var(--c-primary-darkest-highlight);

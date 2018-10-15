@@ -8,7 +8,7 @@ dl(:class="`service ${id}`")
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
+
 
 .service {
   $root: &;

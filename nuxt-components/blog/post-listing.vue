@@ -28,7 +28,7 @@ transition(
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
+
 
 .posts {
   grid-area: posts;

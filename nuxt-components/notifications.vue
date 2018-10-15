@@ -8,8 +8,6 @@ aside.notifications
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
-
 .notifications {
   position: fixed;
   bottom: 0;

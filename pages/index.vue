@@ -27,8 +27,6 @@ hiswe-main-content(page="home")
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
-
 .page-home {
   @media #{$mq-medium} {
     display: grid;

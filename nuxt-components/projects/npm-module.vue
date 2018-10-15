@@ -8,7 +8,7 @@ dl(:class="`npm-module npm-module--${name}`")
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
+
 
 .npm-module {
   background: var(--c-primary-lighter);

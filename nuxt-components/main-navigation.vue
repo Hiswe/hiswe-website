@@ -7,8 +7,6 @@ nav.main-navigation
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
-
 .main-navigation {
   --navigation-font-size: 0.85rem;
   --navigation-top-spacing: var(--gutter);

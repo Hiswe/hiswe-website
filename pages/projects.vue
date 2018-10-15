@@ -27,7 +27,7 @@ hiswe-main-content(page="projects")
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
+
 
 .page-projects {
   background: white;

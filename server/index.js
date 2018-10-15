@@ -13,6 +13,7 @@ import config from './config'
 import { servicesReady } from './services'
 import getLatestBlogPost from './latest-blog-post'
 import sendContactMail from './send-contact-mail'
+import nuxtConfig from '../nuxt.config.js'
 
 async function start() {
   //////
@@ -86,32 +87,24 @@ async function start() {
   // NUXT
   //////
 
-  // Import and Set Nuxt.js options
-  const nuxtConfig = require('../nuxt.config.js')
-  nuxtConfig.dev = config.isDev
-
   // Instantiate nuxt.js
   const nuxt = new Nuxt(nuxtConfig)
 
   // Build in development
   if (config.isDev) {
+    console.log(chalk.yellow(`SPA build for dev`))
     const builder = new Builder(nuxt)
     await builder.build()
   }
 
-  // Nuxt middleware
-  // • take a different take from the one in examples
-  //   to fix the error “Error: Can’t set headers after they are sent”
-  // • see this ticket:
-  //   https://github.com/nuxt/nuxt.js/issues/1206#issuecomment-319271260
-  //   https://github.com/nuxt-community/koa-template/pull/39/commits/f478d18dcd613490da8271193bb2f16199360f8c
-  app.use(function nuxtMiddleware(ctx) {
+  app.use(ctx => {
     ctx.status = 200
     ctx.respond = false // Mark request as handled for Koa
     // useful for nuxtServerInit
     ctx.req.session = ctx.session
     // make session act like flash messages
     ctx.session = {}
+    ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
     nuxt.render(ctx.req, ctx.res)
   })
 

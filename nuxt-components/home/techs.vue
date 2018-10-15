@@ -52,7 +52,7 @@ section.techs
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
+
 
 .techs {
   background: var(--c-primary-darker);

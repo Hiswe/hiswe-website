@@ -6,8 +6,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import '~/nuxt-assets/css/scss-vars.scss';
-
 main {
   min-height: 100vh;
 
