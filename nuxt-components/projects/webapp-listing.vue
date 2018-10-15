@@ -1,3 +1,14 @@
+<script>
+import HisweWebapp from '~/nuxt-components/projects/webapp.vue'
+
+export default {
+  name: `hiswe-webapp-listing`,
+  components: {
+    'hiswe-webapp': HisweWebapp,
+  },
+}
+</script>
+
 <template lang="pug">
   section.web-apps
     hiswe-webapp(name="a-count")
@@ -49,8 +60,6 @@
 </template>
 
 <style lang="scss" scoped>
-
-
 .web-apps {
   background: white;
 
@@ -73,14 +82,3 @@
   }
 }
 </style>
-
-<script>
-import HisweWebapp from '~/nuxt-components/projects/webapp.vue'
-
-export default {
-  name: `hiswe-webapp-listing`,
-  components: {
-    'hiswe-webapp': HisweWebapp,
-  },
-}
-</script>

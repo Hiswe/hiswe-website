@@ -1,3 +1,15 @@
+<script>
+export default {
+  name: `hiswe-blog-post-preview`,
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
+}
+</script>
+
 <template lang="pug">
   article.post: a.post__link(:href="post.link")
     .post__cover(:style="{'background-image': `url(${post.cover})`}")
@@ -8,8 +20,6 @@
 </template>
 
 <style lang="scss" scoped>
-
-
 .post {
   $root: &;
   background: var(--c-primary-lightest);
@@ -129,16 +139,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-blog-post-preview`,
-  props: {
-    post: {
-      type: Object,
-      required: true,
-    },
-  },
-}
-</script>
-

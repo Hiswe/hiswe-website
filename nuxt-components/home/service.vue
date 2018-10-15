@@ -1,3 +1,26 @@
+<script>
+export default {
+  name: `hiswe-service`,
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    icon: {
+      type: String,
+      require: false,
+    },
+  },
+  computed: {
+    id() {
+      if (!this.title) return false
+      const name = this.title.replace(`-`, ``).replace(` `, `-`)
+      return `service--${name}`
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 dl(:class="`service ${id}`")
   dt.service__title: hiswe-title(:text="title")
@@ -8,8 +31,6 @@ dl(:class="`service ${id}`")
 </template>
 
 <style lang="scss" scoped>
-
-
 .service {
   $root: &;
   --servive-background: var(--c-primary);
@@ -158,26 +179,3 @@ dl(:class="`service ${id}`")
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-service`,
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    icon: {
-      type: String,
-      require: false,
-    },
-  },
-  computed: {
-    id() {
-      if (!this.title) return false
-      const name = this.title.replace(`-`, ``).replace(` `, `-`)
-      return `service--${name}`
-    },
-  },
-}
-</script>

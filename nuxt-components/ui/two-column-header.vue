@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `hiswe-header-content`,
+}
+</script>
+
 <template lang="pug">
 .two-column-header
   .two-column-header__left:  slot(name="left")
@@ -28,10 +34,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-header-content`,
-}
-</script>
-

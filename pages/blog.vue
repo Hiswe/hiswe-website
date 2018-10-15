@@ -1,17 +1,32 @@
+<script>
+import Header from '~/nuxt-components/blog/header.vue'
+import Posts from '~/nuxt-components/blog/post-listing.vue'
+
+export default {
+  name: `page-blog`,
+  transition: `page`,
+  head: {
+    title: `blog`,
+  },
+  components: {
+    'hiswe-blog-header': Header,
+    'hiswe-blog-posts': Posts,
+  },
+}
+</script>
+
 <template lang="pug">
-  hiswe-main-content(page="blog")
-    template(slot="header")
-      hiswe-blog-header
-    hiswe-title.blog-latest-title(
-      text="latest blog posts"
-      :level="2"
-    )
-    no-ssr: hiswe-blog-posts
+hiswe-main-content(page="blog")
+  template(slot="header")
+    hiswe-blog-header
+  hiswe-title.blog-latest-title(
+    text="latest blog posts"
+    :level="2"
+  )
+  no-ssr: hiswe-blog-posts
 </template>
 
 <style lang="scss" scoped>
-
-
 .page-blog {
   @media #{$mq-medium} {
     display: grid;
@@ -54,20 +69,3 @@
   }
 }
 </style>
-
-<script>
-import Header from '~/nuxt-components/blog/header.vue'
-import Posts from '~/nuxt-components/blog/post-listing.vue'
-
-export default {
-  name: `page-blog`,
-  transition: `page`,
-  head: {
-    title: `blog`,
-  },
-  components: {
-    'hiswe-blog-header': Header,
-    'hiswe-blog-posts': Posts,
-  },
-}
-</script>

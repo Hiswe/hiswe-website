@@ -1,3 +1,16 @@
+<script>
+import MainNavigation from '~/nuxt-components/main-navigation.vue'
+import Notifications from '~/nuxt-components/notifications.vue'
+
+export default {
+  name: `default-layout`,
+  components: {
+    'hiswe-main-navigation': MainNavigation,
+    'hiswe-notifications': Notifications,
+  },
+}
+</script>
+
 <template lang="pug">
   main(role="main")
     hiswe-main-navigation
@@ -25,17 +38,3 @@ main {
   grid-area: main-content;
 }
 </style>
-
-<script>
-import MainNavigation from '~/nuxt-components/main-navigation.vue'
-import Notifications from '~/nuxt-components/notifications.vue'
-
-export default {
-  name: `default-layout`,
-  components: {
-    'hiswe-main-navigation': MainNavigation,
-    'hiswe-notifications': Notifications,
-  },
-}
-</script>
-

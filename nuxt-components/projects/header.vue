@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `projects-header`,
+}
+</script>
+
 <template lang="pug">
   .project-header
     hiswe-title(
@@ -29,10 +35,3 @@ p {
   color: var(--c-primary-darker);
 }
 </style>
-
-
-<script>
-export default {
-  name: `projects-header`,
-}
-</script>

@@ -1,81 +1,3 @@
-<style lang="scss" scoped>
-
-
-.field {
-  border: 0;
-  padding: 0;
-
-  &--disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  @media #{$mq-medium} {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__error-message {
-    font-style: italic;
-    padding-left: 0.5em;
-    font-size: 0.9em;
-    color: red;
-    display: inline-block;
-  }
-}
-label {
-  @media #{$mq-medium} {
-    flex: 0 0 var(--grid-size);
-    height: var(--grid-size);
-    padding-top: 0.5rem;
-  }
-}
-label,
-input,
-textarea {
-  display: block;
-  color: white;
-}
-input,
-textarea {
-  background: none;
-  border: 4px solid var(--c-primary-darker);
-  display: block;
-  width: 100%;
-  flex-grow: 1;
-  padding: 0 0.5em;
-  transition: border 0.25s, background 0.25s;
-
-  .field--invalid & {
-    border-color: red;
-  }
-
-  &:focus {
-    background: var(--c-primary-darkest-highlight);
-    border-color: var(--c-primary);
-  }
-}
-input {
-  padding: 0 0.5em;
-}
-textarea {
-  padding: 0.5em;
-  min-height: 8em;
-  resize: vertical;
-}
-.error-fade {
-  &-enter-active,
-  &-leave-active {
-    transition: opacity 0.75s, transform 0.5s;
-  }
-  &-enter,
-  &-leave-to {
-    opacity: 0;
-    transform: translateX(15px);
-  }
-}
-</style>
-
 <script>
 export default {
   name: `hiswe-field`,
@@ -182,3 +104,79 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.field {
+  border: 0;
+  padding: 0;
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  @media #{$mq-medium} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__error-message {
+    font-style: italic;
+    padding-left: 0.5em;
+    font-size: 0.9em;
+    color: red;
+    display: inline-block;
+  }
+}
+label {
+  @media #{$mq-medium} {
+    flex: 0 0 var(--grid-size);
+    height: var(--grid-size);
+    padding-top: 0.5rem;
+  }
+}
+label,
+input,
+textarea {
+  display: block;
+  color: white;
+}
+input,
+textarea {
+  background: none;
+  border: 4px solid var(--c-primary-darker);
+  display: block;
+  width: 100%;
+  flex-grow: 1;
+  padding: 0 0.5em;
+  transition: border 0.25s, background 0.25s;
+
+  .field--invalid & {
+    border-color: red;
+  }
+
+  &:focus {
+    background: var(--c-primary-darkest-highlight);
+    border-color: var(--c-primary);
+  }
+}
+input {
+  padding: 0 0.5em;
+}
+textarea {
+  padding: 0.5em;
+  min-height: 8em;
+  resize: vertical;
+}
+.error-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.75s, transform 0.5s;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+}
+</style>

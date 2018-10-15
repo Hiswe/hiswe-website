@@ -1,3 +1,42 @@
+<script>
+import PostPreview from './post'
+import PostPlaceholder from './placeholder'
+
+export default {
+  name: `hiswe-latest-blog-post`,
+  components: {
+    'hiswe-post-preview': PostPreview,
+    'hiswe-post-placeholder': PostPlaceholder,
+  },
+  data() {
+    return {
+      loadingDone: false,
+      posts: [],
+      placeholders: Array.from({ length: 4 }).map((v, i) => ({
+        id: `placeholder-${i}`,
+      })),
+    }
+  },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.$http
+        .get(`/api/latest-blog-post`)
+        .then(response => {
+          const { data } = response
+          this.posts = data
+          this.loadingDone = true
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 transition(
   name="placholder"
@@ -28,8 +67,6 @@ transition(
 </template>
 
 <style lang="scss" scoped>
-
-
 .posts {
   grid-area: posts;
   background: var(--c-primary-lightest);
@@ -74,43 +111,3 @@ transition(
   transform: translateY(30px);
 }
 </style>
-
-<script>
-import PostPreview from './post'
-import PostPlaceholder from './placeholder'
-
-export default {
-  name: `hiswe-latest-blog-post`,
-  components: {
-    'hiswe-post-preview': PostPreview,
-    'hiswe-post-placeholder': PostPlaceholder,
-  },
-  data() {
-    return {
-      loadingDone: false,
-      posts: [],
-      placeholders: Array.from({ length: 4 }).map((v, i) => ({
-        id: `placeholder-${i}`,
-      })),
-    }
-  },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.$http
-        .get(`/api/latest-blog-post`)
-        .then(response => {
-          const { data } = response
-          this.posts = data
-          this.loadingDone = true
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-  },
-}
-</script>
-

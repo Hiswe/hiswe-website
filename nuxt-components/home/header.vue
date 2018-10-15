@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `home-header`,
+}
+</script>
+
 <template lang="pug">
 .home-header
   h1 I make custom<br> website for<br> everyone's need
@@ -9,8 +15,6 @@
 </template>
 
 <style lang="scss" scoped>
-
-
 .home-header {
   text-align: center;
   background: white;
@@ -63,65 +67,4 @@ h1 {
     }
   }
 }
-// .presentation {
-//   display: grid;
-//   grid-template-columns: 1fr 4fr 1fr 5fr 1fr;
-//   grid-template-areas: '. title . description .';
-//   margin: 0;
-//   padding: 0;
-//   grid-auto-rows: auto;
-
-//   @media #{$mq-medium-only} {
-//     display: block;
-//   }
-
-//   &__title {
-//     text-align: right;
-//     color: var(--c-accent);
-//     line-height: 1;
-//     font-size: 2rem;
-//     font-weight: 900;
-//     padding: 0;
-//     grid-area: title;
-
-//     @media #{$mq-medium-only} {
-//       font-size: 1.2rem;
-//       text-align: center;
-//       padding: 0;
-
-//       br {
-//         display: none;
-//       }
-//     }
-//   }
-//   &__description {
-//     text-align: left;
-//     color: var(--c-primary-darker);
-//     grid-area: description;
-//     font-size: 0.9rem;
-//     padding: 0;
-//     margin: 0;
-
-//     @media #{$mq-medium-only} {
-//       text-align: center;
-//       padding: var(--half-gutter) var(--gutter);
-//     }
-//     p {
-//       margin: 0;
-
-//       + p {
-//         margin-top: var(--gutter);
-//         @media #{$mq-medium-only} {
-//           margin-top: 0;
-//         }
-//       }
-//     }
-//   }
-// }
 </style>
-
-<script>
-export default {
-  name: `home-header`,
-}
-</script>

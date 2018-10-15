@@ -1,37 +1,3 @@
-<style lang="scss" scoped>
-
-
-.two-line-title {
-  line-height: 1;
-  margin: 0;
-
-  @media #{$mq-small} {
-    font-size: 6vw;
-  }
-
-  @media #{$mq-medium} {
-    line-height: 0.85;
-    font-size: calc(2vw + 0.5rem);
-  }
-  @media #{$mq-big} {
-    font-size: 1.5rem;
-  }
-}
-.first-line {
-  font-weight: 900;
-  font-size: 2em;
-  text-transform: uppercase;
-}
-.has-dash::after {
-  content: '-';
-}
-.second-line {
-  display: block;
-  font-size: 1.5em;
-  font-weight: 200;
-}
-</style>
-
 <script>
 const TITLE_REGEX = /^(\w+)[\s-](.+)$/
 const TITLE_WITH_SPACE_REGEX = /^\w+\s.+$/
@@ -83,3 +49,34 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+.two-line-title {
+  line-height: 1;
+  margin: 0;
+
+  @media #{$mq-small} {
+    font-size: 6vw;
+  }
+
+  @media #{$mq-medium} {
+    line-height: 0.85;
+    font-size: calc(2vw + 0.5rem);
+  }
+  @media #{$mq-big} {
+    font-size: 1.5rem;
+  }
+}
+.first-line {
+  font-weight: 900;
+  font-size: 2em;
+  text-transform: uppercase;
+}
+.has-dash::after {
+  content: '-';
+}
+.second-line {
+  display: block;
+  font-size: 1.5em;
+  font-weight: 200;
+}
+</style>

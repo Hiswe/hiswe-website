@@ -1,3 +1,20 @@
+<script>
+export default {
+  name: `hiswe-webapp`,
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+  computed: {
+    github() {
+      return `https://github.com/Hiswe/${this.name}`
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 article(:class="`webapp webapp--${name}`")
   figure.webapp__logo-block
@@ -15,8 +32,6 @@ article(:class="`webapp webapp--${name}`")
 </template>
 
 <style lang="scss" scoped>
-
-
 .webapp {
   padding: 0 0 grid-size(1);
   background: var(--c-primary-lightest);
@@ -187,21 +202,3 @@ article(:class="`webapp webapp--${name}`")
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-webapp`,
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-  },
-  computed: {
-    github() {
-      return `https://github.com/Hiswe/${this.name}`
-    },
-  },
-}
-</script>
-

@@ -1,3 +1,19 @@
+<script>
+import Notification from '~/nuxt-components/notification-item'
+
+export default {
+  name: `hiswe-notifications`,
+  components: {
+    'hiswe-notification': Notification,
+  },
+  computed: {
+    messages() {
+      return this.$store.state.notification.messages
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 aside.notifications
   hiswe-notification(
@@ -19,20 +35,3 @@ aside.notifications
   flex-direction: column-reverse;
 }
 </style>
-
-<script>
-import Notification from '~/nuxt-components/notification-item'
-
-export default {
-  name: `hiswe-notifications`,
-  components: {
-    'hiswe-notification': Notification,
-  },
-  computed: {
-    messages() {
-      return this.$store.state.notification.messages
-    },
-  },
-}
-</script>
-

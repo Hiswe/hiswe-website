@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `section-tech`,
+}
+</script>
+
 <template lang="pug">
 section.techs
   .tech.tech--server
@@ -52,8 +58,6 @@ section.techs
 </template>
 
 <style lang="scss" scoped>
-
-
 .techs {
   background: var(--c-primary-darker);
   padding-bottom: calc(var(--grid-size) * 2);
@@ -224,10 +228,3 @@ section.techs
   }
 }
 </style>
-
-<script>
-export default {
-  name: `section-tech`,
-}
-</script>
-

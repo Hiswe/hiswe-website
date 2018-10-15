@@ -1,3 +1,15 @@
+<script>
+export default {
+  name: `hiswe-npm-module`,
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 dl(:class="`npm-module npm-module--${name}`")
   dt.npm-module__title {{name}}
@@ -8,8 +20,6 @@ dl(:class="`npm-module npm-module--${name}`")
 </template>
 
 <style lang="scss" scoped>
-
-
 .npm-module {
   background: var(--c-primary-lighter);
   color: var(--c-primary-darker);
@@ -75,17 +85,3 @@ dl(:class="`npm-module npm-module--${name}`")
   }
 }
 </style>
-
-
-<script>
-export default {
-  name: `hiswe-npm-module`,
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-  },
-}
-</script>
-

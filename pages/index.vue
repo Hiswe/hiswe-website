@@ -1,3 +1,22 @@
+<script>
+import HisweHeader from '~/nuxt-components/home/header.vue'
+import HisweService from '~/nuxt-components/home/service.vue'
+import TechSection from '~/nuxt-components/home/techs.vue'
+
+export default {
+  name: `page-home`,
+  transition: `page`,
+  head: {
+    title: `home`,
+  },
+  components: {
+    'hiswe-home-header': HisweHeader,
+    'hiswe-service': HisweService,
+    'hiswe-techs': TechSection,
+  },
+}
+</script>
+
 <template lang="pug">
 hiswe-main-content(page="home")
   template(slot="header")
@@ -81,22 +100,3 @@ hiswe-main-content(page="home")
   }
 }
 </style>
-
-<script>
-import HisweHeader from '~/nuxt-components/home/header.vue'
-import HisweService from '~/nuxt-components/home/service.vue'
-import TechSection from '~/nuxt-components/home/techs.vue'
-
-export default {
-  name: `page-home`,
-  transition: `page`,
-  head: {
-    title: `home`,
-  },
-  components: {
-    'hiswe-home-header': HisweHeader,
-    'hiswe-service': HisweService,
-    'hiswe-techs': TechSection,
-  },
-}
-</script>

@@ -1,3 +1,54 @@
+<script>
+import serialize from 'form-serialize'
+
+export default {
+  name: `section-contact`,
+  data() {
+    return {
+      action: `/api/contact`,
+      disabled: false,
+    }
+  },
+  computed: {
+    validation() {
+      return this.$store.state.validation.fields
+    },
+  },
+  methods: {
+    enable(event) {
+      this.disabled = false
+    },
+    handleSubmit(event) {
+      const body = serialize(event.target, { hash: true, empty: true })
+      this.disabled = true
+      this.$http
+        .post(this.action, body)
+        .then(response => {
+          const { data } = response
+          if (data.notification) {
+            this.$store.commit(`notification/ADD`, data.notification)
+          }
+          if (data.validation) {
+            const isInvalid = Object.values(data.validation)
+              .map(field => field.valid)
+              .includes(false)
+            // let the user automatically fix his errors
+            if (isInvalid) this.disabled = false
+            this.$store.commit(`validation/SET`, data.validation)
+          }
+        })
+        .catch(error => {
+          this.disabled = false
+          this.$store.commit(`notification/ADD`, {
+            content: `An error as occured, please try later`,
+            type: `error`,
+          })
+        })
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 form.contact(
   :action="action"
@@ -102,55 +153,3 @@ button {
   }
 }
 </style>
-
-<script>
-import serialize from 'form-serialize'
-
-export default {
-  name: `section-contact`,
-  data() {
-    return {
-      action: `/api/contact`,
-      disabled: false,
-    }
-  },
-  computed: {
-    validation() {
-      return this.$store.state.validation.fields
-    },
-  },
-  methods: {
-    enable(event) {
-      this.disabled = false
-    },
-    handleSubmit(event) {
-      const body = serialize(event.target, { hash: true, empty: true })
-      this.disabled = true
-      this.$http
-        .post(this.action, body)
-        .then(response => {
-          const { data } = response
-          if (data.notification) {
-            this.$store.commit(`notification/ADD`, data.notification)
-          }
-          if (data.validation) {
-            const isInvalid = Object.values(data.validation)
-              .map(field => field.valid)
-              .includes(false)
-            // let the user automatically fix his errors
-            if (isInvalid) this.disabled = false
-            this.$store.commit(`validation/SET`, data.validation)
-          }
-        })
-        .catch(error => {
-          this.disabled = false
-          this.$store.commit(`notification/ADD`, {
-            content: `An error as occured, please try later`,
-            type: `error`,
-          })
-        })
-    },
-  },
-}
-</script>
-

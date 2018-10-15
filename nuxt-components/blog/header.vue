@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `hiswe-blog-header`,
+}
+</script>
+
 <template lang="pug">
 .blog-header
   hiswe-header-content.blog-header-text
@@ -37,9 +43,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-blog-header`,
-}
-</script>

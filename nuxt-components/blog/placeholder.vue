@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `hiswe-blog-post-placholder`,
+}
+</script>
+
 <template lang="pug">
   article.post-placholder
     .post-placholder__cover
@@ -8,8 +14,6 @@
 </template>
 
 <style lang="scss" scoped>
-
-
 .post-placholder {
   $root: &;
   background: var(--c-primary-lightest);
@@ -120,9 +124,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-blog-post-placholder`,
-}
-</script>

@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `hiswe-social`,
+}
+</script>
+
 <template lang="pug">
   aside.social: div
     a(href="https://github.com/hiswe")
@@ -74,11 +80,3 @@ span {
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-social`,
-}
-</script>
-
-

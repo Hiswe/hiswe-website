@@ -1,3 +1,22 @@
+<script>
+import HisweProjectHeader from '~/nuxt-components/projects/header.vue'
+import HisweNpmModule from '~/nuxt-components/projects/npm-module.vue'
+import HisweWebappListing from '~/nuxt-components/projects/webapp-listing.vue'
+
+export default {
+  name: `page-projects`,
+  transition: `page`,
+  head: {
+    title: `projects`,
+  },
+  components: {
+    'hiswe-project-header': HisweProjectHeader,
+    'hiswe-npm-module': HisweNpmModule,
+    'hiswe-webapp-listing': HisweWebappListing,
+  },
+}
+</script>
+
 <template lang="pug">
 hiswe-main-content(page="projects")
   template(slot="header")
@@ -27,8 +46,6 @@ hiswe-main-content(page="projects")
 </template>
 
 <style lang="scss" scoped>
-
-
 .page-projects {
   background: white;
 
@@ -160,23 +177,3 @@ hiswe-main-content(page="projects")
   }
 }
 </style>
-
-<script>
-import HisweProjectHeader from '~/nuxt-components/projects/header.vue'
-import HisweNpmModule from '~/nuxt-components/projects/npm-module.vue'
-import HisweWebappListing from '~/nuxt-components/projects/webapp-listing.vue'
-
-export default {
-  name: `page-projects`,
-  transition: `page`,
-  head: {
-    title: `projects`,
-  },
-  components: {
-    'hiswe-project-header': HisweProjectHeader,
-    'hiswe-npm-module': HisweNpmModule,
-    'hiswe-webapp-listing': HisweWebappListing,
-  },
-}
-</script>
-

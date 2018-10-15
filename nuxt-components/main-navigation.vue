@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: `main-navigation`,
+}
+</script>
+
 <template lang="pug">
 nav.main-navigation
   nuxt-link(to="/" exact-active-class="active" data-name="home") home
@@ -78,9 +84,3 @@ a {
   }
 }
 </style>
-
-<script>
-export default {
-  name: `main-navigation`,
-}
-</script>

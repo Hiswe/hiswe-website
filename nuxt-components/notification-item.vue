@@ -1,3 +1,41 @@
+<script>
+// const REMOVE_DELAY = 4400
+const REMOVE_DELAY = 6600
+
+export default {
+  name: `notification`,
+  data() {
+    return {
+      timerId: false,
+    }
+  },
+  props: {
+    message: {
+      type: Object,
+      required: true,
+    },
+  },
+  // mounted instead of create for use only in client side
+  mounted() {
+    this.$el.style.setProperty(
+      '--expanded',
+      `${this.$refs.content.offsetHeight}px`
+    )
+    this.timerId = window.setTimeout(
+      () => this.removeNotification(),
+      REMOVE_DELAY
+    )
+  },
+  methods: {
+    removeNotification(notificationId) {
+      window.clearTimeout(this.timerId)
+      this.timerId = false
+      this.$store.commit(`notification/REMOVE`, this.message.id)
+    },
+  },
+}
+</script>
+
 <template lang="pug">
 transition(name="notification" appear): div.notification(@click="removeNotification")
   p(
@@ -38,41 +76,3 @@ transition(name="notification" appear): div.notification(@click="removeNotificat
   }
 }
 </style>
-
-<script>
-// const REMOVE_DELAY = 4400
-const REMOVE_DELAY = 6600
-
-export default {
-  name: `notification`,
-  data() {
-    return {
-      timerId: false,
-    }
-  },
-  props: {
-    message: {
-      type: Object,
-      required: true,
-    },
-  },
-  // mounted instead of create for use only in client side
-  mounted() {
-    this.$el.style.setProperty(
-      '--expanded',
-      `${this.$refs.content.offsetHeight}px`
-    )
-    this.timerId = window.setTimeout(
-      () => this.removeNotification(),
-      REMOVE_DELAY
-    )
-  },
-  methods: {
-    removeNotification(notificationId) {
-      window.clearTimeout(this.timerId)
-      this.timerId = false
-      this.$store.commit(`notification/REMOVE`, this.message.id)
-    },
-  },
-}
-</script>

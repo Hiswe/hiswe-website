@@ -1,3 +1,15 @@
+<script>
+export default {
+  name: `hiswe-main-content`,
+  props: {
+    page: {
+      type: String,
+      required: true,
+    },
+  },
+}
+</script>
+
 <template lang="pug">
   div(:class="`main-content page-${page}`")
     header.main-header
@@ -40,16 +52,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: `hiswe-main-content`,
-  props: {
-    page: {
-      type: String,
-      required: true,
-    },
-  },
-}
-</script>
-
