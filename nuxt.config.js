@@ -55,19 +55,5 @@ module.exports = {
     `@/nuxt-plugins/global-components.js`,
     { src: `@/nuxt-plugins/browser.js`, ssr: false },
   ],
-  build: {
-    babel: {
-      plugins: [`transform-object-rest-spread`],
-    },
-    postcss: {
-      plugins: {
-        'postcss-cssnext': {
-          features: {
-            // processing custom properties make them fail
-            customProperties: false,
-          },
-        },
-      },
-    },
-  },
+  build: {},
 }
