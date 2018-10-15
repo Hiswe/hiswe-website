@@ -88,10 +88,11 @@ async function start() {
   //////
 
   // Instantiate nuxt.js
+  nuxtConfig.dev = config.isDev
   const nuxt = new Nuxt(nuxtConfig)
 
   // Build in development
-  if (config.isDev) {
+  if (nuxtConfig.dev) {
     console.log(chalk.yellow(`SPA build for dev`))
     const builder = new Builder(nuxt)
     await builder.build()
