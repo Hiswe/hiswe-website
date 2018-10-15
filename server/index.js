@@ -8,6 +8,7 @@ import Router from 'koa-router'
 import koaBody from 'koa-body'
 import session from 'koa-session'
 import { Nuxt, Builder } from 'nuxt'
+import util from 'util'
 
 import config from './config'
 import { servicesReady } from './services'

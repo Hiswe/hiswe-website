@@ -1,12 +1,18 @@
-import path from 'path'
-
 import pkg from './package.json'
+import rc from 'rc'
+
+const config = rc(`hiswe`)
 
 const NAME = `hiswe website`
+const IS_PROD = process.env.NODE_ENV === `production`
+// const IS_DEV = !isProd
 
 export default {
   router: {
     middleware: `reset-form`,
+  },
+  env: {
+    CAPTCHA: config.captcha[IS_PROD ? `dist` : `local`].site,
   },
   head: {
     titleTemplate: 'Hiswe – %s',
@@ -35,6 +41,15 @@ export default {
       },
     ],
     link: [{ rel: `icon`, type: `image/png`, href: `/favicon.png` }],
+    script: [
+      {
+        src: `https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit`,
+        async: true,
+        defer: true,
+        // src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer
+        // https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit
+      },
+    ],
   },
   loading: {
     color: `hsl(332, 100%, 50%)`,

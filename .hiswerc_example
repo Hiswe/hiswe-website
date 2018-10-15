@@ -15,5 +15,15 @@
     "options": {
       "from": "your name <contact@society.net>"
     }
+  },
+  "captcha": {
+    "dist": {
+      "site": "​​​​​YA95hSdXYUBPKEOAAeknyzAoOAAaW-6QbdULO​​​​​",
+      "secret": "​​​​​d09CKWf64EV7LmUVZnyBUW6Py5Hf67jUCDAAAAAU​​​​​"
+    },
+    "local": {
+      "site": "​​​​​f0dYAAA0KWGAYLe7NYdxNAdJAUD76FNp42XUkAHP​​​​​",
+      "secret": "tASALUIFUUAdKhSW9AHG40F3yjP0qOA-APLLB6an​​​​​"
+    }
   }
 }

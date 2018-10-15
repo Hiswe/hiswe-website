@@ -1,12 +1,17 @@
 <script>
 import serialize from 'form-serialize'
+import vueRecaptcha from 'vue-recaptcha'
 
 export default {
   name: `section-contact`,
+  components: {
+    vueRecaptcha,
+  },
   data() {
     return {
       action: `/api/contact`,
       disabled: false,
+      captcha: process.env.CAPTCHA,
     }
   },
   computed: {
@@ -81,10 +86,15 @@ form.contact(
     :disabled="disabled"
     :valid="validation.message.valid"
   )
-  button(
-    type="submit"
-    :disabled="disabled"
-  ) send
+  vue-recaptcha.contact__recaptcha(
+    :sitekey="captcha"
+    theme="dark"
+  )
+  .contact__submit
+    button.contact__button(
+      type="submit"
+      :disabled="disabled"
+    ) send
 </template>
 
 <style lang="scss" scoped>
@@ -98,13 +108,55 @@ form.contact(
     padding: var(--vertical-space) 0;
     display: grid;
     grid-template-columns: 1fr 6fr 1fr 9fr 1fr;
-    grid-template-rows: auto 5rem 5rem minmax(2rem, auto) 3rem;
+    grid-template-rows: auto 5rem 5rem minmax(0, auto) minmax(5rem, auto) minmax(
+        3rem,
+        auto
+      );
     grid-template-areas:
-      '. .      . title   .'
-      '. name   . message .'
-      '. email  . message .'
-      '. .      . message .'
-      '. button . message .';
+      '. .         . title   .'
+      '. name      . message .'
+      '. email     . message .'
+      '. .         . message .'
+      '. recaptcha . message .'
+      '. button    . message .';
+  }
+  &__recaptcha {
+    grid-area: recaptcha;
+    padding-top: var(--half-gutter);
+    overflow: hidden;
+    max-width: 100%;
+  }
+  &__submit {
+    grid-area: button;
+    padding-top: var(--half-gutter);
+  }
+
+  &__button {
+    // margin-top: 0;
+    display: block;
+    background: var(--c-primary);
+    color: black;
+    border: 0;
+    // margin-top: var(--gutter);
+    width: 100%;
+    height: 2.5rem;
+    padding: var(--half-gutter) var(--gutter);
+    transition: color 0.25s, background-color 0.25s, transform 0.15s;
+
+    &:hover {
+      background-color: var(--c-accent);
+      color: white;
+    }
+    &:active {
+      transform: translateY(3px);
+    }
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    @media #{$mq-medium} {
+      padding: var(--quarter-gutter);
+    }
   }
 }
 .form__title {
@@ -126,30 +178,5 @@ form.contact(
 }
 .field--message {
   grid-area: message;
-}
-button {
-  background: var(--c-primary);
-  color: black;
-  border: 0;
-  margin-top: var(--gutter);
-  padding: var(--half-gutter) var(--gutter);
-  transition: color 0.25s, background-color 0.25s, transform 0.15s;
-  grid-area: button;
-
-  &:hover {
-    background-color: var(--c-accent);
-    color: white;
-  }
-  &:active {
-    transform: translateY(3px);
-  }
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  @media #{$mq-medium} {
-    margin-top: 0;
-    padding: var(--quarter-gutter);
-  }
 }
 </style>

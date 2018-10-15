@@ -1,15 +1,18 @@
 import c from 'chalk'
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
+import util from 'util'
+import request from 'request-promise-native'
 
 import config from './config'
 import { sendMail } from './services'
 
+const reCAPTCHA_URL = `https://www.google.com/recaptcha/api/siteverify`
+
 const PREFIX = `[MAIL]`
-
 async function contactMail(formData) {
+  // field validation
   const { email, message } = formData
-
   const validation = {
     email: {
       valid: isEmail(email),
@@ -33,6 +36,32 @@ async function contactMail(formData) {
       },
     }
   }
+
+  // re-captcha
+  const captchaResponse = formData[`g-recaptcha-response`]
+  const captchaData = {
+    secret: config.captcha[config.isProd ? `dist` : `local`].secret,
+    response: captchaResponse,
+  }
+  const verifyCaptcha = await request({
+    method: `POST`,
+    uri: reCAPTCHA_URL,
+    formData: captchaData,
+    json: true,
+  })
+
+  console.log(util.inspect(verifyCaptcha, { colors: true }))
+
+  if (!verifyCaptcha.success) {
+    return {
+      validation: validation,
+      notification: {
+        content: `a validation error has occurred. Please try again`,
+        type: `error`,
+      },
+    }
+  }
+
   try {
     await sendMail({
       from: config.email.options.from,
@@ -41,6 +70,7 @@ async function contactMail(formData) {
       text: message,
     })
   } catch (error) {
+    console.log(util.inspect(error, { colors: true }))
     return {
       validation,
       notification: {
