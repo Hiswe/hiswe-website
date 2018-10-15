@@ -1,14 +1,3 @@
-////////
-// FOCUS RING
-////////
+import focusRing from '@hiswe/focus-ring'
 
-// enable focus ring when user press tab
-// https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
-function handleFirstTab(e) {
-  if (e.keyCode === 9) {
-    // the "I am a keyboard user" key
-    document.body.classList.add(`user-is-tabbing`)
-    window.removeEventListener(`keydown`, handleFirstTab, { passive: true })
-  }
-}
-window.addEventListener(`keydown`, handleFirstTab)
+focusRing()

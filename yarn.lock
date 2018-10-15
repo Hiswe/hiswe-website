@@ -767,6 +767,11 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
+"@hiswe/focus-ring@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@hiswe/focus-ring/-/focus-ring-1.0.4.tgz#99847353c7df53ac0c656cadf1166aa768688dac"
+  integrity sha512-lui7/vh1zyM/G4icff4Vx/cx2Sh1pKt9VoFk1Rhxuf0K0Q/Mu60mo63+jXS0B9IPQvBukp97lWjzusJGelrjgQ==
+
 "@nuxtjs/babel-preset-app@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/babel-preset-app/-/babel-preset-app-0.7.0.tgz#b208a95e0a053259c29b99a9e4ca9ea2604dbdd2"
