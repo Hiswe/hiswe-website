@@ -1,11 +1,21 @@
 export default function(nuxtContext) {
-  const { store, redirect, route, req, error } = nuxtContext
-  if (process.server && !req) return
-  console.log(`handle-server-errors`)
-  // console.log(req.session)
-  // const { session } = req
+  const { req, error } = nuxtContext
+  // console.log(`HANDLE SERVER ERRORS`)
+  if (process.server && !req) {
+    // console.log(`HANDLE SERVER ERRORS`, `not server`)
+    return
+  }
+  // console.log(`HANDLE SERVER ERRORS`, `server`)
+  // console.log(req)
+  if (!req.error) {
+    // console.log(`HANDLE SERVER ERRORS`, `no req.error`)
+    return
+  }
+  // console.log(`HANDLE SERVER ERRORS`, `ERROR`)
+  // console.log(req.error)
 
-  // if (!store.state.authUser) {
-  // 	return redirect('/login', {next: route.path})
-  // }
+  error({
+    statusCode: req.error.statusCode || 500,
+    message: req.error.message || `an error as occurred`,
+  })
 }

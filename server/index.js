@@ -16,9 +16,11 @@ import { servicesReady } from './services'
 import getLatestBlogPost from './latest-blog-post'
 import sendContactMail from './send-contact-mail'
 import nuxtConfig from '../nuxt.config.js'
+import koaNuxt from './koa-nuxt'
+import { reset } from 'ansi-colors'
 
 const appLogger = consola.withScope(`APP`)
-const nuxtLogger = consola.withScope(`NUXT`)
+const errorLogger = consola.withScope(`ERROR`)
 
 async function start() {
   //////
@@ -51,6 +53,21 @@ async function start() {
   //   )
   // )
 
+  //----- NUXT HANDLING
+
+  // Instantiate nuxt.js
+  nuxtConfig.dev = config.isDev
+  const nuxt = new Nuxt(nuxtConfig)
+
+  // Build in development
+  if (nuxtConfig.dev) {
+    console.log(chalk.yellow(`SPA build for dev`))
+    const builder = new Builder(nuxt)
+    await builder.build()
+  }
+
+  const renderNuxt = koaNuxt(nuxt)
+
   //----- ERROR HANDLING
 
   app.use(async (ctx, next) => {
@@ -62,7 +79,7 @@ async function start() {
     try {
       await next()
     } catch (err) {
-      console.log(`ERROR HANDLING`)
+      errorLogger.error(`one of the next middleware has errored`)
       console.log(util.inspect(err, { colors: true }))
       ctx.status = err.statusCode || err.status || 500
       const nuxtError = {
@@ -70,13 +87,8 @@ async function start() {
         reason: err.message,
         stacktrace: err.stacktrace || err.stack || false,
       }
-      // ctx.body = ctx.redirect(`/error`, {
-      //   code: ctx.status,
-      //   reason: err.message,
-      //   stacktrace: err.stacktrace || err.stack || false,
-      // })
-      ctx.session = { error: nuxtError }
       if (ctx.state.isJson) {
+        errorLogger.error(`serving json response`)
         return (ctx.body = {
           notification: {
             content: nuxtError.reason,
@@ -84,7 +96,17 @@ async function start() {
           },
         })
       }
-      ctx.redirect(`/${ctx.status}`)
+      ctx.req.error = {
+        statusCode: ctx.status,
+        message: err.message,
+      }
+      try {
+        errorLogger.error(`serving nuxt response`)
+        await renderNuxt(ctx)
+      } catch (nuxtError) {
+        errorLogger.error(`serving nuxt response failed`)
+        ctx.body = `nuxt error`
+      }
     }
   })
 
@@ -114,68 +136,23 @@ async function start() {
   app.use(router.allowedMethods())
 
   //////
-  // NUXT
+  // NUXT FALLBACK
   //////
 
-  // Instantiate nuxt.js
-  nuxtConfig.dev = config.isDev
-  const nuxt = new Nuxt(nuxtConfig)
-
-  // Build in development
-  if (nuxtConfig.dev) {
-    console.log(chalk.yellow(`SPA build for dev`))
-    const builder = new Builder(nuxt)
-    await builder.build()
-  }
-
-  app.use(ctx => {
-    ctx.status = 200 // koa defaults to 404 when it sees that status is unset
-    nuxtLogger.debug(ctx.originalUrl)
-    ctx.respond = false // Mark request as handled for Koa
-
-    // // useful for nuxtServerInit
-    // ctx.req.session = ctx.session || {}
-    // // flush session
-    // // –> make session act like flash messages
-    // ctx.session = {}
-    // nuxt.render(ctx.req, ctx.res)
-
-    return new Promise((resolve, reject) => {
-      const session = ctx.session
-      // useful for nuxtServerInit
-      ctx.req.session = {
-        ...session,
-        captcha: config.captcha.site,
-      }
-      // flush session
-      // –> make session act like flash messages
-      ctx.session = {}
-
-      ctx.res.on('close', () => {
-        nuxtLogger.debug(`close`, ctx.originalUrl)
-        resolve()
-      })
-      ctx.res.on('finish', () => {
-        nuxtLogger.debug(`finish`, ctx.originalUrl)
-        resolve()
-      })
-      // ctx.res.on('finish', resolve)
-
-      nuxt.render(ctx.req, ctx.res, renderPromise => {
-        nuxtLogger.debug(`render`, ctx.originalUrl)
-        // nuxt.render passes a rejected promise into callback on error.
-        renderPromise
-          .then(() => {
-            nuxtLogger.debug(`resolve`, ctx.originalUrl)
-            resolve()
-          })
-          .catch(() => {
-            nuxtLogger.warn(`reject`, ctx.originalUrl)
-            reject()
-          })
-      })
-    })
+  app.use(async (ctx, next) => {
+    const session = ctx.session || {}
+    // useful for nuxtServerInit
+    ctx.req.session = {
+      ...session,
+      captcha: config.captcha.site,
+    }
+    // flush session
+    // –> make session act like flash messages
+    ctx.session = {}
+    await next()
   })
+
+  app.use(renderNuxt)
 
   //////
   // LAUNCHING

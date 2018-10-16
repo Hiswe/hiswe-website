@@ -1,51 +1,16 @@
 <script>
-// import { mapState } from 'vuex'
-
-// const i18n = {
-//   messages: {
-//     en: {
-//       404: `nothing there`,
-//       other: `An error occurred`,
-//       back: `back to homepage`,
-//     },
-//     fr: {
-//       404: `rien ici`,
-//       other: `Une erreur est survenue`,
-//       back: `page d'accueil`,
-//     },
-//   },
-// }
-
 export default {
-  // i18n,
   name: `page-not-found`,
   props: [`error`],
-  // computed: mapState({
-  //   robotoFont: state => state.settings.robotoFont,
-  // }),
-  // head() {
-  //   return {
-  //     htmlAttrs: {
-  //       class: this.robotoFont ? `has-roboto` : ``,
-  //     },
-  //     link: this.robotoFont
-  //       ? [
-  //           {
-  //             rel: `stylesheet`,
-  //             href: `https://fonts.googleapis.com/css?family=Roboto:300,400,900`,
-  //           },
-  //         ]
-  //       : [],
-  //   }
-  // },
+  layout: `error-layout`,
 }
 </script>
 
 <template lang="pug">
 section.page-content
   h1 {{error.statusCode}}
-  h2(v-if="error.statusCode === 404") 404
-  h2(v-else) other
+  h2(v-if="error.statusCode === 404") not found
+  h2(v-else) {{error.message}}
   router-link( to="/" exact) back
   //- h2(v-if="error.statusCode === 404") {{$t(`404`)}}
   //- h2(v-else) {{$t(`other`)}}

@@ -39,8 +39,18 @@ async function contactMail(formData) {
 
   // re-captcha
   const captchaResponse = formData[`g-recaptcha-response`]
+  if (!captchaResponse) {
+    return {
+      validation: validation,
+      notification: {
+        content: `a validation error has occurred. Please try again`,
+        type: `error`,
+      },
+    }
+  }
+
   const captchaData = {
-    secret: config.captcha[config.isProd ? `dist` : `local`].secret,
+    secret: config.captcha.secret,
     response: captchaResponse,
   }
   const verifyCaptcha = await request({
