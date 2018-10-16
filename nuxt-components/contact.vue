@@ -1,5 +1,6 @@
 <script>
 import serialize from 'form-serialize'
+import { mapState, mapMutations } from 'vuex'
 import vueRecaptcha from 'vue-recaptcha'
 
 export default {
@@ -11,13 +12,16 @@ export default {
     return {
       action: `/api/contact`,
       disabled: false,
-      captcha: process.env.CAPTCHA,
     }
   },
+  mounted() {
+    console.log(this)
+  },
   computed: {
-    validation() {
-      return this.$store.state.validation.fields
-    },
+    ...mapState(`contact`, {
+      captcha: `captcha`,
+      validation: `fields`,
+    }),
   },
   methods: {
     enable(event) {
@@ -31,7 +35,7 @@ export default {
         .then(response => {
           const { data } = response
           if (data.notification) {
-            this.$store.commit(`notification/ADD`, data.notification)
+            this.showNotification(data.notification)
           }
           if (data.validation) {
             const isInvalid = Object.values(data.validation)
@@ -39,17 +43,24 @@ export default {
               .includes(false)
             // let the user automatically fix his errors
             if (isInvalid) this.disabled = false
-            this.$store.commit(`validation/SET`, data.validation)
+            this.setValidation(data.validation)
           }
         })
         .catch(error => {
           this.disabled = false
-          this.$store.commit(`notification/ADD`, {
+          console.log(`ERROR`)
+          this.showNotification({
             content: `An error as occured, please try later`,
             type: `error`,
           })
         })
     },
+    ...mapMutations(`contact`, {
+      setValidation: `SET_FIELDS`,
+    }),
+    ...mapMutations(`notification`, {
+      showNotification: `ADD`,
+    }),
   },
 }
 </script>

@@ -1,8 +1,10 @@
 import util from 'util'
-import chalk from 'chalk'
+import consola from 'consola'
 
 import config from '../config'
 import mailingConnection from './mailing'
+
+const mailLogger = consola.withScope(`MAIL`)
 
 //----- MAILING CONNECTION
 
@@ -10,11 +12,11 @@ const mailingReady = new Promise((resolve, reject) => {
   mailingConnection
     .verify()
     .then(() => {
-      console.log(chalk.green(`[MAILING]`), `transport creation – SUCCESS`)
+      mailLogger.ready(`transport creation – SUCCESS`)
       resolve()
     })
     .catch(error => {
-      console.log(chalk.red(`[MAILING]`, `transport creation – ERROR`))
+      mailLogger.error(`transport creation – ERROR`)
       console.log(util.inspect(error, { colors: true }))
       console.log(`original config`)
       console.log(config.email)

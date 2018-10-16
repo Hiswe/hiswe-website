@@ -9,10 +9,10 @@ const IS_PROD = process.env.NODE_ENV === `production`
 
 export default {
   router: {
-    middleware: `reset-form`,
+    middleware: [`reset-form`, `handle-server-errors`],
   },
   env: {
-    CAPTCHA: config.captcha[IS_PROD ? `dist` : `local`].site,
+    CAPTCHA: config.captcha.site,
   },
   head: {
     titleTemplate: 'Hiswe – %s',
@@ -46,8 +46,6 @@ export default {
         src: `https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit`,
         async: true,
         defer: true,
-        // src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer
-        // https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit
       },
     ],
   },
@@ -70,8 +68,8 @@ export default {
     { src: `@/nuxt-plugins/browser.js`, ssr: false },
   ],
   build: {
-    extend(config, { isDev, isClient }) {
-      // console.log(config)
-    },
+    // extend(config, { isDev, isClient }) {
+    //   // console.log(config)
+    // },
   },
 }

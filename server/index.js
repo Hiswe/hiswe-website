@@ -6,15 +6,19 @@ import logger from 'koa-logger'
 import formatJson from 'koa-json'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
-import session from 'koa-session'
+import consola from 'consola'
 import { Nuxt, Builder } from 'nuxt'
 import util from 'util'
+// import session from 'koa-session'
 
 import config from './config'
 import { servicesReady } from './services'
 import getLatestBlogPost from './latest-blog-post'
 import sendContactMail from './send-contact-mail'
 import nuxtConfig from '../nuxt.config.js'
+
+const appLogger = consola.withScope(`APP`)
+const nuxtLogger = consola.withScope(`NUXT`)
 
 async function start() {
   //////
@@ -33,28 +37,54 @@ async function start() {
   app.use(compress())
   app.use(logger())
   app.use(formatJson())
-  app.use(
-    session(
-      {
-        key: 'hiswe-website',
-      },
-      app
-    )
-  )
+
+  // Don't use sessions
+  // • we will need Koa 3 to not have ERR_HTTP_HEADERS_SENT errors
+  // • https://github.com/koajs/koa/issues/1008
+
+  // app.use(
+  //   session(
+  //     {
+  //       key: 'hiswe-website',
+  //     },
+  //     app
+  //   )
+  // )
 
   //----- ERROR HANDLING
+
+  app.use(async (ctx, next) => {
+    ctx.state.isJson = ctx.request.type === `application/json`
+    await next()
+  })
 
   app.use(async (ctx, next) => {
     try {
       await next()
     } catch (err) {
+      console.log(`ERROR HANDLING`)
       console.log(util.inspect(err, { colors: true }))
       ctx.status = err.statusCode || err.status || 500
-      ctx.body = ctx.render(`error`, {
+      const nuxtError = {
         code: ctx.status,
         reason: err.message,
         stacktrace: err.stacktrace || err.stack || false,
-      })
+      }
+      // ctx.body = ctx.redirect(`/error`, {
+      //   code: ctx.status,
+      //   reason: err.message,
+      //   stacktrace: err.stacktrace || err.stack || false,
+      // })
+      ctx.session = { error: nuxtError }
+      if (ctx.state.isJson) {
+        return (ctx.body = {
+          notification: {
+            content: nuxtError.reason,
+            type: `error`,
+          },
+        })
+      }
+      ctx.redirect(`/${ctx.status}`)
     }
   })
 
@@ -73,8 +103,7 @@ async function start() {
 
   router.post(`/contact`, koaBody(), async ctx => {
     const state = await sendContactMail(ctx.request.body)
-    const isJSON = ctx.request.type === `application/json`
-    if (isJSON) return (ctx.body = state)
+    if (ctx.state.isJson) return (ctx.body = state)
     ctx.session = state
     ctx.redirect(`/`)
   })
@@ -101,20 +130,49 @@ async function start() {
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
+    nuxtLogger.debug(ctx.originalUrl)
+    ctx.respond = false // Mark request as handled for Koa
+
+    // // useful for nuxtServerInit
+    // ctx.req.session = ctx.session || {}
+    // // flush session
+    // // –> make session act like flash messages
+    // ctx.session = {}
+    // nuxt.render(ctx.req, ctx.res)
 
     return new Promise((resolve, reject) => {
+      const session = ctx.session
       // useful for nuxtServerInit
-      ctx.req.session = ctx.session
-      // make session act like flash messages
+      ctx.req.session = {
+        ...session,
+        captcha: config.captcha.site,
+      }
+      // flush session
+      // –> make session act like flash messages
       ctx.session = {}
-      ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
 
-      ctx.res.on('close', resolve)
-      ctx.res.on('finish', resolve)
+      ctx.res.on('close', () => {
+        nuxtLogger.debug(`close`, ctx.originalUrl)
+        resolve()
+      })
+      ctx.res.on('finish', () => {
+        nuxtLogger.debug(`finish`, ctx.originalUrl)
+        resolve()
+      })
+      // ctx.res.on('finish', resolve)
 
-      nuxt.render(ctx.req, ctx.res, promise => {
+      nuxt.render(ctx.req, ctx.res, renderPromise => {
+        nuxtLogger.debug(`render`, ctx.originalUrl)
         // nuxt.render passes a rejected promise into callback on error.
-        promise.then(resolve).catch(reject)
+        renderPromise
+          .then(() => {
+            nuxtLogger.debug(`resolve`, ctx.originalUrl)
+            resolve()
+          })
+          .catch(() => {
+            nuxtLogger.warn(`reject`, ctx.originalUrl)
+            reject()
+          })
       })
     })
   })
@@ -126,15 +184,15 @@ async function start() {
   try {
     await servicesReady
     app.listen(config.PORT, config.HOST, function endInit() {
-      console.log(
-        `APP Server is listening on`,
+      appLogger.start(
+        `server is listening on`,
         chalk.cyan(`${config.HOST}:${config.PORT}`),
         `on mode`,
         chalk.cyan(config.NODE_ENV)
       )
     })
   } catch (error) {
-    console.log(chalk.red(`[APP] not launched – needed services errored`))
+    appLogger.fatal(chalk.red(`not launched – needed services errored`))
     console.log(error)
   }
 }
