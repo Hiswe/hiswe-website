@@ -11,9 +11,24 @@ export default {
   router: {
     middleware: [`reset-form`, `handle-server-errors`],
   },
-  env: {
-    CAPTCHA: config.captcha.site,
+  loading: {
+    color: `hsl(332, 100%, 50%)`,
+    height: `5px`,
   },
+  css: [
+    `@/nuxt-assets/css/global.scss`,
+    `@/nuxt-assets/css/page-transitions.scss`,
+  ],
+  modules: [
+    [
+      `nuxt-sass-resources-loader`,
+      [`@/nuxt-assets/css/scss-vars.scss`, `@/nuxt-assets/css/scss-mixin.scss`],
+    ],
+  ],
+  plugins: [
+    `@/nuxt-plugins/global-components.js`,
+    { src: `@/nuxt-plugins/browser.js`, ssr: false },
+  ],
   head: {
     titleTemplate: 'Hiswe – %s',
     meta: [
@@ -48,28 +63,5 @@ export default {
         defer: true,
       },
     ],
-  },
-  loading: {
-    color: `hsl(332, 100%, 50%)`,
-    height: `5px`,
-  },
-  css: [
-    `@/nuxt-assets/css/global.scss`,
-    `@/nuxt-assets/css/page-transitions.scss`,
-  ],
-  modules: [
-    [
-      `nuxt-sass-resources-loader`,
-      [`@/nuxt-assets/css/scss-vars.scss`, `@/nuxt-assets/css/scss-mixin.scss`],
-    ],
-  ],
-  plugins: [
-    `@/nuxt-plugins/global-components.js`,
-    { src: `@/nuxt-plugins/browser.js`, ssr: false },
-  ],
-  build: {
-    // extend(config, { isDev, isClient }) {
-    //   // console.log(config)
-    // },
   },
 }

@@ -1,10 +1,10 @@
 'use strict'
 
-const util = require('util')
-const axios = require('axios')
-const _ = require('lodash')
-const xml2js = require('xml2js')
-const cheerio = require('cheerio')
+import util from 'util'
+import axios from 'axios'
+import _ from 'lodash'
+import xml2js from 'xml2js'
+import cheerio from 'cheerio'
 
 const parseXml = util.promisify(xml2js.parseString)
 
@@ -21,7 +21,7 @@ function cleanSummary(summary) {
     .trim()
 }
 
-module.exports = async function getLatestBlogPost() {
+export default async function getLatestBlogPost() {
   const atomResponse = await axios.get(`https://hiswe.github.io/atom.xml`)
   if (!atomResponse.status === 200) return (ctx.body = [{}])
 

@@ -1,16 +1,17 @@
 export const actions = {
   nuxtServerInit({ commit }, nuxtCtx) {
     const { req } = nuxtCtx
-    const { session } = req
-    if (!session) return
-    if (session.notification) {
-      commit(`notification/ADD`, session.notification)
+    const { serverData } = req
+    if (!serverData) return
+    console.log(serverData)
+    if (serverData.notification) {
+      commit(`notification/ADD`, serverData.notification)
     }
-    if (session.captcha) {
-      commit(`contact/CAPTCHA`, session.captcha)
+    if (serverData.captcha) {
+      commit(`contact/CAPTCHA`, serverData.captcha)
     }
-    if (session.validation) {
-      commit(`contact/SET_FIELDS`, session.validation)
+    if (serverData.validation) {
+      commit(`contact/SET_FIELDS`, serverData.validation)
     }
   },
 }

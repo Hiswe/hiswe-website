@@ -1,12 +1,12 @@
 <script>
 import MainNavigation from '~/nuxt-components/main-navigation.vue'
-import Notifications from '~/nuxt-components/notifications.vue'
+import HisweNotifications from '~/nuxt-components/notifications/list'
 
 export default {
   name: `default-layout`,
   components: {
     'hiswe-main-navigation': MainNavigation,
-    'hiswe-notifications': Notifications,
+    HisweNotifications,
   },
 }
 </script>

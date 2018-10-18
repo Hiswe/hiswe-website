@@ -3,13 +3,14 @@ import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
 import util from 'util'
 import request from 'request-promise-native'
+import consola from 'consola'
 
 import config from './config'
 import { sendMail } from './services'
 
+const contactLogger = consola.withScope(`CONTACT`)
 const reCAPTCHA_URL = `https://www.google.com/recaptcha/api/siteverify`
 
-const PREFIX = `[MAIL]`
 async function contactMail(formData) {
   // field validation
   const { email, message } = formData
@@ -27,7 +28,7 @@ async function contactMail(formData) {
     .map(field => field.valid)
     .includes(false)
   if (hasError) {
-    console.log(c.red(PREFIX), `validation error`)
+    contactLogger.error(`validation error`)
     return {
       validation,
       notification: {
@@ -40,6 +41,7 @@ async function contactMail(formData) {
   // re-captcha
   const captchaResponse = formData[`g-recaptcha-response`]
   if (!captchaResponse) {
+    contactLogger.warn(`no captcha`)
     return {
       validation: validation,
       notification: {

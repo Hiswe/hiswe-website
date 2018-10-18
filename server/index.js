@@ -9,15 +9,14 @@ import koaBody from 'koa-body'
 import consola from 'consola'
 import { Nuxt, Builder } from 'nuxt'
 import util from 'util'
-// import session from 'koa-session'
+import session from 'koa-session'
+import koaNuxt from '@hiswe/koa-nuxt'
 
 import config from './config'
 import { servicesReady } from './services'
 import getLatestBlogPost from './latest-blog-post'
 import sendContactMail from './send-contact-mail'
 import nuxtConfig from '../nuxt.config.js'
-import koaNuxt from './koa-nuxt'
-import { reset } from 'ansi-colors'
 
 const appLogger = consola.withScope(`APP`)
 const errorLogger = consola.withScope(`ERROR`)
@@ -40,33 +39,27 @@ async function start() {
   app.use(logger())
   app.use(formatJson())
 
-  // Don't use sessions
-  // • we will need Koa 3 to not have ERR_HTTP_HEADERS_SENT errors
-  // • https://github.com/koajs/koa/issues/1008
+  const sessionsOptions = {
+    key: `hiswe-website`,
+    autoCommit: false,
+  }
 
-  // app.use(
-  //   session(
-  //     {
-  //       key: 'hiswe-website',
-  //     },
-  //     app
-  //   )
-  // )
+  app.use(session(sessionsOptions, app))
 
   //----- NUXT HANDLING
 
   // Instantiate nuxt.js
   nuxtConfig.dev = config.isDev
   const nuxt = new Nuxt(nuxtConfig)
+  // create the nuxt middleWare
+  const renderNuxt = koaNuxt(nuxt)
 
   // Build in development
   if (nuxtConfig.dev) {
-    console.log(chalk.yellow(`SPA build for dev`))
+    appLogger.warn(`SPA build for dev`)
     const builder = new Builder(nuxt)
     await builder.build()
   }
-
-  const renderNuxt = koaNuxt(nuxt)
 
   //----- ERROR HANDLING
 
@@ -96,9 +89,11 @@ async function start() {
           },
         })
       }
-      ctx.req.error = {
-        statusCode: ctx.status,
-        message: err.message,
+      ctx.req.serverData = {
+        error: {
+          statusCode: ctx.status,
+          message: err.message,
+        },
       }
       try {
         errorLogger.error(`serving nuxt response`)
@@ -124,9 +119,10 @@ async function start() {
   })
 
   router.post(`/contact`, koaBody(), async ctx => {
-    const state = await sendContactMail(ctx.request.body)
+    const mailResponse = await sendContactMail(ctx.request.body)
     if (ctx.state.isJson) return (ctx.body = state)
-    ctx.session = state
+    ctx.session = mailResponse
+    await ctx.session.manuallyCommit()
     ctx.redirect(`/`)
   })
 
@@ -142,13 +138,15 @@ async function start() {
   app.use(async (ctx, next) => {
     const session = ctx.session || {}
     // useful for nuxtServerInit
-    ctx.req.session = {
-      ...session,
+    ctx.req.serverData = {
+      validation: session.validation,
+      notification: session.notification,
       captcha: config.captcha.site,
     }
     // flush session
     // –> make session act like flash messages
     ctx.session = {}
+    await ctx.session.manuallyCommit()
     await next()
   })
 
