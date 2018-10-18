@@ -97,6 +97,7 @@ form.contact(
     :disabled="disabled"
     :valid="validation.message.valid"
   )
+  noscript.contact__recaptcha javascript needs to be enabled
   vue-recaptcha.contact__recaptcha(
     :sitekey="captcha"
     theme="dark"

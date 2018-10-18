@@ -6,10 +6,11 @@ export const state = () => ({
 
 export const mutations = {
   ADD(state, payload) {
-    state.list.push({
+    const notification = {
       id: payload.id || shortid.generate(),
       ...payload,
-    })
+    }
+    state.list.push(notification)
   },
   REMOVE(state, id) {
     const messageIndex = state.list.findIndex(message => message.id === id)

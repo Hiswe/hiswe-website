@@ -1,5 +1,5 @@
-export default function({ store, req }) {
-  if (process.server && !req) return
+export default function({ store }) {
+  if (process.server) return
   store.commit(`contact/RESET`)
   store.commit(`notification/REMOVE_ALL`)
 }

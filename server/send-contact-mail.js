@@ -45,7 +45,7 @@ async function contactMail(formData) {
     return {
       validation: validation,
       notification: {
-        content: `a validation error has occurred. Please try again`,
+        content: `javascript needs to be enabled`,
         type: `error`,
       },
     }

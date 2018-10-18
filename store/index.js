@@ -3,7 +3,6 @@ export const actions = {
     const { req } = nuxtCtx
     const { serverData } = req
     if (!serverData) return
-    console.log(serverData)
     if (serverData.notification) {
       commit(`notification/ADD`, serverData.notification)
     }

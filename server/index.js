@@ -120,7 +120,7 @@ async function start() {
 
   router.post(`/contact`, koaBody(), async ctx => {
     const mailResponse = await sendContactMail(ctx.request.body)
-    if (ctx.state.isJson) return (ctx.body = state)
+    if (ctx.state.isJson) return (ctx.body = mailResponse)
     ctx.session = mailResponse
     await ctx.session.manuallyCommit()
     ctx.redirect(`/`)
