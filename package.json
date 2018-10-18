@@ -3,7 +3,7 @@
   "author": "Yannick “Hiswe” Aïvayan <yannick.aivayan@hiswe.net>",
   "description": "hiswe's personnal website",
   "homepage": "https://hiswe.net/",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "license": "MIT",
   "scripts": {
     "build": "yarn assets:svg && run-p build:*",
