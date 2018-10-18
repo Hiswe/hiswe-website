@@ -1,1 +1,1 @@
-web: node build/main.js
+web: node dist/index.js

@@ -15,7 +15,8 @@
     "dev:watch": "parcel watch server/index.js --target node",
     "dev:serve": "nodemon dist/index.js",
     "dev:mail": "maildev",
-    "start": "yarn build && cross-env NODE_ENV=production node build/main.js",
+    "start": "yarn build && run-p dev:mail serve:production",
+    "serve:production": "cross-env NODE_ENV=production node dist/index.js",
     "toc": "doctoc README.md --github",
     "release": "node ./bin/release.js"
   },
