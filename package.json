@@ -62,18 +62,7 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
-    "@babel/plugin-transform-parameters": "^7.1.0",
-    "@babel/plugin-transform-regenerator": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
     "@types/node": "^10.12.0",
-    "babel-preset-backpack": "^0.8.0-0",
-    "backpack-core": "^0.8.0-0",
     "consolidate": "^0.15.1",
     "cross-env": "^5.2.0",
     "del": "^3.0.0",
