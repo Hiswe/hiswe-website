@@ -3,6 +3,7 @@
 const shell = require('shelljs')
 const inquirer = require('inquirer')
 const path = require('path')
+const fs = require('fs')
 
 const pkg = require(`../package.json`)
 const BRANCH = `production`
@@ -28,6 +29,14 @@ async function initRelease() {
   ////////
 
   const bumping = await inquirer.prompt([
+    {
+      type: `list`,
+      name: `bump`,
+      message: `bump for release? (this will also commit a git tag)`,
+      default: 0,
+      choices: [{ name: `yes`, value: true }, { name: `no`, value: false }],
+      when: data => !data.skipPushReleaseBranch,
+    },
     {
       type: `list`,
       name: `bumpType`,
@@ -62,15 +71,16 @@ async function initRelease() {
     shell.exit(0)
   }
 
+  let VERSION = false
   if (bumping.version) {
     shell.echo(`bumping…`)
     shell.exec(`yarn bump --to=${bumping.version || params.bumpType}`, {
       silent: true,
     })
     shell.echo(`…bumping done!`)
+    const packageJSON = fs.readFileSync(path.join(__dirname, `../package.json`))
+    VERSION = JSON.parse(packageJSON).version
   }
-
-  const VERSION = bumping.version ? bumping.version : pkg.version
 
   ////////
   // BUILD
