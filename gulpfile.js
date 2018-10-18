@@ -15,9 +15,10 @@ const bump = done => {
     console.log(chalk.red(`bump task needs the --to argument`))
     return done()
   }
+  const isVersion = /\d+\.\d+\.\d+/.test(args.to)
   return gulp
-    .src([`package.json`])
-    .pipe($.jsonEditor({ version: args.to }))
+    .src([`package.json`], { base: '.' })
+    .pipe($.bump(isVersion ? { version: args.to } : { type: args.to }))
     .pipe(gulp.dest(`.`))
 }
 bump.description = `bump to the --to=`

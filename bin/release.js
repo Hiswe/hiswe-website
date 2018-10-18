@@ -30,21 +30,30 @@ async function initRelease() {
   const bumping = await inquirer.prompt([
     {
       type: `list`,
-      name: `bump`,
-      message: `bump for release? (this will also commit a git tag)`,
-      choices: [{ name: `yes`, value: true }, { name: `no`, value: false }],
+      name: `bumpType`,
+      message: `bump type? (actual is ${pkg.version})`,
+      when: data => data.bump,
+      default: 0,
+      choices: [
+        { name: `patch`, value: `patch` },
+        { name: `minor`, value: `minor` },
+        { name: `major`, value: `major` },
+        { name: `custom`, value: `custom` },
+      ],
     },
     {
       name: `version`,
-      message: `version number? (actual is ${pkg.version})`,
-      when: data => data.bump,
+      message: `please specify the custom version? (actual is ${pkg.version})`,
+      when: data => data.bumpType === `custom`,
       validate: value => /\d+\.\d+\.\d+/.test(value),
     },
     {
       type: `confirm`,
-      name: `confirm`,
-      when: data => data.version,
-      message: data => `do you confirm version ${data.version}?`,
+      name: `confirmVersion`,
+      when: data => data.bump,
+      message: data => {
+        return `do you confirm version “${data.version || data.bumpType}”?`
+      },
     },
   ])
 
@@ -55,7 +64,9 @@ async function initRelease() {
 
   if (bumping.version) {
     shell.echo(`bumping…`)
-    shell.exec(`yarn bump --to=${bumping.version}`, { silent: true })
+    shell.exec(`yarn bump --to=${bumping.version || params.bumpType}`, {
+      silent: true,
+    })
     shell.echo(`…bumping done!`)
   }
 
@@ -110,7 +121,7 @@ async function initRelease() {
   shell.echo(`…static files…`)
   shell.cp(`-r`, `./static/.`, path.join(copyDirPath, `/static`))
   shell.echo(`…server files…`)
-  shell.cp(`-r`, `./build/.`, path.join(copyDirPath, `/build`))
+  shell.cp(`-r`, `./dist/.`, path.join(copyDirPath, `/dist`))
   shell.echo(`…shared files…`)
   shell.mkdir(`-p`, path.join(copyDirPath, `/.nuxt/dist`))
   shell.cp(`-r`, `./.nuxt/dist/.`, path.join(copyDirPath, `/.nuxt/dist`))
