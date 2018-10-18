@@ -28,7 +28,7 @@ async function initRelease() {
   // BUMP CONFIGURATION
   ////////
 
-  const bumping = await inquirer.prompt([
+  const params = await inquirer.prompt([
     {
       type: `list`,
       name: `bump`,
@@ -66,18 +66,16 @@ async function initRelease() {
     },
   ])
 
-  if (bumping.version && !bumping.confirm) {
+  if (params.version && !params.confirmVersion) {
     shell.echo(`canceling bumping & release`)
     shell.exit(0)
   }
 
   let VERSION = false
-  if (bumping.version) {
-    shell.echo(`bumping…`)
-    shell.exec(`yarn bump --to=${bumping.version || params.bumpType}`, {
-      silent: true,
-    })
-    shell.echo(`…bumping done!`)
+  if (params.bump) {
+    shell.echo(`   bumping…`)
+    shell.exec(`yarn bump --to=${params.version || params.bumpType}`)
+    shell.echo(`✅ bumping done!`)
     const packageJSON = fs.readFileSync(path.join(__dirname, `../package.json`))
     VERSION = JSON.parse(packageJSON).version
   }
@@ -180,22 +178,20 @@ async function initRelease() {
 
   //----- TAGGING THE VERSION
 
-  if (!bumping.bump) {
-    shell.echo(`Skipping pushing tag`)
-    teardown()
-    shell.exit(0)
-  }
-
-  shell.echo(`tagging version…`)
-  shell.exec(`git tag v${bumping.version}`, { silent: true })
-  const tagPush = shell.exec(`git push --tags`, { silent: true })
-  if (tagPush.code !== 0) {
-    shell.echo(`Error: Git tag push failed`)
-    shell.echo(tagPush.stderr)
-    teardown()
-    shell.exit(1)
+  if (params.bump) {
+    shell.echo(`tagging version…`)
+    shell.exec(`git tag v${VERSION}`, { silent: true })
+    const tagPush = shell.exec(`git push --tags`, { silent: true })
+    if (tagPush.code !== 0) {
+      shell.echo(`❌ Error: Git tag push failed`)
+      shell.echo(tagPush.stderr)
+      teardown()
+      shell.exit(1)
+    } else {
+      shell.echo(`🏷  tagging done`)
+    }
   } else {
-    shell.echo(`…tag push done!`)
+    shell.echo(`⚠️  skip bumping`)
   }
 
   //----- TEARDOWN
