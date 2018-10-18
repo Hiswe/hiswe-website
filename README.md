@@ -82,6 +82,13 @@ hiswe_email__provider__auth__pass
 hiswe_email__options__from
 ```
 
+**captcha**
+
+```
+hiswe_captcha__site
+hiswe_captcha__secret
+```
+
 ### recaptcha
 
 manage on [the console](https://www.google.com/recaptcha/admin#list)
