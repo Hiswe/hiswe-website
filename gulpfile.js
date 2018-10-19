@@ -172,18 +172,3 @@ exports[`build:icons`] = vueIcons
 
 const buildSvg = gulp.parallel(logos, vueIcons)
 gulp.task(`build:svg`, buildSvg)
-
-////////
-// ToC MARKDOWN
-////////
-
-const tableOfContent = () => {
-  return gulp
-    .src(`server/content/*.md`)
-    .pipe($.cached(`toc`))
-    .pipe($.doctoc())
-    .pipe(gulp.dest(`server/content`))
-}
-tableOfContent.description = `build content md ToC`
-
-exports[`build:toc`] = tableOfContent
