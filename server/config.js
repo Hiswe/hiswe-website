@@ -17,6 +17,10 @@ const config = rc(`hiswe`, {
       from: `Mr contact dev <contact@hiswe.pouic>`,
     },
   },
+  captcha: {
+    site: `YA95hSdXYUBPKEOAAeknyzAoOAAaW-6QbdULO`,
+    secret: `d09CKWf64EV7LmUVZnyBUW6Py5Hf67jUCDAAAAAU`,
+  },
 })
 
 config.VERSION = pkg.version
