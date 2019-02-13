@@ -3,7 +3,7 @@
   "author": "Yannick “Hiswe” Aïvayan <yannick.aivayan@hiswe.net>",
   "description": "hiswe's personnal website",
   "homepage": "https://hiswe.net/",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "license": "MIT",
   "scripts": {
     "assets:svg": "gulp build:svg",
