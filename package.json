@@ -6,19 +6,19 @@
   "version": "4.1.1",
   "license": "MIT",
   "scripts": {
+    "assets:svg": "gulp build:svg",
     "build": "yarn assets:svg && run-p build:*",
     "build:nuxt": "nuxt build",
     "build:server": "parcel build server/index.js --target node",
-    "assets:svg": "gulp build:svg",
     "bump": "gulp bump",
     "dev": "run-p dev:*",
     "dev:watch": "parcel watch server/index.js --target node",
     "dev:serve": "nodemon dist/index.js",
     "dev:mail": "maildev",
-    "start": "yarn build && run-p dev:mail serve:production",
+    "release": "node ./bin/release.js",
     "serve:production": "cross-env NODE_ENV=production node dist/index.js",
-    "toc": "doctoc README.md --github",
-    "release": "node ./bin/release.js"
+    "start": "yarn build && run-p dev:mail serve:production",
+    "toc": "doctoc README.md --github"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
   "dependencies": {
     "@hiswe/focus-ring": "^1.0.4",
     "@hiswe/koa-nuxt": "^1.0.0",
+    "@nuxtjs/style-resources": "^0.1.2",
     "@sindresorhus/slugify": "^0.8.0",
     "axios": "^0.18.0",
     "chalk": "^2.4.2",
@@ -50,7 +51,6 @@
     "lodash.clonedeep": "^4.5.0",
     "nodemailer": "^5.1.1",
     "nuxt": "^2.4.3",
-    "nuxt-sass-resources-loader": "^2.0.5",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "rc": "~1.2.8",

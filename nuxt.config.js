@@ -19,12 +19,13 @@ export default {
     `@/nuxt-assets/css/global.scss`,
     `@/nuxt-assets/css/page-transitions.scss`,
   ],
-  modules: [
-    [
-      `nuxt-sass-resources-loader`,
-      [`@/nuxt-assets/css/scss-vars.scss`, `@/nuxt-assets/css/scss-mixin.scss`],
+  modules: [`@nuxtjs/style-resources`],
+  styleResources: {
+    scss: [
+      `@/nuxt-assets/css/scss-vars.scss`,
+      `@/nuxt-assets/css/scss-mixin.scss`,
     ],
-  ],
+  },
   plugins: [
     `@/nuxt-plugins/global-components.js`,
     { src: `@/nuxt-plugins/browser.js`, ssr: false },
