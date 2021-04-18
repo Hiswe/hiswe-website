@@ -7,15 +7,15 @@ import formatJson from 'koa-json'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
 import consola from 'consola'
-import { Nuxt, Builder } from 'nuxt'
+import { default as nuxtLib } from 'nuxt'
 import util from 'util'
 import session from 'koa-session'
 import koaNuxt from '@hiswe/koa-nuxt'
 
-import config from './config'
-import { servicesReady } from './services'
-import getLatestBlogPost from './latest-blog-post'
-import sendContactMail from './send-contact-mail'
+import config from './config.js'
+import { servicesReady } from './services/index.js'
+import getLatestBlogPost from './latest-blog-post.js'
+import sendContactMail from './send-contact-mail.js'
 import nuxtConfig from '../nuxt.config.js'
 
 const appLogger = consola.withScope(`APP`)
@@ -50,14 +50,14 @@ async function start() {
 
   // Instantiate nuxt.js
   nuxtConfig.dev = config.isDev
-  const nuxt = new Nuxt(nuxtConfig)
+  const nuxt = new nuxtLib.Nuxt(nuxtConfig)
   // create the nuxt middleWare
   const renderNuxt = koaNuxt(nuxt)
 
   // Build in development
   if (nuxtConfig.dev) {
     appLogger.warn(`SPA build for dev`)
-    const builder = new Builder(nuxt)
+    const builder = new nuxtLib.Builder(nuxt)
     await builder.build()
   }
 

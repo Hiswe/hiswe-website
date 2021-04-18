@@ -1,12 +1,11 @@
-import c from 'chalk'
-import isEmail from 'validator/lib/isEmail'
-import isEmpty from 'validator/lib/isEmpty'
+import isEmail from 'validator/lib/isEmail.js'
+import isEmpty from 'validator/lib/isEmpty.js'
 import util from 'util'
 import request from 'request-promise-native'
 import consola from 'consola'
 
-import config from './config'
-import { sendMail } from './services'
+import config from './config.js'
+import { sendMail } from './services/index.js'
 
 const contactLogger = consola.withScope(`CONTACT`)
 const reCAPTCHA_URL = `https://www.google.com/recaptcha/api/siteverify`

@@ -1,6 +1,6 @@
-'use strict'
-
-const rc = require('rc')
+import rc from 'rc'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
 
 const pkg = require('../package.json')
 
@@ -32,4 +32,4 @@ config.NODE_ENV = config.NODE_ENV || process.env.NODE_ENV || `development`
 config.isDev = config.NODE_ENV === `development`
 config.isProd = config.NODE_ENV === `production`
 
-module.exports = config
+export default config

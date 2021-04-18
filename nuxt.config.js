@@ -1,13 +1,12 @@
-import pkg from './package.json'
-import rc from 'rc'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
 
-const config = rc(`hiswe`)
+const pkg = require('./package.json')
 
 const NAME = `hiswe website`
-const IS_PROD = process.env.NODE_ENV === `production`
-// const IS_DEV = !isProd
 
 export default {
+  telemetry: false,
   router: {
     middleware: [`reset-form`, `handle-server-errors`],
   },

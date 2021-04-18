@@ -1,8 +1,8 @@
 import util from 'util'
 import consola from 'consola'
 
-import config from '../config'
-import mailingConnection from './mailing'
+import config from '../config.js'
+import mailingConnection from './mailing.js'
 
 const mailLogger = consola.withScope(`MAIL`)
 
