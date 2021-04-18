@@ -1,16 +1,23 @@
-'use strict'
+import * as path from 'path'
+import { fileURLToPath } from 'url'
+import slugify from '@sindresorhus/slugify'
+import yargs from 'yargs'
+import gulp from 'gulp'
+import gulpBump from 'gulp-bump'
+import gulpSvgmin from 'gulp-svgmin'
+import gulpCheerio from 'gulp-cheerio'
+import gulpSvgSymbols from 'gulp-svg-symbols'
+import gulpIf from 'gulp-if'
+import gulpRename from 'gulp-rename'
 
-const path = require('path')
-const gulp = require('gulp')
-const $ = require('gulp-load-plugins')()
-const slugify = require('@sindresorhus/slugify')
-const args = require('yargs').argv
+const args = yargs.argv
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 ////////
 // BUMP
 ////////
 
-const bump = done => {
+export const bump = done => {
   if (!args.to) {
     console.log(chalk.red(`bump task needs the --to argument`))
     return done()
@@ -18,11 +25,10 @@ const bump = done => {
   const isVersion = /\d+\.\d+\.\d+/.test(args.to)
   return gulp
     .src([`package.json`], { base: '.' })
-    .pipe($.bump(isVersion ? { version: args.to } : { type: args.to }))
+    .pipe(gulpBump(isVersion ? { version: args.to } : { type: args.to }))
     .pipe(gulp.dest(`.`))
 }
 bump.description = `bump to the --to=`
-exports[`bump`] = bump
 
 ////////
 // ICONS
@@ -72,18 +78,18 @@ const templateVue = path.join(
   `./nuxt-assets-source/icons/svg-icons.vue`
 )
 
-const logos = () => {
+export const buildLogos = () => {
   return gulp
     .src(`nuxt-assets-source/logos-tech/*.svg`)
     .pipe(
-      $.svgmin({
+      gulpSvgmin({
         js2svg: {
           pretty: true,
         },
       })
     )
     .pipe(
-      $.cheerio({
+      gulpCheerio({
         run: ($, file) => {
           $(`defs`).remove()
           $(`clipPath`).remove()
@@ -114,14 +120,14 @@ const logos = () => {
       })
     )
     .pipe(
-      $.svgmin({
+      gulpSvgmin({
         js2svg: {
           pretty: true,
         },
       })
     )
     .pipe(
-      $.svgSymbols({
+      gulpSvgSymbols({
         class: `.logo--%f`,
         templates: [`default-demo`, templateVue],
         slug: slugify,
@@ -130,30 +136,29 @@ const logos = () => {
         },
       })
     )
-    .pipe($.rename({ basename: `svg-tech-logos` }))
-    .pipe($.if(/[.]vue$/, gulp.dest(`nuxt-components`)))
-    .pipe($.if(/[.]html$/, gulp.dest(`nuxt-assets-source/logos-tech`)))
+    .pipe(gulpRename({ basename: `svg-tech-logos` }))
+    .pipe(gulpIf(/[.]vue$/, gulp.dest(`nuxt-components`)))
+    .pipe(gulpIf(/[.]html$/, gulp.dest(`nuxt-assets-source/logos-tech`)))
 }
-logos.description = `bundle svg logos`
-exports[`build:logos`] = logos
+buildLogos.description = `bundle svg logos`
 
 //----- ICONS
 
 const MATERIAL_NAME = /(?:outline|baseline)-([^\d]*)-24px/
-const vueIcons = () => {
+const buildVueIcons = () => {
   return gulp
     .src(`nuxt-assets-source/icons/*.svg`)
     .pipe(
-      $.rename(path => {
+      gulpRename(path => {
         const { basename } = path
         const isMaterialIcon = MATERIAL_NAME.test(basename)
         if (!isMaterialIcon) return
         path.basename = MATERIAL_NAME.exec(basename)[1].replace(/_/g, `-`)
       })
     )
-    .pipe($.cheerio(cheerioOptions))
+    .pipe(gulpCheerio(cheerioOptions))
     .pipe(
-      $.svgSymbols({
+      gulpSvgSymbols({
         class: `.icon--%f`,
         templates: [`default-demo`, templateVue],
         slug: slugify,
@@ -162,13 +167,12 @@ const vueIcons = () => {
         },
       })
     )
-    .pipe($.if(/[.]vue$/, gulp.dest(`nuxt-components`)))
-    .pipe($.if(/[.]html$/, gulp.dest(`nuxt-assets-source/icons`)))
+    .pipe(gulpIf(/[.]vue$/, gulp.dest(`nuxt-components`)))
+    .pipe(gulpIf(/[.]html$/, gulp.dest(`nuxt-assets-source/icons`)))
 }
-vueIcons.description = `bundle all SVG icons`
-exports[`build:icons`] = vueIcons
+buildVueIcons.description = `bundle all SVG icons`
 
 //----- ALL
 
-const buildSvg = gulp.parallel(logos, vueIcons)
+const buildSvg = gulp.parallel(buildLogos, buildVueIcons)
 gulp.task(`build:svg`, buildSvg)
