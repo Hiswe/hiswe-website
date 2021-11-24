@@ -99,8 +99,8 @@ export default {
       background: var(--c-primary-darker);
       background: linear-gradient(
         to right,
-        var(--c-primary-darker) percentage(5/6),
-        var(--c-primary-darkest-highlight) percentage(5/6)
+        var(--c-primary-darker) percentage(math.div(5, 6)),
+        var(--c-primary-darkest-highlight) percentage(math.div(5, 6))
       );
       grid-area: footer;
     }

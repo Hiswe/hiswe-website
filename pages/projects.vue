@@ -98,7 +98,7 @@ hiswe-main-content(page="projects")
 
   @media #{$mq-medium} {
     align-self: end;
-    padding: 3rem percentage(21/36) 0 0;
+    padding: 3rem percentage(math.div(21, 36)) 0 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -157,19 +157,19 @@ hiswe-main-content(page="projects")
     text-align: left;
   }
   @media #{$mq-medium-only} {
-    padding-left: percentage(1/3);
+    padding-left: percentage(math.div(1, 3));
   }
   @media #{$mq-big} {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-left: percentage(1 / 13);
+    padding-left: percentage(math.div(1, 13));
   }
 }
 .web-apps {
   grid-area: webapps;
 }
-.page-projects /deep/ .social {
+.page-projects ::v-deep .social {
   @media #{$mq-big} {
     align-items: start;
     padding-left: 0.5rem;

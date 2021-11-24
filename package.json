@@ -34,12 +34,12 @@
     "@hiswe/koa-nuxt": "^1.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@sindresorhus/slugify": "^2.0.0",
-    "axios": "^0.21.1",
+    "axios": "^0.24.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.2",
     "consola": "^2.4.1",
     "form-serialize": "^0.7.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "koa": "^2.7.0",
     "koa-body": "^4.0.8",
     "koa-compress": "^5.0.1",
@@ -57,7 +57,7 @@
     "rc": "~1.2.8",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
-    "sass-loader": "10.1.1",
+    "sass-loader": "10",
     "shortid": "^2.2.14",
     "source-map-support": "^0.5.10",
     "validator": "^13.5.2",
@@ -66,7 +66,7 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "@types/node": "^14.14.41",
+    "@types/node": "^16.11.10",
     "cross-env": "^7.0.3",
     "del": "^6.0.0",
     "doctoc": "^2.0.0",
@@ -76,16 +76,16 @@
     "gulp-if": "^3.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-svg-symbols": "^3.2.3",
-    "gulp-svgmin": "^3.0.0",
+    "gulp-svgmin": "^4.1.0",
     "inquirer": "^8.0.0",
     "maildev": "^1.0.0-rc3",
-    "node-sass": "^5.0.0",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
+    "sass": "^1.43.4",
     "shelljs": "^0.8.3",
     "svgo": "^2.3.0",
     "vue": "^2.6.6",
     "webpack": "^5.33.2",
-    "yargs": "^16.2.0"
+    "yargs": "^17.2.1"
   }
 }

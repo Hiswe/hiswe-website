@@ -48,7 +48,7 @@ article(:class="`webapp webapp--${name}`")
   @media #{$mq-medium-only} {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    width: percentage(2/3);
+    width: percentage(math.div(2, 3));
     grid-auto-rows: auto;
     grid-gap: 1rem;
     grid-template-areas:
@@ -58,7 +58,7 @@ article(:class="`webapp webapp--${name}`")
       'list    list';
 
     &:nth-child(even) {
-      margin-left: percentage(1/3);
+      margin-left: percentage(math.div(1, 3));
     }
 
     + .webapp {
@@ -68,7 +68,7 @@ article(:class="`webapp webapp--${name}`")
 
   &__logo-block {
     margin: 0 auto;
-    width: percentage(1 / 4);
+    width: percentage(math.div(1 , 4));
     grid-area: logo;
     position: relative;
     top: grid-size(-1);
@@ -79,7 +79,7 @@ article(:class="`webapp webapp--${name}`")
     }
 
     @media #{$mq-big} {
-      width: percentage(1 / 3);
+      width: percentage(math.div(1 , 3));
     }
   }
   &__logo {
@@ -146,7 +146,7 @@ article(:class="`webapp webapp--${name}`")
     text-align: center;
     font-size: 1.2rem;
     color: var(--c-primary-darkest);
-    padding: 0 percentage(1 / 9);
+    padding: 0 percentage(math.div(1 , 9));
     grid-area: description;
     align-self: end;
 
@@ -157,7 +157,7 @@ article(:class="`webapp webapp--${name}`")
   }
   ul {
     color: var(--c-primary-darker);
-    padding: 0 percentage(1 / 9);
+    padding: 0 percentage(math.div(1 , 9));
     grid-area: list;
 
     @media #{$mq-medium-only} {

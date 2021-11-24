@@ -5,7 +5,7 @@
   --gutter: 1rem;
   --half-gutter: calc(var(--gutter) * 0.5);
   --two-gutter: calc(var(--gutter) * 2);
-  --grid-size: #{100 / 16 * 1vw};
+  --grid-size: #{math.div(100, 16) * 1vw};
   // font-size is defined in global.scss
   --gutter: var(--grid-size);
 
@@ -15,7 +15,7 @@
 
   @media #{$mq-medium} {
     --vertical-space: 1.25rem;
-    --grid-size: #{100 / 22 * 1vw};
+    --grid-size: #{math.div(100, 22) * 1vw};
   }
   @media #{$mq-big} {
     --gutter: 1.5rem;

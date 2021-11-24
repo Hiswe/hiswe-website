@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import SvgIcons from '~/nuxt-components/svg-icons'
 import TechLogs from '~/nuxt-components/svg-tech-logos'
-import MainContent from '~/nuxt-components/main-content'
+import HisweMainContent from '~/nuxt-components/main-content.vue'
 import Contact from '~/nuxt-components/contact'
 import Social from '~/nuxt-components/social'
 
@@ -22,7 +22,7 @@ Vue.component(`hiswe-field`, Field)
 
 Vue.component(`hiswe-contact`, Contact)
 Vue.component(`hiswe-social`, Social)
-Vue.component(`hiswe-main-content`, MainContent)
+Vue.component(`hiswe-main-content`, HisweMainContent)
 
 const DATE_FORMAT = {
   day: `2-digit`,
