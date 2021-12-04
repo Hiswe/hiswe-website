@@ -4650,11 +4650,6 @@ fork-stream@^0.0.4:
   resolved "https://registry.npmjs.org/fork-stream/-/fork-stream-0.0.4.tgz"
   integrity sha1-24Sfznf2cIpfjzhq5TOgkHtUrnA=
 
-form-serialize@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.npmjs.org/form-serialize/-/form-serialize-0.7.2.tgz"
-  integrity sha1-sKL/DCICb7bT0VydM/beakMuRzI=
-
 format@^0.2.0:
   version "0.2.2"
   resolved "https://registry.npmjs.org/format/-/format-0.2.2.tgz"

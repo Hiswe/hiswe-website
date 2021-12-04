@@ -39,7 +39,6 @@
     "cheerio": "^1.0.0-rc.2",
     "consola": "^2.4.1",
     "dotenv": "^10.0.0",
-    "form-serialize": "^0.7.2",
     "fs-extra": "^10.0.0",
     "koa": "^2.7.0",
     "koa-body": "^4.0.8",
