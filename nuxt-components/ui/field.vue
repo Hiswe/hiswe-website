@@ -119,7 +119,7 @@ textarea {
 input,
 textarea {
   background: none;
-  border: 4px solid var(--c-primary-darker);
+  border: 3px solid var(--c-primary-darker);
   display: block;
   width: 100%;
   flex-grow: 1;

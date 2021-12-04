@@ -1,5 +1,4 @@
 <script>
-import serialize from 'form-serialize'
 import { mapState, mapMutations } from 'vuex'
 
 import HisweField from '~/nuxt-components/ui/field.vue'
@@ -16,16 +15,6 @@ export default {
       message: ``,
     }
   },
-  async mounted() {
-    try {
-      await this.$recaptcha.init()
-    } catch (e) {
-      console.error(e)
-    }
-  },
-  beforeDestroy() {
-    this.$recaptcha.destroy()
-  },
   computed: {
     ...mapState(`contact`, {
       validation: `fields`,
@@ -36,10 +25,13 @@ export default {
       this.disabled = false
     },
     handleSubmit(event) {
-      const body = serialize(event.target, { hash: true, empty: true })
       this.disabled = true
       this.$axios
-        .post(this.action, body)
+        .post(this.action, {
+          name: this.name,
+          email: this.email,
+          message: this.message,
+        })
         .then((response) => {
           const { data } = response
           if (data.notification) {

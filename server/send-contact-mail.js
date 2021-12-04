@@ -1,18 +1,15 @@
 import isEmail from 'validator/lib/isEmail.js'
 import isEmpty from 'validator/lib/isEmpty.js'
 import util from 'util'
-import request from 'request-promise-native'
 import consola from 'consola'
 
-import config from './config.js'
 import { sendMail } from './services/index.js'
 
 const contactLogger = consola.withScope(`CONTACT`)
-const reCAPTCHA_URL = `https://www.google.com/recaptcha/api/siteverify`
 
 async function contactMail(formData) {
   // field validation
-  const { email, message } = formData
+  const { email, message, name } = formData
   const validation = {
     email: {
       valid: isEmail(email),
@@ -24,7 +21,7 @@ async function contactMail(formData) {
     },
   }
   const hasError = Object.values(validation)
-    .map(field => field.valid)
+    .map((field) => field.valid)
     .includes(false)
   if (hasError) {
     contactLogger.error(`validation error`)
@@ -37,52 +34,22 @@ async function contactMail(formData) {
     }
   }
 
-  // re-captcha
-  const captchaResponse = formData[`g-recaptcha-response`]
-  if (!captchaResponse) {
-    contactLogger.warn(`no captcha`)
-    return {
-      validation: validation,
-      notification: {
-        content: `javascript needs to be enabled`,
-        type: `error`,
-      },
-    }
-  }
-
-  const captchaData = {
-    secret: config.captcha.secret,
-    response: captchaResponse,
-  }
-  const verifyCaptcha = await request({
-    method: `POST`,
-    uri: reCAPTCHA_URL,
-    formData: captchaData,
-    json: true,
-  })
-
-  console.log(util.inspect(verifyCaptcha, { colors: true }))
-
-  if (!verifyCaptcha.success) {
-    return {
-      validation: validation,
-      notification: {
-        content: `a validation error has occurred. Please try again`,
-        type: `error`,
-      },
-    }
+  const mailing = {
+    subject: `a new message from ${name}`,
+    from: process.env.MAIL_FROM || `contact@hiswe.pouic`,
+    to: process.env.MAIL_TO || `contact@hiswe.pouic`,
+    replyTo: email,
+    text: message,
   }
 
   try {
     // https://github.com/sendgrid/sendgrid-nodejs/blob/main/docs/use-cases/cc-bcc-reply-to.md
-    await sendMail({
-      from: config.email.options.from,
-      to: config.email.options.from,
-      replyTo: email,
-      text: message,
-    })
+    await sendMail(mailing)
   } catch (error) {
-    console.log(util.inspect(error, { colors: true }))
+    contactLogger.log(
+      util.inspect(error.response?.body ?? error, { colors: true }),
+    )
+    contactLogger.log(util.inspect(mailing, { colors: true }))
     return {
       validation,
       notification: {

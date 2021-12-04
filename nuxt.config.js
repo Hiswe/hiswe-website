@@ -24,7 +24,7 @@ export default {
     `@/nuxt-assets/css/global.scss`,
     `@/nuxt-assets/css/page-transitions.scss`,
   ],
-  modules: [`@nuxtjs/style-resources`, `@nuxtjs/axios`, `@nuxtjs/recaptcha`],
+  modules: [`@nuxtjs/style-resources`, `@nuxtjs/axios`],
   styleResources: {
     scss: [
       `@/nuxt-assets/css/scss-vars.scss`,
