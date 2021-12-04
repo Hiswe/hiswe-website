@@ -8,13 +8,11 @@ import Social from '~/nuxt-components/social'
 
 import TwoLineTitle from '~/nuxt-components/ui/two-line-title'
 import TwoColumnHeader from '~/nuxt-components/ui/two-column-header'
-import Field from '~/nuxt-components/ui/field'
 
 Vue.component(`hiswe-icon`, SvgIcons)
 Vue.component(`hiswe-tech-logo`, TechLogs)
 Vue.component(`hiswe-title`, TwoLineTitle)
 Vue.component(`hiswe-header-content`, TwoColumnHeader)
-Vue.component(`hiswe-field`, Field)
 
 Vue.component(`hiswe-contact`, Contact)
 Vue.component(`hiswe-social`, Social)
@@ -25,7 +23,7 @@ const DATE_FORMAT = {
   month: `2-digit`,
   year: `numeric`,
 }
-Vue.filter('localDate', function(value) {
+Vue.filter('localDate', function (value) {
   const date = new Date(value)
   return date.toLocaleDateString(`en-GB`, DATE_FORMAT)
 })

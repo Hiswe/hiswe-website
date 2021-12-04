@@ -82,23 +82,25 @@ export default {
     @submit.prevent="handleSubmit"
     @click="enable"
   >
-    <hiswe-title class="form__title" text="contact me" :level="2"></hiswe-title>
-    <HisweField
-      class="field--name"
-      name="name"
-      type="text"
-      v-model="name"
-      :disabled="disabled"
-    />
-    <HisweField
-      class="field--email"
-      name="email"
-      type="email"
-      v-model="email"
-      required="required"
-      :disabled="disabled"
-      :valid="validation.email.valid"
-    />
+    <hiswe-title class="form__title" text="contact me" :level="2" />
+    <div class="contact__inputs">
+      <HisweField
+        class="field--name"
+        name="name"
+        type="text"
+        v-model="name"
+        :disabled="disabled"
+      />
+      <HisweField
+        class="field--email"
+        name="email"
+        type="email"
+        v-model="email"
+        required="required"
+        :disabled="disabled"
+        :valid="validation.email.valid"
+      />
+    </div>
     <HisweField
       class="field--message"
       name="message"
@@ -108,9 +110,6 @@ export default {
       :disabled="disabled"
       :valid="validation.message.valid"
     />
-    <!-- <noscript class="contact__recaptcha">
-      javascript needs to be enabled
-    </noscript> -->
     <div class="contact__submit">
       <button class="contact__button" type="submit" :disabled="disabled">
         send
@@ -130,21 +129,18 @@ export default {
     padding: var(--vertical-space) 0;
     display: grid;
     grid-template-columns: 1fr 6fr 1fr 9fr 1fr;
-    grid-template-rows: auto 5rem 5rem minmax(0, auto) minmax(5rem, auto) minmax(
-        3rem,
-        auto
-      );
+    grid-template-rows: repeat(2, min-content) auto min-content;
     grid-template-areas:
-      '. .         . title   .'
-      '. name      . message .'
-      '. email     . message .'
-      '. .         . message .'
-      '. button    . message .';
+      '. .      . title   .'
+      '. inputs . message .'
+      '. .      . message .'
+      '. button . message .';
   }
 }
+
 .contact__submit {
   grid-area: button;
-  padding-top: var(--half-gutter);
+  padding-top: var(--gutter);
 }
 .contact__button {
   display: block;
@@ -182,11 +178,8 @@ export default {
     padding: 0;
   }
 }
-.field--name {
-  grid-area: name;
-}
-.field--email {
-  grid-area: email;
+.contact__inputs {
+  grid-area: inputs;
 }
 .field--message {
   grid-area: message;
