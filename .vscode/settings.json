@@ -1,12 +1,20 @@
 {
   "editor.formatOnSave": true,
+  "path-intellisense.mappings": {
+    "~": "${workspaceRoot}/",
+    "@@": "${workspaceRoot}/"
+  },
   "cSpell.words": [
-    "NUXT",
-    "Segoe",
+    "axios",
     "clonedeep",
+    "consola",
     "hiswe",
     "maildev",
-    "promisify"
+    "NUXT",
+    "nuxtjs",
+    "promisify",
+    "Segoe",
+    "SENDGRID"
   ],
   "files.associations": {
     ".hiswerc*": "jsonc"

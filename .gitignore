@@ -1,6 +1,8 @@
 .DS_Store
 .awspublish-hiswe
 .cache
+.env
+.hiswerc
 .nuxt
 build
 dist
@@ -11,6 +13,5 @@ public/*.js
 public/*.css
 tmp
 *.ai
-.hiswerc
 npm-debug.log
 yarn-error.log

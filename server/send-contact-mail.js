@@ -74,6 +74,7 @@ async function contactMail(formData) {
   }
 
   try {
+    // https://github.com/sendgrid/sendgrid-nodejs/blob/main/docs/use-cases/cc-bcc-reply-to.md
     await sendMail({
       from: config.email.options.from,
       to: config.email.options.from,

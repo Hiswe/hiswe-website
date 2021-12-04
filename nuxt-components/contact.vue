@@ -1,25 +1,33 @@
 <script>
 import serialize from 'form-serialize'
 import { mapState, mapMutations } from 'vuex'
-import vueRecaptcha from 'vue-recaptcha'
+
+import HisweField from '~/nuxt-components/ui/field.vue'
 
 export default {
   name: `section-contact`,
-  components: {
-    vueRecaptcha,
-  },
+  components: { HisweField },
   data() {
     return {
       action: `/api/contact`,
       disabled: false,
+      name: ``,
+      email: ``,
+      message: ``,
     }
   },
-  mounted() {
-    console.log(this)
+  async mounted() {
+    try {
+      await this.$recaptcha.init()
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
   },
   computed: {
     ...mapState(`contact`, {
-      captcha: `captcha`,
       validation: `fields`,
     }),
   },
@@ -30,27 +38,27 @@ export default {
     handleSubmit(event) {
       const body = serialize(event.target, { hash: true, empty: true })
       this.disabled = true
-      this.$http
+      this.$axios
         .post(this.action, body)
-        .then(response => {
+        .then((response) => {
           const { data } = response
           if (data.notification) {
             this.showNotification(data.notification)
           }
           if (data.validation) {
             const isInvalid = Object.values(data.validation)
-              .map(field => field.valid)
+              .map((field) => field.valid)
               .includes(false)
             // let the user automatically fix his errors
             if (isInvalid) this.disabled = false
             this.setValidation(data.validation)
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.disabled = false
           console.log(`ERROR`)
           this.showNotification({
-            content: `An error as occured, please try later`,
+            content: `An error as occurred, please try later`,
             type: `error`,
           })
         })
@@ -65,48 +73,50 @@ export default {
 }
 </script>
 
-<template lang="pug">
-form.contact(
-  :action="action"
-  method="post"
-  novalidate
-  @submit.prevent="handleSubmit"
-  @click="enable"
-)
-  hiswe-title(
-    text="contact me"
-    class="form__title"
-    :level="2"
-  )
-  hiswe-field(
-    name="name"
-    type="text"
-    :disabled="disabled"
-  )
-  hiswe-field(
-    name="email"
-    type="email"
-    required
-    :disabled="disabled"
-    :valid="validation.email.valid"
-  )
-  hiswe-field(
-    name="message"
-    tag="textarea"
-    required
-    :disabled="disabled"
-    :valid="validation.message.valid"
-  )
-  noscript.contact__recaptcha javascript needs to be enabled
-  vue-recaptcha.contact__recaptcha(
-    :sitekey="captcha"
-    theme="dark"
-  )
-  .contact__submit
-    button.contact__button(
-      type="submit"
+<template>
+  <form
+    class="contact"
+    :action="action"
+    method="post"
+    novalidate="novalidate"
+    @submit.prevent="handleSubmit"
+    @click="enable"
+  >
+    <hiswe-title class="form__title" text="contact me" :level="2"></hiswe-title>
+    <HisweField
+      class="field--name"
+      name="name"
+      type="text"
+      v-model="name"
       :disabled="disabled"
-    ) send
+    />
+    <HisweField
+      class="field--email"
+      name="email"
+      type="email"
+      v-model="email"
+      required="required"
+      :disabled="disabled"
+      :valid="validation.email.valid"
+    />
+    <HisweField
+      class="field--message"
+      name="message"
+      tag="textarea"
+      v-model="message"
+      required="required"
+      :disabled="disabled"
+      :valid="validation.message.valid"
+    />
+    <!-- <noscript class="contact__recaptcha">
+      javascript needs to be enabled
+    </noscript> -->
+    <div class="contact__submit">
+      <button class="contact__button" type="submit" :disabled="disabled">
+        send
+      </button>
+    </div>
+  </form>
 </template>
 
 <style lang="scss" scoped>
@@ -129,46 +139,36 @@ form.contact(
       '. name      . message .'
       '. email     . message .'
       '. .         . message .'
-      '. recaptcha . message .'
       '. button    . message .';
   }
-  &__recaptcha {
-    grid-area: recaptcha;
-    padding-top: var(--half-gutter);
-    overflow: hidden;
-    max-width: 100%;
-  }
-  &__submit {
-    grid-area: button;
-    padding-top: var(--half-gutter);
-  }
+}
+.contact__submit {
+  grid-area: button;
+  padding-top: var(--half-gutter);
+}
+.contact__button {
+  display: block;
+  background: var(--c-primary);
+  color: black;
+  border: 0;
+  width: 100%;
+  height: 2.5rem;
+  padding: var(--half-gutter) var(--gutter);
+  transition: color 0.25s, background-color 0.25s, transform 0.15s;
 
-  &__button {
-    // margin-top: 0;
-    display: block;
-    background: var(--c-primary);
-    color: black;
-    border: 0;
-    // margin-top: var(--gutter);
-    width: 100%;
-    height: 2.5rem;
-    padding: var(--half-gutter) var(--gutter);
-    transition: color 0.25s, background-color 0.25s, transform 0.15s;
-
-    &:hover {
-      background-color: var(--c-accent);
-      color: white;
-    }
-    &:active {
-      transform: translateY(3px);
-    }
-    &:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    @media #{$mq-medium} {
-      padding: var(--quarter-gutter);
-    }
+  &:hover {
+    background-color: var(--c-accent);
+    color: white;
+  }
+  &:active {
+    transform: translateY(3px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  @media #{$mq-medium} {
+    padding: var(--quarter-gutter);
   }
 }
 .form__title {

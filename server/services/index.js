@@ -1,31 +1,8 @@
-import util from 'util'
-import consola from 'consola'
+import dotenv from 'dotenv'
+import sendGrid from '@sendgrid/mail'
 
-import config from '../config.js'
-import mailingConnection from './mailing.js'
+dotenv.config();
 
-const mailLogger = consola.withScope(`MAIL`)
+sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
-//----- MAILING CONNECTION
-
-const mailingReady = new Promise((resolve, reject) => {
-  mailingConnection
-    .verify()
-    .then(() => {
-      mailLogger.ready(`transport creation – SUCCESS`)
-      resolve()
-    })
-    .catch(error => {
-      mailLogger.error(`transport creation – ERROR`)
-      console.log(util.inspect(error, { colors: true }))
-      console.log(`original config`)
-      console.log(config.email)
-      reject(`[MAILING] connection failed`)
-    })
-})
-
-//----- CHECKS
-
-export const servicesReady = Promise.all([mailingReady])
-
-export const sendMail = mailingConnection.sendMail.bind(mailingConnection)
+export const sendMail = (msg) => sendGrid.send(msg)

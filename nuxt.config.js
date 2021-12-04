@@ -14,11 +14,17 @@ export default {
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
   },
+  publicRuntimeConfig: {
+    recaptcha: {
+      siteKey: process.env.RECAPTCHA_SITE_KEY,
+      version: 3,
+    },
+  },
   css: [
     `@/nuxt-assets/css/global.scss`,
     `@/nuxt-assets/css/page-transitions.scss`,
   ],
-  modules: [`@nuxtjs/style-resources`],
+  modules: [`@nuxtjs/style-resources`, `@nuxtjs/axios`, `@nuxtjs/recaptcha`],
   styleResources: {
     scss: [
       `@/nuxt-assets/css/scss-vars.scss`,
@@ -56,12 +62,5 @@ export default {
       },
     ],
     link: [{ rel: `icon`, type: `image/png`, href: `/favicon.png` }],
-    script: [
-      {
-        src: `https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit`,
-        async: true,
-        defer: true,
-      },
-    ],
   },
 }

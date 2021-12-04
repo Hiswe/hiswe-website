@@ -13,7 +13,6 @@ import session from 'koa-session'
 import koaNuxt from '@hiswe/koa-nuxt'
 
 import config from './config.js'
-import { servicesReady } from './services/index.js'
 import getLatestBlogPost from './latest-blog-post.js'
 import sendContactMail from './send-contact-mail.js'
 import nuxtConfig from '../nuxt.config.js'
@@ -34,7 +33,7 @@ async function start() {
     `64241b9838c5d0d5f94f7e83c71d83af4674f8c84e406a138263a8803a3b1e6f`,
   ]
 
-  app.use(helmet())
+  // app.use(helmet())
   app.use(compress())
   app.use(logger())
   app.use(formatJson())
@@ -56,7 +55,7 @@ async function start() {
 
   // Build in development
   if (nuxtConfig.dev) {
-    appLogger.warn(`SPA build for dev`)
+    appLogger.warn(`NUXT dev build`)
     const builder = new nuxtLib.Builder(nuxt)
     await builder.build()
   }
@@ -113,12 +112,12 @@ async function start() {
 
   const router = new Router({ prefix: `/api` })
 
-  router.get(`/latest-blog-post`, async ctx => {
+  router.get(`/latest-blog-post`, async (ctx) => {
     const blogEntries = await getLatestBlogPost()
     ctx.body = blogEntries
   })
 
-  router.post(`/contact`, koaBody(), async ctx => {
+  router.post(`/contact`, koaBody(), async (ctx) => {
     const mailResponse = await sendContactMail(ctx.request.body)
     if (ctx.state.isJson) return (ctx.body = mailResponse)
     ctx.session = mailResponse
@@ -157,13 +156,12 @@ async function start() {
   //////
 
   try {
-    await servicesReady
     app.listen(config.PORT, config.HOST, function endInit() {
       appLogger.start(
         `server is listening on`,
         chalk.cyan(`${config.HOST}:${config.PORT}`),
         `on mode`,
-        chalk.cyan(config.NODE_ENV)
+        chalk.cyan(config.NODE_ENV),
       )
     })
   } catch (error) {

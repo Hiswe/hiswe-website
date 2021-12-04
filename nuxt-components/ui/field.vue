@@ -2,22 +2,11 @@
 export default {
   name: `hiswe-field`,
   props: {
-    tag: {
-      type: String,
-      default: `input`,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    valid: {
-      type: Boolean,
-      default: true,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+    tag: { type: String, default: `input` },
+    value: { type: String, default: `` },
+    name: { type: String, required: true },
+    valid: { type: Boolean, default: true },
+    disabled: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -26,7 +15,7 @@ export default {
   },
   watch: {
     disabled(newVal, oldVal) {
-      // disabled mean it has been submited
+      // disabled mean it has been submitted
       // • reset pristine state for validation showing
       if (newVal === true) this.pristine = true
     },
@@ -40,7 +29,7 @@ export default {
     },
   },
   mounted() {
-    if (this.isTextarea) this.autoresize()
+    if (this.isTextarea) this.autoResize()
   },
   methods: {
     handleBlur(event) {
@@ -48,7 +37,11 @@ export default {
       if (document.activeElement === this.controlEl) return
       this.pristine = false
     },
-    autoresize(event) {
+    onInput(event) {
+      this.$emit(`input`, event.target.value)
+      if (this.isTextarea) this.autoResize()
+    },
+    autoResize(event) {
       const { input } = this.$refs
       const originalRows = input.getAttribute(`rows`)
       // force a one-liner by default
@@ -61,72 +54,54 @@ export default {
       input.setAttribute(`rows`, originalRows)
     },
   },
-  render(h) {
-    return (
-      <div
-        class={[
-          `field`,
-          `field--${this.name}`,
-          {
-            'field--invalid': this.showError,
-            'field--disabled': this.disabled,
-          },
-        ]}
-      >
-        <label for={this.name}>
-          {this.name}
-          <transition name="error-fade">
-            {!this.showError ? null : (
-              <span class="field__error-message">{`${
-                this.name
-              } is invalid`}</span>
-            )}
-          </transition>
-        </label>
-        {h(this.tag, {
-          ref: `input`,
-          attrs: {
-            id: this.name,
-            name: this.name,
-            disabled: this.disabled,
-            ...this.$attrs,
-          },
-          on: this.isTextarea
-            ? {
-                // https://vuejs.org/v2/guide/render-function.html#Event-amp-Key-Modifiers
-                '&blur': this.handleBlur,
-                '&input': this.autoresize,
-              }
-            : { '&blur': this.handleBlur },
-        })}
-      </div>
-    )
-  },
 }
 </script>
+
+<template>
+  <div
+    class="field"
+    :class="{ 'field--invalid': showError, 'field--disabled': disabled }"
+  >
+    <label :for="name">
+      {{ name }}
+      <transition name="error-fade">
+        <span v-if="showError" class="field__error-message">
+          {{ name }} is invalid
+        </span>
+      </transition>
+    </label>
+    <component
+      :is="tag"
+      ref="input"
+      :id="name"
+      :name="name"
+      :disabled="disabled"
+      @blur="handleBlur"
+      @input="onInput"
+    />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .field {
   border: 0;
   padding: 0;
 
-  &--disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
   @media #{$mq-medium} {
     display: flex;
     flex-direction: column;
   }
-
-  &__error-message {
-    font-style: italic;
-    padding-left: 0.5em;
-    font-size: 0.9em;
-    color: red;
-    display: inline-block;
-  }
+}
+.field--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.field__error-message {
+  font-style: italic;
+  padding-left: 0.5em;
+  font-size: 0.9em;
+  color: red;
+  display: inline-block;
 }
 label {
   @media #{$mq-medium} {

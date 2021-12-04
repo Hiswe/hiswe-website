@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import VueAxios from 'vue-axios'
-import axios from 'axios'
 
 import SvgIcons from '~/nuxt-components/svg-icons'
 import TechLogs from '~/nuxt-components/svg-tech-logos'
@@ -11,8 +9,6 @@ import Social from '~/nuxt-components/social'
 import TwoLineTitle from '~/nuxt-components/ui/two-line-title'
 import TwoColumnHeader from '~/nuxt-components/ui/two-column-header'
 import Field from '~/nuxt-components/ui/field'
-
-Vue.use(VueAxios, axios)
 
 Vue.component(`hiswe-icon`, SvgIcons)
 Vue.component(`hiswe-tech-logo`, TechLogs)
