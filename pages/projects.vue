@@ -1,5 +1,7 @@
 <script>
+import HisweMainContent from '~/components/main-content.vue'
 import HisweProjectHeader from '~/components/projects/header.vue'
+import HisweTwoLineTitle from '~/components/ui/two-line-title'
 import HisweNpmModule from '~/components/projects/npm-module.vue'
 import HisweWebappListing from '~/components/projects/webapp-listing.vue'
 
@@ -10,31 +12,44 @@ export default {
     title: `projects`,
   },
   components: {
-    'hiswe-project-header': HisweProjectHeader,
-    'hiswe-npm-module': HisweNpmModule,
-    'hiswe-webapp-listing': HisweWebappListing,
+    HisweMainContent,
+    HisweProjectHeader,
+    HisweTwoLineTitle,
+    HisweNpmModule,
+    HisweWebappListing,
   },
 }
 </script>
 
-<template lang="pug">
-hiswe-main-content(page='projects')
-  template(slot='header')
-    hiswe-project-header
-  hiswe-title.npm-title(text='NPM modules', :level='2')
-  .npm-description
-    p
-      | in <a href="https://nodejs.org/en/">Node.js'</a> community,
-      | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
-    p Those are my contributions
-  .npm-modules
-    hiswe-npm-module(name='gulp-svg-symbols')
-      | Help create an icon library by bundling SVG files together
-    hiswe-npm-module(name='vh-check')
-      | Help handling some sizes on mobile browser
-
-  hiswe-title.webapp-title(text='web applications', :level='2')
-  hiswe-webapp-listing
+<template>
+  <HisweMainContent page="projects">
+    <template slot="header">
+      <HisweProjectHeader />
+    </template>
+    <HisweTwoLineTitle class="npm-title" text="NPM modules" :level="2" />
+    <div class="npm-description">
+      <p>
+        in <a href="https://nodejs.org/en/">Node.js'</a> community,
+        <a href="https://www.npmjs.com/">NPM's</a> modules are the essential
+        building blocks.
+      </p>
+      <p>Those are my contributions</p>
+    </div>
+    <div class="npm-modules">
+      <HisweNpmModule name="gulp-svg-symbols">
+        Help create an icon library by bundling SVG files together
+      </HisweNpmModule>
+      <HisweNpmModule name="vh-check">
+        Help handling some sizes on mobile browser
+      </HisweNpmModule>
+    </div>
+    <HisweTwoLineTitle
+      class="webapp-title"
+      text="web applications"
+      :level="2"
+    />
+    <HisweWebappListing />
+  </HisweMainContent>
 </template>
 
 <style lang="scss" scoped>

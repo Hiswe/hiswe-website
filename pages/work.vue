@@ -1,6 +1,10 @@
 <script>
+import HisweMainContent from '~/components/main-content.vue'
+import HisweTwoLineTitle from '~/components/ui/two-line-title'
+
 export default {
   name: `page-work`,
+  components: { HisweMainContent, HisweTwoLineTitle },
   transition: `page`,
   head: {
     title: `work`,
@@ -8,8 +12,10 @@ export default {
 }
 </script>
 
-<template lang="pug">
-hiswe-main-content(page="work")
-  template(slot="header")
-    hiswe-title(text="wo-rk")
+<template>
+  <HisweMainContent page="work">
+    <template #header>
+      <HisweTwoLineTitle text="wo-rk"></HisweTwoLineTitle>
+    </template>
+  </HisweMainContent>
 </template>

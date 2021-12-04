@@ -102,8 +102,8 @@ export default {
       'header      header      integration  webdesign webdesign webdesign'
       'header      header      integration  contact   contact   contact'
       'development development integration  contact   contact   contact'
-      'techs      techs        techs        techs     techs     social'
-      'footer      footer        footer        footer     footer     footer';
+      'techs       techs       techs        techs     techs     social'
+      'footer      footer      footer       footer    footer    footer';
   }
 }
 </style>

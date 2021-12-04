@@ -6,15 +6,13 @@ export default {
 }
 </script>
 
-<template lang="pug">
-section.page-content
-  h1 {{error.statusCode}}
-  h2(v-if="error.statusCode === 404") not found
-  h2(v-else) {{error.message}}
-  router-link( to="/" exact) back
-  //- h2(v-if="error.statusCode === 404") {{$t(`404`)}}
-  //- h2(v-else) {{$t(`other`)}}
-  //- router-link( to="/" exact) {{$t(`back`)}}
+<template >
+  <section class="page-content">
+    <h1>{{ error.statusCode }}</h1>
+    <h2 v-if="error.statusCode === 404">not found</h2>
+    <h2 v-else>{{ error.message }}</h2>
+    <NuxtLink to="/" exact="exact">back</NuxtLink>
+  </section>
 </template>
 
 <style lang="scss" scoped>
