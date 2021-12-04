@@ -140,7 +140,6 @@ async function start() {
     ctx.req.serverData = {
       validation: session.validation,
       notification: session.notification,
-      captcha: config.captcha.site,
     }
     // flush session
     // –> make session act like flash messages
