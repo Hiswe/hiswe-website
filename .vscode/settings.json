@@ -6,6 +6,7 @@
     "@@": "${workspaceRoot}"
   },
   "cSpell.words": [
+    "Aïvayan",
     "axios",
     "clonedeep",
     "codepen",
@@ -16,7 +17,8 @@
     "nuxtjs",
     "promisify",
     "Segoe",
-    "SENDGRID"
+    "SENDGRID",
+    "Yannick"
   ],
   "files.associations": {
     ".hiswerc*": "jsonc"
