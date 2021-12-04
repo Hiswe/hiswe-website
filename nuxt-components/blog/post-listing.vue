@@ -22,14 +22,14 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$http
+      this.$axios
         .get(`/api/latest-blog-post`)
-        .then(response => {
+        .then((response) => {
           const { data } = response
           this.posts = data
           this.loadingDone = true
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
         })
     },
@@ -38,31 +38,23 @@ export default {
 </script>
 
 <template lang="pug">
-transition(
-  name="placholder"
-  appear
-  mode="out-in"
-)
-  transition-group(
-    class="posts"
-    name="list"
-    tag="div"
-    v-if="loadingDone"
-    key="posts"
+transition(name='placholder', appear, mode='out-in')
+  transition-group.posts(
+    name='list',
+    tag='div',
+    v-if='loadingDone',
+    key='posts',
     appear
   )
     hiswe-post-preview(
-      v-for="post in posts"
-      :key="post.published"
-      :post="post"
+      v-for='post in posts',
+      :key='post.published',
+      :post='post'
     )
-  .posts(
-    v-else
-    key="placeholders"
-  )
+  .posts(v-else, key='placeholders')
     hiswe-post-placeholder(
-      v-for="placeholder in placeholders"
-      :key="placeholder.id"
+      v-for='placeholder in placeholders',
+      :key='placeholder.id'
     )
 </template>
 
