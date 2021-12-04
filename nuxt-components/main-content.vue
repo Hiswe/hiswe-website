@@ -1,22 +1,25 @@
 <script>
+import HisweContact from '~/nuxt-components/contact.vue'
+import HisweSocial from '~/nuxt-components/social.vue'
+
 export default {
   name: `hiswe-main-content`,
+  components: { HisweContact, HisweSocial },
   props: {
-    page: {
-      type: String,
-      required: true,
-    },
+    page: { type: String, required: true },
   },
 }
 </script>
 
-<template lang="pug">
-  div(:class="`main-content page-${page}`")
-    header.main-header
-      slot(name="header")
-    hiswe-contact
-    hiswe-social
-    slot
+<template>
+  <div class="main-content" :class="`page-${page}`">
+    <header class="main-header">
+      <slot name="header" />
+    </header>
+    <HisweContact />
+    <HisweSocial />
+    <slot />
+  </div>
 </template>
 
 <style lang="scss" scoped>

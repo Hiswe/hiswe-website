@@ -1,60 +1,91 @@
 <script>
+import TwoLineTitle from '~/nuxt-components/ui/two-line-title.vue'
+import HisweTechLogo from '~/nuxt-components/svg-tech-logos'
+
 export default {
   name: `section-tech`,
+  components: { HisweTechLogo, TwoLineTitle },
 }
 </script>
 
-<template lang="pug">
-section.techs
-  .tech.tech--server
-    hiswe-title(text="ser-ver" class="tech__title tech__title--server")
-    a.tech__item.tech__item--node(href="https://nodejs.org/en/")
-      figure
-        hiswe-tech-logo(name="node")
-      span node
-    a.tech__item.tech__item--koa(href="https://koajs.com/")
-      figure
-        hiswe-tech-logo(name="koa")
-      span Koa
-    a.tech__item.tech__item--express(href="https://expressjs.com/")
-      figure
-        hiswe-tech-logo(name="express")
-      span Express
-    a.tech__item.tech__item--postgre(href="https://www.postgresql.org/")
-      figure
-        hiswe-tech-logo(name="postgre")
-      span PostgreSQL
-    a.tech__item.tech__item--mongo(href="https://www.mongodb.com/")
-      figure
-        hiswe-tech-logo(name="mongo")
-      span MongoDB
-
-  .tech.tech--framework
-    hiswe-title(text="frame-work" class="tech__title tech__title--framework")
-    a.tech__item.tech__item--react(href="https://reactjs.org/")
-      figure
-        hiswe-tech-logo(name="react")
-      span React
-    a.tech__item.tech__item--vue(href="https://vuejs.org/")
-      figure
-        hiswe-tech-logo(name="vue")
-      span Vue.js
-
-  .tech.tech--build
-    hiswe-title(text="bu-ild" class="tech__title tech__title--build")
-    a.tech__item.tech__item--webpack(href="https://webpack.js.org")
-      figure
-        hiswe-tech-logo(name="webpack")
-      span Webpack
-    a.tech__item.tech__item--parcel(href="https://parceljs.org")
-      figure
-        hiswe-tech-logo(name="parcel")
-      span Parcel
-    a.tech__item.tech__item--gulp(href="https://gulpjs.com")
-      figure
-        hiswe-tech-logo(name="gulp")
-      span Gulp
-
+<template>
+  <section class="techs">
+    <div class="tech tech--server">
+      <TwoLineTitle class="tech__title tech__title--server" text="ser-ver" />
+      <a class="tech__item tech__item--node" href="https://nodejs.org/en/">
+        <figure>
+          <HisweTechLogo name="node" />
+        </figure>
+        <span>node</span>
+      </a>
+      <a class="tech__item tech__item--koa" href="https://koajs.com/">
+        <figure>
+          <HisweTechLogo name="koa" />
+        </figure>
+        <span>Koa</span>
+      </a>
+      <a class="tech__item tech__item--express" href="https://expressjs.com/">
+        <figure>
+          <HisweTechLogo name="express" />
+        </figure>
+        <span>Express</span>
+      </a>
+      <a
+        class="tech__item tech__item--postgre"
+        href="https://www.postgresql.org/"
+      >
+        <figure>
+          <HisweTechLogo name="postgre" />
+        </figure>
+        <span>PostgreSQL</span>
+      </a>
+      <a class="tech__item tech__item--mongo" href="https://www.mongodb.com/">
+        <figure>
+          <HisweTechLogo name="mongo" />
+        </figure>
+        <span>MongoDB</span>
+      </a>
+    </div>
+    <div class="tech tech--framework">
+      <TwoLineTitle
+        class="tech__title tech__title--framework"
+        text="frame-work"
+      />
+      <a class="tech__item tech__item--react" href="https://reactjs.org/">
+        <figure>
+          <HisweTechLogo name="react" />
+        </figure>
+        <span>React</span>
+      </a>
+      <a class="tech__item tech__item--vue" href="https://vuejs.org/">
+        <figure>
+          <HisweTechLogo name="vue" />
+        </figure>
+        <span>Vue.js</span>
+      </a>
+    </div>
+    <div class="tech tech--build">
+      <TwoLineTitle class="tech__title tech__title--build" text="bu-ild" />
+      <a class="tech__item tech__item--webpack" href="https://webpack.js.org">
+        <figure>
+          <HisweTechLogo name="webpack" />
+        </figure>
+        <span>Webpack</span>
+      </a>
+      <a class="tech__item tech__item--parcel" href="https://parceljs.org">
+        <figure>
+          <HisweTechLogo name="parcel" />
+        </figure>
+        <span>Parcel</span>
+      </a>
+      <a class="tech__item tech__item--gulp" href="https://gulpjs.com">
+        <figure>
+          <HisweTechLogo name="gulp" />
+        </figure>
+        <span>Gulp</span>
+      </a>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
@@ -126,105 +157,102 @@ section.techs
       [first-line-end second-line-start] repeat(3, var(--grid-size))
       [second-line-end] var(--grid-size);
   }
-  &--framework {
-    grid-area: framework;
-    @media #{$mq-medium} {
-      grid-template-columns: repeat(5, 1fr);
-    }
+}
+.tech--framework {
+  grid-area: framework;
+  @media #{$mq-medium} {
+    grid-template-columns: repeat(5, 1fr);
   }
-  &--server {
-    grid-area: server;
-    @media #{$mq-medium} {
-      grid-template-columns: repeat(9, 1fr);
-    }
+}
+.tech--server {
+  grid-area: server;
+  @media #{$mq-medium} {
+    grid-template-columns: repeat(9, 1fr);
   }
-  &--build {
-    grid-area: build;
-    @media #{$mq-medium} {
-      grid-template-columns: repeat(6, 1fr);
-    }
+}
+.tech--build {
+  grid-area: build;
+  @media #{$mq-medium} {
+    grid-template-columns: repeat(6, 1fr);
   }
-  &__title {
-    padding: 0;
+}
+.tech__title {
+  padding: 0;
 
-    &--server,
-    &--build {
-      grid-area: 1 / 2 / 6 / 9;
-    }
-    &--framework {
-      text-align: right;
-      grid-area: 1 / 1 / 6 / 16;
-    }
-
-    @media #{$mq-medium} {
-      grid-area: first-line-start / 1 / first-line-end / 6;
-      text-align: left;
-    }
+  @media #{$mq-medium} {
+    grid-area: first-line-start / 1 / first-line-end / 6;
+    text-align: left;
   }
-  &__item {
-    // FRAMEWORK
-    &--vue {
-      grid-area: 4 / 3 / 8 / 6;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 1 / second-line-end / 3;
-      }
-    }
-    &--react {
-      grid-area: 4 / 7 / 8 / 10;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 4 / second-line-end / 6;
-      }
-    }
-    // SERVER
-    &--node {
-      grid-area: 2 / 9 / 6 / 12;
-      @media #{$mq-medium} {
-        grid-area: first-line-start / 5 / first-line-end / 7;
-      }
-    }
-    &--koa {
-      grid-area: 2 / 13 / 6 / 16;
-      @media #{$mq-medium} {
-        grid-area: first-line-start / 8 / first-line-end / 10;
-      }
-    }
-    &--express {
-      grid-area: 6 / 3 / 10 / 8;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 1 / second-line-end / 4;
-      }
-    }
-    &--postgre {
-      grid-area: 6 / 9 / 10 / 12;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 5 / second-line-end / 7;
-      }
-    }
-    &--mongo {
-      grid-area: 6 / 13 / 10 / 16;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 8 / second-line-end / 10;
-      }
-    }
-    // BUILD
-    &--webpack {
-      grid-area: 1 / 8 / 4 / 12;
-      @media #{$mq-medium} {
-        grid-area: first-line-start / 4 / first-line-end / 7;
-      }
-    }
-    &--parcel {
-      grid-area: 5 / 8 / 9 / 12;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 4 / second-line-end / 7;
-      }
-    }
-    &--gulp {
-      grid-area: 5 / 13 / 9 / 16;
-      @media #{$mq-medium} {
-        grid-area: second-line-start / 1 / second-line-end / 3;
-      }
-    }
+}
+.tech__title--server,
+.tech__title--build {
+  grid-area: 1 / 2 / 6 / 9;
+}
+.tech__title--framework {
+  text-align: right;
+  grid-area: 1 / 1 / 6 / 16;
+}
+// FRAMEWORK
+.tech__item--vue {
+  grid-area: 4 / 3 / 8 / 6;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 1 / second-line-end / 3;
+  }
+}
+.tech__item--react {
+  grid-area: 4 / 7 / 8 / 10;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 4 / second-line-end / 6;
+  }
+}
+// SERVER
+.tech__item--node {
+  grid-area: 2 / 9 / 6 / 12;
+  @media #{$mq-medium} {
+    grid-area: first-line-start / 5 / first-line-end / 7;
+  }
+}
+.tech__item--koa {
+  grid-area: 2 / 13 / 6 / 16;
+  @media #{$mq-medium} {
+    grid-area: first-line-start / 8 / first-line-end / 10;
+  }
+}
+.tech__item--express {
+  grid-area: 6 / 3 / 10 / 8;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 1 / second-line-end / 4;
+  }
+}
+.tech__item--postgre {
+  grid-area: 6 / 9 / 10 / 12;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 5 / second-line-end / 7;
+  }
+}
+.tech__item--mongo {
+  grid-area: 6 / 13 / 10 / 16;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 8 / second-line-end / 10;
+  }
+}
+// BUILD
+.tech__item--webpack {
+  grid-area: 1 / 8 / 4 / 12;
+  @media #{$mq-medium} {
+    grid-area: first-line-start / 4 / first-line-end / 7;
+  }
+}
+.tech__item--parcel {
+  grid-area: 5 / 8 / 9 / 12;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 4 / second-line-end / 7;
+  }
+}
+.tech__item--gulp {
+  grid-area: 5 / 13 / 9 / 16;
+  @media #{$mq-medium} {
+    grid-area: second-line-start / 1 / second-line-end / 3;
   }
 }
 </style>

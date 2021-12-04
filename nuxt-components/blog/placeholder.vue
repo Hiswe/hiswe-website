@@ -1,20 +1,22 @@
 <script>
 export default {
-  name: `hiswe-blog-post-placholder`,
+  name: `hiswe-blog-post-placeholder`,
 }
 </script>
 
-<template lang="pug">
-  article.post-placholder
-    .post-placholder__cover
-    .post-placholder__content
-      .post-placholder__date
-      .post-placholder__title
-      .post-placholder__summary
+<template>
+  <article class="post-placeholder">
+    <div class="post-placeholder__cover" />
+    <div class="post-placeholder__content">
+      <div class="post-placeholder__date" />
+      <div class="post-placeholder__title" />
+      <div class="post-placeholder__summary" />
+    </div>
+  </article>
 </template>
 
 <style lang="scss" scoped>
-.post-placholder {
+.post-placeholder {
   $root: &;
   background: var(--c-primary-lightest);
   height: 100%;
@@ -53,69 +55,69 @@ export default {
       grid-row: span 2;
     }
   }
-  &__cover,
-  &__content,
-  &__date,
-  &__title {
-    animation: blink-animation linear 0.65s infinite alternate;
+}
+.post-placeholder__cover,
+.post-placeholder__content,
+.post-placeholder__date,
+.post-placeholder__title {
+  animation: blink-animation linear 0.65s infinite alternate;
+}
+.post-placeholder__cover {
+  min-height: 130px;
+  display: block;
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: var(--c-primary-lighter);
+  background-size: 240px;
+  transition: background-size 0.5s;
+}
+.post-placeholder__content {
+  flex-grow: 1;
+}
+.post-placeholder__date,
+.post-placeholder__title {
+  background: var(--c-primary-lightest);
+}
+.post-placeholder__date {
+  display: block;
+  text-align: center;
+  height: 1.25rem;
+  margin: 1rem auto 0;
+  width: 6rem;
+  @media #{$mq-medium} {
+    font-size: 1rem;
   }
-  &__cover {
-    min-height: 130px;
-    display: block;
-    margin: 0 auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: var(--c-primary-lighter);
-    background-size: 240px;
-    transition: background-size 0.5s;
-  }
-  &__content {
-    flex-grow: 1;
-  }
-  &__date,
-  &__title {
-    background: var(--c-primary-lightest);
-  }
-  &__date {
-    display: block;
-    text-align: center;
-    height: 1.25rem;
-    margin: 1rem auto 0;
-    width: 6rem;
-    @media #{$mq-medium} {
-      font-size: 1rem;
-    }
-  }
-  &__title {
-    margin: 1rem auto 0;
-    max-width: 200px;
-    text-align: center;
-    text-transform: uppercase;
-    height: 1.75rem;
-    line-height: 1.2;
+}
+.post-placeholder__title {
+  margin: 1rem auto 0;
+  max-width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+  height: 1.75rem;
+  line-height: 1.2;
 
-    @media #{$mq-medium} {
-      font-size: calc(2.5vw + 0.5rem);
-    }
-    @media #{$mq-big} {
-      font-size: 1.5rem;
-    }
+  @media #{$mq-medium} {
+    font-size: calc(2.5vw + 0.5rem);
   }
-  &__summary {
-    text-align: center;
-    margin: 1rem 1rem 2rem;
-    background: linear-gradient(
-      to bottom,
-      var(--c-primary-lightest) 33%,
-      transparent 33%,
-      transparent 66%,
-      var(--c-primary-lightest) 66%
-    );
-    height: 3rem;
+  @media #{$mq-big} {
+    font-size: 1.5rem;
+  }
+}
+.post-placeholder__summary {
+  text-align: center;
+  margin: 1rem 1rem 2rem;
+  background: linear-gradient(
+    to bottom,
+    var(--c-primary-lightest) 33%,
+    transparent 33%,
+    transparent 66%,
+    var(--c-primary-lightest) 66%
+  );
+  height: 3rem;
 
-    @media #{$mq-medium-only} {
-      font-size: calc(1vw + 0.5rem);
-    }
+  @media #{$mq-medium-only} {
+    font-size: calc(1vw + 0.5rem);
   }
 }
 @keyframes blink-animation {

@@ -1,17 +1,36 @@
 <script>
+import TwoColumnHeader from '~/nuxt-components/ui/two-column-header.vue'
+
 export default {
   name: `home-header`,
+  components: { TwoColumnHeader },
 }
 </script>
 
-<template lang="pug">
-.home-header
-  h1 I make custom<br> website for<br> everyone's need
-  hiswe-header-content
-    template(slot="left"): h2.name I'm<br> Yannick<br> “hiswe”<br> Aïvayan
-    template(slot="right")
-      p A full stack Javascript web-developer.
-      p Depending on the project I will use the most appropriate set of tools.
+<template>
+  <div class="home-header">
+    <h1>
+      I make custom<br />
+      website for<br />
+      everyone's need
+    </h1>
+    <TwoColumnHeader>
+      <template #left>
+        <h2 class="name">
+          I'm<br />
+          Yannick<br />
+          “hiswe”<br />
+          Aïvayan
+        </h2>
+      </template>
+      <template #right>
+        <p>A full stack Javascript web-developer.</p>
+        <p>
+          Depending on the project I will use the most appropriate set of tools.
+        </p>
+      </template>
+    </TwoColumnHeader>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -61,6 +80,7 @@ h1 {
 
     + p {
       margin-top: 1rem;
+
       @media #{$mq-medium-only} {
         margin-top: 0;
       }

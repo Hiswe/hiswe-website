@@ -1,17 +1,20 @@
 <script>
+import TwoLineTitle from '~/nuxt-components/ui/two-line-title.vue'
+
 export default {
   name: `projects-header`,
+  components: { TwoLineTitle },
 }
 </script>
 
-<template lang="pug">
-  .project-header
-    hiswe-title(
-      text="Open Source"
-      :level="2"
-      class="project-header-title"
-    )
-    p Projects that I've created and maintain to give back to the open source community.
+<template>
+  <div class="project-header">
+    <TwoLineTitle class="project-header-title" text="Open Source" :level="2" />
+    <p>
+      Projects that I've created and maintain to give back to the open source
+      community.
+    </p>
+  </div>
 </template>
 
 <style lang="scss" scoped>

@@ -1,12 +1,12 @@
 <script>
-import PostPreview from './post'
-import PostPlaceholder from './placeholder'
+import HiswePostPreview from './post.vue'
+import HiswePostPlaceholder from './placeholder.vue'
 
 export default {
   name: `hiswe-latest-blog-post`,
   components: {
-    'hiswe-post-preview': PostPreview,
-    'hiswe-post-placeholder': PostPlaceholder,
+    HiswePostPreview,
+    HiswePostPlaceholder,
   },
   data() {
     return {
@@ -36,25 +36,29 @@ export default {
 }
 </script>
 
-<template lang="pug">
-transition(name='placholder', appear, mode='out-in')
-  transition-group.posts(
-    name='list',
-    tag='div',
-    v-if='loadingDone',
-    key='posts',
-    appear
-  )
-    hiswe-post-preview(
-      v-for='post in posts',
-      :key='post.published',
-      :post='post'
-    )
-  .posts(v-else, key='placeholders')
-    hiswe-post-placeholder(
-      v-for='placeholder in placeholders',
-      :key='placeholder.id'
-    )
+<template>
+  <Transition name="placeholder" appear="appear" mode="out-in">
+    <TransitionGroup
+      class="posts"
+      name="list"
+      tag="div"
+      v-if="loadingDone"
+      key="posts"
+      appear="appear"
+    >
+      <HiswePostPreview
+        v-for="post in posts"
+        :key="post.published"
+        :post="post"
+      />
+    </TransitionGroup>
+    <div class="posts" v-else key="placeholders">
+      <HiswePostPlaceholder
+        v-for="placeholder in placeholders"
+        :key="placeholder.id"
+      />
+    </div>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
@@ -77,12 +81,12 @@ transition(name='placholder', appear, mode='out-in')
   display: inline-block;
   margin-right: 10px;
 }
-.placholder-enter-active,
-.placholder-leave-active {
+.placeholder-enter-active,
+.placeholder-leave-active {
   transition: opacity 0.5s;
 }
-.placholder-enter,
-.placholder-leave-to {
+.placeholder-enter,
+.placeholder-leave-to {
   opacity: 0;
 }
 

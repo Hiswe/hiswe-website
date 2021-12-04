@@ -1,12 +1,14 @@
 {
   "editor.formatOnSave": true,
+  "path-intellisense.extensionOnImport": true,
   "path-intellisense.mappings": {
-    "~": "${workspaceRoot}/",
-    "@@": "${workspaceRoot}/"
+    "~": "${workspaceRoot}",
+    "@@": "${workspaceRoot}"
   },
   "cSpell.words": [
     "axios",
     "clonedeep",
+    "codepen",
     "consola",
     "hiswe",
     "maildev",

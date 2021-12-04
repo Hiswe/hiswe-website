@@ -10,13 +10,22 @@ export default {
 }
 </script>
 
-<template lang="pug">
-  article.post: a.post__link(:href="post.link")
-    .post__cover(:style="{'background-image': `url(${post.cover})`}")
-    .post__content
-      time.post__date(:datetime="post.published") {{post.published | localDate}}
-      h3.post__title {{post.title}}
-      .post__summary(v-html="post.summary")
+<template>
+  <article class="post">
+    <a class="post__link" :href="post.link">
+      <div
+        class="post__cover"
+        :style="{ 'background-image': `url(${post.cover})` }"
+      />
+      <div class="post__content">
+        <time class="post__date" :datetime="post.published">
+          {{ post.published | localDate }}
+        </time>
+        <h3 class="post__title">{{ post.title }}</h3>
+        <div class="post__summary" v-html="post.summary"></div>
+      </div>
+    </a>
+  </article>
 </template>
 
 <style lang="scss" scoped>
@@ -64,78 +73,80 @@ export default {
       grid-row: span 2;
     }
   }
-  &__link {
-    text-decoration: none;
-    position: relative;
-    display: block;
-    height: 100%;
+}
+.post__link {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transition: 0.5s box-shadow;
+    pointer-events: none;
+    z-index: 2;
+  }
+  &:hover {
+    color: currentColor;
 
     &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      transition: 0.5s box-shadow;
-      pointer-events: none;
-      z-index: 2;
+      box-shadow: inset 0 0 0 10px var(--c-accent);
     }
-    &:hover {
-      color: currentColor;
+  }
+}
+.post__content {
+  flex-grow: 1;
+}
+.post__cover {
+  min-height: 130px;
+  display: block;
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: var(--c-primary);
+  background-size: 240px;
+  transition: background-size 0.5s;
+}
+.post__date {
+  display: block;
+  text-align: center;
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--c-primary-darker);
+  padding: 1rem 0 0;
 
-      &::before {
-        box-shadow: inset 0 0 0 10px var(--c-accent);
-      }
-    }
+  @media #{$mq-medium} {
+    font-size: 1rem;
   }
-  &__content {
-    flex-grow: 1;
-  }
-  &__cover {
-    min-height: 130px;
-    display: block;
-    margin: 0 auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: var(--c-primary);
-    background-size: 240px;
-    transition: background-size 0.5s;
-  }
-  &__date {
-    display: block;
-    text-align: center;
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--c-primary-darker);
-    padding: 1rem 0 0;
-    @media #{$mq-medium} {
-      font-size: 1rem;
-    }
-  }
-  &__title {
-    padding: 1rem 1rem 0;
-    margin: 0;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.75rem;
-    line-height: 1.2;
-    color: var(--c-accent);
+}
+.post__title {
+  padding: 1rem 1rem 0;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--c-accent);
 
-    @media #{$mq-medium} {
-      font-size: calc(2.5vw + 0.5rem);
-    }
-    @media #{$mq-big} {
-      font-size: 1.5rem;
-    }
+  @media #{$mq-medium} {
+    font-size: calc(2.5vw + 0.5rem);
   }
-  &__summary {
-    text-align: center;
-    padding: 1rem 1rem 2rem;
 
-    @media #{$mq-medium-only} {
-      font-size: calc(1vw + 0.5rem);
-    }
+  @media #{$mq-big} {
+    font-size: 1.5rem;
+  }
+}
+.post__summary {
+  text-align: center;
+  padding: 1rem 1rem 2rem;
+
+  @media #{$mq-medium-only} {
+    font-size: calc(1vw + 0.5rem);
   }
 }
 </style>

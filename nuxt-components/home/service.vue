@@ -1,15 +1,12 @@
 <script>
+import TwoLineTitle from '~/nuxt-components/ui/two-line-title.vue'
+
 export default {
   name: `hiswe-service`,
+  components: { TwoLineTitle },
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    icon: {
-      type: String,
-      require: false,
-    },
+    title: { type: String, required: true },
+    icon: { type: String, require: false },
   },
   computed: {
     id() {
@@ -21,19 +18,24 @@ export default {
 }
 </script>
 
-<template lang="pug">
-dl(:class="`service ${id}`")
-  dt.service__title: hiswe-title(:text="title")
-  dd.service__subtitle
-    slot(name="description")
-  dd.service__description
-    slot
+<template>
+  <dl :class="`service ${id}`">
+    <dt class="service__title">
+      <TwoLineTitle :text="title" />
+    </dt>
+    <dd class="service__subtitle">
+      <slot name="description" />
+    </dd>
+    <dd class="service__description">
+      <slot />
+    </dd>
+  </dl>
 </template>
 
 <style lang="scss" scoped>
 .service {
   $root: &;
-  --servive-background: var(--c-primary);
+  --service-background: var(--c-primary);
   --service-title-color: currentColor;
   --service-title-align: left;
   --service-subtitle-align: right;
@@ -42,8 +44,8 @@ dl(:class="`service ${id}`")
 
   margin: 0;
   padding: var(--vertical-space) var(--gutter);
-  background: var(--servive-background);
-  color: var(--servive-color, white);
+  background: var(--service-background);
+  color: var(--service-color, white);
   display: flex;
   flex-direction: column;
 
@@ -55,7 +57,7 @@ dl(:class="`service ${id}`")
   }
 
   &--development {
-    --servive-background: var(--c-primary-lighter);
+    --service-background: var(--c-primary-lighter);
     --service-title-color: var(--c-primary-darkest);
     color: var(--c-primary-darker);
 
@@ -75,7 +77,7 @@ dl(:class="`service ${id}`")
     }
   }
   &--integration {
-    --servive-background: var(--c-primary);
+    --service-background: var(--c-primary);
     --service-title-align: right;
     --service-subtitle-align: left;
     --service-description-align: right;
@@ -100,7 +102,7 @@ dl(:class="`service ${id}`")
     }
   }
   &--webdesign {
-    --servive-background: var(--c-accent);
+    --service-background: var(--c-accent);
     --service-description-color: white;
     --service-subtitle-align: right;
     color: var(--c-accent-lightest);

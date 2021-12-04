@@ -4,10 +4,15 @@ export default {
 }
 </script>
 
-<template lang="pug">
-.two-column-header
-  .two-column-header__left:  slot(name="left")
-  .two-column-header__right: slot(name="right")
+<template>
+  <div class="two-column-header">
+    <div class="two-column-header__left">
+      <slot name="left" />
+    </div>
+    <div class="two-column-header__right">
+      <slot name="right" />
+    </div>
+  </div>
 </template>
 
 
@@ -20,17 +25,16 @@ export default {
   margin: 0;
   padding: var(--vertical-space) 0;
   background: white;
-
-  &__left {
-    grid-area: left;
-    color: var(--c-accent);
-    text-align: right;
-  }
-  &__right {
-    grid-area: right;
-    text-align: left;
-    margin: 0;
-    color: var(--c-primary-darker);
-  }
+}
+.two-column-header__left {
+  grid-area: left;
+  color: var(--c-accent);
+  text-align: right;
+}
+.two-column-header__right {
+  grid-area: right;
+  text-align: left;
+  margin: 0;
+  color: var(--c-primary-darker);
 }
 </style>

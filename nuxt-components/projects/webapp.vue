@@ -2,10 +2,7 @@
 export default {
   name: `hiswe-webapp`,
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
+    name: { type: String, required: true },
   },
   computed: {
     github() {
@@ -15,20 +12,24 @@ export default {
 }
 </script>
 
-<template lang="pug">
-article(:class="`webapp webapp--${name}`")
-  figure.webapp__logo-block
-    a(
-      :href="github"
-      :class="`webapp__logo webapp__logo--${name}`"
-    )
-      slot(name="logo")
-    figcaption.webapp__logo-caption
-      a(href="github") website
-  h3.webapp__title: a(href="github") {{name}}
-  p.webapp__description
-    slot(name="description")
-  slot
+<template>
+  <article class="webapp" :class="`webapp--${name}`">
+    <figure class="webapp__logo-block">
+      <a :href="github" :class="`webapp__logo webapp__logo--${name}`">
+        <slot name="logo" />
+      </a>
+      <figcaption class="webapp__logo-caption">
+        <a :href="github">website</a>
+      </figcaption>
+    </figure>
+    <h3 class="webapp__title">
+      <a :href="github">{{ name }}</a>
+    </h3>
+    <p class="webapp__description">
+      <slot name="description" />
+    </p>
+    <slot />
+  </article>
 </template>
 
 <style lang="scss" scoped>
@@ -66,98 +67,9 @@ article(:class="`webapp webapp--${name}`")
     }
   }
 
-  &__logo-block {
-    margin: 0 auto;
-    width: percentage(math.div(1 , 4));
-    grid-area: logo;
-    position: relative;
-    top: grid-size(-1);
-
-    @media #{$mq-medium-only} {
-      position: static;
-      width: 100%;
-    }
-
-    @media #{$mq-big} {
-      width: percentage(math.div(1 , 3));
-    }
-  }
-  &__logo {
-    display: block;
-
-    &--a-count {
-      background: #4d419b;
-    }
-    &--thailpha {
-      background: #54009d;
-    }
-    &--thaime {
-      background: #5a4c30;
-    }
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    &-caption a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      color: var(--c-accent);
-      text-align: center;
-      text-decoration: none;
-      transition: color 0.25s, background-color 0.25s;
-
-      @media #{$mq-medium} {
-        height: 2rem;
-      }
-      &:hover {
-        color: white;
-        background-color: var(--c-accent);
-      }
-    }
-  }
-  &__title {
-    text-align: center;
-    margin-top: 0;
-    grid-area: title;
-
-    @media #{$mq-medium-only} {
-      align-self: end;
-      margin: 0;
-      line-height: 1;
-    }
-
-    a {
-      color: var(--c-accent);
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 2.5rem;
-      transition: color 0.25s;
-
-      &:hover {
-        color: var(--c-primary-darker);
-      }
-    }
-  }
-  &__description {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--c-primary-darkest);
-    padding: 0 percentage(math.div(1 , 9));
-    grid-area: description;
-    align-self: end;
-
-    @media #{$mq-medium-only} {
-      padding: 0 1rem 0 0;
-      margin: 0;
-    }
-  }
   ul {
     color: var(--c-primary-darker);
-    padding: 0 percentage(math.div(1 , 9));
+    padding: 0 percentage(math.div(1, 9));
     grid-area: list;
 
     @media #{$mq-medium-only} {
@@ -199,6 +111,95 @@ article(:class="`webapp webapp--${name}`")
         padding-right: 1rem;
       }
     }
+  }
+}
+.webapp__logo-block {
+  margin: 0 auto;
+  width: percentage(math.div(1, 4));
+  grid-area: logo;
+  position: relative;
+  top: grid-size(-1);
+
+  @media #{$mq-medium-only} {
+    position: static;
+    width: 100%;
+  }
+
+  @media #{$mq-big} {
+    width: percentage(math.div(1, 3));
+  }
+}
+.webapp__logo {
+  display: block;
+
+  &--a-count {
+    background: #4d419b;
+  }
+  &--thailpha {
+    background: #54009d;
+  }
+  &--thaime {
+    background: #5a4c30;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  &-caption a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: var(--c-accent);
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.25s, background-color 0.25s;
+
+    @media #{$mq-medium} {
+      height: 2rem;
+    }
+    &:hover {
+      color: white;
+      background-color: var(--c-accent);
+    }
+  }
+}
+.webapp__title {
+  text-align: center;
+  margin-top: 0;
+  grid-area: title;
+
+  @media #{$mq-medium-only} {
+    align-self: end;
+    margin: 0;
+    line-height: 1;
+  }
+
+  a {
+    color: var(--c-accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    transition: color 0.25s;
+
+    &:hover {
+      color: var(--c-primary-darker);
+    }
+  }
+}
+.webapp__description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--c-primary-darkest);
+  padding: 0 percentage(math.div(1, 9));
+  grid-area: description;
+  align-self: end;
+
+  @media #{$mq-medium-only} {
+    padding: 0 1rem 0 0;
+    margin: 0;
   }
 }
 </style>

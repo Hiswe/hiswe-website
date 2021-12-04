@@ -1,21 +1,22 @@
 <script>
-import MainNavigation from '~/nuxt-components/main-navigation.vue'
+import HisweMainNavigation from '~/nuxt-components/main-navigation.vue'
 import HisweNotifications from '~/nuxt-components/notifications/list'
 
 export default {
   name: `default-layout`,
   components: {
-    'hiswe-main-navigation': MainNavigation,
+    HisweMainNavigation,
     HisweNotifications,
   },
 }
 </script>
 
-<template lang="pug">
-  main(role="main")
-    hiswe-main-navigation
-    nuxt
-    hiswe-notifications
+<template>
+  <main role="main">
+    <HisweMainNavigation />
+    <nuxt />
+    <HisweNotifications />
+  </main>
 </template>
 
 <style lang="scss" scoped>

@@ -1,23 +1,33 @@
 <script>
+import HisweIcon from '~/nuxt-components/svg-icons'
+
 export default {
   name: `hiswe-social`,
+  components: { HisweIcon },
 }
 </script>
 
-<template lang="pug">
-  aside.social: div
-    a(href="https://github.com/hiswe")
-      hiswe-icon(name="github")
-      span github
-    a(href="https://twitter.com/hiswehalya")
-      hiswe-icon(name="twitter")
-      span twitter
-    a(href="https://medium.com/@hiswehalya")
-      hiswe-icon(name="medium")
-      span medium
-    a(href="https://codepen.io/Hiswe")
-      hiswe-icon(name="codepen")
-      span codepen
+<template>
+  <aside class="social">
+    <div>
+      <a href="https://github.com/hiswe">
+        <HisweIcon name="github" />
+        <span>github</span>
+      </a>
+      <a href="https://twitter.com/hiswehalya">
+        <HisweIcon name="twitter" />
+        <span>twitter</span>
+      </a>
+      <a href="https://medium.com/@hiswehalya">
+        <HisweIcon name="medium" />
+        <span>medium</span>
+      </a>
+      <a href="https://codepen.io/Hiswe">
+        <HisweIcon name="codepen" />
+        <span>codepen</span>
+      </a>
+    </div>
+  </aside>
 </template>
 
 <style lang="scss" scoped>

@@ -4,12 +4,17 @@ export default {
 }
 </script>
 
-<template lang="pug">
-nav.main-navigation
-  nuxt-link(to="/" exact-active-class="active" data-name="home") home
-  nuxt-link(to="/projects" active-class="active" data-name="projects") projects
-  // nuxt-link(to="/work" active-class="active" data-name="work") work
-  nuxt-link(to="/blog" active-class="active" data-name="blog") blog
+<template>
+  <nav class="main-navigation">
+    <NuxtLink to="/" exact-active-class="active" data-name="home">
+      home
+    </NuxtLink>
+    <NuxtLink to="/projects" active-class="active" data-name="projects">
+      projects
+    </NuxtLink>
+    <!-- <NuxtLink to="/work" active-class="active" data-name="projects">work</NuxtLink> -->
+    <NuxtLink to="/blog" active-class="active" data-name="blog">blog</NuxtLink>
+  </nav>
 </template>
 
 <style lang="scss" scoped>

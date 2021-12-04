@@ -1,13 +1,11 @@
 <script>
 import { mapState } from 'vuex'
 
-import HisweNotification from './item'
+import HisweNotification from '~/nuxt-components/notifications/item.vue'
 
 export default {
   name: `hiswe-notifications`,
-  components: {
-    HisweNotification,
-  },
+  components: { HisweNotification },
   computed: {
     ...mapState(`notification`, {
       notifications: `list`,
@@ -16,13 +14,14 @@ export default {
 }
 </script>
 
-<template lang="pug">
-aside.notifications
-  hiswe-notification(
-    v-for="notification in notifications"
-    :key="notification.id"
-    :notification="notification"
-  )
+<template>
+  <aside class="notifications">
+    <HisweNotification
+      v-for="notification in notifications"
+      :key="notification.id"
+      :notification="notification"
+    />
+  </aside>
 </template>
 
 <style lang="scss" scoped>
