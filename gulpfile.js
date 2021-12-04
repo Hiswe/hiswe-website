@@ -17,7 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // BUMP
 ////////
 
-export const bump = done => {
+export const bump = (done) => {
   if (!args.to) {
     console.log(chalk.red(`bump task needs the --to argument`))
     return done()
@@ -73,10 +73,7 @@ const cheerioOptions = {
 
 //----- LOGOS
 
-const templateVue = path.join(
-  __dirname,
-  `./nuxt-assets-source/icons/svg-icons.vue`
-)
+const templateVue = path.join(__dirname, `./assets-source/icons/svg-icons.vue`)
 
 export const buildLogos = () => {
   return gulp
@@ -86,7 +83,7 @@ export const buildLogos = () => {
         js2svg: {
           pretty: true,
         },
-      })
+      }),
     )
     .pipe(
       gulpCheerio({
@@ -98,12 +95,8 @@ export const buildLogos = () => {
           const $group = $(`g`)
           const $content = $group.html()
           $group.replaceWith($content)
-          $(`path[fill="#fff"]`)
-            .attr(`fill`, ``)
-            .addClass(`logo-path-white`)
-          $(`path[fill="#ccc"]`)
-            .attr(`fill`, ``)
-            .addClass(`logo-path-light`)
+          $(`path[fill="#fff"]`).attr(`fill`, ``).addClass(`logo-path-white`)
+          $(`path[fill="#ccc"]`).attr(`fill`, ``).addClass(`logo-path-light`)
           $(`path[fill="#999"]`)
             .attr(`fill`, ``)
             .addClass(`logo-path-background`)
@@ -117,14 +110,14 @@ export const buildLogos = () => {
         parserOptions: {
           xmlMode: true,
         },
-      })
+      }),
     )
     .pipe(
       gulpSvgmin({
         js2svg: {
           pretty: true,
         },
-      })
+      }),
     )
     .pipe(
       gulpSvgSymbols({
@@ -134,7 +127,7 @@ export const buildLogos = () => {
         svgAttrs: {
           class: `logo`,
         },
-      })
+      }),
     )
     .pipe(gulpRename({ basename: `svg-tech-logos` }))
     .pipe(gulpIf(/[.]vue$/, gulp.dest(`nuxt-components`)))
@@ -149,12 +142,12 @@ const buildVueIcons = () => {
   return gulp
     .src(`nuxt-assets-source/icons/*.svg`)
     .pipe(
-      gulpRename(path => {
+      gulpRename((path) => {
         const { basename } = path
         const isMaterialIcon = MATERIAL_NAME.test(basename)
         if (!isMaterialIcon) return
         path.basename = MATERIAL_NAME.exec(basename)[1].replace(/_/g, `-`)
-      })
+      }),
     )
     .pipe(gulpCheerio(cheerioOptions))
     .pipe(
@@ -165,7 +158,7 @@ const buildVueIcons = () => {
         svgAttrs: {
           class: `icon`,
         },
-      })
+      }),
     )
     .pipe(gulpIf(/[.]vue$/, gulp.dest(`nuxt-components`)))
     .pipe(gulpIf(/[.]html$/, gulp.dest(`nuxt-assets-source/icons`)))

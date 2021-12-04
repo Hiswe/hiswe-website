@@ -14,18 +14,12 @@ export default {
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
   },
-  css: [
-    `@/nuxt-assets/css/global.scss`,
-    `@/nuxt-assets/css/page-transitions.scss`,
-  ],
+  css: [`@/assets/css/global.scss`, `@/assets/css/page-transitions.scss`],
   modules: [`@nuxtjs/style-resources`, `@nuxt/http`],
   styleResources: {
-    scss: [
-      `@/nuxt-assets/css/scss-vars.scss`,
-      `@/nuxt-assets/css/scss-mixin.scss`,
-    ],
+    scss: [`@/assets/css/scss-vars.scss`, `@/assets/css/scss-mixin.scss`],
   },
-  plugins: [{ src: `@/nuxt-plugins/browser.js`, ssr: false }],
+  plugins: [{ src: `@/plugins/browser.js`, ssr: false }],
   head: {
     titleTemplate: 'Hiswe – %s',
     meta: [

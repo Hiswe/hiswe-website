@@ -11,7 +11,7 @@ export default {
   <section class="web-apps">
     <HisweWebapp name="a-count">
       <template #logo>
-        <img src="@/nuxt-assets/logos/©a-count.svg" width="100" />
+        <img src="@/assets/logos/©a-count.svg" width="100" />
       </template>
       <template #description>
         <a
@@ -32,7 +32,7 @@ export default {
     </HisweWebapp>
     <HisweWebapp name="thailpha">
       <template #logo>
-        <img src="@/nuxt-assets/logos/©thailpha.svg" width="100" />
+        <img src="@/assets/logos/©thailpha.svg" width="100" />
       </template>
       <template #description>
         <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">
@@ -52,7 +52,7 @@ export default {
     </HisweWebapp>
     <HisweWebapp name="thaime">
       <template #logo>
-        <img src="@/nuxt-assets/logos/©thaime.svg" width="100" />
+        <img src="@/assets/logos/©thaime.svg" width="100" />
       </template>
       <template #description>
         <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">
