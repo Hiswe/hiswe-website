@@ -25,10 +25,7 @@ export default {
       `@/nuxt-assets/css/scss-mixin.scss`,
     ],
   },
-  plugins: [
-    `@/nuxt-plugins/global-components.js`,
-    { src: `@/nuxt-plugins/browser.js`, ssr: false },
-  ],
+  plugins: [{ src: `@/nuxt-plugins/browser.js`, ssr: false }],
   head: {
     titleTemplate: 'Hiswe – %s',
     meta: [

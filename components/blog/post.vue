@@ -1,10 +1,19 @@
 <script>
+const DATE_FORMAT = {
+  day: `2-digit`,
+  month: `2-digit`,
+  year: `numeric`,
+}
+
 export default {
   name: `hiswe-blog-post-preview`,
   props: {
-    post: {
-      type: Object,
-      required: true,
+    post: { type: Object, required: true },
+  },
+  computed: {
+    displayedDate() {
+      const date = new Date(this.post.published)
+      return date.toLocaleDateString(`en-GB`, DATE_FORMAT)
     },
   },
 }
@@ -19,7 +28,7 @@ export default {
       />
       <div class="post__content">
         <time class="post__date" :datetime="post.published">
-          {{ post.published | localDate }}
+          {{ displayedDate }}
         </time>
         <h3 class="post__title">{{ post.title }}</h3>
         <div class="post__summary" v-html="post.summary"></div>
