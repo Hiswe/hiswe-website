@@ -1,7 +1,7 @@
 <script>
 import { mapState } from 'vuex'
 
-import HisweNotification from '~/nuxt-components/notifications/item.vue'
+import HisweNotification from '~/components/notifications/item.vue'
 
 export default {
   name: `hiswe-notifications`,

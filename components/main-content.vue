@@ -1,6 +1,6 @@
 <script>
-import HisweContact from '~/nuxt-components/contact.vue'
-import HisweSocial from '~/nuxt-components/social.vue'
+import HisweContact from '~/components/contact.vue'
+import HisweSocial from '~/components/social.vue'
 
 export default {
   name: `hiswe-main-content`,

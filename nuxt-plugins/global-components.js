@@ -1,13 +1,13 @@
 import Vue from 'vue'
 
-import SvgIcons from '~/nuxt-components/svg-icons'
-import TechLogs from '~/nuxt-components/svg-tech-logos'
-import HisweMainContent from '~/nuxt-components/main-content.vue'
-import Contact from '~/nuxt-components/contact'
-import Social from '~/nuxt-components/social'
+import SvgIcons from '~/components/svg-icons'
+import TechLogs from '~/components/svg-tech-logos'
+import HisweMainContent from '~/components/main-content.vue'
+import Contact from '~/components/contact'
+import Social from '~/components/social'
 
-import TwoLineTitle from '~/nuxt-components/ui/two-line-title'
-import TwoColumnHeader from '~/nuxt-components/ui/two-column-header'
+import TwoLineTitle from '~/components/ui/two-line-title'
+import TwoColumnHeader from '~/components/ui/two-column-header'
 
 Vue.component(`hiswe-icon`, SvgIcons)
 Vue.component(`hiswe-tech-logo`, TechLogs)

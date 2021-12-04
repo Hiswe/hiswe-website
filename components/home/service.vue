@@ -1,5 +1,5 @@
 <script>
-import TwoLineTitle from '~/nuxt-components/ui/two-line-title.vue'
+import TwoLineTitle from '~/components/ui/two-line-title.vue'
 
 export default {
   name: `hiswe-service`,

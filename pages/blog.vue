@@ -1,6 +1,6 @@
 <script>
-import Header from '~/nuxt-components/blog/header.vue'
-import Posts from '~/nuxt-components/blog/post-listing.vue'
+import Header from '~/components/blog/header.vue'
+import Posts from '~/components/blog/post-listing.vue'
 
 export default {
   name: `page-blog`,
@@ -16,13 +16,10 @@ export default {
 </script>
 
 <template lang="pug">
-hiswe-main-content(page="blog")
-  template(slot="header")
+hiswe-main-content(page='blog')
+  template(slot='header')
     hiswe-blog-header
-  hiswe-title.blog-latest-title(
-    text="latest blog posts"
-    :level="2"
-  )
+  hiswe-title.blog-latest-title(text='latest blog posts', :level='2')
   no-ssr: hiswe-blog-posts
 </template>
 

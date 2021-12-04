@@ -1,5 +1,5 @@
 <script>
-import HisweIcon from '~/nuxt-components/svg-icons'
+import HisweIcon from '~/components/svg-icons'
 
 export default {
   name: `hiswe-social`,

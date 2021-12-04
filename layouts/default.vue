@@ -1,6 +1,6 @@
 <script>
-import HisweMainNavigation from '~/nuxt-components/main-navigation.vue'
-import HisweNotifications from '~/nuxt-components/notifications/list'
+import HisweMainNavigation from '~/components/main-navigation.vue'
+import HisweNotifications from '~/components/notifications/list'
 
 export default {
   name: `default-layout`,

@@ -1,5 +1,5 @@
 <script>
-import HisweWebapp from '~/nuxt-components/projects/webapp.vue'
+import HisweWebapp from '~/components/projects/webapp.vue'
 
 export default {
   name: `hiswe-webapp-listing`,

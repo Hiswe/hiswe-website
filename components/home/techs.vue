@@ -1,6 +1,6 @@
 <script>
-import TwoLineTitle from '~/nuxt-components/ui/two-line-title.vue'
-import HisweTechLogo from '~/nuxt-components/svg-tech-logos'
+import TwoLineTitle from '~/components/ui/two-line-title.vue'
+import HisweTechLogo from '~/components/svg-tech-logos'
 
 export default {
   name: `section-tech`,

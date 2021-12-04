@@ -1,7 +1,7 @@
 <script>
-import HisweProjectHeader from '~/nuxt-components/projects/header.vue'
-import HisweNpmModule from '~/nuxt-components/projects/npm-module.vue'
-import HisweWebappListing from '~/nuxt-components/projects/webapp-listing.vue'
+import HisweProjectHeader from '~/components/projects/header.vue'
+import HisweNpmModule from '~/components/projects/npm-module.vue'
+import HisweWebappListing from '~/components/projects/webapp-listing.vue'
 
 export default {
   name: `page-projects`,
@@ -18,30 +18,22 @@ export default {
 </script>
 
 <template lang="pug">
-hiswe-main-content(page="projects")
-  template(slot="header")
+hiswe-main-content(page='projects')
+  template(slot='header')
     hiswe-project-header
-  hiswe-title(
-    text="NPM modules"
-    class="npm-title"
-    :level="2"
-  )
+  hiswe-title.npm-title(text='NPM modules', :level='2')
   .npm-description
     p
       | in <a href="https://nodejs.org/en/">Node.js'</a> community,
       | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
     p Those are my contributions
   .npm-modules
-    hiswe-npm-module(name="gulp-svg-symbols")
+    hiswe-npm-module(name='gulp-svg-symbols')
       | Help create an icon library by bundling SVG files together
-    hiswe-npm-module(name="vh-check")
+    hiswe-npm-module(name='vh-check')
       | Help handling some sizes on mobile browser
 
-  hiswe-title(
-    text="web applications"
-    class="webapp-title"
-    :level="2"
-  )
+  hiswe-title.webapp-title(text='web applications', :level='2')
   hiswe-webapp-listing
 </template>
 

@@ -1,7 +1,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 
-import HisweField from '~/nuxt-components/ui/field.vue'
+import HisweField from '~/components/ui/field.vue'
 
 export default {
   name: `section-contact`,

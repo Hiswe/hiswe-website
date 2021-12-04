@@ -1,5 +1,5 @@
 <script>
-import TwoColumnHeader from '~/nuxt-components/ui/two-column-header.vue'
+import TwoColumnHeader from '~/components/ui/two-column-header.vue'
 
 export default {
   name: `hiswe-blog-header`,
