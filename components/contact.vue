@@ -1,11 +1,12 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 
+import HisweTwoLineTitle from '~/components/ui/two-line-title'
 import HisweField from '~/components/ui/field.vue'
 
 export default {
   name: `section-contact`,
-  components: { HisweField },
+  components: { HisweTwoLineTitle, HisweField },
   data() {
     return {
       action: `/api/contact`,
@@ -73,7 +74,7 @@ export default {
     @submit.prevent="handleSubmit"
     @click="enable"
   >
-    <hiswe-title class="form__title" text="contact me" :level="2" />
+    <HisweTwoLineTitle class="form__title" text="contact me" :level="2" />
     <div class="contact__inputs">
       <HisweField
         class="field--name"
