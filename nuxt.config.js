@@ -14,12 +14,6 @@ export default {
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
   },
-  publicRuntimeConfig: {
-    recaptcha: {
-      siteKey: process.env.RECAPTCHA_SITE_KEY,
-      version: 3,
-    },
-  },
   css: [
     `@/nuxt-assets/css/global.scss`,
     `@/nuxt-assets/css/page-transitions.scss`,
