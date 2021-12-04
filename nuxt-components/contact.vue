@@ -26,14 +26,13 @@ export default {
     },
     handleSubmit(event) {
       this.disabled = true
-      this.$axios
-        .post(this.action, {
+      this.$http
+        .$post(this.action, {
           name: this.name,
           email: this.email,
           message: this.message,
         })
-        .then((response) => {
-          const { data } = response
+        .then((data) => {
           if (data.notification) {
             this.showNotification(data.notification)
           }

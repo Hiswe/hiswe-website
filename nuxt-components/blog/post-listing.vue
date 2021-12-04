@@ -22,11 +22,10 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$axios
-        .get(`/api/latest-blog-post`)
-        .then((response) => {
-          const { data } = response
-          this.posts = data
+      this.$http
+        .$get(`/api/latest-blog-post`)
+        .then((posts) => {
+          this.posts = posts
           this.loadingDone = true
         })
         .catch((error) => {
