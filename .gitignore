@@ -2,7 +2,6 @@
 .awspublish-hiswe
 .cache
 .env
-.hiswerc
 .nuxt
 build
 dist
