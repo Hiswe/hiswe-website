@@ -4,18 +4,20 @@ import { mapState, mapMutations } from 'vuex'
 import HisweTwoLineTitle from '~/components/ui/two-line-title'
 import HisweField from '~/components/ui/field.vue'
 
+const FORM_ACTION = `/api/contact`
+
 export default {
   name: `section-contact`,
   components: { HisweTwoLineTitle, HisweField },
   data() {
     return {
-      action: `/api/contact`,
       disabled: false,
       name: ``,
       email: ``,
       message: ``,
     }
   },
+  FORM_ACTION,
   computed: {
     ...mapState(`contact`, {
       validation: `fields`,
@@ -28,7 +30,7 @@ export default {
     handleSubmit(event) {
       this.disabled = true
       this.$http
-        .$post(this.action, {
+        .$post(FORM_ACTION, {
           name: this.name,
           email: this.email,
           message: this.message,
@@ -68,7 +70,7 @@ export default {
 <template>
   <form
     class="contact"
-    :action="action"
+    :action="$options.FORM_ACTION"
     method="post"
     novalidate="novalidate"
     @submit.prevent="handleSubmit"
