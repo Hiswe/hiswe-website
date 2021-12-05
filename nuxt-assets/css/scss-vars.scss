@@ -1,8 +1,0 @@
-$stop-medium: 500px;
-$stop-big: 1024px;
-
-$mq-small: '(max-width: #{$stop-medium - 1px})';
-$mq-medium: '(min-width: #{$stop-medium})';
-$mq-medium-only: '#{$mq-medium} and (max-width: #{$stop-big - 1px})';
-$mq-big: '(min-width: #{$stop-big})';
-$mq-not-medium: '#{$mq-small} or #{$mq-big}';

@@ -1,17 +1,15 @@
-import clone from 'lodash.clonedeep'
-
-const INITIAL_FIELDS = {
+const getInitialFields = () => ({
   email: {
     valid: true,
   },
   message: {
     valid: true,
   },
-}
+})
 
 export const state = () => ({
   captcha: ``,
-  fields: clone(INITIAL_FIELDS),
+  fields: getInitialFields(),
 })
 
 export const mutations = {
@@ -19,7 +17,7 @@ export const mutations = {
     state.fields = payload
   },
   RESET(state) {
-    state.fields = clone(INITIAL_FIELDS)
+    state.fields = getInitialFields()
   },
   CAPTCHA(state, payload) {
     state.captcha = payload

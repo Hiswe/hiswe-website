@@ -1,7 +1,8 @@
 <script>
-import HisweHeader from '~/nuxt-components/home/header.vue'
-import HisweService from '~/nuxt-components/home/service.vue'
-import TechSection from '~/nuxt-components/home/techs.vue'
+import HisweMainContent from '~/components/main-content.vue'
+import HisweHomeHeader from '~/components/home/header.vue'
+import HisweHomeService from '~/components/home/service.vue'
+import HisweHomeTechs from '~/components/home/techs.vue'
 
 export default {
   name: `page-home`,
@@ -10,39 +11,45 @@ export default {
     title: `home`,
   },
   components: {
-    'hiswe-home-header': HisweHeader,
-    'hiswe-service': HisweService,
-    'hiswe-techs': TechSection,
+    HisweMainContent,
+    HisweHomeHeader,
+    HisweHomeService,
+    HisweHomeTechs,
   },
 }
 </script>
 
-<template lang="pug">
-hiswe-main-content(page="home")
-  template(slot="header")
-    hiswe-home-header
-  hiswe-service(title="dev-elopment")
-    template(slot="description")
-      | building<br>web application
-    ul
-      li Reactive applications
-      li Data persistence
-      li Fast rendering with universal application
-  hiswe-service(title="inte-gration")
-    template(slot="description")
-      | from webdesign<br>to webpage
-    ul
-      li Optimized for fast loading &amp; rendering
-      li Bring your design to life with animations
-      li Clean javascript code
-  hiswe-service(title="web-design")
-    template(slot="description")
-      | make<br>efficiant UX
-    ul
-      li Fast delivery
-      li Simple &amp; nice experience for users
-      li Design for every screen size with responsive design
-  hiswe-techs
+<template>
+  <HisweMainContent page="home">
+    <template #header>
+      <HisweHomeHeader />
+    </template>
+    <HisweHomeService title="dev-elopment">
+      <template #description> building<br />web application </template>
+      <ul>
+        <li>Reactive applications</li>
+        <li>Data persistence</li>
+        <li>Fast rendering with universal application</li>
+      </ul>
+    </HisweHomeService>
+    <HisweHomeService title="inte-gration">
+      <template #description> from webdesign<br />to webpage </template>
+      <ul>
+        <li>Optimized for fast loading &amp; rendering</li>
+        <li>Bring your design to life with animations</li>
+        <li>Clean javascript code</li>
+      </ul>
+    </HisweHomeService>
+    <HisweHomeService title="web-design">
+      <template #description> make<br />efficiant UX </template>
+      <ul>
+        <li>Fast delivery</li>
+        <li>Simple &amp; nice experience for users</li>
+        <li>Design for every screen size with responsive design</li>
+      </ul>
+    </HisweHomeService>
+    <HisweHomeTechs />
+  </HisweMainContent>
 </template>
 
 <style lang="scss" scoped>
@@ -86,8 +93,8 @@ hiswe-main-content(page="home")
       background: var(--c-primary-darker);
       background: linear-gradient(
         to right,
-        var(--c-primary-darker) percentage(5/6),
-        var(--c-primary-darkest-highlight) percentage(5/6)
+        var(--c-primary-darker) percentage(math.div(5, 6)),
+        var(--c-primary-darkest-highlight) percentage(math.div(5, 6))
       );
       grid-area: footer;
     }
@@ -95,8 +102,8 @@ hiswe-main-content(page="home")
       'header      header      integration  webdesign webdesign webdesign'
       'header      header      integration  contact   contact   contact'
       'development development integration  contact   contact   contact'
-      'techs      techs        techs        techs     techs     social'
-      'footer      footer        footer        footer     footer     footer';
+      'techs       techs       techs        techs     techs     social'
+      'footer      footer      footer       footer    footer    footer';
   }
 }
 </style>

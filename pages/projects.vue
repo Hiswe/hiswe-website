@@ -1,7 +1,9 @@
 <script>
-import HisweProjectHeader from '~/nuxt-components/projects/header.vue'
-import HisweNpmModule from '~/nuxt-components/projects/npm-module.vue'
-import HisweWebappListing from '~/nuxt-components/projects/webapp-listing.vue'
+import HisweMainContent from '~/components/main-content.vue'
+import HisweProjectHeader from '~/components/projects/header.vue'
+import HisweTwoLineTitle from '~/components/ui/two-line-title'
+import HisweNpmModule from '~/components/projects/npm-module.vue'
+import HisweWebappListing from '~/components/projects/webapp-listing.vue'
 
 export default {
   name: `page-projects`,
@@ -10,39 +12,44 @@ export default {
     title: `projects`,
   },
   components: {
-    'hiswe-project-header': HisweProjectHeader,
-    'hiswe-npm-module': HisweNpmModule,
-    'hiswe-webapp-listing': HisweWebappListing,
+    HisweMainContent,
+    HisweProjectHeader,
+    HisweTwoLineTitle,
+    HisweNpmModule,
+    HisweWebappListing,
   },
 }
 </script>
 
-<template lang="pug">
-hiswe-main-content(page="projects")
-  template(slot="header")
-    hiswe-project-header
-  hiswe-title(
-    text="NPM modules"
-    class="npm-title"
-    :level="2"
-  )
-  .npm-description
-    p
-      | in <a href="https://nodejs.org/en/">Node.js'</a> community,
-      | <a href="https://www.npmjs.com/">NPM's</a> modules are the essential building blocks.
-    p Those are my contributions
-  .npm-modules
-    hiswe-npm-module(name="gulp-svg-symbols")
-      | Help create an icon library by bundling SVG files together
-    hiswe-npm-module(name="vh-check")
-      | Help handling some sizes on mobile browser
-
-  hiswe-title(
-    text="web applications"
-    class="webapp-title"
-    :level="2"
-  )
-  hiswe-webapp-listing
+<template>
+  <HisweMainContent page="projects">
+    <template slot="header">
+      <HisweProjectHeader />
+    </template>
+    <HisweTwoLineTitle class="npm-title" text="NPM modules" :level="2" />
+    <div class="npm-description">
+      <p>
+        in <a href="https://nodejs.org/en/">Node.js'</a> community,
+        <a href="https://www.npmjs.com/">NPM's</a> modules are the essential
+        building blocks.
+      </p>
+      <p>Those are my contributions</p>
+    </div>
+    <div class="npm-modules">
+      <HisweNpmModule name="gulp-svg-symbols">
+        Help create an icon library by bundling SVG files together
+      </HisweNpmModule>
+      <HisweNpmModule name="vh-check">
+        Help handling some sizes on mobile browser
+      </HisweNpmModule>
+    </div>
+    <HisweTwoLineTitle
+      class="webapp-title"
+      text="web applications"
+      :level="2"
+    />
+    <HisweWebappListing />
+  </HisweMainContent>
 </template>
 
 <style lang="scss" scoped>
@@ -98,7 +105,7 @@ hiswe-main-content(page="projects")
 
   @media #{$mq-medium} {
     align-self: end;
-    padding: 3rem percentage(21/36) 0 0;
+    padding: 3rem percentage(math.div(21, 36)) 0 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -157,19 +164,19 @@ hiswe-main-content(page="projects")
     text-align: left;
   }
   @media #{$mq-medium-only} {
-    padding-left: percentage(1/3);
+    padding-left: percentage(math.div(1, 3));
   }
   @media #{$mq-big} {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-left: percentage(1 / 13);
+    padding-left: percentage(math.div(1, 13));
   }
 }
 .web-apps {
   grid-area: webapps;
 }
-.page-projects /deep/ .social {
+.page-projects ::v-deep .social {
   @media #{$mq-big} {
     align-items: start;
     padding-left: 0.5rem;

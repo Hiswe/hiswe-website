@@ -1,6 +1,8 @@
 <script>
-import Header from '~/nuxt-components/blog/header.vue'
-import Posts from '~/nuxt-components/blog/post-listing.vue'
+import HisweMainContent from '~/components/main-content.vue'
+import HisweTwoLineTitle from '~/components/ui/two-line-title'
+import HisweBlogHeader from '~/components/blog/header.vue'
+import HisweBlogPosts from '~/components/blog/post-listing.vue'
 
 export default {
   name: `page-blog`,
@@ -9,21 +11,28 @@ export default {
     title: `blog`,
   },
   components: {
-    'hiswe-blog-header': Header,
-    'hiswe-blog-posts': Posts,
+    HisweMainContent,
+    HisweBlogHeader,
+    HisweTwoLineTitle,
+    HisweBlogPosts,
   },
 }
 </script>
 
-<template lang="pug">
-hiswe-main-content(page="blog")
-  template(slot="header")
-    hiswe-blog-header
-  hiswe-title.blog-latest-title(
-    text="latest blog posts"
-    :level="2"
-  )
-  no-ssr: hiswe-blog-posts
+<template>
+  <HisweMainContent page="blog">
+    <template #header>
+      <HisweBlogHeader />
+    </template>
+    <HisweTwoLineTitle
+      class="blog-latest-title"
+      text="latest blog posts"
+      :level="2"
+    />
+    <client-only>
+      <HisweBlogPosts />
+    </client-only>
+  </HisweMainContent>
 </template>
 
 <style lang="scss" scoped>
@@ -46,26 +55,26 @@ hiswe-main-content(page="blog")
       'latest-title latest-title contact contact contact social'
       'posts        posts        posts   posts   posts   posts';
   }
-  .blog-latest-title {
-    padding: 3rem 2rem 1rem;
-    text-align: center;
-    color: var(--c-primary-darker);
-    grid-area: latest-title;
-    background: var(--c-primary-lightest);
+}
+.blog-latest-title {
+  padding: 3rem 2rem 1rem;
+  text-align: center;
+  color: var(--c-primary-darker);
+  grid-area: latest-title;
+  background: var(--c-primary-lightest);
 
-    @media #{$mq-medium} {
-      font-size: calc(1.5vw + 0.5rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 0 2rem;
-    }
-    @media #{$mq-big} {
-      padding-top: 3rem;
-      padding-left: 1rem;
-      font-size: 1.5rem;
-      text-align: left;
-    }
+  @media #{$mq-medium} {
+    font-size: calc(1.5vw + 0.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 2rem;
+  }
+  @media #{$mq-big} {
+    padding-top: 3rem;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    text-align: left;
   }
 }
 </style>
