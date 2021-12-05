@@ -41,9 +41,9 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "doctoc": "^2.0.0",
-    "sass": "^1.43.4",
-    "sass-loader": "^12.3.0",
+    "sass": "^1.44.0",
+    "sass-loader": "10",
     "vue": "^2.6.6",
-    "webpack": "^5.33.2"
+    "webpack": "^5.64.4"
   }
 }
