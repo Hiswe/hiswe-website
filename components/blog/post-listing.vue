@@ -23,9 +23,9 @@ export default {
   methods: {
     fetchData() {
       this.$http
-        .$get(`/api/latest-blog-post`)
-        .then((posts) => {
-          this.posts = posts
+        .$get(`/api/blog/posts`)
+        .then((blog) => {
+          this.posts = blog.posts
           this.loadingDone = true
         })
         .catch((error) => {

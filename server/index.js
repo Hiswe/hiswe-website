@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import Koa from 'koa'
-import helmet from 'koa-helmet'
+// import helmet from 'koa-helmet'
 import compress from 'koa-compress'
 import logger from 'koa-logger'
 import formatJson from 'koa-json'
@@ -13,7 +13,6 @@ import session from 'koa-session'
 import koaNuxt from '@hiswe/koa-nuxt'
 
 import config from './config.js'
-import getLatestBlogPost from './latest-blog-post.js'
 import sendContactMail from './send-contact-mail.js'
 import nuxtConfig from '../nuxt.config.js'
 
@@ -111,11 +110,6 @@ async function start() {
   //----- API
 
   const router = new Router({ prefix: `/api` })
-
-  router.get(`/latest-blog-post`, async (ctx) => {
-    const blogEntries = await getLatestBlogPost()
-    ctx.body = blogEntries
-  })
 
   router.post(`/contact`, koaBody(), async (ctx) => {
     const mailResponse = await sendContactMail(ctx.request.body)
