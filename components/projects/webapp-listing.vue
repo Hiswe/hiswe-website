@@ -16,7 +16,8 @@ export default {
       <template #description>
         <a
           href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html"
-          >Universal application
+        >
+          Universal application
         </a>
         for simple account
       </template>
@@ -30,7 +31,7 @@ export default {
         </li>
       </ul>
     </HisweWebapp>
-    <HisweWebapp name="thailpha">
+    <HisweWebapp name="thailpha" url="https://thailpha-3e7f6.firebaseapp.com">
       <template #logo>
         <img src="@/assets/logos/©thailpha.svg" width="100" />
       </template>
@@ -50,7 +51,7 @@ export default {
         <li>powered by <a href="https://reactjs.org/">React</a></li>
       </ul>
     </HisweWebapp>
-    <HisweWebapp name="thaime">
+    <HisweWebapp name="thaime" url="https://thaime-2c0a5.firebaseapp.com/">
       <template #logo>
         <img src="@/assets/logos/©thaime.svg" width="100" />
       </template>

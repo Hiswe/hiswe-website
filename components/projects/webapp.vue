@@ -3,6 +3,7 @@ export default {
   name: `hiswe-webapp`,
   props: {
     name: { type: String, required: true },
+    url: { type: String, default: `` },
   },
   computed: {
     github() {
@@ -19,11 +20,11 @@ export default {
         <slot name="logo" />
       </a>
       <figcaption class="webapp__logo-caption">
-        <a :href="github">website</a>
+        <a :href="github">github</a>
       </figcaption>
     </figure>
     <h3 class="webapp__title">
-      <a :href="github">{{ name }}</a>
+      <a :href="url || github">{{ name }}</a>
     </h3>
     <p class="webapp__description">
       <slot name="description" />
