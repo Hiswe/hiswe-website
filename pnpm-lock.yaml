@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@hiswe/focus-ring':
-    specifier: ^1.0.4
-    version: 1.0.5
   '@sendgrid/mail':
     specifier: ^8.1.0
     version: 8.1.0
@@ -806,11 +803,6 @@ packages:
   /@fastify/busboy@2.1.0:
     resolution: {integrity: sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==}
     engines: {node: '>=14'}
-    dev: false
-
-  /@hiswe/focus-ring@1.0.5:
-    resolution: {integrity: sha512-4Gfd6xLjmYKJk3g3Aff1eU2PMJn0k/P1HoBgmeDUNdGPvPeoEg5aMqybyGBfF5KcGFxgn1yGSHCbTu8Ij3hwVw==}
-    engines: {node: '>=6.14.4', npm: 6.4.1}
     dev: false
 
   /@ioredis/commands@1.2.0:
