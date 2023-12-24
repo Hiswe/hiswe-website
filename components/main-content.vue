@@ -2,6 +2,11 @@
 defineProps<{
   page: string
 }>()
+
+defineSlots<{
+  default(): any
+  header(): any
+}>()
 </script>
 
 <template>

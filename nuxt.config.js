@@ -15,6 +15,9 @@ export default defineNuxtConfig({
       // `handle-server-errors`
     ],
   },
+  app: {
+    pageTransition: { name: `page`, mode: 'out-in' }
+  },
   loading: {
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
