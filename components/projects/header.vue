@@ -1,15 +1,7 @@
-<script>
-import TwoLineTitle from '~/components/ui/two-line-title.vue'
-
-export default {
-  name: `projects-header`,
-  components: { TwoLineTitle },
-}
-</script>
 
 <template>
   <div class="project-header">
-    <TwoLineTitle class="project-header-title" text="Open Source" tag="h2" />
+    <UiTwoLineTitle class="project-header-title" text="Open Source" tag="h2" />
     <p>
       Projects that I've created and maintain to give back to the open source
       community.

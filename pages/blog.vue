@@ -1,6 +1,5 @@
 <script>
 import HisweMainContent from '~/components/main-content.vue'
-import HisweTwoLineTitle from '~/components/ui/two-line-title'
 import HisweBlogHeader from '~/components/blog/header.vue'
 import HisweBlogPosts from '~/components/blog/post-listing.vue'
 
@@ -13,7 +12,6 @@ export default {
   components: {
     HisweMainContent,
     HisweBlogHeader,
-    HisweTwoLineTitle,
     HisweBlogPosts,
   },
 }
@@ -24,7 +22,7 @@ export default {
     <template #header>
       <HisweBlogHeader />
     </template>
-    <HisweTwoLineTitle class="blog-latest-title" text="latest blog posts" tag="h2" />
+    <UiTwoLineTitle class="blog-latest-title" text="latest blog posts" tag="h2" />
     <client-only>
       <HisweBlogPosts />
     </client-only>

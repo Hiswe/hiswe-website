@@ -1,73 +1,23 @@
 <template>
   <section class="techs">
     <div class="tech tech--server">
-      <TwoLineTitle class="tech__title tech__title--server" text="ser-ver" />
-      <a class="tech__item tech__item--node" href="https://nodejs.org/en/">
-        <figure>
-          <SvgTechLogos name="node" />
-        </figure>
-        <span>node</span>
-      </a>
-      <a class="tech__item tech__item--koa" href="https://koajs.com/">
-        <figure>
-          <SvgTechLogos name="koa" />
-        </figure>
-        <span>Koa</span>
-      </a>
-      <a class="tech__item tech__item--express" href="https://expressjs.com/">
-        <figure>
-          <SvgTechLogos name="express" />
-        </figure>
-        <span>Express</span>
-      </a>
-      <a class="tech__item tech__item--postgre" href="https://www.postgresql.org/">
-        <figure>
-          <SvgTechLogos name="postgre" />
-        </figure>
-        <span>PostgreSQL</span>
-      </a>
-      <a class="tech__item tech__item--mongo" href="https://www.mongodb.com/">
-        <figure>
-          <SvgTechLogos name="mongo" />
-        </figure>
-        <span>MongoDB</span>
-      </a>
+      <UiTwoLineTitle class="tech__title tech__title--server" text="ser-ver" />
+      <HomeTechsItem name="node" class="tech__item--node" href="https://nodejs.org/en/" />
+      <HomeTechsItem name="koa" class="tech__item--koa" href="https://koajs.com/" />
+      <HomeTechsItem name="express" class="tech__item--express" href="https://expressjs.com/" />
+      <HomeTechsItem name="postgre" class="tech__item--postgre" href="https://www.postgresql.org/" />
+      <HomeTechsItem name="mongo" class="tech__item--mongo" href="https://www.mongodb.com/" />
     </div>
     <div class="tech tech--framework">
-      <TwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
-      <a class="tech__item tech__item--react" href="https://reactjs.org/">
-        <figure>
-          <SvgTechLogos name="react" />
-        </figure>
-        <span>React</span>
-      </a>
-      <a class="tech__item tech__item--vue" href="https://vuejs.org/">
-        <figure>
-          <SvgTechLogos name="vue" />
-        </figure>
-        <span>Vue.js</span>
-      </a>
+      <UiTwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
+      <HomeTechsItem name="react" class="tech__item--react" href="https://reactjs.org/" />
+      <HomeTechsItem name="vue" class="tech__item--vue" href="https://vuejs.org/" />
     </div>
     <div class="tech tech--build">
-      <TwoLineTitle class="tech__title tech__title--build" text="bu-ild" />
-      <a class="tech__item tech__item--webpack" href="https://webpack.js.org">
-        <figure>
-          <SvgTechLogos name="webpack" />
-        </figure>
-        <span>Webpack</span>
-      </a>
-      <a class="tech__item tech__item--parcel" href="https://parceljs.org">
-        <figure>
-          <SvgTechLogos name="parcel" />
-        </figure>
-        <span>Parcel</span>
-      </a>
-      <a class="tech__item tech__item--gulp" href="https://gulpjs.com">
-        <figure>
-          <SvgTechLogos name="gulp" />
-        </figure>
-        <span>Gulp</span>
-      </a>
+      <UiTwoLineTitle class="tech__title tech__title--build" text="bu-ild" />
+      <HomeTechsItem name="webpack" class="tech__item--webpack" href="https://webpack.js.org" />
+      <HomeTechsItem name="parcel" class="tech__item--parcel" href="https://parceljs.org" />
+      <HomeTechsItem name="gulp" class="tech__item--gulp" href="https://gulpjs.com" />
     </div>
   </section>
 </template>
@@ -78,6 +28,7 @@
 .techs {
   background: var(--c-primary-darker);
   padding-bottom: calc(var(--grid-size) * 2);
+
 
   @media #{$mq-medium} {
     display: grid;
@@ -92,46 +43,6 @@
   @media #{$mq-big} {
     grid-template-columns: 1fr 5fr 3fr 9fr 3fr 6fr 4fr;
     grid-template-areas: '. framework . server . build .';
-  }
-
-  figure {
-    display: block;
-    margin: 0;
-    background: var(--c-primary-lighter);
-    height: calc(var(--grid-size) * 3);
-
-    @media #{$mq-medium} {
-      height: calc(var(--grid-size) * 2);
-    }
-  }
-
-  svg {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-  }
-
-  a {
-    text-decoration: none;
-    text-align: center;
-    color: var(--c-primary-lightest);
-    display: block;
-    margin: 0;
-
-    &:hover {
-      color: var(--c-accent-lighter);
-    }
-  }
-
-  span {
-    display: block;
-    padding: 0;
-    font-size: 0.65rem;
-    height: var(--grid-size);
-    display: block;
-    align-items: center;
-    justify-content: center;
   }
 }
 

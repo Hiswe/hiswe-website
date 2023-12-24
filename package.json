@@ -33,11 +33,13 @@
     "express": "^4.17.1",
     "got": "^14.0.0",
     "nuxt": "^3.8.2",
+    "nuxt-icons": "^3.2.1",
     "shortid": "^2.2.14",
     "validator": "^13.5.2",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
+    "@nuxtjs/svg-sprite": "^1.0.2",
     "cross-env": "^7.0.3",
     "doctoc": "^2.0.0",
     "sass": "^1.69.5",

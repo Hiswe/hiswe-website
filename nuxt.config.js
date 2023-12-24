@@ -26,8 +26,13 @@ export default defineNuxtConfig({
     `@/assets/css/global.scss`, 
     `@/assets/css/page-transitions.scss`
   ],
-  modules: [],
-  serverMiddleware: [{ path: `/api`, handler: `~/server-middleware/rest.js` }],
+  modules: [
+    `nuxt-icons`,
+    `@nuxtjs/svg-sprite`,
+  ],
+  serverMiddleware: [{ 
+    path: `/api`, handler: `~/server-middleware/rest.js`, 
+  }],
   plugins: [],
   head: {
     titleTemplate: 'Hiswe – %s',

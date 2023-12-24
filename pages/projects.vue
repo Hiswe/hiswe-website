@@ -1,7 +1,6 @@
 <script>
 import HisweMainContent from '~/components/main-content.vue'
 import HisweProjectHeader from '~/components/projects/header.vue'
-import HisweTwoLineTitle from '~/components/ui/two-line-title'
 import HisweNpmModule from '~/components/projects/npm-module.vue'
 import HisweWebappListing from '~/components/projects/webapp-listing.vue'
 
@@ -14,7 +13,6 @@ export default {
   components: {
     HisweMainContent,
     HisweProjectHeader,
-    HisweTwoLineTitle,
     HisweNpmModule,
     HisweWebappListing,
   },
@@ -26,7 +24,7 @@ export default {
     <template slot="header">
       <HisweProjectHeader />
     </template>
-    <HisweTwoLineTitle class="npm-title" text="NPM modules" tag="h2" />
+    <UiTwoLineTitle class="npm-title" text="NPM modules" tag="h2" />
     <div class="npm-description">
       <p>
         in <a href="https://nodejs.org/en/">Node.js'</a> community,
@@ -43,7 +41,7 @@ export default {
         Help handling some sizes on mobile browser
       </HisweNpmModule>
     </div>
-    <HisweTwoLineTitle class="webapp-title" text="web applications" tag="h2" />
+    <UiTwoLineTitle class="webapp-title" text="web applications" tag="h2" />
     <HisweWebappListing />
   </HisweMainContent>
 </template>

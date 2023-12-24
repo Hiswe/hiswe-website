@@ -2,19 +2,19 @@
   <aside class="social">
     <div>
       <a href="https://github.com/hiswe">
-        <SvgIcons name="github" />
+        <NuxtIcon name="social/github" />
         <span>github</span>
       </a>
       <a href="https://twitter.com/hiswehalya">
-        <SvgIcons name="twitter" />
+        <NuxtIcon name="social/twitter" />
         <span>twitter</span>
       </a>
       <a href="https://medium.com/@hiswehalya">
-        <SvgIcons name="medium" />
+        <NuxtIcon name="social/medium" />
         <span>medium</span>
       </a>
       <a href="https://codepen.io/Hiswe">
-        <SvgIcons name="codepen" />
+        <NuxtIcon name="social/codepen" />
         <span>codepen</span>
       </a>
     </div>
