@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
   router: {
     middleware: [
-      `reset-form`,
+      // `reset-form`,
       // `handle-server-errors`
     ],
   },
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   ],
   modules: [],
   serverMiddleware: [{ path: `/api`, handler: `~/server-middleware/rest.js` }],
-  plugins: [{ src: `@/plugins/browser.js`, ssr: false }],
+  plugins: [],
   head: {
     titleTemplate: 'Hiswe – %s',
     meta: [

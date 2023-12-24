@@ -9,7 +9,7 @@ export default {
 
 <template>
   <div class="project-header">
-    <TwoLineTitle class="project-header-title" text="Open Source" :level="2" />
+    <TwoLineTitle class="project-header-title" text="Open Source" tag="h2" />
     <p>
       Projects that I've created and maintain to give back to the open source
       community.
@@ -27,11 +27,13 @@ export default {
   padding: var(--two-gutter) 0;
   background: white;
 }
+
 .project-header-title {
   grid-area: title;
   color: var(--c-accent);
   text-align: right;
 }
+
 p {
   grid-area: description;
   margin: 0;

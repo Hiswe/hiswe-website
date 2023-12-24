@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: `main-navigation`,
-}
-</script>
-
 <template>
   <nav class="main-navigation">
     <NuxtLink to="/" exact-active-class="active" data-name="home">
@@ -25,6 +19,7 @@ export default {
   --navigation-top-spacing: var(--gutter);
   font-weight: 800;
   background: var(--c-primary-lightest);
+  grid-area: main-nav;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
@@ -92,4 +87,5 @@ a {
     clip-path: polygon(0 100%, 0 100%, 100% 100%, 100% 100%);
     transition: clip-path 0.25s;
   }
-}</style>
+}
+</style>

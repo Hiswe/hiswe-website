@@ -1,44 +1,34 @@
-<script>
-import TwoLineTitle from '~/components/ui/two-line-title.vue'
-import HisweTechLogo from '~/components/svg-tech-logos'
-
-export default {
-  name: `section-tech`,
-  components: { HisweTechLogo, TwoLineTitle },
-}
-</script>
-
 <template>
   <section class="techs">
     <div class="tech tech--server">
       <TwoLineTitle class="tech__title tech__title--server" text="ser-ver" />
       <a class="tech__item tech__item--node" href="https://nodejs.org/en/">
         <figure>
-          <HisweTechLogo name="node" />
+          <SvgTechLogos name="node" />
         </figure>
         <span>node</span>
       </a>
       <a class="tech__item tech__item--koa" href="https://koajs.com/">
         <figure>
-          <HisweTechLogo name="koa" />
+          <SvgTechLogos name="koa" />
         </figure>
         <span>Koa</span>
       </a>
       <a class="tech__item tech__item--express" href="https://expressjs.com/">
         <figure>
-          <HisweTechLogo name="express" />
+          <SvgTechLogos name="express" />
         </figure>
         <span>Express</span>
       </a>
       <a class="tech__item tech__item--postgre" href="https://www.postgresql.org/">
         <figure>
-          <HisweTechLogo name="postgre" />
+          <SvgTechLogos name="postgre" />
         </figure>
         <span>PostgreSQL</span>
       </a>
       <a class="tech__item tech__item--mongo" href="https://www.mongodb.com/">
         <figure>
-          <HisweTechLogo name="mongo" />
+          <SvgTechLogos name="mongo" />
         </figure>
         <span>MongoDB</span>
       </a>
@@ -47,13 +37,13 @@ export default {
       <TwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
       <a class="tech__item tech__item--react" href="https://reactjs.org/">
         <figure>
-          <HisweTechLogo name="react" />
+          <SvgTechLogos name="react" />
         </figure>
         <span>React</span>
       </a>
       <a class="tech__item tech__item--vue" href="https://vuejs.org/">
         <figure>
-          <HisweTechLogo name="vue" />
+          <SvgTechLogos name="vue" />
         </figure>
         <span>Vue.js</span>
       </a>
@@ -62,19 +52,19 @@ export default {
       <TwoLineTitle class="tech__title tech__title--build" text="bu-ild" />
       <a class="tech__item tech__item--webpack" href="https://webpack.js.org">
         <figure>
-          <HisweTechLogo name="webpack" />
+          <SvgTechLogos name="webpack" />
         </figure>
         <span>Webpack</span>
       </a>
       <a class="tech__item tech__item--parcel" href="https://parceljs.org">
         <figure>
-          <HisweTechLogo name="parcel" />
+          <SvgTechLogos name="parcel" />
         </figure>
         <span>Parcel</span>
       </a>
       <a class="tech__item tech__item--gulp" href="https://gulpjs.com">
         <figure>
-          <HisweTechLogo name="gulp" />
+          <SvgTechLogos name="gulp" />
         </figure>
         <span>Gulp</span>
       </a>
@@ -284,4 +274,5 @@ export default {
   @media #{$mq-medium} {
     grid-area: second-line-start / 1 / second-line-end / 3;
   }
-}</style>
+}
+</style>

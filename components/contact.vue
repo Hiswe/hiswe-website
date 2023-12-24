@@ -1,84 +1,95 @@
-<script>
-import HisweTwoLineTitle from '~/components/ui/two-line-title'
-import HisweField from '~/components/ui/field.vue'
-
+<script setup lang="ts">
 const FORM_ACTION = `/api/contact`
 
-export default {
-  name: `section-contact`,
-  components: { HisweTwoLineTitle, HisweField },
-  data() {
-    return {
-      disabled: false,
-      name: ``,
-      email: ``,
-      message: ``,
-    }
-  },
-  FORM_ACTION,
-  computed: {
-    validation: {
-      email: { valid: true, },
-      message: { valid: true, },
-    }
-    // ...mapState(`contact`, {
-    //   validation: `fields`,
-    // }),
-  },
-  methods: {
-    enable(event) {
-      this.disabled = false
-    },
-    handleSubmit(event) {
-      this.disabled = true
-      this.$http
-        .$post(FORM_ACTION, {
-          name: this.name,
-          email: this.email,
-          message: this.message,
-        })
-        .then((data) => {
-          if (data.notification) {
-            this.showNotification(data.notification)
-          }
-          if (data.validation) {
-            const isInvalid = Object.values(data.validation)
-              .map((field) => field.valid)
-              .includes(false)
-            // let the user automatically fix his errors
-            if (isInvalid) this.disabled = false
-            this.setValidation(data.validation)
-          }
-        })
-        .catch((error) => {
-          this.disabled = false
-          console.log(`ERROR`)
-          this.showNotification({
-            content: `An error as occurred, please try later`,
-            type: `error`,
-          })
-        })
-    },
-    // ...mapMutations(`contact`, {
-    //   setValidation: `SET_FIELDS`,
-    // }),
-    // ...mapMutations(`notification`, {
-    //   showNotification: `ADD`,
-    // }),
-  },
-}
+function handleSubmit() { }
+function enable() { }
+
+const disabled = false;
+const name = ref(``);
+const email = ref(``);
+const message = ref(``);
+const validation = computed(() => ({
+  email: { valid: true, },
+  message: { valid: true, },
+}))
+
+
+
+// export default {
+//   name: `section-contact`,
+//   components: { HisweTwoLineTitle, HisweField },
+//   data() {
+//     return {
+//       disabled: false,
+//       name: ``,
+//       email: ``,
+//       message: ``,
+//     }
+//   },
+//   FORM_ACTION,
+//   computed: {
+//     validation: {
+//       email: { valid: true, },
+//       message: { valid: true, },
+//     }
+//     // ...mapState(`contact`, {
+//     //   validation: `fields`,
+//     // }),
+//   },
+//   methods: {
+//     enable(event) {
+//       this.disabled = false
+//     },
+//     handleSubmit(event) {
+//       this.disabled = true
+//       this.$http
+//         .$post(FORM_ACTION, {
+//           name: this.name,
+//           email: this.email,
+//           message: this.message,
+//         })
+//         .then((data) => {
+//           if (data.notification) {
+//             this.showNotification(data.notification)
+//           }
+//           if (data.validation) {
+//             const isInvalid = Object.values(data.validation)
+//               .map((field) => field.valid)
+//               .includes(false)
+//             // let the user automatically fix his errors
+//             if (isInvalid) this.disabled = false
+//             this.setValidation(data.validation)
+//           }
+//         })
+//         .catch((error) => {
+//           this.disabled = false
+//           console.log(`ERROR`)
+//           this.showNotification({
+//             content: `An error as occurred, please try later`,
+//             type: `error`,
+//           })
+//         })
+//     },
+//     // ...mapMutations(`contact`, {
+//     //   setValidation: `SET_FIELDS`,
+//     // }),
+//     // ...mapMutations(`notification`, {
+//     //   showNotification: `ADD`,
+//     // }),
+//   },
+// }
 </script>
 
 <template>
-  <form class="contact" :action="$options.FORM_ACTION" method="post" novalidate="novalidate"
-    @submit.prevent="handleSubmit" @click="enable">
-    <HisweTwoLineTitle class="form__title" text="contact me" :level="2" />
+  <form class="contact" :action="$options.FORM_ACTION" method="post" novalidate @submit.prevent="handleSubmit"
+    @click="enable">
+    <UiTwoLineTitle class="form__title" text="contact me" tag="h2" />
     <div class="contact__inputs">
-      <HisweField class="field--name" name="name" type="text" v-model="name" :disabled="disabled" />
-      <HisweField class="field--email" name="email" type="email" v-model="email" required="required" :disabled="disabled"
+      <UiField class="field--name" name="name" type="text" v-model="name" :disabled="disabled" />
+      <UiField class="field--email" name="email" type="email" v-model="email" required="required" :disabled="disabled"
         :valid="validation.email.valid" />
     </div>
-    <HisweField class="field--message" name="message" tag="textarea" v-model="message" required="required"
+    <UiField class="field--message" name="message" tag="textarea" v-model="message" required="required"
       :disabled="disabled" :valid="validation.message.valid" />
     <div class="contact__submit">
       <button class="contact__button" type="submit" :disabled="disabled">

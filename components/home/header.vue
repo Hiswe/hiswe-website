@@ -1,12 +1,3 @@
-<script>
-import TwoColumnHeader from '~/components/ui/two-column-header.vue'
-
-export default {
-  name: `home-header`,
-  components: { TwoColumnHeader },
-}
-</script>
-
 <template>
   <div class="home-header">
     <h1>
@@ -14,7 +5,7 @@ export default {
       website for<br />
       everyone's need
     </h1>
-    <TwoColumnHeader>
+    <UiTwoColumnHeader>
       <template #left>
         <h2 class="name">
           I'm<br />
@@ -29,7 +20,7 @@ export default {
           Depending on the project I will use the most appropriate set of tools.
         </p>
       </template>
-    </TwoColumnHeader>
+    </UiTwoColumnHeader>
   </div>
 </template>
 

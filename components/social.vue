@@ -1,29 +1,20 @@
-<script>
-import HisweIcon from '~/components/svg-icons'
-
-export default {
-  name: `hiswe-social`,
-  components: { HisweIcon },
-}
-</script>
-
 <template>
   <aside class="social">
     <div>
       <a href="https://github.com/hiswe">
-        <HisweIcon name="github" />
+        <SvgIcons name="github" />
         <span>github</span>
       </a>
       <a href="https://twitter.com/hiswehalya">
-        <HisweIcon name="twitter" />
+        <SvgIcons name="twitter" />
         <span>twitter</span>
       </a>
       <a href="https://medium.com/@hiswehalya">
-        <HisweIcon name="medium" />
+        <SvgIcons name="medium" />
         <span>medium</span>
       </a>
       <a href="https://codepen.io/Hiswe">
-        <HisweIcon name="codepen" />
+        <SvgIcons name="codepen" />
         <span>codepen</span>
       </a>
     </div>
@@ -95,4 +86,5 @@ span {
     font-size: 1rem;
     padding: 0 0 0 1em;
   }
-}</style>
+}
+</style>

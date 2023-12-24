@@ -24,7 +24,7 @@ export default {
     <template #header>
       <HisweBlogHeader />
     </template>
-    <HisweTwoLineTitle class="blog-latest-title" text="latest blog posts" :level="2" />
+    <HisweTwoLineTitle class="blog-latest-title" text="latest blog posts" tag="h2" />
     <client-only>
       <HisweBlogPosts />
     </client-only>

@@ -1,21 +1,11 @@
-<script>
-import HisweMainNavigation from '~/components/main-navigation.vue'
-import HisweNotifications from '~/components/notifications/list'
-
-export default {
-  name: `default-layout`,
-  components: {
-    HisweMainNavigation,
-    HisweNotifications,
-  },
-}
+<script setup lang="ts">
 </script>
 
 <template>
   <main role="main">
-    <HisweMainNavigation />
-    <nuxt />
-    <HisweNotifications />
+    <MainNavigation />
+    <slot />
+    <NotificationsList />
   </main>
 </template>
 
@@ -33,13 +23,5 @@ main {
       '.            .            main-nav'
       'main-content main-content main-content';
   }
-}
-
-.main-navigation {
-  grid-area: main-nav;
-}
-
-.main-content {
-  grid-area: main-content;
 }
 </style>

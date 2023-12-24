@@ -1,27 +1,20 @@
-<script>
-import TwoLineTitle from '~/components/ui/two-line-title.vue'
+<script setup lang="ts">
+const props = defineProps<{
+  title: string,
+  icon?: string,
+}>()
 
-export default {
-  name: `hiswe-service`,
-  components: { TwoLineTitle },
-  props: {
-    title: { type: String, required: true },
-    icon: { type: String, require: false },
-  },
-  computed: {
-    id() {
-      if (!this.title) return false
-      const name = this.title.replace(`-`, ``).replace(` `, `-`)
-      return `service--${name}`
-    },
-  },
-}
+const id = computed(() => {
+  if (!props.title) return false
+  const name = props.title.replace(`-`, ``).replace(` `, `-`)
+  return `service--${name}`
+})
 </script>
 
 <template>
   <dl :class="`service ${id}`">
     <dt class="service__title">
-      <TwoLineTitle :text="title" />
+      <UiTwoLineTitle :text="title" />
     </dt>
     <dd class="service__subtitle">
       <slot name="description" />

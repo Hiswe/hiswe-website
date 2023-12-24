@@ -1,4 +1,7 @@
 <script setup lang="ts">
+useHead({
+  title: 'home',
+})
 </script>
 
 <template>
@@ -77,6 +80,11 @@
   @media #{$mq-big} {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, auto) minmax(0vh, 0.5fr);
+    grid-template-areas: 'header      header      integration  webdesign webdesign webdesign'
+      'header      header      integration  contact   contact   contact'
+      'development development integration  contact   contact   contact'
+      'techs       techs       techs        techs     techs     social'
+      'footer      footer      footer       footer    footer    footer';
 
     &::after {
       content: '';
@@ -86,12 +94,6 @@
           var(--c-primary-darkest-highlight) percentage(math.div(5, 6)));
       grid-area: footer;
     }
-
-    grid-template-areas: 'header      header      integration  webdesign webdesign webdesign'
-    'header      header      integration  contact   contact   contact'
-    'development development integration  contact   contact   contact'
-    'techs       techs       techs        techs     techs     social'
-    'footer      footer      footer       footer    footer    footer';
   }
 }
 </style>

@@ -1,14 +1,7 @@
-<script>
-import HisweContact from '~/components/contact.vue'
-import HisweSocial from '~/components/social.vue'
-
-export default {
-  name: `hiswe-main-content`,
-  components: { HisweContact, HisweSocial },
-  props: {
-    page: { type: String, required: true },
-  },
-}
+<script setup lang="ts">
+defineProps<{
+  page: string
+}>()
 </script>
 
 <template>
@@ -16,8 +9,8 @@ export default {
     <header class="main-header">
       <slot name="header" />
     </header>
-    <HisweContact />
-    <HisweSocial />
+    <!-- <Contact /> -->
+    <Social />
     <slot />
   </div>
 </template>
@@ -26,6 +19,8 @@ export default {
 @import 'assets/css/scss-vars';
 
 .main-content {
+  grid-area: main-content;
+
   @media #{$mq-small} {
     display: flex;
     flex-direction: column;
