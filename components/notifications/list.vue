@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 
 import HisweNotification from '~/components/notifications/item.vue'
 
@@ -7,9 +7,10 @@ export default {
   name: `hiswe-notifications`,
   components: { HisweNotification },
   computed: {
-    ...mapState(`notification`, {
-      notifications: `list`,
-    }),
+    notifications: []
+    // ...mapState(`notification`, {
+    //   notifications: `list`,
+    // }),
   },
 }
 </script>

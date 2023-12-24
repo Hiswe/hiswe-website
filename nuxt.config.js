@@ -19,10 +19,11 @@ export default defineNuxtConfig({
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
   },
-  css: [`@/assets/css/global.scss`, `@/assets/css/page-transitions.scss`],
-  modules: [
-    // `@nuxt/http`
+  css: [
+    `@/assets/css/global.scss`, 
+    `@/assets/css/page-transitions.scss`
   ],
+  modules: [],
   serverMiddleware: [{ path: `/api`, handler: `~/server-middleware/rest.js` }],
   plugins: [{ src: `@/plugins/browser.js`, ssr: false }],
   head: {

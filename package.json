@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@hiswe/focus-ring": "^1.0.4",
-    "@nuxt/http": "^0.6.4",
     "@sendgrid/mail": "^8.1.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.2",

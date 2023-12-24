@@ -1,6 +1,4 @@
 <script>
-import { mapState, mapMutations } from 'vuex'
-
 import HisweTwoLineTitle from '~/components/ui/two-line-title'
 import HisweField from '~/components/ui/field.vue'
 
@@ -19,9 +17,13 @@ export default {
   },
   FORM_ACTION,
   computed: {
-    ...mapState(`contact`, {
-      validation: `fields`,
-    }),
+    validation: {
+      email: { valid: true, },
+      message: { valid: true, },
+    }
+    // ...mapState(`contact`, {
+    //   validation: `fields`,
+    // }),
   },
   methods: {
     enable(event) {
@@ -57,12 +59,12 @@ export default {
           })
         })
     },
-    ...mapMutations(`contact`, {
-      setValidation: `SET_FIELDS`,
-    }),
-    ...mapMutations(`notification`, {
-      showNotification: `ADD`,
-    }),
+    // ...mapMutations(`contact`, {
+    //   setValidation: `SET_FIELDS`,
+    // }),
+    // ...mapMutations(`notification`, {
+    //   showNotification: `ADD`,
+    // }),
   },
 }
 </script>
