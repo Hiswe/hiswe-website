@@ -3,8 +3,12 @@ const DESCRIPTION = `hiswe's personal website`
 const HOMEPAGE = `https://hiswe.net/`
 const AUTHOR = `Yannick “Hiswe” Aïvayan <yannick.aivayan@hiswe.net>`
 
-export default {
+export default defineNuxtConfig({
   telemetry: false,
+  typescript: {
+    typeCheck: true,
+    strict: true,
+  },
   router: {
     middleware: [
       `reset-form`,
@@ -16,7 +20,10 @@ export default {
     height: `5px`,
   },
   css: [`@/assets/css/global.scss`, `@/assets/css/page-transitions.scss`],
-  modules: [`@nuxtjs/style-resources`, `@nuxt/http`],
+  modules: [
+    // `@nuxtjs/style-resources`, 
+    // `@nuxt/http`
+  ],
   styleResources: {
     scss: [`@/assets/css/scss-vars.scss`, `@/assets/css/scss-mixin.scss`],
   },
@@ -50,4 +57,4 @@ export default {
     ],
     link: [{ rel: `icon`, type: `image/png`, href: `/favicon.png` }],
   },
-}
+})
