@@ -1,16 +1,18 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   name: string
   href: string
 }>();
 
-const iconName = computed(() => `tech/${props.name}`)
+defineSlots<{
+  default(): any
+}>()
 </script>
 
 <template>
   <a class="tech__item" :href="href">
     <figure>
-      <SvgIcon :name="iconName" class="icon" />
+      <slot />
     </figure>
     <span>{{ name }}</span>
   </a>
@@ -22,51 +24,45 @@ const iconName = computed(() => `tech/${props.name}`)
 figure {
   display: block;
   margin: 0;
-  background: var(--c-primary-lighter);
+  background: var(--c-primary);
   height: calc(var(--grid-size) * 3);
+  object-fit: contain;
 
   @media #{$mq-medium} {
     height: calc(var(--grid-size) * 2);
   }
 }
 
-.icon {
+a:hover figure {
+  background: var(--c-accent-lighter);
+}
+
+figure :deep(svg) {
   display: block;
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain;
-  background: var(--c-primary);
-  fill: var(--c-primary-darker);
   transition: background 0.25s, fill 0.25s;
+}
 
-  path {
-    transition: fill 0.25s;
-  }
+figure :deep(path) {
+  transition: fill 0.25s;
+  fill: var(--c-primary-darker);
+}
 
-  a:hover & {
-    background: var(--c-accent-lighter);
-    fill: var(--c-accent);
-  }
+a:hover :deep(path) {
+  fill: var(--c-accent);
+}
 
-  &-path-light {
-    fill: var(--c-primary-lighter);
+figure :deep(path[style="fill:#999;"]) {
+  fill: none !important;
+}
 
-    a:hover & {
-      fill: var(--c-accent-lightest);
-    }
-  }
+figure :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
+  fill: var(--c-primary-lighter) !important;
+}
 
-  &-path-white {
-    fill: var(--c-primary-lightest);
-  }
-
-  &-path-background {
-    fill: var(--c-primary);
-
-    a:hover & {
-      fill: var(--c-accent-lighter);
-    }
-  }
+a:hover :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
+  fill: var(--c-accent-lightest) !important;
 }
 
 a {

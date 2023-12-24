@@ -13,10 +13,7 @@ export default defineNuxtConfig({
     middleware: [
       // `reset-form`,
       // `handle-server-errors`
-    ],
-  },
-  app: {
-    pageTransition: { name: `page`, mode: 'out-in' }
+    ],  
   },
   loading: {
     color: `hsl(332, 100%, 50%)`,
@@ -27,39 +24,41 @@ export default defineNuxtConfig({
     `@/assets/css/page-transitions.scss`
   ],
   modules: [
-    `nuxt-icons`,
-    `@nuxtjs/svg-sprite`,
+    `nuxt-svgo`
   ],
   serverMiddleware: [{ 
     path: `/api`, handler: `~/server-middleware/rest.js`, 
   }],
   plugins: [],
-  head: {
-    titleTemplate: 'Hiswe – %s',
-    meta: [
-      { charset: `utf-8` },
-      { name: `viewport`, content: `width=device-width, initial-scale=1` },
-      { 'http-equiv': `X-UA-Compatible`, content: `IE=edge` },
-      { hid: `author`, name: `author`, content: AUTHOR },
-      { hid: `description`, name: `description`, content: DESCRIPTION },
-      // open graph
-      { hid: `og:title`, name: `og:title`, content: NAME },
-      { hid: `og:type`, name: `og:type`, content: `website` },
-      {
-        hid: `og:description`,
-        name: `og:description`,
-        content: DESCRIPTION,
-      },
-      { hid: `og:url`, name: `og:url`, content: HOMEPAGE },
-      // twitter
-      { hid: `twitter:card`, name: `twitter:card`, content: `summary` },
-      { hid: `twitter:site`, name: `twitter:site`, content: `@hiswehalya` },
-      {
-        hid: `twitter:creator`,
-        name: `twitter:creator`,
-        content: `@hiswehalya`,
-      },
-    ],
-    link: [{ rel: `icon`, type: `image/png`, href: `/favicon.png` }],
+  app: {
+    pageTransition: { name: `page`, mode: 'out-in' },
+    head: {
+      titleTemplate: 'Hiswe – %s',
+      meta: [
+        { charset: `utf-8` },
+        { name: `viewport`, content: `width=device-width, initial-scale=1` },
+        { 'http-equiv': `X-UA-Compatible`, content: `IE=edge` },
+        { hid: `author`, name: `author`, content: AUTHOR },
+        { hid: `description`, name: `description`, content: DESCRIPTION },
+        // open graph
+        { hid: `og:title`, name: `og:title`, content: NAME },
+        { hid: `og:type`, name: `og:type`, content: `website` },
+        {
+          hid: `og:description`,
+          name: `og:description`,
+          content: DESCRIPTION,
+        },
+        { hid: `og:url`, name: `og:url`, content: HOMEPAGE },
+        // twitter
+        { hid: `twitter:card`, name: `twitter:card`, content: `summary` },
+        { hid: `twitter:site`, name: `twitter:site`, content: `@hiswehalya` },
+        {
+          hid: `twitter:creator`,
+          name: `twitter:creator`,
+          content: `@hiswehalya`,
+        },
+      ],
+      link: [{ rel: `icon`, type: `image/png`, href: `/favicon.png` }],
+    },
   },
 })

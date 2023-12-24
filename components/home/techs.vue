@@ -2,22 +2,42 @@
   <section class="techs">
     <div class="tech tech--server">
       <UiTwoLineTitle class="tech__title tech__title--server" text="ser-ver" />
-      <HomeTechsItem name="node" class="tech__item--node" href="https://nodejs.org/en/" />
-      <HomeTechsItem name="koa" class="tech__item--koa" href="https://koajs.com/" />
-      <HomeTechsItem name="express" class="tech__item--express" href="https://expressjs.com/" />
-      <HomeTechsItem name="postgre" class="tech__item--postgre" href="https://www.postgresql.org/" />
-      <HomeTechsItem name="mongo" class="tech__item--mongo" href="https://www.mongodb.com/" />
+      <HomeTechsItem name="node" class="tech__item--node" href="https://nodejs.org/en/">
+        <SvgoTechNode />
+      </HomeTechsItem>
+      <HomeTechsItem name="koa" class="tech__item--koa" href="https://koajs.com/">
+        <SvgoTechKoa />
+      </HomeTechsItem>
+      <HomeTechsItem name="express" class="tech__item--express" href="https://expressjs.com/">
+        <SvgoTechExpress />
+      </HomeTechsItem>
+      <HomeTechsItem name="postgre" class="tech__item--postgre" href="https://www.postgresql.org/">
+        <SvgoTechPostgre />
+      </HomeTechsItem>
+      <HomeTechsItem name="mongo" class="tech__item--mongo" href="https://www.mongodb.com/">
+        <SvgoTechMongo />
+      </HomeTechsItem>
     </div>
     <div class="tech tech--framework">
       <UiTwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
-      <HomeTechsItem name="react" class="tech__item--react" href="https://reactjs.org/" />
-      <HomeTechsItem name="vue" class="tech__item--vue" href="https://vuejs.org/" />
+      <HomeTechsItem name="react" class="tech__item--react" href="https://reactjs.org/">
+        <SvgoTechReact />
+      </HomeTechsItem>
+      <HomeTechsItem name="vue" class="tech__item--vue" href="https://vuejs.org/">
+        <SvgoTechVue />
+      </HomeTechsItem>
     </div>
     <div class="tech tech--build">
       <UiTwoLineTitle class="tech__title tech__title--build" text="bu-ild" />
-      <HomeTechsItem name="webpack" class="tech__item--webpack" href="https://webpack.js.org" />
-      <HomeTechsItem name="parcel" class="tech__item--parcel" href="https://parceljs.org" />
-      <HomeTechsItem name="gulp" class="tech__item--gulp" href="https://gulpjs.com" />
+      <HomeTechsItem name="webpack" class="tech__item--webpack" href="https://webpack.js.org">
+        <SvgoTechWebpack />
+      </HomeTechsItem>
+      <HomeTechsItem name="parcel" class="tech__item--parcel" href="https://parceljs.org">
+        <SvgoTechParcel />
+      </HomeTechsItem>
+      <HomeTechsItem name="gulp" class="tech__item--gulp" href="https://gulpjs.com">
+        <SvgoTechGulp />
+      </HomeTechsItem>
     </div>
   </section>
 </template>
