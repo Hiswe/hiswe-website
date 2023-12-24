@@ -21,12 +21,8 @@ export default defineNuxtConfig({
   },
   css: [`@/assets/css/global.scss`, `@/assets/css/page-transitions.scss`],
   modules: [
-    // `@nuxtjs/style-resources`, 
     // `@nuxt/http`
   ],
-  styleResources: {
-    scss: [`@/assets/css/scss-vars.scss`, `@/assets/css/scss-mixin.scss`],
-  },
   serverMiddleware: [{ path: `/api`, handler: `~/server-middleware/rest.js` }],
   plugins: [{ src: `@/plugins/browser.js`, ssr: false }],
   head: {

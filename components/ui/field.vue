@@ -58,10 +58,7 @@ export default {
 </script>
 
 <template>
-  <div
-    class="field"
-    :class="{ 'field--invalid': showError, 'field--disabled': disabled }"
-  >
+  <div class="field" :class="{ 'field--invalid': showError, 'field--disabled': disabled }">
     <label :for="name">
       {{ name }}
       <transition name="error-fade">
@@ -70,19 +67,13 @@ export default {
         </span>
       </transition>
     </label>
-    <component
-      :is="tag"
-      ref="input"
-      :id="name"
-      :name="name"
-      :disabled="disabled"
-      @blur="handleBlur"
-      @input="onInput"
-    />
+    <component :is="tag" ref="input" :id="name" :name="name" :disabled="disabled" @blur="handleBlur" @input="onInput" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .field {
   border: 0;
   padding: 0;
@@ -92,10 +83,12 @@ export default {
     flex-direction: column;
   }
 }
+
 .field--disabled {
   opacity: 0.5;
   pointer-events: none;
 }
+
 .field__error-message {
   font-style: italic;
   padding-left: 0.5em;
@@ -103,6 +96,7 @@ export default {
   color: red;
   display: inline-block;
 }
+
 label {
   @media #{$mq-medium} {
     flex: 0 0 var(--grid-size);
@@ -110,12 +104,14 @@ label {
     padding-top: 0.5rem;
   }
 }
+
 label,
 input,
 textarea {
   display: block;
   color: white;
 }
+
 input,
 textarea {
   background: none;
@@ -135,19 +131,24 @@ textarea {
     border-color: var(--c-primary);
   }
 }
+
 input {
   padding: 0 0.5em;
 }
+
 textarea {
   padding: 0.5em;
   min-height: 8em;
   resize: vertical;
 }
+
 .error-fade {
+
   &-enter-active,
   &-leave-active {
     transition: opacity 0.75s, transform 0.5s;
   }
+
   &-enter,
   &-leave-to {
     opacity: 0;

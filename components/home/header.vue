@@ -34,6 +34,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .home-header {
   text-align: center;
   background: white;
@@ -47,6 +49,7 @@ export default {
     height: auto;
   }
 }
+
 h1 {
   text-align: center;
   padding: 2rem 0 1rem;
@@ -64,21 +67,24 @@ h1 {
       display: none;
     }
   }
+
   @media #{$mq-medium-only} {
     font-size: 2rem;
   }
 }
+
 .name {
   line-height: 1;
   font-size: 2rem;
   font-weight: 900;
   margin: 0;
 }
+
 .two-column-header {
   p {
     margin: 0;
 
-    + p {
+    +p {
       margin-top: 1rem;
 
       @media #{$mq-medium-only} {

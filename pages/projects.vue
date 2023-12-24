@@ -43,16 +43,15 @@ export default {
         Help handling some sizes on mobile browser
       </HisweNpmModule>
     </div>
-    <HisweTwoLineTitle
-      class="webapp-title"
-      text="web applications"
-      :level="2"
-    />
+    <HisweTwoLineTitle class="webapp-title" text="web applications" :level="2" />
     <HisweWebappListing />
   </HisweMainContent>
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+@import 'assets/css/scss-vars';
+
 .page-projects {
   background: white;
 
@@ -76,6 +75,7 @@ export default {
       grid-area: 1 /1 /4 /4;
     }
   }
+
   @media #{$mq-big} {
     grid-template-columns: repeat(4, 3fr) 3.5fr 2.5fr;
     grid-template-areas:
@@ -91,11 +91,13 @@ export default {
 .npm-modules {
   background: var(--c-primary);
 }
+
 .npm-title,
 .npm-description {
   color: white;
   padding: var(--grid-size) grid-size(2) 0;
 }
+
 .npm-title {
   grid-area: npm-title;
 
@@ -111,6 +113,7 @@ export default {
     align-items: flex-end;
   }
 }
+
 .npm-description {
   grid-area: npm-description;
 
@@ -124,18 +127,21 @@ export default {
       '. first-paragraph  .'
       '. second-paragraph   .';
   }
+
   p {
     margin: 0;
 
     &:first-child {
       grid-area: first-paragraph;
     }
+
     &:last-child {
       padding: 1rem 0 0;
       grid-area: second-paragraph;
     }
   }
 }
+
 .npm-modules {
   grid-area: npm-modules;
   background: var(--c-primary);
@@ -152,6 +158,7 @@ export default {
     }
   }
 }
+
 .webapp-title {
   grid-area: webapp-title;
   background: white;
@@ -163,9 +170,11 @@ export default {
     padding: 4rem 0 2rem;
     text-align: left;
   }
+
   @media #{$mq-medium-only} {
     padding-left: percentage(math.div(1, 3));
   }
+
   @media #{$mq-big} {
     display: flex;
     flex-direction: column;
@@ -173,9 +182,11 @@ export default {
     padding-left: percentage(math.div(1, 13));
   }
 }
+
 .web-apps {
   grid-area: webapps;
 }
+
 .page-projects ::v-deep .social {
   @media #{$mq-big} {
     align-items: start;

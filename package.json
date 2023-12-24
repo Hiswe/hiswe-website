@@ -8,10 +8,11 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "heroku-postbuild": "yarn build",
     "serve": "nuxt start",
-    "start": "yarn build && cross-env NODE_ENV=production yarn serve",
+    "start": "nuxt dev",
+    "start:prod": "yarn build && cross-env NODE_ENV=production yarn serve",
     "toc": "doctoc README.md --github"
   },
   "repository": {
@@ -25,7 +26,6 @@
   "dependencies": {
     "@hiswe/focus-ring": "^1.0.4",
     "@nuxt/http": "^0.6.4",
-    "@nuxtjs/style-resources": "^1.0.0",
     "@sendgrid/mail": "^8.1.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.2",
@@ -41,7 +41,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "doctoc": "^2.0.0",
-    "sass": "^1.44.0",
+    "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "typescript": "^5.3.3",
     "vue": "^3.3.13",

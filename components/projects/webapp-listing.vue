@@ -14,9 +14,7 @@ export default {
         <img src="@/assets/logos/©a-count.svg" width="100" />
       </template>
       <template #description>
-        <a
-          href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html"
-        >
+        <a href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html">
           Universal application
         </a>
         for simple account
@@ -85,6 +83,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .web-apps {
   background: white;
 
@@ -95,13 +95,16 @@ export default {
     grid-template-areas: '. first . second . third .';
   }
 }
+
 .webapp {
   &:nth-child(1) {
     grid-area: first;
   }
+
   &:nth-child(2) {
     grid-area: second;
   }
+
   &:nth-child(3) {
     grid-area: third;
   }

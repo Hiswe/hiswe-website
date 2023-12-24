@@ -16,15 +16,13 @@ export default {
 
 <template>
   <aside class="notifications">
-    <HisweNotification
-      v-for="notification in notifications"
-      :key="notification.id"
-      :notification="notification"
-    />
+    <HisweNotification v-for="notification in notifications" :key="notification.id" :notification="notification" />
   </aside>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .notifications {
   position: fixed;
   bottom: 0;

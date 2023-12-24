@@ -38,30 +38,18 @@ export default {
 
 <template>
   <Transition name="placeholder" appear="appear" mode="out-in">
-    <TransitionGroup
-      class="posts"
-      name="list"
-      tag="div"
-      v-if="loadingDone"
-      key="posts"
-      appear="appear"
-    >
-      <HiswePostPreview
-        v-for="post in posts"
-        :key="post.published"
-        :post="post"
-      />
+    <TransitionGroup class="posts" name="list" tag="div" v-if="loadingDone" key="posts" appear="appear">
+      <HiswePostPreview v-for="post in posts" :key="post.published" :post="post" />
     </TransitionGroup>
     <div class="posts" v-else key="placeholders">
-      <HiswePostPlaceholder
-        v-for="placeholder in placeholders"
-        :key="placeholder.id"
-      />
+      <HiswePostPlaceholder v-for="placeholder in placeholders" :key="placeholder.id" />
     </div>
   </Transition>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .posts {
   grid-area: posts;
   background: var(--c-primary-lightest);
@@ -73,18 +61,22 @@ export default {
     grid-auto-rows: auto;
     grid-gap: 1rem;
   }
+
   @media #{$mq-big} {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
 .list-item {
   display: inline-block;
   margin-right: 10px;
 }
+
 .placeholder-enter-active,
 .placeholder-leave-active {
   transition: opacity 0.5s;
 }
+
 .placeholder-enter,
 .placeholder-leave-to {
   opacity: 0;
@@ -100,6 +92,7 @@ export default {
     }
   }
 }
+
 .list-enter,
 .list-leave-to {
   opacity: 0;

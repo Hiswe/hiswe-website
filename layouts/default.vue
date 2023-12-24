@@ -20,6 +20,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 main {
   min-height: 100vh;
 
@@ -32,9 +34,11 @@ main {
       'main-content main-content main-content';
   }
 }
+
 .main-navigation {
   grid-area: main-nav;
 }
+
 .main-content {
   grid-area: main-content;
 }

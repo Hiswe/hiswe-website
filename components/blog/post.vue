@@ -22,10 +22,7 @@ export default {
 <template>
   <article class="post">
     <a class="post__link" :href="post.link">
-      <div
-        class="post__cover"
-        :style="{ 'background-image': `url(${post.cover})` }"
-      />
+      <div class="post__cover" :style="{ 'background-image': `url(${post.cover})` }" />
       <div class="post__content">
         <time class="post__date" :datetime="post.published">
           {{ displayedDate }}
@@ -38,6 +35,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .post {
   $root: &;
   background: var(--c-primary-lightest);
@@ -46,6 +45,7 @@ export default {
   @media #{$mq-medium} {
     background: white;
   }
+
   @media #{$mq-medium-only} {
     &:nth-child(3n + 1) {
       grid-column: span 2;
@@ -60,12 +60,15 @@ export default {
       }
     }
   }
+
   @media #{$mq-big} {
+
     &:nth-child(8n + 3),
     &:nth-child(8n + 4),
     &:nth-child(8n + 5),
     &:nth-child(8n + 8) {
       grid-column: span 2;
+
       a {
         display: flex;
       }
@@ -75,6 +78,7 @@ export default {
         flex: 0 0 auto;
       }
     }
+
     &:nth-child(8n + 1),
     &:nth-child(8n + 2),
     &:nth-child(8n + 6),
@@ -83,6 +87,7 @@ export default {
     }
   }
 }
+
 .post__link {
   text-decoration: none;
   position: relative;
@@ -100,6 +105,7 @@ export default {
     pointer-events: none;
     z-index: 2;
   }
+
   &:hover {
     color: currentColor;
 
@@ -108,9 +114,11 @@ export default {
     }
   }
 }
+
 .post__content {
   flex-grow: 1;
 }
+
 .post__cover {
   min-height: 130px;
   display: block;
@@ -121,6 +129,7 @@ export default {
   background-size: 240px;
   transition: background-size 0.5s;
 }
+
 .post__date {
   display: block;
   text-align: center;
@@ -133,6 +142,7 @@ export default {
     font-size: 1rem;
   }
 }
+
 .post__title {
   padding: 1rem 1rem 0;
   margin: 0;
@@ -150,6 +160,7 @@ export default {
     font-size: 1.5rem;
   }
 }
+
 .post__summary {
   text-align: center;
   padding: 1rem 1rem 2rem;
@@ -157,5 +168,4 @@ export default {
   @media #{$mq-medium-only} {
     font-size: calc(1vw + 0.5rem);
   }
-}
-</style>
+}</style>

@@ -50,6 +50,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .two-line-title {
   line-height: 1;
   margin: 0;
@@ -62,21 +64,24 @@ export default {
     line-height: 0.85;
     font-size: calc(2vw + 0.5rem);
   }
+
   @media #{$mq-big} {
     font-size: 1.5rem;
   }
 }
+
 .first-line {
   font-weight: 900;
   font-size: 2em;
   text-transform: uppercase;
 }
+
 .has-dash::after {
   content: '-';
 }
+
 .second-line {
   display: block;
   font-size: 1.5em;
   font-weight: 200;
-}
-</style>
+}</style>

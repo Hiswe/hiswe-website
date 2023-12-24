@@ -31,6 +31,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .social {
   margin: var(--gutter) auto;
   background: var(--c-primary-darkest-highlight);
@@ -45,6 +47,7 @@ export default {
     justify-content: center;
   }
 }
+
 div {
   display: flex;
   justify-content: space-between;
@@ -55,6 +58,7 @@ div {
     flex-direction: column;
   }
 }
+
 a {
   color: var(--c-primary);
   text-decoration: none;
@@ -64,20 +68,23 @@ a {
   &:hover {
     color: var(--c-accent-lighter);
   }
+
   @media #{$mq-big} {
     display: flex;
     align-items: center;
 
-    + a {
+    +a {
       margin-top: var(--gutter);
     }
   }
 }
+
 span,
 svg {
   display: block;
   margin: 0 auto;
 }
+
 span {
   padding: 0.5em 0 0;
   font-size: 0.6rem;
@@ -88,5 +95,4 @@ span {
     font-size: 1rem;
     padding: 0 0 0 1em;
   }
-}
-</style>
+}</style>

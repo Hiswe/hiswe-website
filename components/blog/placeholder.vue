@@ -16,6 +16,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .post-placeholder {
   $root: &;
   background: var(--c-primary-lightest);
@@ -24,6 +26,7 @@ export default {
   @media #{$mq-medium} {
     background: white;
   }
+
   @media #{$mq-medium-only} {
     &:nth-child(3n + 1) {
       grid-column: span 2;
@@ -35,7 +38,9 @@ export default {
       }
     }
   }
+
   @media #{$mq-big} {
+
     &:nth-child(8n + 3),
     &:nth-child(8n + 4),
     &:nth-child(8n + 5),
@@ -48,6 +53,7 @@ export default {
         flex: 0 0 auto;
       }
     }
+
     &:nth-child(8n + 1),
     &:nth-child(8n + 2),
     &:nth-child(8n + 6),
@@ -56,12 +62,14 @@ export default {
     }
   }
 }
+
 .post-placeholder__cover,
 .post-placeholder__content,
 .post-placeholder__date,
 .post-placeholder__title {
   animation: blink-animation linear 0.65s infinite alternate;
 }
+
 .post-placeholder__cover {
   min-height: 130px;
   display: block;
@@ -72,23 +80,28 @@ export default {
   background-size: 240px;
   transition: background-size 0.5s;
 }
+
 .post-placeholder__content {
   flex-grow: 1;
 }
+
 .post-placeholder__date,
 .post-placeholder__title {
   background: var(--c-primary-lightest);
 }
+
 .post-placeholder__date {
   display: block;
   text-align: center;
   height: 1.25rem;
   margin: 1rem auto 0;
   width: 6rem;
+
   @media #{$mq-medium} {
     font-size: 1rem;
   }
 }
+
 .post-placeholder__title {
   margin: 1rem auto 0;
   max-width: 200px;
@@ -100,26 +113,27 @@ export default {
   @media #{$mq-medium} {
     font-size: calc(2.5vw + 0.5rem);
   }
+
   @media #{$mq-big} {
     font-size: 1.5rem;
   }
 }
+
 .post-placeholder__summary {
   text-align: center;
   margin: 1rem 1rem 2rem;
-  background: linear-gradient(
-    to bottom,
-    var(--c-primary-lightest) 33%,
-    transparent 33%,
-    transparent 66%,
-    var(--c-primary-lightest) 66%
-  );
+  background: linear-gradient(to bottom,
+      var(--c-primary-lightest) 33%,
+      transparent 33%,
+      transparent 66%,
+      var(--c-primary-lightest) 66%);
   height: 3rem;
 
   @media #{$mq-medium-only} {
     font-size: calc(1vw + 0.5rem);
   }
 }
+
 @keyframes blink-animation {
   to {
     opacity: 0.7;

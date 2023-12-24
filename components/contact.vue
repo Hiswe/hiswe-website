@@ -68,42 +68,16 @@ export default {
 </script>
 
 <template>
-  <form
-    class="contact"
-    :action="$options.FORM_ACTION"
-    method="post"
-    novalidate="novalidate"
-    @submit.prevent="handleSubmit"
-    @click="enable"
-  >
+  <form class="contact" :action="$options.FORM_ACTION" method="post" novalidate="novalidate"
+    @submit.prevent="handleSubmit" @click="enable">
     <HisweTwoLineTitle class="form__title" text="contact me" :level="2" />
     <div class="contact__inputs">
-      <HisweField
-        class="field--name"
-        name="name"
-        type="text"
-        v-model="name"
-        :disabled="disabled"
-      />
-      <HisweField
-        class="field--email"
-        name="email"
-        type="email"
-        v-model="email"
-        required="required"
-        :disabled="disabled"
-        :valid="validation.email.valid"
-      />
+      <HisweField class="field--name" name="name" type="text" v-model="name" :disabled="disabled" />
+      <HisweField class="field--email" name="email" type="email" v-model="email" required="required" :disabled="disabled"
+        :valid="validation.email.valid" />
     </div>
-    <HisweField
-      class="field--message"
-      name="message"
-      tag="textarea"
-      v-model="message"
-      required="required"
-      :disabled="disabled"
-      :valid="validation.message.valid"
-    />
+    <HisweField class="field--message" name="message" tag="textarea" v-model="message" required="required"
+      :disabled="disabled" :valid="validation.message.valid" />
     <div class="contact__submit">
       <button class="contact__button" type="submit" :disabled="disabled">
         send
@@ -113,6 +87,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .contact {
   background: var(--c-primary-darkest);
   color: var(--c-primary-lighter);
@@ -136,6 +112,7 @@ export default {
   grid-area: button;
   padding-top: var(--gutter);
 }
+
 .contact__button {
   display: block;
   background: var(--c-primary);
@@ -150,17 +127,21 @@ export default {
     background-color: var(--c-accent);
     color: white;
   }
+
   &:active {
     transform: translateY(3px);
   }
+
   &:disabled {
     opacity: 0.5;
     pointer-events: none;
   }
+
   @media #{$mq-medium} {
     padding: var(--quarter-gutter);
   }
 }
+
 .form__title {
   padding: var(--gutter);
   text-align: center;
@@ -172,9 +153,11 @@ export default {
     padding: 0;
   }
 }
+
 .contact__inputs {
   grid-area: inputs;
 }
+
 .field--message {
   grid-area: message;
 }

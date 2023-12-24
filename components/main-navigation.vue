@@ -18,6 +18,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .main-navigation {
   --navigation-font-size: 0.85rem;
   --navigation-top-spacing: var(--gutter);
@@ -31,6 +33,7 @@ export default {
     background: var(--c-primary-lightest);
   }
 }
+
 a {
   color: var(--c-accent);
   display: block;
@@ -49,6 +52,7 @@ a {
   &:not(.active):hover::after {
     clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
   }
+
   &.active::before {
     content: '';
     position: absolute;
@@ -72,6 +76,7 @@ a {
       height: 10px;
     }
   }
+
   &::after {
     content: attr(data-name);
     position: absolute;
@@ -87,5 +92,4 @@ a {
     clip-path: polygon(0 100%, 0 100%, 100% 100%, 100% 100%);
     transition: clip-path 0.25s;
   }
-}
-</style>
+}</style>

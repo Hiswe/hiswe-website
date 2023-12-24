@@ -34,6 +34,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+@import 'assets/css/scss-vars';
+
 .webapp {
   padding: 0 0 grid-size(1);
   background: var(--c-primary-lightest);
@@ -63,7 +66,7 @@ export default {
       margin-left: percentage(math.div(1, 3));
     }
 
-    + .webapp {
+    +.webapp {
       margin-top: 2rem;
     }
   }
@@ -88,22 +91,27 @@ export default {
         text-align: right;
         padding-left: 1rem;
       }
+
       li:nth-child(even) {
         padding-right: 1rem;
       }
-      li:nth-child(2) ~ li {
+
+      li:nth-child(2)~li {
         padding-top: 0.75rem;
       }
 
       li:nth-child(1) {
         grid-area: first;
       }
+
       li:nth-child(2) {
         grid-area: second;
       }
+
       li:nth-child(3) {
         grid-area: third;
       }
+
       li:nth-child(3):last-child,
       li:nth-child(4) {
         grid-area: fourth;
@@ -114,6 +122,7 @@ export default {
     }
   }
 }
+
 .webapp__logo-block {
   margin: 0 auto;
   width: percentage(math.div(1, 4));
@@ -130,24 +139,29 @@ export default {
     width: percentage(math.div(1, 3));
   }
 }
+
 .webapp__logo {
   display: block;
 
   &--a-count {
     background: #4d419b;
   }
+
   &--thailpha {
     background: #54009d;
   }
+
   &--thaime {
     background: #5a4c30;
   }
+
   img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
+
   &-caption a {
     display: flex;
     align-items: center;
@@ -161,12 +175,14 @@ export default {
     @media #{$mq-medium} {
       height: 2rem;
     }
+
     &:hover {
       color: white;
       background-color: var(--c-accent);
     }
   }
 }
+
 .webapp__title {
   text-align: center;
   margin-top: 0;
@@ -190,6 +206,7 @@ export default {
     }
   }
 }
+
 .webapp__description {
   text-align: center;
   font-size: 1.2rem;

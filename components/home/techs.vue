@@ -30,10 +30,7 @@ export default {
         </figure>
         <span>Express</span>
       </a>
-      <a
-        class="tech__item tech__item--postgre"
-        href="https://www.postgresql.org/"
-      >
+      <a class="tech__item tech__item--postgre" href="https://www.postgresql.org/">
         <figure>
           <HisweTechLogo name="postgre" />
         </figure>
@@ -47,10 +44,7 @@ export default {
       </a>
     </div>
     <div class="tech tech--framework">
-      <TwoLineTitle
-        class="tech__title tech__title--framework"
-        text="frame-work"
-      />
+      <TwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
       <a class="tech__item tech__item--react" href="https://reactjs.org/">
         <figure>
           <HisweTechLogo name="react" />
@@ -89,6 +83,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .techs {
   background: var(--c-primary-darker);
   padding-bottom: calc(var(--grid-size) * 2);
@@ -102,10 +98,12 @@ export default {
       '. framework .     . server .'
       '. build     build . .      .';
   }
+
   @media #{$mq-big} {
     grid-template-columns: 1fr 5fr 3fr 9fr 3fr 6fr 4fr;
     grid-template-areas: '. framework . server . build .';
   }
+
   figure {
     display: block;
     margin: 0;
@@ -116,22 +114,26 @@ export default {
       height: calc(var(--grid-size) * 2);
     }
   }
+
   svg {
     display: block;
     width: 100% !important;
     height: 100% !important;
     object-fit: contain;
   }
+
   a {
     text-decoration: none;
     text-align: center;
     color: var(--c-primary-lightest);
     display: block;
     margin: 0;
+
     &:hover {
       color: var(--c-accent-lighter);
     }
   }
+
   span {
     display: block;
     padding: 0;
@@ -142,6 +144,7 @@ export default {
     justify-content: center;
   }
 }
+
 .tech {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
@@ -153,29 +156,34 @@ export default {
 
   @media #{$mq-medium} {
     grid-template-rows:
-      [first-line-start] repeat(3, var(--grid-size))
-      [first-line-end second-line-start] repeat(3, var(--grid-size))
-      [second-line-end] var(--grid-size);
+      [first-line-start] repeat(3, var(--grid-size)) [first-line-end second-line-start] repeat(3, var(--grid-size)) [second-line-end] var(--grid-size);
   }
 }
+
 .tech--framework {
   grid-area: framework;
+
   @media #{$mq-medium} {
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
 .tech--server {
   grid-area: server;
+
   @media #{$mq-medium} {
     grid-template-columns: repeat(9, 1fr);
   }
 }
+
 .tech--build {
   grid-area: build;
+
   @media #{$mq-medium} {
     grid-template-columns: repeat(6, 1fr);
   }
 }
+
 .tech__title {
   padding: 0;
 
@@ -184,75 +192,96 @@ export default {
     text-align: left;
   }
 }
+
 .tech__title--server,
 .tech__title--build {
   grid-area: 1 / 2 / 6 / 9;
 }
+
 .tech__title--framework {
   text-align: right;
   grid-area: 1 / 1 / 6 / 16;
 }
+
 // FRAMEWORK
 .tech__item--vue {
   grid-area: 4 / 3 / 8 / 6;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 1 / second-line-end / 3;
   }
 }
+
 .tech__item--react {
   grid-area: 4 / 7 / 8 / 10;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 4 / second-line-end / 6;
   }
 }
+
 // SERVER
 .tech__item--node {
   grid-area: 2 / 9 / 6 / 12;
+
   @media #{$mq-medium} {
     grid-area: first-line-start / 5 / first-line-end / 7;
   }
 }
+
 .tech__item--koa {
   grid-area: 2 / 13 / 6 / 16;
+
   @media #{$mq-medium} {
     grid-area: first-line-start / 8 / first-line-end / 10;
   }
 }
+
 .tech__item--express {
   grid-area: 6 / 3 / 10 / 8;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 1 / second-line-end / 4;
   }
 }
+
 .tech__item--postgre {
   grid-area: 6 / 9 / 10 / 12;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 5 / second-line-end / 7;
   }
 }
+
 .tech__item--mongo {
   grid-area: 6 / 13 / 10 / 16;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 8 / second-line-end / 10;
   }
 }
+
 // BUILD
 .tech__item--webpack {
   grid-area: 1 / 8 / 4 / 12;
+
   @media #{$mq-medium} {
     grid-area: first-line-start / 4 / first-line-end / 7;
   }
 }
+
 .tech__item--parcel {
   grid-area: 5 / 8 / 9 / 12;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 4 / second-line-end / 7;
   }
 }
+
 .tech__item--gulp {
   grid-area: 5 / 13 / 9 / 16;
+
   @media #{$mq-medium} {
     grid-area: second-line-start / 1 / second-line-end / 3;
   }
-}
-</style>
+}</style>

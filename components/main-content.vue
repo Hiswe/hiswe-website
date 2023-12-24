@@ -23,6 +23,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .main-content {
   @media #{$mq-small} {
     display: flex;
@@ -32,10 +34,12 @@ export default {
   .contact {
     order: 666;
   }
+
   .social {
     order: 667;
   }
 }
+
 .main-header {
   background: white;
   grid-area: header;
