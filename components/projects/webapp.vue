@@ -1,22 +1,18 @@
-<script>
-export default {
-  name: `hiswe-webapp`,
-  props: {
-    name: { type: String, required: true },
-    url: { type: String, default: `` },
-  },
-  computed: {
-    github() {
-      return `https://github.com/Hiswe/${this.name}`
-    },
-  },
-}
+<script setup lang="ts">
+const props = defineProps<{
+  name: string
+  url?: string
+}>()
+
+const github = computed(() => {
+  return `https://github.com/Hiswe/${props.name}`
+})
 </script>
 
 <template>
   <article class="webapp" :class="`webapp--${name}`">
     <figure class="webapp__logo-block">
-      <a :href="github" :class="`webapp__logo webapp__logo--${name}`">
+      <a :href="github" class="webapp__logo" :class="`webapp__logo--${name}`">
         <slot name="logo" />
       </a>
       <figcaption class="webapp__logo-caption">
@@ -155,7 +151,7 @@ export default {
     background: #5a4c30;
   }
 
-  img {
+  :deep(img) {
     display: block;
     width: 100%;
     height: 100%;

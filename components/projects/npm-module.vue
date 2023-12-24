@@ -1,10 +1,7 @@
-<script>
-export default {
-  name: `hiswe-npm-module`,
-  props: {
-    name: { type: String, required: true },
-  },
-}
+<script setup lang="ts">
+defineProps<{
+  name: string
+}>()
 </script>
 
 <template>
@@ -89,4 +86,5 @@ export default {
       background-color: var(--c-accent);
     }
   }
-}</style>
+}
+</style>

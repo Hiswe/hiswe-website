@@ -1,28 +1,13 @@
-<script>
-import HisweMainContent from '~/components/main-content.vue'
-import HisweProjectHeader from '~/components/projects/header.vue'
-import HisweNpmModule from '~/components/projects/npm-module.vue'
-import HisweWebappListing from '~/components/projects/webapp-listing.vue'
-
-export default {
-  name: `page-projects`,
-  transition: `page`,
-  head: {
-    title: `projects`,
-  },
-  components: {
-    HisweMainContent,
-    HisweProjectHeader,
-    HisweNpmModule,
-    HisweWebappListing,
-  },
-}
+<script setup lang="ts">
+useHead({
+  title: 'projects',
+})
 </script>
 
 <template>
-  <HisweMainContent page="projects">
-    <template slot="header">
-      <HisweProjectHeader />
+  <MainContent page="projects">
+    <template #header>
+      <ProjectsHeader />
     </template>
     <UiTwoLineTitle class="npm-title" text="NPM modules" tag="h2" />
     <div class="npm-description">
@@ -34,16 +19,16 @@ export default {
       <p>Those are my contributions</p>
     </div>
     <div class="npm-modules">
-      <HisweNpmModule name="gulp-svg-symbols">
+      <ProjectsNpmModule name="gulp-svg-symbols">
         Help create an icon library by bundling SVG files together
-      </HisweNpmModule>
-      <HisweNpmModule name="vh-check">
+      </ProjectsNpmModule>
+      <ProjectsNpmModule name="vh-check">
         Help handling some sizes on mobile browser
-      </HisweNpmModule>
+      </ProjectsNpmModule>
     </div>
     <UiTwoLineTitle class="webapp-title" text="web applications" tag="h2" />
-    <HisweWebappListing />
-  </HisweMainContent>
+    <ProjectsWebappListing />
+  </MainContent>
 </template>
 
 <style lang="scss" scoped>
@@ -185,7 +170,7 @@ export default {
   grid-area: webapps;
 }
 
-.page-projects ::v-deep .social {
+.page-projects :deep(.social) {
   @media #{$mq-big} {
     align-items: start;
     padding-left: 0.5rem;

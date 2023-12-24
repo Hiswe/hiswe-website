@@ -5,7 +5,6 @@ const props = defineProps<{
 }>();
 
 const iconName = computed(() => `tech/${props.name}`)
-
 </script>
 
 <template>
@@ -19,7 +18,6 @@ const iconName = computed(() => `tech/${props.name}`)
 
 <style lang="scss" scoped>
 @import 'assets/css/scss-vars';
-
 
 figure {
   display: block;

@@ -1,15 +1,6 @@
-<script>
-import HisweWebapp from '~/components/projects/webapp.vue'
-
-export default {
-  name: `hiswe-webapp-listing`,
-  components: { HisweWebapp },
-}
-</script>
-
 <template>
   <section class="web-apps">
-    <HisweWebapp name="a-count">
+    <ProjectsWebapp name="a-count">
       <template #logo>
         <img src="@/assets/logos/©a-count.svg" width="100" />
       </template>
@@ -28,8 +19,8 @@ export default {
           & <a href="https://www.postgresql.org/">PostgreSQL</a>
         </li>
       </ul>
-    </HisweWebapp>
-    <HisweWebapp name="thailpha" url="https://thailpha-3e7f6.firebaseapp.com">
+    </ProjectsWebapp>
+    <ProjectsWebapp name="thailpha" url="https://thailpha-3e7f6.firebaseapp.com">
       <template #logo>
         <img src="@/assets/logos/©thailpha.svg" width="100" />
       </template>
@@ -48,8 +39,8 @@ export default {
         </li>
         <li>powered by <a href="https://reactjs.org/">React</a></li>
       </ul>
-    </HisweWebapp>
-    <HisweWebapp name="thaime" url="https://thaime-2c0a5.firebaseapp.com/">
+    </ProjectsWebapp>
+    <ProjectsWebapp name="thaime" url="https://thaime-2c0a5.firebaseapp.com/">
       <template #logo>
         <img src="@/assets/logos/©thaime.svg" width="100" />
       </template>
@@ -78,7 +69,7 @@ export default {
         </li>
         <li>powered by <a href="https://vuejs.org">Vue</a></li>
       </ul>
-    </HisweWebapp>
+    </ProjectsWebapp>
   </section>
 </template>
 

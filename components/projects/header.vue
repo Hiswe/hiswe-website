@@ -1,4 +1,3 @@
-
 <template>
   <div class="project-header">
     <UiTwoLineTitle class="project-header-title" text="Open Source" tag="h2" />
