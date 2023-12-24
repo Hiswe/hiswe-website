@@ -1,22 +1,20 @@
-<script>
+<script setup lang="ts">
+import type { BlogPost } from '~/server/api/posts.get'
+
+const props = defineProps<{
+  post: BlogPost
+}>()
+
 const DATE_FORMAT = {
   day: `2-digit`,
   month: `2-digit`,
   year: `numeric`,
-}
+} as const satisfies Intl.DateTimeFormatOptions
 
-export default {
-  name: `hiswe-blog-post-preview`,
-  props: {
-    post: { type: Object, required: true },
-  },
-  computed: {
-    displayedDate() {
-      const date = new Date(this.post.published)
-      return date.toLocaleDateString(`en-GB`, DATE_FORMAT)
-    },
-  },
-}
+const displayedDate = computed(() => {
+  const date = new Date(props.post.published)
+  return date.toLocaleDateString(`en-GB`, DATE_FORMAT)
+})
 </script>
 
 <template>
@@ -168,4 +166,5 @@ export default {
   @media #{$mq-medium-only} {
     font-size: calc(1vw + 0.5rem);
   }
-}</style>
+}
+</style>

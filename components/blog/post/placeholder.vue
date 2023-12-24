@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: `hiswe-blog-post-placeholder`,
-}
-</script>
-
 <template>
   <article class="post-placeholder">
     <div class="post-placeholder__cover" />

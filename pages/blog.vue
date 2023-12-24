@@ -1,32 +1,19 @@
-<script>
-import HisweMainContent from '~/components/main-content.vue'
-import HisweBlogHeader from '~/components/blog/header.vue'
-import HisweBlogPosts from '~/components/blog/post-listing.vue'
-
-export default {
-  name: `page-blog`,
-  transition: `page`,
-  head: {
-    title: `blog`,
-  },
-  components: {
-    HisweMainContent,
-    HisweBlogHeader,
-    HisweBlogPosts,
-  },
-}
+<script setup lang="ts">
+useHead({
+  title: `blog`,
+})
 </script>
 
 <template>
-  <HisweMainContent page="blog">
+  <MainContent page="blog">
     <template #header>
-      <HisweBlogHeader />
+      <BlogHeader />
     </template>
     <UiTwoLineTitle class="blog-latest-title" text="latest blog posts" tag="h2" />
-    <client-only>
-      <HisweBlogPosts />
-    </client-only>
-  </HisweMainContent>
+    <ClientOnly>
+      <BlogPostList />
+    </ClientOnly>
+  </MainContent>
 </template>
 
 <style lang="scss" scoped>
