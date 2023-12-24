@@ -1,4 +1,4 @@
-import shortid from 'shortid'
+import { nanoid } from 'nanoid';
 
 export const state = () => ({
   list: [],
@@ -7,7 +7,7 @@ export const state = () => ({
 export const mutations = {
   ADD(state, payload) {
     const notification = {
-      id: payload.id || shortid.generate(),
+      id: payload.id || nanoid(),
       ...payload,
     }
     state.list.push(notification)
