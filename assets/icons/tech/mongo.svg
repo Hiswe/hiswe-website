@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 70 70" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+  xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+  <rect id="_-mongo" serif:id="©mongo" x="0" y="0" width="70" height="70" style="fill:#999;"/>
+  <clipPath id="_clip1">
+    <rect id="_-mongo1" serif:id="©mongo" x="0" y="0" width="70" height="70"/>
+  </clipPath>
+  <g clip-path="url(#_clip1)">
+    <path id="path62" d="M33.938,57.588c0,0 -13.226,-9.022 -12.465,-24.942c0.761,-15.921 10.102,-23.748 11.922,-25.168c1.176,-1.254 1.225,-1.737 1.316,-2.974c0.824,1.771 0.687,26.452 0.774,29.337c0.34,11.23 -0.621,21.628 -1.547,23.747Z" style="fill:#ccc;fill-rule:nonzero;"/>
+    <path id="path30" d="M33.767,57.467c0.111,0.08 0.171,0.121 0.171,0.121c0.442,-1.011 0.891,-3.908 1.204,-7.881c0.07,3.202 0.532,6.632 2.119,7.362c0,0 0.031,-0.02 0.09,-0.061c-0.377,0.46 -0.696,1.008 -0.834,1.634c-0.46,2.072 -0.131,6.358 -0.131,6.358l-1.622,-0.537c0,0 0.111,-4.414 -0.997,-6.996Z" style="fill:#fff;fill-rule:nonzero;"/>
+    <path id="path46" d="M34.775,4.695l0,-0.026c0,0 0.895,2.206 1.784,3.451c0.806,1.758 8.317,6.365 11.499,20.376c3.303,19.286 -10.797,28.573 -10.797,28.573c-1.587,-0.73 -2.049,-4.16 -2.119,-7.362c0.343,-4.352 0.521,-9.995 0.343,-15.866c-0.084,-2.807 0.043,-26.256 -0.71,-29.146Z" style="fill-rule:nonzero;"/>
+  </g>
+</svg>

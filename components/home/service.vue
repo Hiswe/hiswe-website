@@ -1,27 +1,21 @@
-<script>
-import TwoLineTitle from '~/components/ui/two-line-title.vue'
+<script setup lang="ts">
+const props = defineProps<{
+  title: string
+  icon?: string
+}>()
 
-export default {
-  name: `hiswe-service`,
-  components: { TwoLineTitle },
-  props: {
-    title: { type: String, required: true },
-    icon: { type: String, require: false },
-  },
-  computed: {
-    id() {
-      if (!this.title) return false
-      const name = this.title.replace(`-`, ``).replace(` `, `-`)
-      return `service--${name}`
-    },
-  },
-}
+const id = computed(() => {
+  if (!props.title)
+    return false
+  const name = props.title.replace(`-`, ``).replace(` `, `-`)
+  return `service--${name}`
+})
 </script>
 
 <template>
   <dl :class="`service ${id}`">
     <dt class="service__title">
-      <TwoLineTitle :text="title" />
+      <UiTwoLineTitle :text="title" />
     </dt>
     <dd class="service__subtitle">
       <slot name="description" />
@@ -33,6 +27,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .service {
   $root: &;
   --service-background: var(--c-primary);
@@ -66,6 +62,7 @@ export default {
         padding-left: var(--two-gutter);
       }
     }
+
     @media #{$mq-medium} {
       --service-subtitle-align: left;
       grid-template-columns: 1fr repeat(2, 5fr) 1fr;
@@ -76,6 +73,7 @@ export default {
         '. title    description .';
     }
   }
+
   &--integration {
     --service-background: var(--c-primary);
     --service-title-align: right;
@@ -88,6 +86,7 @@ export default {
         padding-right: var(--two-gutter);
       }
     }
+
     @media #{$mq-medium} {
       --service-description-align: left;
       --service-title-align: left;
@@ -101,6 +100,7 @@ export default {
         '. title    .';
     }
   }
+
   &--webdesign {
     --service-background: var(--c-accent);
     --service-description-color: white;
@@ -112,6 +112,7 @@ export default {
         padding-left: var(--two-gutter);
       }
     }
+
     @media #{$mq-medium} {
       --service-subtitle-align: left;
       grid-template-columns: 3fr 4fr 1fr 10fr;
@@ -131,13 +132,16 @@ export default {
     grid-column: 2 / 16;
     grid-area: title;
   }
+
   .two-line-title {
     color: var(--service-title-color);
   }
+
   &__subtitle,
   &__description {
     margin: 0;
   }
+
   &__subtitle {
     font-size: 1.25rem;
     line-height: 1.2;
@@ -148,6 +152,7 @@ export default {
     grid-area: subtitle;
     order: -1;
   }
+
   &__description {
     color: var(--service-description-color);
     text-align: var(--service-description-align);
@@ -173,8 +178,9 @@ export default {
       padding: 0;
       margin: 0;
     }
+
     @media #{$mq-small} {
-      li + li {
+      li+li {
         padding-top: 0.5rem;
       }
     }

@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: `main-navigation`,
-}
-</script>
-
 <template>
   <nav class="main-navigation">
     <NuxtLink to="/" exact-active-class="active" data-name="home">
@@ -13,16 +7,21 @@ export default {
       projects
     </NuxtLink>
     <!-- <NuxtLink to="/work" active-class="active" data-name="projects">work</NuxtLink> -->
-    <NuxtLink to="/blog" active-class="active" data-name="blog">blog</NuxtLink>
+    <NuxtLink to="/blog" active-class="active" data-name="blog">
+      blog
+    </NuxtLink>
   </nav>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .main-navigation {
   --navigation-font-size: 0.85rem;
   --navigation-top-spacing: var(--gutter);
   font-weight: 800;
   background: var(--c-primary-lightest);
+  grid-area: main-nav;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
@@ -31,6 +30,7 @@ export default {
     background: var(--c-primary-lightest);
   }
 }
+
 a {
   color: var(--c-accent);
   display: block;
@@ -49,6 +49,7 @@ a {
   &:not(.active):hover::after {
     clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
   }
+
   &.active::before {
     content: '';
     position: absolute;
@@ -72,6 +73,7 @@ a {
       height: 10px;
     }
   }
+
   &::after {
     content: attr(data-name);
     position: absolute;

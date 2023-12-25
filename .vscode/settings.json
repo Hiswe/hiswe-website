@@ -1,10 +1,21 @@
 {
-  "editor.formatOnSave": true,
-  "path-intellisense.extensionOnImport": true,
-  "path-intellisense.mappings": {
-    "~": "${workspaceRoot}",
-    "@@": "${workspaceRoot}"
+  
+  "promyze.feature.disableSuggestion": true,
+  
+  // https://github.com/antfu/eslint-config#vs-code-support-auto-fix
+  // Enable the ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
+
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
+
   "cSpell.words": [
     "Aïvayan",
     "axios",
@@ -18,9 +29,7 @@
     "promisify",
     "Segoe",
     "SENDGRID",
+    "Svgo",
     "Yannick"
-  ],
-  "files.associations": {
-    ".hiswerc*": "jsonc"
-  }
+  ]
 }

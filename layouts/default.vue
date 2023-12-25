@@ -1,25 +1,20 @@
-<script>
-import HisweMainNavigation from '~/components/main-navigation.vue'
-import HisweNotifications from '~/components/notifications/list'
-
-export default {
-  name: `default-layout`,
-  components: {
-    HisweMainNavigation,
-    HisweNotifications,
-  },
-}
+<script setup lang="ts">
+defineSlots<{
+  default(): any
+}>()
 </script>
 
 <template>
   <main role="main">
-    <HisweMainNavigation />
-    <nuxt />
-    <HisweNotifications />
+    <MainNavigation />
+    <slot />
+    <NotificationsList />
   </main>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 main {
   min-height: 100vh;
 
@@ -31,11 +26,5 @@ main {
       '.            .            main-nav'
       'main-content main-content main-content';
   }
-}
-.main-navigation {
-  grid-area: main-nav;
-}
-.main-content {
-  grid-area: main-content;
 }
 </style>

@@ -1,22 +1,15 @@
-<script>
-import HisweWebapp from '~/components/projects/webapp.vue'
-
-export default {
-  name: `hiswe-webapp-listing`,
-  components: { HisweWebapp },
-}
+<script setup>
+// NOTE: need a query param to display images :|
 </script>
 
 <template>
   <section class="web-apps">
-    <HisweWebapp name="a-count">
+    <ProjectsWebapp name="a-count">
       <template #logo>
-        <img src="@/assets/logos/©a-count.svg" width="100" />
+        <img src="@/assets/logos/©a-count.svg?i" width="100">
       </template>
       <template #description>
-        <a
-          href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html"
-        >
+        <a href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html">
           Universal application
         </a>
         for simple account
@@ -30,10 +23,10 @@ export default {
           & <a href="https://www.postgresql.org/">PostgreSQL</a>
         </li>
       </ul>
-    </HisweWebapp>
-    <HisweWebapp name="thailpha" url="https://thailpha-3e7f6.firebaseapp.com">
+    </ProjectsWebapp>
+    <ProjectsWebapp name="thailpha" url="https://thailpha-3e7f6.firebaseapp.com">
       <template #logo>
-        <img src="@/assets/logos/©thailpha.svg" width="100" />
+        <img src="@/assets/logos/©thailpha.svg?i" width="100">
       </template>
       <template #description>
         <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">
@@ -50,10 +43,10 @@ export default {
         </li>
         <li>powered by <a href="https://reactjs.org/">React</a></li>
       </ul>
-    </HisweWebapp>
-    <HisweWebapp name="thaime" url="https://thaime-2c0a5.firebaseapp.com/">
+    </ProjectsWebapp>
+    <ProjectsWebapp name="thaime" url="https://thaime-2c0a5.firebaseapp.com/">
       <template #logo>
-        <img src="@/assets/logos/©thaime.svg" width="100" />
+        <img src="@/assets/logos/©thaime.svg?i" width="100">
       </template>
       <template #description>
         <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">
@@ -80,11 +73,13 @@ export default {
         </li>
         <li>powered by <a href="https://vuejs.org">Vue</a></li>
       </ul>
-    </HisweWebapp>
+    </ProjectsWebapp>
   </section>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .web-apps {
   background: white;
 
@@ -95,13 +90,16 @@ export default {
     grid-template-areas: '. first . second . third .';
   }
 }
+
 .webapp {
   &:nth-child(1) {
     grid-area: first;
   }
+
   &:nth-child(2) {
     grid-area: second;
   }
+
   &:nth-child(3) {
     grid-area: third;
   }

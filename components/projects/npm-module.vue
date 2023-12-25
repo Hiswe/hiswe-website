@@ -1,15 +1,14 @@
-<script>
-export default {
-  name: `hiswe-npm-module`,
-  props: {
-    name: { type: String, required: true },
-  },
-}
+<script setup lang="ts">
+defineProps<{
+  name: string
+}>()
 </script>
 
 <template>
   <dl class="npm-module" :class="`npm-module--${name}`">
-    <dt class="npm-module__title">{{ name }}</dt>
+    <dt class="npm-module__title">
+      {{ name }}
+    </dt>
     <dd class="npm-module__description">
       <slot />
     </dd>
@@ -20,6 +19,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .npm-module {
   background: var(--c-primary-lighter);
   color: var(--c-primary-darker);
@@ -30,12 +31,14 @@ export default {
     flex-direction: column;
   }
 }
+
 .npm-module--vh-check {
   @media #{$mq-small} {
     margin-bottom: grid-size(-2);
     position: relative;
   }
 }
+
 .npm-module__title {
   text-align: center;
   font-size: 2rem;
@@ -50,10 +53,12 @@ export default {
     font-size: 1.75rem;
   }
 }
+
 .npm-module__description,
 .npm-module__link {
   margin: 0;
 }
+
 .npm-module__description {
   padding: 0 var(--gutter);
   flex: 1 0 auto;
@@ -62,6 +67,7 @@ export default {
     text-align: center;
   }
 }
+
 .npm-module__link {
   padding: var(--gutter) var(--gutter) var(--vertical-space);
   flex: 0 0 auto;

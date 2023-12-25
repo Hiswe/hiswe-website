@@ -1,25 +1,16 @@
-<script>
-import TwoColumnHeader from '~/components/ui/two-column-header.vue'
-
-export default {
-  name: `home-header`,
-  components: { TwoColumnHeader },
-}
-</script>
-
 <template>
   <div class="home-header">
     <h1>
-      I make custom<br />
-      website for<br />
+      I make custom<br>
+      website for<br>
       everyone's need
     </h1>
-    <TwoColumnHeader>
+    <UiTwoColumnHeader>
       <template #left>
         <h2 class="name">
-          I'm<br />
-          Yannick<br />
-          “hiswe”<br />
+          I'm<br>
+          Yannick<br>
+          “hiswe”<br>
           Aïvayan
         </h2>
       </template>
@@ -29,11 +20,13 @@ export default {
           Depending on the project I will use the most appropriate set of tools.
         </p>
       </template>
-    </TwoColumnHeader>
+    </UiTwoColumnHeader>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .home-header {
   text-align: center;
   background: white;
@@ -47,6 +40,7 @@ export default {
     height: auto;
   }
 }
+
 h1 {
   text-align: center;
   padding: 2rem 0 1rem;
@@ -64,21 +58,24 @@ h1 {
       display: none;
     }
   }
+
   @media #{$mq-medium-only} {
     font-size: 2rem;
   }
 }
+
 .name {
   line-height: 1;
   font-size: 2rem;
   font-weight: 900;
   margin: 0;
 }
+
 .two-column-header {
   p {
     margin: 0;
 
-    + p {
+    +p {
       margin-top: 1rem;
 
       @media #{$mq-medium-only} {

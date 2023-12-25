@@ -1,32 +1,15 @@
-<script>
-import HisweMainContent from '~/components/main-content.vue'
-import HisweProjectHeader from '~/components/projects/header.vue'
-import HisweTwoLineTitle from '~/components/ui/two-line-title'
-import HisweNpmModule from '~/components/projects/npm-module.vue'
-import HisweWebappListing from '~/components/projects/webapp-listing.vue'
-
-export default {
-  name: `page-projects`,
-  transition: `page`,
-  head: {
-    title: `projects`,
-  },
-  components: {
-    HisweMainContent,
-    HisweProjectHeader,
-    HisweTwoLineTitle,
-    HisweNpmModule,
-    HisweWebappListing,
-  },
-}
+<script setup lang="ts">
+useHead({
+  title: 'projects',
+})
 </script>
 
 <template>
-  <HisweMainContent page="projects">
-    <template slot="header">
-      <HisweProjectHeader />
+  <MainContent page="projects">
+    <template #header>
+      <ProjectsHeader />
     </template>
-    <HisweTwoLineTitle class="npm-title" text="NPM modules" :level="2" />
+    <UiTwoLineTitle class="npm-title" text="NPM modules" tag="h2" />
     <div class="npm-description">
       <p>
         in <a href="https://nodejs.org/en/">Node.js'</a> community,
@@ -36,23 +19,22 @@ export default {
       <p>Those are my contributions</p>
     </div>
     <div class="npm-modules">
-      <HisweNpmModule name="gulp-svg-symbols">
+      <ProjectsNpmModule name="gulp-svg-symbols">
         Help create an icon library by bundling SVG files together
-      </HisweNpmModule>
-      <HisweNpmModule name="vh-check">
+      </ProjectsNpmModule>
+      <ProjectsNpmModule name="vh-check">
         Help handling some sizes on mobile browser
-      </HisweNpmModule>
+      </ProjectsNpmModule>
     </div>
-    <HisweTwoLineTitle
-      class="webapp-title"
-      text="web applications"
-      :level="2"
-    />
-    <HisweWebappListing />
-  </HisweMainContent>
+    <UiTwoLineTitle class="webapp-title" text="web applications" tag="h2" />
+    <ProjectsWebappListing />
+  </MainContent>
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+@import 'assets/css/scss-vars';
+
 .page-projects {
   background: white;
 
@@ -76,6 +58,7 @@ export default {
       grid-area: 1 /1 /4 /4;
     }
   }
+
   @media #{$mq-big} {
     grid-template-columns: repeat(4, 3fr) 3.5fr 2.5fr;
     grid-template-areas:
@@ -91,11 +74,13 @@ export default {
 .npm-modules {
   background: var(--c-primary);
 }
+
 .npm-title,
 .npm-description {
   color: white;
   padding: var(--grid-size) grid-size(2) 0;
 }
+
 .npm-title {
   grid-area: npm-title;
 
@@ -111,6 +96,7 @@ export default {
     align-items: flex-end;
   }
 }
+
 .npm-description {
   grid-area: npm-description;
 
@@ -124,18 +110,21 @@ export default {
       '. first-paragraph  .'
       '. second-paragraph   .';
   }
+
   p {
     margin: 0;
 
     &:first-child {
       grid-area: first-paragraph;
     }
+
     &:last-child {
       padding: 1rem 0 0;
       grid-area: second-paragraph;
     }
   }
 }
+
 .npm-modules {
   grid-area: npm-modules;
   background: var(--c-primary);
@@ -152,6 +141,7 @@ export default {
     }
   }
 }
+
 .webapp-title {
   grid-area: webapp-title;
   background: white;
@@ -163,9 +153,11 @@ export default {
     padding: 4rem 0 2rem;
     text-align: left;
   }
+
   @media #{$mq-medium-only} {
     padding-left: percentage(math.div(1, 3));
   }
+
   @media #{$mq-big} {
     display: flex;
     flex-direction: column;
@@ -173,10 +165,12 @@ export default {
     padding-left: percentage(math.div(1, 13));
   }
 }
+
 .web-apps {
   grid-area: webapps;
 }
-.page-projects ::v-deep .social {
+
+.page-projects :deep(.social) {
   @media #{$mq-big} {
     align-items: start;
     padding-left: 0.5rem;

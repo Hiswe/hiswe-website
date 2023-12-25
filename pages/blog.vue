@@ -1,41 +1,24 @@
-<script>
-import HisweMainContent from '~/components/main-content.vue'
-import HisweTwoLineTitle from '~/components/ui/two-line-title'
-import HisweBlogHeader from '~/components/blog/header.vue'
-import HisweBlogPosts from '~/components/blog/post-listing.vue'
-
-export default {
-  name: `page-blog`,
-  transition: `page`,
-  head: {
-    title: `blog`,
-  },
-  components: {
-    HisweMainContent,
-    HisweBlogHeader,
-    HisweTwoLineTitle,
-    HisweBlogPosts,
-  },
-}
+<script setup lang="ts">
+useHead({
+  title: `blog`,
+})
 </script>
 
 <template>
-  <HisweMainContent page="blog">
+  <MainContent page="blog">
     <template #header>
-      <HisweBlogHeader />
+      <BlogHeader />
     </template>
-    <HisweTwoLineTitle
-      class="blog-latest-title"
-      text="latest blog posts"
-      :level="2"
-    />
-    <client-only>
-      <HisweBlogPosts />
-    </client-only>
-  </HisweMainContent>
+    <UiTwoLineTitle class="blog-latest-title" text="latest blog posts" tag="h2" />
+    <ClientOnly>
+      <BlogPostList />
+    </ClientOnly>
+  </MainContent>
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .page-blog {
   @media #{$mq-medium} {
     display: grid;
@@ -47,6 +30,7 @@ export default {
       'contact contact contact'
       'social social social';
   }
+
   @media #{$mq-big} {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: auto auto minmax(0, 1fr);
@@ -56,6 +40,7 @@ export default {
       'posts        posts        posts   posts   posts   posts';
   }
 }
+
 .blog-latest-title {
   padding: 3rem 2rem 1rem;
   text-align: center;
@@ -70,6 +55,7 @@ export default {
     justify-content: flex-end;
     padding: 0 0 2rem;
   }
+
   @media #{$mq-big} {
     padding-top: 3rem;
     padding-left: 1rem;

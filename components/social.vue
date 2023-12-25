@@ -1,29 +1,20 @@
-<script>
-import HisweIcon from '~/components/svg-icons'
-
-export default {
-  name: `hiswe-social`,
-  components: { HisweIcon },
-}
-</script>
-
 <template>
   <aside class="social">
     <div>
       <a href="https://github.com/hiswe">
-        <HisweIcon name="github" />
+        <SvgoSocialGithub />
         <span>github</span>
       </a>
       <a href="https://twitter.com/hiswehalya">
-        <HisweIcon name="twitter" />
+        <SvgoSocialTwitter />
         <span>twitter</span>
       </a>
       <a href="https://medium.com/@hiswehalya">
-        <HisweIcon name="medium" />
+        <SvgoSocialMedium />
         <span>medium</span>
       </a>
       <a href="https://codepen.io/Hiswe">
-        <HisweIcon name="codepen" />
+        <SvgoSocialCodepen />
         <span>codepen</span>
       </a>
     </div>
@@ -31,6 +22,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/css/scss-vars';
+
 .social {
   margin: var(--gutter) auto;
   background: var(--c-primary-darkest-highlight);
@@ -45,6 +38,7 @@ export default {
     justify-content: center;
   }
 }
+
 div {
   display: flex;
   justify-content: space-between;
@@ -55,6 +49,7 @@ div {
     flex-direction: column;
   }
 }
+
 a {
   color: var(--c-primary);
   text-decoration: none;
@@ -64,20 +59,28 @@ a {
   &:hover {
     color: var(--c-accent-lighter);
   }
+
   @media #{$mq-big} {
     display: flex;
     align-items: center;
 
-    + a {
+    +a {
       margin-top: var(--gutter);
     }
   }
 }
+
 span,
 svg {
   display: block;
   margin: 0 auto;
 }
+
+svg {
+  width: 36px;
+  height: 36px;
+}
+
 span {
   padding: 0.5em 0 0;
   font-size: 0.6rem;

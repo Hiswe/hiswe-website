@@ -1,22 +1,15 @@
-<script>
-import TwoColumnHeader from '~/components/ui/two-column-header.vue'
-
-export default {
-  name: `hiswe-blog-header`,
-  components: { TwoColumnHeader },
-}
-</script>
-
 <template>
   <div class="blog-header">
-    <TwoColumnHeader class="blog-header-text">
+    <UiTwoColumnHeader class="blog-header-text">
       <template #left>
-        <h1 class="header-title">blog</h1>
+        <h1 class="header-title">
+          blog
+        </h1>
       </template>
       <template #right>
         Documenting and passing knowledge to help as I've being helped
       </template>
-    </TwoColumnHeader>
+    </UiTwoColumnHeader>
     <a class="full-post-link" href="https://hiswe.github.io/">see full blog</a>
   </div>
 </template>
@@ -32,6 +25,7 @@ export default {
     padding: 0;
   }
 }
+
 .header-title {
   font-size: 2.25rem;
   font-weight: 900;
