@@ -32,12 +32,12 @@
     "express": "^4.17.1",
     "fast-xml-parser": "^4.3.2",
     "nanoid": "^5.0.4",
-    "nuxt": "^3.8.2",
     "validator": "^13.5.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "doctoc": "^2.0.0",
+    "nuxt": "^3.9.0",
     "nuxt-svgo": "^3.7.0",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
