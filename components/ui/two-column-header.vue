@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: `hiswe-header-content`,
-}
-</script>
-
 <template>
   <div class="two-column-header">
     <div class="two-column-header__left">
@@ -26,11 +20,13 @@ export default {
   padding: var(--vertical-space) 0;
   background: white;
 }
+
 .two-column-header__left {
   grid-area: left;
   color: var(--c-accent);
   text-align: right;
 }
+
 .two-column-header__right {
   grid-area: right;
   text-align: left;

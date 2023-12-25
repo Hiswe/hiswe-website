@@ -11,7 +11,6 @@
       </a>
       <a href="https://medium.com/@hiswehalya">
         <SvgoSocialMedium />
-        <NuxtIcon name="social/medium" />
         <span>medium</span>
       </a>
       <a href="https://codepen.io/Hiswe">

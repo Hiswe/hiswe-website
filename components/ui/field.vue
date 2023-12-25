@@ -1,71 +1,76 @@
-<script>
-export default {
-  name: `hiswe-field`,
-  props: {
-    tag: { type: String, default: `input` },
-    value: { type: String, default: `` },
-    name: { type: String, required: true },
-    valid: { type: Boolean, default: true },
-    disabled: { type: Boolean, default: false },
-  },
-  data() {
-    return {
-      pristine: true,
-    }
-  },
-  watch: {
-    disabled(newVal, oldVal) {
-      // disabled mean it has been submitted
-      // • reset pristine state for validation showing
-      if (newVal === true) this.pristine = true
-    },
-  },
-  computed: {
-    showError() {
-      return !this.valid && this.pristine
-    },
-    isTextarea() {
-      return this.tag === `textarea`
-    },
-  },
-  mounted() {
-    if (this.isTextarea) this.autoResize()
-  },
-  methods: {
-    handleBlur(event) {
-      // ignore if event is a window blur
-      if (document.activeElement === this.controlEl) return
-      this.pristine = false
-    },
-    onInput(event) {
-      this.$emit(`input`, event.target.value)
-      if (this.isTextarea) this.autoResize()
-    },
-    autoResize(event) {
-      const { input } = this.$refs
-      const originalRows = input.getAttribute(`rows`)
-      // force a one-liner by default
-      // • this make it easy to calculate the right height
-      input.setAttribute(`rows`, `1`)
-      input.style.minHeight = `auto`
-      const { scrollHeight } = input
-      input.style.minHeight = `${scrollHeight}px`
-      input.scrollTop = scrollHeight
-      input.setAttribute(`rows`, originalRows)
-    },
-  },
+<script setup lang="ts">
+const props = withDefaults(
+  defineProps<{
+    tag?: `input` | `textarea`
+    modelValue?: string
+    name: string
+    valid?: boolean
+    disabled?: boolean
+  }>(),
+  {
+    tag: `input`,
+    valid: true,
+    disabled: false
+  }
+)
+
+const emit = defineEmits<{
+  'update:modelValue': [string]
+}>()
+
+const pristine = ref(true);
+const input = ref<HTMLInputElement | HTMLTextAreaElement>();
+
+watch(() => props.disabled, (newVal, oldVal) => {
+  // disabled mean it has been submitted
+  // • reset pristine state for validation showing
+  if (newVal === true) pristine.value = true
+})
+
+const shouldDisplayError = computed(() => pristine.value && !props.valid);
+const isTextarea = computed(() => props.tag === `textarea`);
+
+onMounted(() => {
+  if (isTextarea.value) autoResize()
+})
+function autoResize() {
+  console.log(`autoResize`)
+  if (!input.value) return
+  const originalRows = input.value.getAttribute(`rows`)
+  // force a one-liner by default
+  // • this make it easy to calculate the right height
+  input.value.setAttribute(`rows`, `1`)
+  input.value.style.minHeight = `auto`
+  const { scrollHeight } = input.value
+  input.value.style.minHeight = `${scrollHeight}px`
+  input.value.scrollTop = scrollHeight
+  if (originalRows) input.value.setAttribute(`rows`, originalRows)
+}
+
+function onInput(event: Event) {
+  // https://stackoverflow.com/a/44321394
+  const isInput = event.currentTarget instanceof HTMLInputElement || event.currentTarget instanceof HTMLTextAreaElement
+  if (!isInput) return
+  emit(`update:modelValue`, event.currentTarget.value)
+  if (isTextarea.value) autoResize()
+}
+
+function handleBlur() {
+  // ignore if event is a window blur
+  // if (document.activeElement === this.controlEl) return
+  pristine.value = false
 }
 </script>
 
 <template>
-  <div class="field" :class="{ 'field--invalid': showError, 'field--disabled': disabled }">
+  <div class="field" :class="{ 'field--invalid': shouldDisplayError, 'field--disabled': disabled }">
     <label :for="name">
       {{ name }}
-      <transition name="error-fade">
-        <span v-if="showError" class="field__error-message">
+      <Transition name="error-fade">
+        <span v-if="shouldDisplayError" class="field__error-message">
           {{ name }} is invalid
         </span>
-      </transition>
+      </Transition>
     </label>
     <component :is="tag" ref="input" :id="name" :name="name" :disabled="disabled" @blur="handleBlur" @input="onInput" />
   </div>

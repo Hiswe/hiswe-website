@@ -14,7 +14,7 @@ defineSlots<{
     <header class="main-header">
       <slot name="header" />
     </header>
-    <!-- <Contact /> -->
+    <Contact />
     <Social />
     <slot />
   </div>
