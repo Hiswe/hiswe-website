@@ -23,5 +23,6 @@
   ],
   "files.associations": {
     ".hiswerc*": "jsonc"
-  }
+  },
+  "promyze.feature.disableSuggestion": true
 }
