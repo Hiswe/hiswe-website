@@ -24,5 +24,6 @@
   "files.associations": {
     ".hiswerc*": "jsonc"
   },
-  "promyze.feature.disableSuggestion": true
+  "promyze.feature.disableSuggestion": true,
+  "prettier.enable": false
 }

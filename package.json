@@ -8,11 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
-    "heroku-postbuild": "yarn build",
-    "serve": "nuxt start",
     "start": "nuxt dev",
-    "start:prod": "yarn build && cross-env NODE_ENV=production yarn serve",
     "toc": "doctoc README.md --github"
   },
   "repository": {
@@ -24,18 +20,11 @@
     "pnpm": ">=8.12.0"
   },
   "dependencies": {
-    "@sendgrid/mail": "^8.1.0",
-    "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.2",
-    "consola": "^3.2.3",
-    "dotenv": "^16.3.1",
-    "express": "^4.17.1",
-    "fast-xml-parser": "^4.3.2",
-    "nanoid": "^5.0.4",
-    "validator": "^13.5.2"
+    "fast-xml-parser": "^4.3.2"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
+    "@antfu/eslint-config": "^2.6.0",
     "doctoc": "^2.0.0",
     "nuxt": "^3.9.0",
     "nuxt-svgo": "^3.7.0",

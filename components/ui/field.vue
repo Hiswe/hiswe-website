@@ -34,7 +34,6 @@ onMounted(() => {
   if (isTextarea.value) autoResize()
 })
 function autoResize() {
-  console.log(`autoResize`)
   if (!input.value) return
   const originalRows = input.value.getAttribute(`rows`)
   // force a one-liner by default
