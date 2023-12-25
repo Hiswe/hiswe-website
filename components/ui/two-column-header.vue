@@ -9,7 +9,6 @@
   </div>
 </template>
 
-
 <style lang="scss" scoped>
 .two-column-header {
   display: grid;

@@ -25,5 +25,6 @@
     ".hiswerc*": "jsonc"
   },
   "promyze.feature.disableSuggestion": true,
-  "prettier.enable": false
+  "prettier.enable": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
 }

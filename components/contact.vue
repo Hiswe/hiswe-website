@@ -1,29 +1,27 @@
 <script setup lang="ts">
-const FORM_ACTION = `/api/contact`
-
 function handleSubmit() { }
 function enable() { }
 
-const disabled = false;
-const name = ref(``);
-const email = ref(``);
-const message = ref(``);
+const disabled = false
+const name = ref(``)
+const email = ref(``)
+const message = ref(``)
 const validation = computed(() => ({
-  email: { valid: true, },
-  message: { valid: true, },
+  email: { valid: true },
+  message: { valid: true },
 }))
 </script>
 
 <template>
-  <form class="contact" :action="$options.FORM_ACTION" method="post" novalidate @submit.prevent="handleSubmit"
-    @click="enable" netlify>
+  <form class="contact" :action="$options.FORM_ACTION" method="post" novalidate netlify @submit.prevent="handleSubmit"
+    @click="enable">
     <UiTwoLineTitle class="form__title" text="contact me" tag="h2" />
     <div class="contact__inputs">
-      <UiField class="field--name" name="name" type="text" v-model="name" :disabled="disabled" />
-      <UiField class="field--email" name="email" type="email" v-model="email" required="required" :disabled="disabled"
+      <UiField v-model="name" class="field--name" name="name" type="text" :disabled="disabled" />
+      <UiField v-model="email" class="field--email" name="email" type="email" required="required" :disabled="disabled"
         :valid="validation.email.valid" />
     </div>
-    <UiField class="field--message" name="message" tag="textarea" v-model="message" required="required"
+    <UiField v-model="message" class="field--message" name="message" tag="textarea" required="required"
       :disabled="disabled" :valid="validation.message.valid" />
     <div class="contact__submit">
       <button class="contact__button" type="submit" :disabled="disabled">

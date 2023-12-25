@@ -1,45 +1,16 @@
-<script>
-const REMOVE_DELAY = 6600
-
-export default {
-  name: `notification`,
-  data() {
-    return {
-      timerId: false,
-    }
-  },
-  props: {
-    notification: { type: Object, required: true },
-  },
-  // mounted instead of create for use only in client side
-  // mounted() {
-  //   this.$el.style.setProperty(
-  //     '--expanded',
-  //     `${this.$refs.content.offsetHeight}px`,
-  //   )
-  //   this.timerId = window.setTimeout(
-  //     () => this.removeNotification(),
-  //     REMOVE_DELAY,
-  //   )
-  // },
-  methods: {
-    removeNotification(notificationId) {
-      window.clearTimeout(this.timerId)
-      this.timerId = false
-      // this.$store.commit(`notification/REMOVE`, this.notification.id)
-    },
-  },
+<script setup lang="ts">
+function removeNotification() {
 }
 </script>
 
 <template>
-  <transition name="notification" appear="appear">
+  <Transition name="notification" appear>
     <div class="notification" @click="removeNotification">
-      <p ref="content" class="notification__content" :class="`notification__content--${notification.type}`">
+      <!-- <p ref="content" class="notification__content" :class="`notification__content--${notification.type}`">
         {{ notification.content }}
-      </p>
+      </p> -->
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>

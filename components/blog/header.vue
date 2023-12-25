@@ -2,7 +2,9 @@
   <div class="blog-header">
     <UiTwoColumnHeader class="blog-header-text">
       <template #left>
-        <h1 class="header-title">blog</h1>
+        <h1 class="header-title">
+          blog
+        </h1>
       </template>
       <template #right>
         Documenting and passing knowledge to help as I've being helped

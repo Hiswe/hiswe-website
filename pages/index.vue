@@ -10,7 +10,9 @@ useHead({
       <HomeHeader />
     </template>
     <HomeService title="dev-elopment">
-      <template #description> building<br />web application </template>
+      <template #description>
+        building<br>web application
+      </template>
       <ul>
         <li>Reactive applications</li>
         <li>Data persistence</li>
@@ -18,7 +20,9 @@ useHead({
       </ul>
     </HomeService>
     <HomeService title="inte-gration">
-      <template #description> from webdesign<br />to webpage </template>
+      <template #description>
+        from webdesign<br>to webpage
+      </template>
       <ul>
         <li>Optimized for fast loading &amp; rendering</li>
         <li>Bring your design to life with animations</li>
@@ -26,7 +30,9 @@ useHead({
       </ul>
     </HomeService>
     <HomeService title="web-design">
-      <template #description> make<br />efficiant UX </template>
+      <template #description>
+        make<br>efficiant UX
+      </template>
       <ul>
         <li>Fast delivery</li>
         <li>Simple &amp; nice experience for users</li>

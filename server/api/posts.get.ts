@@ -1,8 +1,9 @@
-import * as cheerio from 'cheerio';
+import * as cheerio from 'cheerio'
 import { XMLParser } from 'fast-xml-parser'
 
 function cleanSummary(summary?: string) {
-  if (typeof summary!== `string`) return ``
+  if (typeof summary !== `string`)
+    return ``
   const $ = cheerio.load(summary)
   $(`h2`).remove()
   $(`a`).each((index, element) => {
@@ -26,31 +27,33 @@ interface Response {
   posts: Array<BlogPost>
 }
 
-const parser = new XMLParser();
+const parser = new XMLParser()
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (_event) => {
   const EMPTY_POSTS: Response = { posts: [] }
   try {
     const atomResponse = await $fetch<any>(`https://hiswe.github.io/atom.xml`)
-    const atomJS = parser.parse(atomResponse);
+    const atomJS = parser.parse(atomResponse)
     const blogEntries = atomJS.feed?.entry
-    if (!Array.isArray(blogEntries)) return EMPTY_POSTS
+    if (!Array.isArray(blogEntries))
+      return EMPTY_POSTS
     const posts: Response['posts'] = blogEntries.map((post) => {
-      const title = typeof post.title === `string` ? post.title : `` 
+      const title = typeof post.title === `string` ? post.title : ``
       const link = typeof post.id === `string` ? post.id : ``
-      const published = typeof post.published === `string` ? post.published : `` 
+      const published = typeof post.published === `string` ? post.published : ``
       const updated = typeof post.updated === `string` ? post.updated : ``
       return {
         title,
-        link: link,
+        link,
         cover: `${link}cover.png`,
-        published: published,
-        updated: updated,
+        published,
+        updated,
         summary: cleanSummary(post.summary),
       }
     })
     return { posts }
-  } catch (error) {
+  }
+  catch (error) {
     console.error(error)
     return EMPTY_POSTS
   }

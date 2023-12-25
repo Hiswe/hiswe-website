@@ -7,7 +7,9 @@
       projects
     </NuxtLink>
     <!-- <NuxtLink to="/work" active-class="active" data-name="projects">work</NuxtLink> -->
-    <NuxtLink to="/blog" active-class="active" data-name="blog">blog</NuxtLink>
+    <NuxtLink to="/blog" active-class="active" data-name="blog">
+      blog
+    </NuxtLink>
   </nav>
 </template>
 

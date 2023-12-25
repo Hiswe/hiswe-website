@@ -1,17 +1,23 @@
 <script>
 export default {
-  name: `page-not-found`,
-  props: [`error`],
+  name: `PageNotFound`,
   layout: `error-layout`,
+  props: [`error`],
 }
 </script>
 
-<template >
+<template>
   <section class="page-content">
     <h1>{{ error.statusCode }}</h1>
-    <h2 v-if="error.statusCode === 404">not found</h2>
-    <h2 v-else>{{ error.message }}</h2>
-    <NuxtLink to="/" exact="exact">back</NuxtLink>
+    <h2 v-if="error.statusCode === 404">
+      not found
+    </h2>
+    <h2 v-else>
+      {{ error.message }}
+    </h2>
+    <NuxtLink to="/" exact="exact">
+      back
+    </NuxtLink>
   </section>
 </template>
 

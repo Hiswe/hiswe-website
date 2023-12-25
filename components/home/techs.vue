@@ -49,7 +49,6 @@
   background: var(--c-primary-darker);
   padding-bottom: calc(var(--grid-size) * 2);
 
-
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr 1fr 9fr 1fr;

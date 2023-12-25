@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const props = defineProps<{
-  title: string,
-  icon?: string,
+  title: string
+  icon?: string
 }>()
 
 const id = computed(() => {
-  if (!props.title) return false
+  if (!props.title)
+    return false
   const name = props.title.replace(`-`, ``).replace(` `, `-`)
   return `service--${name}`
 })

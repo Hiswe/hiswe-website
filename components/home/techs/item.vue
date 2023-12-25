@@ -2,7 +2,7 @@
 defineProps<{
   name: string
   href: string
-}>();
+}>()
 
 defineSlots<{
   default(): any

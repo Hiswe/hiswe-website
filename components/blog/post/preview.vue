@@ -26,7 +26,7 @@ const displayedDate = computed(() => {
           {{ displayedDate }}
         </time>
         <h3 class="post__title">{{ post.title }}</h3>
-        <div class="post__summary" v-html="post.summary"></div>
+        <div class="post__summary" v-html="post.summary" />
       </div>
     </a>
   </article>

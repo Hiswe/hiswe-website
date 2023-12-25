@@ -1,16 +1,16 @@
 <template>
   <div class="home-header">
     <h1>
-      I make custom<br />
-      website for<br />
+      I make custom<br>
+      website for<br>
       everyone's need
     </h1>
     <UiTwoColumnHeader>
       <template #left>
         <h2 class="name">
-          I'm<br />
-          Yannick<br />
-          “hiswe”<br />
+          I'm<br>
+          Yannick<br>
+          “hiswe”<br>
           Aïvayan
         </h2>
       </template>

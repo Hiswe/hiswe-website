@@ -3,7 +3,7 @@ import HisweMainContent from '~/components/main-content.vue'
 import HisweTwoLineTitle from '~/components/ui/two-line-title'
 
 export default {
-  name: `page-work`,
+  name: `PageWork`,
   components: { HisweMainContent, HisweTwoLineTitle },
   transition: `page`,
   head: {
@@ -15,7 +15,7 @@ export default {
 <template>
   <HisweMainContent page="work">
     <template #header>
-      <HisweTwoLineTitle text="wo-rk"></HisweTwoLineTitle>
+      <HisweTwoLineTitle text="wo-rk" />
     </template>
   </HisweMainContent>
 </template>

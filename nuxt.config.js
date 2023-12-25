@@ -13,21 +13,22 @@ export default defineNuxtConfig({
     middleware: [
       // `reset-form`,
       // `handle-server-errors`
-    ],  
+    ],
   },
   loading: {
     color: `hsl(332, 100%, 50%)`,
     height: `5px`,
   },
   css: [
-    `@/assets/css/global.scss`, 
-    `@/assets/css/page-transitions.scss`
+    `@/assets/css/global.scss`,
+    `@/assets/css/page-transitions.scss`,
   ],
   modules: [
-    `nuxt-svgo`
+    `nuxt-svgo`,
   ],
-  serverMiddleware: [{ 
-    path: `/api`, handler: `~/server-middleware/rest.js`, 
+  serverMiddleware: [{
+    path: `/api`,
+    handler: `~/server-middleware/rest.js`,
   }],
   plugins: [],
   app: {
@@ -37,7 +38,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: `utf-8` },
         { name: `viewport`, content: `width=device-width, initial-scale=1` },
-        { 'http-equiv': `X-UA-Compatible`, content: `IE=edge` },
+        { 'http-equiv': `X-UA-Compatible`, 'content': `IE=edge` },
         { hid: `author`, name: `author`, content: AUTHOR },
         { hid: `description`, name: `description`, content: DESCRIPTION },
         // open graph

@@ -10,31 +10,34 @@ const props = withDefaults(
   {
     tag: `input`,
     valid: true,
-    disabled: false
-  }
+    disabled: false,
+  },
 )
 
 const emit = defineEmits<{
   'update:modelValue': [string]
 }>()
 
-const pristine = ref(true);
-const input = ref<HTMLInputElement | HTMLTextAreaElement>();
+const pristine = ref(true)
+const input = ref<HTMLInputElement | HTMLTextAreaElement>()
 
-watch(() => props.disabled, (newVal, oldVal) => {
+watch(() => props.disabled, (newVal, _oldVal) => {
   // disabled mean it has been submitted
   // • reset pristine state for validation showing
-  if (newVal === true) pristine.value = true
+  if (newVal === true)
+    pristine.value = true
 })
 
-const shouldDisplayError = computed(() => pristine.value && !props.valid);
-const isTextarea = computed(() => props.tag === `textarea`);
+const shouldDisplayError = computed(() => pristine.value && !props.valid)
+const isTextarea = computed(() => props.tag === `textarea`)
 
 onMounted(() => {
-  if (isTextarea.value) autoResize()
+  if (isTextarea.value)
+    autoResize()
 })
 function autoResize() {
-  if (!input.value) return
+  if (!input.value)
+    return
   const originalRows = input.value.getAttribute(`rows`)
   // force a one-liner by default
   // • this make it easy to calculate the right height
@@ -43,15 +46,18 @@ function autoResize() {
   const { scrollHeight } = input.value
   input.value.style.minHeight = `${scrollHeight}px`
   input.value.scrollTop = scrollHeight
-  if (originalRows) input.value.setAttribute(`rows`, originalRows)
+  if (originalRows)
+    input.value.setAttribute(`rows`, originalRows)
 }
 
 function onInput(event: Event) {
   // https://stackoverflow.com/a/44321394
   const isInput = event.currentTarget instanceof HTMLInputElement || event.currentTarget instanceof HTMLTextAreaElement
-  if (!isInput) return
+  if (!isInput)
+    return
   emit(`update:modelValue`, event.currentTarget.value)
-  if (isTextarea.value) autoResize()
+  if (isTextarea.value)
+    autoResize()
 }
 
 function handleBlur() {
@@ -71,7 +77,7 @@ function handleBlur() {
         </span>
       </Transition>
     </label>
-    <component :is="tag" ref="input" :id="name" :name="name" :disabled="disabled" @blur="handleBlur" @input="onInput" />
+    <component :is="tag" :id="name" ref="input" :name="name" :disabled="disabled" @blur="handleBlur" @input="onInput" />
   </div>
 </template>
 

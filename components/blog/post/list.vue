@@ -12,10 +12,10 @@ const posts = computed(() => data.value?.posts ?? [])
 
 <template>
   <Transition name="placeholder" appear mode="out-in">
-    <TransitionGroup class="posts" name="list" tag="div" v-if="!pending" key="posts" appear>
+    <TransitionGroup v-if="!pending" key="posts" class="posts" name="list" tag="div" appear>
       <BlogPostPreview v-for="post in posts" :key="post.published" :post="post" />
     </TransitionGroup>
-    <div class="posts" v-else key="placeholders">
+    <div v-else key="placeholders" class="posts">
       <BlogPostPlaceholder v-for="placeholder in placeholders" :key="placeholder.id" />
     </div>
   </Transition>

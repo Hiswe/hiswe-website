@@ -22,7 +22,7 @@
 see package.json engines
 
 - [Node.js](https://nodejs.org/en/)
-- [pnpm](https://pnpm.io/) 
+- [pnpm](https://pnpm.io/)
 
 ## commands
 
@@ -37,7 +37,6 @@ pnpm install
 ```sh
 yarn build
 ```
-
 
 ### development
 

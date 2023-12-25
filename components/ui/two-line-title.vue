@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const TITLE_REGEX = /^(\w+)[\s-](.+)$/
-const TITLE_WITH_SPACE_REGEX = /^\w+\s.+$/
-
 const props = withDefaults(
   defineProps<{
-    text: string,
+    text: string
     tag?: string
   }>(),
   {
-    tag: `h3`
-  }
+    tag: `h3`,
+  },
 )
+const TITLE_REGEX = /^(\w+)[\s-](.+)$/
+const TITLE_WITH_SPACE_REGEX = /^\w+\s.+$/
+
 const classNames = computed(() => {
   const hasSpace = TITLE_WITH_SPACE_REGEX.test(props.text)
   return {

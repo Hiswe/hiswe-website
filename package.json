@@ -1,16 +1,11 @@
 {
   "name": "hiswe-website",
-  "author": "Yannick “Hiswe” Aïvayan <yannick.aivayan@hiswe.net>",
-  "description": "hiswe's personal website",
-  "homepage": "https://hiswe.net/",
-  "version": "5.0.0",
-  "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "start": "nuxt dev",
-    "toc": "doctoc README.md --github"
-  },
+  "version": "5.0.0",
+  "description": "hiswe's personal website",
+  "author": "Yannick “Hiswe” Aïvayan <yannick.aivayan@hiswe.net>",
+  "license": "MIT",
+  "homepage": "https://hiswe.net/",
   "repository": {
     "type": "git",
     "url": "git://github.com/Hiswe/hiswe-website"
@@ -18,6 +13,12 @@
   "engines": {
     "node": ">=20.10.0",
     "pnpm": ">=8.12.0"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "lint": "eslint .",
+    "start": "nuxt dev",
+    "toc": "doctoc README.md --github"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",

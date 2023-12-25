@@ -6,7 +6,9 @@ defineProps<{
 
 <template>
   <dl class="npm-module" :class="`npm-module--${name}`">
-    <dt class="npm-module__title">{{ name }}</dt>
+    <dt class="npm-module__title">
+      {{ name }}
+    </dt>
     <dd class="npm-module__description">
       <slot />
     </dd>
