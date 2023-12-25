@@ -16,7 +16,7 @@ const validation = computed(() => ({
 
 <template>
   <form class="contact" :action="$options.FORM_ACTION" method="post" novalidate @submit.prevent="handleSubmit"
-    @click="enable">
+    @click="enable" netlify>
     <UiTwoLineTitle class="form__title" text="contact me" tag="h2" />
     <div class="contact__inputs">
       <UiField class="field--name" name="name" type="text" v-model="name" :disabled="disabled" />
