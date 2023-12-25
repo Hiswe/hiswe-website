@@ -1,8 +1,12 @@
+<script setup>
+// NOTE: need a query param to display images :|
+</script>
+
 <template>
   <section class="web-apps">
     <ProjectsWebapp name="a-count">
       <template #logo>
-        <img src="@/assets/logos/©a-count.svg" width="100">
+        <img src="@/assets/logos/©a-count.svg?i" width="100">
       </template>
       <template #description>
         <a href="http://www.acuriousanimal.com/2016/08/10/universal-applications.html">
@@ -22,7 +26,7 @@
     </ProjectsWebapp>
     <ProjectsWebapp name="thailpha" url="https://thailpha-3e7f6.firebaseapp.com">
       <template #logo>
-        <img src="@/assets/logos/©thailpha.svg" width="100">
+        <img src="@/assets/logos/©thailpha.svg?i" width="100">
       </template>
       <template #description>
         <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">
@@ -42,7 +46,7 @@
     </ProjectsWebapp>
     <ProjectsWebapp name="thaime" url="https://thaime-2c0a5.firebaseapp.com/">
       <template #logo>
-        <img src="@/assets/logos/©thaime.svg" width="100">
+        <img src="@/assets/logos/©thaime.svg?i" width="100">
       </template>
       <template #description>
         <a href="https://en.wikipedia.org/wiki/Progressive_Web_Apps">
