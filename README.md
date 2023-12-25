@@ -9,11 +9,7 @@
 - [commands](#commands)
   - [building dependencies](#building-dependencies)
   - [building for production](#building-for-production)
-  - [serving production files locally](#serving-production-files-locally)
   - [development](#development)
-- [configuration](#configuration)
-  - [dev](#dev)
-  - [heroku](#heroku)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
