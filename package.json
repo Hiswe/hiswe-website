@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.0",
+    "@unocss/nuxt": "^0.58.0",
     "doctoc": "^2.0.0",
     "nuxt": "^3.9.0",
     "nuxt-svgo": "^3.7.0",

@@ -1,6 +1,10 @@
 <template>
-  <aside class="social">
-    <div>
+  <aside
+    class="social
+    lg:flex lg:items-center lg:justify-center
+    m-0"
+  >
+    <div class="flex justify-between lg:flex-col">
       <a href="https://github.com/hiswe">
         <SvgoSocialGithub />
         <span>github</span>
@@ -25,29 +29,14 @@
 @import 'assets/css/scss-vars';
 
 .social {
-  margin: var(--gutter) auto;
   background: var(--c-primary-darkest-highlight);
   padding: var(--vertical-space) var(--gutter);
-  margin: 0;
   grid-area: social;
-  --svg-icon-scale: 1.5;
-
-  @media #{$mq-big} {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 div {
-  display: flex;
-  justify-content: space-between;
   max-width: 350px;
   margin: 0 auto;
-
-  @media #{$mq-big} {
-    flex-direction: column;
-  }
 }
 
 a {

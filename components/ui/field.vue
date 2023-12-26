@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     tag?: `input` | `textarea`
@@ -20,6 +24,9 @@ const emit = defineEmits<{
 
 const pristine = ref(true)
 const input = ref<HTMLInputElement | HTMLTextAreaElement>()
+const attrs = useAttrs()
+
+const parentClasses = computed(() => typeof attrs.class === `string` ? attrs.class : ``)
 
 watch(() => props.disabled, (newVal, _oldVal) => {
   // disabled mean it has been submitted
@@ -68,7 +75,15 @@ function handleBlur() {
 </script>
 
 <template>
-  <div class="field" :class="{ 'field--invalid': shouldDisplayError, 'field--disabled': disabled }">
+  <div
+    class="field p-0 border-none md:flex md:flex-col"
+    :class="{
+      'field--invalid': shouldDisplayError,
+      'field--disabled': disabled,
+      'pointer-events-none opacity-50': disabled,
+      [parentClasses]: true,
+    }"
+  >
     <label :for="name">
       {{ name }}
       <Transition name="error-fade">
@@ -77,27 +92,21 @@ function handleBlur() {
         </span>
       </Transition>
     </label>
-    <component :is="tag" :id="name" ref="input" :name="name" :disabled="disabled" @blur="handleBlur" @input="onInput" />
+    <component
+      :is="tag"
+      :id="name"
+      ref="input"
+      :name="name"
+      :disabled="disabled"
+      v-bind="$attrs"
+      @blur="handleBlur"
+      @input="onInput"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import 'assets/css/scss-vars';
-
-.field {
-  border: 0;
-  padding: 0;
-
-  @media #{$mq-medium} {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.field--disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
 
 .field__error-message {
   font-style: italic;

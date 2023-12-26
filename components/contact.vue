@@ -1,7 +1,4 @@
 <script setup lang="ts">
-function handleSubmit() { }
-function enable() { }
-
 const disabled = false
 const name = ref(``)
 const email = ref(``)
@@ -14,13 +11,10 @@ const validation = computed(() => ({
 
 <template>
   <form
-    class="contact"
+    class="contact bg-primary-darkest color-primary-lighter"
     :action="$options.FORM_ACTION"
-    method="post"
     novalidate
     netlify
-    @submit.prevent="handleSubmit"
-    @click="enable"
   >
     <UiTwoLineTitle class="form__title" text="contact me" tag="h2" />
     <div class="contact__inputs">
@@ -62,8 +56,6 @@ const validation = computed(() => ({
 @import 'assets/css/scss-vars';
 
 .contact {
-  background: var(--c-primary-darkest);
-  color: var(--c-primary-lighter);
   padding: var(--vertical-space) var(--gutter);
   grid-area: contact;
 
