@@ -10,10 +10,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   router: {
-    middleware: [
-      // `reset-form`,
-      // `handle-server-errors`
-    ],
+    middleware: [],
   },
   loading: {
     color: `hsl(332, 100%, 50%)`,
@@ -24,6 +21,7 @@ export default defineNuxtConfig({
     `@/assets/css/page-transitions.scss`,
   ],
   modules: [
+    `@unocss/nuxt`,
     `nuxt-svgo`,
   ],
   serverMiddleware: [{

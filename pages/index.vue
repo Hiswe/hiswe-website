@@ -9,9 +9,13 @@ useHead({
     <template #header>
       <HomeHeader />
     </template>
-    <HomeService title="dev-elopment">
-      <template #description>
-        building<br>web application
+    <HomeService
+      id="development"
+      description="building<br>web application"
+      class="bg-primary-lighter color-primary-darker"
+    >
+      <template #title>
+        <UiTwoLineTitle text="dev-elopment" class="color-primary-darkest" />
       </template>
       <ul>
         <li>Reactive applications</li>
@@ -19,9 +23,13 @@ useHead({
         <li>Fast rendering with universal application</li>
       </ul>
     </HomeService>
-    <HomeService title="inte-gration">
-      <template #description>
-        from webdesign<br>to webpage
+    <HomeService
+      id="integration"
+      description="from webdesign<br>to webpage"
+      class="bg-primary color-white"
+    >
+      <template #title>
+        <UiTwoLineTitle text="inte-gration" />
       </template>
       <ul>
         <li>Optimized for fast loading &amp; rendering</li>
@@ -29,9 +37,13 @@ useHead({
         <li>Clean javascript code</li>
       </ul>
     </HomeService>
-    <HomeService title="web-design">
-      <template #description>
-        make<br>efficiant UX
+    <HomeService
+      id="webdesign"
+      description="make<br>efficiant UX"
+      class="bg-accent color-accent-lightest"
+    >
+      <template #title>
+        <UiTwoLineTitle text="web-design" />
       </template>
       <ul>
         <li>Fast delivery</li>
@@ -66,15 +78,15 @@ useHead({
       grid-area: header;
     }
 
-    .service--development {
+    :deep(.service--development) {
       grid-area: development;
     }
 
-    .service--integration {
+    :deep(.service--integration) {
       grid-area: integration;
     }
 
-    .service--webdesign {
+    :deep(.service--webdesign) {
       grid-area: webdesign;
     }
 
