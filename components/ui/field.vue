@@ -22,10 +22,9 @@ const emit = defineEmits<{
   'update:modelValue': [string]
 }>()
 
+const attrs = useAttrs()
 const pristine = ref(true)
 const input = ref<HTMLInputElement | HTMLTextAreaElement>()
-const attrs = useAttrs()
-
 const parentClasses = computed(() => typeof attrs.class === `string` ? attrs.class : ``)
 
 watch(() => props.disabled, (newVal, _oldVal) => {

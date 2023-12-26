@@ -1,7 +1,27 @@
 <script setup lang="ts">
+import { nanoid } from 'nanoid'
+
+import { type Notification, type NotificationType, notificationKey } from '~/composables/inject-keys'
+
 defineSlots<{
   default(): any
 }>()
+
+const notifications = ref<Notification[]>([])
+
+function addNotification(message: string, type: NotificationType) {
+  notifications.value.push({ id: nanoid(), message, type })
+}
+function removeNotification(id: string) {
+  const messageIndex = notifications.value.findIndex(message => message.id === id)
+  notifications.value.splice(messageIndex, 1)
+}
+
+provide(notificationKey, {
+  notifications,
+  addNotification,
+  removeNotification,
+})
 </script>
 
 <template>
