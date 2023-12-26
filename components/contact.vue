@@ -7,17 +7,49 @@ const validation = computed(() => ({
   email: { valid: true },
   message: { valid: true },
 }))
+
+function onSubmit(event: Event) {
+  const myForm = event.target
+  if (!(myForm instanceof HTMLFormElement))
+    return
+  const formData = new FormData(myForm)
+  const searchParams = new URLSearchParams()
+  // Display the key/value pairs
+  for (const pair of formData.entries()) {
+    if (typeof pair[1] === `string`)
+      searchParams.append(pair[0], pair[1])
+  }
+
+  $fetch('/form.html', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: searchParams.toString(),
+  }).then(() => console.log('/thank-you/'))
+    .catch(error => console.error(error))
+
+  // fetch('/', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //   body: new URLSearchParams(formData).toString(),
+  // })
+  //   .then(() => navigate('/thank-you/'))
+  //   .catch(error => alert(error))
+}
 </script>
 
 <template>
   <form
     class="contact bg-primary-darkest color-primary-lighter"
     :action="$options.FORM_ACTION"
-    novalidate
-    netlify
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    name="contact"
+    method="POST"
+    @submit.prevent="onSubmit"
   >
     <UiTwoLineTitle class="form__title" text="contact me" tag="h2" />
     <div class="contact__inputs">
+      <input type="hidden" name="form-name" value="contact">
       <UiField
         v-model="name"
         class="field--name"
@@ -30,7 +62,7 @@ const validation = computed(() => ({
         class="field--email"
         name="email"
         type="email"
-        required="required"
+        required
         :disabled="disabled"
         :valid="validation.email.valid"
       />
@@ -40,7 +72,7 @@ const validation = computed(() => ({
       class="field--message"
       name="message"
       tag="textarea"
-      required="required"
+      required
       :disabled="disabled"
       :valid="validation.message.valid"
     />
