@@ -1,10 +1,16 @@
 <script setup lang="ts">
-const notifications = computed<{ id: string }[]>(() => [])
+import { notificationKey } from '~/composables/inject-keys'
+
+const notificationProvider = inject(notificationKey)
 </script>
 
 <template>
-  <aside class="notifications">
-    <NotificationsItem v-for="notification in notifications" :key="notification.id" :notification="notification" />
+  <aside v-if="notificationProvider?.notifications" class="notifications fixed bottom-0 left-1/2 w-full -translate-x-1/2 flex flex-col-reverse">
+    <NotificationsItem
+      v-for="notification in notificationProvider.notifications.value"
+      :key="notification.id"
+      :notification="notification"
+    />
   </aside>
 </template>
 
@@ -12,13 +18,6 @@ const notifications = computed<{ id: string }[]>(() => [])
 @import 'assets/css/scss-vars';
 
 .notifications {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  width: 100%;
   max-width: $stop-medium;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column-reverse;
 }
 </style>

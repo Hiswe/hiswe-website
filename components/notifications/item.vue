@@ -1,14 +1,44 @@
 <script setup lang="ts">
+import { type Notification, notificationKey } from '~/composables/inject-keys'
+
+const props = defineProps<{
+  notification: Notification
+}>()
+
+const REMOVE_DELAY = 6_666
+const timerId = ref<number>()
+const content = ref<HTMLParagraphElement>()
+
+const notificationProvider = inject(notificationKey)
+
+onMounted(() => {
+  timerId.value = window.setTimeout(removeNotification, REMOVE_DELAY)
+  if (content.value)
+    content.value.style.setProperty('--expanded', `${content.value.offsetHeight}px`)
+})
+
+onUnmounted(() => {
+  if (timerId.value)
+    window.clearTimeout(timerId.value)
+})
+
 function removeNotification() {
+  if (!notificationProvider)
+    return
+  notificationProvider.removeNotification(props.notification.id)
 }
 </script>
 
 <template>
   <Transition name="notification" appear>
     <div class="notification" @click="removeNotification">
-      <!-- <p ref="content" class="notification__content" :class="`notification__content--${notification.type}`">
-        {{ notification.content }}
-      </p> -->
+      <p
+        ref="content"
+        class="notification__content"
+        :class="`notification__content--${notification.type}`"
+      >
+        {{ notification.message }}
+      </p>
     </div>
   </Transition>
 </template>

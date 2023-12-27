@@ -1,23 +1,71 @@
 <script setup lang="ts">
-const disabled = false
+import { notificationKey } from '~/composables/inject-keys'
+
+const notificationProvider = inject(notificationKey)
+const disabled = ref(false)
 const name = ref(``)
 const email = ref(``)
 const message = ref(``)
-const validation = computed(() => ({
-  email: { valid: true },
-  message: { valid: true },
-}))
+
+function onSubmit(event: Event) {
+  if (disabled.value)
+    return
+  const myForm = event.target
+  if (!(myForm instanceof HTMLFormElement))
+    return
+  const formData = new FormData(myForm)
+  const searchParams = new URLSearchParams()
+  // Display the key/value pairs
+  for (const pair of formData.entries()) {
+    if (typeof pair[1] === `string`)
+      searchParams.append(pair[0], pair[1])
+  }
+
+  disabled.value = true
+
+  // Need to duplicate form for Netlify to be able to parse it
+  // Need to point to that page ¯\_(ツ)_/¯
+  // https://answers.netlify.com/t/nuxt-3-contact-form-solution/83523/3
+  $fetch('/form.html', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: searchParams.toString(),
+  }).then(onSuccess)
+    .catch(onError)
+    .finally(() => disabled.value = false)
+}
+function onSuccess() {
+  notificationProvider?.addNotification(`message send`, `success`)
+  resetForm()
+}
+function onError() {
+  notificationProvider?.addNotification(`An error as occurred, please try later`, `error`)
+}
+
+function resetForm() {
+  name.value = ``
+  email.value = ``
+  message.value = ``
+}
 </script>
 
 <template>
   <form
     class="contact bg-primary-darkest color-primary-lighter"
     :action="$options.FORM_ACTION"
-    novalidate
-    netlify
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    name="contact"
+    method="POST"
+    @submit.prevent="onSubmit"
   >
-    <UiTwoLineTitle class="form__title" text="contact me" tag="h2" />
+    <UiTwoLineTitle
+      class="form__title text-center md:text-left self-center p-4 md:p-0"
+      text="contact me"
+      tag="h2"
+    />
     <div class="contact__inputs">
+      <input type="hidden" name="form-name" value="contact">
       <UiField
         v-model="name"
         class="field--name"
@@ -30,9 +78,8 @@ const validation = computed(() => ({
         class="field--email"
         name="email"
         type="email"
-        required="required"
+        required
         :disabled="disabled"
-        :valid="validation.email.valid"
       />
     </div>
     <UiField
@@ -40,12 +87,17 @@ const validation = computed(() => ({
       class="field--message"
       name="message"
       tag="textarea"
-      required="required"
+      required
       :disabled="disabled"
-      :valid="validation.message.valid"
     />
     <div class="contact__submit">
-      <button class="contact__button" type="submit" :disabled="disabled">
+      <button
+        class="contact__button border-none  h-10 block w-full
+          text-black hover:text-white
+          bg-primary hover:bg-accent"
+        type="submit"
+        :disabled="disabled"
+      >
         send
       </button>
     </div>
@@ -78,19 +130,8 @@ const validation = computed(() => ({
 }
 
 .contact__button {
-  display: block;
-  background: var(--c-primary);
-  color: black;
-  border: 0;
-  width: 100%;
-  height: 2.5rem;
   padding: var(--half-gutter) var(--gutter);
   transition: color 0.25s, background-color 0.25s, transform 0.15s;
-
-  &:hover {
-    background-color: var(--c-accent);
-    color: white;
-  }
 
   &:active {
     transform: translateY(3px);
@@ -107,15 +148,7 @@ const validation = computed(() => ({
 }
 
 .form__title {
-  padding: var(--gutter);
-  text-align: center;
   grid-area: title;
-  align-self: center;
-
-  @media #{$mq-medium} {
-    text-align: left;
-    padding: 0;
-  }
 }
 
 .contact__inputs {

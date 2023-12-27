@@ -1,5 +1,4 @@
 {
-  
   "promyze.feature.disableSuggestion": true,
   
   // https://github.com/antfu/eslint-config#vs-code-support-auto-fix
@@ -21,6 +20,7 @@
     "axios",
     "clonedeep",
     "codepen",
+    "composables",
     "consola",
     "extralight",
     "hiswe",
