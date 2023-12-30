@@ -6,6 +6,7 @@ defineOptions({
 defineProps<{
   name: string
   href: string
+  long?: boolean
 }>()
 
 defineSlots<{
@@ -15,7 +16,10 @@ defineSlots<{
 
 <template>
   <a class="tech__item group block m-0 text-center decoration-none color-primary-lightest hover:color-accent-lighter" :href="href">
-    <figure class="block m-0 bg-primary group-hover:bg-accent-lighter object-contain">
+    <figure
+      :class="long ? `w-32` : `w-22`"
+      class="block m-0 bg-primary group-hover:bg-accent-lighter object-contain h-18"
+    >
       <slot />
     </figure>
     <span class="block p-0 text-2xs">{{ name }}</span>
@@ -59,9 +63,5 @@ figure :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
 
 a:hover :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
   fill: var(--c-accent-lightest) !important;
-}
-
-span {
-  height: var(--grid-size);
 }
 </style>

@@ -5,8 +5,8 @@ defineOptions({
 </script>
 
 <template>
-  <section class="techs">
-    <HomeTechsServer />
+  <section class="techs bg-primary-darker items-start">
+    <HomeTechsServer class="tech--server" />
     <div class="tech tech--framework">
       <UiTwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
       <HomeTechsItem name="react" class="tech__item--react" href="https://reactjs.org/">
@@ -35,7 +35,6 @@ defineOptions({
 @import 'assets/css/scss-vars';
 
 .techs {
-  background: var(--c-primary-darker);
   padding-bottom: calc(var(--grid-size) * 2);
 
   @media #{$mq-medium} {
@@ -44,8 +43,8 @@ defineOptions({
     padding: var(--vertical-space) 0 0;
     grid-auto-rows: auto;
     grid-template-areas:
-      '. framework .     . server .'
-      '. build     build . .      .';
+      '. framework .      . build  .'
+      '. server    server . .      .';
   }
 
   @media #{$mq-big} {
@@ -79,10 +78,6 @@ defineOptions({
 
 .tech--server {
   grid-area: server;
-
-  @media #{$mq-medium} {
-    grid-template-columns: repeat(9, 1fr);
-  }
 }
 
 .tech--build {
