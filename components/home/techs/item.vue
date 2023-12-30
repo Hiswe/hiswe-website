@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  name: `HomeTechsItem`,
+})
+
 defineProps<{
   name: string
   href: string

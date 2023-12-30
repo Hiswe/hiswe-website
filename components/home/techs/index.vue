@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineOptions({
+  name: `HomeTechs`,
+})
+</script>
+
 <template>
   <section class="techs">
     <div class="tech tech--server">
