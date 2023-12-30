@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="grid grid-cols-[1fr_5.5rem_5.5rem] gap-x-8 gap-y-6 p-8 md:p-0">
+  <div class="grid grid-cols-[1fr_5.5rem_5.5rem] gap-x-8 gap-y-6">
     <UiTwoLineTitle class="p-0 text-start md:text-end" text="ser-ver" />
     <HomeTechsItem name="node" href="https://nodejs.org/en/">
       <SvgoTechNode />

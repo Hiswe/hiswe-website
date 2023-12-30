@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <section class="techs bg-primary-darker items-start">
+  <section class="techs bg-primary-darker items-start p-8">
     <HomeTechsServer class="tech--server" />
     <div class="tech tech--framework">
       <UiTwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
@@ -16,18 +16,7 @@ defineOptions({
         <SvgoTechVue />
       </HomeTechsItem>
     </div>
-    <div class="tech tech--build">
-      <UiTwoLineTitle class="tech__title tech__title--build" text="bu-ild" />
-      <HomeTechsItem name="webpack" class="tech__item--webpack" href="https://webpack.js.org">
-        <SvgoTechWebpack />
-      </HomeTechsItem>
-      <HomeTechsItem name="parcel" class="tech__item--parcel" href="https://parceljs.org">
-        <SvgoTechParcel />
-      </HomeTechsItem>
-      <HomeTechsItem name="gulp" class="tech__item--gulp" href="https://gulpjs.com">
-        <SvgoTechGulp />
-      </HomeTechsItem>
-    </div>
+    <HomeTechsBuild class="tech--build" />
   </section>
 </template>
 
@@ -35,12 +24,9 @@ defineOptions({
 @import 'assets/css/scss-vars';
 
 .techs {
-  padding-bottom: calc(var(--grid-size) * 2);
-
   @media #{$mq-medium} {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr 1fr 9fr 1fr;
-    padding: var(--vertical-space) 0 0;
     grid-auto-rows: auto;
     grid-template-areas:
       '. framework .      . build  .'
@@ -82,10 +68,6 @@ defineOptions({
 
 .tech--build {
   grid-area: build;
-
-  @media #{$mq-medium} {
-    grid-template-columns: repeat(6, 1fr);
-  }
 }
 
 .tech__title {
@@ -95,11 +77,6 @@ defineOptions({
     grid-area: first-line-start / 1 / first-line-end / 6;
     text-align: left;
   }
-}
-
-.tech__title--server,
-.tech__title--build {
-  grid-area: 1 / 2 / 6 / 9;
 }
 
 .tech__title--framework {
@@ -121,31 +98,6 @@ defineOptions({
 
   @media #{$mq-medium} {
     grid-area: second-line-start / 4 / second-line-end / 6;
-  }
-}
-
-// BUILD
-.tech__item--webpack {
-  grid-area: 1 / 8 / 4 / 12;
-
-  @media #{$mq-medium} {
-    grid-area: first-line-start / 4 / first-line-end / 7;
-  }
-}
-
-.tech__item--parcel {
-  grid-area: 5 / 8 / 9 / 12;
-
-  @media #{$mq-medium} {
-    grid-area: second-line-start / 4 / second-line-end / 7;
-  }
-}
-
-.tech__item--gulp {
-  grid-area: 5 / 13 / 9 / 16;
-
-  @media #{$mq-medium} {
-    grid-area: second-line-start / 1 / second-line-end / 3;
   }
 }
 </style>
