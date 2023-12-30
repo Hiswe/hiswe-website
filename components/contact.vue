@@ -52,7 +52,6 @@ function resetForm() {
 <template>
   <form
     class="contact bg-primary-darkest color-primary-lighter"
-    :action="$options.FORM_ACTION"
     data-netlify="true"
     data-netlify-honeypot="bot-field"
     name="contact"

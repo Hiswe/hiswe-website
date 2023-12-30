@@ -1,7 +1,12 @@
 <script setup lang="ts">
+defineOptions({
+  name: `HomeTechsItem`,
+})
+
 defineProps<{
   name: string
   href: string
+  long?: boolean
 }>()
 
 defineSlots<{
@@ -10,11 +15,14 @@ defineSlots<{
 </script>
 
 <template>
-  <a class="tech__item" :href="href">
-    <figure>
+  <a class="tech__item group block m-0 text-center decoration-none color-primary-lightest hover:color-accent-lighter" :href="href">
+    <figure
+      :class="long ? `w-32` : `w-22`"
+      class="block m-0 bg-primary group-hover:bg-accent-lighter object-contain h-18"
+    >
       <slot />
     </figure>
-    <span>{{ name }}</span>
+    <span class="block pt-1 text-xs">{{ name }}</span>
   </a>
 </template>
 
@@ -22,19 +30,11 @@ defineSlots<{
 @import 'assets/css/scss-vars';
 
 figure {
-  display: block;
-  margin: 0;
-  background: var(--c-primary);
   height: calc(var(--grid-size) * 3);
-  object-fit: contain;
 
   @media #{$mq-medium} {
     height: calc(var(--grid-size) * 2);
   }
-}
-
-a:hover figure {
-  background: var(--c-accent-lighter);
 }
 
 figure :deep(svg) {
@@ -62,28 +62,6 @@ figure :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
 }
 
 a:hover :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
-  fill: var(--c-accent-lightest) !important;
-}
-
-a {
-  text-decoration: none;
-  text-align: center;
-  color: var(--c-primary-lightest);
-  display: block;
-  margin: 0;
-
-  &:hover {
-    color: var(--c-accent-lighter);
-  }
-}
-
-span {
-  display: block;
-  padding: 0;
-  font-size: 0.65rem;
-  height: var(--grid-size);
-  display: block;
-  align-items: center;
-  justify-content: center;
+  fill: white !important;
 }
 </style>

@@ -2,8 +2,14 @@
 import { defineConfig, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [],
+  rules: [
+    ['direction-rtl', { direction: 'rtl' }],
+    ['direction-ltr', { direction: 'ltr' }],
+  ],
   theme: {
+    fontSize: {
+      '2xs': '0.65rem',
+    },
     colors: {
       primary: {
         lightest: `hsl(200, 46%, 95%)`,
