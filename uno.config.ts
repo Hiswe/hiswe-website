@@ -4,6 +4,9 @@ import { defineConfig, presetUno, transformerDirectives, transformerVariantGroup
 export default defineConfig({
   shortcuts: [],
   theme: {
+    fontSize: {
+      '2xs': '0.65rem',
+    },
     colors: {
       primary: {
         lightest: `hsl(200, 46%, 95%)`,
