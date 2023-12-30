@@ -22,7 +22,7 @@ defineSlots<{
     >
       <slot />
     </figure>
-    <span class="block p-0 text-2xs">{{ name }}</span>
+    <span class="block pt-1 text-xs">{{ name }}</span>
   </a>
 </template>
 
@@ -62,6 +62,6 @@ figure :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
 }
 
 a:hover :deep(path[style="fill:#ccc;fill-rule:nonzero;"]) {
-  fill: var(--c-accent-lightest) !important;
+  fill: white !important;
 }
 </style>

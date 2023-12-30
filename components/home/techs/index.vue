@@ -6,16 +6,8 @@ defineOptions({
 
 <template>
   <section class="techs bg-primary-darker items-start p-8">
+    <HomeTechsFramework class="tech--framework" />
     <HomeTechsServer class="tech--server" />
-    <div class="tech tech--framework">
-      <UiTwoLineTitle class="tech__title tech__title--framework" text="frame-work" />
-      <HomeTechsItem name="react" class="tech__item--react" href="https://reactjs.org/">
-        <SvgoTechReact />
-      </HomeTechsItem>
-      <HomeTechsItem name="vue" class="tech__item--vue" href="https://vuejs.org/">
-        <SvgoTechVue />
-      </HomeTechsItem>
-    </div>
     <HomeTechsBuild class="tech--build" />
   </section>
 </template>
@@ -56,10 +48,6 @@ defineOptions({
 
 .tech--framework {
   grid-area: framework;
-
-  @media #{$mq-medium} {
-    grid-template-columns: repeat(5, 1fr);
-  }
 }
 
 .tech--server {
@@ -68,36 +56,5 @@ defineOptions({
 
 .tech--build {
   grid-area: build;
-}
-
-.tech__title {
-  padding: 0;
-
-  @media #{$mq-medium} {
-    grid-area: first-line-start / 1 / first-line-end / 6;
-    text-align: left;
-  }
-}
-
-.tech__title--framework {
-  text-align: right;
-  grid-area: 1 / 1 / 6 / 16;
-}
-
-// FRAMEWORK
-.tech__item--vue {
-  grid-area: 4 / 3 / 8 / 6;
-
-  @media #{$mq-medium} {
-    grid-area: second-line-start / 1 / second-line-end / 3;
-  }
-}
-
-.tech__item--react {
-  grid-area: 4 / 7 / 8 / 10;
-
-  @media #{$mq-medium} {
-    grid-area: second-line-start / 4 / second-line-end / 6;
-  }
 }
 </style>
